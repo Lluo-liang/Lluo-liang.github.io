@@ -1,11 +1,12 @@
 ---
 title: '01_使用 hexo 搭建一个博客网站 '
-updated: '2023-06-04 23:54:07'
+updated: '2023-06-04 23:56:11'
 excerpt: >-
   _使用hexo搭建一个博客网站hexo安装hexo官网安装使用npm安装npminstallhexoclig初始化某个项目文件（新建目录）进入目录后hexoinithexoinit#博客初始化(安装所需要的包)目录结构​public​目录下存放的是我们生成的「静态页面」_​source_posts​目录下存放的是我们写的「文章」_​themes​目录下存放的是「博客」的主题_​_configyml​是「博客全局配置」文件_​_configlandscapeyml​是「博客主题配置」文件​运行本地运行hex
 tags: []
-categories: []
-permalink: /post/01_-use-hexo-to-build-a-blog-website-z1cwxxt.html
+categories:
+  - _posts
+permalink: /post/01_使用 hexo 搭建一个博客网站 .html
 comments: true
 toc: true
 ---
@@ -56,7 +57,7 @@ hexo init  # 博客初始化 (安装所需要的包)
 hexo s # http://localhost:4000/预览
 ```
 
-​![image](assets/image-20230604163110-nxhqudk.png)​
+​![image](https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306042353562.png)​
 
 访问
 
@@ -64,7 +65,7 @@ hexo s # http://localhost:4000/预览
 http://localhost:4000/
 ```
 
-![image](assets/image-20230604163124-95tecy8.png)​
+![image](https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306042353746.png)​
 
 ‍
 
@@ -138,7 +139,7 @@ themes\ocean\source\css\_partial/navbar.styl
   //      content '\f174'
 ```
 
-​![image](assets/image-20230604202417-7ixzome.png)​
+​![image](https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306042353869.png)​
 
 这里 相册和关于先注释一下，内容后期看一下
 
@@ -146,7 +147,7 @@ themes\ocean\source\css\_partial/navbar.styl
 
 取消的话需要主题配置这里注释一下
 
-​![image](assets/image-20230604203612-7114wh4.png)​
+​![image](https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306042353932.png)​
 
 ‍
 
@@ -193,7 +194,7 @@ hexo s
 
 如果需要需求页面的部分标签描述，需要到下面这个文件中改
 
-​![image](assets/image-20230604204819-i9mde8x.png)​
+​![image](https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306042353007.png)​
 
 不是很理解这个国际化语言设置，先备份一下
 
@@ -221,19 +222,19 @@ tag: Tag
 
 直接用它同一路径下的 zh-CN.yml 文件内容覆盖 defalut.yml 文件内容
 
-​![image](assets/image-20230604210144-gwryupn.png)​
+​![image](https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306042353084.png)​
 
 还有部分标签，是直接在主题配置文件中直接改就好了（开始以为是配置属性）
 
-​![image](assets/image-20230604215631-ua814dq.png)​
+​![image](https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306042353160.png)​
 
 主页的这个属性的改变，在 F12 调试中找到是css样式 video-inner text-center text-white 中设置
 
-​![image](assets/image-20230604215750-4wumu8m.png)​
+​![image](https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306042353238.png)​
 
 搜索文件后会发现这个配置是 config.subtitle 中设置的
 
-​![image](assets/image-20230604215902-4mdo6e0.png)​
+​![image](https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306042353374.png)​
 
 但是在这个过程中，自己尝试修改了很多次，找了很多文件，还是不太清楚如何改
 
@@ -241,11 +242,11 @@ tag: Tag
 
 但是需要你重启一下服务（有时候也可能是缓存问题）
 
-​![image](assets/image-20230604220806-f56gmsf.png)​
+​![image](https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306042353451.png)​
 
 再次访问已经OK了
 
-​![image](assets/image-20230604220907-key962g.png)​
+​![image](https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306042353548.png)​
 
 网上有一些优化内容，这里暂时不参与和研究
 
