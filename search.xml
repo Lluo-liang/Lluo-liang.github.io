@@ -1,6 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>01_使用Hexo搭建一个博客网站</title>
+    <url>//post/01_-use-hexo-to-build-a-blog-website-2qcjw6.html</url>
+    <content><![CDATA[<h1 id="01-使用Hexo搭建一个博客网站"><a href="#01-使用Hexo搭建一个博客网站" class="headerlink" title="01_使用Hexo搭建一个博客网站"></a>01_使用Hexo搭建一个博客网站</h1><h3 id="hexo-安装"><a href="#hexo-安装" class="headerlink" title="hexo 安装"></a>hexo 安装</h3><p><a href="https://hexo.io/zh-cn/">hexo 官网</a></p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>使用 npm 安装</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+
+<p>初始化某个项目文件（新建目录）</p>
+<p>进入目录后  hexo init</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo init  # 博客初始化 (安装所需要的包)</span><br></pre></td></tr></table></figure>
+
+<p>目录结构</p>
+<p>​<code>public</code>​目录下存放的是我们生成的<strong>「静态页面」</strong>；</p>
+<p>​<code>source/_posts</code>​目录下存放的是我们写的<strong>「文章」</strong>；</p>
+<p>​<code>themes</code>​目录下存放的是<strong>「博客」</strong>的主题；</p>
+<p>​<code>_config.yml</code>​是<strong>「博客全局配置」</strong>文件；</p>
+<p>​<code>_config.landscape.yml</code>​是<strong>「博客主题配置」</strong>文件</p>
+<p>‍</p>
+<h4 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h4><p>本地运行  hexo s</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo s # http://localhost:4000/预览</span><br></pre></td></tr></table></figure>
+
+<p>​<img src="/assets/image-20230604163110-nxhqudk.png" alt="image">​</p>
+<p>访问</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:4000/</span><br></pre></td></tr></table></figure>
+
+<p>​<img src="/assets/image-20230604163124-95tecy8.png" alt="image">​</p>
+<p>‍</p>
+<h4 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h4><p>运行路径下执行命令 hexo n：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo n &quot;第一篇博客&quot; # 新建一个名为第一篇博客.md的文件</span><br></pre></td></tr></table></figure>
+
+<p>‍</p>
+<p>‍</p>
+<h3 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h3><h4 id="搭建基于ocean-主题的站点"><a href="#搭建基于ocean-主题的站点" class="headerlink" title="搭建基于ocean 主题的站点"></a>搭建基于ocean 主题的站点</h4><p><a href="https://www.zhwangart.com/">首页（主题网站）</a></p>
+<p><a href="https://github.com/zhwangart/hexo-theme-ocean">ocean GiteHub地址</a></p>
+<p><a href="https://www.zhwangart.com/2018/11/30/Ocean/">ocean主题安装指导文档</a></p>
+<h5 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/zhwangart/hexo-theme-ocean.git themes/ocean</span><br></pre></td></tr></table></figure>
+
+<h5 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h5><p>在 <code>root</code>​&#x2F; <code>_config.yml</code>​ 中选择 <code>theme: ocean</code>​</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">theme: ocean</span><br></pre></td></tr></table></figure>
+
+<p><strong>Ocean</strong> 使用了 feathericon 图标库，</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://feathericons.com/</span><br></pre></td></tr></table></figure>
+
+<p>菜单中的图标定义在“CSS source&#x2F;css &#x2F;_partial&#x2F;navbar.styl”中，可根据需要进行更改或添加。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">themes\ocean\source\css\_partial/navbar.styl</span><br></pre></td></tr></table></figure>
+
+<p>如果你不需要开启 相册 与 关于 菜单，需要删除或者注销掉他们的图标，如下边的示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.nav-item</span><br><span class="line">  &amp;:nth-child(1)         // 主页</span><br><span class="line">    .nav-item-link</span><br><span class="line">      &amp;::before</span><br><span class="line">        content &#x27;\f12f&#x27;</span><br><span class="line">  &amp;:nth-child(2)         // 归档</span><br><span class="line">    .nav-item-link</span><br><span class="line">      &amp;::before</span><br><span class="line">        content &#x27;\f12a&#x27;</span><br><span class="line">  //&amp;:nth-child(3)         // 相册</span><br><span class="line">  //  .nav-item-link</span><br><span class="line">  //    &amp;::before</span><br><span class="line">  //      content &#x27;\f1a9&#x27;</span><br><span class="line">  //&amp;:nth-child(4)         // 关于</span><br><span class="line">  //  .nav-item-link</span><br><span class="line">  //    &amp;::before</span><br><span class="line">  //      content &#x27;\f174&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>​<img src="/assets/image-20230604202417-7ixzome.png" alt="image">​</p>
+<p>这里 相册和关于先注释一下，内容后期看一下</p>
+<p>试验了一下，这里注释只能将图标取消掉</p>
+<p>取消的话需要主题配置这里注释一下</p>
+<p>​<img src="/assets/image-20230604203612-7114wh4.png" alt="image">​</p>
+<p>‍</p>
+<p>评论功能这里不进行开启，后期再看</p>
+<p>开启标签和分类功能后期再看</p>
+<p>‍</p>
+<p>‍</p>
+<h5 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h5><p>插件安装（关于本地搜索功能）</p>
+<p><a href="https://github.com/wzpan/hexo-generator-search">hexo-generator-search</a> 本地检索</p>
+<p>安装</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
+
+<p>配置 Hexo 的配置文件 <code>_config.yml</code>​</p>
+<p>添加插件配置（注意：不是主题的配置文件）：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  content: true</span><br></pre></td></tr></table></figure>
+
+<h5 id="运行-1"><a href="#运行-1" class="headerlink" title="运行"></a>运行</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<p>‍</p>
+<h5 id="修改标签"><a href="#修改标签" class="headerlink" title="修改标签"></a>修改标签</h5><p>如果需要需求页面的部分标签描述，需要到下面这个文件中改</p>
+<p>​<img src="/assets/image-20230604204819-i9mde8x.png" alt="image">​</p>
+<p>不是很理解这个国际化语言设置，先备份一下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">categories: Categories</span><br><span class="line">search: Search</span><br><span class="line">tags: Tags</span><br><span class="line">tagcloud: Tag Cloud</span><br><span class="line">tweets: Tweets</span><br><span class="line">prev: Prev</span><br><span class="line">next: Next</span><br><span class="line">comment: Comments</span><br><span class="line">archive_a: Archives</span><br><span class="line">archive_b: &quot;Archives: %s&quot;</span><br><span class="line">page: Page %d</span><br><span class="line">recent_posts: Recent Posts</span><br><span class="line">newer: Newer</span><br><span class="line">older: Older</span><br><span class="line">share: Share</span><br><span class="line">powered_by: Powered by</span><br><span class="line">rss_feed: RSS Feed</span><br><span class="line">category: Category</span><br><span class="line">tag: Tag</span><br></pre></td></tr></table></figure>
+
+<p>直接用它同一路径下的 zh-CN.yml 文件内容覆盖 defalut.yml 文件内容</p>
+<p>​<img src="/assets/image-20230604210144-gwryupn.png" alt="image">​</p>
+<p>还有部分标签，是直接在主题配置文件中直接改就好了（开始以为是配置属性）</p>
+<p>​<img src="/assets/image-20230604215631-ua814dq.png" alt="image">​</p>
+<p>主页的这个属性的改变，在 F12 调试中找到是css样式 video-inner text-center text-white 中设置</p>
+<p>​<img src="/assets/image-20230604215750-4wumu8m.png" alt="image">​</p>
+<p>搜索文件后会发现这个配置是 config.subtitle 中设置的</p>
+<p>​<img src="/assets/image-20230604215902-4mdo6e0.png" alt="image">​</p>
+<p>但是在这个过程中，自己尝试修改了很多次，找了很多文件，还是不太清楚如何改</p>
+<p>后面自己想了一下，这个是配置文件修改，其实不管是主题配置还是项目配置修改都是生效的</p>
+<p>但是需要你重启一下服务（有时候也可能是缓存问题）</p>
+<p>​<img src="/assets/image-20230604220806-f56gmsf.png" alt="image">​</p>
+<p>再次访问已经OK了</p>
+<p>​<img src="/assets/image-20230604220907-key962g.png" alt="image">​</p>
+<p>网上有一些优化内容，这里暂时不参与和研究</p>
+<p>‍</p>
+<h3 id="部署到-GitHub"><a href="#部署到-GitHub" class="headerlink" title="部署到 GitHub"></a>部署到 GitHub</h3><p>看了一下说 Gitee 不能进行自动更新部署操作，这里还是使用 Github 作为自己的发布平台</p>
+<p>安装 <a href="https://github.com/hexojs/hexo-deployer-git">hexo-deployer-git</a>。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<p>hexo 的配置文件 <code>_config.yml</code>​,  添加一下以下配置</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: &lt;repository url&gt; #https://github.com/Github用户名/Github用户名.github.io.git</span><br><span class="line">  branch: [branch] #published</span><br></pre></td></tr></table></figure>
+
+<p>在自己的 Github 账号下新建仓库，</p>
+<p>仓库名必须为你的<code>Github用户名.github.io</code>​</p>
+<p>‍</p>
+<p>在博客根目录打开Git Bash，输入以下命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>当执行 <code>hexo deploy</code>​ 时，Hexo 会将 <code>public</code>​ 目录中的文件和目录推送至 <code>_config.yml</code>​ 中指定的远端仓库和分支中，并且<strong>完全覆盖</strong>该分支下的已有内容。</p>
+<p>简单来说该指令集成了git的一部分操作</p>
+</blockquote>
+<p>或者（建议）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean                            #清除缓存       可缩写hexo c</span><br><span class="line">hexo generate                         #生成静态文件    可缩写hexo g</span><br><span class="line">hexo deploy                           #部署到Github   可缩写hexo d</span><br></pre></td></tr></table></figure>
+
+<p>部署后访问</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://Github用户名.github.io/</span><br></pre></td></tr></table></figure>
+
+<p>‍</p>
+<h4 id="配置-SSH-连接"><a href="#配置-SSH-连接" class="headerlink" title="配置 SSH 连接"></a>配置 SSH 连接</h4><p>回到Git Bash中，配置Github账户信息（<code>用户名</code>​和<code>邮箱</code>​都替换成你自己Github上的）：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;`用户名`&quot;</span><br><span class="line">git config --global user.email &quot;邮箱&quot;</span><br></pre></td></tr></table></figure>
+
+<p>在Git Bash中输入：<code>ssh-keygen -t rsa -C &quot;你的Github邮箱&quot;</code>​ 生成ssh</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;邮箱&quot;</span><br></pre></td></tr></table></figure>
+
+<p>然后按Git Bash给出的路径<code>(C:\Users\Lete.ssh)</code>​找到<code>id_rsa.pub</code>​文件 并复制其中的内容</p>
+<p>进到新建的Github仓库 点击右上角<code>setting</code>​进入设置找到<code>Deploykeys</code>​选择 <code>Add Deploy keys</code>​ <code>Title</code>​随便填写 <code>Key</code>​的内容填刚才<code>id_rsa.pub</code>​文件中复制的内容</p>
+<p>‍</p>
+<p>修改本地Git配置，设置使用SSH协议连接GitHub。使用以下命令修改本地Git配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global url.&quot;git@github.com:&quot;.insteadOf &quot;https://github.com/&quot;</span><br></pre></td></tr></table></figure>
+
+<p>这个命令会将Git配置中的 <code>https://github.com/</code>​ 替换为 <code>git@github.com:</code>​，从而使用SSH协议连接GitHub。</p>
+<p>配置后再部署提交</p>
+<p>‍</p>
+<h4 id="hexo本地与部署不一致问题"><a href="#hexo本地与部署不一致问题" class="headerlink" title="hexo本地与部署不一致问题"></a>hexo本地与部署不一致问题</h4><blockquote>
+<p>这部分不用管，开始搞错了，应该是他自动进行部署了，然后将部署后 public 下内容替换了整个主分支</p>
+</blockquote>
+<p>一般是分支部署错了</p>
+<p>不要在master分支上部署pages服务，master分支是保存代码的，需要用 hexo 编译，生成 public文件夹后，将public文件夹推到另一个分支，然后在这个分支上部署pages服务。</p>
+<p>修改为分支部署</p>
+<p>​<img src="/assets/image-20230605070614-9pbqdrz.png" alt="image">​</p>
+<p>hexo站点配置文件_config.yml中找到branch，将master改为刚刚新建的分支名；</p>
+<p>回到站点文件夹</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo c</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<p>‍</p>
+<p>‍</p>
+<h4 id="将某个目录文件上传到-Github-某个仓库如何操作"><a href="#将某个目录文件上传到-Github-某个仓库如何操作" class="headerlink" title="将某个目录文件上传到 Github 某个仓库如何操作"></a>将某个目录文件上传到 Github 某个仓库如何操作</h4><p>要将某个目录文件上传到Github某个仓库，可以按照以下步骤进行操作：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 初始化仓库</span><br><span class="line">git init</span><br><span class="line"># 提交到本地git仓库 将文件夹中的内容添加到git仓库</span><br><span class="line">git add .</span><br><span class="line"># 提交到本地git仓库,并添加一条提交信息</span><br><span class="line">git commit -m &quot;Initial commit&quot;</span><br><span class="line">#在命令行中执行以下命令，将本地git仓库与Github上的仓库进行关联</span><br><span class="line">git remote add origin &lt;Github仓库URL&gt;</span><br><span class="line"># 进行推送</span><br><span class="line">git push -u origin master</span><br><span class="line"># 如果目标仓库和本地目录文件冲突，可以先拉去最新仓库代码再进行推送</span><br><span class="line">git pull origin master</span><br><span class="line"># 或者直接强制推送（会直接覆盖远程仓库内容），需要注意的是，强制推送可能会覆盖其他人提交的代码，因此需要谨慎使用。</span><br><span class="line">git push --force origin master</span><br></pre></td></tr></table></figure>
+
+<p>‍</p>
+<h3 id="hexo完成github-action自动部署"><a href="#hexo完成github-action自动部署" class="headerlink" title="hexo完成github action自动部署"></a>hexo完成github action自动部署</h3><p>这里实现的功能是建立了一个分支 ph-pages ，源项目内容放在 master 主分支下，实现自动部署主分支到分支上（同一个仓库下）</p>
+<p>在实现这个前，先获取一个授权 token，这里必须勾选repo 项 和 workflows 项</p>
+<p>访问 Github-&gt;头像（右上角）-&gt;Settings-&gt;Developer Settings-&gt;Personal access tokens-&gt;generate new token,</p>
+<p>创建的 Token 名称随意，有效期建议无限期限。</p>
+<p>​<img src="/assets/image-20230605125847-ejzqlwe.png" alt="image">​</p>
+<p>点击生成</p>
+<blockquote>
+<p>token 只会显示这一次，之后将无法查看，所以务必保证你已经记录下了 Token。之后如果忘记了就只能重新生成重新配置了。</p>
+</blockquote>
+<p>在项目 master 分支下新建文件夹</p>
+<p>在 hexo 项目 中新建<code>.github</code>​文件夹,注意开头是有个<code>.</code>​的。然后在<code>.github</code>​ 内新建 <code>workflows</code>​ 文件夹，再在 <code>workflows</code>​ 文件夹内新建 <code>autodeploy.yml</code>​,</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">workflows</span><br><span class="line">autodeploy.yml</span><br></pre></td></tr></table></figure>
+
+<p>在<code>[Blogroot]/.github/workflows/autodeploy.yml</code>​ 里面输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">name: 自动部署</span><br><span class="line"># 当有改动推送到master分支时，启动Action</span><br><span class="line">on:</span><br><span class="line">  push:</span><br><span class="line">    branches:</span><br><span class="line">      - master</span><br><span class="line">      # 你提交的主分支名称</span><br><span class="line">  release:</span><br><span class="line">    types:</span><br><span class="line">      - published</span><br><span class="line"></span><br><span class="line">jobs:</span><br><span class="line">  # 部署执行的自动工作</span><br><span class="line">  deploy:</span><br><span class="line">    runs-on: ubuntu-latest</span><br><span class="line">    steps:</span><br><span class="line">      - name: 检查分支</span><br><span class="line">        uses: actions/checkout@v3</span><br><span class="line">        with:</span><br><span class="line">          ref: master</span><br><span class="line"></span><br><span class="line">      - name: 安装 Node</span><br><span class="line">        uses: actions/setup-node@v3</span><br><span class="line">        with:</span><br><span class="line">          node-version: &quot;16.x&quot;</span><br><span class="line"></span><br><span class="line">      - name: 安装 Hexo</span><br><span class="line">        run: |</span><br><span class="line">          export TZ=&#x27;Asia/Shanghai&#x27;</span><br><span class="line">          npm install hexo-cli -g</span><br><span class="line"></span><br><span class="line">      - name: 缓存 Hexo</span><br><span class="line">        id: cache-npm</span><br><span class="line">        uses: actions/cache@v3</span><br><span class="line">        env:</span><br><span class="line">          cache-name: cache-node-modules</span><br><span class="line">        with:</span><br><span class="line">          path: node_modules</span><br><span class="line">          key: $&#123;&#123; runner.os &#125;&#125;-build-$&#123;&#123; env.cache-name &#125;&#125;-$&#123;&#123; hashFiles(&#x27;**/package-lock.json&#x27;) &#125;&#125;</span><br><span class="line">          restore-keys: |</span><br><span class="line">            $&#123;&#123; runner.os &#125;&#125;-build-$&#123;&#123; env.cache-name &#125;&#125;-</span><br><span class="line">            $&#123;&#123; runner.os &#125;&#125;-build-</span><br><span class="line">            $&#123;&#123; runner.os &#125;&#125;-</span><br><span class="line"></span><br><span class="line">      - name: 安装依赖</span><br><span class="line">        if: $&#123;&#123; steps.cache-npm.outputs.cache-hit != &#x27;true&#x27; &#125;&#125;</span><br><span class="line">        run: |</span><br><span class="line">          npm install gulp-cli -g #全局安装gulp</span><br><span class="line">          npm install --save</span><br><span class="line"></span><br><span class="line">      - name: 生成静态文件</span><br><span class="line">        run: |</span><br><span class="line">          hexo clean</span><br><span class="line">          hexo generate</span><br><span class="line"></span><br><span class="line">      - name: 部署到Github</span><br><span class="line">        uses: JamesIves/github-pages-deploy-action@v4</span><br><span class="line">        with:</span><br><span class="line">          token:  $&#123;&#123; secrets.ACTION_TOKEN &#125;&#125;</span><br><span class="line">          repository-name: Lluo-liang/Lluo-liang.github.io</span><br><span class="line">          branch: ph-pages</span><br><span class="line">          folder: public</span><br><span class="line">          commit-message: &quot;$&#123;&#123; github.event.head_commit.message &#125;&#125; Updated By Github Actions&quot;</span><br></pre></td></tr></table></figure>
+
+<p>部署到 Github 下几个配置注意一下，其他内容大差不差</p>
+<p>​<img src="/assets/image-20230605152054-827n8kg.png" alt="image">​</p>
+<p>之后如果需要自己到仓库的 Settings-&gt;Secrets-&gt;actions 下添加环境变量，变量名参考脚本中出现的，依次添加（有些环境变量是GitHub Actions自带的一个环境变量）。</p>
+<p>这里配置了一个 ACTION_TOKEN 的环境变量</p>
+<p>​<img src="/assets/image-20230605151815-anw4qjb.png" alt="image">​</p>
+<p>这里的GitHub Pages的设置中 是 ph-pages分支。</p>
+<p>‍</p>
+<p>编辑一下 git 上传的屏蔽项</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.DS_Store</span><br><span class="line">Thumbs.db</span><br><span class="line">db.json</span><br><span class="line">*.log</span><br><span class="line">node_modules/</span><br><span class="line">public/</span><br><span class="line">.deploy*/</span><br><span class="line">.deploy_git*/</span><br><span class="line">.idea</span><br><span class="line">themes/ocean/.git</span><br></pre></td></tr></table></figure>
+
+<p>替换最后一行内容为自己当前使用的主题</p>
+<p>配置完后进行提交推送</p>
+<p>‍</p>
+<p>部署进度查看</p>
+<p>看实际的一个部署情况，可以在 Action 中 查看</p>
+<p>​<img src="/assets/image-20230605133600-rurxd31.png" alt="image">​</p>
+<p>选择第一个，点击进去看，点击 deploy 可以查看窗口进度和实际完成情况</p>
+<p>​<img src="/assets/image-20230605152318-5g09lvo.png" alt="image">​</p>
+<p>‍</p>
+<p>如果是需要安全方面考虑，不打算将自己的源文件内容泄露，也可以建立另外一个仓库，这个仓库设置为私有，</p>
+<p>也可以进行自动部署到这个公共仓库中</p>
+<p>‍</p>
+]]></content>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2023/06/05/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
