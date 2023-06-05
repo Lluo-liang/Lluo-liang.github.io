@@ -55,8 +55,8 @@ jobs:
           gulp
 
       - name: 部署到Github
-        uses: JamesIves/github-pages-deploy-action@v4
-	# 正常来说，修改下面的配置就可以，一个是仓库名称，一个是token，还有分支
+        uses: Lluo-liang/github-pages-deploy-action@v4
+	   # 正常来说，修改下面的配置就可以，一个是仓库名称，一个是token，还有分支
         with:
           token: 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
           repository-name: Lluo-liang/Lluo-liang.github.io
