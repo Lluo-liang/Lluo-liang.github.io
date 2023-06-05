@@ -1,0 +1,65 @@
+name: 自动部署
+# 当有改动推送到master分支时，启动Action
+on:
+  push:
+    branches:
+      - master
+      # 你提交的主分支名称
+  release:
+    types:
+      - published
+
+jobs:
+  # 部署执行的自动工作
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检查分支
+        uses: actions/checkout@v2
+        with:
+          ref: master
+
+      - name: 安装 Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: "16.x"
+
+      - name: 安装 Hexo
+        run: |
+          export TZ='Asia/Shanghai'
+          npm install hexo-cli -g
+
+      - name: 缓存 Hexo
+        id: cache-npm
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - name: 安装依赖
+        if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+        run: |
+          npm install gulp-cli -g #全局安装gulp
+          npm install --save
+
+      - name: 生成静态文件
+        run: |
+          hexo clean
+          hexo generate
+          gulp
+
+      - name: 部署到Github
+        uses: JamesIves/github-pages-deploy-action@v4
+	# 正常来说，修改下面的配置就可以，一个是仓库名称，一个是token，还有分支
+        with:
+          token: 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
+          repository-name: Lluo-liang/Lluo-liang.github.io
+          branch: master
+          folder: public
+          commit-message: "${{ github.event.head_commit.message }} Updated By Github Actions"
