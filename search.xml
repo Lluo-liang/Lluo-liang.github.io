@@ -255,6 +255,36 @@
       </tags>
   </entry>
   <entry>
+    <title>05_深入浅出索引（下）</title>
+    <url>//post/05_early-explain-the-index-below-1aw7tg.html</url>
+    <content><![CDATA[<h1 id="05-深入浅出索引（下）"><a href="#05-深入浅出索引（下）" class="headerlink" title="05_深入浅出索引（下）"></a>05_深入浅出索引（下）</h1><h3 id="回表"><a href="#回表" class="headerlink" title="回表"></a>回表</h3><p>通过索引定位到符合条件的主键，再根据主键索引树搜索的过程，称为回表</p>
+<p>‍</p>
+<h3 id="覆盖索引"><a href="#覆盖索引" class="headerlink" title="覆盖索引"></a>覆盖索引</h3><p>在查询中，使用了一个包含所有需要查询的字段的索引，避免了回表操作，从而可以直接从索引中获取数据，提高查询效率。</p>
+<p>例如，我们有一个表 <code>t</code>​，其中有两个字段 <code>a</code>​ 和 <code>b</code>​，如果我们创建了一个组合索引 <code>(a, b)</code>​，那么当我们查询 <code>SELECT a FROM t WHERE a=1</code>​ 的时候，MySQL 可以直接使用索引 <code>(a, b)</code>​ 来定位符合条件的记录，并返回 <code>a</code>​ 和 <code>b</code>​ 的值，这个查询就可以称为覆盖索引查询。</p>
+<p>而如果我们没有创建 <code>(a, b)</code>​ 索引，那么 MySQL 就需要先使用索引 <code>(a, b)</code>​ 定位到符合条件的主键，再根据主键回表查询 <code>b</code>​ 的值，这个查询就需要回表操作。</p>
+<p>‍</p>
+<h3 id="最左前缀原则"><a href="#最左前缀原则" class="headerlink" title="最左前缀原则"></a>最左前缀原则</h3><p>最左前缀原则指的是，在一个组合索引中，如果要使用索引来查询，那么查询条件必须从索引的最左侧开始，并且不能跳过中间的任何一个索引列。</p>
+<p>例如，如果我们创建了一个组合索引 <code>(a, b, c)</code>​，那么以下查询可以使用索引：</p>
+<ul>
+<li>​<code>SELECT * FROM t WHERE a=1</code>​</li>
+<li>​<code>SELECT * FROM t WHERE a=1 AND b=2</code>​</li>
+<li>​<code>SELECT * FROM t WHERE a=1 AND b=2 AND c=3</code>​</li>
+</ul>
+<p>而以下查询不能使用索引：</p>
+<ul>
+<li>​<code>SELECT * FROM t WHERE b=2</code>​</li>
+<li>​<code>SELECT * FROM t WHERE a=1 AND c=3</code>​</li>
+</ul>
+<h3 id="索引下推"><a href="#索引下推" class="headerlink" title="索引下推"></a>索引下推</h3><p>索引下推是 MySQL 5.6 引入的一个优化，在使用覆盖索引查询时，MySQL 可以在索引中直接过滤掉不符合条件的记录，避免回表操作。</p>
+<p>例如，如果我们创建了一个组合索引 <code>(a, b, c)</code>​，那么当我们查询 <code>SELECT a, b FROM t WHERE a=1 AND b=2</code>​ 的时候，MySQL 可以使用索引 <code>(a, b, c)</code>​ 定位到符合条件的记录，并在索引中过滤掉不符合条件的 <code>c</code>​ 的值，最后返回 <code>a</code>​ 和 <code>b</code>​ 的值。这个过程就是索引下推。</p>
+<p>在 MySQL 5.6 之前，如果我们执行以上查询，MySQL 会使用索引 <code>(a, b, c)</code>​ 定位到符合条件的主键，然后再通过主键回表查询 <code>c</code>​ 的值，这个过程需要多次 IO 操作，效率较低。</p>
+<p>而在 MySQL 5.6 引入索引下推之后，MySQL 可以在索引中直接过滤掉不符合条件的 <code>c</code>​ 的值，避免回表操作，从而提高查询效率。</p>
+]]></content>
+      <tags>
+        <tag>索引</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2023/06/05/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
