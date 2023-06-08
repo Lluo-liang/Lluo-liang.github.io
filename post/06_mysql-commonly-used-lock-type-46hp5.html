@@ -52,7 +52,7 @@
     
     <div class="article-meta">
       <a href="/post/06_mysql-commonly-used-lock-type-46hp5.html" class="article-date">
-  <time datetime="2023-06-08T17:01:31.660Z" itemprop="datePublished">2023-06-08</time>
+  <time datetime="2023-06-08T17:04:06.296Z" itemprop="datePublished">2023-06-08</time>
 </a>
       
 <div class="article-category">
@@ -116,7 +116,7 @@
 <p>比如下面这个例子，经常有人掉到这个坑里：给一个小表加个字段，导致整个库挂了。</p>
 <p>例子A:</p>
 <p>我们来看一下下面的操作序列，假设表 t 是一个小表。</p>
-<p>​<img src="https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306090100430.jpg" alt="img">​</p>
+<p>​<img src="/assets/7cf6a3bf90d72d1f0fc156ececdfb0ce-20230423000033-8bjm0yp.jpg" alt="img">​</p>
 <p>我们可以看到 session A 先启动，这时候会对表 t 加一个 MDL 读锁。</p>
 <p>由于 session B 需要的也是 MDL 读锁，因此可以正常执行。</p>
 <p>之后 session C 会被 blocked，是因为 session A 的 MDL 读锁还没有释放，而 session C 需要 MDL 写锁，因此只能被阻塞。</p>
@@ -159,7 +159,7 @@
 <p>‍</p>
 <h4 id="死锁和死锁检测"><a href="#死锁和死锁检测" class="headerlink" title="死锁和死锁检测"></a>死锁和死锁检测</h4><p>当并发系统中不同线程出现循环资源依赖，涉及的线程都在等待别的线程释放资源时，就会导致这几个线程都进入无限等待的状态，称为死锁。</p>
 <p>示例说明：</p>
-<p>​<img src="https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306090100644.jpg" alt="img">​</p>
+<p>​<img src="/assets/4d0eeec7b136371b79248a0aed005a52-20230423000033-24hkuyw.jpg" alt="img">​</p>
 <p>这时候，事务 A 在等待事务 B 释放 id&#x3D;2 的行锁，而事务 B 在等待事务 A 释放 id&#x3D;1 的行锁。 事务 A 和事务 B 在互相等待对方的资源释放，就是进入了死锁状态。</p>
 <p>当出现死锁以后，有两种策略：</p>
 <ul>
@@ -188,7 +188,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/post/06_mysql-commonly-used-lock-type-46hp5.html" data-id="clindykac0005cvouc7vlhuac" class="article-share-link">
+      <a data-url="http://example.com/post/06_mysql-commonly-used-lock-type-46hp5.html" data-id="cline1vpx0005e7n47whnfsqz" class="article-share-link">
         分享
       </a>
       
