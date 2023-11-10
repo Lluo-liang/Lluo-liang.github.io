@@ -8,7 +8,6 @@
   
   
   <title>
-    Tag: MYSQL |
     
     轻松的洛亓
   </title>
@@ -32,59 +31,72 @@
 <body>
   <main class="content">
     <section class="outer">
-  <article class="articles">
-    
-    <h1 class="page-type-title">#&nbspMYSQL</h1>
-    
-  
-  
-  
-  
-  
-  
-  <div class="archives-wrap">
-    <div class="archive-year-wrap">
-      <a href="/archives/2023" class="archive-year">2023</a>
-    </div>
-    <div class="archives">
-      
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-  
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/post/06_mysql-commonly-used-lock-type-46hp5.html">06_MySQL中的常用锁类型</a>
-  </h2>
-  
-  
+  <article id="post-测试双链操作" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
 
-      <a href="/post/06_mysql-commonly-used-lock-type-46hp5.html" class="archive-article-date">
-  <time datetime="2023-11-10T07:37:07.706Z" itemprop="datePublished">11/10</time>
+  <div class="article-inner">
+    
+
+    
+    <div class="article-meta">
+      <a href="/2023/11/10/%E6%B5%8B%E8%AF%95%E5%8F%8C%E9%93%BE%E6%93%8D%E4%BD%9C/" class="article-date">
+  <time datetime="2023-11-10T07:37:07.710Z" itemprop="datePublished">2023-11-10</time>
 </a>
-    </header>
-    
-      _mysql中的常用锁类型‍根据加锁的范围mysql里面的锁大致可以分成全局锁表级锁和行锁三类。全局锁顾名思义全局锁就是对整个数据库实例加锁。mysql提供了一个加全局读锁的方法命令是flushtableswithreadlock(ftwrl)。当你需要让整个库处于只读状态的时候可以使用这个命令之后其他线程的以下语句会被阻塞_数据更新语句（数据的增删改）数据定义语句（包括建表修改表结构等）和更新类事务的提交语句。‍说一下全局锁的使用场景。以前有一种做法是通过ftwrl确保不会有其他线程对数据库做更新然后对
-    
-    
-    
       
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MYSQL/" rel="tag">MYSQL</a></li></ul>
+    </div>
+    
 
     
+    
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>测试一下相关的方式</p>
+<p>![[Pasted image 20231110153612.png]]</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/11/10/%E6%B5%8B%E8%AF%95%E5%8F%8C%E9%93%BE%E6%93%8D%E4%BD%9C/" data-id="closb1t5j000ag3oi3bazcxy0" class="article-share-link">
+        分享
+      </a>
+      
+    </footer>
+
   </div>
+
+  
+  
+<nav class="article-nav">
+  
+  <a href="/2023/11/10/hello-world/" class="article-nav-link">
+    <strong class="article-nav-caption">前一篇</strong>
+    <div class="article-nav-title">
+      
+      Hello World
+      
+    </div>
+  </a>
+  
+  
+  <a href="/2023/11/10/%E6%B5%8B%E8%AF%95%E5%90%8C%E6%AD%A5%E5%92%8CHexo/" class="article-nav-link">
+    <strong class="article-nav-caption">后一篇</strong>
+    <div class="article-nav-title"></div>
+  </a>
+  
+</nav>
+
+  
+
+  
+  
+  
+  
 
 </article>
-      
-      
-    </div>
-  </div>
-  
-  
-
-  
 </section>
     <footer class="footer">
   <div class="outer">
@@ -103,6 +115,8 @@
     <p><ul class="list-inline">
   
   <li><i class="fe fe-smile-alt tooltip" data-tooltip="UV"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+  <li><i class="fe fe-bookmark tooltip" data-tooltip="PV"></i> <span id="busuanzi_value_page_pv"></span></li>
   
 </ul></p>
   </div>
@@ -171,6 +185,24 @@
 
 
 
+
+
+<script src="/js/tocbot.min.js"></script>
+
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+  });
+</script>
 
 
 
