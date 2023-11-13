@@ -3,5 +3,80 @@
   
   
   
+  <entry>
+    <title>hexo完成github action自动部署</title>
+    <link href="/2023/11/13/hexo%E5%AE%8C%E6%88%90github%20action%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/"/>
+    <url>/2023/11/13/hexo%E5%AE%8C%E6%88%90github%20action%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/</url>
+    
+    <content type="html"><![CDATA[<h3 id="hexo完成github-action自动部署"><a href="#hexo完成github-action自动部署" class="headerlink" title="hexo完成github action自动部署"></a>hexo完成github action自动部署</h3><p>这里实现的功能是建立了一个分支 ph-pages ，源项目内容放在 master 主分支下，实现自动部署主分支到分支上（同一个仓库下）</p><p>在实现这个前，先获取一个授权 token，这里必须勾选repo 项 和 workflows 项</p><p>访问 Github-&gt;头像（右上角）-&gt;Settings-&gt;Developer Settings-&gt;Personal access tokens-&gt;generate new token,</p><p>创建的 Token 名称随意，有效期建议无限期限。</p><p>​<img src="https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306051602954.png" alt="image">​</p><p>点击生成</p><blockquote><p>token 只会显示这一次，之后将无法查看，所以务必保证你已经记录下了 Token。之后如果忘记了就只能重新生成重新配置了。</p></blockquote><p>在项目 master 分支下新建文件夹</p><p>在 hexo 项目 中新建<code>.github</code>​文件夹,然后在<code>.github</code>​ 内新建 <code>workflows</code>​ 文件夹，再在 <code>workflows</code>​ 文件夹内新建 <code>autodeploy.yml</code>​,</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs undefined">workflows<br>autodeploy.yml<br></code></pre></td></tr></table></figure><p>在<code>[Blogroot]/.github/workflows/autodeploy.yml</code>​ 里面输入</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><code class="hljs undefined">name: 自动部署<br># 当有改动推送到master分支时，启动Action<br>on:<br>  push:<br>    branches:<br>      - master<br>      # 你提交的主分支名称<br>  release:<br>    types:<br>      - published<br><br>jobs:<br>  # 部署执行的自动工作<br>  deploy:<br>    runs-on: ubuntu-latest<br>    steps:<br>      - name: 检查分支<br>        uses: actions/checkout@v3<br>        with:<br>          ref: master<br><br>      - name: 安装 Node<br>        uses: actions/setup-node@v3<br>        with:<br>          node-version: &quot;16.x&quot;<br><br>      - name: 安装 Hexo<br>        run: |<br>          export TZ=&#x27;Asia/Shanghai&#x27;<br>          npm install hexo-cli -g<br><br>      - name: 缓存 Hexo<br>        id: cache-npm<br>        uses: actions/cache@v3<br>        env:<br>          cache-name: cache-node-modules<br>        with:<br>          path: node_modules<br>          key: $&#123;&#123; runner.os &#125;&#125;-build-$&#123;&#123; env.cache-name &#125;&#125;-$&#123;&#123; hashFiles(&#x27;**/package-lock.json&#x27;) &#125;&#125;<br>          restore-keys: |<br>            $&#123;&#123; runner.os &#125;&#125;-build-$&#123;&#123; env.cache-name &#125;&#125;-<br>            $&#123;&#123; runner.os &#125;&#125;-build-<br>            $&#123;&#123; runner.os &#125;&#125;-<br><br>      - name: 安装依赖<br>        if: $&#123;&#123; steps.cache-npm.outputs.cache-hit != &#x27;true&#x27; &#125;&#125;<br>        run: |<br>          npm install gulp-cli -g #全局安装gulp<br>          npm install --save<br><br>      - name: 生成静态文件<br>        run: |<br>          hexo clean<br>          hexo generate<br><br>      - name: 部署到Github<br>        uses: JamesIves/github-pages-deploy-action@v4<br>        with:<br>          token:  $&#123;&#123; secrets.ACTION_TOKEN &#125;&#125;<br>          repository-name: Lluo-liang/Lluo-liang.github.io<br>          branch: ph-pages<br>          folder: public<br>          commit-message: &quot;$&#123;&#123; github.event.head_commit.message &#125;&#125; Updated By Github Actions&quot;<br></code></pre></td></tr></table></figure><p>部署到 Github 下几个配置注意一下，其他内容大差不差</p><p>​<img src="https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306051602033.png" alt="image">​</p><p>之后如果需要自己到仓库的 Settings-&gt;Secrets-&gt;actions 下添加环境变量，变量名参考脚本中出现的，依次添加（有些环境变量是GitHub Actions自带的一个环境变量）。</p><p>这里配置了一个 ACTION_TOKEN 的环境变量</p><p>​<img src="https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306051602094.png" alt="image">​</p><p>这里的GitHub Pages的设置中 是 ph-pages分支。</p><p>编辑一下 git 上传的屏蔽项</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs undefined">.DS_Store<br>Thumbs.db<br>db.json<br>*.log<br>node_modules/<br>public/<br>.deploy*/<br>.deploy_git*/<br>.idea<br>themes/ocean/.git<br></code></pre></td></tr></table></figure><p>替换最后一行内容为自己当前使用的主题</p><p>配置完后进行提交推送</p><p>‍</p><p>部署进度查看</p><p>看实际的一个部署情况，可以在 Action 中 查看</p><p>​<img src="https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306051602171.png" alt="image">​</p><p>选择第一个，点击进去看，点击 deploy 可以查看窗口进度和实际完成情况</p><p>​<img src="https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306051602232.png" alt="image">​</p><p>‍</p><p>如果是需要安全方面考虑，不打算将自己的源文件内容泄露，也可以建立另外一个仓库，这个仓库设置为私有，</p><p>也可以进行自动部署到这个公共仓库中</p><p>‍</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>status pages</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>hexo</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Git 命令基本操作</title>
+    <link href="/2023/11/13/Git%20%E5%91%BD%E4%BB%A4%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/"/>
+    <url>/2023/11/13/Git%20%E5%91%BD%E4%BB%A4%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</url>
+    
+    <content type="html"><![CDATA[<h2 id="将某个目录文件上传到-Github-某个仓库"><a href="#将某个目录文件上传到-Github-某个仓库" class="headerlink" title="将某个目录文件上传到 Github 某个仓库"></a>将某个目录文件上传到 Github 某个仓库</h2><p>要将某个目录文件上传到Github某个仓库，可以按照以下步骤进行操作：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs undefined"># 初始化仓库<br>git init<br># 提交到本地git仓库 将文件夹中的内容添加到git仓库<br>git add .<br># 提交到本地git仓库,并添加一条提交信息<br>git commit -m &quot;Initial commit&quot;<br>#在命令行中执行以下命令，将本地git仓库与Github上的仓库进行关联<br>git remote add origin &lt;Github仓库URL&gt;<br># 进行推送<br>git push -u origin master<br># 如果目标仓库和本地目录文件冲突，可以先拉去最新仓库代码再进行推送<br>git pull origin master<br># 或者直接强制推送（会直接覆盖远程仓库内容），需要注意的是，强制推送可能会覆盖其他人提交的代码，因此需要谨慎使用。<br>git push --force origin master<br></code></pre></td></tr></table></figure><p>‍</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>部署</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>git</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Git 配置 SSH 连接</title>
+    <link href="/2023/11/13/Git%20%E9%85%8D%E7%BD%AE%20SSH%20%E8%BF%9E%E6%8E%A5/"/>
+    <url>/2023/11/13/Git%20%E9%85%8D%E7%BD%AE%20SSH%20%E8%BF%9E%E6%8E%A5/</url>
+    
+    <content type="html"><![CDATA[<h4 id="配置-SSH-连接"><a href="#配置-SSH-连接" class="headerlink" title="配置 SSH 连接"></a>配置 SSH 连接</h4><p>回到Git Bash中，配置Github账户信息（<code>用户名</code>​和<code>邮箱</code>​都替换成你自己Github上的）：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">git config --global user.name &quot;`用户名`&quot;<br>git config --global user.email &quot;邮箱&quot;<br></code></pre></td></tr></table></figure><p>在Git Bash中输入：<code>ssh-keygen -t rsa -C &quot;你的Github邮箱&quot;</code>​ 生成ssh</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">ssh-keygen -t rsa -C &quot;邮箱&quot;<br></code></pre></td></tr></table></figure><p>然后按Git Bash给出的路径<code>(C:\Users\Lete.ssh)</code>​找到<code>id_rsa.pub</code>​文件 并复制其中的内容</p><p>进到新建的Github仓库 点击右上角<code>setting</code>​进入设置找到<code>Deploykeys</code>​选择 <code>Add Deploy keys</code>​ <code>Title</code>​随便填写 <code>Key</code>​的内容填刚才<code>id_rsa.pub</code>​文件中复制的内容</p><p>‍</p><p>修改本地Git配置，设置使用SSH协议连接GitHub。使用以下命令修改本地Git配置：</p><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs scss">git config <span class="hljs-attr">--global</span> url.&quot;git<span class="hljs-keyword">@github</span>.<span class="hljs-attribute">com</span>:<span class="hljs-string">&quot;.insteadOf &quot;</span><span class="hljs-attribute">https</span>://github.com/<span class="hljs-string">&quot;</span><br></code></pre></td></tr></table></figure><p>这个命令会将Git配置中的 <code>https://github.com/</code>​ 替换为 <code>git@github.com:</code>​，从而使用SSH协议连接GitHub。</p><p>配置后再部署提交</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>部署</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>git</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
   
 </search>

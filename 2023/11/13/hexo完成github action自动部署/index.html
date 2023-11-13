@@ -1,0 +1,684 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/Xbox%20L.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="hexo完成github action自动部署这里实现的功能是建立了一个分支 ph-pages ，源项目内容放在 master 主分支下，实现自动部署主分支到分支上（同一个仓库下） 在实现这个前，先获取一个授权 token，这里必须勾选repo 项 和 workflows 项 访问 Github-&gt;头像（右上角）-&gt;Settings-&gt;Developer Settings-&amp;gt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo完成github action自动部署">
+<meta property="og:url" content="http://example.com/2023/11/13/hexo%E5%AE%8C%E6%88%90github%20action%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/index.html">
+<meta property="og:site_name" content="轻松的洛亓">
+<meta property="og:description" content="hexo完成github action自动部署这里实现的功能是建立了一个分支 ph-pages ，源项目内容放在 master 主分支下，实现自动部署主分支到分支上（同一个仓库下） 在实现这个前，先获取一个授权 token，这里必须勾选repo 项 和 workflows 项 访问 Github-&gt;头像（右上角）-&gt;Settings-&gt;Developer Settings-&amp;gt">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306051602954.png">
+<meta property="og:image" content="https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306051602033.png">
+<meta property="og:image" content="https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306051602094.png">
+<meta property="og:image" content="https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306051602171.png">
+<meta property="og:image" content="https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306051602232.png">
+<meta property="article:published_time" content="2023-11-13T17:01:56.000Z">
+<meta property="article:modified_time" content="2023-11-13T09:17:38.080Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="hexo">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306051602954.png">
+  
+  
+  
+  <title>hexo完成github action自动部署 - 轻松的洛亓</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>轻松的洛亓</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="hexo完成github action自动部署"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-11-13 17:01" pubdate>
+          2023年11月13日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          20 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">hexo完成github action自动部署</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="hexo完成github-action自动部署"><a href="#hexo完成github-action自动部署" class="headerlink" title="hexo完成github action自动部署"></a>hexo完成github action自动部署</h3><p>这里实现的功能是建立了一个分支 ph-pages ，源项目内容放在 master 主分支下，实现自动部署主分支到分支上（同一个仓库下）</p>
+<p>在实现这个前，先获取一个授权 token，这里必须勾选repo 项 和 workflows 项</p>
+<p>访问 Github-&gt;头像（右上角）-&gt;Settings-&gt;Developer Settings-&gt;Personal access tokens-&gt;generate new token,</p>
+<p>创建的 Token 名称随意，有效期建议无限期限。</p>
+<p>​<img src="https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306051602954.png" srcset="/img/loading.gif" lazyload alt="image">​</p>
+<p>点击生成</p>
+<blockquote>
+<p>token 只会显示这一次，之后将无法查看，所以务必保证你已经记录下了 Token。之后如果忘记了就只能重新生成重新配置了。</p>
+</blockquote>
+<p>在项目 master 分支下新建文件夹</p>
+<p>在 hexo 项目 中新建<code>.github</code>​文件夹,然后在<code>.github</code>​ 内新建 <code>workflows</code>​ 文件夹，再在 <code>workflows</code>​ 文件夹内新建 <code>autodeploy.yml</code>​,</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs undefined">workflows<br>autodeploy.yml<br></code></pre></td></tr></table></figure>
+
+<p>在<code>[Blogroot]/.github/workflows/autodeploy.yml</code>​ 里面输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><code class="hljs undefined">name: 自动部署<br># 当有改动推送到master分支时，启动Action<br>on:<br>  push:<br>    branches:<br>      - master<br>      # 你提交的主分支名称<br>  release:<br>    types:<br>      - published<br><br>jobs:<br>  # 部署执行的自动工作<br>  deploy:<br>    runs-on: ubuntu-latest<br>    steps:<br>      - name: 检查分支<br>        uses: actions/checkout@v3<br>        with:<br>          ref: master<br><br>      - name: 安装 Node<br>        uses: actions/setup-node@v3<br>        with:<br>          node-version: &quot;16.x&quot;<br><br>      - name: 安装 Hexo<br>        run: |<br>          export TZ=&#x27;Asia/Shanghai&#x27;<br>          npm install hexo-cli -g<br><br>      - name: 缓存 Hexo<br>        id: cache-npm<br>        uses: actions/cache@v3<br>        env:<br>          cache-name: cache-node-modules<br>        with:<br>          path: node_modules<br>          key: $&#123;&#123; runner.os &#125;&#125;-build-$&#123;&#123; env.cache-name &#125;&#125;-$&#123;&#123; hashFiles(&#x27;**/package-lock.json&#x27;) &#125;&#125;<br>          restore-keys: |<br>            $&#123;&#123; runner.os &#125;&#125;-build-$&#123;&#123; env.cache-name &#125;&#125;-<br>            $&#123;&#123; runner.os &#125;&#125;-build-<br>            $&#123;&#123; runner.os &#125;&#125;-<br><br>      - name: 安装依赖<br>        if: $&#123;&#123; steps.cache-npm.outputs.cache-hit != &#x27;true&#x27; &#125;&#125;<br>        run: |<br>          npm install gulp-cli -g #全局安装gulp<br>          npm install --save<br><br>      - name: 生成静态文件<br>        run: |<br>          hexo clean<br>          hexo generate<br><br>      - name: 部署到Github<br>        uses: JamesIves/github-pages-deploy-action@v4<br>        with:<br>          token:  $&#123;&#123; secrets.ACTION_TOKEN &#125;&#125;<br>          repository-name: Lluo-liang/Lluo-liang.github.io<br>          branch: ph-pages<br>          folder: public<br>          commit-message: &quot;$&#123;&#123; github.event.head_commit.message &#125;&#125; Updated By Github Actions&quot;<br></code></pre></td></tr></table></figure>
+
+<p>部署到 Github 下几个配置注意一下，其他内容大差不差</p>
+<p>​<img src="https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306051602033.png" srcset="/img/loading.gif" lazyload alt="image">​</p>
+<p>之后如果需要自己到仓库的 Settings-&gt;Secrets-&gt;actions 下添加环境变量，变量名参考脚本中出现的，依次添加（有些环境变量是GitHub Actions自带的一个环境变量）。</p>
+<p>这里配置了一个 ACTION_TOKEN 的环境变量</p>
+<p>​<img src="https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306051602094.png" srcset="/img/loading.gif" lazyload alt="image">​</p>
+<p>这里的GitHub Pages的设置中 是 ph-pages分支。</p>
+<p>编辑一下 git 上传的屏蔽项</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs undefined">.DS_Store<br>Thumbs.db<br>db.json<br>*.log<br>node_modules/<br>public/<br>.deploy*/<br>.deploy_git*/<br>.idea<br>themes/ocean/.git<br></code></pre></td></tr></table></figure>
+
+<p>替换最后一行内容为自己当前使用的主题</p>
+<p>配置完后进行提交推送</p>
+<p>‍</p>
+<p>部署进度查看</p>
+<p>看实际的一个部署情况，可以在 Action 中 查看</p>
+<p>​<img src="https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306051602171.png" srcset="/img/loading.gif" lazyload alt="image">​</p>
+<p>选择第一个，点击进去看，点击 deploy 可以查看窗口进度和实际完成情况</p>
+<p>​<img src="https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306051602232.png" srcset="/img/loading.gif" lazyload alt="image">​</p>
+<p>‍</p>
+<p>如果是需要安全方面考虑，不打算将自己的源文件内容泄露，也可以建立另外一个仓库，这个仓库设置为私有，</p>
+<p>也可以进行自动部署到这个公共仓库中</p>
+<p>‍</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/status-pages/" class="category-chain-item">status pages</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/hexo/" class="print-no-link">#hexo</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>hexo完成github action自动部署</div>
+      <div>http://example.com/2023/11/13/hexo完成github action自动部署/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年11月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/11/13/Git%20%E5%91%BD%E4%BB%A4%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" title="Git 命令基本操作">
+                        <span class="hidden-mobile">Git 命令基本操作</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
