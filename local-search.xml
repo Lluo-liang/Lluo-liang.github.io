@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>ArrayList 与 LInkedList</title>
+    <link href="/2023/11/14/ArrayList%20%E4%B8%8E%20LinkedList/"/>
+    <url>/2023/11/14/ArrayList%20%E4%B8%8E%20LinkedList/</url>
+    
+    <content type="html"><![CDATA[<h2 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h2><p>尝试一下文件跳转 <a href="/2023/11/14/Java%E9%9B%86%E5%90%88_%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/" title="Java集合_相关问题">Java集合_相关问题</a></p><h2 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h2>]]></content>
+    
+    
+    <categories>
+      
+      <category>Java基础</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>java</tag>
+      
+      <tag>集合</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Git 命令基本操作</title>
     <link href="/2023/11/14/Git%20%E5%91%BD%E4%BB%A4%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/"/>
     <url>/2023/11/14/Git%20%E5%91%BD%E4%BB%A4%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</url>
@@ -83,7 +110,7 @@
     
     <tags>
       
-      <tag>Java</tag>
+      <tag>java</tag>
       
       <tag>集合</tag>
       
@@ -110,7 +137,7 @@
     
     <tags>
       
-      <tag>Java</tag>
+      <tag>java</tag>
       
     </tags>
     
@@ -135,7 +162,7 @@
     
     <tags>
       
-      <tag>Java</tag>
+      <tag>java</tag>
       
     </tags>
     
