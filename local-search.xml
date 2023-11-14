@@ -4,56 +4,6 @@
   
   
   <entry>
-    <title>Java集合_相关问题</title>
-    <link href="/2023/11/14/Java%E9%9B%86%E5%90%88_%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/"/>
-    <url>/2023/11/14/Java%E9%9B%86%E5%90%88_%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/</url>
-    
-    <content type="html"><![CDATA[<h4 id="1、Set集合是如何保证对象不重复的？"><a href="#1、Set集合是如何保证对象不重复的？" class="headerlink" title="1、Set集合是如何保证对象不重复的？"></a>1、Set集合是如何保证对象不重复的？</h4><p>HashSet 的底层采用HashMap来存放数据,  他执行添加元素操作的时候是将元素作为 Map 的Key；</p><p>hashMap 在执行 put 方法的时候，当 map中key重复，添加元素会进行替换操作；因此 set 能够保证元素唯一。</p><p>源码相关内容：</p><p>HashSet 的添加方法</p><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs processing"><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-built_in">add</span>(E e) &#123;  <br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">map</span>.<span class="hljs-property">put</span>(e, PRESENT)==<span class="hljs-literal">null</span>;  <br>&#125;<br></code></pre></td></tr></table></figure><p>hashmap 的 put 方法</p><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs processing"><span class="hljs-keyword">public</span> V <span class="hljs-title function_">put</span>(K <span class="hljs-built_in">key</span>, V value) &#123;<br>      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">key</span> == <span class="hljs-literal">null</span>)<br>          <span class="hljs-keyword">return</span> <span class="hljs-title function_">putForNullKey</span>(value);<br>      <span class="hljs-type">int</span> hash = <span class="hljs-title function_">hash</span>(<span class="hljs-built_in">key</span>.<span class="hljs-property">hashCode</span>());<span class="hljs-comment">//----------1----------</span><br>      <span class="hljs-type">int</span> i = <span class="hljs-title function_">indexFor</span>(hash, table.<span class="hljs-property">length</span>);<span class="hljs-comment">//-----------2---------</span><br>      <span class="hljs-keyword">for</span> (Entry e = table[i]; e != <span class="hljs-literal">null</span>; e = e.<span class="hljs-property">next</span>) &#123;<span class="hljs-comment">//-----------3---------</span><br>          <span class="hljs-built_in">Object</span> k;<br>          <span class="hljs-keyword">if</span> (e.<span class="hljs-property">hash</span> == hash &amp;&amp; ((k = e.<span class="hljs-property">key</span>) == <span class="hljs-built_in">key</span> || <span class="hljs-built_in">key</span>.<span class="hljs-property">equals</span>(k))) &#123;<br>              V oldValue = e.<span class="hljs-property">value</span>;<br>              e.<span class="hljs-property">value</span> = value;<br>              e.<span class="hljs-property">recordAccess</span>(<span class="hljs-variable">this</span>);<br>              <span class="hljs-keyword">return</span> oldValue;<br>          &#125;<br>      &#125;<span class="hljs-comment">//------------------4--------------------</span><br>      modCount++;<br>      <span class="hljs-title function_">addEntry</span>(hash, <span class="hljs-built_in">key</span>, value, i);<br>      <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>  &#125;<br></code></pre></td></tr></table></figure><p>当向HashMap中添加元素的时候，</p><ul><li><strong>首先计算元素的hashcode值</strong>，然后根据1处的代码计算出Hashcode的值，</li><li>再根据2处的代码计算出这个元素的存储位置，<ul><li>如果<strong>这个位置为空，就将元素添加进去</strong>；</li><li>如果不为空，则看3-4的代码，遍历索引为i的链上的元素，<strong>如果key重复，则替换并返回oldValue值。</strong></li></ul></li></ul><h4 id="2、使用for循环删除元素陷阱"><a href="#2、使用for循环删除元素陷阱" class="headerlink" title="2、使用for循环删除元素陷阱"></a>2、使用for循环删除元素陷阱</h4><p>先来看看下面这个程序：</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> &#123;<br> <br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span>(<span class="hljs-params">String[] args</span>)</span> &#123;<br>List&lt;String&gt; list = <span class="hljs-keyword">new</span> LinkedList&lt;String&gt;();<br>list.<span class="hljs-keyword">add</span>(<span class="hljs-string">&quot;A&quot;</span>);<br>list.<span class="hljs-keyword">add</span>(<span class="hljs-string">&quot;B&quot;</span>);<br>list.<span class="hljs-keyword">add</span>(<span class="hljs-string">&quot;C&quot;</span>);<br><br><span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i=<span class="hljs-number">0</span>; i&lt;list.size(); i++)&#123;<br>list.<span class="hljs-keyword">remove</span>(i);<br>&#125;<br><br><span class="hljs-keyword">for</span>(String item:list)&#123;<br>System.<span class="hljs-keyword">out</span>.println(item);<br>&#125;<br>&#125;<br>&#125;<br></code></pre></td></tr></table></figure><p>可以先猜猜这个程序输出什么？</p><p>按我们的思路，应该是输不出什么，<strong>但是执行它，输出的却是：B</strong>。</p><p>分析下这个程序，当第一步remove完后，集合内还剩2个元素，此时i为1，而list.size()的值为2，从0开始的话，i为1时，正好指向第二个元素，也就是说当remove完A后，直接就跳到C，将B漏了。</p><p>解决办法：</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> &#123;<br> <br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span>(<span class="hljs-params">String[] args</span>)</span> &#123;<br>List&lt;String&gt; list = <span class="hljs-keyword">new</span> LinkedList&lt;String&gt;();<br>list.<span class="hljs-keyword">add</span>(<span class="hljs-string">&quot;A&quot;</span>);<br>list.<span class="hljs-keyword">add</span>(<span class="hljs-string">&quot;B&quot;</span>);<br>list.<span class="hljs-keyword">add</span>(<span class="hljs-string">&quot;C&quot;</span>);<br><br><span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i=<span class="hljs-number">0</span>; i&lt;list.size(); i++)&#123;<br>list.<span class="hljs-keyword">remove</span>(i);<br>i -= <span class="hljs-number">1</span>;<span class="hljs-comment">//每次删除完后，i减少1</span><br>&#125;<br><br><span class="hljs-keyword">for</span>(String item:list)&#123;<br>System.<span class="hljs-keyword">out</span>.println(item);<br>&#125;<br>&#125;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
-    
-    
-    <categories>
-      
-      <category>Java基础</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>Java</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>日记_20231114</title>
-    <link href="/2023/11/14/%E6%97%A5%E8%AE%B0_20231114/"/>
-    <url>/2023/11/14/%E6%97%A5%E8%AE%B0_20231114/</url>
-    
-    <content type="html"><![CDATA[<p>近期计划</p><ul><li><input disabled="" type="checkbox"> Java集合、Java多线程、MySQL数据库、Spring 进行复习</li><li><input disabled="" type="checkbox"> Redis、MQ </li><li><input disabled="" type="checkbox"> 微服务 SpringCloud Alibaba 通过学习学成在线项目进行</li><li><input disabled="" type="checkbox"> 项目：蘑菇博客的学习（个人一直趋向学习这个项目，趁这段时间有空，学习一下）</li></ul>]]></content>
-    
-    
-    <categories>
-      
-      <category>Diary</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>blog</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>Git 命令基本操作</title>
     <link href="/2023/11/14/Git%20%E5%91%BD%E4%BB%A4%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/"/>
     <url>/2023/11/14/Git%20%E5%91%BD%E4%BB%A4%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</url>
@@ -161,6 +111,56 @@
     <tags>
       
       <tag>Java</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Java集合_相关问题</title>
+    <link href="/2023/11/14/Java%E9%9B%86%E5%90%88_%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/"/>
+    <url>/2023/11/14/Java%E9%9B%86%E5%90%88_%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/</url>
+    
+    <content type="html"><![CDATA[<h4 id="1、Set集合是如何保证对象不重复的？"><a href="#1、Set集合是如何保证对象不重复的？" class="headerlink" title="1、Set集合是如何保证对象不重复的？"></a>1、Set集合是如何保证对象不重复的？</h4><p>HashSet 的底层采用HashMap来存放数据,  他执行添加元素操作的时候是将元素作为 Map 的Key；</p><p>hashMap 在执行 put 方法的时候，当 map中key重复，添加元素会进行替换操作；因此 set 能够保证元素唯一。</p><p>源码相关内容：</p><p>HashSet 的添加方法</p><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs processing"><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-built_in">add</span>(E e) &#123;  <br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">map</span>.<span class="hljs-property">put</span>(e, PRESENT)==<span class="hljs-literal">null</span>;  <br>&#125;<br></code></pre></td></tr></table></figure><p>hashmap 的 put 方法</p><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs processing"><span class="hljs-keyword">public</span> V <span class="hljs-title function_">put</span>(K <span class="hljs-built_in">key</span>, V value) &#123;<br>      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">key</span> == <span class="hljs-literal">null</span>)<br>          <span class="hljs-keyword">return</span> <span class="hljs-title function_">putForNullKey</span>(value);<br>      <span class="hljs-type">int</span> hash = <span class="hljs-title function_">hash</span>(<span class="hljs-built_in">key</span>.<span class="hljs-property">hashCode</span>());<span class="hljs-comment">//----------1----------</span><br>      <span class="hljs-type">int</span> i = <span class="hljs-title function_">indexFor</span>(hash, table.<span class="hljs-property">length</span>);<span class="hljs-comment">//-----------2---------</span><br>      <span class="hljs-keyword">for</span> (Entry e = table[i]; e != <span class="hljs-literal">null</span>; e = e.<span class="hljs-property">next</span>) &#123;<span class="hljs-comment">//-----------3---------</span><br>          <span class="hljs-built_in">Object</span> k;<br>          <span class="hljs-keyword">if</span> (e.<span class="hljs-property">hash</span> == hash &amp;&amp; ((k = e.<span class="hljs-property">key</span>) == <span class="hljs-built_in">key</span> || <span class="hljs-built_in">key</span>.<span class="hljs-property">equals</span>(k))) &#123;<br>              V oldValue = e.<span class="hljs-property">value</span>;<br>              e.<span class="hljs-property">value</span> = value;<br>              e.<span class="hljs-property">recordAccess</span>(<span class="hljs-variable">this</span>);<br>              <span class="hljs-keyword">return</span> oldValue;<br>          &#125;<br>      &#125;<span class="hljs-comment">//------------------4--------------------</span><br>      modCount++;<br>      <span class="hljs-title function_">addEntry</span>(hash, <span class="hljs-built_in">key</span>, value, i);<br>      <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>  &#125;<br></code></pre></td></tr></table></figure><p>当向HashMap中添加元素的时候，</p><ul><li><strong>首先计算元素的hashcode值</strong>，然后根据1处的代码计算出Hashcode的值，</li><li>再根据2处的代码计算出这个元素的存储位置，<ul><li>如果<strong>这个位置为空，就将元素添加进去</strong>；</li><li>如果不为空，则看3-4的代码，遍历索引为i的链上的元素，<strong>如果key重复，则替换并返回oldValue值。</strong></li></ul></li></ul><h4 id="2、使用for循环删除元素陷阱"><a href="#2、使用for循环删除元素陷阱" class="headerlink" title="2、使用for循环删除元素陷阱"></a>2、使用for循环删除元素陷阱</h4><p>先来看看下面这个程序：</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> &#123;<br> <br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span>(<span class="hljs-params">String[] args</span>)</span> &#123;<br>List&lt;String&gt; list = <span class="hljs-keyword">new</span> LinkedList&lt;String&gt;();<br>list.<span class="hljs-keyword">add</span>(<span class="hljs-string">&quot;A&quot;</span>);<br>list.<span class="hljs-keyword">add</span>(<span class="hljs-string">&quot;B&quot;</span>);<br>list.<span class="hljs-keyword">add</span>(<span class="hljs-string">&quot;C&quot;</span>);<br><br><span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i=<span class="hljs-number">0</span>; i&lt;list.size(); i++)&#123;<br>list.<span class="hljs-keyword">remove</span>(i);<br>&#125;<br><br><span class="hljs-keyword">for</span>(String item:list)&#123;<br>System.<span class="hljs-keyword">out</span>.println(item);<br>&#125;<br>&#125;<br>&#125;<br></code></pre></td></tr></table></figure><p>可以先猜猜这个程序输出什么？</p><p>按我们的思路，应该是输不出什么，<strong>但是执行它，输出的却是：B</strong>。</p><p>分析下这个程序，当第一步remove完后，集合内还剩2个元素，此时i为1，而list.size()的值为2，从0开始的话，i为1时，正好指向第二个元素，也就是说当remove完A后，直接就跳到C，将B漏了。</p><p>解决办法：</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> &#123;<br> <br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span>(<span class="hljs-params">String[] args</span>)</span> &#123;<br>List&lt;String&gt; list = <span class="hljs-keyword">new</span> LinkedList&lt;String&gt;();<br>list.<span class="hljs-keyword">add</span>(<span class="hljs-string">&quot;A&quot;</span>);<br>list.<span class="hljs-keyword">add</span>(<span class="hljs-string">&quot;B&quot;</span>);<br>list.<span class="hljs-keyword">add</span>(<span class="hljs-string">&quot;C&quot;</span>);<br><br><span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i=<span class="hljs-number">0</span>; i&lt;list.size(); i++)&#123;<br>list.<span class="hljs-keyword">remove</span>(i);<br>i -= <span class="hljs-number">1</span>;<span class="hljs-comment">//每次删除完后，i减少1</span><br>&#125;<br><br><span class="hljs-keyword">for</span>(String item:list)&#123;<br>System.<span class="hljs-keyword">out</span>.println(item);<br>&#125;<br>&#125;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>Java基础</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>日记_20231114</title>
+    <link href="/2023/11/14/%E6%97%A5%E8%AE%B0_20231114/"/>
+    <url>/2023/11/14/%E6%97%A5%E8%AE%B0_20231114/</url>
+    
+    <content type="html"><![CDATA[<p>近期计划</p><ul><li><input disabled="" type="checkbox"> Java集合、Java多线程、MySQL数据库、Spring 进行复习</li><li><input disabled="" type="checkbox"> Redis、MQ </li><li><input disabled="" type="checkbox"> 微服务 SpringCloud Alibaba 通过学习学成在线项目进行</li><li><input disabled="" type="checkbox"> 项目：蘑菇博客的学习（个人一直趋向学习这个项目，趁这段时间有空，学习一下）</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>Diary</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>blog</tag>
       
     </tags>
     
