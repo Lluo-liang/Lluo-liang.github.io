@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>日记_20231114</title>
+    <link href="/2023/11/14/%E6%97%A5%E8%AE%B0_20231114/"/>
+    <url>/2023/11/14/%E6%97%A5%E8%AE%B0_20231114/</url>
+    
+    <content type="html"><![CDATA[<p>近期计划</p><ul><li><input disabled="" type="checkbox"> Java集合、Java多线程、MySQL数据库、Spring 进行复习</li><li><input disabled="" type="checkbox"> Redis、MQ </li><li><input disabled="" type="checkbox"> 微服务 SpringCloud Alibaba 通过学习学成在线项目进行</li><li><input disabled="" type="checkbox"> 项目：蘑菇博客的学习（个人一直趋向学习这个项目，趁这段时间有空，学习一下）</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>Diary</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>blog</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Git 命令基本操作</title>
     <link href="/2023/11/14/Git%20%E5%91%BD%E4%BB%A4%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/"/>
     <url>/2023/11/14/Git%20%E5%91%BD%E4%BB%A4%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</url>
@@ -58,7 +83,7 @@
     <link href="/2023/11/14/HomePage/"/>
     <url>/2023/11/14/HomePage/</url>
     
-    <content type="html"><![CDATA[<p>[[Java 集合_基础概念]]</p>]]></content>
+    <content type="html"><![CDATA[<h4 id="Java-相关内容"><a href="#Java-相关内容" class="headerlink" title="Java 相关内容"></a>Java 相关内容</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs dataview">table<br>from &quot;&quot;<br>where contains(file.tags,&quot;Java&quot;) and contains(file.path,&quot;_posts&quot;) <br>sort file.name<br></code></pre></td></tr></table></figure><h4 id="世界很大，古灵精怪"><a href="#世界很大，古灵精怪" class="headerlink" title="世界很大，古灵精怪"></a>世界很大，古灵精怪</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs dataview">table<br>from &quot;&quot;<br>where contains(file.tags,&quot;blog&quot;) and contains(file.path,&quot;_posts&quot;) <br>sort file.name<br></code></pre></td></tr></table></figure>]]></content>
     
     
     
