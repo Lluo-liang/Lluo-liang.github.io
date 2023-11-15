@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          421 字
+          413 字
         
       </span>
     
@@ -275,11 +275,7 @@
             
               <div class="markdown-body">
                 
-                <p>git 的基本操作</p>
-<span id="more"></span>
-
-
-<h2 id="将某个目录文件上传到-Github-某个仓库"><a href="#将某个目录文件上传到-Github-某个仓库" class="headerlink" title="将某个目录文件上传到 Github 某个仓库"></a>将某个目录文件上传到 Github 某个仓库</h2><p>要将某个目录文件上传到Github某个仓库，可以按照以下步骤进行操作：</p>
+                <h2 id="将某个目录文件上传到-Github-某个仓库"><a href="#将某个目录文件上传到-Github-某个仓库" class="headerlink" title="将某个目录文件上传到 Github 某个仓库"></a>将某个目录文件上传到 Github 某个仓库</h2><p>要将某个目录文件上传到Github某个仓库，可以按照以下步骤进行操作：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs undefined"># 初始化仓库<br>git init<br># 提交到本地git仓库 将文件夹中的内容添加到git仓库<br>git add .<br># 提交到本地git仓库,并添加一条提交信息<br>git commit -m &quot;Initial commit&quot;<br>#在命令行中执行以下命令，将本地git仓库与Github上的仓库进行关联<br>git remote add origin &lt;Github仓库URL&gt;<br># 进行推送<br>git push -u origin master<br># 如果目标仓库和本地目录文件冲突，可以先拉去最新仓库代码再进行推送<br>git pull origin master<br># 或者直接强制推送（会直接覆盖远程仓库内容），需要注意的是，强制推送可能会覆盖其他人提交的代码，因此需要谨慎使用。<br>git push --force origin master<br></code></pre></td></tr></table></figure>
 
 <p>‍</p>

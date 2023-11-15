@@ -18,22 +18,22 @@
   <meta name="author" content="Luo QI">
   <meta name="keywords" content="">
   
-    <meta name="description" content="通过 Git 下载 github 项目时候遇到的问题">
+    <meta name="description" content="集合的常见的面试题内容">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git 配置 SSH 连接">
-<meta property="og:url" content="https://lluo-liang.github.io/2023/11/13/Git%20%E9%85%8D%E7%BD%AE%20SSH%20%E8%BF%9E%E6%8E%A5/index.html">
+<meta property="og:title" content="Java集合_相关问题">
+<meta property="og:url" content="https://lluo-liang.github.io/2023/11/14/Java%E9%9B%86%E5%90%88_%E7%9B%B8%E5%85%B3%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
 <meta property="og:site_name" content="轻松的洛亓">
-<meta property="og:description" content="通过 Git 下载 github 项目时候遇到的问题">
+<meta property="og:description" content="集合的常见的面试题内容">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-11-13T12:01:56.000Z">
-<meta property="article:modified_time" content="2023-11-13T17:08:00.000Z">
+<meta property="article:published_time" content="2023-11-14T12:00:00.000Z">
+<meta property="article:modified_time" content="2023-11-14T12:00:00.000Z">
 <meta property="article:author" content="Luo QI">
-<meta property="article:tag" content="git">
+<meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Git 配置 SSH 连接 - 轻松的洛亓</title>
+  <title>Java集合_相关问题 - 轻松的洛亓</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -193,13 +193,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Git 配置 SSH 连接"></span>
+            <span id="subtitle" data-typed-text="Java集合_相关问题"></span>
           
         </div>
 
@@ -210,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-11-13 12:01" pubdate>
-          2023年11月13日 中午
+        <time datetime="2023-11-14 12:00" pubdate>
+          2023年11月14日 中午
         </time>
       </span>
     
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          601 字
+          2.4k 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          6 分钟
+          21 分钟
         
       </span>
     
@@ -270,25 +270,49 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Git 配置 SSH 连接</h1>
+            <h1 id="seo-header">Java集合_相关问题</h1>
             
             
               <div class="markdown-body">
                 
-                <h4 id="配置-SSH-连接"><a href="#配置-SSH-连接" class="headerlink" title="配置 SSH 连接"></a>配置 SSH 连接</h4><p>回到Git Bash中，配置Github账户信息（<code>用户名</code>​和<code>邮箱</code>​都替换成你自己Github上的）：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">git config --global user.name &quot;`用户名`&quot;<br>git config --global user.email &quot;邮箱&quot;<br></code></pre></td></tr></table></figure>
+                <h4 id="1、Set集合是如何保证对象不重复的？"><a href="#1、Set集合是如何保证对象不重复的？" class="headerlink" title="1、Set集合是如何保证对象不重复的？"></a>1、Set集合是如何保证对象不重复的？</h4><p>HashSet 的底层采用HashMap来存放数据,  他执行添加元素操作的时候是将元素作为 Map 的Key；</p>
+<p>HashMap保证key的不重复性，对于重复的key，HashMap会根据参数onlyIfAbsent的设置和原value是否为空两个条件来<strong>判断是否替换新value</strong>，</p>
+<p>但要注意的是，对于HashSet，这个value只是个空的Object类的对象，没有任何实际作用，HashSet中的元素实际上是存储在key上的。针对重复的key，<strong>HashMap只有对于value的处理，并不会替换key</strong>，因此在HashSet中加入相同元素不会覆盖。</p>
+<p>源码相关内容：</p>
+<p>HashSet 的添加方法</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs processing"><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-built_in">add</span>(E e) &#123;  <br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">map</span>.<span class="hljs-property">put</span>(e, PRESENT)==<span class="hljs-literal">null</span>;  <br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>在Git Bash中输入：<code>ssh-keygen -t rsa -C &quot;你的Github邮箱&quot;</code>​ 生成ssh</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">ssh-keygen -t rsa -C &quot;邮箱&quot;<br></code></pre></td></tr></table></figure>
+<p>hashmap 的 put 方法</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs processing"><span class="hljs-keyword">public</span> V <span class="hljs-title function_">put</span>(K <span class="hljs-built_in">key</span>, V value) &#123;<br>      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">key</span> == <span class="hljs-literal">null</span>)<br>          <span class="hljs-keyword">return</span> <span class="hljs-title function_">putForNullKey</span>(value);<br>      <span class="hljs-type">int</span> hash = <span class="hljs-title function_">hash</span>(<span class="hljs-built_in">key</span>.<span class="hljs-property">hashCode</span>());<span class="hljs-comment">//----------1----------</span><br>      <span class="hljs-type">int</span> i = <span class="hljs-title function_">indexFor</span>(hash, table.<span class="hljs-property">length</span>);<span class="hljs-comment">//-----------2---------</span><br>      <span class="hljs-keyword">for</span> (Entry e = table[i]; e != <span class="hljs-literal">null</span>; e = e.<span class="hljs-property">next</span>) &#123;<span class="hljs-comment">//-----------3---------</span><br>          <span class="hljs-built_in">Object</span> k;<br>          <span class="hljs-keyword">if</span> (e.<span class="hljs-property">hash</span> == hash &amp;&amp; ((k = e.<span class="hljs-property">key</span>) == <span class="hljs-built_in">key</span> || <span class="hljs-built_in">key</span>.<span class="hljs-property">equals</span>(k))) &#123;<br>              V oldValue = e.<span class="hljs-property">value</span>;<br>              e.<span class="hljs-property">value</span> = value;<br>              e.<span class="hljs-property">recordAccess</span>(<span class="hljs-variable">this</span>);<br>              <span class="hljs-keyword">return</span> oldValue;<br>          &#125;<br>      &#125;<span class="hljs-comment">//------------------4--------------------</span><br>      modCount++;<br>      <span class="hljs-title function_">addEntry</span>(hash, <span class="hljs-built_in">key</span>, value, i);<br>      <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>  &#125;<br></code></pre></td></tr></table></figure>
 
-<p>然后按Git Bash给出的路径<code>(C:\Users\Lete.ssh)</code>​找到<code>id_rsa.pub</code>​文件 并复制其中的内容</p>
-<p>进到新建的Github仓库 点击右上角<code>setting</code>​进入设置找到<code>Deploykeys</code>​选择 <code>Add Deploy keys</code>​ <code>Title</code>​随便填写 <code>Key</code>​的内容填刚才<code>id_rsa.pub</code>​文件中复制的内容</p>
-<p>‍</p>
-<p>修改本地Git配置，设置使用SSH协议连接GitHub。使用以下命令修改本地Git配置：</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs scss">git config <span class="hljs-attr">--global</span> url.&quot;git<span class="hljs-keyword">@github</span>.<span class="hljs-attribute">com</span>:<span class="hljs-string">&quot;.insteadOf &quot;</span><span class="hljs-attribute">https</span>://github.com/<span class="hljs-string">&quot;</span><br></code></pre></td></tr></table></figure>
+<p>当向HashMap中添加元素的时候，</p>
+<ul>
+<li><strong>首先计算元素的hashcode值</strong>，然后根据1处的代码计算出Hashcode的值，</li>
+<li>再根据2处的代码计算出这个元素的存储位置，<ul>
+<li>如果<strong>这个位置为空，就将元素添加进去</strong>；</li>
+<li>如果不为空，则看3-4的代码，遍历索引为i的链上的元素，<strong>如果key重复，则替换并返回oldValue值。</strong></li>
+</ul>
+</li>
+</ul>
+<p><strong>总结</strong>：结果向HashSet中加入相同元素不会进行覆盖。因为HashSet底层使用HashMap实现，元素存在HashMap的key中。在HashMap中，多次put相同的key，只会覆盖value，而不存在key的情况。</p>
+<h4 id="2、使用for循环删除元素陷阱"><a href="#2、使用for循环删除元素陷阱" class="headerlink" title="2、使用for循环删除元素陷阱"></a>2、使用for循环删除元素陷阱</h4><p>先来看看下面这个程序：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> &#123;<br> <br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span>(<span class="hljs-params">String[] args</span>)</span> &#123;<br>		List&lt;String&gt; list = <span class="hljs-keyword">new</span> LinkedList&lt;String&gt;();<br>		list.<span class="hljs-keyword">add</span>(<span class="hljs-string">&quot;A&quot;</span>);<br>		list.<span class="hljs-keyword">add</span>(<span class="hljs-string">&quot;B&quot;</span>);<br>		list.<span class="hljs-keyword">add</span>(<span class="hljs-string">&quot;C&quot;</span>);<br>		<br>		<span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i=<span class="hljs-number">0</span>; i&lt;list.size(); i++)&#123;<br>			list.<span class="hljs-keyword">remove</span>(i);<br>		&#125;<br>		<br>		<span class="hljs-keyword">for</span>(String item:list)&#123;<br>			System.<span class="hljs-keyword">out</span>.println(item);<br>		&#125;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>这个命令会将Git配置中的 <code>https://github.com/</code>​ 替换为 <code>git@github.com:</code>​，从而使用SSH协议连接GitHub。</p>
-<p>配置后再部署提交</p>
+<p>可以先猜猜这个程序输出什么？</p>
+<p>按我们的思路，应该是输不出什么，<strong>但是执行它，输出的却是：B</strong>。</p>
+<p>分析下这个程序，当第一步remove完后，集合内还剩2个元素，此时i为1，而list.size()的值为2，从0开始的话，i为1时，正好指向第二个元素，也就是说当remove完A后，直接就跳到C，将B漏了。</p>
+<p>解决办法：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> &#123;<br> <br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span>(<span class="hljs-params">String[] args</span>)</span> &#123;<br>		List&lt;String&gt; list = <span class="hljs-keyword">new</span> LinkedList&lt;String&gt;();<br>		list.<span class="hljs-keyword">add</span>(<span class="hljs-string">&quot;A&quot;</span>);<br>		list.<span class="hljs-keyword">add</span>(<span class="hljs-string">&quot;B&quot;</span>);<br>		list.<span class="hljs-keyword">add</span>(<span class="hljs-string">&quot;C&quot;</span>);<br>		<br>		<span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i=<span class="hljs-number">0</span>; i&lt;list.size(); i++)&#123;<br>			list.<span class="hljs-keyword">remove</span>(i);<br>			i -= <span class="hljs-number">1</span>;<span class="hljs-comment">//每次删除完后，i减少1</span><br>		&#125;<br>		<br>		<span class="hljs-keyword">for</span>(String item:list)&#123;<br>			System.<span class="hljs-keyword">out</span>.println(item);<br>		&#125;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<h4 id="3、讲述一下-length、length-、size-的区别。"><a href="#3、讲述一下-length、length-、size-的区别。" class="headerlink" title="3、讲述一下 length、length()、size() 的区别。"></a>3、讲述一下 length、length()、size() 的区别。</h4><ul>
+<li>java 中的 <code>length</code>属性是针对数组说的,比如说你声明了一个数组,想知道这个数组的长度则用到了 length 这个属性.</li>
+<li>java 中的 <code>length()</code> 方法是针对字符串说的,如果想看这个字符串的长度则用到 <code>length()</code> 这个方法.</li>
+<li>java 中的 <code>size()</code> 方法是针对泛型集合说的,如果想看这个泛型有多少个元素,就调用此方法来查看!</li>
+</ul>
+<h4 id="4、在-HashMap-中，为什么不一下子把整个链表变为红黑树呢"><a href="#4、在-HashMap-中，为什么不一下子把整个链表变为红黑树呢" class="headerlink" title="4、在 HashMap 中，为什么不一下子把整个链表变为红黑树呢"></a>4、在 HashMap 中，为什么不一下子把整个链表变为红黑树呢</h4><p>为什么非要等到链表的长度大于等于8的时候，才转变成红黑树？</p>
+<p>（1）构造红黑树要比构造链表复杂，在链表的节点不多的时候，从整体的性能看来， 数组+链表+红黑树的结构可能不一定比数组+链表的结构性能高。就好比杀鸡焉用牛刀的意思。</p>
+<p>（2）HashMap频繁的扩容，会造成底部红黑树不断的进行拆分和重组，这是非常耗时的。因此，也就是链表长度比较长的时候转变成红黑树才会<strong>显著提高效率</strong>。</p>
 
                 
               </div>
@@ -307,7 +331,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E9%83%A8%E7%BD%B2/" class="category-chain-item">部署</a>
+  <a href="/categories/Java%E5%9F%BA%E7%A1%80/" class="category-chain-item">Java基础</a>
   
   
 
@@ -322,7 +346,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/git/" class="print-no-link">#git</a>
+        <a href="/tags/java/" class="print-no-link">#java</a>
       
     </div>
   
@@ -334,8 +358,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Git 配置 SSH 连接</div>
-      <div>https://lluo-liang.github.io/2023/11/13/Git 配置 SSH 连接/</div>
+      <div>Java集合_相关问题</div>
+      <div>https://lluo-liang.github.io/2023/11/14/Java集合_相关面试题/</div>
     </div>
     <div class="license-meta">
       
@@ -347,7 +371,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年11月13日</div>
+          <div>2023年11月14日</div>
         </div>
       
       
@@ -379,15 +403,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/11/13/Git%20%E5%91%BD%E4%BB%A4%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" title="Git 命令基本操作">
+                      <a href="/2023/11/14/Java%E9%9B%86%E5%90%88_ArrayList%E5%AD%A6%E4%B9%A0/" title="Java集合_ArrayList 学习">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Git 命令基本操作</span>
+                        <span class="hidden-mobile">Java集合_ArrayList 学习</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2023/11/14/%E6%97%A5%E8%AE%B0_20231114/" title="日记_20231114">
+                        <span class="hidden-mobile">日记_20231114</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
