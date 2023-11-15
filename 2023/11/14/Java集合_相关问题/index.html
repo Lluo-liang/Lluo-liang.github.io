@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2k 字
+          2.2k 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          17 分钟
+          19 分钟
         
       </span>
     
@@ -278,7 +278,8 @@
                 <p>集合的常见的面试题内容</p>
 <span id="more"></span>
 <h4 id="1、Set集合是如何保证对象不重复的？"><a href="#1、Set集合是如何保证对象不重复的？" class="headerlink" title="1、Set集合是如何保证对象不重复的？"></a>1、Set集合是如何保证对象不重复的？</h4><p>HashSet 的底层采用HashMap来存放数据,  他执行添加元素操作的时候是将元素作为 Map 的Key；</p>
-<p>hashMap 在执行 put 方法的时候，当 map中key重复，添加元素会进行替换操作；因此 set 能够保证元素唯一。</p>
+<p>HashMap保证key的不重复性，对于重复的key，HashMap会根据参数onlyIfAbsent的设置和原value是否为空两个条件来<strong>判断是否替换新value</strong>，</p>
+<p>但要注意的是，对于HashSet，这个value只是个空的Object类的对象，没有任何实际作用，HashSet中的元素实际上是存储在key上的。针对重复的key，<strong>HashMap只有对于value的处理，并不会替换key</strong>，因此在HashSet中加入相同元素不会覆盖。</p>
 <p>源码相关内容：</p>
 <p>HashSet 的添加方法</p>
 <figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs processing"><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-built_in">add</span>(E e) &#123;  <br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">map</span>.<span class="hljs-property">put</span>(e, PRESENT)==<span class="hljs-literal">null</span>;  <br>&#125;<br></code></pre></td></tr></table></figure>
@@ -295,6 +296,7 @@
 </ul>
 </li>
 </ul>
+<p><strong>总结</strong>：结果向HashSet中加入相同元素不会进行覆盖。因为HashSet底层使用HashMap实现，元素存在HashMap的key中。在HashMap中，多次put相同的key，只会覆盖value，而不存在key的情况。</p>
 <h4 id="2、使用for循环删除元素陷阱"><a href="#2、使用for循环删除元素陷阱" class="headerlink" title="2、使用for循环删除元素陷阱"></a>2、使用for循环删除元素陷阱</h4><p>先来看看下面这个程序：</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> &#123;<br> <br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span>(<span class="hljs-params">String[] args</span>)</span> &#123;<br>		List&lt;String&gt; list = <span class="hljs-keyword">new</span> LinkedList&lt;String&gt;();<br>		list.<span class="hljs-keyword">add</span>(<span class="hljs-string">&quot;A&quot;</span>);<br>		list.<span class="hljs-keyword">add</span>(<span class="hljs-string">&quot;B&quot;</span>);<br>		list.<span class="hljs-keyword">add</span>(<span class="hljs-string">&quot;C&quot;</span>);<br>		<br>		<span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i=<span class="hljs-number">0</span>; i&lt;list.size(); i++)&#123;<br>			list.<span class="hljs-keyword">remove</span>(i);<br>		&#125;<br>		<br>		<span class="hljs-keyword">for</span>(String item:list)&#123;<br>			System.<span class="hljs-keyword">out</span>.println(item);<br>		&#125;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
