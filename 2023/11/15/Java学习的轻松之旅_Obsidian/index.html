@@ -18,22 +18,22 @@
   <meta name="author" content="Luo QI">
   <meta name="keywords" content="">
   
-    <meta name="description" content="配置 SSH 连接回到Git Bash中，配置Github账户信息（用户名​和邮箱​都替换成你自己Github上的）： 12git config --global user.name &quot;&#96;用户名&#96;&quot;git config --global user.email &quot;邮箱&quot;  在Git Bash中输入：ssh-keygen -t rsa -C &quot;你的Gi">
+    <meta name="description" content="[[Java学习的轻松之旅]] Java基础Java 集合  [[Java集合_基础概念]] [[Java集合_进阶内容]] [[Java集合_相关问题]] [[Java集合_ArrayList学习]]">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git 配置 SSH 连接">
-<meta property="og:url" content="https://lluo-liang.github.io/2023/11/14/Git%20%E9%85%8D%E7%BD%AE%20SSH%20%E8%BF%9E%E6%8E%A5/index.html">
+<meta property="og:title" content="Java学习的轻松之旅_Obsidian">
+<meta property="og:url" content="https://lluo-liang.github.io/2023/11/15/Java%E5%AD%A6%E4%B9%A0%E7%9A%84%E8%BD%BB%E6%9D%BE%E4%B9%8B%E6%97%85_Obsidian/index.html">
 <meta property="og:site_name" content="轻松的洛亓">
-<meta property="og:description" content="配置 SSH 连接回到Git Bash中，配置Github账户信息（用户名​和邮箱​都替换成你自己Github上的）： 12git config --global user.name &quot;&#96;用户名&#96;&quot;git config --global user.email &quot;邮箱&quot;  在Git Bash中输入：ssh-keygen -t rsa -C &quot;你的Gi">
+<meta property="og:description" content="[[Java学习的轻松之旅]] Java基础Java 集合  [[Java集合_基础概念]] [[Java集合_进阶内容]] [[Java集合_相关问题]] [[Java集合_ArrayList学习]]">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-11-14T15:50:46.173Z">
-<meta property="article:modified_time" content="2023-11-13T17:08:00.000Z">
+<meta property="article:published_time" content="2023-11-15T02:43:58.128Z">
+<meta property="article:modified_time" content="2023-11-14T12:00:00.000Z">
 <meta property="article:author" content="Luo QI">
-<meta property="article:tag" content="git">
+<meta property="article:tag" content="index">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Git 配置 SSH 连接 - 轻松的洛亓</title>
+  <title>Java学习的轻松之旅_Obsidian - 轻松的洛亓</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -193,13 +193,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Git 配置 SSH 连接"></span>
+            <span id="subtitle" data-typed-text="Java学习的轻松之旅_Obsidian"></span>
           
         </div>
 
@@ -210,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-11-14 15:50" pubdate>
-          2023年11月14日 下午
+        <time datetime="2023-11-15 02:43" pubdate>
+          2023年11月15日 凌晨
         </time>
       </span>
     
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          601 字
+          94 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          6 分钟
+          1 分钟
         
       </span>
     
@@ -270,25 +270,19 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Git 配置 SSH 连接</h1>
+            <h1 id="seo-header">Java学习的轻松之旅_Obsidian</h1>
             
             
               <div class="markdown-body">
                 
-                <h4 id="配置-SSH-连接"><a href="#配置-SSH-连接" class="headerlink" title="配置 SSH 连接"></a>配置 SSH 连接</h4><p>回到Git Bash中，配置Github账户信息（<code>用户名</code>​和<code>邮箱</code>​都替换成你自己Github上的）：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">git config --global user.name &quot;`用户名`&quot;<br>git config --global user.email &quot;邮箱&quot;<br></code></pre></td></tr></table></figure>
-
-<p>在Git Bash中输入：<code>ssh-keygen -t rsa -C &quot;你的Github邮箱&quot;</code>​ 生成ssh</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">ssh-keygen -t rsa -C &quot;邮箱&quot;<br></code></pre></td></tr></table></figure>
-
-<p>然后按Git Bash给出的路径<code>(C:\Users\Lete.ssh)</code>​找到<code>id_rsa.pub</code>​文件 并复制其中的内容</p>
-<p>进到新建的Github仓库 点击右上角<code>setting</code>​进入设置找到<code>Deploykeys</code>​选择 <code>Add Deploy keys</code>​ <code>Title</code>​随便填写 <code>Key</code>​的内容填刚才<code>id_rsa.pub</code>​文件中复制的内容</p>
-<p>‍</p>
-<p>修改本地Git配置，设置使用SSH协议连接GitHub。使用以下命令修改本地Git配置：</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs scss">git config <span class="hljs-attr">--global</span> url.&quot;git<span class="hljs-keyword">@github</span>.<span class="hljs-attribute">com</span>:<span class="hljs-string">&quot;.insteadOf &quot;</span><span class="hljs-attribute">https</span>://github.com/<span class="hljs-string">&quot;</span><br></code></pre></td></tr></table></figure>
-
-<p>这个命令会将Git配置中的 <code>https://github.com/</code>​ 替换为 <code>git@github.com:</code>​，从而使用SSH协议连接GitHub。</p>
-<p>配置后再部署提交</p>
+                <p>[[Java学习的轻松之旅]]</p>
+<h3 id="Java基础"><a href="#Java基础" class="headerlink" title="Java基础"></a>Java基础</h3><p><strong>Java 集合</strong></p>
+<ul>
+<li>[[Java集合_基础概念]]</li>
+<li>[[Java集合_进阶内容]]</li>
+<li>[[Java集合_相关问题]]</li>
+<li>[[Java集合_ArrayList学习]]</li>
+</ul>
 
                 
               </div>
@@ -297,32 +291,11 @@
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E9%83%A8%E7%BD%B2/" class="category-chain-item">部署</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
   
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/git/" class="print-no-link">#git</a>
+        <a href="/tags/index/" class="print-no-link">#index</a>
       
     </div>
   
@@ -334,8 +307,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Git 配置 SSH 连接</div>
-      <div>https://lluo-liang.github.io/2023/11/14/Git 配置 SSH 连接/</div>
+      <div>Java学习的轻松之旅_Obsidian</div>
+      <div>https://lluo-liang.github.io/2023/11/15/Java学习的轻松之旅_Obsidian/</div>
     </div>
     <div class="license-meta">
       
@@ -347,7 +320,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年11月14日</div>
+          <div>2023年11月15日</div>
         </div>
       
       
@@ -374,23 +347,6 @@
 
 
 
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2023/11/14/HomePage/" title="HomePage">
-                        <span class="hidden-mobile">HomePage</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
               
             </div>
 
