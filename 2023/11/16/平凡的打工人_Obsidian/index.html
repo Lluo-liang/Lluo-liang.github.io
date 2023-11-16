@@ -18,28 +18,23 @@
   <meta name="author" content="Luo QI">
   <meta name="keywords" content="">
   
-    <meta name="description" content="从ReentrantLock的非公平独占锁实现来看AQS的原理">
+    <meta name="description" content="平平凡凡的打工人">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java并发编程_AQS的核心原理">
-<meta property="og:url" content="https://lluo-liang.github.io/2023/11/16/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B_AQS%E7%9A%84%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:title" content="平平凡凡的打工人_Obsidian">
+<meta property="og:url" content="https://lluo-liang.github.io/2023/11/16/%E5%B9%B3%E5%87%A1%E7%9A%84%E6%89%93%E5%B7%A5%E4%BA%BA_Obsidian/index.html">
 <meta property="og:site_name" content="轻松的洛亓">
-<meta property="og:description" content="从ReentrantLock的非公平独占锁实现来看AQS的原理">
+<meta property="og:description" content="平平凡凡的打工人">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311161044226.png">
-<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311161046617.png">
-<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311161047619.png">
-<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311161047133.png">
-<meta property="article:published_time" content="2023-11-16T15:10:48.000Z">
-<meta property="article:modified_time" content="2023-11-16T15:10:48.000Z">
+<meta property="article:published_time" content="2023-11-16T09:54:00.000Z">
+<meta property="article:modified_time" content="2023-11-16T09:54:00.000Z">
 <meta property="article:author" content="Luo QI">
-<meta property="article:tag" content="java">
-<meta property="article:tag" content="thread">
+<meta property="article:tag" content="index">
+<meta property="article:tag" content="work">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311161044226.png">
   
   
   
-  <title>Java并发编程_AQS的核心原理 - 轻松的洛亓</title>
+  <title>平平凡凡的打工人_Obsidian - 轻松的洛亓</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -205,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Java并发编程_AQS的核心原理"></span>
+            <span id="subtitle" data-typed-text="平平凡凡的打工人_Obsidian"></span>
           
         </div>
 
@@ -216,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-11-16 15:10" pubdate>
-          2023年11月16日 下午
+        <time datetime="2023-11-16 09:54" pubdate>
+          2023年11月16日 上午
         </time>
       </span>
     
@@ -228,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.4k 字
+          29 字
         
       </span>
     
@@ -239,7 +234,7 @@
         
         
         
-          12 分钟
+          1 分钟
         
       </span>
     
@@ -276,46 +271,13 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Java并发编程_AQS的核心原理</h1>
+            <h1 id="seo-header">平平凡凡的打工人_Obsidian</h1>
             
             
               <div class="markdown-body">
                 
-                <h3 id="2、Java-锁机制"><a href="#2、Java-锁机制" class="headerlink" title="2、Java  锁机制"></a>2、Java  锁机制</h3><p>什么是锁</p>
-<p>Java 锁机制：多线程环境下，加入锁机制，让多线程安全访问和使用共享变量（对资源进行争抢，通过抽象的锁对资源进行锁定）</p>
-<p>JVM 一般在方法区中会存放类信息，常量，静态常量等信息；Java 中争抢的共享资源一般是在这个区域。</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311161044226.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>了解锁机制前，先了解一下锁和对象的关系；看下面的图：对象 Object 和 锁的存储结构</p>
-<p>锁的信息在对象头中，对象一般有实例对象，对象头，填充字段三部分内容。</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311161046617.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>Java对象保存在内存中时，由以下三部分组成：</p>
-<blockquote>
-<p>1，对象头</p>
-<p>2，实例数据</p>
-<p>3，对齐填充字节</p>
-</blockquote>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311161047619.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>Java 对象头的结构中，是由以下三部分组成：</p>
-<blockquote>
-<p>1，Mark Word</p>
-<p>2，指向类的指针（Class Point)</p>
-<p>3，数组长度（只有数组对象才有）</p>
-</blockquote>
-<p>对象头占用了对象比较少的存储空间，其中Mark Word <strong>在32位JVM中的长度是32bit</strong>，在64位JVM中长度是64bit。</p>
-<p>Mark Word 会记录对象和锁有关的信息，同时需要注意的是 Mark Word在不同的锁状态下存储的内容不同，</p>
-<p>在32位JVM中是这么存的：</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311161047133.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>当这个对象被synchronized关键字当成同步锁时，围绕这个锁的一系列操作都和Mark Word有关。</p>
-<p>其中无锁和偏向锁的锁标志位都是01，只是在前面的1bit区分了这是无锁状态还是偏向锁状态。</p>
-<p>JDK1.6以后的版本在处理同步锁时存在锁升级的概念，JVM对于同步锁的处理是从偏向锁开始的，随着竞争越来越激烈，处理方式从偏向锁升级到轻量级锁，最终升级到重量级锁。</p>
-<p>这里通过一个程序例子来看 synchronized 反编译后的内容</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SyncDemo02</span>&#123;  <br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> <span class="hljs-variable">num</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;  <br>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test</span><span class="hljs-params">()</span>&#123;  <br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i&lt; <span class="hljs-number">100</span>;i++)&#123;  <br>            <span class="hljs-keyword">synchronized</span> (<span class="hljs-built_in">this</span>)&#123;  <br>                System.out.println(<span class="hljs-string">&quot;thread:&quot;</span> + Thread.currentThread().getId() + <span class="hljs-string">&quot;,num: &quot;</span> + num++);  <br>            &#125;  <br>        &#125;  <br>    &#125;  <br>&#125;<br><br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TestSyncDemo01</span> &#123;  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;  <br>        <span class="hljs-type">SyncDemo02</span> <span class="hljs-variable">syncDemo02</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SyncDemo02</span>();  <br>  <br>        <span class="hljs-type">Thread</span> <span class="hljs-variable">t1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Runnable</span>() &#123;  <br>            <span class="hljs-meta">@Override</span>  <br>            <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;  <br>                syncDemo02.test();  <br>            &#125;  <br>        &#125;);  <br>  <br>        <span class="hljs-type">Thread</span> <span class="hljs-variable">t2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Runnable</span>() &#123;  <br>            <span class="hljs-meta">@Override</span>  <br>            <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;  <br>                syncDemo02.test();  <br>            &#125;  <br>        &#125;);  <br>  <br>        t1.start();  <br>        t2.start();  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>运行后，对类 SyncDemo02 反编译</p>
-<hr>
-<p>参考：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1z44y1X7BJ">https://www.bilibili.com/video/BV1z44y1X7BJ</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV12K411G7Fg">https://www.bilibili.com/video/BV12K411G7Fg</a></li>
+                <h4 id="oracle-操作记录"><a href="#oracle-操作记录" class="headerlink" title="oracle 操作记录"></a>oracle 操作记录</h4><ul>
+<li>[[Oracle_常用操作使用记录]]</li>
 </ul>
 
                 
@@ -335,7 +297,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Java%E5%9F%BA%E7%A1%80/" class="category-chain-item">Java基础</a>
+  <a href="/categories/work/" class="category-chain-item">work</a>
   
   
 
@@ -350,9 +312,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/java/" class="print-no-link">#java</a>
+        <a href="/tags/index/" class="print-no-link">#index</a>
       
-        <a href="/tags/thread/" class="print-no-link">#thread</a>
+        <a href="/tags/work/" class="print-no-link">#work</a>
       
     </div>
   
@@ -364,8 +326,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Java并发编程_AQS的核心原理</div>
-      <div>https://lluo-liang.github.io/2023/11/16/Java并发编程_AQS的核心原理/</div>
+      <div>平平凡凡的打工人_Obsidian</div>
+      <div>https://lluo-liang.github.io/2023/11/16/平凡的打工人_Obsidian/</div>
     </div>
     <div class="license-meta">
       
@@ -404,23 +366,6 @@
 
 
 
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2023/11/16/Oracle_%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/" title="Oracle_常用操作使用记录">
-                        <span class="hidden-mobile">Oracle_常用操作使用记录</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
               
             </div>
 
