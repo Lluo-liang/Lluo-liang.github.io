@@ -29,8 +29,8 @@
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311161046617.png">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311161047619.png">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311161047133.png">
-<meta property="article:published_time" content="2023-11-15T23:47:00.000Z">
-<meta property="article:modified_time" content="2023-11-15T23:47:00.000Z">
+<meta property="article:published_time" content="2023-11-15T23:48:00.000Z">
+<meta property="article:modified_time" content="2023-11-15T23:48:00.000Z">
 <meta property="article:author" content="Luo QI">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="thread">
@@ -216,7 +216,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-11-15 23:47" pubdate>
+        <time datetime="2023-11-15 23:48" pubdate>
           2023年11月15日 晚上
         </time>
       </span>
@@ -228,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.1k 字
+          2.2k 字
         
       </span>
     
@@ -239,7 +239,7 @@
         
         
         
-          18 分钟
+          19 分钟
         
       </span>
     
@@ -363,7 +363,8 @@
 </blockquote>
 <p>对象头占用了对象比较少的存储空间，其中Mark Word <strong>在32位JVM中的长度是32bit</strong>，在64位JVM中长度是64bit。</p>
 <p>Mark Word 会记录对象和锁有关的信息，同时需要注意的是 Mark Word在不同的锁状态下存储的内容不同，</p>
-<p>在32位JVM中是这么存的：<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311161047133.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>在32位JVM中是这么存的：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311161047133.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>当这个对象被synchronized关键字当成同步锁时，围绕这个锁的一系列操作都和Mark Word有关。</p>
 <p>其中无锁和偏向锁的锁标志位都是01，只是在前面的1bit区分了这是无锁状态还是偏向锁状态。</p>
 <p>JDK1.6以后的版本在处理同步锁时存在锁升级的概念，JVM对于同步锁的处理是从偏向锁开始的，随着竞争越来越激烈，处理方式从偏向锁升级到轻量级锁，最终升级到重量级锁。</p>
@@ -372,7 +373,12 @@
 
 <p>运行后，对类 SyncDemo02 反编译</p>
 <hr>
-<h2 id="参考：-https-www-bilibili-com-video-BV1aK4y1A7Go-spm-id-from-333-788-vd-source-6a019ecccfe7d8f62b9a3fe99c723bd0"><a href="#参考：-https-www-bilibili-com-video-BV1aK4y1A7Go-spm-id-from-333-788-vd-source-6a019ecccfe7d8f62b9a3fe99c723bd0" class="headerlink" title="参考：- https://www.bilibili.com/video/BV1aK4y1A7Go/?spm_id_from=333.788&amp;vd_source=6a019ecccfe7d8f62b9a3fe99c723bd0"></a>参考：<br>- <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1aK4y1A7Go/?spm_id_from=333.788&vd_source=6a019ecccfe7d8f62b9a3fe99c723bd0">https://www.bilibili.com/video/BV1aK4y1A7Go/?spm_id_from=333.788&amp;vd_source=6a019ecccfe7d8f62b9a3fe99c723bd0</a></h2>
+<p>参考：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1aK4y1A7Go/?spm_id_from=333.788&vd_source=6a019ecccfe7d8f62b9a3fe99c723bd0">https://www.bilibili.com/video/BV1aK4y1A7Go/?spm_id_from=333.788&amp;vd_source=6a019ecccfe7d8f62b9a3fe99c723bd0</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/wang_yong_hui_1234/article/details/130165866">https://blog.csdn.net/wang_yong_hui_1234/article/details/130165866</a></li>
+</ul>
+
                 
               </div>
             
@@ -464,9 +470,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/11/15/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B_%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" title="Java多线程_基础概念">
+                      <a href="/2023/11/15/JVM%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" title="JVM入门_基础概念">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Java多线程_基础概念</span>
+                        <span class="hidden-mobile">JVM入门_基础概念</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -474,8 +480,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/11/15/Java%E9%9B%86%E5%90%88_HashMap%E5%AD%A6%E4%B9%A0/" title="Java集合_HashMap学习">
-                        <span class="hidden-mobile">Java集合_HashMap学习</span>
+                      <a href="/2023/11/15/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B_%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" title="Java并发编程_基础概念">
+                        <span class="hidden-mobile">Java并发编程_基础概念</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

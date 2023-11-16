@@ -20,21 +20,24 @@
   
     <meta name="description" content="Java多线程_基础概念">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java多线程_基础概念">
+<meta property="og:title" content="Java并发编程_基础概念">
 <meta property="og:url" content="https://lluo-liang.github.io/2023/11/15/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B_%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/index.html">
 <meta property="og:site_name" content="轻松的洛亓">
 <meta property="og:description" content="Java多线程_基础概念">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311161130480.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311161129688.png">
 <meta property="article:published_time" content="2023-11-15T23:47:00.000Z">
 <meta property="article:modified_time" content="2023-11-15T23:47:00.000Z">
 <meta property="article:author" content="Luo QI">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="thread">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311161130480.png">
   
   
   
-  <title>Java多线程_基础概念 - 轻松的洛亓</title>
+  <title>Java并发编程_基础概念 - 轻松的洛亓</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +203,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Java多线程_基础概念"></span>
+            <span id="subtitle" data-typed-text="Java并发编程_基础概念"></span>
           
         </div>
 
@@ -223,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          508 字
+          4.9k 字
         
       </span>
     
@@ -234,7 +237,7 @@
         
         
         
-          5 分钟
+          41 分钟
         
       </span>
     
@@ -271,7 +274,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Java多线程_基础概念</h1>
+            <h1 id="seo-header">Java并发编程_基础概念</h1>
             
             
               <div class="markdown-body">
@@ -294,11 +297,212 @@
 </ul>
 <h3 id="2、什么是Java-线程"><a href="#2、什么是Java-线程" class="headerlink" title="2、什么是Java 线程"></a>2、什么是Java 线程</h3><p>在 JDK 1.2 及以后，Java 线程基于原生线程（Native Threads）实现， JVM 直接使用操作系统原生的内核级线程（内核线程）来实现 Java 线程，由操作系统内核进行线程的调度和管理。</p>
 <p>用一句话概括 Java 线程和操作系统线程的关系：<strong>现在的 Java 线程的本质其实就是操作系统的线程</strong>。</p>
-<p>在 Windows 和 Linux 等主流操作系统中，Java 线程采用的是一对一的线程模型，也就是一个 Java 线程对应一个系统内核线程。</p>
+<p>在 Windows 和 Linux 等主流操作系统中，Java 线程采用的是一对一的线程模型，一个 Java 线程对应一个系统内核线程。</p>
+<h3 id="3、线程的生命周期及五种基本状态"><a href="#3、线程的生命周期及五种基本状态" class="headerlink" title="3、线程的生命周期及五种基本状态"></a>3、线程的生命周期及五种基本状态</h3><p>五种基本状态：新建，就绪，阻塞，运行，死亡</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311161130480.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>关于Java中线程的生命周期，首先看一下下面这张较为经典的图：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311161129688.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>上图中基本上囊括了Java中多线程各重要知识点。掌握了上图中的各知识点，Java中的多线程也就基本上掌握了。主要包括：</p>
+<p>Java线程具有五中基本状态</p>
+<ul>
+<li>新建状态（New）<ul>
+<li>当线程对象对创建后，即进入了新建状态，如：Thread t &#x3D; new MyThread();</li>
+</ul>
+</li>
+<li>就绪状态（Runnable）<ul>
+<li>当调用线程对象的start()方法（t.start();），线程即进入就绪状态。</li>
+<li>处于就绪状态的线程，只是说明此线程已经做好了准备，随时等待CPU调度执行，并不是说执行了t.start()此线程立即就会执行；</li>
+</ul>
+</li>
+<li>运行状态（Running）<ul>
+<li>当CPU开始调度处于就绪状态的线程时，此时线程才得以真正执行，即进入到运行状态。</li>
+<li>注：就 绪状态是进入到运行状态的唯一入口，也就是说，线程要想进入运行状态执行，首先必须处于就绪状态中</li>
+</ul>
+</li>
+<li>阻塞状态（Blocked）<ul>
+<li>处于运行状态中的线程由于某种原因，暂时放弃对CPU的使用权，停止执行，此时进入阻塞状态，直到其进入到就绪状态，才 有机会再次被CPU调用以进入到运行状态。</li>
+<li>根据阻塞产生的原因不同，阻塞状态又可以分为三种<ul>
+<li>**1.等待阻塞：运行状态中的线程执行wait()方法，使本线程进入到等待阻塞状态；</li>
+<li><strong>2.同步阻塞 :</strong> 线程在获取synchronized同步锁失败(因为锁被其它线程所占用)，它会进入同步阻塞状态；</li>
+<li><strong>3.其他阻塞 :</strong> 通过调用线程的sleep()或join()或发出了I&#x2F;O请求时，线程会进入到阻塞状态。当sleep()状态超时、join()等待线程终止或者超时、或者I&#x2F;O处理完毕时，线程重新转入就绪状态。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>死亡状态（Dead）<ul>
+<li>线程执行完了或者因异常退出了run()方法，该线程结束生命周期。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Java多线程的就绪、运行和死亡状态</p>
+</blockquote>
+<p>就绪状态转换为运行状态：当此线程得到处理器资源；</p>
+<p>运行状态转换为就绪状态：当此线程主动调用yield()方法或在运行过程中失去处理器资源。</p>
+<p>运行状态转换为死亡状态：当此线程线程执行体执行完毕或发生了异常。</p>
+<p>此处需要特别注意的是：当调用线程的yield()方法时，线程从运行状态转换为就绪状态，但接下来CPU调度就绪状态中的哪个线程具有一定的随机性，因此，可能会出现A线程调用了yield()方法后，接下来CPU仍然调度了A线程的情况。</p>
+<h3 id="4、创建线程"><a href="#4、创建线程" class="headerlink" title="4、创建线程"></a>4、创建线程</h3><p>在Java中，有三种常见的线程创建方式：使用Thread类、实现Runnable接口和实现Callable接口。</p>
+<ol>
+<li>Thread类：Thread类是 Java 提供的一个线程类，我们可以通过继承Thread类来创建线程。<strong>通过重写Thread类的run()方法来定义线程的执行逻辑</strong>。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyThread</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Thread</span> &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-comment">// 线程的执行逻辑</span><br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 创建线程</span><br><span class="hljs-type">MyThread</span> <span class="hljs-variable">myThread</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyThread</span>();<br>myThread.start();<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Runnable接口：Runnable接口是一个函数式接口，我们可以通过实现Runnable接口来创建线程。需要注意的是，Runnable接口并不是一个线程类，<strong>而是一个任务，需要通过Thread类来创建线程</strong>并执行任务。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyRunnable</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Runnable</span> &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-comment">// 线程的执行逻辑</span><br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 创建线程</span><br><span class="hljs-type">MyRunnable</span> <span class="hljs-variable">myRunnable</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyRunnable</span>();<br><span class="hljs-type">Thread</span> <span class="hljs-variable">thread</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(myRunnable);<br>thread.start();<br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>Callable接口：Callable接口也是一个函数式接口，与Runnable接口类似，可以通过实现Callable接口来创建线程。不同的是，<strong>Callable接口的call()方法可以返回一个结果，并且可以抛出异常</strong>。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyCallable</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Callable</span>&lt;Integer&gt; &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> Integer <span class="hljs-title function_">call</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-comment">// 线程的执行逻辑</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-number">42</span>; <span class="hljs-comment">// 返回一个结果</span><br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 创建线程</span><br><span class="hljs-type">MyCallable</span> <span class="hljs-variable">myCallable</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyCallable</span>();<br><span class="hljs-type">ExecutorService</span> <span class="hljs-variable">executorService</span> <span class="hljs-operator">=</span> Executors.newSingleThreadExecutor();<br>Future&lt;Integer&gt; future = executorService.submit(myCallable);<br></code></pre></td></tr></table></figure>
+
+
+<ul>
+<li>使用Thread类创建线程是最直接的方式，但是由于Java不支持多继承，所以如果已经有一个父类，就不能再直接使用Thread类创建线程。</li>
+<li>实现Runnable接口是一种更加灵活的方式，可以避免单继承的限制，还可以共享数据。</li>
+<li>Callable接口与Runnable接口类似，但可以返回一个结果，并且可以抛出异常。可以通过ExecutorService的submit()方法来执行Callable任务，并返回一个Future对象，可以通过该对象获取任务的结果。</li>
+</ul>
+<blockquote>
+<p>写法简化（Java 8)</p>
+</blockquote>
+<ul>
+<li><strong>方式一：</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Thread</span> <span class="hljs-variable">thread</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>()&#123; <br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123; <br>        System.out.println(<span class="hljs-string">&quot;thread run ...&quot;</span>);<br>    &#125;<br>&#125;;<br><br>thread.start();<br></code></pre></td></tr></table></figure>
+
+<p>简化后：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Thread</span> <span class="hljs-variable">thread</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(() -&gt; System.out.println(<span class="hljs-string">&quot;thread run ...&quot;</span>));<br><br>thread.start();<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>方式二：</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Thread</span> <span class="hljs-variable">thread</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Runnable</span>() &#123; <br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123; <br>        System.out.println(<span class="hljs-string">&quot;runnable run ...&quot;</span>);<br>    &#125;<br>&#125;);<br><br>thread.start();<br></code></pre></td></tr></table></figure>
+
+<p>简化后：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Thread</span> <span class="hljs-variable">thread</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(() -&gt; System.out.println(<span class="hljs-string">&quot;runnable run ...&quot;</span>));<br><br>thread.start();<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>方式三：</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java">Callable&lt;Integer&gt; callable = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Callable</span>() &#123; <br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> Object <span class="hljs-title function_">call</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123; <br>        System.out.println(<span class="hljs-string">&quot;callable run ...&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">521</span>;<br>    &#125;<br>&#125;;<br><span class="hljs-type">FutureTask</span> <span class="hljs-variable">futureTask</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FutureTask</span>(callable);<br><span class="hljs-type">Thread</span> <span class="hljs-variable">thread</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(futureTask);<br>thread.start();<br></code></pre></td></tr></table></figure>
+
+<p>简化后：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Thread</span> <span class="hljs-variable">thread</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FutureTask</span>(() -&gt; &#123; <br>    System.out.println(<span class="hljs-string">&quot;callable run ...&quot;</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">521</span>;<br>&#125;));<br><br>thread.start();<br></code></pre></td></tr></table></figure>
+
+<h3 id="5、线程基本方法"><a href="#5、线程基本方法" class="headerlink" title="5、线程基本方法"></a>5、线程基本方法</h3><blockquote>
+<p>注意：标黄色的方法代表是 <code>static</code>​ 方法，可直接类名调用，无需创建对象。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+<th>注意事项</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>​<code>start()</code>​</td>
+<td>启动一个新线程，<br />在新的线程运行 run 方法</td>
+<td>start 方法只是让线程进入就绪，里面代码不一定立刻<br />运行（CPU 的时间片还没分给它）。每个线程对象的<br />start方法只能调用一次，如果调用了多次会出现<br />IllegalThreadStateException</td>
+</tr>
+<tr>
+<td>​<code>run()</code>​</td>
+<td>新线程启动后会调用的方法</td>
+<td>如果在构造 Thread 对象时传递了 Runnable 参数，则<br />线程启动后会调用 Runnable 中的 run 方法，否则默<br />认不执行任何操作。但可以创建 Thread 的子类对象，<br />来覆盖默认行为</td>
+</tr>
+<tr>
+<td>​<code>join()</code>​</td>
+<td>等待线程运行结束</td>
+<td></td>
+</tr>
+<tr>
+<td>​<code>join(long n)</code>​</td>
+<td>等待线程运行结束，<br />最多等待 n 毫秒</td>
+<td></td>
+</tr>
+<tr>
+<td>​<code>getId()</code>​</td>
+<td>获取线程长整型的 id</td>
+<td>id 唯一</td>
+</tr>
+<tr>
+<td>​<code>getName()</code>​</td>
+<td>获取线程名</td>
+<td></td>
+</tr>
+<tr>
+<td>​<code>setName(String name)</code>​</td>
+<td>修改线程名</td>
+<td></td>
+</tr>
+<tr>
+<td>​<code>getPriority()</code>​</td>
+<td>获取线程优先级</td>
+<td></td>
+</tr>
+<tr>
+<td>​<code>setPriority(int priority)</code>​</td>
+<td>修改线程优先级</td>
+<td>Java 中规定线程优先级是1~10 的整数，较大的优先级<br />能提高该线程被 CPU 调度的机率</td>
+</tr>
+<tr>
+<td>​<code>getState()</code>​</td>
+<td>获取线程状态</td>
+<td>Java 中线程状态是用 6 个 enum 表示，分别为：<br />NEW, RUNNABLE, BLOCKED, WAITING,<br />TIMED_WAITING, TERMINATED</td>
+</tr>
+<tr>
+<td>​<code>interrupt()</code>​</td>
+<td>打断线程</td>
+<td>如果被打断线程正在 sleep，wait，join 会导致被<br />打断的线程抛出 InterruptedException，并清除<br />打断标记；如果打断正在运行的线程，则会设置<br />打断标记；park 的线程被打断，也会设置打断标记</td>
+</tr>
+<tr>
+<td>&#x3D;&#x3D;interrupted()&#x3D;&#x3D;</td>
+<td>判断当前线程是否被打断</td>
+<td>会清除打断标记</td>
+</tr>
+<tr>
+<td>​<code>isInterrupted()</code>​</td>
+<td>判断当前线程是否被打断</td>
+<td>不会清除打断标记</td>
+</tr>
+<tr>
+<td>​<code>isAlive()</code>​</td>
+<td>判断当前线程是否存活</td>
+<td></td>
+</tr>
+<tr>
+<td>​<code>isDaemon()</code>​</td>
+<td>判断当前线程是否是守护线程</td>
+<td></td>
+</tr>
+<tr>
+<td>​<code>setDaemon(boolean on)</code>​</td>
+<td>设置当前线程为守护线程</td>
+<td></td>
+</tr>
+<tr>
+<td>&#x3D;&#x3D;currentThread()&#x3D;&#x3D;</td>
+<td>获取当前正在执行的线程</td>
+<td></td>
+</tr>
+<tr>
+<td>&#x3D;&#x3D;sleep(long n)&#x3D;&#x3D;</td>
+<td>让当前执行的线程休眠n毫秒，<br />休眠时让出 CPU 的时间片<br />给其它线程</td>
+<td></td>
+</tr>
+<tr>
+<td>&#x3D;&#x3D;yield()&#x3D;&#x3D;</td>
+<td>提示线程调度器让出当前线程<br />对 CPU 的使用</td>
+<td>主要是为了测试和调试，它的具体的实现依赖于<br />操作系统的任务调度器</td>
+</tr>
+</tbody></table>
 <hr>
 <p>参考：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://javaguide.cn/java/concurrent/java-concurrent-questions-01.html">https://javaguide.cn/java/concurrent/java-concurrent-questions-01.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/fmgao-technology/p/11077543.html">https://www.cnblogs.com/fmgao-technology/p/11077543.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://caochenlei.blog.csdn.net/article/details/119992847">https://caochenlei.blog.csdn.net/article/details/119992847</a></li>
 </ul>
 
                 
@@ -347,7 +551,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Java多线程_基础概念</div>
+      <div>Java并发编程_基础概念</div>
       <div>https://lluo-liang.github.io/2023/11/15/Java并发编程_基础概念/</div>
     </div>
     <div class="license-meta">
@@ -392,9 +596,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/11/15/JVM%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" title="JVM入门_基础概念">
+                      <a href="/2023/11/15/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B_%E8%BF%9B%E9%98%B6%E5%86%85%E5%AE%B9/" title="Java并发编程_进阶内容">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">JVM入门_基础概念</span>
+                        <span class="hidden-mobile">Java并发编程_进阶内容</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -402,8 +606,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/11/15/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B_%E8%BF%9B%E9%98%B6%E5%86%85%E5%AE%B9/" title="Java并发编程_进阶内容">
-                        <span class="hidden-mobile">Java并发编程_进阶内容</span>
+                      <a href="/2023/11/15/Java%E9%9B%86%E5%90%88_HashMap%E5%AD%A6%E4%B9%A0/" title="Java集合_HashMap学习">
+                        <span class="hidden-mobile">Java集合_HashMap学习</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
