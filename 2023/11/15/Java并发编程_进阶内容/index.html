@@ -25,12 +25,17 @@
 <meta property="og:site_name" content="轻松的洛亓">
 <meta property="og:description" content="Java并发编程_进阶内容">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311161044226.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311161046617.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311161047619.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311161047133.png">
 <meta property="article:published_time" content="2023-11-15T23:47:00.000Z">
 <meta property="article:modified_time" content="2023-11-15T23:47:00.000Z">
 <meta property="article:author" content="Luo QI">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="thread">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311161044226.png">
   
   
   
@@ -223,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          7 字
+          2.1k 字
         
       </span>
     
@@ -234,7 +239,7 @@
         
         
         
-          1 分钟
+          18 分钟
         
       </span>
     
@@ -276,8 +281,98 @@
             
               <div class="markdown-body">
                 
-                <p>Java多线程</p>
+                <h3 id="1、什么是线程模型？"><a href="#1、什么是线程模型？" class="headerlink" title="1、什么是线程模型？"></a>1、什么是线程模型？</h3><p>线程和进程区分：</p>
+<ul>
+<li>进程：<ul>
+<li>一个在内存中运行的应用程序。每个进程都有自己独立的一块内存空间，一个进程可以有多个线程，比如在Windows系统中，一个运行的xx.exe就是一个进程。</li>
+</ul>
+</li>
+<li>线程<ul>
+<li>进程中的一个执行任务（控制单元），负责当前进程中程序的执行。一个进程至少有一个线程，一个进程可以运行多个线程，多个线程可共享数据。</li>
+<li>与进程不同的是同类的多个线程共享进程的<strong>堆</strong>和<strong>方法区</strong>资源，但每个线程有自己的<strong>程序计数器</strong>、<strong>虚拟机栈</strong>和<strong>本地方法栈</strong>，所以系统在产生一个线程，或是在各个线程之间作切换工作时，负担要比进程小得多，也正因为如此，线程也被称为轻量级进程。</li>
+</ul>
+</li>
+</ul>
+<p><strong>根本区别</strong>：进程是操作系统资源分配的基本单位，而线程是处理器任务调度和执行的基本单位</p>
+<p>线程模型：</p>
+<ul>
+<li><ol>
+<li>线程分为 用户线程和内核线程：</li>
+</ol>
+<ul>
+<li>对应操作系统的线程叫做“内核线程”</li>
+</ul>
+</li>
+<li><ol start="2">
+<li>线程模型有多对一模型、一对一模型、多对多模型；</li>
+</ol>
+<ul>
+<li>多对一模型：用户级线程模型<ul>
+<li>优点<ul>
+<li>用户线程的很多操作对内核来说都是透明的，不需要用户态和内核态的频繁切换，使线程的创建、调度、同步等非常快：</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>如果其中一个用户线程阻塞，其他用户线程也无法执行</li>
+<li>这种模型下，内核并不知道用户态有哪些线程，调度和优先级等不完整</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>一对一模型：内核级线程模型，内核负责每个线程的调度，可以调度到其他处理器上面<ul>
+<li>优点：实现简单</li>
+<li>缺点：<ul>
+<li>用户态和内核态频繁切换</li>
+<li>内核为每个线程都映射调度实体，如果系统出现大量线程，对系统性能会有影响；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>多对多模型：两级线程模型<ul>
+<li>优点：兼具前两者的优点</li>
+<li>缺点：实现复杂</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>其中</p>
+<ul>
+<li>Java 使用的是 一对一线程模型</li>
+<li>Go 语言使用的是 多对多线程模型</li>
+<li>Python 的 gevent 使用的多对一线程模型</li>
+</ul>
+<h3 id="2、Java-锁机制"><a href="#2、Java-锁机制" class="headerlink" title="2、Java  锁机制"></a>2、Java  锁机制</h3><p>什么是锁</p>
+<p>Java 锁机制：多线程环境下，加入锁机制，让多线程安全访问和使用共享变量（对资源进行争抢，通过抽象的锁对资源进行锁定）</p>
+<p>JVM 一般在方法区中会存放类信息，常量，静态常量等信息；Java 中争抢的共享资源一般是在这个区域。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311161044226.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>了解锁机制前，先了解一下锁和对象的关系；看下面的图：对象 Object 和 锁的存储结构</p>
+<p>锁的信息在对象头中，对象一般有实例对象，对象头，填充字段三部分内容。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311161046617.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>Java对象保存在内存中时，由以下三部分组成：</p>
+<blockquote>
+<p>1，对象头</p>
+<p>2，实例数据</p>
+<p>3，对齐填充字节</p>
+</blockquote>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311161047619.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>Java 对象头的结构中，是由以下三部分组成：</p>
+<blockquote>
+<p>1，Mark Word</p>
+<p>2，指向类的指针（Class Point)</p>
+<p>3，数组长度（只有数组对象才有）</p>
+</blockquote>
+<p>对象头占用了对象比较少的存储空间，其中Mark Word <strong>在32位JVM中的长度是32bit</strong>，在64位JVM中长度是64bit。</p>
+<p>Mark Word 会记录对象和锁有关的信息，同时需要注意的是 Mark Word在不同的锁状态下存储的内容不同，</p>
+<p>在32位JVM中是这么存的：<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311161047133.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>当这个对象被synchronized关键字当成同步锁时，围绕这个锁的一系列操作都和Mark Word有关。</p>
+<p>其中无锁和偏向锁的锁标志位都是01，只是在前面的1bit区分了这是无锁状态还是偏向锁状态。</p>
+<p>JDK1.6以后的版本在处理同步锁时存在锁升级的概念，JVM对于同步锁的处理是从偏向锁开始的，随着竞争越来越激烈，处理方式从偏向锁升级到轻量级锁，最终升级到重量级锁。</p>
+<p>这里通过一个程序例子来看 synchronized 反编译后的内容</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SyncDemo02</span>&#123;  <br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> <span class="hljs-variable">num</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;  <br>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test</span><span class="hljs-params">()</span>&#123;  <br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i&lt; <span class="hljs-number">100</span>;i++)&#123;  <br>            <span class="hljs-keyword">synchronized</span> (<span class="hljs-built_in">this</span>)&#123;  <br>                System.out.println(<span class="hljs-string">&quot;thread:&quot;</span> + Thread.currentThread().getId() + <span class="hljs-string">&quot;,num: &quot;</span> + num++);  <br>            &#125;  <br>        &#125;  <br>    &#125;  <br>&#125;<br><br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TestSyncDemo01</span> &#123;  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;  <br>        <span class="hljs-type">SyncDemo02</span> <span class="hljs-variable">syncDemo02</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SyncDemo02</span>();  <br>  <br>        <span class="hljs-type">Thread</span> <span class="hljs-variable">t1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Runnable</span>() &#123;  <br>            <span class="hljs-meta">@Override</span>  <br>            <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;  <br>                syncDemo02.test();  <br>            &#125;  <br>        &#125;);  <br>  <br>        <span class="hljs-type">Thread</span> <span class="hljs-variable">t2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Runnable</span>() &#123;  <br>            <span class="hljs-meta">@Override</span>  <br>            <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;  <br>                syncDemo02.test();  <br>            &#125;  <br>        &#125;);  <br>  <br>        t1.start();  <br>        t2.start();  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
 
+<p>运行后，对类 SyncDemo02 反编译</p>
+<hr>
+<h2 id="参考：-https-www-bilibili-com-video-BV1aK4y1A7Go-spm-id-from-333-788-vd-source-6a019ecccfe7d8f62b9a3fe99c723bd0"><a href="#参考：-https-www-bilibili-com-video-BV1aK4y1A7Go-spm-id-from-333-788-vd-source-6a019ecccfe7d8f62b9a3fe99c723bd0" class="headerlink" title="参考：- https://www.bilibili.com/video/BV1aK4y1A7Go/?spm_id_from=333.788&amp;vd_source=6a019ecccfe7d8f62b9a3fe99c723bd0"></a>参考：<br>- <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1aK4y1A7Go/?spm_id_from=333.788&vd_source=6a019ecccfe7d8f62b9a3fe99c723bd0">https://www.bilibili.com/video/BV1aK4y1A7Go/?spm_id_from=333.788&amp;vd_source=6a019ecccfe7d8f62b9a3fe99c723bd0</a></h2>
                 
               </div>
             

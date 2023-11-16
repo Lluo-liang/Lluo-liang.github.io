@@ -194,7 +194,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/wallpaper1700063427516.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311161042719.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          7 字
+          508 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          1 分钟
+          5 分钟
         
       </span>
     
@@ -276,7 +276,30 @@
             
               <div class="markdown-body">
                 
-                <p>Java多线程</p>
+                <h3 id="1、基础概念"><a href="#1、基础概念" class="headerlink" title="1、基础概念"></a>1、基础概念</h3><p>进程和线程</p>
+<ul>
+<li>进程（Process）是系统进行资源分配和调度的基本单位，是操作系统结构的基础。</li>
+<li>线程（Thread）是操作系统能够进行运算调度的最小单位。</li>
+</ul>
+<p>并行和并发的区别</p>
+<ul>
+<li>并行：两个及两个以上的作业在同一 <strong>时刻</strong> 执行。</li>
+<li>并发：两个及两个以上的作业在同一 <strong>时间段</strong> 内执行。</li>
+</ul>
+<p>最关键的点是：是否是 <strong>同时</strong> 执行</p>
+<p>同步和异步的区别</p>
+<ul>
+<li><strong>同步</strong>：发出一个调用之后，在没有得到结果之前， 该调用就不可以返回，一直等待。</li>
+<li><strong>异步</strong>：调用在发出之后，<strong>不用等待返回结果</strong>，该调用直接返回。</li>
+</ul>
+<h3 id="2、什么是Java-线程"><a href="#2、什么是Java-线程" class="headerlink" title="2、什么是Java 线程"></a>2、什么是Java 线程</h3><p>在 JDK 1.2 及以后，Java 线程基于原生线程（Native Threads）实现， JVM 直接使用操作系统原生的内核级线程（内核线程）来实现 Java 线程，由操作系统内核进行线程的调度和管理。</p>
+<p>用一句话概括 Java 线程和操作系统线程的关系：<strong>现在的 Java 线程的本质其实就是操作系统的线程</strong>。</p>
+<p>在 Windows 和 Linux 等主流操作系统中，Java 线程采用的是一对一的线程模型，也就是一个 Java 线程对应一个系统内核线程。</p>
+<hr>
+<p>参考：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://javaguide.cn/java/concurrent/java-concurrent-questions-01.html">https://javaguide.cn/java/concurrent/java-concurrent-questions-01.html</a></li>
+</ul>
 
                 
               </div>
@@ -369,9 +392,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/11/15/Java%E9%9B%86%E5%90%88_%E8%BF%9B%E9%98%B6%E5%86%85%E5%AE%B9/" title="Java 集合_进阶内容">
+                      <a href="/2023/11/15/JVM%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" title="JVM入门_基础概念">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Java 集合_进阶内容</span>
+                        <span class="hidden-mobile">JVM入门_基础概念</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
