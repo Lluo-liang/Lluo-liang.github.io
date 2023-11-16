@@ -226,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.9k 字
+          4.8k 字
         
       </span>
     
@@ -322,7 +322,7 @@
 <li>阻塞状态（Blocked）<ul>
 <li>处于运行状态中的线程由于某种原因，暂时放弃对CPU的使用权，停止执行，此时进入阻塞状态，直到其进入到就绪状态，才 有机会再次被CPU调用以进入到运行状态。</li>
 <li>根据阻塞产生的原因不同，阻塞状态又可以分为三种<ul>
-<li>**1.等待阻塞：运行状态中的线程执行wait()方法，使本线程进入到等待阻塞状态；</li>
+<li><strong>1.等待阻塞：运行状态中的线程执行wait()方法，使本线程进入到等待阻塞状态</strong>；</li>
 <li><strong>2.同步阻塞 :</strong> 线程在获取synchronized同步锁失败(因为锁被其它线程所占用)，它会进入同步阻塞状态；</li>
 <li><strong>3.其他阻塞 :</strong> 通过调用线程的sleep()或join()或发出了I&#x2F;O请求时，线程会进入到阻塞状态。当sleep()状态超时、join()等待线程终止或者超时、或者I&#x2F;O处理完毕时，线程重新转入就绪状态。</li>
 </ul>
@@ -457,7 +457,7 @@
 <td>如果被打断线程正在 sleep，wait，join 会导致被<br />打断的线程抛出 InterruptedException，并清除<br />打断标记；如果打断正在运行的线程，则会设置<br />打断标记；park 的线程被打断，也会设置打断标记</td>
 </tr>
 <tr>
-<td>&#x3D;&#x3D;interrupted()&#x3D;&#x3D;</td>
+<td><font color=Coral>interrupted()</font></td>
 <td>判断当前线程是否被打断</td>
 <td>会清除打断标记</td>
 </tr>
@@ -482,17 +482,17 @@
 <td></td>
 </tr>
 <tr>
-<td>&#x3D;&#x3D;currentThread()&#x3D;&#x3D;</td>
+<td><font color=Coral>currentThread()</font></td>
 <td>获取当前正在执行的线程</td>
 <td></td>
 </tr>
 <tr>
-<td>&#x3D;&#x3D;sleep(long n)&#x3D;&#x3D;</td>
+<td><font color=Coral>sleep(long n)</font></td>
 <td>让当前执行的线程休眠n毫秒，<br />休眠时让出 CPU 的时间片<br />给其它线程</td>
 <td></td>
 </tr>
 <tr>
-<td>&#x3D;&#x3D;yield()&#x3D;&#x3D;</td>
+<td><font color=Coral>yield()</font></td>
 <td>提示线程调度器让出当前线程<br />对 CPU 的使用</td>
 <td>主要是为了测试和调试，它的具体的实现依赖于<br />操作系统的任务调度器</td>
 </tr>
