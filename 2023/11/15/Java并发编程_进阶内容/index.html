@@ -26,6 +26,8 @@
 <meta property="og:description" content="Java并发编程_进阶内容">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311161619698.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231116222015.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231116223405.png">
 <meta property="article:published_time" content="2023-11-15T23:48:00.000Z">
 <meta property="article:modified_time" content="2023-11-15T23:48:00.000Z">
 <meta property="article:author" content="Luo QI">
@@ -225,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k 字
+          2.5k 字
         
       </span>
     
@@ -236,7 +238,7 @@
         
         
         
-          11 分钟
+          21 分钟
         
       </span>
     
@@ -342,14 +344,71 @@
 </ul>
 <p>目前主流语言中，Java 使用的是 一对一线程模型；Go 语言使用的是 多对多线程模型；Python 的 gevent 使用的多对一线程模型。</p>
 <h3 id="2、悲观锁机制"><a href="#2、悲观锁机制" class="headerlink" title="2、悲观锁机制"></a>2、悲观锁机制</h3><p>在了解悲观锁机制前，我们先来了解一下什么是锁。</p>
-<h4 id="什么是锁"><a href="#什么是锁" class="headerlink" title="什么是锁"></a>什么是锁</h4><p>1213</p>
+<h4 id="什么是锁"><a href="#什么是锁" class="headerlink" title="什么是锁"></a>什么是锁</h4><p>在并发环境下，会出现多个线程对同一个资源进行争抢的情况，假设A线程对资源正在进行修改，此时<br>B线程此时又对资源进行了修改，这就可能会导致数据不一致的问题。</p>
+<p>为了解决这个问题，引入了锁机制，<strong>通过一种抽象的“锁”来对资源进行锁定</strong>，当一个线程持有“锁”的时候，其他线程必须等待“锁”，本质上是在临界资源上对线程进行一种串行化。</p>
+<h4 id="Java语言的锁机制"><a href="#Java语言的锁机制" class="headerlink" title="Java语言的锁机制"></a>Java语言的锁机制</h4><blockquote>
+<p>Java 虚拟机的内存结构</p>
+</blockquote>
+<p>在了解 Java语言锁机制之前，我们先对简单了解一下 Java 虚拟机的内存结构。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231116222015.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>JVM 运行时内存结构主要包含了五个部分：</p>
+<ul>
+<li>程序计数器(PC寄存器)、</li>
+<li>JVM栈、</li>
+<li>Native方法栈、</li>
+<li>堆、</li>
+<li>方法区。</li>
+</ul>
+<p>上图中，红色区域是各个线程私有的。这个区域中的数据，不会出现线程竞争的关系。</p>
+<p>而蓝色区域中的数据被所有线程共享，其中Jva堆中存放的是大量对象，方法区中<strong>存放类信息、常量、静态变<br>量</strong>等数据。</p>
+<p>当多个线程在竞争其中的一些数据时，可能会发生难以预料的异常情况。在程序开发中，锁的主要应用范围就是在数据共享区域。</p>
+<p>在代码层面，Jvva 主要采用了两种实现方式：</p>
+<ul>
+<li>1.基于Object的悲观锁。</li>
+<li>2.基于CAS的乐观锁。</li>
+</ul>
+<p>本章主要讲解基于Object的悲观锁。</p>
+<blockquote>
+<p>悲观锁机制</p>
+</blockquote>
+<p>悲观锁总是假设最坏的情况，认为共享资源<strong>每次被访问的时候就会出现问题</strong>(比如共享数据被修改)，所以每次在获取资源操作的时候都会上锁，这样其他线程想拿到这个资源就会阻塞直到锁被上一个持有者释放。也就是说，<strong>共享资源每次只给一个线程使用，其它线程阻塞，用完后再把资源转让给其它线程</strong>。</p>
+<blockquote>
+<p>基于Object的悲观锁</p>
+</blockquote>
+<p>在Java中，每个Object,也就是每个对象都拥有一把锁，这把锁存放在对象头中，记录了当前对象被哪个线程占用。</p>
+<blockquote>
+<p>对象和对象头的结构</p>
+</blockquote>
+<p><strong>Java 对象</strong></p>
+<p>Java对象分为三个部分：</p>
+<ul>
+<li>对象头</li>
+<li>实例数据</li>
+<li>对齐填充字节</li>
+</ul>
+<p>其中对齐填充字节是为了满足“Java对象大小是8字节的倍数”这一条件而设计的，为对象对齐填充了一些无用字节。</p>
+<p>实例数据是在初始化对象时设定的属性和状态等内容。</p>
+<p><strong>对象头</strong></p>
+<p>对象头存放了一些对象本身的运行时信息。对象头包含了两部分：</p>
+<ul>
+<li>Mark Word</li>
+<li>Class Pointer</li>
+</ul>
+<p>相较于实例数据，对象头属于一些额外的存储开销，它被设计得极小（一般为232bt或264bt) 来提升效率。</p>
+<p>Class Pointer是一个指针，指向当前对象类型所在方法区中的Class信息；</p>
+<p>Mark Word 存储了<strong>很多当前对象的运行时状态信息</strong>，比如 HashCode.、锁状态标志、指向锁记录的指针、偏向线程 ID、锁标志位等等。</p>
+<p>可以通过下面这张表对 Mark Word有一个更直观的认识：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231116223405.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>“锁”的信息存储在对象头的Mark Word中。Mark Word 的最后两位，代表锁标志位，分别对应“无锁”、“偏向锁”、“轻量级锁”、“重量级锁”四种状态。</p>
+<p>在Java中，启用对象锁的方式是使用<code>synchronized</code>关键字。</p>
+<h4 id="对象锁的四种状态"><a href="#对象锁的四种状态" class="headerlink" title="对象锁的四种状态"></a>对象锁的四种状态</h4><p>锁主要存在四种状态，依次是：无锁状态、偏向锁状态、轻量级锁状态、重量级锁状态，他们会随着竞争的激烈而逐渐升级。</p>
+<p>锁可以升级不可降级，这种策略是为了提高获得锁和释放锁的效率</p>
 <hr>
-<p>参考：</p>
+<p>参考:</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/wang_yong_hui_1234/article/details/130165866">https://blog.csdn.net/wang_yong_hui_1234/article/details/130165866</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV12K411G7Fg">https://www.bilibili.com/video/BV12K411G7Fg</a></li>
 <li><a target="_blank" rel="noopener" href="https://javaguide.cn/java/concurrent/java-concurrent-questions-01.html">https://javaguide.cn/java/concurrent/java-concurrent-questions-01.html</a></li>
-<li></li>
 </ul>
 
                 
