@@ -18,21 +18,22 @@
   <meta name="author" content="Luo QI">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Java学习的轻松之旅: [[Java学习的轻松之旅_Obsidian]] 工作随手记:  [[平凡的打工人_Obsidian]] （待分离） 日常：[[日常_L]]  Java 相关内容1234tablefrom &quot;&quot;where contains(file.tags,&quot;java&quot;) and contains(file.path,&quot;_posts&amp;q">
+    <meta name="description" content="插件实现Obsidian实时同步">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HomePage">
-<meta property="og:url" content="https://lluo-liang.github.io/2023/11/17/HomePage/index.html">
+<meta property="og:title" content="插件实现Obsidian实时同步">
+<meta property="og:url" content="https://lluo-liang.github.io/2023/11/17/%E6%8F%92%E4%BB%B6%E5%AE%9E%E7%8E%B0Obsidian%E5%AE%9E%E6%97%B6%E5%90%8C%E6%AD%A5/index.html">
 <meta property="og:site_name" content="轻松的洛亓">
-<meta property="og:description" content="Java学习的轻松之旅: [[Java学习的轻松之旅_Obsidian]] 工作随手记:  [[平凡的打工人_Obsidian]] （待分离） 日常：[[日常_L]]  Java 相关内容1234tablefrom &quot;&quot;where contains(file.tags,&quot;java&quot;) and contains(file.path,&quot;_posts&amp;q">
+<meta property="og:description" content="插件实现Obsidian实时同步">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-11-17T16:27:28.277Z">
-<meta property="article:modified_time" content="2023-11-17T16:27:28.277Z">
+<meta property="article:published_time" content="2023-11-17T23:44:43.000Z">
+<meta property="article:modified_time" content="2023-11-17T23:44:43.000Z">
 <meta property="article:author" content="Luo QI">
+<meta property="article:tag" content="obsidian">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>HomePage - 轻松的洛亓</title>
+  <title>插件实现Obsidian实时同步 - 轻松的洛亓</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -192,13 +193,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="HomePage"></span>
+            <span id="subtitle" data-typed-text="插件实现Obsidian实时同步"></span>
           
         </div>
 
@@ -209,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-11-17 16:27" pubdate>
-          2023年11月17日 下午
+        <time datetime="2023-11-17 23:44" pubdate>
+          2023年11月17日 晚上
         </time>
       </span>
     
@@ -221,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          329 字
+          919 字
         
       </span>
     
@@ -232,7 +233,7 @@
         
         
         
-          3 分钟
+          8 分钟
         
       </span>
     
@@ -269,23 +270,39 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">HomePage</h1>
+            <h1 id="seo-header">插件实现Obsidian实时同步</h1>
             
             
               <div class="markdown-body">
                 
-                <p>Java学习的轻松之旅: [[Java学习的轻松之旅_Obsidian]]</p>
-<p>工作随手记:  [[平凡的打工人_Obsidian]] （待分离）</p>
-<p>日常：[[日常_L]]</p>
+                <h3 id="1、插件下载和服务安装"><a href="#1、插件下载和服务安装" class="headerlink" title="1、插件下载和服务安装"></a>1、插件下载和服务安装</h3><p>使用插件： Self-hosted LiveSync</p>
+<p>在服务器上面安装 docker 后，</p>
+<p>创建一个文件 <code>local.ini</code></p>
+<p>复制以下内容</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[couchdb]</span><br><span class="hljs-attr">single_node</span>=<span class="hljs-literal">true</span><br><br><span class="hljs-section">[chttpd]</span><br><span class="hljs-attr">require_valid_user</span> = <span class="hljs-literal">true</span><br><br><span class="hljs-section">[chttpd_auth]</span><br><span class="hljs-attr">require_valid_user</span> = <span class="hljs-literal">true</span><br><span class="hljs-attr">authentication_redirect</span> = /_utils/session.html<br><br><span class="hljs-section">[httpd]</span><br><span class="hljs-attr">WWW-Authenticate</span> = Basic realm=<span class="hljs-string">&quot;couchdb&quot;</span><br><span class="hljs-attr">enable_cors</span> = <span class="hljs-literal">true</span><br><br><span class="hljs-section">[cors]</span><br><span class="hljs-attr">origins</span> = app://obsidian.md,capacitor://localhost,http://localhost<br><span class="hljs-attr">credentials</span> = <span class="hljs-literal">true</span><br><span class="hljs-attr">headers</span> = accept, authorization, content-type, origin, referer<br><span class="hljs-attr">methods</span> = GET, PUT, POST, HEAD, DELETE<br><span class="hljs-attr">max_age</span> = <span class="hljs-number">3600</span><br></code></pre></td></tr></table></figure>
+
+<p>将该文件移动到 <code>/opt/couchdb</code>目录下</p>
+<p>运行下面命令：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">docker <span class="hljs-built_in">run</span> -d --restart always -e <span class="hljs-attribute">COUCHDB_USER</span>=luo -e <span class="hljs-attribute">COUCHDB_PASSWORD</span>=luo123 -v /opt/couchdb/local.ini:/opt/couchdb/etc/local.ini -p 6900:5984 couchdb<br></code></pre></td></tr></table></figure>
+
+<p>其中:</p>
+<ul>
+<li><code>COUCHDB_USER</code> 后面的是你的用户名</li>
+<li><code>COUCHDB_PASSWORD</code> 后面的是你的密码</li>
+<li><code>/opt/couchdb/local.ini</code> 是配置文件的路径</li>
+<li><code>/opt/couchdb/db</code> 是数据库的路径</li>
+<li><code>-p 6900:5984</code> 前面的 6900 是暴露在外的端口。</li>
+</ul>
+<p>检查是否运行成功</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim">sudo docker <span class="hljs-keyword">ps</span> |<span class="hljs-keyword">grep</span> couchdb<br></code></pre></td></tr></table></figure>
+
+<h3 id="2、插件配置"><a href="#2、插件配置" class="headerlink" title="2、插件配置"></a>2、插件配置</h3><p>打开Obsidian的设置-第三方插件，在插件市场安装<code>Self-hosted LiveSync</code></p>
+<p>to be contined…</p>
 <hr>
-<h4 id="Java-相关内容"><a href="#Java-相关内容" class="headerlink" title="Java 相关内容"></a>Java 相关内容</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs dataview">table<br>from &quot;&quot;<br>where contains(file.tags,&quot;java&quot;) and contains(file.path,&quot;_posts&quot;) <br>sort  date<br></code></pre></td></tr></table></figure>
-
-
-
-<h4 id="世界很大，古灵精怪"><a href="#世界很大，古灵精怪" class="headerlink" title="世界很大，古灵精怪"></a>世界很大，古灵精怪</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs dataview">table<br>from &quot;&quot;<br>where contains(file.tags,&quot;blog&quot;) and contains(file.path,&quot;_posts&quot;) <br>sort file.name<br></code></pre></td></tr></table></figure>
-
-
-
+<p>参考</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://sspai.com/post/82161#">https://sspai.com/post/82161#</a></li>
+</ul>
 
                 
               </div>
@@ -294,6 +311,34 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%B7%A5%E5%85%B7/" class="category-chain-item">工具</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/obsidian/" class="print-no-link">#obsidian</a>
+      
+    </div>
   
 </div>
 
@@ -303,8 +348,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>HomePage</div>
-      <div>https://lluo-liang.github.io/2023/11/17/HomePage/</div>
+      <div>插件实现Obsidian实时同步</div>
+      <div>https://lluo-liang.github.io/2023/11/17/插件实现Obsidian实时同步/</div>
     </div>
     <div class="license-meta">
       
@@ -343,6 +388,23 @@
 
 
 
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/11/17/node%E5%AE%89%E8%A3%85%E5%92%8C%E4%B8%8B%E8%BD%BD/" title="node安装和下载">
+                        <span class="hidden-mobile">node安装和下载</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
               
             </div>
 

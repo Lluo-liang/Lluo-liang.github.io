@@ -4,6 +4,58 @@
   
   
   <entry>
+    <title>插件实现Obsidian实时同步</title>
+    <link href="/2023/11/17/%E6%8F%92%E4%BB%B6%E5%AE%9E%E7%8E%B0Obsidian%E5%AE%9E%E6%97%B6%E5%90%8C%E6%AD%A5/"/>
+    <url>/2023/11/17/%E6%8F%92%E4%BB%B6%E5%AE%9E%E7%8E%B0Obsidian%E5%AE%9E%E6%97%B6%E5%90%8C%E6%AD%A5/</url>
+    
+    <content type="html"><![CDATA[<h3 id="1、插件下载和服务安装"><a href="#1、插件下载和服务安装" class="headerlink" title="1、插件下载和服务安装"></a>1、插件下载和服务安装</h3><p>使用插件： Self-hosted LiveSync</p><p>在服务器上面安装 docker 后，</p><p>创建一个文件 <code>local.ini</code></p><p>复制以下内容</p><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[couchdb]</span><br><span class="hljs-attr">single_node</span>=<span class="hljs-literal">true</span><br><br><span class="hljs-section">[chttpd]</span><br><span class="hljs-attr">require_valid_user</span> = <span class="hljs-literal">true</span><br><br><span class="hljs-section">[chttpd_auth]</span><br><span class="hljs-attr">require_valid_user</span> = <span class="hljs-literal">true</span><br><span class="hljs-attr">authentication_redirect</span> = /_utils/session.html<br><br><span class="hljs-section">[httpd]</span><br><span class="hljs-attr">WWW-Authenticate</span> = Basic realm=<span class="hljs-string">&quot;couchdb&quot;</span><br><span class="hljs-attr">enable_cors</span> = <span class="hljs-literal">true</span><br><br><span class="hljs-section">[cors]</span><br><span class="hljs-attr">origins</span> = app://obsidian.md,capacitor://localhost,http://localhost<br><span class="hljs-attr">credentials</span> = <span class="hljs-literal">true</span><br><span class="hljs-attr">headers</span> = accept, authorization, content-type, origin, referer<br><span class="hljs-attr">methods</span> = GET, PUT, POST, HEAD, DELETE<br><span class="hljs-attr">max_age</span> = <span class="hljs-number">3600</span><br></code></pre></td></tr></table></figure><p>将该文件移动到 <code>/opt/couchdb</code>目录下</p><p>运行下面命令：</p><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">docker <span class="hljs-built_in">run</span> -d --restart always -e <span class="hljs-attribute">COUCHDB_USER</span>=luo -e <span class="hljs-attribute">COUCHDB_PASSWORD</span>=luo123 -v /opt/couchdb/local.ini:/opt/couchdb/etc/local.ini -p 6900:5984 couchdb<br></code></pre></td></tr></table></figure><p>其中:</p><ul><li><code>COUCHDB_USER</code> 后面的是你的用户名</li><li><code>COUCHDB_PASSWORD</code> 后面的是你的密码</li><li><code>/opt/couchdb/local.ini</code> 是配置文件的路径</li><li><code>/opt/couchdb/db</code> 是数据库的路径</li><li><code>-p 6900:5984</code> 前面的 6900 是暴露在外的端口。</li></ul><p>检查是否运行成功</p><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim">sudo docker <span class="hljs-keyword">ps</span> |<span class="hljs-keyword">grep</span> couchdb<br></code></pre></td></tr></table></figure><h3 id="2、插件配置"><a href="#2、插件配置" class="headerlink" title="2、插件配置"></a>2、插件配置</h3><p>打开Obsidian的设置-第三方插件，在插件市场安装<code>Self-hosted LiveSync</code></p><p>to be contined…</p><hr><p>参考</p><ul><li><a href="https://sspai.com/post/82161#">https://sspai.com/post/82161#</a></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>工具</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>obsidian</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>node安装和下载</title>
+    <link href="/2023/11/17/node%E5%AE%89%E8%A3%85%E5%92%8C%E4%B8%8B%E8%BD%BD/"/>
+    <url>/2023/11/17/node%E5%AE%89%E8%A3%85%E5%92%8C%E4%B8%8B%E8%BD%BD/</url>
+    
+    <content type="html"><![CDATA[<h3 id="1、Node-js-下载安装"><a href="#1、Node-js-下载安装" class="headerlink" title="1、Node.js 下载安装"></a>1、Node.js 下载安装</h3><p>官网下载： <a href="https://nodejs.org/en">https://nodejs.org/en</a></p><p>安装后，验证一下是否安装成功</p><p>打开 cmd, 输入node -v，npm -v，出现如下界面安装成功</p><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231117221300.png" alt="image.png"></p><h3 id="2、环境配置"><a href="#2、环境配置" class="headerlink" title="2、环境配置"></a>2、环境配置</h3><blockquote><p>环境变量配置</p></blockquote><p>新增<strong>用户变量</strong>  <code>NODE_PATH</code>，变量值设置为 <code>xxx\nodejs</code></p><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231117224932.png" alt="image.png"></p><p>编辑<strong>用户变量</strong>中的【Path】</p><p>修改 变量名 <code>Path</code></p><p>将默认的 C 盘下【 <code>AppData\Roaming\npm</code> 】修改成 <code>%NODE_PATH%</code></p><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231117224741.png" alt="image.png"></p><p>设置完后也打开 cmd, 输入一下  node -v，npm -v  看是否OK。</p><blockquote><p>配置npm的全局模块的存放路径以及cache的路径</p></blockquote><p>找到安装的目录，在安装目录下新建两个文件夹【node_global】和【node_cache】</p><p>使用管理员身份打开cmd窗口，执行</p><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs routeros">npm<span class="hljs-built_in"> config </span><span class="hljs-built_in">set</span><span class="hljs-built_in"> prefix </span><span class="hljs-string">&quot;xxx\Node.js\node_global&quot;</span><br><br>npm<span class="hljs-built_in"> config </span><span class="hljs-built_in">set</span> cache <span class="hljs-string">&quot;xxx\Node.js\node_cache&quot;</span><br></code></pre></td></tr></table></figure><blockquote><p>新增系统Path变量</p></blockquote><p>在【系统变量】中选择【Path】点击【编辑】添加你刚才配置的两个路径。</p><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231117225456.png" alt="image.png"></p><h3 id="3、安装淘宝镜像"><a href="#3、安装淘宝镜像" class="headerlink" title="3、安装淘宝镜像"></a>3、安装淘宝镜像</h3><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">npm config set registry https:<span class="hljs-comment">//registry.npm.taobao.org</span><br></code></pre></td></tr></table></figure><p>查看是否成功：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm config get registry<br></code></pre></td></tr></table></figure><hr><p>参考</p><ul><li><a href="https://blog.csdn.net/m0_62617719/article/details/130423504">https://blog.csdn.net/m0_62617719/article/details/130423504</a></li><li><a href="https://blog.csdn.net/JingYan_Chan/article/details/125405423">https://blog.csdn.net/JingYan_Chan/article/details/125405423</a></li><li><a href="https://blog.csdn.net/MyronCham/article/details/119561972">https://blog.csdn.net/MyronCham/article/details/119561972</a></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>web</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>node</tag>
+      
+      <tag>web</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Dokcer入门_基础概念</title>
     <link href="/2023/11/17/Docker%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/"/>
     <url>/2023/11/17/Docker%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/</url>
