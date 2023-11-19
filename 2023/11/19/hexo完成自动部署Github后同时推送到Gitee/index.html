@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          617 字
+          730 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          6 分钟
+          7 分钟
         
       </span>
     
@@ -290,7 +290,7 @@
 <li>a. 在命令行终端或 Git Bash <ul>
 <li>使用命令 </li>
 <li><code>ssh-keygen -t rsa -C &quot;youremail@example.com&quot; </code></li>
-<li>生成 SSH Key，注意替换为自己的邮箱。</li>
+<li>生成 SSH Key，注意<strong>替换为自己的邮箱</strong>。</li>
 <li>生成的 id_rsa 是私钥，id_rsa.pub 是公钥。</li>
 <li>(⚠️注意此处不要设置密码，生成的公私钥用于下面 GitHub &#x2F; Gitee 的配置，以保证公私钥成对，否则从 GitHub -&gt; Gitee 的同步将会失败。)</li>
 </ul>
@@ -303,6 +303,9 @@
 <li>c. 在 GitHub 的个人设置页面「Settings -&gt; SSH and GPG keys」配置 SSH 公钥（即：id_rsa.pub），命名随意。</li>
 <li>d. 在 Gitee 的个人设置页面「安全设置 -&gt; SSH 公钥」配置 SSH 公钥（即：id_rsa.pub），命名随意。add_ssh_key_gitee</li>
 </ul>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs clean">### <span class="hljs-number">205758196</span>@qq.com<br><br>ssh-keygen -t rsa -C <span class="hljs-string">&quot;205758196@qq.com&quot;</span><br>ssh-keygen -t rsa -C <span class="hljs-string">&quot;205758196@qq.com&quot;</span><br></code></pre></td></tr></table></figure>
+
+
 <hr>
 <h2 id="参考-https-gitee-com-yanglbme-gitee-pages-action"><a href="#参考-https-gitee-com-yanglbme-gitee-pages-action" class="headerlink" title="参考- https://gitee.com/yanglbme/gitee-pages-action"></a>参考<br>- <a target="_blank" rel="noopener" href="https://gitee.com/yanglbme/gitee-pages-action">https://gitee.com/yanglbme/gitee-pages-action</a></h2>
                 
