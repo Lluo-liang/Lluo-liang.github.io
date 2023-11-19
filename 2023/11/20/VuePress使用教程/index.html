@@ -18,28 +18,23 @@
   <meta name="author" content="Luo QI">
   <meta name="keywords" content="">
   
-    <meta name="description" content="node安装和下载">
+    <meta name="description" content="VuePress使用教程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="node安装和下载">
-<meta property="og:url" content="https://lluo-liang.github.io/2023/11/17/node%E5%AE%89%E8%A3%85%E5%92%8C%E4%B8%8B%E8%BD%BD/index.html">
+<meta property="og:title" content="VuePress使用教程">
+<meta property="og:url" content="https://lluo-liang.github.io/2023/11/20/VuePress%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">
 <meta property="og:site_name" content="轻松的洛亓">
-<meta property="og:description" content="node安装和下载">
+<meta property="og:description" content="VuePress使用教程">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231117221300.png">
-<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231117224932.png">
-<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231117224741.png">
-<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231117225456.png">
-<meta property="article:published_time" content="2023-11-17T22:07:43.000Z">
-<meta property="article:modified_time" content="2023-11-17T22:07:43.000Z">
+<meta property="article:published_time" content="2023-11-20T00:18:19.000Z">
+<meta property="article:modified_time" content="2023-11-20T00:18:19.000Z">
 <meta property="article:author" content="Luo QI">
+<meta property="article:tag" content="hexo">
 <meta property="article:tag" content="web">
-<meta property="article:tag" content="node">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231117221300.png">
   
   
   
-  <title>node安装和下载 - 轻松的洛亓</title>
+  <title>VuePress使用教程 - 轻松的洛亓</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -205,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="node安装和下载"></span>
+            <span id="subtitle" data-typed-text="VuePress使用教程"></span>
           
         </div>
 
@@ -216,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-11-17 22:07" pubdate>
-          2023年11月17日 晚上
+        <time datetime="2023-11-20 00:18" pubdate>
+          2023年11月20日 凌晨
         </time>
       </span>
     
@@ -228,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          733 字
+          126 字
         
       </span>
     
@@ -239,7 +234,7 @@
         
         
         
-          7 分钟
+          2 分钟
         
       </span>
     
@@ -276,51 +271,14 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">node安装和下载</h1>
+            <h1 id="seo-header">VuePress使用教程</h1>
             
             
               <div class="markdown-body">
                 
-                <h3 id="1、Node-js-下载安装"><a href="#1、Node-js-下载安装" class="headerlink" title="1、Node.js 下载安装"></a>1、Node.js 下载安装</h3><p>官网下载： <a target="_blank" rel="noopener" href="https://nodejs.org/en">https://nodejs.org/en</a></p>
-<p>安装后，验证一下是否安装成功</p>
-<p>打开 cmd, 输入node -v，npm -v，出现如下界面安装成功</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231117221300.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h3 id="2、环境配置"><a href="#2、环境配置" class="headerlink" title="2、环境配置"></a>2、环境配置</h3><blockquote>
-<p>环境变量配置</p>
-</blockquote>
-<p>新增<strong>用户变量</strong>  <code>NODE_PATH</code>，变量值设置为 <code>xxx\nodejs</code></p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231117224932.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>编辑<strong>用户变量</strong>中的【Path】</p>
-<p>修改 变量名 <code>Path</code></p>
-<p>将默认的 C 盘下【 <code>AppData\Roaming\npm</code> 】修改成 <code>%NODE_PATH%</code></p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231117224741.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>设置完后也打开 cmd, 输入一下  node -v，npm -v  看是否OK。</p>
-<blockquote>
-<p>配置npm的全局模块的存放路径以及cache的路径</p>
-</blockquote>
-<p>找到安装的目录，在安装目录下新建两个文件夹【node_global】和【node_cache】</p>
-<p>使用管理员身份打开cmd窗口，执行</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs routeros">npm<span class="hljs-built_in"> config </span><span class="hljs-built_in">set</span><span class="hljs-built_in"> prefix </span><span class="hljs-string">&quot;xxx\Node.js\node_global&quot;</span><br><br>npm<span class="hljs-built_in"> config </span><span class="hljs-built_in">set</span> cache <span class="hljs-string">&quot;xxx\Node.js\node_cache&quot;</span><br></code></pre></td></tr></table></figure>
-
-
-<blockquote>
-<p>新增系统Path变量</p>
-</blockquote>
-<p>在【系统变量】中选择【Path】点击【编辑】添加你刚才配置的两个路径。</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231117225456.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h3 id="3、安装淘宝镜像"><a href="#3、安装淘宝镜像" class="headerlink" title="3、安装淘宝镜像"></a>3、安装淘宝镜像</h3><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">npm config set registry https:<span class="hljs-comment">//registry.npm.taobao.org</span><br></code></pre></td></tr></table></figure>
-
-<p>查看是否成功：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm config get registry<br></code></pre></td></tr></table></figure>
-
+                <p>to be contined…</p>
 <hr>
-<p>参考</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_62617719/article/details/130423504">https://blog.csdn.net/m0_62617719/article/details/130423504</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/JingYan_Chan/article/details/125405423">https://blog.csdn.net/JingYan_Chan/article/details/125405423</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/MyronCham/article/details/119561972">https://blog.csdn.net/MyronCham/article/details/119561972</a></li>
-</ul>
-
+<h2 id="参考-https-juejin-cn-post-6959403986495471647-https-www-vuepress-cn-https-juejin-cn-post-7189073364365869093"><a href="#参考-https-juejin-cn-post-6959403986495471647-https-www-vuepress-cn-https-juejin-cn-post-7189073364365869093" class="headerlink" title="参考- https://juejin.cn/post/6959403986495471647- https://www.vuepress.cn/- https://juejin.cn/post/7189073364365869093"></a>参考<br>- <a target="_blank" rel="noopener" href="https://juejin.cn/post/6959403986495471647">https://juejin.cn/post/6959403986495471647</a><br>- <a target="_blank" rel="noopener" href="https://www.vuepress.cn/">https://www.vuepress.cn/</a><br>- <a target="_blank" rel="noopener" href="https://juejin.cn/post/7189073364365869093">https://juejin.cn/post/7189073364365869093</a></h2>
                 
               </div>
             
@@ -338,7 +296,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/web/" class="category-chain-item">web</a>
+  <a href="/categories/status-pages/" class="category-chain-item">status pages</a>
   
   
 
@@ -353,9 +311,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/web/" class="print-no-link">#web</a>
+        <a href="/tags/hexo/" class="print-no-link">#hexo</a>
       
-        <a href="/tags/node/" class="print-no-link">#node</a>
+        <a href="/tags/web/" class="print-no-link">#web</a>
       
     </div>
   
@@ -367,8 +325,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>node安装和下载</div>
-      <div>https://lluo-liang.github.io/2023/11/17/node安装和下载/</div>
+      <div>VuePress使用教程</div>
+      <div>https://lluo-liang.github.io/2023/11/20/VuePress使用教程/</div>
     </div>
     <div class="license-meta">
       
@@ -380,7 +338,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年11月17日</div>
+          <div>2023年11月20日</div>
         </div>
       
       
@@ -407,29 +365,6 @@
 
 
 
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2023/11/19/Redis%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" title="Redis入门_基础概念">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Redis入门_基础概念</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2023/11/17/Docker%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" title="Dokcer入门_基础概念">
-                        <span class="hidden-mobile">Dokcer入门_基础概念</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
               
             </div>
 

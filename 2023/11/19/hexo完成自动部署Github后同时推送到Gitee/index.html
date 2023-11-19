@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          730 字
+          1.2k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          7 分钟
+          11 分钟
         
       </span>
     
@@ -284,30 +284,29 @@
 <li>选择语言: JavaScript</li>
 </ul>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231119174949.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>配置密钥</p>
-<p>密钥的配置步骤如下：</p>
-<ul>
-<li>a. 在命令行终端或 Git Bash <ul>
-<li>使用命令 </li>
-<li><code>ssh-keygen -t rsa -C &quot;youremail@example.com&quot; </code></li>
-<li>生成 SSH Key，注意<strong>替换为自己的邮箱</strong>。</li>
-<li>生成的 id_rsa 是私钥，id_rsa.pub 是公钥。</li>
-<li>(⚠️注意此处不要设置密码，生成的公私钥用于下面 GitHub &#x2F; Gitee 的配置，以保证公私钥成对，否则从 GitHub -&gt; Gitee 的同步将会失败。)</li>
-</ul>
-</li>
-<li>b. 在 GitHub 项目的「Settings -&gt; Secrets」路径下配置好命名为 GITEE_RSA_PRIVATE_KEY 和 GITEE_PASSWORD 的两个密钥。<ul>
-<li>其中：GITEE_RSA_PRIVATE_KEY 存放 id_rsa 私钥；</li>
-<li>GITEE_PASSWORD 存放 Gitee 帐号的密码。</li>
-</ul>
-</li>
-<li>c. 在 GitHub 的个人设置页面「Settings -&gt; SSH and GPG keys」配置 SSH 公钥（即：id_rsa.pub），命名随意。</li>
-<li>d. 在 Gitee 的个人设置页面「安全设置 -&gt; SSH 公钥」配置 SSH 公钥（即：id_rsa.pub），命名随意。add_ssh_key_gitee</li>
-</ul>
-<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs clean">### <span class="hljs-number">205758196</span>@qq.com<br><br>ssh-keygen -t rsa -C <span class="hljs-string">&quot;205758196@qq.com&quot;</span><br>ssh-keygen -t rsa -C <span class="hljs-string">&quot;205758196@qq.com&quot;</span><br></code></pre></td></tr></table></figure>
+<h3 id="2、配置密钥"><a href="#2、配置密钥" class="headerlink" title="2、配置密钥"></a>2、配置密钥</h3><p>密钥的配置步骤如下：</p>
+<p>GitHub 的Actions会处理<code>.github</code>下的工作流文件夹<code>workflows</code>。<br>只要在g项目根目录下创建 <code>.github/workflows/</code> ，在这个文件夹里再创建<code>Sync.yml</code>文件，填入以下代码。<br>当产生<code>push</code>操作就会自动同步<code>gitee</code></p>
+<p><code>GITEE_RSA_PRIVATE_KEY</code> 是私钥。生成步骤如下：</p>
+<ol>
+<li>在命令行终端或 Git Bash 使用命令 <code>ssh-keygen -t rsa -C &quot;youremail@example.com&quot;</code> 生成 SSH Key，注意替换为自己的邮箱，连续三次回车。生成的 id_rsa 是私钥，id_rsa.pub 是公钥。(⚠️注意此处不要设置密码)</li>
+<li>在 GitHub 项目的「​Settings -&gt; Secrets」路径下配置好命名为 GITEE_RSA_PRIVATE_KEY 密钥。GITEE_RSA_PRIVATE_KEY 存放 id_rsa 私钥。</li>
+<li>在 GitHub 的个人设置页面「<a target="_blank" rel="noopener" href="https://github.com/settings/keys">Settings -&gt; SSH and GPG keys</a>」​ 配置 SSH 公钥（即：<code>id_rsa.pub</code>），命名随意。</li>
+<li>在 Gitee 的个人设置页面「<a target="_blank" rel="noopener" href="https://gitee.com/profile/sshkeys">安全设置 -&gt; SSH 公钥</a>」​ 配置 SSH 公钥（即：<code>id_rsa.pub</code>），命名随意。</li>
+</ol>
+<p>这里的邮箱你先自己看一下自己设置的邮箱当前是多少</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">查看邮箱：git config user.email<br></code></pre></td></tr></table></figure>
 
+<p>Sync.yml 文件中的内容</p>
+<figure class="highlight nestedtext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs nestedtext"><span class="hljs-attribute">name</span><span class="hljs-punctuation">:</span> <span class="hljs-string">Sync To Gitee</span><br><br><span class="hljs-attribute">on</span><span class="hljs-punctuation">:</span> <span class="hljs-string">[ push, delete, create ]</span><br><br><span class="hljs-attribute">jobs</span><span class="hljs-punctuation">:</span><br>  <span class="hljs-attribute">build</span><span class="hljs-punctuation">:</span><br>    <span class="hljs-attribute">runs-on</span><span class="hljs-punctuation">:</span> <span class="hljs-string">ubuntu-latest</span><br>    <span class="hljs-attribute">steps</span><span class="hljs-punctuation">:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">name: Sync to Gitee</span><br>        <span class="hljs-attribute">uses</span><span class="hljs-punctuation">:</span> <span class="hljs-string">wearerequired/git-mirror-action@master</span><br>        <span class="hljs-attribute">env</span><span class="hljs-punctuation">:</span><br>          <span class="hljs-comment"># 注意在 Settings-&gt;Secrets 配置 GITEE_RSA_PRIVATE_KEY</span><br>          <span class="hljs-attribute">SSH_PRIVATE_KEY</span><span class="hljs-punctuation">:</span> <span class="hljs-string">$&#123;&#123; secrets.GITEE_RSA_PRIVATE_KEY &#125;&#125;</span><br>        <span class="hljs-attribute">with</span><span class="hljs-punctuation">:</span><br>          <span class="hljs-comment"># 注意替换为你的 GitHub 源仓库地址</span><br>          <span class="hljs-attribute">source-repo</span><span class="hljs-punctuation">:</span> <span class="hljs-string">git@github.com:github-username/github-repositoryname.git</span><br>          <span class="hljs-comment"># 注意替换为你的 Gitee 目标仓库地址</span><br>          <span class="hljs-attribute">destination-repo</span><span class="hljs-punctuation">:</span> <span class="hljs-string">git@gitee.com:gitee-username/gitee-repositoryname.git</span><br></code></pre></td></tr></table></figure>
 
+<h3 id="3、自动部署"><a href="#3、自动部署" class="headerlink" title="3、自动部署"></a>3、自动部署</h3><p>to be contined….</p>
 <hr>
-<h2 id="参考-https-gitee-com-yanglbme-gitee-pages-action"><a href="#参考-https-gitee-com-yanglbme-gitee-pages-action" class="headerlink" title="参考- https://gitee.com/yanglbme/gitee-pages-action"></a>参考<br>- <a target="_blank" rel="noopener" href="https://gitee.com/yanglbme/gitee-pages-action">https://gitee.com/yanglbme/gitee-pages-action</a></h2>
+<p>参考</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://gitee.com/yanglbme/gitee-pages-action">https://gitee.com/yanglbme/gitee-pages-action</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/981004">https://developer.aliyun.com/article/981004</a></li>
+</ul>
+
                 
               </div>
             

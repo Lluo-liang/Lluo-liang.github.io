@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          706 字
+          713 字
         
       </span>
     
@@ -275,7 +275,7 @@
             
               <div class="markdown-body">
                 
-                <h4 id="配置-SSH-连接"><a href="#配置-SSH-连接" class="headerlink" title="配置 SSH 连接"></a>配置 SSH 连接</h4><p>回到Git Bash中，配置Github账户信息（<code>用户名</code>​和<code>邮箱</code>​都替换成你自己Github上的）：</p>
+                <h3 id="配置-SSH-连接"><a href="#配置-SSH-连接" class="headerlink" title="配置 SSH 连接"></a>配置 SSH 连接</h3><p>回到Git Bash中，配置Github账户信息（<code>用户名</code>​和<code>邮箱</code>​都替换成你自己Github上的）：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">git config --global user.name &quot;`用户名`&quot;<br>git config --global user.email &quot;邮箱&quot;<br></code></pre></td></tr></table></figure>
 
 <p>在Git Bash中输入：<code>ssh-keygen -t rsa -C &quot;你的Github邮箱&quot;</code>​ 生成ssh</p>
@@ -283,13 +283,12 @@
 
 <p>然后按Git Bash给出的路径<code>(C:\Users\Lete.ssh)</code>​找到<code>id_rsa.pub</code>​文件 并复制其中的内容</p>
 <p>进到新建的Github仓库 点击右上角<code>setting</code>​进入设置找到<code>Deploykeys</code>​选择 <code>Add Deploy keys</code>​ <code>Title</code>​随便填写 <code>Key</code>​的内容填刚才<code>id_rsa.pub</code>​文件中复制的内容</p>
-<p>‍</p>
-<p>修改本地Git配置，设置使用SSH协议连接GitHub。使用以下命令修改本地Git配置：</p>
+<p>‍<br>修改本地Git配置，设置使用SSH协议连接GitHub。使用以下命令修改本地Git配置：</p>
 <figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs scss">git config <span class="hljs-attr">--global</span> url.&quot;git<span class="hljs-keyword">@github</span>.<span class="hljs-attribute">com</span>:<span class="hljs-string">&quot;.insteadOf &quot;</span><span class="hljs-attribute">https</span>://github.com/<span class="hljs-string">&quot;</span><br></code></pre></td></tr></table></figure>
 
 <p>这个命令会将Git配置中的 <code>https://github.com/</code>​ 替换为 <code>git@github.com:</code>​，从而使用SSH协议连接GitHub。</p>
 <p>配置后再部署提交</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">查看用户名 ：git config <span class="hljs-keyword">user</span>.name<br><br>查看密码： git config <span class="hljs-keyword">user</span>.<span class="hljs-keyword">password</span><br><br>查看邮箱：git config <span class="hljs-keyword">user</span>.email<br><br>查看配置信息： $ git config <span class="hljs-comment">--list</span><br></code></pre></td></tr></table></figure>
+<h3 id="常用的一些命令"><a href="#常用的一些命令" class="headerlink" title="常用的一些命令"></a>常用的一些命令</h3><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">查看用户名 ：git config <span class="hljs-keyword">user</span>.name<br><br>查看密码： git config <span class="hljs-keyword">user</span>.<span class="hljs-keyword">password</span><br><br>查看邮箱：git config <span class="hljs-keyword">user</span>.email<br><br>查看配置信息： $ git config <span class="hljs-comment">--list</span><br></code></pre></td></tr></table></figure>
                 
               </div>
             
