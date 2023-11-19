@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          111 字
+          617 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          1 分钟
+          6 分钟
         
       </span>
     
@@ -284,6 +284,25 @@
 <li>选择语言: JavaScript</li>
 </ul>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231119174949.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>配置密钥</p>
+<p>密钥的配置步骤如下：</p>
+<ul>
+<li>a. 在命令行终端或 Git Bash <ul>
+<li>使用命令 </li>
+<li><code>ssh-keygen -t rsa -C &quot;youremail@example.com&quot; </code></li>
+<li>生成 SSH Key，注意替换为自己的邮箱。</li>
+<li>生成的 id_rsa 是私钥，id_rsa.pub 是公钥。</li>
+<li>(⚠️注意此处不要设置密码，生成的公私钥用于下面 GitHub &#x2F; Gitee 的配置，以保证公私钥成对，否则从 GitHub -&gt; Gitee 的同步将会失败。)</li>
+</ul>
+</li>
+<li>b. 在 GitHub 项目的「Settings -&gt; Secrets」路径下配置好命名为 GITEE_RSA_PRIVATE_KEY 和 GITEE_PASSWORD 的两个密钥。<ul>
+<li>其中：GITEE_RSA_PRIVATE_KEY 存放 id_rsa 私钥；</li>
+<li>GITEE_PASSWORD 存放 Gitee 帐号的密码。</li>
+</ul>
+</li>
+<li>c. 在 GitHub 的个人设置页面「Settings -&gt; SSH and GPG keys」配置 SSH 公钥（即：id_rsa.pub），命名随意。</li>
+<li>d. 在 Gitee 的个人设置页面「安全设置 -&gt; SSH 公钥」配置 SSH 公钥（即：id_rsa.pub），命名随意。add_ssh_key_gitee</li>
+</ul>
 <hr>
 <h2 id="参考-https-gitee-com-yanglbme-gitee-pages-action"><a href="#参考-https-gitee-com-yanglbme-gitee-pages-action" class="headerlink" title="参考- https://gitee.com/yanglbme/gitee-pages-action"></a>参考<br>- <a target="_blank" rel="noopener" href="https://gitee.com/yanglbme/gitee-pages-action">https://gitee.com/yanglbme/gitee-pages-action</a></h2>
                 
