@@ -25,11 +25,14 @@
 <meta property="og:site_name" content="轻松的洛亓">
 <meta property="og:description" content="插件实现Obsidian实时同步">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231118230051.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231118230528.png">
 <meta property="article:published_time" content="2023-11-17T23:44:43.000Z">
 <meta property="article:modified_time" content="2023-11-17T23:44:43.000Z">
 <meta property="article:author" content="Luo QI">
 <meta property="article:tag" content="obsidian">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231118230051.png">
   
   
   
@@ -222,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          919 字
+          1.6k 字
         
       </span>
     
@@ -233,7 +236,7 @@
         
         
         
-          8 分钟
+          14 分钟
         
       </span>
     
@@ -297,7 +300,27 @@
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim">sudo docker <span class="hljs-keyword">ps</span> |<span class="hljs-keyword">grep</span> couchdb<br></code></pre></td></tr></table></figure>
 
 <h3 id="2、插件配置"><a href="#2、插件配置" class="headerlink" title="2、插件配置"></a>2、插件配置</h3><p>打开Obsidian的设置-第三方插件，在插件市场安装<code>Self-hosted LiveSync</code></p>
-<p>to be contined…</p>
+<blockquote>
+<p>客户端配置</p>
+</blockquote>
+<p>安装并启用后打开插件的设置界面，填写箭头内容，URI 为刚刚的<code>http://IP+端口（6900）</code>，例如：<code>http://127.0.0.1:6900</code>，</p>
+<p>Username 和 Password 为前面的参数设置的内容，</p>
+<p>Database name 可以自己取，注意不要填大写字母，完成后点击test 按钮</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231118230051.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>右上角出现 <code>Connect to 数据库名</code>，则为连接成功</p>
+<p>如果你之前配置连接过，并存放过数据，你连接后会将对应的数据库中的文件同步到你目前的工作空间中；也可以理解他的数据是存放在了服务器中的数据库，设备连接该服务后的同步操作，本质上都是在操作更新服务器上面的数据库文件内容，然后更新对应映射内容到设备的Obsidian文件中。</p>
+<p>完成后点击下面的check ，将所有提示错误的选择fix，然后再次点击check ，直到没有错误</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231118230528.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>划到最下方，选择端对端加密（End to End Encryption），在输入框中设置密码，点击启用</p>
+<p><strong>如果仅想要同步文章无需开启端对端加密</strong></p>
+<p>在Sync Setting 选项卡中，选择LiveSync（实时同步），点击Apply启用</p>
+<p>建议启用 <code>Use Trash for deleted files</code>（删除文件到回收站）</p>
+<p>建议启用 <code>Miscellaneous</code> 选项卡中的 <code>Show staus inside editor</code> （会在编辑器右上角显示状态）</p>
+<blockquote>
+<p>复制配置到其他设备</p>
+</blockquote>
+<p>在插件Setup wizard 选项卡中，点击 <code>Copy Setup URI</code>，弹出的对话框设置密码，即可复制当前的配置信息</p>
+<p>复制后打开自己需要同步的设备点击Open setup URI 粘贴复制的内容，输入设置的密码，点击第一个</p>
 <hr>
 <p>参考</p>
 <ul>
@@ -388,23 +411,6 @@
 
 
 
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2023/11/17/node%E5%AE%89%E8%A3%85%E5%92%8C%E4%B8%8B%E8%BD%BD/" title="node安装和下载">
-                        <span class="hidden-mobile">node安装和下载</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
               
             </div>
 
