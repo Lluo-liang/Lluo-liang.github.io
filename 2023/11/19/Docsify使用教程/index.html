@@ -25,12 +25,15 @@
 <meta property="og:site_name" content="轻松的洛亓">
 <meta property="og:description" content="Docsify使用教程">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311201949003.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311202158957.png">
 <meta property="article:published_time" content="2023-11-19T23:41:40.000Z">
 <meta property="article:modified_time" content="2023-11-19T23:41:40.000Z">
 <meta property="article:author" content="Luo QI">
 <meta property="article:tag" content="hexo">
 <meta property="article:tag" content="web">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311201949003.png">
   
   
   
@@ -223,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          566 字
+          5.2k 字
         
       </span>
     
@@ -234,7 +237,7 @@
         
         
         
-          5 分钟
+          44 分钟
         
       </span>
     
@@ -276,7 +279,7 @@
             
               <div class="markdown-body">
                 
-                <h3 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h3><p>全局安装 <code>docsify-cli</code> 工具，可以方便地创建及在本地预览生成的文档。</p>
+                <h3 id="1、快速开始"><a href="#1、快速开始" class="headerlink" title="1、快速开始"></a>1、快速开始</h3><p>全局安装 <code>docsify-cli</code> 工具，可以方便地创建及在本地预览生成的文档。</p>
 <figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs avrasm">npm i docsify-<span class="hljs-keyword">cli</span> -g<br></code></pre></td></tr></table></figure>
 
 <blockquote>
@@ -302,9 +305,84 @@
 <p>默认访问地址 <a target="_blank" rel="noopener" href="http://localhost:3000/">http://localhost:3000</a> 。</p>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">docsify serve docs</span><br></code></pre></td></tr></table></figure>
 
-<p>to be contined…</p>
+
+
+<h3 id="2、多页文档设置"><a href="#2、多页文档设置" class="headerlink" title="2、多页文档设置"></a>2、多页文档设置</h3><p>在 docsify 中，你访问的文档 URL 路径地址和你的文档文件夹结构是一个映射关系（实现多级路由）；</p>
+<p>比如你在 doc 文件夹中创建<code>guide.md</code>、<code>zh-cn/READEME.md</code>、<code>zh-cn/guide.md</code>，结构如下所示：</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs dos">.<br>├── README.<span class="hljs-built_in">md</span><br>├── guide.<span class="hljs-built_in">md</span><br>├── index.html<br>└── zh-cn<br>    ├── README.<span class="hljs-built_in">md</span><br>    └── guide.<span class="hljs-built_in">md</span><br></code></pre></td></tr></table></figure>
+
+<p>此时我们访问如下url即可以访问到对应的页面：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs awk">README.md					=&gt; http:<span class="hljs-regexp">//</span>localhost:<span class="hljs-number">3000</span><span class="hljs-regexp">/#/</span><br>guide.md					=&gt; http:<span class="hljs-regexp">//</span>localhost:<span class="hljs-number">3000</span><span class="hljs-regexp">/#/gui</span>de<br><span class="hljs-regexp">/zh-cn/</span>README.md  =&gt; http:<span class="hljs-regexp">//</span>localhost:<span class="hljs-number">3000</span><span class="hljs-regexp">/#/</span>zh-cn/<br><span class="hljs-regexp">/zh-cn/gui</span>de.md   =&gt; http:<span class="hljs-regexp">//</span>localhost:<span class="hljs-number">3000</span><span class="hljs-regexp">/#/</span>zh-cn/guide<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="3、定制化配置"><a href="#3、定制化配置" class="headerlink" title="3、定制化配置"></a>3、定制化配置</h3><h4 id="侧边栏设置"><a href="#侧边栏设置" class="headerlink" title="侧边栏设置"></a>侧边栏设置</h4><p>需要先在 docs&#x2F;index.html 中修改一下配置，开启侧边栏的选项添加<code>loadSiderbar: true</code></p>
+<p>这样设置后就会加载 Docsify 目录下的 _ sidebar.md 文件,  进行加载而渲染成我们定制的侧边栏</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs actionscript"><span class="hljs-comment">// 开启侧边栏定制,加载_sidebar.md </span><br>loadSidebar: <span class="hljs-literal">true</span>,<br></code></pre></td></tr></table></figure>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311201949003.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>我们在 docs 目录下创建一个 <code>_sidebar.md</code> 文件，里面可以对侧边栏进行配置，比如这里配置如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- docs/_sidebar.md --&gt;</span><br><br>* [首页](/) <br>* [guide](/guide)<br>* [zh-cn](zh-cn/)<br>* [zh-cn guide](zh-cn/guide)<br></code></pre></td></tr></table></figure>
+
+<p>这里使用的是 MarkDown 中的超链接语法，后面的路径对应着上述多页文档的路由路径</p>
+<p>我们还可以指定页面的标题，比如这里指定首页的标题为home 【后面添加双引号进行别名】</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- docs/_sidebar.md --&gt;</span><br><br>* [首页](/ &quot;home&quot;) <br>* [guide](/guide)<br>* [zh-cn](zh-cn/)<br>* [zh-cn guide](zh-cn/guide)<br></code></pre></td></tr></table></figure>
+
+<h4 id="侧边栏嵌套设置"><a href="#侧边栏嵌套设置" class="headerlink" title="侧边栏嵌套设置"></a>侧边栏嵌套设置</h4><p>在对应子目录 docs&#x2F;zh-cn 下创建一个 <code>_sidebar.md</code> 文件，配置如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- docs/zh-cn/_sidebar.md --&gt;</span><br><br>* [zh-ch首页](/zh-cn) <br>* [zh-cn guide](zh-cn/guide)<br></code></pre></td></tr></table></figure>
+
+<p>_ sidebar.md 的加载逻辑是从每层目录下获取文件，如果当前目录不存在该文件则回退到上一级目录。<br>例如当前路径为 &#x2F;zh-cn 则从 &#x2F;zh-cn&#x2F;_ sidebar.md 获取文件，如果不存在则从 &#x2F;_ sidebar.md 获取，</p>
+<p>我们也可以在 index.html 中如下配置表示默认都走根路径下的 <code>_sidebar.md</code> 文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">  <span class="hljs-variable language_">window</span>.<span class="hljs-property">$docsify</span> = &#123;</span><br><span class="language-javascript">    <span class="hljs-attr">loadSidebar</span>: <span class="hljs-literal">true</span>,</span><br><span class="language-javascript">    <span class="hljs-attr">alias</span>: &#123;</span><br><span class="language-javascript">      <span class="hljs-string">&#x27;/.*/_sidebar.md&#x27;</span>: <span class="hljs-string">&#x27;/_sidebar.md&#x27;</span></span><br><span class="language-javascript">    &#125;</span><br><span class="language-javascript">  &#125;</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+<h4 id="开启目录功能"><a href="#开启目录功能" class="headerlink" title="开启目录功能"></a>开启目录功能</h4><p>自定义侧边栏同时也可以开启目录功能。设置 <code>subMaxLevel</code> 配置项</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- index.html --&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">  <span class="hljs-variable language_">window</span>.<span class="hljs-property">$docsify</span> = &#123;</span><br><span class="language-javascript">    <span class="hljs-attr">loadSidebar</span>: <span class="hljs-literal">true</span>,</span><br><span class="language-javascript">    <span class="hljs-comment">// 开启目录,最大层级为2</span></span><br><span class="language-javascript">    <span class="hljs-attr">subMaxLevel</span>: <span class="hljs-number">2</span></span><br><span class="language-javascript">  &#125;</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="目录折叠功能"><a href="#目录折叠功能" class="headerlink" title="目录折叠功能"></a>目录折叠功能</h4><p>需要引入一下 docsify-sidebar-collapse 样式 , 具体配置可以看一下下面。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">&quot;X-UA-Compatible&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;IE=edge,chrome=1&quot;</span> /&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;description&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;Description&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0, minimum-scale=1.0&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css&quot;</span>&gt;</span><br>  <span class="hljs-comment">&lt;!-- 文件夹样式 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar-folder.min.css&quot;</span> /&gt;</span><br>  <span class="hljs-comment">&lt;!-- 箭头样式 --&gt;</span><br>  <span class="hljs-comment">&lt;!-- &lt;link rel=&quot;stylesheet&quot; href=&quot;//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.css&quot; /&gt; --&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">    <span class="hljs-variable language_">window</span>.<span class="hljs-property">$docsify</span> = &#123;</span><br><span class="language-javascript">      <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;&#x27;</span>,</span><br><span class="language-javascript">      <span class="hljs-attr">repo</span>: <span class="hljs-string">&#x27;&#x27;</span>,</span><br><span class="language-javascript">	  <span class="hljs-comment">// 开启侧边栏定制,加载_sidebar.md </span></span><br><span class="language-javascript">	  <span class="hljs-attr">loadSidebar</span>: <span class="hljs-literal">true</span>,</span><br><span class="language-javascript">	  <span class="hljs-comment">// 开启目录,最大层级为2</span></span><br><span class="language-javascript">	  <span class="hljs-attr">subMaxLevel</span>: <span class="hljs-number">2</span>,</span><br><span class="language-javascript">	  <span class="hljs-attr">alias</span>: &#123;</span><br><span class="language-javascript">	    <span class="hljs-string">&#x27;/.*/_sidebar.md&#x27;</span>: <span class="hljs-string">&#x27;/_sidebar.md&#x27;</span></span><br><span class="language-javascript">	  &#125;,</span><br><span class="language-javascript">    &#125;</span><br><span class="language-javascript">  </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>  <span class="hljs-comment">&lt;!-- Docsify v4 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;//cdn.jsdelivr.net/npm/docsify@4&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>  <span class="hljs-comment">&lt;!-- 侧边栏目录折叠 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="导航栏"><a href="#导航栏" class="headerlink" title="导航栏"></a>导航栏</h4><p>添加导航栏有两种方式，一是直接到 index.html 中添加，二是和侧边栏类似，通过 md 文件的形式来添加。</p>
+<blockquote>
+<p><strong>通过md文件来添加</strong></p>
+</blockquote>
+<p>首先在 index.html 中配置 <code>loadNavbar</code>，默认加载的文件为 <code>_navbar.md</code> </p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs actionscript"><span class="hljs-comment">// 开启导航栏,加载_navbar.md </span><br>loadNavbar: <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>嵌套列表</p>
+</blockquote>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs scss">&lt;!-- _navbar<span class="hljs-selector-class">.md</span> --&gt;<br><br>* 入门<br>  * <span class="hljs-selector-attr">[快速开始]</span>(zh-cn/quickstart.md)<br>  * <span class="hljs-selector-attr">[多页文档]</span>(zh-cn/more-pages.md)<br>  * <span class="hljs-selector-attr">[定制导航栏]</span>(zh-cn/custom-navbar.md)<br>  * <span class="hljs-selector-attr">[封面]</span>(zh-cn/cover.md)<br><br><br>* 配置<br>  * <span class="hljs-selector-attr">[配置项]</span>(zh-cn/configuration.md)<br>  * <span class="hljs-selector-attr">[主题]</span>(zh-cn/themes.md)<br>  * <span class="hljs-selector-attr">[使用插件]</span>(zh-cn/plugins.md)<br>  * <span class="hljs-selector-attr">[Markdown 配置]</span>(zh-cn/markdown.md)<br>  * <span class="hljs-selector-attr">[代码高亮]</span>(zh-cn/language-highlight.md)<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311202158957.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="封面"><a href="#封面" class="headerlink" title="封面"></a>封面</h4><p>在 index.html 中设置 <code>coverpage</code> 参数开启封面功能</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs actionscript"><span class="hljs-comment">// 开启封面,加载_coverpage.md</span><br>coverpage: <span class="hljs-literal">true</span>,<br></code></pre></td></tr></table></figure>
+
+<p>在文档根目录创建 <code>_coverpage.md</code> 文件，用于配置封面内容</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># docsify <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">small</span>&gt;</span></span>3.5<span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">small</span>&gt;</span></span></span><br><br><span class="hljs-quote">&gt; 一个神奇的文档网站生成器。</span><br><br><span class="hljs-bullet">-</span> 简单、轻便 (压缩后 ~21kB)<br><span class="hljs-bullet">-</span> 无需生成 html 文件<br><span class="hljs-bullet">-</span> 众多主题<br><br>[<span class="hljs-string">GitHub</span>](<span class="hljs-link">https://github.com/docsifyjs/docsify/</span>)<br></code></pre></td></tr></table></figure>
+
+<p>目前的背景是随机生成的渐变色，可以自定义背景色或者背景图。在文档末尾用添加图片的 Markdown 语法设置背景。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 网站图标 --&gt;</span><br>![logo](_media/icon.jpg)<br><br># docsify <span class="hljs-tag">&lt;<span class="hljs-name">small</span>&gt;</span>3.5<span class="hljs-tag">&lt;/<span class="hljs-name">small</span>&gt;</span><br><br>&gt; 一个神奇的文档网站生成器。<br><br>- 简单、轻便 (压缩后 ~21kB)<br>- 无需生成 html 文件<br>- 众多主题<br><br>[GitHub](https://github.com/docsifyjs/docsify/)<br><br><span class="hljs-comment">&lt;!-- 背景图片 --&gt;</span><br>![](_media/玩家.png)<br><br><span class="hljs-comment">&lt;!-- 背景色 --&gt;</span><br>![color](#f0f0f0)<br></code></pre></td></tr></table></figure>
+
+<p>通常封面和首页是同时出现的，你可以将封面独立出来</p>
+<p>配置（只在访问主页时加载封面）：</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xquery"><span class="hljs-keyword">window</span>.<span class="hljs-variable">$docsify</span> = &#123;<br>  onlyCover:<span class="hljs-built_in"> false</span>,<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h4 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h4><p>见： <a target="_blank" rel="noopener" href="https://docsify.js.org/#/zh-cn/themes">https://docsify.js.org/#/zh-cn/themes</a></p>
+<h3 id="4、基于nginx-docsify搭建"><a href="#4、基于nginx-docsify搭建" class="headerlink" title="4、基于nginx + docsify搭建"></a>4、基于nginx + docsify搭建</h3><p>nginx 配置文件中，在 <code>http</code> 块内添加一个新的 <code>server</code> 配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">location /docs &#123;<br>	<span class="hljs-built_in">alias</span> D:/shareDocs/docs; <span class="hljs-comment"># 修改为你的 Docsify 项目绝对路径</span><br>	index index.html;<br>	try_files <span class="hljs-variable">$uri</span> <span class="hljs-variable">$uri</span>/ /index.html;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
 <hr>
-<h2 id="参考-https-www-cnblogs-com-Can-daydayup-p-15413267-html-https-ysgstudyhards-github-io-Docsify-Guide-README-https-docsify-js-org-zh-cn-quickstart-https-blog-csdn-net-qq-45173404-article-details-122683872"><a href="#参考-https-www-cnblogs-com-Can-daydayup-p-15413267-html-https-ysgstudyhards-github-io-Docsify-Guide-README-https-docsify-js-org-zh-cn-quickstart-https-blog-csdn-net-qq-45173404-article-details-122683872" class="headerlink" title="参考- https://www.cnblogs.com/Can-daydayup/p/15413267.html- https://ysgstudyhards.github.io/Docsify-Guide/#/README- https://docsify.js.org/#/zh-cn/quickstart- https://blog.csdn.net/qq_45173404/article/details/122683872"></a>参考<br>- <a target="_blank" rel="noopener" href="https://www.cnblogs.com/Can-daydayup/p/15413267.html">https://www.cnblogs.com/Can-daydayup/p/15413267.html</a><br>- <a target="_blank" rel="noopener" href="https://ysgstudyhards.github.io/Docsify-Guide/#/README">https://ysgstudyhards.github.io/Docsify-Guide/#/README</a><br>- <a target="_blank" rel="noopener" href="https://docsify.js.org/#/zh-cn/quickstart">https://docsify.js.org/#/zh-cn/quickstart</a><br>- <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45173404/article/details/122683872">https://blog.csdn.net/qq_45173404/article/details/122683872</a></h2>
+<p>参考</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docsify.js.org/#/zh-cn/quickstart">https://docsify.js.org/#/zh-cn/quickstart</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Can-daydayup/p/15413267.html">https://www.cnblogs.com/Can-daydayup/p/15413267.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://ysgstudyhards.github.io/Docsify-Guide/#/README">https://ysgstudyhards.github.io/Docsify-Guide/#/README</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45173404/article/details/122683872">https://blog.csdn.net/qq_45173404/article/details/122683872</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/1266542">https://developer.aliyun.com/article/1266542</a></li>
+<li><a target="_blank" rel="noopener" href="https://clotliu.com/archives/docsify-advanced">https://clotliu.com/archives/docsify-advanced</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yangstar/articles/16690435.html">https://www.cnblogs.com/yangstar/articles/16690435.html</a></li>
+</ul>
+
                 
               </div>
             
@@ -391,6 +469,29 @@
 
 
 
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/11/20/Nginx_%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" title="Nginx_基础概念">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Nginx_基础概念</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/11/19/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97_%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" title="消息队列_基础概念">
+                        <span class="hidden-mobile">消息队列_基础概念</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
               
             </div>
 

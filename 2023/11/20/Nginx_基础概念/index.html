@@ -18,22 +18,22 @@
   <meta name="author" content="Luo QI">
   <meta name="keywords" content="">
   
-    <meta name="description" content="近期计划">
+    <meta name="description" content="Nginx_基础概念">
 <meta property="og:type" content="article">
-<meta property="og:title" content="日记_20231114">
-<meta property="og:url" content="https://lluo-liang.github.io/2023/11/14/%E6%97%A5%E8%AE%B0_20231114/index.html">
+<meta property="og:title" content="Nginx_基础概念">
+<meta property="og:url" content="https://lluo-liang.github.io/2023/11/20/Nginx_%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/index.html">
 <meta property="og:site_name" content="轻松的洛亓">
-<meta property="og:description" content="近期计划">
+<meta property="og:description" content="Nginx_基础概念">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-11-14T12:00:00.000Z">
-<meta property="article:modified_time" content="2023-11-14T12:00:00.000Z">
+<meta property="article:published_time" content="2023-11-20T23:13:33.000Z">
+<meta property="article:modified_time" content="2023-11-20T23:13:33.000Z">
 <meta property="article:author" content="Luo QI">
-<meta property="article:tag" content="blog">
+<meta property="article:tag" content="nginx">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>日记_20231114 - 轻松的洛亓</title>
+  <title>Nginx_基础概念 - 轻松的洛亓</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -193,13 +193,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311141443018.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="日记_20231114"></span>
+            <span id="subtitle" data-typed-text="Nginx_基础概念"></span>
           
         </div>
 
@@ -210,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-11-14 12:00" pubdate>
-          2023年11月14日 中午
+        <time datetime="2023-11-20 23:13" pubdate>
+          2023年11月20日 晚上
         </time>
       </span>
     
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          116 字
+          394 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          1 分钟
+          4 分钟
         
       </span>
     
@@ -270,17 +270,32 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">日记_20231114</h1>
+            <h1 id="seo-header">Nginx_基础概念</h1>
             
             
               <div class="markdown-body">
                 
-                <p>近期计划</p>
+                <h3 id="1、启动Nginx"><a href="#1、启动Nginx" class="headerlink" title="1、启动Nginx"></a>1、启动Nginx</h3><blockquote>
+<p>Windows 下启动 nginx</p>
+</blockquote>
+<p>在下载 nginx 后，在nginx安装目录的绝对路径的框框内输入 &#x3D;&#x3D;cmd&#x3D;&#x3D;</p>
+<p>直接输入 &#x3D;&#x3D;nginx&#x3D;&#x3D; 或者 &#x3D;&#x3D;start nginx&#x3D;&#x3D;，然后回车，就可以启动nginx</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">nginx<br><br><span class="hljs-literal">start</span> nginx<br></code></pre></td></tr></table></figure>
+
+<p>在浏览器地址栏输入 <code>localhost:80</code>，然后再回车, 查看是否有 nginx 访问主页，如果有，则启动成功。</p>
+<p>一般访问问题是端口占用，可以改一下 nginx 访问端口，或者杀掉对应进程。</p>
+<p>关闭nginx的命令：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">nginx -s stop<br></code></pre></td></tr></table></figure>
+
+<p>重新加载</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">nginx -s reload</span><br></code></pre></td></tr></table></figure>
+
+
+<p>to be contined….</p>
+<hr>
+<p>参考</p>
 <ul>
-<li><input disabled="" type="checkbox"> Java集合、Java多线程、MySQL数据库、Spring 进行复习</li>
-<li><input disabled="" type="checkbox"> Redis、MQ </li>
-<li><input disabled="" type="checkbox"> 微服务 SpringCloud Alibaba 通过学习学成在线项目进行</li>
-<li><input disabled="" type="checkbox"> 项目：蘑菇博客的学习（个人一直趋向学习这个项目，趁这段时间有空，学习一下）</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44251179/article/details/129700793">https://blog.csdn.net/weixin_44251179/article/details/129700793</a></li>
 </ul>
 
                 
@@ -300,7 +315,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Diary/" class="category-chain-item">Diary</a>
+  <a href="/categories/%E9%83%A8%E7%BD%B2/" class="category-chain-item">部署</a>
   
   
 
@@ -315,7 +330,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/blog/" class="print-no-link">#blog</a>
+        <a href="/tags/nginx/" class="print-no-link">#nginx</a>
       
     </div>
   
@@ -327,8 +342,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>日记_20231114</div>
-      <div>https://lluo-liang.github.io/2023/11/14/日记_20231114/</div>
+      <div>Nginx_基础概念</div>
+      <div>https://lluo-liang.github.io/2023/11/20/Nginx_基础概念/</div>
     </div>
     <div class="license-meta">
       
@@ -340,7 +355,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年11月14日</div>
+          <div>2023年11月20日</div>
         </div>
       
       
@@ -372,9 +387,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/11/14/Java%E9%9B%86%E5%90%88_%E8%BF%9B%E9%98%B6%E5%86%85%E5%AE%B9/" title="Java 集合_进阶内容">
+                      <a href="/2023/11/21/Chapters1_%E6%9E%81%E9%99%90%E4%B8%8E%E8%BF%9E%E7%BB%AD/" title="Chapters1_极限与连续">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Java 集合_进阶内容</span>
+                        <span class="hidden-mobile">Chapters1_极限与连续</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -382,8 +397,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/11/14/Java%E9%9B%86%E5%90%88_%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" title="Java 集合_基础概念">
-                        <span class="hidden-mobile">Java 集合_基础概念</span>
+                      <a href="/2023/11/19/Docsify%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" title="Docsify使用教程">
+                        <span class="hidden-mobile">Docsify使用教程</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
