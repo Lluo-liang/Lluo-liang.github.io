@@ -21,7 +21,7 @@
     <meta name="description" content="hexo_实现在百度中搜索到自己的博客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hexo_实现在百度中搜索到自己的博客">
-<meta property="og:url" content="https://lluo-liang.github.io/2023/11/24/hexo_%E5%AE%9E%E7%8E%B0%E5%9C%A8%E7%99%BE%E5%BA%A6%E4%B8%AD%E6%90%9C%E7%B4%A2%E5%88%B0%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/index.html">
+<meta property="og:url" content="https://varcel.luoqi.icu/2023/11/24/hexo_%E5%AE%9E%E7%8E%B0%E5%9C%A8%E7%99%BE%E5%BA%A6%E4%B8%AD%E6%90%9C%E7%B4%A2%E5%88%B0%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/index.html">
 <meta property="og:site_name" content="轻松的洛亓">
 <meta property="og:description" content="hexo_实现在百度中搜索到自己的博客">
 <meta property="og:locale" content="zh_CN">
@@ -71,7 +71,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"lluo-liang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"varcel.luoqi.icu","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          806 字
+          1.3k 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          7 分钟
+          12 分钟
         
       </span>
     
@@ -283,21 +283,43 @@
 <p>打开之后输入你的博客首页地址，可以是<code>Github Pages</code>或者<code>Vercel</code>的地址，然后点击下一步。</p>
 <p>站点领域： 信息技术</p>
 <p>验证：选择第二种验证方式  →  HTML 验证</p>
-<p>本博客使用的是 fluid 主题，</p>
-<p>进入博客目录下 <code>scripts</code> 文件夹（如不存在则创建），在里面创建任意名称的 js 文件，在文件中写入如下内容（content 见具体验证内容)：</p>
-<figure class="highlight scilab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs scilab">hexo.extend.filter.register(<span class="hljs-string">&#x27;theme_inject&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(injects)</span> &#123;</span><br>  injects.head.raw(<span class="hljs-string">&#x27;default&#x27;</span>, <span class="hljs-string">&#x27;&lt;meta name=&quot;</span>baidu-site-verification<span class="hljs-string">&quot; content=&quot;</span>xxxxxxxxxxxxxxx<span class="hljs-string">&quot; /&gt;&#x27;</span>);<br>&#125;);<br></code></pre></td></tr></table></figure>
+<p><strong>本博客使用的是 fluid 主题</strong>，</p>
+<p>进入博客目录下 <code>scripts</code> 文件夹（如不存在则创建），在里面创建任意名称的 js 文件，在文件中写入如下内容（content 见百度具体验证内容)：</p>
+<figure class="highlight scilab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs scilab">hexo.extend.filter.register(<span class="hljs-string">&#x27;theme_inject&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(injects)</span> &#123;</span><br>  injects.head.raw(<span class="hljs-string">&#x27;home&#x27;</span>,<span class="hljs-string">&#x27;&lt;meta name=&quot;</span>baidu-site-verification<span class="hljs-string">&quot; content=&quot;</span>xxxxxxxxxxxxxxx<span class="hljs-string">&quot; /&gt;&#x27;</span>);<br>&#125;);<br></code></pre></td></tr></table></figure>
 
 <p>在博客 <code>_config.yml</code> 文件加一句：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">baidu_site_verification:</span> <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
 
-
-
+<p>编译发布你的博客，在博客首页按<code>F12</code>，如果在<code>head</code>标签中看到了验证标签则成功了。</p>
+<p>点击验证按钮，如果没问题则已成功。</p>
+<blockquote>
+<p>2、站点地图功能</p>
+</blockquote>
+<p>需要生成一个站点地图</p>
+<p>先确认一下 <code>_config.yml</code> 配置里面的 URL 值，如果不是改为自己的域名地址。</p>
+<p>博客目录执行命令</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">npm <span class="hljs-keyword">install </span>hexo-generator-sitemap --save        <span class="hljs-comment">#安装sitemap插件</span><br>npm <span class="hljs-keyword">install </span>hexo-generator-<span class="hljs-keyword">baidu-sitemap </span>--save  <span class="hljs-comment">#安装baidu-sitemap插件</span><br><br>  <br>hexo g  <span class="hljs-comment">#生成网站静态文件到public文件夹</span><br></code></pre></td></tr></table></figure>
 
 <blockquote>
-<p>2、#### </p>
+<p>查看根目录下的public目录，会生成两个文件，“sitemap.xml ”和 “baidusitemap.xml”</p>
 </blockquote>
+<p>其中“sitemap.xml”文件是搜索引擎通用的文件，</p>
+<p>“baidusitemap.xml”是百度专用的sitemap文件，</p>
+<blockquote>
+<p>3、提交sitemap到百度资源搜索平台</p>
+</blockquote>
+<p>选择资源提交，点击普通收录，选择sitemap，</p>
+<p>填写网站地址，例：“域名&#x2F;baidusitemap.xml”，点击提交，过一段时间后博客就可以在百度中搜素到。</p>
 <hr>
-<h2 id="参考-https-blog-csdn-net-Passerby-Wang-article-details-124704475-https-py-wang-blog-csdn-net-article-details-121202486-https-cloud-tencent-com-developer-article-2317858-https-fluid-dev-github-io-hexo-fluid-docs-advance-fluid-E6-B3-A8-E5-85-A5-E4-BB-A3-E7-A0-81"><a href="#参考-https-blog-csdn-net-Passerby-Wang-article-details-124704475-https-py-wang-blog-csdn-net-article-details-121202486-https-cloud-tencent-com-developer-article-2317858-https-fluid-dev-github-io-hexo-fluid-docs-advance-fluid-E6-B3-A8-E5-85-A5-E4-BB-A3-E7-A0-81" class="headerlink" title="参考- https://blog.csdn.net/Passerby_Wang/article/details/124704475- https://py-wang.blog.csdn.net/article/details/121202486- https://cloud.tencent.com/developer/article/2317858- https://fluid-dev.github.io/hexo-fluid-docs/advance/#fluid-%E6%B3%A8%E5%85%A5%E4%BB%A3%E7%A0%81"></a>参考<br>- <a target="_blank" rel="noopener" href="https://blog.csdn.net/Passerby_Wang/article/details/124704475">https://blog.csdn.net/Passerby_Wang/article/details/124704475</a><br>- <a target="_blank" rel="noopener" href="https://py-wang.blog.csdn.net/article/details/121202486">https://py-wang.blog.csdn.net/article/details/121202486</a><br>- <a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2317858">https://cloud.tencent.com/developer/article/2317858</a><br>- <a target="_blank" rel="noopener" href="https://fluid-dev.github.io/hexo-fluid-docs/advance/#fluid-%E6%B3%A8%E5%85%A5%E4%BB%A3%E7%A0%81">https://fluid-dev.github.io/hexo-fluid-docs/advance/#fluid-%E6%B3%A8%E5%85%A5%E4%BB%A3%E7%A0%81</a></h2>
+<p>参考</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/Passerby_Wang/article/details/124704475">https://blog.csdn.net/Passerby_Wang/article/details/124704475</a></li>
+<li><a target="_blank" rel="noopener" href="https://py-wang.blog.csdn.net/article/details/121202486">https://py-wang.blog.csdn.net/article/details/121202486</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2317858">https://cloud.tencent.com/developer/article/2317858</a></li>
+<li><a target="_blank" rel="noopener" href="https://fluid-dev.github.io/hexo-fluid-docs/advance/#fluid-%E6%B3%A8%E5%85%A5%E4%BB%A3%E7%A0%81">https://fluid-dev.github.io/hexo-fluid-docs/advance/#fluid-%E6%B3%A8%E5%85%A5%E4%BB%A3%E7%A0%81</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/150999914">https://zhuanlan.zhihu.com/p/150999914</a></li>
+</ul>
+
                 
               </div>
             
@@ -343,7 +365,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>hexo_实现在百度中搜索到自己的博客</div>
-      <div>https://lluo-liang.github.io/2023/11/24/hexo_实现在百度中搜索到自己的博客/</div>
+      <div>https://varcel.luoqi.icu/2023/11/24/hexo_实现在百度中搜索到自己的博客/</div>
     </div>
     <div class="license-meta">
       
