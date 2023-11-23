@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Vercel的开箱使用_同步Hexo静态博客</title>
+    <link href="/2023/11/23/Vercel%E7%9A%84%E5%BC%80%E7%AE%B1%E4%BD%BF%E7%94%A8_%E5%90%8C%E6%AD%A5Hexo%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/"/>
+    <url>/2023/11/23/Vercel%E7%9A%84%E5%BC%80%E7%AE%B1%E4%BD%BF%E7%94%A8_%E5%90%8C%E6%AD%A5Hexo%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/</url>
+    
+    <content type="html"><![CDATA[<p>官网： <a href="https://vercel.com/">https://vercel.com/</a></p><p>部署无脑式导入 Github 原项目，然后进行 deloy 就行。命令可以自定义设置，一般是 hexo -s 之类的。</p><p>点击部署的时候项目配置添加自定义域名操作：</p><p>Setting →  Domains →  选择添加解析域名</p><p>官网文档参考的解析域名地址</p><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311240050203.png" alt="image.png"></p><p>实际操作记录：</p><p>个人使用的是阿里云的域名解析，在对应域名下添加了这一条记录<br>（对应 的记录值是 <code>cname.vercel-dns.com</code> ，记录类型需要是 CNAME）</p><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311240052961.png" alt="image.png"></p><p>domain 选择编辑对应的域名地址: </p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">varcel. + 你的阿里云域名<br></code></pre></td></tr></table></figure><p>最后部署访问成功。</p><hr><p>参考</p><ul><li><a href="https://juejin.cn/post/7143067114025254919">https://juejin.cn/post/7143067114025254919</a></li><li><a href="https://zhuanlan.zhihu.com/p/646818470">https://zhuanlan.zhihu.com/p/646818470</a></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>status pages</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>hexo</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>学成在线项目</title>
     <link href="/2023/11/23/%E5%AD%A6%E6%88%90%E5%9C%A8%E7%BA%BF%E9%A1%B9%E7%9B%AE01/"/>
     <url>/2023/11/23/%E5%AD%A6%E6%88%90%E5%9C%A8%E7%BA%BF%E9%A1%B9%E7%9B%AE01/</url>
