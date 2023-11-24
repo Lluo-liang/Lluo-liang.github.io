@@ -18,23 +18,25 @@
   <meta name="author" content="Luo QI">
   <meta name="keywords" content="">
   
-    <meta name="description" content="学成在线项目01">
+    <meta name="description" content="学成在线项目_项目介绍">
 <meta property="og:type" content="article">
-<meta property="og:title" content="学成在线项目01">
-<meta property="og:url" content="https://varcel.luoqi.icu/2023/11/23/%E5%AD%A6%E6%88%90%E5%9C%A8%E7%BA%BF%E9%A1%B9%E7%9B%AE01/index.html">
+<meta property="og:title" content="学成在线项目_项目介绍">
+<meta property="og:url" content="https://varcel.luoqi.icu/2023/11/25/%E5%AD%A6%E6%88%90%E5%9C%A8%E7%BA%BF%E9%A1%B9%E7%9B%AE_%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D/index.html">
 <meta property="og:site_name" content="轻松的洛亓">
-<meta property="og:description" content="学成在线项目01">
+<meta property="og:description" content="学成在线项目_项目介绍">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-11-23T05:32:12.000Z">
-<meta property="article:modified_time" content="2023-11-23T05:32:12.000Z">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311250141858.png">
+<meta property="article:published_time" content="2023-11-25T01:42:14.000Z">
+<meta property="article:modified_time" content="2023-11-25T01:42:14.000Z">
 <meta property="article:author" content="Luo QI">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="project">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311250141858.png">
   
   
   
-  <title>学成在线项目01 - 轻松的洛亓</title>
+  <title>学成在线项目_项目介绍 - 轻松的洛亓</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +202,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="学成在线项目01"></span>
+            <span id="subtitle" data-typed-text="学成在线项目_项目介绍"></span>
           
         </div>
 
@@ -211,8 +213,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-11-23 05:32" pubdate>
-          2023年11月23日 凌晨
+        <time datetime="2023-11-25 01:42" pubdate>
+          2023年11月25日 凌晨
         </time>
       </span>
     
@@ -223,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          715 字
+          198 字
         
       </span>
     
@@ -234,7 +236,7 @@
         
         
         
-          6 分钟
+          2 分钟
         
       </span>
     
@@ -271,30 +273,19 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">学成在线项目01</h1>
+            <h1 id="seo-header">学成在线项目_项目介绍</h1>
             
             
               <div class="markdown-body">
                 
-                <p>本博客建立在 Cyborg2077 项目基础上进行项目内容学习</p>
-<p>项目地址： <a target="_blank" rel="noopener" href="https://github.com/Cyborg2077/xuecheng-plus.git">https://github.com/Cyborg2077/xuecheng-plus.git</a></p>
-<p>进行本人学习和后续内容的同步 Gitee 地址： <a target="_blank" rel="noopener" href="https://gitee.com/lluo-liang/xuecheng2023.git">https://gitee.com/lluo-liang/xuecheng2023.git</a></p>
-<p>项目视频地址： <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1j8411N7Bm">https://www.bilibili.com/video/BV1j8411N7Bm</a></p>
-<hr>
-<h3 id="1、环境准备和项目运行"><a href="#1、环境准备和项目运行" class="headerlink" title="1、环境准备和项目运行"></a>1、环境准备和项目运行</h3><p>进行基础的初始化工程及配置</p>
-<p>MySQL版本选择8.0以上，创建数据库, 导入项目中的建表 sql 语句。</p>
-<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">DATABASE</span> xc_content<br><br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">DATABASE</span> xc_users<br><br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">DATABASE</span> xc_system<br><br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">DATABASE</span> xc_media<br><br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">DATABASE</span> xc_learning<br><br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">DATABASE</span> xc_orders<br></code></pre></td></tr></table></figure>
-
-<p>启动 nacos 服务</p>
-<p>新建命令空间 dev</p>
-<p>在配置列表导入 nacos 配置, 里面的 数据库或者 Redis 需要改的话，针对性在导入完成后统一改一下</p>
-<p>启动服务</p>
-<p>服务顺序：GateWay →   Auth</p>
+                <h3 id="1、项目介绍"><a href="#1、项目介绍" class="headerlink" title="1、项目介绍"></a>1、项目介绍</h3><p>项目包括了<strong>用户端、机构端、运营端</strong></p>
+<p>核心模块：**内容管理、媒资管理、课程搜索、订单支付、选课管理、认证授权</p>
+<p>功能模块图</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311250141858.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>to be contined….</p>
 <hr>
 <p>参考</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1j8411N7Bm">https://www.bilibili.com/video/BV1j8411N7Bm</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/Cyborg2077/xuecheng-plus/tree/master">https://github.com/Cyborg2077/xuecheng-plus/tree/master</a></li>
 <li><a target="_blank" rel="noopener" href="https://cyborg2077.github.io/2023/01/29/XuechengOnlinePart1/">https://cyborg2077.github.io/2023/01/29/XuechengOnlinePart1/</a></li>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40991313/article/details/126646289">https://blog.csdn.net/qq_40991313/article/details/126646289</a></li>
 </ul>
@@ -345,8 +336,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>学成在线项目01</div>
-      <div>https://varcel.luoqi.icu/2023/11/23/学成在线项目01/</div>
+      <div>学成在线项目_项目介绍</div>
+      <div>https://varcel.luoqi.icu/2023/11/25/学成在线项目_项目介绍/</div>
     </div>
     <div class="license-meta">
       
@@ -358,7 +349,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年11月23日</div>
+          <div>2023年11月25日</div>
         </div>
       
       

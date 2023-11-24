@@ -18,28 +18,23 @@
   <meta name="author" content="Luo QI">
   <meta name="keywords" content="">
   
-    <meta name="description" content="通过 github action 来自动部署hexo 博客">
+    <meta name="description" content="学成在线项目01">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo完成github action自动部署">
-<meta property="og:url" content="https://varcel.luoqi.icu/2023/11/13/hexo%E5%AE%8C%E6%88%90github%20action%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/index.html">
+<meta property="og:title" content="学成在线项目01">
+<meta property="og:url" content="https://varcel.luoqi.icu/2023/11/23/%E5%AD%A6%E6%88%90%E5%9C%A8%E7%BA%BF%E9%A1%B9%E7%9B%AE_%E9%A1%B9%E7%9B%AE%E8%BF%90%E8%A1%8C/index.html">
 <meta property="og:site_name" content="轻松的洛亓">
-<meta property="og:description" content="通过 github action 来自动部署hexo 博客">
+<meta property="og:description" content="学成在线项目01">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306051602954.png">
-<meta property="og:image" content="https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306051602033.png">
-<meta property="og:image" content="https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306051602094.png">
-<meta property="og:image" content="https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306051602171.png">
-<meta property="og:image" content="https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306051602232.png">
-<meta property="article:published_time" content="2023-11-13T17:01:56.000Z">
-<meta property="article:modified_time" content="2023-11-24T21:56:31.816Z">
+<meta property="article:published_time" content="2023-11-23T05:32:12.000Z">
+<meta property="article:modified_time" content="2023-11-23T05:32:12.000Z">
 <meta property="article:author" content="Luo QI">
-<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="project">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306051602954.png">
   
   
   
-  <title>hexo完成github action自动部署 - 轻松的洛亓</title>
+  <title>学成在线项目01 - 轻松的洛亓</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -205,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="hexo完成github action自动部署"></span>
+            <span id="subtitle" data-typed-text="学成在线项目01"></span>
           
         </div>
 
@@ -216,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-11-13 17:01" pubdate>
-          2023年11月13日 下午
+        <time datetime="2023-11-23 05:32" pubdate>
+          2023年11月23日 凌晨
         </time>
       </span>
     
@@ -228,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.4k 字
+          715 字
         
       </span>
     
@@ -239,7 +234,7 @@
         
         
         
-          21 分钟
+          6 分钟
         
       </span>
     
@@ -276,55 +271,33 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">hexo完成github action自动部署</h1>
+            <h1 id="seo-header">学成在线项目01</h1>
             
             
               <div class="markdown-body">
                 
-                <blockquote>
-<p>hexo_搭建博客回顾</p>
-</blockquote>
-<p>使用 npm 安装</p>
-<p>npm install hexo-cli</p>
-<p>初始化某个项目文件（新建目录）</p>
-<p>进入目录后 hexo init</p>
-<p>hexo init  # 博客初始化 (安装所需要的包)</p>
-<p>本地运行 hexo s</p>
-<h3 id="hexo完成github-action自动部署"><a href="#hexo完成github-action自动部署" class="headerlink" title="hexo完成github action自动部署"></a>hexo完成github action自动部署</h3><p>这里实现的功能是建立了一个分支 ph-pages ，源项目内容放在 master 主分支下，实现自动部署主分支到分支上（同一个仓库下）</p>
-<p>在实现这个前，先获取一个授权 token，这里必须勾选repo 项 和 workflows 项</p>
-<p>访问 Github-&gt;头像（右上角）-&gt;Settings-&gt;Developer Settings-&gt;Personal access tokens-&gt;generate new token,</p>
-<p>创建的 Token 名称随意，有效期建议无限期限。</p>
-<p>​<img src="https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306051602954.png" srcset="/img/loading.gif" lazyload alt="image">​</p>
-<p>点击生成</p>
-<blockquote>
-<p>token 只会显示这一次，之后将无法查看，所以务必保证你已经记录下了 Token。之后如果忘记了就只能重新生成重新配置了。</p>
-</blockquote>
-<p>在项目 master 分支下新建文件夹</p>
-<p>在 hexo 项目 中新建<code>.github</code>​文件夹,然后在<code>.github</code>​ 内新建 <code>workflows</code>​ 文件夹，再在 <code>workflows</code>​ 文件夹内新建 <code>autodeploy.yml</code>​,</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs undefined">workflows<br>autodeploy.yml<br></code></pre></td></tr></table></figure>
+                <p>本博客建立在 Cyborg2077 项目基础上进行项目内容学习</p>
+<p>项目地址： <a target="_blank" rel="noopener" href="https://github.com/Cyborg2077/xuecheng-plus.git">https://github.com/Cyborg2077/xuecheng-plus.git</a></p>
+<p>进行本人学习和后续内容的同步 Gitee 地址： <a target="_blank" rel="noopener" href="https://gitee.com/lluo-liang/xuecheng2023.git">https://gitee.com/lluo-liang/xuecheng2023.git</a></p>
+<p>项目视频地址： <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1j8411N7Bm">https://www.bilibili.com/video/BV1j8411N7Bm</a></p>
+<hr>
+<h3 id="1、环境准备和项目运行"><a href="#1、环境准备和项目运行" class="headerlink" title="1、环境准备和项目运行"></a>1、环境准备和项目运行</h3><p>进行基础的初始化工程及配置</p>
+<p>MySQL版本选择8.0以上，创建数据库, 导入项目中的建表 sql 语句。</p>
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">DATABASE</span> xc_content<br><br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">DATABASE</span> xc_users<br><br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">DATABASE</span> xc_system<br><br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">DATABASE</span> xc_media<br><br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">DATABASE</span> xc_learning<br><br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">DATABASE</span> xc_orders<br></code></pre></td></tr></table></figure>
 
-<p>在<code>[Blogroot]/.github/workflows/autodeploy.yml</code>​ 里面输入</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><code class="hljs undefined">name: 自动部署<br># 当有改动推送到master分支时，启动Action<br>on:<br>  push:<br>    branches:<br>      - master<br>      # 你提交的主分支名称<br>  release:<br>    types:<br>      - published<br><br>jobs:<br>  # 部署执行的自动工作<br>  deploy:<br>    runs-on: ubuntu-latest<br>    steps:<br>      - name: 检查分支<br>        uses: actions/checkout@v3<br>        with:<br>          ref: master<br><br>      - name: 安装 Node<br>        uses: actions/setup-node@v3<br>        with:<br>          node-version: &quot;16.x&quot;<br><br>      - name: 安装 Hexo<br>        run: |<br>          export TZ=&#x27;Asia/Shanghai&#x27;<br>          npm install hexo-cli -g<br><br>      - name: 缓存 Hexo<br>        id: cache-npm<br>        uses: actions/cache@v3<br>        env:<br>          cache-name: cache-node-modules<br>        with:<br>          path: node_modules<br>          key: $&#123;&#123; runner.os &#125;&#125;-build-$&#123;&#123; env.cache-name &#125;&#125;-$&#123;&#123; hashFiles(&#x27;**/package-lock.json&#x27;) &#125;&#125;<br>          restore-keys: |<br>            $&#123;&#123; runner.os &#125;&#125;-build-$&#123;&#123; env.cache-name &#125;&#125;-<br>            $&#123;&#123; runner.os &#125;&#125;-build-<br>            $&#123;&#123; runner.os &#125;&#125;-<br><br>      - name: 安装依赖<br>        if: $&#123;&#123; steps.cache-npm.outputs.cache-hit != &#x27;true&#x27; &#125;&#125;<br>        run: |<br>          npm install gulp-cli -g #全局安装gulp<br>          npm install --save<br><br>      - name: 生成静态文件<br>        run: |<br>          hexo clean<br>          hexo generate<br><br>      - name: 部署到Github<br>        uses: JamesIves/github-pages-deploy-action@v4<br>        with:<br>          token:  $&#123;&#123; secrets.ACTION_TOKEN &#125;&#125;<br>          repository-name: Lluo-liang/Lluo-liang.github.io<br>          branch: ph-pages<br>          folder: public<br>          commit-message: &quot;$&#123;&#123; github.event.head_commit.message &#125;&#125; Updated By Github Actions&quot;<br></code></pre></td></tr></table></figure>
-
-<p>部署到 Github 下几个配置注意一下，其他内容大差不差</p>
-<p>​<img src="https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306051602033.png" srcset="/img/loading.gif" lazyload alt="image">​</p>
-<p>之后如果需要自己到仓库的 Settings-&gt;Secrets-&gt;actions 下添加环境变量，变量名参考脚本中出现的，依次添加（有些环境变量是GitHub Actions自带的一个环境变量）。</p>
-<p>这里配置了一个 ACTION_TOKEN 的环境变量</p>
-<p>​<img src="https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306051602094.png" srcset="/img/loading.gif" lazyload alt="image">​</p>
-<p>这里的GitHub Pages的设置中 是 ph-pages分支。</p>
-<p>编辑一下 git 上传的屏蔽项</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs undefined">.DS_Store<br>Thumbs.db<br>db.json<br>*.log<br>node_modules/<br>public/<br>.deploy*/<br>.deploy_git*/<br>.idea<br>themes/ocean/.git<br></code></pre></td></tr></table></figure>
-
-<p>替换最后一行内容为自己当前使用的主题</p>
-<p>配置完后进行提交推送</p>
-<p>部署进度查看</p>
-<p>看实际的一个部署情况，可以在 Action 中 查看</p>
-<p>​<img src="https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306051602171.png" srcset="/img/loading.gif" lazyload alt="image">​</p>
-<p>选择第一个，点击进去看，点击 deploy 可以查看窗口进度和实际完成情况</p>
-<p>​<img src="https://blogpublishpicture.oss-cn-guangzhou.aliyuncs.com/cnblogs/202306051602232.png" srcset="/img/loading.gif" lazyload alt="image">​</p>
-<p>如果是需要安全方面考虑，不打算将自己的源文件内容泄露，也可以建立另外一个仓库，这个仓库设置为私有，</p>
-<p>也可以进行自动部署到这个公共仓库中</p>
-<p>‍</p>
+<p>启动 nacos 服务</p>
+<p>新建命令空间 dev</p>
+<p>在配置列表导入 nacos 配置, 里面的 数据库或者 Redis 需要改的话，针对性在导入完成后统一改一下</p>
+<p>启动服务</p>
+<p>服务顺序：GateWay →   Auth</p>
+<hr>
+<p>参考</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1j8411N7Bm">https://www.bilibili.com/video/BV1j8411N7Bm</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/Cyborg2077/xuecheng-plus/tree/master">https://github.com/Cyborg2077/xuecheng-plus/tree/master</a></li>
+<li><a target="_blank" rel="noopener" href="https://cyborg2077.github.io/2023/01/29/XuechengOnlinePart1/">https://cyborg2077.github.io/2023/01/29/XuechengOnlinePart1/</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40991313/article/details/126646289">https://blog.csdn.net/qq_40991313/article/details/126646289</a></li>
+</ul>
 
                 
               </div>
@@ -343,7 +316,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/status-pages/" class="category-chain-item">status pages</a>
+  <a href="/categories/coding/" class="category-chain-item">coding</a>
   
   
 
@@ -358,7 +331,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/hexo/" class="print-no-link">#hexo</a>
+        <a href="/tags/java/" class="print-no-link">#java</a>
+      
+        <a href="/tags/project/" class="print-no-link">#project</a>
       
     </div>
   
@@ -370,8 +345,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>hexo完成github action自动部署</div>
-      <div>https://varcel.luoqi.icu/2023/11/13/hexo完成github action自动部署/</div>
+      <div>学成在线项目01</div>
+      <div>https://varcel.luoqi.icu/2023/11/23/学成在线项目_项目运行/</div>
     </div>
     <div class="license-meta">
       
@@ -383,7 +358,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年11月13日</div>
+          <div>2023年11月23日</div>
         </div>
       
       
