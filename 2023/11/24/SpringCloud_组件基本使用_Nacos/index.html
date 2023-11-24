@@ -18,22 +18,26 @@
   <meta name="author" content="Luo QI">
   <meta name="keywords" content="">
   
-    <meta name="description" content="摘要">
+    <meta name="description" content="SpringCloud_组件基本使用_Nacos">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World!">
-<meta property="og:url" content="https://varcel.luoqi.icu/2023/11/23/%E6%96%87%E4%BB%B6Templage/index.html">
+<meta property="og:title" content="SpringCloud_组件基本使用_Nacos">
+<meta property="og:url" content="https://varcel.luoqi.icu/2023/11/24/SpringCloud_%E7%BB%84%E4%BB%B6%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8_Nacos/index.html">
 <meta property="og:site_name" content="轻松的洛亓">
-<meta property="og:description" content="摘要">
+<meta property="og:description" content="SpringCloud_组件基本使用_Nacos">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-11-23T22:29:26.327Z">
-<meta property="article:modified_time" content="2023-11-23T22:29:26.327Z">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231124154048.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231124154144.png">
+<meta property="article:published_time" content="2023-11-24T15:13:57.000Z">
+<meta property="article:modified_time" content="2023-11-24T15:13:57.000Z">
 <meta property="article:author" content="Luo QI">
-<meta property="article:tag" content="blog">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="springcloud">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231124154048.png">
   
   
   
-  <title>Hello World! - 轻松的洛亓</title>
+  <title>SpringCloud_组件基本使用_Nacos - 轻松的洛亓</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +203,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Hello World!"></span>
+            <span id="subtitle" data-typed-text="SpringCloud_组件基本使用_Nacos"></span>
           
         </div>
 
@@ -210,8 +214,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-11-23 22:29" pubdate>
-          2023年11月23日 晚上
+        <time datetime="2023-11-24 15:13" pubdate>
+          2023年11月24日 下午
         </time>
       </span>
     
@@ -222,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          731 字
         
       </span>
     
@@ -233,7 +237,7 @@
         
         
         
-          1 分钟
+          7 分钟
         
       </span>
     
@@ -270,12 +274,45 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Hello World!</h1>
+            <h1 id="seo-header">SpringCloud_组件基本使用_Nacos</h1>
             
             
               <div class="markdown-body">
                 
-                
+                <h3 id="1、Nacos-是什么"><a href="#1、Nacos-是什么" class="headerlink" title="1、Nacos 是什么"></a>1、Nacos 是什么</h3><p>Nacos 是一个构建云原生应用的动态服务发现、配置管理和服务管理平台；致力于帮助发现、配置和管理微服务。</p>
+<h3 id="2、下载与使用"><a href="#2、下载与使用" class="headerlink" title="2、下载与使用"></a>2、下载与使用</h3><p>下载地址： <a target="_blank" rel="noopener" href="https://github.com/alibaba/nacos/releases">https://github.com/alibaba/nacos/releases</a></p>
+<p>windows版本使用<code>nacos-server-x.x.x.zip</code>包即可</p>
+<p>将这个包解压到任意非中文目录下，如图：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231124154048.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>目录说明：</p>
+<ul>
+<li>bin：启动脚本</li>
+<li>conf：配置文件</li>
+</ul>
+<p>Nacos的默认端口是8848，如果电脑上的其它进程占用了8848端口，先尝试关闭该进程。</p>
+<p><strong>如果无法关闭占用8848端口的进程</strong>，也可以进入nacos的conf目录，修改配置文件中的端口<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231124154144.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<blockquote>
+<p>启动命令(Windows)</p>
+</blockquote>
+<p>启动非常简单，进入bin目录</p>
+<p>启动命令(standalone代表着单机模式运行，非集群模式):</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dos">startup.<span class="hljs-built_in">cmd</span> -m standalone<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>访问</p>
+</blockquote>
+<p>在浏览器输入地址： <a target="_blank" rel="noopener" href="http://127.0.0.1:8848/nacos">http://127.0.0.1:8848/nacos</a> </p>
+<p>默认的账号和密码都是nacos</p>
+<p>to be contined….</p>
+<hr>
+<p>参考</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36903261/article/details/106835279">https://blog.csdn.net/qq_36903261/article/details/106835279</a></li>
+<li><a target="_blank" rel="noopener" href="https://m.biancheng.net/springcloud/nacos.html">https://m.biancheng.net/springcloud/nacos.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/v2/ecology/use-nacos-with-spring-cloud.html">https://nacos.io/zh-cn/docs/v2/ecology/use-nacos-with-spring-cloud.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/quick-start-spring-cloud.html">https://nacos.io/zh-cn/docs/quick-start-spring-cloud.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45397785/article/details/128076533">https://blog.csdn.net/weixin_45397785/article/details/128076533</a></li>
+</ul>
+
                 
               </div>
             
@@ -293,7 +330,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Diary/" class="category-chain-item">Diary</a>
+  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="category-chain-item">微服务</a>
   
   
 
@@ -308,7 +345,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/blog/" class="print-no-link">#blog</a>
+        <a href="/tags/java/" class="print-no-link">#java</a>
+      
+        <a href="/tags/springcloud/" class="print-no-link">#springcloud</a>
       
     </div>
   
@@ -320,8 +359,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Hello World!</div>
-      <div>https://varcel.luoqi.icu/2023/11/23/文件Templage/</div>
+      <div>SpringCloud_组件基本使用_Nacos</div>
+      <div>https://varcel.luoqi.icu/2023/11/24/SpringCloud_组件基本使用_Nacos/</div>
     </div>
     <div class="license-meta">
       
@@ -333,7 +372,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年11月23日</div>
+          <div>2023年11月24日</div>
         </div>
       
       

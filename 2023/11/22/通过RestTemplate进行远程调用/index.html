@@ -293,7 +293,7 @@
 </ol>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-meta">@RestController</span><br><span class="hljs-meta">@Slf4j</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">OrderController</span> &#123;<br><br>    <span class="hljs-keyword">public</span> static <span class="hljs-keyword">final</span> String PAYMENT_URL = <span class="hljs-string">&quot;http://localhost:8001&quot;</span>;<br><br>    <span class="hljs-meta">@Resource</span><br>    <span class="hljs-keyword">private</span> RestTemplate restTemplate;<br><br>    <span class="hljs-comment">//因为浏览器只支持get请求，为了方便这里就用get</span><br>    <span class="hljs-meta">@GetMapping(<span class="hljs-string">&quot;/consumer/payment/create&quot;</span>)</span><br>    <span class="hljs-keyword">public</span> CommonResult&lt;Payment&gt; create(Payment payment)&#123;<br>        log.info(<span class="hljs-string">&quot;********插入的数据：&quot;</span> + payment);<br>        <span class="hljs-comment">//postForObject分别有三个参数：请求地址，请求参数，返回的对象类型</span><br>        <span class="hljs-keyword">return</span> restTemplate.postForObject(PAYMENT_URL + <span class="hljs-string">&quot;/payment/create&quot;</span>, payment, CommonResult.<span class="hljs-keyword">class</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@GetMapping(<span class="hljs-string">&quot;/consumer/payment/get/&#123;id&#125;&quot;</span>)</span><br>    <span class="hljs-keyword">public</span> CommonResult&lt;Payment&gt; getPayment(<span class="hljs-meta">@PathVariable(<span class="hljs-string">&quot;id&quot;</span>)</span> <span class="hljs-built_in">Long</span> id)&#123;<br>        log.info(<span class="hljs-string">&quot;********查询的id：&quot;</span> + id);<br>        <span class="hljs-comment">//getForObject两个参数：请求地址，返回的对象类型</span><br>        <span class="hljs-keyword">return</span> restTemplate.getForObject(PAYMENT_URL + <span class="hljs-string">&quot;/payment/get/&quot;</span> + id, CommonResult.<span class="hljs-keyword">class</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-
+<p>to be contined… </p>
 <p>参考</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44073321/article/details/102804615">https://blog.csdn.net/weixin_44073321/article/details/102804615</a></li>
@@ -394,29 +394,6 @@
 
 
 
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2023/11/22/SpringCloud_%E7%BB%84%E4%BB%B6%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8_Eureka/" title="SpringCloud_组件基本使用_Eureka">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">SpringCloud_组件基本使用_Eureka</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2023/11/22/%E5%B8%B8%E8%A7%81%E5%B7%A5%E7%A8%8B%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/" title="常见工程报错问题">
-                        <span class="hidden-mobile">常见工程报错问题</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
               
             </div>
 

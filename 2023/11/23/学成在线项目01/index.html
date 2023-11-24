@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          520 字
+          715 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          5 分钟
+          6 分钟
         
       </span>
     
@@ -282,10 +282,14 @@
 <p>项目视频地址： <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1j8411N7Bm">https://www.bilibili.com/video/BV1j8411N7Bm</a></p>
 <hr>
 <h3 id="1、环境准备和项目运行"><a href="#1、环境准备和项目运行" class="headerlink" title="1、环境准备和项目运行"></a>1、环境准备和项目运行</h3><p>进行基础的初始化工程及配置</p>
-<p>MySQL版本选择8.0以上，创建 xc_content 数据库, 导入项目中的建表 sql 语句。</p>
-<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">DATABASE</span> xc_content<br></code></pre></td></tr></table></figure>
+<p>MySQL版本选择8.0以上，创建数据库, 导入项目中的建表 sql 语句。</p>
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">DATABASE</span> xc_content<br><br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">DATABASE</span> xc_users<br><br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">DATABASE</span> xc_system<br><br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">DATABASE</span> xc_media<br><br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">DATABASE</span> xc_learning<br><br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">DATABASE</span> xc_orders<br></code></pre></td></tr></table></figure>
 
 <p>启动 nacos 服务</p>
+<p>新建命令空间 dev</p>
+<p>在配置列表导入 nacos 配置, 里面的 数据库或者 Redis 需要改的话，针对性在导入完成后统一改一下</p>
+<p>启动服务</p>
+<p>服务顺序：GateWay →   Auth</p>
 <hr>
 <p>参考</p>
 <ul>
@@ -314,20 +318,6 @@
         
   <a href="/categories/coding/" class="category-chain-item">coding</a>
   
-  
-    <span>></span>
-    
-  <a href="/categories/coding/project/" class="category-chain-item">project</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/coding/project/xuecheng/" class="category-chain-item">xuecheng</a>
-  
-  
-
-  
-
   
 
       </span>
@@ -395,29 +385,6 @@
 
 
 
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2023/11/23/Vercel%E7%9A%84%E5%BC%80%E7%AE%B1%E4%BD%BF%E7%94%A8_%E5%90%8C%E6%AD%A5Hexo%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/" title="Vercel的开箱使用_同步Hexo静态博客">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Vercel的开箱使用_同步Hexo静态博客</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2023/11/22/SpringCloud_%E7%BB%84%E4%BB%B6%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8_Eureka/" title="SpringCloud_组件基本使用_Eureka">
-                        <span class="hidden-mobile">SpringCloud_组件基本使用_Eureka</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
               
             </div>
 
