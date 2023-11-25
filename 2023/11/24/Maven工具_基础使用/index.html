@@ -226,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.1k 字
+          2.3k 字
         
       </span>
     
@@ -237,7 +237,7 @@
         
         
         
-          18 分钟
+          20 分钟
         
       </span>
     
@@ -279,7 +279,8 @@
             
               <div class="markdown-body">
                 
-                <blockquote>
+                <h3 id="1、Maven-下载与安装"><a href="#1、Maven-下载与安装" class="headerlink" title="1、Maven 下载与安装"></a>1、Maven 下载与安装</h3><p>略</p>
+<h3 id="2、Maven配置文件修改"><a href="#2、Maven配置文件修改" class="headerlink" title="2、Maven配置文件修改"></a>2、Maven配置文件修改</h3><blockquote>
 <p>maven 配置文件内容</p>
 </blockquote>
 <p>设置本地仓库路径</p>
@@ -294,8 +295,11 @@
 <p>配置华为云</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"> <span class="hljs-tag">&lt;<span class="hljs-name">mirror</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>huaweicloud<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">url</span>&gt;</span>https://repo.huaweicloud.com/repository/maven/<span class="hljs-tag">&lt;/<span class="hljs-name">url</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">mirrorOf</span>&gt;</span>central<span class="hljs-tag">&lt;/<span class="hljs-name">mirrorOf</span>&gt;</span><br> <span class="hljs-tag">&lt;/<span class="hljs-name">mirror</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
+<p>阿里云:   <a target="_blank" rel="noopener" href="https://developer.aliyun.com/mvn/guide">https://developer.aliyun.com/mvn/guide</a></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">mirror</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>aliyunmaven<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">mirrorOf</span>&gt;</span>*<span class="hljs-tag">&lt;/<span class="hljs-name">mirrorOf</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>阿里云公共仓库<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">url</span>&gt;</span>https://maven.aliyun.com/repository/public<span class="hljs-tag">&lt;/<span class="hljs-name">url</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">mirror</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
 <p>下面这个论点，配置的时候注意一下：<strong>一个仓库只能对应一个镜像，当有多个镜像的mirrorOf指定了同一个仓库，maven只会从第一个匹配的仓库中进行查找</strong></p>
-<blockquote>
+<h3 id="3、IDEA-配置-maven"><a href="#3、IDEA-配置-maven" class="headerlink" title="3、IDEA 配置 maven"></a>3、IDEA 配置 maven</h3><blockquote>
 <p>IDEA 配置 maven</p>
 </blockquote>
 <p>快捷查找框中输入maven，查找与maven相关的设置，然后点击maven</p>
@@ -310,8 +314,6 @@
 <p>输入内容：<code>-DarchetypeCatalog=internal</code></p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311242133069.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>输入内容：<code>-DarchetypeCatalog=internal</code></p>
-<p>记录：国内maven仓库镜像地址</p>
-<p>阿里云  <a target="_blank" rel="noopener" href="https://developer.aliyun.com/mvn/guide">https://developer.aliyun.com/mvn/guide</a></p>
 <hr>
 <p>参考</p>
 <ul>

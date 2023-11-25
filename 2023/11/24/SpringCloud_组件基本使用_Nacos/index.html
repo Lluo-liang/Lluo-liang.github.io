@@ -28,6 +28,8 @@
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231124154048.png">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231124154144.png">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311250024118.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311260000905.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311260002165.png">
 <meta property="article:published_time" content="2023-11-24T15:13:57.000Z">
 <meta property="article:modified_time" content="2023-11-24T15:13:57.000Z">
 <meta property="article:author" content="Luo QI">
@@ -227,7 +229,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.7k 字
+          2.9k 字
         
       </span>
     
@@ -238,7 +240,7 @@
         
         
         
-          23 分钟
+          25 分钟
         
       </span>
     
@@ -343,6 +345,11 @@
 <li>通过 spring.cloud.nacos.config.name 配置项，支持一个 Nacos 配置集。</li>
 </ul>
 <p>当三种方式共同使用时，它们的优先级关系是：A &lt; B &lt; C。另外，A 和 B 的命名带有“共享”或是“拓展”，没有任何含义，只是优先级不同</p>
+<h3 id="4、注意事项"><a href="#4、注意事项" class="headerlink" title="4、注意事项"></a>4、注意事项</h3><p>命名空间id用于唯一标识命名空间， 新建命名空间时候，如果不填写命名空间id，则系统会自动生成命名空间id，生成规则为UUID方式。</p>
+<p>但在spring 项目中集成nacos 的时候，配置文件中填写的namespace就是命名空间的id</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311260000905.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>因此尽量保持nacos的命名空间名称和id 一致</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311260002165.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <hr>
 <p>参考</p>
 <ul>
@@ -353,6 +360,7 @@
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45397785/article/details/128076533">https://blog.csdn.net/weixin_45397785/article/details/128076533</a></li>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/ysj1241267542/article/details/112562611">https://blog.csdn.net/ysj1241267542/article/details/112562611</a></li>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010520146/article/details/118703413">https://blog.csdn.net/u010520146/article/details/118703413</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/wangwei021933/article/details/129590430">https://blog.csdn.net/wangwei021933/article/details/129590430</a></li>
 </ul>
 
                 
