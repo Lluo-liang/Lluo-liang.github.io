@@ -54,6 +54,7 @@ https://varcel.luoqi.icu/tags/node/
 https://varcel.luoqi.icu/tags/project/
 https://varcel.luoqi.icu/tags/obsidian/
 https://varcel.luoqi.icu/tags/blog/
+https://varcel.luoqi.icu/tags/computer/
 https://varcel.luoqi.icu/tags/MQ/
 https://varcel.luoqi.icu/categories/exam/
 https://varcel.luoqi.icu/categories/%E9%83%A8%E7%BD%B2/
@@ -70,5 +71,5 @@ https://varcel.luoqi.icu/categories/project/
 https://varcel.luoqi.icu/categories/%E5%B7%A5%E5%85%B7/
 https://varcel.luoqi.icu/categories/Diary/
 https://varcel.luoqi.icu/categories/coding/project/
-https://varcel.luoqi.icu/categories/coding/project/mogublog/
 https://varcel.luoqi.icu/categories/coding/tools/
+https://varcel.luoqi.icu/categories/coding/project/mogublog/
