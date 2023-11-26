@@ -18,27 +18,22 @@
   <meta name="author" content="Luo QI">
   <meta name="keywords" content="">
   
-    <meta name="description" content="windows旧电脑重装CentOs7系统制作为个人服务器">
+    <meta name="description" content="MySQL学习_基础内容">
 <meta property="og:type" content="article">
-<meta property="og:title" content="windows旧电脑重装CentOs7系统制作为个人服务器">
-<meta property="og:url" content="https://varcel.luoqi.icu/2023/11/26/%E6%97%A7%E7%94%B5%E8%84%91%E6%94%B9%E9%80%A0%E4%B8%BA%E6%9C%8D%E5%8A%A1%E5%99%A8/index.html">
+<meta property="og:title" content="MySQL学习_基础内容">
+<meta property="og:url" content="https://varcel.luoqi.icu/2023/11/27/MySQL%E5%AD%A6%E4%B9%A0_%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9/index.html">
 <meta property="og:site_name" content="轻松的洛亓">
-<meta property="og:description" content="windows旧电脑重装CentOs7系统制作为个人服务器">
+<meta property="og:description" content="MySQL学习_基础内容">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231126214740.png">
-<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231126220736.png">
-<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231126222516.png">
-<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231126222715.png">
-<meta property="article:published_time" content="2023-11-26T20:49:14.000Z">
-<meta property="article:modified_time" content="2023-11-26T20:49:14.000Z">
+<meta property="article:published_time" content="2023-11-27T00:03:56.000Z">
+<meta property="article:modified_time" content="2023-11-27T00:03:56.000Z">
 <meta property="article:author" content="Luo QI">
-<meta property="article:tag" content="computer">
+<meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231126214740.png">
   
   
   
-  <title>windows旧电脑重装CentOs7系统制作为个人服务器 - 轻松的洛亓</title>
+  <title>MySQL学习_基础内容 - 轻松的洛亓</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -204,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="windows旧电脑重装CentOs7系统制作为个人服务器"></span>
+            <span id="subtitle" data-typed-text="MySQL学习_基础内容"></span>
           
         </div>
 
@@ -215,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-11-26 20:49" pubdate>
-          2023年11月26日 晚上
+        <time datetime="2023-11-27 00:03" pubdate>
+          2023年11月27日 凌晨
         </time>
       </span>
     
@@ -227,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k 字
+          137 字
         
       </span>
     
@@ -238,7 +233,7 @@
         
         
         
-          10 分钟
+          2 分钟
         
       </span>
     
@@ -275,53 +270,17 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">windows旧电脑重装CentOs7系统制作为个人服务器</h1>
+            <h1 id="seo-header">MySQL学习_基础内容</h1>
             
             
               <div class="markdown-body">
                 
-                <h3 id="1、格式化windows-的盘符"><a href="#1、格式化windows-的盘符" class="headerlink" title="1、格式化windows 的盘符"></a>1、格式化windows 的盘符</h3><p>重新安装 centos 系统前，需要在 window 系统下先进入PE环境，将原来装有Windows系统的盘符使用分区工具格式化为FAT32格式.</p>
-<blockquote>
-<p>制作U盘启动盘</p>
-</blockquote>
-<p>使用老毛桃U盘启动工具制作U盘启动盘:  <a target="_blank" rel="noopener" href="http://lmt.psydrj.com/udisk.html">http://lmt.psydrj.com/udisk.html</a></p>
-<p>模式选择USB—HDD，格式选择“NTFS”；制作完成后，可以选择模拟启动测试，若能够进入老毛桃winpe主菜单，即表示老毛桃U盘启动盘制作成功。【这里主要是要用到他的第四个 DiskGenius 工具】</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231126214740.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>重新启动电脑，进入bios</p>
-<p>界面会让你选择一个 boot device ，你这里根据英文选择一下 U 盘启动（界面是显示的U盘名称）</p>
-<p>然后会进入到上面图片的内容（选择  DiskGenius ）</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231126220736.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>选择快速分区，选择分区类型FAT32，选择 1 个分区，</p>
-<h3 id="2、重装-centos-系统"><a href="#2、重装-centos-系统" class="headerlink" title="2、重装 centos 系统"></a>2、重装 centos 系统</h3><p>下载好 centos7 的镜像文件： </p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://man.linuxde.net/download/CentOS_7_4">https://man.linuxde.net/download/CentOS_7_4</a></li>
-<li><a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/centos/7/isos/x86_64/">http://mirrors.aliyun.com/centos/7/isos/x86_64/</a></li>
-</ul>
-<p>下载UltraISO软碟通 </p>
-<p>格式化之前的U盘，格式化为 FAT32 文件系统（或者准备第二个U盘）</p>
-<p>选择写入硬盘映像</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231126222516.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>写入方式默认（USB-HDD+），单击便携启动，单击写入新的驱动器引导扇区，单击Syslinux。</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231126222715.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>完毕后，单击下方写入，等待进度条满写入完毕。</p>
-<blockquote>
-<p>记：中间遇到一次 提示格式化重新操作</p>
-</blockquote>
-<p>UltraISO的软件提示其实是准确的，但却是程序员思维下科学素养级别的提示。这里的建议格式化U盘后再试，意思是建议你删除所有分区后重试</p>
-<p>解决处理：</p>
-<ul>
-<li>1、下载DiskGenius格式化所有分区 </li>
-<li>2、用win+R打开cmd，输入“diskpart”    输入“list disk”查看所有磁盘   依据大小选中对应磁盘“select disk x”    输入“clean”删除所有分区</li>
-</ul>
-<p>第一种方式的下载地址： <a target="_blank" rel="noopener" href="https://xiazai.zol.com.cn/detail/33/327603.shtml">https://xiazai.zol.com.cn/detail/33/327603.shtml</a></p>
-<p>根据他这种解决方案，上面说的第一个格式化和转换盘符为FAT32格式, 感觉也可以直接使用这款工具而可以不使用启动盘。</p>
+                <p>to be contined….</p>
 <hr>
-<p>参考：</p>
+<p>参考</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_59302403/article/details/132119884">https://blog.csdn.net/m0_59302403/article/details/132119884</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42292697/article/details/110285529">https://blog.csdn.net/weixin_42292697/article/details/110285529</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/biying0923/article/details/105711532">https://blog.csdn.net/biying0923/article/details/105711532</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1c3411T7Td">https://www.bilibili.com/video/BV1c3411T7Td</a></li>
+<li><a target="_blank" rel="noopener" href="https://javaguide.cn/database/mysql/mysql-questions-01.html">https://javaguide.cn/database/mysql/mysql-questions-01.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.pdai.tech/md/interview/x-interview.html#_8-2-mysql">https://www.pdai.tech/md/interview/x-interview.html#_8-2-mysql</a></li>
 </ul>
 
                 
@@ -341,7 +300,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E9%83%A8%E7%BD%B2/" class="category-chain-item">部署</a>
+  <a href="/categories/DataBase/" class="category-chain-item">DataBase</a>
   
   
 
@@ -356,7 +315,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/computer/" class="print-no-link">#computer</a>
+        <a href="/tags/mysql/" class="print-no-link">#mysql</a>
       
     </div>
   
@@ -368,8 +327,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>windows旧电脑重装CentOs7系统制作为个人服务器</div>
-      <div>https://varcel.luoqi.icu/2023/11/26/旧电脑改造为服务器/</div>
+      <div>MySQL学习_基础内容</div>
+      <div>https://varcel.luoqi.icu/2023/11/27/MySQL学习_基础内容/</div>
     </div>
     <div class="license-meta">
       
@@ -381,7 +340,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年11月26日</div>
+          <div>2023年11月27日</div>
         </div>
       
       
@@ -408,6 +367,23 @@
 
 
 
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/11/26/%E6%97%A7%E7%94%B5%E8%84%91%E6%94%B9%E9%80%A0%E4%B8%BA%E4%B8%AA%E4%BA%BA%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="windows旧电脑重装CentOs7系统制作为个人服务器">
+                        <span class="hidden-mobile">windows旧电脑重装CentOs7系统制作为个人服务器</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
               
             </div>
 
