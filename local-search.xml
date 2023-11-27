@@ -4,11 +4,38 @@
   
   
   <entry>
+    <title>Spring学习_基础内容</title>
+    <link href="/2023/11/27/Spring%E5%AD%A6%E4%B9%A0_%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9/"/>
+    <url>/2023/11/27/Spring%E5%AD%A6%E4%B9%A0_%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>大纲</p></blockquote><ul><li>Spring 概念</li><li>常用模块</li><li>IOC</li><li>AOP</li><li>Spring 事务</li><li>Spring MVC</li></ul><hr><p>参考</p><ul><li><a href="https://javaguide.cn/system-design/framework/spring/spring-knowledge-and-questions-summary.html">https://javaguide.cn/system-design/framework/spring/spring-knowledge-and-questions-summary.html</a></li><li><a href="https://www.pdai.tech/md/spring/spring.html">https://www.pdai.tech/md/spring/spring.html</a></li><li><a href="https://blog.csdn.net/Mixzi/article/details/123980213">https://blog.csdn.net/Mixzi/article/details/123980213</a></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>框架</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>java</tag>
+      
+      <tag>spring</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>MySQL学习_基础内容</title>
     <link href="/2023/11/27/MySQL%E5%AD%A6%E4%B9%A0_%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9/"/>
     <url>/2023/11/27/MySQL%E5%AD%A6%E4%B9%A0_%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9/</url>
     
-    <content type="html"><![CDATA[<p>to be contined….</p><hr><p>参考</p><ul><li><a href="https://javaguide.cn/database/mysql/mysql-questions-01.html">https://javaguide.cn/database/mysql/mysql-questions-01.html</a></li><li><a href="https://www.pdai.tech/md/interview/x-interview.html#_8-2-mysql">https://www.pdai.tech/md/interview/x-interview.html#_8-2-mysql</a></li></ul>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>大纲</p></blockquote><ul><li>关系型数据库</li><li>数据类型</li><li>MySQL 基础架构</li><li>存储引擎</li><li>数据库事务</li><li>MySQL锁</li><li>性能优化</li><li>主从复制，读写分离，分库分表</li></ul><p>to be contined….</p><hr><p>参考</p><ul><li><a href="https://javaguide.cn/database/mysql/mysql-questions-01.html">https://javaguide.cn/database/mysql/mysql-questions-01.html</a></li><li><a href="https://www.pdai.tech/md/interview/x-interview.html#_8-2-mysql">https://www.pdai.tech/md/interview/x-interview.html#_8-2-mysql</a></li></ul>]]></content>
     
     
     <categories>
@@ -73,6 +100,33 @@
       <tag>java</tag>
       
       <tag>project</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Vue学习_基础内容</title>
+    <link href="/2023/11/26/Vue%E5%AD%A6%E4%B9%A0_%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9/"/>
+    <url>/2023/11/26/Vue%E5%AD%A6%E4%B9%A0_%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>大纲</p></blockquote><ul><li>Vue 基础</li><li>Vue 语法</li><li>组件化开发</li><li>路由</li><li>webpack</li><li>脚手架</li></ul><hr><p>参考</p><ul><li><a href="https://cn.vuejs.org/">https://cn.vuejs.org/</a></li><li><a href="https://blog.csdn.net/fmk1023/article/details/111381876">https://blog.csdn.net/fmk1023/article/details/111381876</a></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>web</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>web</tag>
+      
+      <tag>vue</tag>
       
     </tags>
     
