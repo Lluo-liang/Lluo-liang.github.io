@@ -230,7 +230,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k 字
+          2.1k 字
         
       </span>
     
@@ -241,7 +241,7 @@
         
         
         
-          16 分钟
+          18 分钟
         
       </span>
     
@@ -283,7 +283,15 @@
             
               <div class="markdown-body">
                 
-                <h3 id="1、格式化windows-的盘符"><a href="#1、格式化windows-的盘符" class="headerlink" title="1、格式化windows 的盘符"></a>1、格式化windows 的盘符</h3><p>重新安装 centos 系统前，需要在 window 系统下先进入PE环境，将原来装有Windows系统的盘符使用分区工具格式化为FAT32格式.</p>
+                <p>如果需要将一台 winodws 电脑重装为 centos 系统，需要分为下面几步</p>
+<ul>
+<li>1、先对 windows 进行磁盘格式化操作</li>
+<li>2、通过 iso 文件进行对某个U盘刻录操作</li>
+<li>3、电脑通过这个U盘进行安装 centos 系统</li>
+<li>4、基本配置与使用</li>
+</ul>
+<p>具体操作见如下内容：</p>
+<h3 id="1、格式化windows-的盘符"><a href="#1、格式化windows-的盘符" class="headerlink" title="1、格式化windows 的盘符"></a>1、格式化windows 的盘符</h3><p>重新安装 centos 系统前，需要在 window 系统下先进入PE环境，将原来装有Windows系统的盘符使用分区工具格式化为FAT32格式.</p>
 <blockquote>
 <p>制作U盘启动盘</p>
 </blockquote>
@@ -336,32 +344,48 @@
 <hr>
 <h4 id="重装系统"><a href="#重装系统" class="headerlink" title="重装系统"></a>重装系统</h4><p>将 U 盘 插入需要重装的电脑并开机。如果已经设置完毕以USB为第一启动项，则不用再次进入bios界面。</p>
 <p>没有的话再进入一次，通过 USB 启动。</p>
+<blockquote>
+<p>安装操作</p>
+</blockquote>
 <ul>
-<li>选择Install CentOS 7</li>
-<li>按回车键</li>
+<li>1、选择Install CentOS 7</li>
+<li>2、按回车键</li>
+<li>3、成功进入CentOS系统图形化的安装界面后，进行初始化</li>
 </ul>
-<p>成功进入CentOS系统图形化的安装界面后，进行初始化</p>
+<p>初始化配置</p>
 <ul>
-<li>中文</li>
-<li>软件选择：GNOME桌面</li>
-<li>安装位置：选择磁盘，手动分区（“我要配置分区”）<ul>
-<li>&#x2F;boot   也可以不添加  1G</li>
-<li>&#x2F;swap  交互分区         2G</li>
-<li>&#x2F;   根目录，剩下所有空间</li>
+<li>①中文（语言）</li>
+<li>②软件选择：GNOME桌面</li>
+<li>③安装位置：选择磁盘，手动分区（选择“我要配置分区”）<ul>
+<li>&#x2F;boot     也可以不添加     1G</li>
+<li>&#x2F;swap   交互分区             2G</li>
+<li>&#x2F;            根目录，分配剩下所有空间</li>
 </ul>
 </li>
 </ul>
-<p>软件选择</p>
+<blockquote>
+<p>初始化配置</p>
+</blockquote>
+<p>②软件选择</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231127234606.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>添加新挂载点 &#x2F;boot</p>
+<p>③添加新挂载点 &#x2F;boot</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231127234855.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p><strong>设置好后点击完成，选择接受更改</strong></p>
+<blockquote>
+<p>网络与主机名</p>
+</blockquote>
 <p>网络与主机名：<strong>打开网络，自己设置一个主机名，然后点击完成</strong></p>
+<blockquote>
+<p>用户设置</p>
+</blockquote>
 <p>开始安装</p>
 <ul>
 <li><strong>点击设置root密码</strong></li>
 <li>等待过程中可以 <strong>创建一个普通用户</strong></li>
 </ul>
+<blockquote>
+<p>重启电脑后配置内容</p>
+</blockquote>
 <p>重启电脑</p>
 <p><strong>重启后进入初始设置界面，接受许可，然后点击完成配置</strong>  → 完成配置</p>
 <p><strong>等待，然后来到登录页面，我们选择未列出，然后输入root和root的密码，然后点击登录。</strong></p>
