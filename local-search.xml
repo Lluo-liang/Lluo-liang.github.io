@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>centos7系统_常用操作</title>
+    <link href="/2023/11/28/centos7%E7%B3%BB%E7%BB%9F_%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/"/>
+    <url>/2023/11/28/centos7%E7%B3%BB%E7%BB%9F_%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</url>
+    
+    <content type="html"><![CDATA[<h3 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h3><blockquote><p>查看防火墙状态</p></blockquote><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">firewall-cmd <span class="hljs-comment">--state</span><br></code></pre></td></tr></table></figure><p>常用操作</p><figure class="highlight nsis"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs nsis"><span class="hljs-params">system</span>ctl stop firewalld   <span class="hljs-comment"># 关闭防火墙</span><br><span class="hljs-params">system</span>ctl start firewalld  <span class="hljs-comment"># 启动防火墙</span><br>firewall-cmd --reload      <span class="hljs-comment"># 重启防火墙</span><br><span class="hljs-params">system</span>ctl disable firewalld  <span class="hljs-comment"># 禁用防火墙</span><br></code></pre></td></tr></table></figure><blockquote><p>开放防火墙端口</p></blockquote><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs dockerfile">firewall-<span class="hljs-keyword">cmd</span><span class="language-bash"> --query-port=80/tcp   <span class="hljs-comment">#端口开放情况</span></span><br>firewall-<span class="hljs-keyword">cmd</span><span class="language-bash"> --permanent --list-ports  <span class="hljs-comment">#查看开放的端口</span></span><br><br><span class="hljs-comment">#开放端口</span><br>firewall-<span class="hljs-keyword">cmd</span><span class="language-bash"> --permanent --add-port=8080/tcp</span><br>firewall-<span class="hljs-keyword">cmd</span><span class="language-bash"> --permanent --add-port=8083-8085/tcp</span><br><br><span class="hljs-comment">#关闭端口</span><br>firewall-<span class="hljs-keyword">cmd</span><span class="language-bash"> --permanent --remove-port=8083-8085/tcp</span><br></code></pre></td></tr></table></figure><p>端口开放后建议重启一下防火墙</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>部署</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>linux</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Spring学习_基础内容</title>
     <link href="/2023/11/27/Spring%E5%AD%A6%E4%B9%A0_%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9/"/>
     <url>/2023/11/27/Spring%E5%AD%A6%E4%B9%A0_%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9/</url>
@@ -73,35 +98,6 @@
     <tags>
       
       <tag>computer</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>个人在线网盘_ZFile</title>
-    <link href="/2023/11/26/%E4%B8%AA%E4%BA%BA%E5%9C%A8%E7%BA%BF%E7%BD%91%E7%9B%98_ZFile/"/>
-    <url>/2023/11/26/%E4%B8%AA%E4%BA%BA%E5%9C%A8%E7%BA%BF%E7%BD%91%E7%9B%98_ZFile/</url>
-    
-    <content type="html"><![CDATA[<p>看到有一个还不错的项目，有时候需要将文件放置在云端，这里学习使用一下这个工具。（支持预览操作）</p><p>项目地址： <a href="https://github.com/zfile-dev/zfile">https://github.com/zfile-dev/zfile</a></p><p>部署文档地址： <a href="https://docs.zfile.vip/">https://docs.zfile.vip/</a></p><h3 id="1、项目运行"><a href="#1、项目运行" class="headerlink" title="1、项目运行"></a>1、项目运行</h3><p>下载项目后，需要系统里面有 JDK8 的环境</p><p>to be contined….</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>project</category>
-      
-      <category>github</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>java</tag>
-      
-      <tag>project</tag>
       
     </tags>
     
@@ -233,35 +229,6 @@
     <tags>
       
       <tag>hexo</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>蘑菇博客项目01</title>
-    <link href="/2023/11/23/%E8%98%91%E8%8F%87%E5%8D%9A%E5%AE%A2%E9%A1%B9%E7%9B%AE01/"/>
-    <url>/2023/11/23/%E8%98%91%E8%8F%87%E5%8D%9A%E5%AE%A2%E9%A1%B9%E7%9B%AE01/</url>
-    
-    <content type="html"><![CDATA[<p>to be contined…</p><hr><p>参考</p><ul><li><a href="https://gitee.com/moxi159753/mogu_blog_v2.git">https://gitee.com/moxi159753/mogu_blog_v2.git</a></li><li><a href="https://moxi159753.gitee.io/mogu_blog_doc/#/README">https://moxi159753.gitee.io/mogu_blog_doc/#/README</a></li></ul>]]></content>
-    
-    
-    <categories>
-      
-      <category>project</category>
-      
-      <category>github</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>java</tag>
-      
-      <tag>project</tag>
       
     </tags>
     
