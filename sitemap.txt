@@ -1,4 +1,5 @@
 https://varcel.luoqi.icu/about/index.html
+https://varcel.luoqi.icu/2023/11/29/vim%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/
 https://varcel.luoqi.icu/2023/11/28/centos7%E7%B3%BB%E7%BB%9F_%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/
 https://varcel.luoqi.icu/2023/11/27/Spring%E5%AD%A6%E4%B9%A0_%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9/
 https://varcel.luoqi.icu/2023/11/27/MySQL%E5%AD%A6%E4%B9%A0_%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9/
@@ -60,10 +61,13 @@ https://varcel.luoqi.icu/tags/spring/
 https://varcel.luoqi.icu/tags/vue/
 https://varcel.luoqi.icu/tags/linux/
 https://varcel.luoqi.icu/tags/node/
+https://varcel.luoqi.icu/tags/computer/
+https://varcel.luoqi.icu/tags/vim/
 https://varcel.luoqi.icu/tags/project/
+https://varcel.luoqi.icu/tags/nacos/
+https://varcel.luoqi.icu/tags/jdk/
 https://varcel.luoqi.icu/tags/obsidian/
 https://varcel.luoqi.icu/tags/blog/
-https://varcel.luoqi.icu/tags/computer/
 https://varcel.luoqi.icu/tags/MQ/
 https://varcel.luoqi.icu/categories/exam/
 https://varcel.luoqi.icu/categories/%E5%B7%A5%E5%85%B7/
@@ -75,9 +79,7 @@ https://varcel.luoqi.icu/categories/DataBase/
 https://varcel.luoqi.icu/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/
 https://varcel.luoqi.icu/categories/%E6%A1%86%E6%9E%B6/
 https://varcel.luoqi.icu/categories/web/
-https://varcel.luoqi.icu/categories/coding/
 https://varcel.luoqi.icu/categories/project/
 https://varcel.luoqi.icu/categories/Diary/
-https://varcel.luoqi.icu/categories/coding/github/
 https://varcel.luoqi.icu/categories/project/github/
 https://varcel.luoqi.icu/categories/project/coding/

@@ -28,7 +28,10 @@
 <meta property="article:published_time" content="2023-11-29T00:41:52.000Z">
 <meta property="article:modified_time" content="2023-11-29T00:41:52.000Z">
 <meta property="article:author" content="Luo QI">
+<meta property="article:tag" content="linux">
 <meta property="article:tag" content="project">
+<meta property="article:tag" content="nacos">
+<meta property="article:tag" content="jdk">
 <meta name="twitter:card" content="summary_large_image">
   
   
@@ -222,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          91 字
+          1.5k 字
         
       </span>
     
@@ -233,7 +236,7 @@
         
         
         
-          1 分钟
+          13 分钟
         
       </span>
     
@@ -278,7 +281,45 @@
                 <p>项目地址： <a target="_blank" rel="noopener" href="https://github.com/Jackson0714/PassJava-Platform">https://github.com/Jackson0714/PassJava-Platform</a></p>
 <p>前端项目在子目录 passjava-portal 下面</p>
 <hr>
-<p>to be contined…</p>
+<h3 id="centos7-安装-nacos-操作"><a href="#centos7-安装-nacos-操作" class="headerlink" title="centos7 安装 nacos 操作"></a>centos7 安装 nacos 操作</h3><p>项目运行环境需要安装 nacos </p>
+<p>这里是在 centos 中进行安装，安装版本是 1.3.2，下载地址： <a target="_blank" rel="noopener" href="https://github.com/alibaba/nacos/releases/tag/1.3.2">https://github.com/alibaba/nacos/releases/tag/1.3.2</a></p>
+<p>nacos 运行需要先安装一下 JDK 环境，注意一下</p>
+<p>可以自己点击下载   <code>nacos-server-1.3.2.tar.gz</code></p>
+<p>或者在 Linux系统中下载命令：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">wget</span> https://github.com/alibaba/nacos/releases/download/<span class="hljs-number">1</span>.<span class="hljs-number">3</span>.<span class="hljs-number">2</span>/nacos-server-<span class="hljs-number">1</span>.<span class="hljs-number">3</span>.<span class="hljs-number">2</span>.tar.gz<br></code></pre></td></tr></table></figure>
+
+<p>下载完压缩包之后，上传指服务器任意目录，进行解压</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">tar</span> -zxvf nacos-server-<span class="hljs-number">1</span>.<span class="hljs-number">3</span>.<span class="hljs-number">2</span>.tar.gz<br></code></pre></td></tr></table></figure>
+
+<p>解压后会生成 nacos 文件夹，进入到 nacos 目录，输入命令启动(以单机的形式启动)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">bin/startup.sh -m standalone<br></code></pre></td></tr></table></figure>
+
+<p>如果需要持久化 配置到mysql，则调整nacos的配置</p>
+<p>如果你的服务器开了防火墙，则需要开放相应的端口</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-comment">#开放端口</span><br>firewall-cmd <span class="hljs-params">--zone=public</span> <span class="hljs-params">--add-port=8848/tcp</span> <span class="hljs-params">--permanent</span> <br><span class="hljs-comment"># 重启防火墙 </span><br>firewall-cmd <span class="hljs-params">--reload</span><br><span class="hljs-comment"># 查看开放的端口列表 </span><br>firewall-cmd <span class="hljs-params">--list-port</span><br></code></pre></td></tr></table></figure>
+
+<p>nacos默认的启动端口是 8848，访问 <code>http://ip:端口/nacos</code> 即可看到登录页面.默认的用户名密码是 <code>nacos/naocs</code>，登录即可使用</p>
+<h3 id="linux系统下-java环境变量的配置"><a href="#linux系统下-java环境变量的配置" class="headerlink" title="linux系统下 java环境变量的配置"></a>linux系统下 java环境变量的配置</h3><p>输入<code>echo $JAVA_HOME</code>结果为空，说明没有配置java环境变量</p>
+<p>查看yum安装的jdk在哪个目录下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">ls</span> -l /etc/alternatives/java<br></code></pre></td></tr></table></figure>
+
+<p>默认安装路径是在 <code>/usr/lib/jvm</code></p>
+<p>配置环境变量  <code>vim /etc/profile</code></p>
+<p>追加内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">export</span> JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk<br><span class="hljs-built_in">export</span> JRE_HOME=<span class="hljs-variable">$JAVA_HOME</span>/jre<br><span class="hljs-built_in">export</span> CLASSPATH=<span class="hljs-variable">$JAVA_HOME</span>/lib:<span class="hljs-variable">$JRE_HOME</span>/lib:<span class="hljs-variable">$CLASSPATH</span><br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$JAVA_HOME</span>/bin:<span class="hljs-variable">$JRE_HOME</span>/bin:<span class="hljs-variable">$PATH</span>:/bin:/usr/bin<br></code></pre></td></tr></table></figure>
+
+<p>刷新环境变量配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span> /etc/profile<br><br>/usr/lib/jvm/<br><span class="hljs-built_in">echo</span> <span class="hljs-variable">$JAVA_HOME</span><br>java -version<br>bin/startup.sh -m standalone<br></code></pre></td></tr></table></figure>
+
+<hr>
+<p>参考：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/Jackson0714/PassJava-Platform">https://github.com/Jackson0714/PassJava-Platform</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.passjava.cn/#/01.PassJava/01.Introduction/7.%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AEMac%E7%89%88">http://www.passjava.cn/#/01.PassJava/01.Introduction/7.%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AEMac%E7%89%88</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/m4330187/article/details/122182282">https://blog.csdn.net/m4330187/article/details/122182282</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/hanfanfan/p/17010206.html">https://www.cnblogs.com/hanfanfan/p/17010206.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.51cto.com/u_19261/6505024">https://blog.51cto.com/u_19261/6505024</a></li>
+</ul>
 
                 
               </div>
@@ -297,12 +338,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/coding/" class="category-chain-item">coding</a>
+  <a href="/categories/project/" class="category-chain-item">project</a>
   
   
     <span>></span>
     
-  <a href="/categories/coding/github/" class="category-chain-item">github</a>
+  <a href="/categories/project/github/" class="category-chain-item">github</a>
   
   
 
@@ -319,7 +360,13 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
+        <a href="/tags/linux/" class="print-no-link">#linux</a>
+      
         <a href="/tags/project/" class="print-no-link">#project</a>
+      
+        <a href="/tags/nacos/" class="print-no-link">#nacos</a>
+      
+        <a href="/tags/jdk/" class="print-no-link">#jdk</a>
       
     </div>
   

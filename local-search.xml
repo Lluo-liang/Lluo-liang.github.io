@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>vim常用操作</title>
+    <link href="/2023/11/29/vim%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/"/>
+    <url>/2023/11/29/vim%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</url>
+    
+    <content type="html"><![CDATA[<h4 id="退出编辑器"><a href="#退出编辑器" class="headerlink" title="退出编辑器"></a>退出编辑器</h4><ul><li>wq：保存当前文件并退出</li><li>wqa：保存所有文件并退出</li><li>q!： 不保存，强制退出</li><li>qa!： 有多个文件被打开，同时退出</li></ul><hr><p>参考</p><ul><li><a href="https://zhuanlan.zhihu.com/p/89042423">https://zhuanlan.zhihu.com/p/89042423</a></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>工具</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>linux</tag>
+      
+      <tag>computer</tag>
+      
+      <tag>vim</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>centos7系统_常用操作</title>
     <link href="/2023/11/28/centos7%E7%B3%BB%E7%BB%9F_%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/"/>
     <url>/2023/11/28/centos7%E7%B3%BB%E7%BB%9F_%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</url>
