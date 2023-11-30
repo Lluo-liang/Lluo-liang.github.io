@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          2.4k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          13 分钟
+          21 分钟
         
       </span>
     
@@ -306,10 +306,42 @@
 <p>默认安装路径是在 <code>/usr/lib/jvm</code></p>
 <p>配置环境变量  <code>vim /etc/profile</code></p>
 <p>追加内容</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">export</span> JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk<br><span class="hljs-built_in">export</span> JRE_HOME=<span class="hljs-variable">$JAVA_HOME</span>/jre<br><span class="hljs-built_in">export</span> CLASSPATH=<span class="hljs-variable">$JAVA_HOME</span>/lib:<span class="hljs-variable">$JRE_HOME</span>/lib:<span class="hljs-variable">$CLASSPATH</span><br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$JAVA_HOME</span>/bin:<span class="hljs-variable">$JRE_HOME</span>/bin:<span class="hljs-variable">$PATH</span>:/bin:/usr/bin<br></code></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">export</span> <span class="hljs-attribute">JAVA_HOME</span>=/usr/local/lib/java/jdk1.8.0_231 <br><span class="hljs-built_in">export</span> <span class="hljs-attribute">JRE_HOME</span>=<span class="hljs-variable">$&#123;JAVA_HOME&#125;</span>/jre  <br><span class="hljs-built_in">export</span> <span class="hljs-attribute">CLASSPATH</span>=.:$&#123;JAVA_HOME&#125;/lib:<span class="hljs-variable">$&#123;JRE_HOME&#125;</span>/lib  <br><span class="hljs-built_in">export</span>  <span class="hljs-attribute">PATH</span>=<span class="hljs-variable">$&#123;JAVA_HOME&#125;</span>/bin:$PATH<br></code></pre></td></tr></table></figure>
 
 <p>刷新环境变量配置</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span> /etc/profile<br><br>/usr/lib/jvm/<br><span class="hljs-built_in">echo</span> <span class="hljs-variable">$JAVA_HOME</span><br>java -version<br>bin/startup.sh -m standalone<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span> /etc/profile<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>卸载重装</p>
+</blockquote>
+<p>卸载参考（Linux上卸载JDK）： <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44990104/article/details/117589372">https://blog.csdn.net/weixin_44990104/article/details/117589372</a></p>
+<p>linux安装jdk8详细步骤，参考： <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_33794744/article/details/107838128">https://blog.csdn.net/qq_33794744/article/details/107838128</a></p>
+<h3 id="nacos-初始化"><a href="#nacos-初始化" class="headerlink" title="nacos 初始化"></a>nacos 初始化</h3><p>查看 JAVA_HOME （windows)</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey"><span class="hljs-built_in">echo %</span>JAV<span class="hljs-built_in">A_HOME</span>%<br></code></pre></td></tr></table></figure>
+
+<p>Nacos 启动报错： Please set the JAVA_HOME variable in your environment, We need java(x64)! jdk8 or later</p>
+<p>参考： <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_33595545/article/details/106809613">https://blog.csdn.net/qq_33595545/article/details/106809613</a></p>
+<p>直接在startup.cmd中重新设置JAVA_HOME路径</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs dos"><span class="hljs-comment">rem limitations under the License.</span><br><span class="hljs-built_in">set</span> JAVA_HOME=&quot;D:\softInstall\java&quot;<br><span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">exist</span> &quot;<span class="hljs-variable">%JAVA_HOME%</span>\bin\java.exe&quot; <span class="hljs-built_in">echo</span> Please <span class="hljs-built_in">set</span> the JAVA_HOME variable <span class="hljs-keyword">in</span> your environment, We need java(x64)! jdk8 or later is better! &amp; <span class="hljs-keyword">EXIT</span> /B <span class="hljs-number">1</span><br><span class="hljs-built_in">set</span> &quot;JAVA=<span class="hljs-variable">%JAVA_HOME%</span>\bin\java.exe&quot;<br></code></pre></td></tr></table></figure>
+
+<p>根据他文档提示： <a target="_blank" rel="noopener" href="http://www.passjava.cn/#/01.PassJava/01.Introduction/7.%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AEMac%E7%89%88">http://www.passjava.cn/#/01.PassJava/01.Introduction/7.%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AEMac%E7%89%88</a></p>
+<p>下载他对应的 nacos ，然后启动</p>
+<h3 id="mysql-初始化"><a href="#mysql-初始化" class="headerlink" title="mysql 初始化"></a>mysql 初始化</h3><p>选择项目 &#x2F;data 文件夹的 sql 的文件，根据顺序在 mysql8.0 数据库进行初始化操作</p>
+<h3 id="配置初始化"><a href="#配置初始化" class="headerlink" title="配置初始化"></a>配置初始化</h3><blockquote>
+<p>OSS 配置</p>
+</blockquote>
+<p>thirdparty 微服务配置，配置对应 OSS 地址。配置阿里云 OSS，用来保存图片</p>
+<blockquote>
+<p>运行镜像安装与配置</p>
+</blockquote>
+<p>Redis</p>
+<p>Zipkin</p>
+<blockquote>
+<p>项目启动</p>
+</blockquote>
+<p>renren-fast  →  gateway  →  question  →  thirdparty   →  admin</p>
+<p>启动前端</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-keyword">brew </span><span class="hljs-keyword">install </span>npm<br><br><span class="hljs-keyword">brew </span><span class="hljs-keyword">install </span>nvm<br><br>npm <span class="hljs-keyword">install</span><br><span class="hljs-keyword"></span><br>npm run dev<br></code></pre></td></tr></table></figure>
 
 <hr>
 <p>参考：</p>

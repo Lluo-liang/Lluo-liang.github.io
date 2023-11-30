@@ -1,7 +1,7 @@
+https://varcel.luoqi.icu/about/index.html
 https://varcel.luoqi.icu/2023/11/27/MySQL%E5%AD%A6%E4%B9%A0_%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9/
 https://varcel.luoqi.icu/2023/11/30/MongoDB_%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/
 https://varcel.luoqi.icu/2023/11/30/windows%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/
-https://varcel.luoqi.icu/about/index.html
 https://varcel.luoqi.icu/2023/11/29/vim%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/
 https://varcel.luoqi.icu/2023/11/28/centos7%E7%B3%BB%E7%BB%9F_%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/
 https://varcel.luoqi.icu/2023/11/27/Spring%E5%AD%A6%E4%B9%A0_%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9/
