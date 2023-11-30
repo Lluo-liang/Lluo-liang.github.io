@@ -25,11 +25,13 @@
 <meta property="og:site_name" content="轻松的洛亓">
 <meta property="og:description" content="MySQL学习_基础内容">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311301556607.png">
 <meta property="article:published_time" content="2023-11-27T00:03:56.000Z">
-<meta property="article:modified_time" content="2023-11-27T00:03:56.000Z">
+<meta property="article:modified_time" content="2023-11-30T16:42:23.000Z">
 <meta property="article:author" content="Luo QI">
 <meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311301556607.png">
   
   
   
@@ -222,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          191 字
+          1.8k 字
         
       </span>
     
@@ -233,7 +235,7 @@
         
         
         
-          2 分钟
+          15 分钟
         
       </span>
     
@@ -281,13 +283,143 @@
 <ul>
 <li>关系型数据库</li>
 <li>数据类型</li>
-<li>MySQL 基础架构</li>
+<li>MySQL基础架构</li>
 <li>存储引擎</li>
+<li>MySQL索引</li>
 <li>数据库事务</li>
+<li>多版本并发控制</li>
 <li>MySQL锁</li>
+<li>MySQL日志</li>
 <li>性能优化</li>
 <li>主从复制，读写分离，分库分表</li>
 </ul>
+<p>MySQL是一种关系型数据库管理系统（RDBMS)，用于持久化存储数据。</p>
+<h4 id="字段类型"><a href="#字段类型" class="headerlink" title="字段类型"></a>字段类型</h4><ul>
+<li>字段类型<ul>
+<li>数值类型<ul>
+<li>整型<ul>
+<li>TINYINT</li>
+<li>SMALLINT</li>
+<li>MEDIUMINT</li>
+<li>INT</li>
+<li>BIGINT</li>
+</ul>
+</li>
+<li>浮点型<ul>
+<li>FLOAT<br>DOUBLE</li>
+</ul>
+</li>
+<li>定点型<ul>
+<li>DECIMAL</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>字符串类型<ul>
+<li>常用<ul>
+<li>CHAR</li>
+<li>VARCHAR</li>
+</ul>
+</li>
+<li>TEXT 类<ul>
+<li>TINYTEXT</li>
+<li>TEXT</li>
+<li>MEDIUMTEXT</li>
+<li>LONGTEXT</li>
+</ul>
+</li>
+<li>BLOB类<ul>
+<li>TINYBLOB</li>
+<li>BLOB</li>
+<li>MEDIUMBLOB</li>
+<li>LONGBLOB</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>日期时间类型<ul>
+<li>常用<ul>
+<li>YEAR</li>
+<li>TIME</li>
+<li>DATE</li>
+<li>DATETIME</li>
+<li>TIMESATMP</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="MySQL基础架构"><a href="#MySQL基础架构" class="headerlink" title="MySQL基础架构"></a>MySQL基础架构</h4><p>MySQL的基础架构主要由以下几个关键组件构成：</p>
+<ol>
+<li><strong>连接器（Connection Management）：</strong><ul>
+<li>负责身份认证和权限相关的工作，管理用户的连接请求，处理用户登录MySQL的过程。</li>
+</ul>
+</li>
+<li><strong>查询缓存（Query Cache）：</strong><ul>
+<li>在执行查询语句之前，MySQL会先检查查询缓存，如果之前执行过相同的查询，就可以直接返回缓存中的结果。然而，由于MySQL 8.0版本后移除了查询缓存，因为该功能在实际应用中并不太实用。</li>
+</ul>
+</li>
+<li><strong>分析器（Parser）：</strong><ul>
+<li>当查询缓存未命中时，SQL语句会经过分析器。分析器的主要任务是解析SQL语句，确定其意图，并检查语法的正确性。</li>
+</ul>
+</li>
+<li><strong>优化器（Optimizer）：</strong><ul>
+<li>优化器根据MySQL的统计信息和规则，选择执行SQL查询的最优执行计划，以提高查询性能。</li>
+</ul>
+</li>
+<li><strong>执行器（Execution Engine）：</strong><ul>
+<li>执行器负责执行经过优化后的查询计划，通过存储引擎访问实际的数据，并将结果返回给用户。<br> <strong>权限判断（Access Control）：</strong><ul>
+<li>在执行语句之前，MySQL会进行权限判断，确保用户具有执行该语句所需的权限。如果用户没有足够的权限，将会报错。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>插件式存储引擎（Pluggable Storage Engines）：</strong><ul>
+<li>MySQL支持多种存储引擎，如InnoDB、MyISAM、Memory等。这些存储引擎负责实际的数据存储和读取，通过插件式架构，用户可以根据需求选择合适的存储引擎。<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311301556607.png" srcset="/img/loading.gif" lazyload alt="image.png"></li>
+</ul>
+</li>
+</ol>
+<h4 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h4><p>MySQL 当前默认的存储引擎是 InnoDB。</p>
+<p>在 MySQL的存储引擎中，只有 InnoDB 是事务性存储引擎（只有他支持事务）
+ </p>
+<h4 id="MySQL索引"><a href="#MySQL索引" class="headerlink" title="MySQL索引"></a>MySQL索引</h4><p>索引是在<strong>存储引擎层实现</strong>的，而不是在服务器层实现的，不同存储引擎具有不同的索引类型和实现。</p>
+<blockquote>
+<p>索引类型</p>
+</blockquote>
+<p>MySQL支持多种索引类型，其中最常见的是B树索引和哈希索引。</p>
+<p>大多数情况下，使用B树索引是最合适的选择，它适用于各种不同查询类型。</p>
+<blockquote>
+<p>索引的创建和注意事项</p>
+</blockquote>
+<p>实际操作的时候我们一般会通过分析查询执行计划来优化查询，确保MySQL使用比较正确的索引。</p>
+<p>尽管一般添加索引会优化数据的查询性能，但过多或者不必要的索引有时候会导致写操作的性能下降。因此索引的添加是需要权衡一定利弊的。</p>
+<p>除了在创建索引时权衡读写性能，还需要定期进行索引的性能分析和优化。</p>
+<h4 id="数据库事务"><a href="#数据库事务" class="headerlink" title="数据库事务"></a>数据库事务</h4><p>事务的特性：要么全部执行成功，要么全部执行失败</p>
+<blockquote>
+<p>事务的ACID属性</p>
+</blockquote>
+<ul>
+<li><strong>原子性（Atomicity）：</strong> 事务是一个原子操作单元，要么全部执行，要么全部回滚，不存在部分执行的情况。</li>
+<li><strong>一致性（Consistency）：</strong> 事务的执行将数据库从一个一致的状态转移到另一个一致的状态，不破坏数据库的完整性约束。</li>
+<li><strong>隔离性（Isolation）：</strong> 事务的执行是相互隔离的，一个事务的修改在另一个事务看来是不可见的，防止并发引起的问题。</li>
+<li><strong>持久性（Durability）：</strong> 一旦事务被提交，其修改将永久保存在数据库中，即使系统发生故障也不会丢失。</li>
+</ul>
+<blockquote>
+<p>事务控制语句</p>
+</blockquote>
+<p>事务的开始、提交和回滚：</p>
+<ul>
+<li><code>BEGIN</code> 或 <code>START TRANSACTION</code>：开始一个新的事务。</li>
+<li><code>COMMIT</code>：提交事务，将更改永久保存到数据库。</li>
+<li><code>ROLLBACK</code>：回滚事务，撤销自上一次<code>COMMIT</code>或<code>ROLLBACK</code>以来的所有更改。</li>
+</ul>
+<blockquote>
+<p>事务的隔离级别</p>
+</blockquote>
+<p>MySQL支持多个事务隔离级别，包括读未提交、读已提交、可重复读和串行化。</p>
+<h4 id="多版本并发控制"><a href="#多版本并发控制" class="headerlink" title="多版本并发控制"></a>多版本并发控制</h4><p>略</p>
 <p>to be contined….</p>
 <hr>
 <p>参考</p>
