@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>windows常用操作</title>
+    <link href="/2023/11/30/windows%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/"/>
+    <url>/2023/11/30/windows%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>windows_查看端口被占用情况、结束进程</p></blockquote><p>查看指定端口占用情况（端口引号有没有都可以，此处以5040为例）</p><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs 1c">netstat -aon<span class="hljs-string">|findstr 5040</span><br></code></pre></td></tr></table></figure><p>根据PID查看相应的进程或程序(也可以任务管理器查看)</p><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs 1c">tasklist<span class="hljs-string">|findstr 5340</span><br></code></pre></td></tr></table></figure><p>结束进程</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">taskkill /f /t /im 进程名<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>Diary</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>computer/windows</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>vim常用操作</title>
     <link href="/2023/11/29/vim%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/"/>
     <url>/2023/11/29/vim%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</url>
@@ -20,11 +45,7 @@
     
     <tags>
       
-      <tag>linux</tag>
-      
-      <tag>computer</tag>
-      
-      <tag>vim</tag>
+      <tag>computer/linux/vim</tag>
       
     </tags>
     
@@ -49,7 +70,7 @@
     
     <tags>
       
-      <tag>linux</tag>
+      <tag>computer/linux</tag>
       
     </tags>
     
