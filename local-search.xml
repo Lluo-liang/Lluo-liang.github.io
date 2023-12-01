@@ -185,6 +185,35 @@
   
   
   <entry>
+    <title>个人在线网盘_ZFile</title>
+    <link href="/2023/11/26/%E4%B8%AA%E4%BA%BA%E5%9C%A8%E7%BA%BF%E7%BD%91%E7%9B%98_ZFile/"/>
+    <url>/2023/11/26/%E4%B8%AA%E4%BA%BA%E5%9C%A8%E7%BA%BF%E7%BD%91%E7%9B%98_ZFile/</url>
+    
+    <content type="html"><![CDATA[<p>看到有一个还不错的项目，有时候需要将文件放置在云端，这里学习使用一下这个工具。（支持预览操作）</p><p>项目地址： <a href="https://github.com/zfile-dev/zfile">https://github.com/zfile-dev/zfile</a></p><p>部署文档地址： <a href="https://docs.zfile.vip/">https://docs.zfile.vip/</a></p><h3 id="1、项目运行"><a href="#1、项目运行" class="headerlink" title="1、项目运行"></a>1、项目运行</h3><p>下载项目后，需要系统里面有 JDK8 的环境</p><blockquote><p>Centos 系统运行</p></blockquote><blockquote><p>安装 JDK8</p></blockquote><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">yum</span> install -y java-<span class="hljs-number">1</span>.<span class="hljs-number">8</span>.<span class="hljs-number">0</span>-openjdk unzip<br></code></pre></td></tr></table></figure><blockquote><p>下载并解压</p></blockquote><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">export</span> ZFILE_INSTALL_PATH=~/zfile                        <span class="hljs-comment"># 声明安装到的路径</span><br><span class="hljs-built_in">mkdir</span> -p <span class="hljs-variable">$ZFILE_INSTALL_PATH</span> &amp;&amp; <span class="hljs-built_in">cd</span> <span class="hljs-variable">$ZFILE_INSTALL_PATH</span>   <span class="hljs-comment"># 创建文件夹并进入</span><br>wget --no-check-certificate https://c.jun6.net/ZFILE/zfile-release.war          <span class="hljs-comment"># 下载 zfile 最新版</span><br>unzip zfile-release.war &amp;&amp; <span class="hljs-built_in">rm</span> -rf zfile-release.war      <span class="hljs-comment"># 解压并删除压缩包</span><br><span class="hljs-built_in">chmod</span> +x <span class="hljs-variable">$ZFILE_INSTALL_PATH</span>/bin/*.sh                    <span class="hljs-comment"># 授权启动停止脚本</span><br></code></pre></td></tr></table></figure><p>ZFile 提供了一个 在线下载路径，也可以本地下载后自定义设备某些内容后，打包为 war ，放置在 linux 系统上运行。</p><p>如需修改配置文件，配置文件路径为：</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">~<span class="hljs-regexp">/zfile/</span>WEB-INF<span class="hljs-regexp">/classes/</span>application.properties<br></code></pre></td></tr></table></figure><hr><p>安装说明</p><p>下面命令中第一行表示默认安装到用户目录下: <code>~/zfile</code> 下。</p><p>对于 <code>root</code> 用户, <code>~</code> &#x3D; <code>/root</code>, <code>~/zfile</code> 表示在 <code>/root/zfile</code> 路径下。</p><p>对于其他用户, <code>~</code> &#x3D; <code>/home/用户名</code> 表示在 <code>/home/用户名/</code> 路径下。如对于 <code>oracle</code> 用户, <code>~/zfile</code> 则表示安装在 <code>/home/oracle/zfile</code> 下。</p><p>如需更改安装路径, 请自行修改，如 <code>export ZFILE_INSTALL_PATH=/data/zfile</code>，表示安装在 <code>/data/zfile</code> 路径下。</p><hr><h3 id="2、启动项目"><a href="#2、启动项目" class="headerlink" title="2、启动项目"></a>2、启动项目</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">~<span class="hljs-regexp">/zfile/</span>bin/start.sh       <span class="hljs-comment"># 启动</span><br></code></pre></td></tr></table></figure><hr><p>启动后浏览器访问 <strong><code>http://ip:8080</code></strong> 即可，如启动后无法访问，请检查 <strong><code>端口是否冲突</code></strong> 或 **<code>防火墙/安全组是否开启</code>**。</p><p>简单检查方式为在服务器执行 <code>curl http://127.0.0.1:8080</code></p><ul><li>如返回 <code>curl: (7) Failed connect to 127.0.0.1:8080; Connection refused</code> 表示未启动成功。</li><li>如返回 <code>&lt;!DOCTYPE html&gt; &lt;html lang=&quot;zh-CN&quot;&gt;……</code> 等字样表示启动成功，如启动成功但通过服务器 IP 无法访问，那一般就是防火墙&#x2F;安全组未放行端口问题。</li></ul><hr><p>更新程序前务必停止程序再进行操作</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">~<span class="hljs-regexp">/zfile/</span>bin/start.sh       <span class="hljs-comment"># 启动</span><br>~<span class="hljs-regexp">/zfile/</span>bin/stop.sh        <span class="hljs-comment"># 停止</span><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>project</category>
+      
+      <category>github</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>java</tag>
+      
+      <tag>project</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Elasticsearch_基础内容</title>
     <link href="/2023/11/26/Elasticsearch_%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9/"/>
     <url>/2023/11/26/Elasticsearch_%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9/</url>
