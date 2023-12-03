@@ -25,14 +25,16 @@
 <meta property="og:site_name" content="轻松的洛亓">
 <meta property="og:description" content="一款面试刷题软件_PassJava">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231203210915.png">
 <meta property="article:published_time" content="2023-11-29T00:41:52.000Z">
 <meta property="article:modified_time" content="2023-11-29T00:41:52.000Z">
 <meta property="article:author" content="Luo QI">
-<meta property="article:tag" content="linux">
-<meta property="article:tag" content="project">
 <meta property="article:tag" content="nacos">
+<meta property="article:tag" content="linux">
 <meta property="article:tag" content="jdk">
+<meta property="article:tag" content="project">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231203210915.png">
   
   
   
@@ -225,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.4k 字
+          2.1k 字
         
       </span>
     
@@ -236,7 +238,7 @@
         
         
         
-          21 分钟
+          18 分钟
         
       </span>
     
@@ -278,54 +280,41 @@
             
               <div class="markdown-body">
                 
-                <p>项目地址： <a target="_blank" rel="noopener" href="https://github.com/Jackson0714/PassJava-Platform">https://github.com/Jackson0714/PassJava-Platform</a></p>
-<p>前端项目在子目录 passjava-portal 下面</p>
+                <p>最近在Github看到一款刷题应用程序，这里将运行操作记录一下。</p>
+<p>项目地址： <a target="_blank" rel="noopener" href="https://github.com/Jackson0714/PassJava-Platform">https://github.com/Jackson0714/PassJava-Platform</a></p>
+<p>前端项目在该项目中子目录 passjava-portal 下面</p>
+<p>操作内容：</p>
+<ul>
+<li><ol>
+<li>需要将环境准备一下，nacos,redis,mysql,jdk,maven,node,zipkin</li>
+</ol>
+</li>
+<li></li>
+</ul>
 <hr>
-<h3 id="centos7-安装-nacos-操作"><a href="#centos7-安装-nacos-操作" class="headerlink" title="centos7 安装 nacos 操作"></a>centos7 安装 nacos 操作</h3><p>项目运行环境需要安装 nacos </p>
-<p>这里是在 centos 中进行安装，安装版本是 1.3.2，下载地址： <a target="_blank" rel="noopener" href="https://github.com/alibaba/nacos/releases/tag/1.3.2">https://github.com/alibaba/nacos/releases/tag/1.3.2</a></p>
-<p>nacos 运行需要先安装一下 JDK 环境，注意一下</p>
-<p>可以自己点击下载   <code>nacos-server-1.3.2.tar.gz</code></p>
-<p>或者在 Linux系统中下载命令：</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">wget</span> https://github.com/alibaba/nacos/releases/download/<span class="hljs-number">1</span>.<span class="hljs-number">3</span>.<span class="hljs-number">2</span>/nacos-server-<span class="hljs-number">1</span>.<span class="hljs-number">3</span>.<span class="hljs-number">2</span>.tar.gz<br></code></pre></td></tr></table></figure>
-
-<p>下载完压缩包之后，上传指服务器任意目录，进行解压</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">tar</span> -zxvf nacos-server-<span class="hljs-number">1</span>.<span class="hljs-number">3</span>.<span class="hljs-number">2</span>.tar.gz<br></code></pre></td></tr></table></figure>
-
-<p>解压后会生成 nacos 文件夹，进入到 nacos 目录，输入命令启动(以单机的形式启动)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">bin/startup.sh -m standalone<br></code></pre></td></tr></table></figure>
-
-<p>如果需要持久化 配置到mysql，则调整nacos的配置</p>
-<p>如果你的服务器开了防火墙，则需要开放相应的端口</p>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-comment">#开放端口</span><br>firewall-cmd <span class="hljs-params">--zone=public</span> <span class="hljs-params">--add-port=8848/tcp</span> <span class="hljs-params">--permanent</span> <br><span class="hljs-comment"># 重启防火墙 </span><br>firewall-cmd <span class="hljs-params">--reload</span><br><span class="hljs-comment"># 查看开放的端口列表 </span><br>firewall-cmd <span class="hljs-params">--list-port</span><br></code></pre></td></tr></table></figure>
-
-<p>nacos默认的启动端口是 8848，访问 <code>http://ip:端口/nacos</code> 即可看到登录页面.默认的用户名密码是 <code>nacos/naocs</code>，登录即可使用</p>
-<h3 id="linux系统下-java环境变量的配置"><a href="#linux系统下-java环境变量的配置" class="headerlink" title="linux系统下 java环境变量的配置"></a>linux系统下 java环境变量的配置</h3><p>输入<code>echo $JAVA_HOME</code>结果为空，说明没有配置java环境变量</p>
-<p>查看yum安装的jdk在哪个目录下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">ls</span> -l /etc/alternatives/java<br></code></pre></td></tr></table></figure>
-
-<p>默认安装路径是在 <code>/usr/lib/jvm</code></p>
-<p>配置环境变量  <code>vim /etc/profile</code></p>
-<p>追加内容</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">export</span> <span class="hljs-attribute">JAVA_HOME</span>=/usr/local/lib/java/jdk1.8.0_231 <br><span class="hljs-built_in">export</span> <span class="hljs-attribute">JRE_HOME</span>=<span class="hljs-variable">$&#123;JAVA_HOME&#125;</span>/jre  <br><span class="hljs-built_in">export</span> <span class="hljs-attribute">CLASSPATH</span>=.:$&#123;JAVA_HOME&#125;/lib:<span class="hljs-variable">$&#123;JRE_HOME&#125;</span>/lib  <br><span class="hljs-built_in">export</span>  <span class="hljs-attribute">PATH</span>=<span class="hljs-variable">$&#123;JAVA_HOME&#125;</span>/bin:$PATH<br></code></pre></td></tr></table></figure>
-
-<p>刷新环境变量配置</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span> /etc/profile<br></code></pre></td></tr></table></figure>
-
-<blockquote>
-<p>卸载重装</p>
-</blockquote>
-<p>卸载参考（Linux上卸载JDK）： <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44990104/article/details/117589372">https://blog.csdn.net/weixin_44990104/article/details/117589372</a></p>
-<p>linux安装jdk8详细步骤，参考： <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_33794744/article/details/107838128">https://blog.csdn.net/qq_33794744/article/details/107838128</a></p>
-<h3 id="nacos-初始化"><a href="#nacos-初始化" class="headerlink" title="nacos 初始化"></a>nacos 初始化</h3><p>查看 JAVA_HOME （windows)</p>
+<h3 id="nacos-初始化"><a href="#nacos-初始化" class="headerlink" title="nacos 初始化"></a>nacos 初始化</h3><p>最开始的时候本人是打算在 centos 系统上运行 nacos 文件</p>
+<p>运行的时候发现缺少 JDK环境，配置JDK环境操作：[[linux系统下 java环境变量的配置]]</p>
+<p>Record: </p>
+<p>查看 JAVA_HOME （windows)</p>
 <figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey"><span class="hljs-built_in">echo %</span>JAV<span class="hljs-built_in">A_HOME</span>%<br></code></pre></td></tr></table></figure>
 
 <p>Nacos 启动报错： Please set the JAVA_HOME variable in your environment, We need java(x64)! jdk8 or later</p>
 <p>参考： <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_33595545/article/details/106809613">https://blog.csdn.net/qq_33595545/article/details/106809613</a></p>
-<p>直接在startup.cmd中重新设置JAVA_HOME路径</p>
+<p>直接在startup.cmd中重新设置JAVA_HOME路径（路径参数自己改一下）</p>
 <figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs dos"><span class="hljs-comment">rem limitations under the License.</span><br><span class="hljs-built_in">set</span> JAVA_HOME=&quot;D:\softInstall\java&quot;<br><span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">exist</span> &quot;<span class="hljs-variable">%JAVA_HOME%</span>\bin\java.exe&quot; <span class="hljs-built_in">echo</span> Please <span class="hljs-built_in">set</span> the JAVA_HOME variable <span class="hljs-keyword">in</span> your environment, We need java(x64)! jdk8 or later is better! &amp; <span class="hljs-keyword">EXIT</span> /B <span class="hljs-number">1</span><br><span class="hljs-built_in">set</span> &quot;JAVA=<span class="hljs-variable">%JAVA_HOME%</span>\bin\java.exe&quot;<br></code></pre></td></tr></table></figure>
 
-<p>根据他文档提示： <a target="_blank" rel="noopener" href="http://www.passjava.cn/#/01.PassJava/01.Introduction/7.%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AEMac%E7%89%88">http://www.passjava.cn/#/01.PassJava/01.Introduction/7.%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AEMac%E7%89%88</a></p>
-<p>下载他对应的 nacos ，然后启动</p>
+<p>这里实际上是已经配置了JDK环境，但是还是抱这个错，提示上面的内容，修改nacos的启动命令后，就可以正常启动窗口了。</p>
+<blockquote>
+<p>由于 Github项目它没有直接提供nacos的配置文件，但是它文档是提供了一个下载 nacos 的路径</p>
+</blockquote>
+<p>根据他文档提示： </p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://www.passjava.cn/#/01.PassJava/01.Introduction/7.%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AEMac%E7%89%88">http://www.passjava.cn/#/01.PassJava/01.Introduction/7.%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AEMac%E7%89%88</a></li>
+</ul>
+<p>下载文档中对应的 nacos ，然后启动</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs stata">一、启动 nacos<br>进入解压后文件夹或编译打包好的文件夹，找到如下相对文件夹 nacos/bin，并对照操作系统实际情况之下如下命令。<br>Linux/Unix/<span class="hljs-keyword">Mac</span> 操作系统，执行命令：<br><span class="hljs-keyword">sh</span> startup.<span class="hljs-keyword">sh</span> -<span class="hljs-keyword">m</span> standalone<br><br>Windows 操作系统，执行命令：<br>cmd startup.cmd<br><br><br>二、停止 nacos<br><span class="hljs-keyword">sh</span> shutdown.<span class="hljs-keyword">sh</span><br></code></pre></td></tr></table></figure>
+
+<p>可以直接用这个作为注册中心，或者导出配置，导入到服务器中的nacos服务中。</p>
 <h3 id="mysql-初始化"><a href="#mysql-初始化" class="headerlink" title="mysql 初始化"></a>mysql 初始化</h3><p>选择项目 &#x2F;data 文件夹的 sql 的文件，根据顺序在 mysql8.0 数据库进行初始化操作</p>
 <h3 id="配置初始化"><a href="#配置初始化" class="headerlink" title="配置初始化"></a>配置初始化</h3><blockquote>
 <p>OSS 配置</p>
@@ -336,15 +325,26 @@
 </blockquote>
 <p>Redis</p>
 <p>Zipkin</p>
+<p>这里的Zipkin 选择通过 Java 方式启动</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">curl</span> -sSL https://zipkin.io/quickstart.sh | bash -s<br><span class="hljs-comment">#建议直接本地下载好，再复制过去，下载好重命名一下</span><br>java -jar zipkin.jar<br></code></pre></td></tr></table></figure>
+
+<p>访问地址： <a target="_blank" rel="noopener" href="http://your_host:9411/">http://your_host:9411</a></p>
+<p>最终这里的选择是 nacos,redis 是放本地的，其他的放服务器；修改一下 nacos 的配置的内容。</p>
 <blockquote>
 <p>项目启动</p>
 </blockquote>
-<p>renren-fast  →  gateway  →  question  →  thirdparty   →  admin</p>
+<p>renren-fast  →  gateway  →  question  →  thirdparty </p>
+<p>启动 question 模块的时候，可以测试一下是否启动成功</p>
+<p>在API 工具访问： <a target="_blank" rel="noopener" href="http://localhost:8060/api/question/v1/app/type/list">http://localhost:8060/api/question/v1/app/type/list</a></p>
+<p>如果有正常响应则正常</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231203210915.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>启动第三方服务的时候，注意配置一下 OSS 和 zipkin</p>
+<blockquote>
 <p>启动前端</p>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-keyword">brew </span><span class="hljs-keyword">install </span>npm<br><br><span class="hljs-keyword">brew </span><span class="hljs-keyword">install </span>nvm<br><br>npm <span class="hljs-keyword">install</span><br><span class="hljs-keyword"></span><br>npm run dev<br></code></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs brainfuck"><span class="hljs-comment">npm install node</span><span class="hljs-literal">-</span><span class="hljs-comment">sass</span>  <span class="hljs-literal">--</span><span class="hljs-comment">unsafe</span><span class="hljs-literal">-</span><span class="hljs-comment">perm</span> <span class="hljs-literal">--</span><span class="hljs-comment">save</span><span class="hljs-literal">-</span><span class="hljs-comment">dev</span> <span class="hljs-literal">--</span><span class="hljs-comment">legacy</span><span class="hljs-literal">-</span><span class="hljs-comment">peer</span><span class="hljs-literal">-</span><span class="hljs-comment">deps</span><br><br><span class="hljs-comment">npm run dev</span><br></code></pre></td></tr></table></figure>
 
-
-
+<p>这里前端直接报错了，暂时将这个项目先放下，后面再看了。 — 2023-12-03 21:56:49</p>
 <hr>
 <p>参考：</p>
 <ul>
@@ -394,13 +394,13 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/linux/" class="print-no-link">#linux</a>
-      
-        <a href="/tags/project/" class="print-no-link">#project</a>
-      
         <a href="/tags/nacos/" class="print-no-link">#nacos</a>
       
+        <a href="/tags/linux/" class="print-no-link">#linux</a>
+      
         <a href="/tags/jdk/" class="print-no-link">#jdk</a>
+      
+        <a href="/tags/project/" class="print-no-link">#project</a>
       
     </div>
   
