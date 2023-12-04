@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://varcel.luoqi.icu/2023/12/04/SpringCloud_%E7%BB%84%E4%BB%B6%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8_OpenFeign/</loc>
+    <lastmod>2023-12-04</lastmod>
+  </url>
+  <url>
+    <loc>https://varcel.luoqi.icu/2023/12/04/SpringCloud_%E7%BB%84%E4%BB%B6%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8_Gateway/</loc>
+    <lastmod>2023-12-04</lastmod>
+  </url>
+  <url>
+    <loc>https://varcel.luoqi.icu/2023/12/04/SpringCloud_%E7%BB%84%E4%BB%B6%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8_Sentinel/</loc>
+    <lastmod>2023-12-04</lastmod>
+  </url>
+  <url>
     <loc>https://varcel.luoqi.icu/2023/12/03/RabbitMQ%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</loc>
     <lastmod>2023-12-03</lastmod>
   </url>

@@ -18,22 +18,22 @@
   <meta name="author" content="Luo QI">
   <meta name="keywords" content="">
   
-    <meta name="description" content="SpringCloud_组件基本使用_Zipkin">
+    <meta name="description" content="SpringCloud_组件基本使用_OpenFeign">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SpringCloud_组件基本使用_Zipkin">
-<meta property="og:url" content="https://varcel.luoqi.icu/2023/12/01/SpringCloud_%E7%BB%84%E4%BB%B6%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8_Sleuth+Zipkin/index.html">
+<meta property="og:title" content="SpringCloud_组件基本使用_OpenFeign">
+<meta property="og:url" content="https://varcel.luoqi.icu/2023/12/04/SpringCloud_%E7%BB%84%E4%BB%B6%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8_OpenFeign/index.html">
 <meta property="og:site_name" content="轻松的洛亓">
-<meta property="og:description" content="SpringCloud_组件基本使用_Zipkin">
+<meta property="og:description" content="SpringCloud_组件基本使用_OpenFeign">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-12-01T13:56:45.000Z">
-<meta property="article:modified_time" content="2023-12-01T13:56:45.000Z">
+<meta property="article:published_time" content="2023-12-04T15:41:11.000Z">
+<meta property="article:modified_time" content="2023-12-04T15:41:11.000Z">
 <meta property="article:author" content="Luo QI">
 <meta property="article:tag" content="springcloud">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>SpringCloud_组件基本使用_Zipkin - 轻松的洛亓</title>
+  <title>SpringCloud_组件基本使用_OpenFeign - 轻松的洛亓</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -193,13 +193,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312041503318.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="SpringCloud_组件基本使用_Zipkin"></span>
+            <span id="subtitle" data-typed-text="SpringCloud_组件基本使用_OpenFeign"></span>
           
         </div>
 
@@ -210,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-12-01 13:56" pubdate>
-          2023年12月1日 下午
+        <time datetime="2023-12-04 15:41" pubdate>
+          2023年12月4日 下午
         </time>
       </span>
     
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.5k 字
+          2.7k 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          21 分钟
+          23 分钟
         
       </span>
     
@@ -270,87 +270,100 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">SpringCloud_组件基本使用_Zipkin</h1>
+            <h1 id="seo-header">SpringCloud_组件基本使用_OpenFeign</h1>
             
             
               <div class="markdown-body">
                 
-                <h3 id="1、什么是-Sleuth"><a href="#1、什么是-Sleuth" class="headerlink" title="1、什么是 Sleuth"></a>1、什么是 Sleuth</h3><p>Sleuth是Spring Cloud的组件之一，它为Spring Cloud实现了一种分布式追踪解决方案。</p>
-<p>一般是和 zipkin 或者其他基于日志的追踪系统一起使用的。</p>
-<p>简单理解：sleuth 是链路追踪器，将链路信息放到日志中，zipkin 是链路分析器，将链路日志进行可视化分析和聚合检索。</p>
-<h3 id="2、Zipkin是什么"><a href="#2、Zipkin是什么" class="headerlink" title="2、Zipkin是什么"></a>2、Zipkin是什么</h3><p>Zipkin是一个分布式追踪系统。它有助于收集对服务架构中的延迟问题进行故障排除所需的计时数据。功能包括收集和查找这些数据。</p>
-<p>Zipkin is a distributed tracing system. It helps gather timing data needed to troubleshoot latency problems in service architectures. Features include both the collection and lookup of this data.</p>
-<p>在微服务架构中，随着业务的不断扩张，服务之间互相调用会越来越复杂。而Zipkin能收集服务中的一些数据，我们能够通过明显的可视化效果去查看链路中的情况（支持日志聚合，进行可视化展示和全文检索）。</p>
-<p><strong>分布式链路追踪（Distributed Tracing）</strong>： 将一次分布式请求还原成调用链路，进行日志记录，性能监控并将一次分布式请求的调用情况集中展示。比如各个服务节点上的耗时、请求具体到达哪台机器上、每个服务节点的请求状态等等。</p>
-<p>常用的链路追踪技术还有好几种，有兴趣可以去了解一下。</p>
+                <h3 id="1、服务调用"><a href="#1、服务调用" class="headerlink" title="1、服务调用"></a>1、服务调用</h3><h4 id="服务注册、服务发现、服务调用"><a href="#服务注册、服务发现、服务调用" class="headerlink" title="服务注册、服务发现、服务调用"></a>服务注册、服务发现、服务调用</h4><p>在Spring Cloud Alibaba生态系统中，服务调用的核心组件是 <strong>Nacos Discovery</strong> 和 <strong>Feign</strong>。</p>
+<blockquote>
+<p>Nacos Discovery</p>
+</blockquote>
+<p>Nacos是一个开源的服务发现和配置管理平台，它提供了服务注册与发现的功能，可以让微服务应用在注册到Nacos注册中心后，方便地发现其他服务，并实现服务之间的调用。通过Nacos Discovery，服务之间的关系和位置信息能够得到维护，实现了服务注册和服务发现。</p>
+<blockquote>
+<p>Feign</p>
+</blockquote>
+<p>Feign是一个声明式的Web服务客户端，它简化了服务调用的过程。通过在接口上添加注解，Feign能够自动构造HTTP请求并将其发送到服务提供方。在Spring Cloud Alibaba中，Feign与Nacos Discovery集成，可以使用Feign来发起服务调用，而Nacos Discovery则用于服务的注册和发现。</p>
+<h4 id="微服务间的调用方式"><a href="#微服务间的调用方式" class="headerlink" title="微服务间的调用方式"></a>微服务间的调用方式</h4><blockquote>
+<p>微服务调用</p>
+</blockquote>
+<p>微服务之间的通信方式常见的方式有两种：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">RPC</span> 代表：dubbo  <br>HTTP 代表：SpringCloud<br></code></pre></td></tr></table></figure>
+
+<p>在微服务架构中，最常见的场景就是微服务间的相互调用。</p>
+<p>在 SpringCloud 中，默认是使用 HTTP  来进行微服务的通信，微服务间的相互调用方式主要有<code>RestTemplate</code>、<code>Feign</code> 、和<code>OpenFeign</code></p>
+<blockquote>
+<p>RestTemplate</p>
+</blockquote>
+<p>RestTemplate 是从 Spring3.0 开始支持的一个 http 请求工具，这个请求工具是 Spring 自带的</p>
+<p>RestTemplate 提供了常见的 REST 请求方法模板，如 GET、POST、PUT、DELETE 请求以及一些通用的请求执行方法 exchange 和 execute 方法</p>
+<blockquote>
+<p>Feign</p>
+</blockquote>
+<p>Feign 是 Spring Cloud 组件中的一个<code>声明式</code>的<code>轻量级 RESTful 的 HTTP 服务客户端</code></p>
+<p>Feign 内置了 Ribbon，用来做<code>客户端负载均衡</code>，去调用服务注册中心的服务；</p>
+<blockquote>
+<p>OpenFeign</p>
+</blockquote>
+<p>OpenFeign 是 Spring Cloud 在 Feign 的基础上支持 SpringMVC 的注解，如 @RequesMapping 等等。</p>
+<p>OpenFeign 的 @FeignClient 可以解析 SpringMVC 的 @RequestMapping 注解下的接口，并通过动态代理的方式产生实现类，实现类中做负载均衡并调用其他服务</p>
+<blockquote>
+<p>OpenFeign 和 Feign 组件的区别和关联</p>
+</blockquote>
+<p>OpenFeign 是 Feign 的增强版，它是 Spring Cloud 对 Feign 进行了扩展和优化的结果。虽然两者有关联，但在一些功能和使用上存在一些区别。</p>
+<p><strong>Feign:</strong></p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://skywalking.apache.org/zh/2020-04-19-skywalking-quick-start/">https://skywalking.apache.org/zh/2020-04-19-skywalking-quick-start/</a></li>
-<li><a target="_blank" rel="noopener" href="https://logging.apache.org/log4j/2.x/">https://logging.apache.org/log4j/2.x/</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/pinpoint-apm/pinpoint">https://github.com/pinpoint-apm/pinpoint</a></li>
+<li>Feign 是一个声明式的Web服务客户端，用于简化服务调用的过程。</li>
+<li>它基于接口定义，通过添加注解，可以轻松地发起HTTP请求。</li>
+<li>在原始的 Spring Cloud 中，Feign 的默认实现不支持 Spring MVC 注解，因此使用起来有一些限制。</li>
 </ul>
+<p><strong>OpenFeign:</strong></p>
+<ul>
+<li>OpenFeign 是对 Feign 的增强，它引入了对 Spring MVC 注解的支持，使得 Feign 在使用上更加灵活。</li>
+<li>OpenFeign 提供了更丰富的功能，例如继承性、支持 Spring Cloud Contract、支持多部分请求和响应等。</li>
+<li>OpenFeign 可以通过 <code>@FeignClient</code> 注解的 <code>contextId</code> 属性来实现多个 Feign 客户端实例之间的隔离。</li>
+</ul>
+<p>在Spring Cloud项目中，如果你使用 <code>@FeignClient</code> 注解，实际上默认是使用的 OpenFeign。</p>
+<p>Spring Cloud 在 Hoxton.RELEASE 版本之后<strong>默认使用 OpenFeign，而不是原始的 Feign。</strong></p>
+<p>关于使用 <code>@FeignClient</code> 注解创建 Feign 客户端的例子：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-meta">@FeignClient(name = <span class="hljs-string">&quot;example-service&quot;</span>, url = <span class="hljs-string">&quot;http://example.com&quot;</span>)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">ExampleFeignClient</span> &#123;<br><br>    <span class="hljs-meta">@GetMapping(<span class="hljs-string">&quot;/hello&quot;</span>)</span><br>    String hello();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在上述例子中，<code>@FeignClient</code> 注解指定了服务的名称和URL，<code>ExampleFeignClient</code> 接口定义了服务调用的契约。通过添加 <code>@GetMapping</code> 注解，实现了对服务提供者的 <code>/hello</code> 接口的调用。</p>
+<p>总体而言，OpenFeign 是对 Feign 的增强版本，提供了更多的功能和更好的灵活性，而在 Spring Cloud 中，我们常常通过 <code>@FeignClient</code> 注解来使用 OpenFeign。</p>
+<h3 id="2、OpenFeign-的使用"><a href="#2、OpenFeign-的使用" class="headerlink" title="2、OpenFeign 的使用"></a>2、OpenFeign 的使用</h3><h4 id="FeignClient的基本使用方法"><a href="#FeignClient的基本使用方法" class="headerlink" title="@FeignClient的基本使用方法"></a><code>@FeignClient</code>的基本使用方法</h4><p><code>@FeignClient</code> 是 Spring Cloud 中用于声明式REST客户端的注解。通过使用该注解，可以定义一个接口，而不需要实现该接口，Spring Cloud会在运行时自动生成该接口的实现类，用于发起服务间的HTTP请求。</p>
+<p>以下是<code>@FeignClient</code>的基本使用方法：</p>
+<blockquote>
+<p><strong>简单使用：</strong></p>
+</blockquote>
+<p>在一个接口上添加 <code>@FeignClient</code> 注解，并指定要调用的服务名称</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">import</span> org.springframework.cloud.openfeign.FeignClient;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.<span class="hljs-keyword">annotation</span>.GetMapping;<br><br><span class="hljs-meta">@FeignClient(name = <span class="hljs-string">&quot;example-service&quot;</span>)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">ExampleFeignClient</span> &#123;<br><br>    <span class="hljs-meta">@GetMapping(<span class="hljs-string">&quot;/hello&quot;</span>)</span><br>    String hello();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在上述例子中，<code>ExampleFeignClient</code> 接口用于调用名为 “example-service” 的微服务，其中 <code>@GetMapping(&quot;/hello&quot;)</code> 定义了调用服务的路径。</p>
+<blockquote>
+<p>指定 URL</p>
+</blockquote>
+<p>可以通过 <code>url</code> 属性指定服务的URL，而不是通过服务名称进行调用。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-meta">@FeignClient(name = <span class="hljs-string">&quot;example-service&quot;</span>, url = <span class="hljs-string">&quot;http://example.com&quot;</span>)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">ExampleFeignClient</span> &#123;<br><br>    <span class="hljs-meta">@GetMapping(<span class="hljs-string">&quot;/hello&quot;</span>)</span><br>    String hello();<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>在这个例子中，服务的URL被硬编码为 “<a target="_blank" rel="noopener" href="http://example.com"./">http://example.com&quot;。</a></p>
+<blockquote>
+<p><strong>指定Fallback</strong></p>
+</blockquote>
+<p>可以通过 <code>fallback</code> 属性指定一个实现了 <code>ExampleFeignClient</code> 接口的类，作为调用失败时的降级处理。</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-meta">@FeignClient</span>(name = <span class="hljs-string">&quot;example-service&quot;</span>, fallback = ExampleFeignClientFallback.class)<br><span class="hljs-keyword">public</span> <span class="hljs-title class_"><span class="hljs-keyword">interface</span> <span class="hljs-title">ExampleFeignClient</span> </span>&#123;<br><br>    <span class="hljs-meta">@GetMapping</span>(<span class="hljs-string">&quot;/hello&quot;</span>)<br>    <span class="hljs-keyword">String</span> hello();<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-title class_"><span class="hljs-keyword">class</span> <span class="hljs-title">ExampleFeignClientFallback</span> <span class="hljs-keyword"><span class="hljs-keyword">implements</span> <span class="hljs-type">ExampleFeignClient</span></span> </span>&#123;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">String</span> hello() &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Fallback Hello&quot;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>在这个例子中，当调用服务失败时，会执行 <code>ExampleFeignClientFallback</code> 中的逻辑。</p>
+<blockquote>
+<p><strong>指定Decoder和Encoder</strong></p>
+</blockquote>
+<p>可以通过 <code>decoder</code> 和 <code>encoder</code> 属性指定自定义的解码器和编码器。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-meta">@FeignClient(name = <span class="hljs-string">&quot;example-service&quot;</span>, decoder = MyDecoder.class, encoder = MyEncoder.class)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">ExampleFeignClient</span> &#123;<br><br>    <span class="hljs-meta">@GetMapping(<span class="hljs-string">&quot;/hello&quot;</span>)</span><br>    String hello();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>MyDecoder</code> 和 <code>MyEncoder</code> 分别是自定义的解码器和编码器。</p>
+<p>这些是 <code>@FeignClient</code> 注解的基本用法，通过灵活使用这些属性，可以实现更多定制化的服务调用配置。</p>
+<p>to be continued….</p>
 <hr>
-<h3 id="3、Sleuth入门"><a href="#3、Sleuth入门" class="headerlink" title="3、Sleuth入门"></a>3、Sleuth入门</h3><blockquote>
-<p>Sleuth 术语</p>
-</blockquote>
+<p>参考</p>
 <ul>
-<li>Trace (一条完整链路–包含很多span(微服务接口))<ul>
-<li>由一组Trace Id（贯穿整个链路）相同的Span串联形成一个树状结构。为了实现请求跟踪，当请求到达分布式系统的入口端点时，只需要服务跟踪框架为该请求创建一个唯一的标识（即TraceId），同时在分布式系统内部流转的时候，框架始终保持传递该唯一值，直到整个请求的返回。那么我们就可以使用该唯一标识将所有的请求串联起来，形成一条完整的请求链路。</li>
-</ul>
-</li>
-<li>Span<ul>
-<li>代表了一组基本的工作单元。为了统计各处理单元的延迟，当请求到达各个服务组件的时候，也通过一个唯一标识（SpanId）来标记它的开始、具体过程和结束。通过SpanId的开始和结束时间戳，就能统计该span的调用时间，除此之外，我们还可以获取如事件的名称。请求信息等元数据。</li>
-</ul>
-</li>
-<li>Annotation<ul>
-<li>用它记录一段时间内的事件，内部使用的重要注释：<ul>
-<li>cs（Client Send）客户端发出请求，开始一个请求的生命</li>
-<li>sr（Server Received）服务端接受到请求开始进行处理， sr－cs &#x3D; 网络延迟（服务调用的时间）</li>
-<li>ss（Server Send）服务端处理完毕准备发送到客户端，ss - sr &#x3D; 服务器上的请求处理时间</li>
-<li>cr（Client Reveived）客户端接受到服务端的响应，请求结束。 cr - sr &#x3D; 请求的总时间</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>Sleuth 使用</p>
-</blockquote>
-<p>在pom.xml文件添加Sleuth依赖</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"> <span class="hljs-comment">&lt;!--sleuth依赖--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-sleuth<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
-<p>项目整合 sleuth 后，在日志输出会多一些链路信息。</p>
-<p>我们在启动这个微服务后，调用其中某个请求，可以在控制台观察到sleuth的日志输出</p>
-<h3 id="4、链路解决方案-Sleuth-Zipkin"><a href="#4、链路解决方案-Sleuth-Zipkin" class="headerlink" title="4、链路解决方案 Sleuth + Zipkin"></a>4、链路解决方案 <strong>Sleuth</strong> + <strong>Zipkin</strong></h3><p>使用 Zipkin 需要下载一下他的服务端： <a target="_blank" rel="noopener" href="https://zipkin.io/pages/quickstart.html">https://zipkin.io/pages/quickstart.html</a></p>
-<p>官方文档里面有介绍他对应的下载和启动方式。</p>
-<p>通过浏览器访问 <a target="_blank" rel="noopener" href="http://localhost:9411/">http://localhost:9411</a>访问</p>
-<p>Zipkin 跟 Nacos 类似，需要启动他的服务端程序，并在微服务模块中添加客户端相关的配置。</p>
-<blockquote>
-<p><strong>Sleuth</strong> + <strong>Zipkin</strong> 集成</p>
-</blockquote>
-<p>这里是选用 ZipKin客户端和Sleuth 进行集成。</p>
-<p>依赖</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-zipkin<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
-<p>配置文件</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment">#配置zipkin</span><br>  <span class="hljs-attr">zipkin:</span><br>    <span class="hljs-attr">base-url:</span> <span class="hljs-string">http://192.168.31.60:9411</span><br>    <span class="hljs-attr">discovery-client-enabled:</span> <span class="hljs-literal">false</span>  <span class="hljs-comment"># 不要让nacos把zipkin注册进去（可以不写）</span><br>  <span class="hljs-attr">sleuth:</span><br>    <span class="hljs-attr">sampler:</span><br>      <span class="hljs-attr">probability:</span> <span class="hljs-number">1.0</span><br></code></pre></td></tr></table></figure>
-
-<p>启动后，便可以在 Zipkin 观察该服务下的请求链路。</p>
-<blockquote>
-<p>持久化操作</p>
-</blockquote>
-<p>Zipkin 默认是将数据保存到内存，生产环境一般是选择持久化到本地。</p>
-<p><strong>Zipkin</strong> 提供可插拔数据存储方式，下面这些都支持：In-Memory、MySql、Cassandra 以及 Elasticsearch。</p>
-<blockquote>
-<p>使用mysql实现数据持久化操作</p>
-</blockquote>
-<p>略，待更新</p>
-<p>to be contined….</p>
-<hr>
-<p>参考：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://zipkin.io/pages/quickstart">https://zipkin.io/pages/quickstart</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40587263/article/details/117338097">https://blog.csdn.net/qq_40587263/article/details/117338097</a></li>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/71024024">https://zhuanlan.zhihu.com/p/71024024</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/IT__learning/article/details/116349843">https://blog.csdn.net/IT__learning/article/details/116349843</a></li>
 </ul>
 
                 
@@ -397,8 +410,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>SpringCloud_组件基本使用_Zipkin</div>
-      <div>https://varcel.luoqi.icu/2023/12/01/SpringCloud_组件基本使用_Sleuth+Zipkin/</div>
+      <div>SpringCloud_组件基本使用_OpenFeign</div>
+      <div>https://varcel.luoqi.icu/2023/12/04/SpringCloud_组件基本使用_OpenFeign/</div>
     </div>
     <div class="license-meta">
       
@@ -410,7 +423,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年12月1日</div>
+          <div>2023年12月4日</div>
         </div>
       
       
@@ -442,18 +455,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/12/01/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E5%B7%A5%E5%85%B7Neutrino-Proxy/" title="内网穿透工具Neutrino-Proxy">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">内网穿透工具Neutrino-Proxy</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/11/30/MongoDB_%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" title="MongoDB_基本操作">
-                        <span class="hidden-mobile">MongoDB_基本操作</span>
+                      <a href="/2023/12/04/SpringCloud_%E7%BB%84%E4%BB%B6%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8_Gateway/" title="SpringCloud_组件基本使用_Gateway">
+                        <span class="hidden-mobile">SpringCloud_组件基本使用_Gateway</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
