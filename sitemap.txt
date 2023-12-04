@@ -1,7 +1,9 @@
+https://varcel.luoqi.icu/2023/12/04/SpringCloud_%E7%BB%84%E4%BB%B6%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8_Stream/
+https://varcel.luoqi.icu/2023/12/04/SpringCloud_%E7%BB%84%E4%BB%B6%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8_Seata/
+https://varcel.luoqi.icu/about/index.html
 https://varcel.luoqi.icu/2023/12/04/SpringCloud_%E7%BB%84%E4%BB%B6%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8_OpenFeign/
 https://varcel.luoqi.icu/2023/12/04/SpringCloud_%E7%BB%84%E4%BB%B6%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8_Gateway/
 https://varcel.luoqi.icu/2023/12/04/SpringCloud_%E7%BB%84%E4%BB%B6%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8_Sentinel/
-https://varcel.luoqi.icu/about/index.html
 https://varcel.luoqi.icu/2023/12/03/RabbitMQ%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/
 https://varcel.luoqi.icu/2023/12/03/%E5%89%8D%E7%AB%AF%E4%BE%9D%E8%B5%96%E5%B8%B8%E8%A7%81%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/
 https://varcel.luoqi.icu/2023/12/03/Python%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/
@@ -75,7 +77,6 @@ https://varcel.luoqi.icu/tags/python/
 https://varcel.luoqi.icu/tags/MQ/
 https://varcel.luoqi.icu/tags/redis/
 https://varcel.luoqi.icu/tags/springcloud/
-https://varcel.luoqi.icu/tags/blog/
 https://varcel.luoqi.icu/tags/spring/
 https://varcel.luoqi.icu/tags/vue/
 https://varcel.luoqi.icu/tags/nacos/
@@ -87,6 +88,7 @@ https://varcel.luoqi.icu/tags/windows/
 https://varcel.luoqi.icu/tags/computer/
 https://varcel.luoqi.icu/tags/project/
 https://varcel.luoqi.icu/tags/obsidian/
+https://varcel.luoqi.icu/tags/blog/
 https://varcel.luoqi.icu/categories/exam/
 https://varcel.luoqi.icu/categories/%E5%B7%A5%E5%85%B7/
 https://varcel.luoqi.icu/categories/%E9%83%A8%E7%BD%B2/
@@ -96,9 +98,9 @@ https://varcel.luoqi.icu/categories/Java%E5%9F%BA%E7%A1%80/
 https://varcel.luoqi.icu/categories/DataBase/
 https://varcel.luoqi.icu/categories/%E9%83%A8%E7%BD%B2/%E5%B7%A5%E5%85%B7/
 https://varcel.luoqi.icu/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/
-https://varcel.luoqi.icu/categories/Diary/
 https://varcel.luoqi.icu/categories/%E6%A1%86%E6%9E%B6/
 https://varcel.luoqi.icu/categories/web/
 https://varcel.luoqi.icu/categories/project/
+https://varcel.luoqi.icu/categories/Diary/
 https://varcel.luoqi.icu/categories/project/github/
 https://varcel.luoqi.icu/categories/project/coding/
