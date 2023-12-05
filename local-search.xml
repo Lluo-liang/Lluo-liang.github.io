@@ -430,7 +430,7 @@
     <link href="/2023/11/27/Spring%E5%AD%A6%E4%B9%A0_%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9/"/>
     <url>/2023/11/27/Spring%E5%AD%A6%E4%B9%A0_%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9/</url>
     
-    <content type="html"><![CDATA[<blockquote><p>大纲</p></blockquote><ul><li>Spring 概念</li><li>常用模块</li><li>IOC</li><li>AOP</li><li>Spring 事务</li><li>Spring MVC</li></ul><h3 id="1、什么是Spring"><a href="#1、什么是Spring" class="headerlink" title="1、什么是Spring"></a>1、什么是Spring</h3><p>Spring 是一个轻量级的开源Java开发框架，旨在提高开发人员的开发效率以及系统的可维护性。</p><p>一般来说，我们常说的 Spring 框架指的是 Spring Framework, 他是多模块的一个集合，这些模块能够比较方便的帮助我们来进行开发。</p><p>Spring 有很多特性，页支持很多功能，了解Spring 框架，我们一般会从它支持的 IOC 和 AOP 这两个点来最开始认识它。</p><p>目前Spring 最大的一个优势是它构建了一个非常不错的Java生态，你能够在这里面找到不同需求需要的处理方案。</p><p>Spring 的官网： <a href="https://spring.io/">https://spring.io/</a></p><p>Github地址： <a href="https://github.com/spring-projects/spring-framework">https://github.com/spring-projects/spring-framework</a></p><p>Spring 的具体模块放后面了解，</p><p>大概模块内容</p><p>Spring 5.x 主要模块</p><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231201212051.png" alt="image.png"><br>各个模块的依赖关系</p><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231201212107.png" alt="image.png"></p><blockquote><p>Core Container</p></blockquote><p>其中主要模块中，Core Container  是 Spring 框架的核心模块，也是基础模块，它提供了 IOC 的依赖注入功能，Spring 的其他模块实现的功能也是在依赖该模块的基础上进行实现的。</p><p>Core Container 的子模块：</p><ul><li><strong>spring-core</strong>：Spring 框架基本的核心工具类。</li><li><strong>spring-beans</strong>：提供对 bean 的创建、配置和管理等功能的支持。</li><li><strong>spring-context</strong>：提供对国际化、事件传播、资源加载等功能的支持。</li><li><strong>spring-expression</strong>：提供对表达式语言（Spring Expression Language） SpEL 的支持，只依赖于 core 模块，不依赖于其他模块，可以单独使用</li></ul><blockquote><p>AOP</p></blockquote><ul><li><strong>spring-aspects</strong>：该模块为与 AspectJ 的集成提供支持。</li><li><strong>spring-aop</strong>：提供了面向切面的编程实现。</li><li><strong>spring-instrument</strong>：提供了为 JVM 添加代理（agent）的功能。 具体来讲，它为 Tomcat 提供了一个织入代理，能够为 Tomcat 传递类文 件，就像这些文件是被类加载器加载的一样。没有理解也没关系，这个模块的使用场景非常有限。</li></ul><h3 id="2、谈谈自己对于-Spring-IOC-的理解。"><a href="#2、谈谈自己对于-Spring-IOC-的理解。" class="headerlink" title="2、谈谈自己对于 Spring IOC 的理解。"></a>2、谈谈自己对于 Spring IOC 的理解。</h3><p>to be contined….</p><hr><p>参考</p><ul><li><a href="https://javaguide.cn/system-design/framework/spring/spring-knowledge-and-questions-summary.html">https://javaguide.cn/system-design/framework/spring/spring-knowledge-and-questions-summary.html</a></li><li><a href="https://www.pdai.tech/md/spring/spring.html">https://www.pdai.tech/md/spring/spring.html</a></li><li><a href="https://blog.csdn.net/Mixzi/article/details/123980213">https://blog.csdn.net/Mixzi/article/details/123980213</a></li><li><a href="https://www.moguit.cn/info/794">https://www.moguit.cn/info/794</a></li></ul>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>大纲</p></blockquote><ul><li>Spring 概念</li><li>常用模块</li><li>IOC</li><li>AOP</li><li>Spring 事务</li><li>Spring MVC</li></ul><blockquote><p>什么是Spring</p></blockquote><p>Spring 是一个轻量级的开源Java开发框架，旨在提高开发人员的开发效率以及系统的可维护性。</p><p>一般来说，我们常说的 Spring 框架指的是 Spring Framework, 他是多模块的一个集合，这些模块能够比较方便的帮助我们来进行开发。</p><p>Spring 有很多特性，页支持很多功能，了解Spring 框架，我们一般会从它支持的 IOC 和 AOP 这两个点来最开始认识它。</p><p>目前Spring 最大的一个优势是它构建了一个非常不错的Java生态，你能够在这里面找到不同需求需要的处理方案。</p><p>Spring 的官网： <a href="https://spring.io/">https://spring.io/</a></p><p>Github地址： <a href="https://github.com/spring-projects/spring-framework">https://github.com/spring-projects/spring-framework</a></p><p>Spring 的具体模块可以放后面了解，主要模块了解下。</p><p>Spring 5.x 主要模块</p><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231201212051.png" alt="image.png"><br>各个模块的依赖关系</p><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231201212107.png" alt="image.png"></p><blockquote><p>Core Container</p></blockquote><p>其中主要模块中，Core Container  是 Spring 框架的核心模块，也是基础模块，它提供了 IOC 的依赖注入功能，Spring 的其他模块实现的功能也是在依赖该模块的基础上进行实现的。</p><p>Core Container 的子模块：</p><ul><li><strong>spring-core</strong>：Spring 框架基本的核心工具类。</li><li><strong>spring-beans</strong>：提供对 bean 的创建、配置和管理等功能的支持。</li><li><strong>spring-context</strong>：提供对国际化、事件传播、资源加载等功能的支持。</li><li><strong>spring-expression</strong>：提供对表达式语言（Spring Expression Language） SpEL 的支持，只依赖于 core 模块，不依赖于其他模块，可以单独使用</li></ul><blockquote><p>AOP</p></blockquote><ul><li><strong>spring-aspects</strong>：该模块为与 AspectJ 的集成提供支持。</li><li><strong>spring-aop</strong>：提供了面向切面的编程实现。</li><li><strong>spring-instrument</strong>：提供了为 JVM 添加代理（agent）的功能。 具体来讲，它为 Tomcat 提供了一个织入代理，能够为 Tomcat 传递类文 件，就像这些文件是被类加载器加载的一样。没有理解也没关系，这个模块的使用场景非常有限。</li></ul><hr><p>参考</p><ul><li><a href="https://javaguide.cn/system-design/framework/spring/spring-knowledge-and-questions-summary.html">https://javaguide.cn/system-design/framework/spring/spring-knowledge-and-questions-summary.html</a></li><li><a href="https://www.pdai.tech/md/spring/spring.html">https://www.pdai.tech/md/spring/spring.html</a></li><li><a href="https://blog.csdn.net/Mixzi/article/details/123980213">https://blog.csdn.net/Mixzi/article/details/123980213</a></li><li><a href="https://www.moguit.cn/info/794">https://www.moguit.cn/info/794</a></li></ul>]]></content>
     
     
     <categories>
@@ -748,6 +748,33 @@
   
   
   <entry>
+    <title>通过RestTemplate进行远程调用</title>
+    <link href="/2023/11/22/%E9%80%9A%E8%BF%87RestTemplate%E8%BF%9B%E8%A1%8C%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/"/>
+    <url>/2023/11/22/%E9%80%9A%E8%BF%87RestTemplate%E8%BF%9B%E8%A1%8C%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/</url>
+    
+    <content type="html"><![CDATA[<p>RestTemplate 是从 Spring3.0 开始支持的一个 HTTP 请求工具，它提供了常见的REST请求方案的模版。对于远程请求进行了一定封装，从而通过建议配置可以实现远程调用。</p><p>他底层用的是 JDK 的 HTTP 请求</p><ol><li>添加依赖</li></ol><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-web<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.2.2.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.httpcomponents<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>httpclient<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>4.5.7<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure><ol start="2"><li>配置类</li></ol><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-keyword">package</span> com.example.demo.config;<br><br><span class="hljs-keyword">import</span> org.springframework.context.annotation.Bean;<br><span class="hljs-keyword">import</span> org.springframework.context.annotation.Configuration;<br><span class="hljs-keyword">import</span> org.springframework.http.client.ClientHttpRequestFactory;<br><span class="hljs-keyword">import</span> org.springframework.http.client.SimpleClientHttpRequestFactory;<br><span class="hljs-keyword">import</span> org.springframework.web.client.RestTemplate;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * RestTemplate配置类</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-title class_"><span class="hljs-keyword">class</span> <span class="hljs-title">RestTemplateConfig</span> </span>&#123;<br><br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> RestTemplate restTemplate(ClientHttpRequestFactory factory)&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-type">RestTemplate</span>(factory);<br>    &#125;<br><br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> ClientHttpRequestFactory simpleClientHttpRequestFactory()&#123;<br>        SimpleClientHttpRequestFactory factory = <span class="hljs-keyword">new</span> <span class="hljs-type">SimpleClientHttpRequestFactory</span>();<br>        factory.setReadTimeout(<span class="hljs-number">5000</span>);<span class="hljs-comment">//单位为ms</span><br>        factory.setConnectTimeout(<span class="hljs-number">5000</span>);<span class="hljs-comment">//单位为ms</span><br>        <span class="hljs-keyword">return</span> factory;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><ol start="3"><li>示例调用操作</li></ol><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-meta">@RestController</span><br><span class="hljs-meta">@Slf4j</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">OrderController</span> &#123;<br><br>    <span class="hljs-keyword">public</span> static <span class="hljs-keyword">final</span> String PAYMENT_URL = <span class="hljs-string">&quot;http://localhost:8001&quot;</span>;<br><br>    <span class="hljs-meta">@Resource</span><br>    <span class="hljs-keyword">private</span> RestTemplate restTemplate;<br><br>    <span class="hljs-comment">//因为浏览器只支持get请求，为了方便这里就用get</span><br>    <span class="hljs-meta">@GetMapping(<span class="hljs-string">&quot;/consumer/payment/create&quot;</span>)</span><br>    <span class="hljs-keyword">public</span> CommonResult&lt;Payment&gt; create(Payment payment)&#123;<br>        log.info(<span class="hljs-string">&quot;********插入的数据：&quot;</span> + payment);<br>        <span class="hljs-comment">//postForObject分别有三个参数：请求地址，请求参数，返回的对象类型</span><br>        <span class="hljs-keyword">return</span> restTemplate.postForObject(PAYMENT_URL + <span class="hljs-string">&quot;/payment/create&quot;</span>, payment, CommonResult.<span class="hljs-keyword">class</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@GetMapping(<span class="hljs-string">&quot;/consumer/payment/get/&#123;id&#125;&quot;</span>)</span><br>    <span class="hljs-keyword">public</span> CommonResult&lt;Payment&gt; getPayment(<span class="hljs-meta">@PathVariable(<span class="hljs-string">&quot;id&quot;</span>)</span> <span class="hljs-built_in">Long</span> id)&#123;<br>        log.info(<span class="hljs-string">&quot;********查询的id：&quot;</span> + id);<br>        <span class="hljs-comment">//getForObject两个参数：请求地址，返回的对象类型</span><br>        <span class="hljs-keyword">return</span> restTemplate.getForObject(PAYMENT_URL + <span class="hljs-string">&quot;/payment/get/&quot;</span> + id, CommonResult.<span class="hljs-keyword">class</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><p>to be contined… </p><p>参考</p><ul><li><a href="https://blog.csdn.net/weixin_44073321/article/details/102804615">https://blog.csdn.net/weixin_44073321/article/details/102804615</a></li><li><a href="https://blog.csdn.net/weixin_43702146/article/details/116567707">https://blog.csdn.net/weixin_43702146/article/details/116567707</a></li><li><a href="https://blog.csdn.net/dqxiaoxiao/article/details/114375873">https://blog.csdn.net/dqxiaoxiao/article/details/114375873</a></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>CodeProgram</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>java</tag>
+      
+      <tag>spring</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>常见工程报错问题</title>
     <link href="/2023/11/22/%E5%B8%B8%E8%A7%81%E5%B7%A5%E7%A8%8B%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/"/>
     <url>/2023/11/22/%E5%B8%B8%E8%A7%81%E5%B7%A5%E7%A8%8B%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/</url>
@@ -1054,6 +1081,8 @@
       
       <category>Java基础</category>
       
+      <category>JDK8</category>
+      
     </categories>
     
     
@@ -1078,6 +1107,8 @@
     <categories>
       
       <category>Java基础</category>
+      
+      <category>JVM</category>
       
     </categories>
     
@@ -1106,6 +1137,8 @@
       
       <category>Java基础</category>
       
+      <category>Thread</category>
+      
     </categories>
     
     
@@ -1133,6 +1166,8 @@
       
       <category>Java基础</category>
       
+      <category>Thread</category>
+      
     </categories>
     
     
@@ -1159,6 +1194,8 @@
     <categories>
       
       <category>Java基础</category>
+      
+      <category>集合</category>
       
     </categories>
     
@@ -1206,6 +1243,8 @@
       
       <category>Java基础</category>
       
+      <category>集合</category>
+      
     </categories>
     
     
@@ -1233,6 +1272,8 @@
       
       <category>Java基础</category>
       
+      <category>集合</category>
+      
     </categories>
     
     
@@ -1257,6 +1298,8 @@
     <categories>
       
       <category>Java基础</category>
+      
+      <category>集合</category>
       
     </categories>
     
@@ -1307,6 +1350,8 @@
     <categories>
       
       <category>Java基础</category>
+      
+      <category>集合</category>
       
     </categories>
     
