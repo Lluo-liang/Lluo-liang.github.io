@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://varcel.luoqi.icu/2023/12/05/Spring%E5%AD%A6%E4%B9%A0_IOC/</loc>
+    <loc>https://varcel.luoqi.icu/about/index.html</loc>
     
     <lastmod>2023-12-05</lastmod>
     
@@ -11,7 +11,16 @@
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/about/index.html</loc>
+    <loc>https://varcel.luoqi.icu/2023/12/05/Spring%E5%AD%A6%E4%B9%A0_AOP/</loc>
+    
+    <lastmod>2023-12-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://varcel.luoqi.icu/2023/12/05/Spring%E5%AD%A6%E4%B9%A0_IOC/</loc>
     
     <lastmod>2023-12-05</lastmod>
     
@@ -925,14 +934,14 @@
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/categories/%E9%A1%B9%E7%9B%AE/</loc>
+    <loc>https://varcel.luoqi.icu/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/Oracle/</loc>
     <lastmod>2023-12-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/Oracle/</loc>
+    <loc>https://varcel.luoqi.icu/categories/%E9%A1%B9%E7%9B%AE/</loc>
     <lastmod>2023-12-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
