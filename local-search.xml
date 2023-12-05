@@ -138,9 +138,9 @@
     
     <categories>
       
-      <category>部署</category>
+      <category>中间件</category>
       
-      <category>工具</category>
+      <category>MQ</category>
       
     </categories>
     
@@ -246,7 +246,7 @@
     
     <categories>
       
-      <category>部署</category>
+      <category>Records</category>
       
     </categories>
     
@@ -323,7 +323,9 @@
     
     <categories>
       
-      <category>DataBase</category>
+      <category>数据库</category>
+      
+      <category>MongoDB</category>
       
     </categories>
     
@@ -348,7 +350,9 @@
     
     <categories>
       
-      <category>部署</category>
+      <category>操作系统</category>
+      
+      <category>Windows</category>
       
     </categories>
     
@@ -375,7 +379,9 @@
     
     <categories>
       
-      <category>工具</category>
+      <category>操作系统</category>
+      
+      <category>Linux</category>
       
     </categories>
     
@@ -402,7 +408,9 @@
     
     <categories>
       
-      <category>部署</category>
+      <category>操作系统</category>
+      
+      <category>Linux</category>
       
     </categories>
     
@@ -429,6 +437,8 @@
       
       <category>框架</category>
       
+      <category>Spring</category>
+      
     </categories>
     
     
@@ -454,7 +464,9 @@
     
     <categories>
       
-      <category>DataBase</category>
+      <category>数据库</category>
+      
+      <category>MySQL</category>
       
     </categories>
     
@@ -479,7 +491,7 @@
     
     <categories>
       
-      <category>部署</category>
+      <category>Records</category>
       
     </categories>
     
@@ -504,9 +516,7 @@
     
     <categories>
       
-      <category>project</category>
-      
-      <category>github</category>
+      <category>项目</category>
       
     </categories>
     
@@ -535,6 +545,8 @@
       
       <category>中间件</category>
       
+      <category>Elasticsearch</category>
+      
     </categories>
     
     
@@ -559,6 +571,8 @@
     <categories>
       
       <category>web</category>
+      
+      <category>Vue</category>
       
     </categories>
     
@@ -639,7 +653,7 @@
     
     <categories>
       
-      <category>status pages</category>
+      <category>StatusPage</category>
       
     </categories>
     
@@ -664,7 +678,7 @@
     
     <categories>
       
-      <category>status pages</category>
+      <category>StatusPage</category>
       
     </categories>
     
@@ -689,9 +703,7 @@
     
     <categories>
       
-      <category>project</category>
-      
-      <category>github</category>
+      <category>项目</category>
       
     </categories>
     
@@ -801,7 +813,7 @@
     
     <categories>
       
-      <category>exam</category>
+      <category>Exam</category>
       
     </categories>
     
@@ -851,7 +863,7 @@
     
     <categories>
       
-      <category>status pages</category>
+      <category>StatusPage</category>
       
     </categories>
     
@@ -880,6 +892,8 @@
       
       <category>中间件</category>
       
+      <category>MQ</category>
+      
     </categories>
     
     
@@ -903,7 +917,9 @@
     
     <categories>
       
-      <category>DataBase</category>
+      <category>数据库</category>
+      
+      <category>NoSQL</category>
       
     </categories>
     
@@ -928,7 +944,9 @@
     
     <categories>
       
-      <category>DataBase</category>
+      <category>中间件</category>
+      
+      <category>Redis</category>
       
     </categories>
     
@@ -981,6 +999,8 @@
     <categories>
       
       <category>web</category>
+      
+      <category>Node</category>
       
     </categories>
     
