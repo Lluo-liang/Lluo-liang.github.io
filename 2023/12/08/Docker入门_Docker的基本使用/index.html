@@ -18,21 +18,22 @@
   <meta name="author" content="Luo QI">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Java学习的轻松之旅: [[Java学习的轻松之旅_Obsidian]] 工作随手记:  [[平凡的打工人_Obsidian]] （待分离） 日常：[[日常_L]] [[分类_轻松的洛亓]] [[更新时间_轻松的洛亓]] 12tablefrom &quot;&quot;   Java 相关内容1234tablefrom &quot;&quot;where contains(file.tags,&amp;">
+    <meta name="description" content="Docker入门_Docker的基本使用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HomePage">
-<meta property="og:url" content="https://varcel.luoqi.icu/2023/12/08/HomePage/index.html">
+<meta property="og:title" content="Docker入门_Docker的基本使用">
+<meta property="og:url" content="https://varcel.luoqi.icu/2023/12/08/Docker%E5%85%A5%E9%97%A8_Docker%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="轻松的洛亓">
-<meta property="og:description" content="Java学习的轻松之旅: [[Java学习的轻松之旅_Obsidian]] 工作随手记:  [[平凡的打工人_Obsidian]] （待分离） 日常：[[日常_L]] [[分类_轻松的洛亓]] [[更新时间_轻松的洛亓]] 12tablefrom &quot;&quot;   Java 相关内容1234tablefrom &quot;&quot;where contains(file.tags,&amp;">
+<meta property="og:description" content="Docker入门_Docker的基本使用">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-12-08T15:32:03.837Z">
-<meta property="article:modified_time" content="2023-12-08T15:32:03.837Z">
+<meta property="article:published_time" content="2023-12-08T21:35:33.000Z">
+<meta property="article:modified_time" content="2023-12-08T21:35:33.000Z">
 <meta property="article:author" content="Luo QI">
+<meta property="article:tag" content="docker">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>HomePage - 轻松的洛亓</title>
+  <title>Docker入门_Docker的基本使用 - 轻松的洛亓</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -192,13 +193,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="HomePage"></span>
+            <span id="subtitle" data-typed-text="Docker入门_Docker的基本使用"></span>
           
         </div>
 
@@ -209,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-12-08 15:32" pubdate>
-          2023年12月8日 下午
+        <time datetime="2023-12-08 21:35" pubdate>
+          2023年12月8日 晚上
         </time>
       </span>
     
@@ -221,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          436 字
+          1.1k 字
         
       </span>
     
@@ -232,7 +233,7 @@
         
         
         
-          4 分钟
+          10 分钟
         
       </span>
     
@@ -269,29 +270,47 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">HomePage</h1>
+            <h1 id="seo-header">Docker入门_Docker的基本使用</h1>
             
             
               <div class="markdown-body">
                 
-                <p>Java学习的轻松之旅: [[Java学习的轻松之旅_Obsidian]]</p>
-<p>工作随手记:  [[平凡的打工人_Obsidian]] （待分离）</p>
-<p>日常：[[日常_L]]</p>
-<p>[[分类_轻松的洛亓]]</p>
-<p>[[更新时间_轻松的洛亓]]</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dataview">table<br>from &quot;&quot;<br></code></pre></td></tr></table></figure>
+                <h3 id="1、安装-Docker操作-centos系列安装"><a href="#1、安装-Docker操作-centos系列安装" class="headerlink" title="1、安装 Docker操作 (centos系列安装)"></a>1、安装 Docker操作 (centos系列安装)</h3><p>安装操作</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs vim">yum install -<span class="hljs-keyword">y</span> yum-utils<br><br>yum-config-manager --<span class="hljs-built_in">add</span>-repo http://mirrors.aliyun.<span class="hljs-keyword">com</span>/docker-<span class="hljs-keyword">ce</span>/linux/centos/docker-<span class="hljs-keyword">ce</span>.repo<br><br><br>yum install docker-<span class="hljs-keyword">ce</span> docker-<span class="hljs-keyword">ce</span>-cli containerd.io<br></code></pre></td></tr></table></figure>
 
+<p>启动docer并设置开机自启</p>
+<figure class="highlight nsis"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs nsis"><span class="hljs-params">system</span>ctl start docker<br><br><span class="hljs-params">system</span>ctl enable docker<br></code></pre></td></tr></table></figure>
+
+<p>docker配置加速度</p>
+<p>修改 &#x2F;etc&#x2F;docker&#x2F;daemon.json 文件并添加上 registry-mirrors 键值；注册阿里云，可获取自己的加速器</p>
+<p>容器镜像服务 →  容器加速器</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs prolog">&#123;. <br>    <span class="hljs-string">&quot;registry-mirrors&quot;</span>: [<span class="hljs-string">&quot;https://registry.docker-cn.com&quot;</span>]<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>docker安装验证</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">docker <span class="hljs-comment">--version</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="2、docker-compose安装"><a href="#2、docker-compose安装" class="headerlink" title="2、docker-compose安装"></a>2、docker-compose安装</h3><p>Compose 是用于定义和运行多容器 Docker 应用程序的工具。通过 Compose，您可以使用 YML 文件来配置应用程序需要的所有服务。</p>
+<p>使用一个命令，就可以从 YML 文件配置中创建并启动所有服务</p>
+<blockquote>
+<p>安装操作</p>
+</blockquote>
+<p>先需要下载一下二进制文件</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/docker/</span>compose<span class="hljs-regexp">/releases/</span>download<span class="hljs-regexp">/v2.5.0/</span>docker-compose-linux-x86_64<br></code></pre></td></tr></table></figure>
+<p>放入&#x2F;usr&#x2F;local&#x2F;bin&#x2F; 路径下并重新命名添加可执行权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mv</span> docker-compose-linux-x86_64 docker-compose<br><span class="hljs-built_in">chmod</span> +x docker-compose<br></code></pre></td></tr></table></figure>
+
+<p>这个也可以推荐看一下</p>
+<p>将脚本下载，阿里云的下载速度较快，推荐适用</p>
+<p><a target="_blank" rel="noopener" href="https://mirrors.aliyun.com/docker-toolbox/linux/compose/1.21.2/">https://mirrors.aliyun.com/docker-toolbox/linux/compose/1.21.2/</a></p>
+<p>把脚本放在&#x2F;usr&#x2F;local&#x2F;bin&#x2F;下.名字为docker-compose ,加执行权限 ，docker-compose命令就有了</p>
 <hr>
-<h4 id="Java-相关内容"><a href="#Java-相关内容" class="headerlink" title="Java 相关内容"></a>Java 相关内容</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs dataview">table<br>from &quot;&quot;<br>where contains(file.tags,&quot;java&quot;) and contains(file.path,&quot;_posts&quot;) <br>sort  date<br></code></pre></td></tr></table></figure>
-
-
-
-<h4 id="世界很大，古灵精怪"><a href="#世界很大，古灵精怪" class="headerlink" title="世界很大，古灵精怪"></a>世界很大，古灵精怪</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs dataview">table<br>from &quot;&quot;<br>where contains(file.tags,&quot;blog&quot;) and contains(file.path,&quot;_posts&quot;) <br>sort file.name<br></code></pre></td></tr></table></figure>
-
-
-
-<p>最近文件（根据 date 降序）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs dataview">table<br>from &quot;&quot;<br>sort date desc<br>limit 10<br></code></pre></td></tr></table></figure>
+<p>参考</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45868731/article/details/131743699">https://blog.csdn.net/qq_45868731/article/details/131743699</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/ninimino/article/details/113388745">https://blog.csdn.net/ninimino/article/details/113388745</a></li>
+</ul>
 
                 
               </div>
@@ -300,6 +319,34 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%83%A8%E7%BD%B2/" class="category-chain-item">部署</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/docker/" class="print-no-link">#docker</a>
+      
+    </div>
   
 </div>
 
@@ -309,8 +356,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>HomePage</div>
-      <div>https://varcel.luoqi.icu/2023/12/08/HomePage/</div>
+      <div>Docker入门_Docker的基本使用</div>
+      <div>https://varcel.luoqi.icu/2023/12/08/Docker入门_Docker的基本使用/</div>
     </div>
     <div class="license-meta">
       
@@ -349,6 +396,23 @@
 
 
 
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/12/08/Redis%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" title="Redis入门_基础概念">
+                        <span class="hidden-mobile">Redis入门_基础概念</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
               
             </div>
 

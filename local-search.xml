@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Docker入门_Docker的基本使用</title>
+    <link href="/2023/12/08/Docker%E5%85%A5%E9%97%A8_Docker%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/"/>
+    <url>/2023/12/08/Docker%E5%85%A5%E9%97%A8_Docker%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</url>
+    
+    <content type="html"><![CDATA[<h3 id="1、安装-Docker操作-centos系列安装"><a href="#1、安装-Docker操作-centos系列安装" class="headerlink" title="1、安装 Docker操作 (centos系列安装)"></a>1、安装 Docker操作 (centos系列安装)</h3><p>安装操作</p><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs vim">yum install -<span class="hljs-keyword">y</span> yum-utils<br><br>yum-config-manager --<span class="hljs-built_in">add</span>-repo http://mirrors.aliyun.<span class="hljs-keyword">com</span>/docker-<span class="hljs-keyword">ce</span>/linux/centos/docker-<span class="hljs-keyword">ce</span>.repo<br><br><br>yum install docker-<span class="hljs-keyword">ce</span> docker-<span class="hljs-keyword">ce</span>-cli containerd.io<br></code></pre></td></tr></table></figure><p>启动docer并设置开机自启</p><figure class="highlight nsis"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs nsis"><span class="hljs-params">system</span>ctl start docker<br><br><span class="hljs-params">system</span>ctl enable docker<br></code></pre></td></tr></table></figure><p>docker配置加速度</p><p>修改 &#x2F;etc&#x2F;docker&#x2F;daemon.json 文件并添加上 registry-mirrors 键值；注册阿里云，可获取自己的加速器</p><p>容器镜像服务 →  容器加速器</p><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs prolog">&#123;. <br>    <span class="hljs-string">&quot;registry-mirrors&quot;</span>: [<span class="hljs-string">&quot;https://registry.docker-cn.com&quot;</span>]<br>&#125;<br></code></pre></td></tr></table></figure><p>docker安装验证</p><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">docker <span class="hljs-comment">--version</span><br></code></pre></td></tr></table></figure><h3 id="2、docker-compose安装"><a href="#2、docker-compose安装" class="headerlink" title="2、docker-compose安装"></a>2、docker-compose安装</h3><p>Compose 是用于定义和运行多容器 Docker 应用程序的工具。通过 Compose，您可以使用 YML 文件来配置应用程序需要的所有服务。</p><p>使用一个命令，就可以从 YML 文件配置中创建并启动所有服务</p><blockquote><p>安装操作</p></blockquote><p>先需要下载一下二进制文件</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/docker/</span>compose<span class="hljs-regexp">/releases/</span>download<span class="hljs-regexp">/v2.5.0/</span>docker-compose-linux-x86_64<br></code></pre></td></tr></table></figure><p>放入&#x2F;usr&#x2F;local&#x2F;bin&#x2F; 路径下并重新命名添加可执行权限</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mv</span> docker-compose-linux-x86_64 docker-compose<br><span class="hljs-built_in">chmod</span> +x docker-compose<br></code></pre></td></tr></table></figure><p>这个也可以推荐看一下</p><p>将脚本下载，阿里云的下载速度较快，推荐适用</p><p><a href="https://mirrors.aliyun.com/docker-toolbox/linux/compose/1.21.2/">https://mirrors.aliyun.com/docker-toolbox/linux/compose/1.21.2/</a></p><p>把脚本放在&#x2F;usr&#x2F;local&#x2F;bin&#x2F;下.名字为docker-compose ,加执行权限 ，docker-compose命令就有了</p><hr><p>参考</p><ul><li><a href="https://blog.csdn.net/qq_45868731/article/details/131743699">https://blog.csdn.net/qq_45868731/article/details/131743699</a></li><li><a href="https://blog.csdn.net/ninimino/article/details/113388745">https://blog.csdn.net/ninimino/article/details/113388745</a></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>部署</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>docker</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Redis入门_基础概念</title>
     <link href="/2023/12/08/Redis%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/"/>
     <url>/2023/12/08/Redis%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/</url>
