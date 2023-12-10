@@ -234,7 +234,7 @@
         
         
         
-          11 分钟
+          12 分钟
         
       </span>
     
@@ -359,6 +359,7 @@
 <p>Redis 分布式锁通过是<strong>利用<code>SETNX</code>这个方法</strong>，如果插入Key成功，则表示获得到了锁，如果有人插入成功，那么其他人就回插入失败，无法获取到锁，利用这套逻辑完成<code>互斥</code>，从而实现分布式锁</p>
 <p>在使用 <code>SETNX</code>这个方法的时候，一般还会使用 EXPIRE 命令为锁设置一个过期时间防止死锁。</p>
 <p>to be contined….</p>
+<p>放后面整理一下 Redis 和 MQ 的相关内容，明显现在整理的有些问题。</p>
 <hr>
 <h2 id="参考-https-javaguide-cn-database-redis-cache-basics-html-https-www-pdai-tech-md-interview-x-interview-html-8-3-redis-https-www-cnblogs-com-powertoolsteam-p-redis-html-♪-∇-诶嘿嘿-又好了Redis实战篇-Kyle’s-Blog-cyborg2077-github-io"><a href="#参考-https-javaguide-cn-database-redis-cache-basics-html-https-www-pdai-tech-md-interview-x-interview-html-8-3-redis-https-www-cnblogs-com-powertoolsteam-p-redis-html-♪-∇-诶嘿嘿-又好了Redis实战篇-Kyle’s-Blog-cyborg2077-github-io" class="headerlink" title="参考- https://javaguide.cn/database/redis/cache-basics.html- https://www.pdai.tech/md/interview/x-interview.html#_8-3-redis- https://www.cnblogs.com/powertoolsteam/p/redis.html- ♪(^∇^*)诶嘿嘿~ 又好了Redis实战篇 | Kyle’s Blog (cyborg2077.github.io)"></a>参考<br>- <a target="_blank" rel="noopener" href="https://javaguide.cn/database/redis/cache-basics.html">https://javaguide.cn/database/redis/cache-basics.html</a><br>- <a target="_blank" rel="noopener" href="https://www.pdai.tech/md/interview/x-interview.html#_8-3-redis">https://www.pdai.tech/md/interview/x-interview.html#_8-3-redis</a><br>- <a target="_blank" rel="noopener" href="https://www.cnblogs.com/powertoolsteam/p/redis.html">https://www.cnblogs.com/powertoolsteam/p/redis.html</a><br>- <a target="_blank" rel="noopener" href="https://cyborg2077.github.io/2022/10/22/RedisPractice/">♪(^∇^*)诶嘿嘿~ 又好了Redis实战篇 | Kyle’s Blog (cyborg2077.github.io)</a></h2>
                 
@@ -454,29 +455,6 @@
 
 
 
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2023/12/08/Docker%E5%85%A5%E9%97%A8_Docker%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" title="Docker入门_Docker的基本使用">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Docker入门_Docker的基本使用</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2023/12/08/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B_%E8%BF%9B%E9%98%B6%E5%86%85%E5%AE%B9/" title="Java并发编程_进阶内容">
-                        <span class="hidden-mobile">Java并发编程_进阶内容</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
               
             </div>
 

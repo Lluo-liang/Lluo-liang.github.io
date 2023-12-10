@@ -226,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          566 字
+          1.8k 字
         
       </span>
     
@@ -237,7 +237,7 @@
         
         
         
-          5 分钟
+          16 分钟
         
       </span>
     
@@ -297,6 +297,56 @@
 <p>双击 rabbitmq-service.bat 即完成安装。（关闭的话手动在服务列表进行关闭一下）</p>
 <p>登陆： <a target="_blank" rel="noopener" href="http://127.0.0.1:15672/">http://127.0.0.1:15672/</a></p>
 <p>初始的默认用户及密码都是 <code>guest</code> ， 输入后即可登录</p>
+<h3 id="2、centos-系统下-rabbitMQ-的安装"><a href="#2、centos-系统下-rabbitMQ-的安装" class="headerlink" title="2、centos 系统下 rabbitMQ 的安装"></a>2、centos 系统下 rabbitMQ 的安装</h3><h4 id="RabbitMQ-服务安装"><a href="#RabbitMQ-服务安装" class="headerlink" title="RabbitMQ 服务安装"></a>RabbitMQ 服务安装</h4><p>略</p>
+<h4 id="Docker容器方式安装RabbitMQ"><a href="#Docker容器方式安装RabbitMQ" class="headerlink" title="Docker容器方式安装RabbitMQ"></a>Docker容器方式安装RabbitMQ</h4><p>1、拉取镜像（默认安装最新版本）</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">docker pull rabbitmq<br></code></pre></td></tr></table></figure>
+
+<p>2、启动RabbitMQ容器</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">docker</span> run -d --hostname myRabbitMQ --name rabbit -p <span class="hljs-number">5672</span>:<span class="hljs-number">5672</span> -p <span class="hljs-number">15672</span>:<span class="hljs-number">15672</span> rabbitmq<br></code></pre></td></tr></table></figure>
+
+<p>这个命令的组成部分解释如下：</p>
+<ul>
+<li><code>docker run</code>：启动一个新的容器。</li>
+<li><code>-d</code>：以守护进程模式运行容器，即容器在后台运行。</li>
+<li><code>--hostname myRabbitMQ</code>：为容器设置主机名（<code>myRabbitMQ</code>）。你可以根据需要更改这个值。</li>
+<li><code>--name rabbit</code>：设置容器的名称（<code>rabbit</code>）。这也可以根据你的命名约定来更改。</li>
+<li><code>-p 5672:5672</code>：将容器内部的 5672 端口映射到宿主机的 5672 端口。5672 端口是 RabbitMQ 的默认AMQP端口。</li>
+<li><code>-p 15672:15672</code>：将容器内的 15672 端口映射到宿主机的 15672 端口。15672 端口是 RabbitMQ 管理界面（Management Console）的默认端口。</li>
+<li><code>rabbitmq</code>：指定要使用的 Docker 镜像。</li>
+</ul>
+<p>在 Docker 命令中使用 <code>-p</code> 参数来映射端口时，格式为 <code>-p &lt;宿主机端口&gt;:&lt;容器端口&gt;</code>。</p>
+<p>开放一下端口</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs dockerfile">firewall-<span class="hljs-keyword">cmd</span><span class="language-bash"> --permanent --add-port=5672/tcp</span><br>firewall-<span class="hljs-keyword">cmd</span><span class="language-bash"> --permanent --add-port=15672/tcp</span><br>firewall-<span class="hljs-keyword">cmd</span><span class="language-bash"> --reload      <span class="hljs-comment"># 重启防火墙</span></span><br></code></pre></td></tr></table></figure>
+
+<p>访问控制台界面</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-symbol">http:</span><span class="hljs-comment">//linuxip:15672</span><br></code></pre></td></tr></table></figure>
+
+<p>用户名和密码默认都是guest</p>
+<p>3、开启 Web 界面管控台插件</p>
+<p>对于 Docker 容器中的 RabbitMQ</p>
+<p>如果你是通过 Docker 容器运行 RabbitMQ，并且想要启用管理控制台，通常最简单的方式是直接使用带有管理插件的 RabbitMQ 镜像。例如：</p>
+<p><code>docker run -d --hostname myRabbitMQ --name some-rabbit -p 5672:5672 -p 15672:15672 rabbitmq:3-management</code></p>
+<p>在这个命令中，<code>rabbitmq:3-management</code> 镜像已经包含了管理插件。如果你已经运行了一个不包含管理插件的 RabbitMQ 容器，你可以按照以下步骤启用管理插件：</p>
+<ol>
+<li><p>找出你的 RabbitMQ 容器的 ID 或名称：</p>
+<p> <code>docker ps</code></p>
+</li>
+<li><p>进入容器：</p>
+<p> <code>docker exec -it [容器ID或名称] bash</code></p>
+</li>
+<li><p>在容器内部，运行以下命令来启用管理插件：</p>
+<p> <code>rabbitmq-plugins enable rabbitmq_management</code></p>
+</li>
+<li><p>退出容器：</p>
+<p> <code>exit</code></p>
+</li>
+<li><p>重启 RabbitMQ 容器以应用更改。</p>
+</li>
+</ol>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">docker</span> restart<span class="hljs-meta"> [容器名称或ID]</span><br></code></pre></td></tr></table></figure>
+
+<p>一旦完成，你就可以通过<code>http://linuxip:15672</code></p>
+<p>访问 RabbitMQ 的管理界面。确保你已经将 15672 端口映射到了宿主机上。</p>
 <hr>
 <p>参考： </p>
 <ul>
