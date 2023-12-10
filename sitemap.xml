@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://varcel.luoqi.icu/2023/12/11/%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E5%92%8C%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B/</loc>
+    
+    <lastmod>2023-12-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://varcel.luoqi.icu/about/index.html</loc>
     
     <lastmod>2023-12-10</lastmod>
@@ -308,7 +317,7 @@
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/2023/11/23/%E8%98%91%E8%8F%87%E5%8D%9A%E5%AE%A2%E9%A1%B9%E7%9B%AE01/</loc>
+    <loc>https://varcel.luoqi.icu/2023/11/23/%E8%98%91%E8%8F%87%E5%8D%9A%E5%AE%A2%E9%A1%B9%E7%9B%AE_Day01/</loc>
     
     <lastmod>2023-11-23</lastmod>
     
@@ -765,6 +774,13 @@
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/project/</loc>
+    <lastmod>2023-12-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://varcel.luoqi.icu/tags/thinking/</loc>
     <lastmod>2023-12-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

@@ -1,3 +1,4 @@
+https://varcel.luoqi.icu/2023/12/11/%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E5%92%8C%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B/
 https://varcel.luoqi.icu/about/index.html
 https://varcel.luoqi.icu/2023/12/08/Docker%E5%85%A5%E9%97%A8_Docker%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/
 https://varcel.luoqi.icu/2023/12/08/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B_%E8%BF%9B%E9%98%B6%E5%86%85%E5%AE%B9/
@@ -32,7 +33,7 @@ https://varcel.luoqi.icu/2023/11/24/Maven%E5%B7%A5%E5%85%B7_%E5%9F%BA%E7%A1%80%E
 https://varcel.luoqi.icu/2023/11/24/SpringCloud_%E7%BB%84%E4%BB%B6%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8_Nacos/
 https://varcel.luoqi.icu/2023/11/24/hexo_%E5%AE%9E%E7%8E%B0%E5%9C%A8%E7%99%BE%E5%BA%A6%E4%B8%AD%E6%90%9C%E7%B4%A2%E5%88%B0%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/
 https://varcel.luoqi.icu/2023/11/23/Vercel%E7%9A%84%E5%BC%80%E7%AE%B1%E4%BD%BF%E7%94%A8_%E5%90%8C%E6%AD%A5Hexo%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/
-https://varcel.luoqi.icu/2023/11/23/%E8%98%91%E8%8F%87%E5%8D%9A%E5%AE%A2%E9%A1%B9%E7%9B%AE01/
+https://varcel.luoqi.icu/2023/11/23/%E8%98%91%E8%8F%87%E5%8D%9A%E5%AE%A2%E9%A1%B9%E7%9B%AE_Day01/
 https://varcel.luoqi.icu/stop_maintain/%E5%AD%A6%E6%88%90%E5%9C%A8%E7%BA%BF%E9%A1%B9%E7%9B%AE_%E9%A1%B9%E7%9B%AE%E8%BF%90%E8%A1%8C.html
 https://varcel.luoqi.icu/2023/11/22/SpringCloud_%E7%BB%84%E4%BB%B6%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8_Eureka/
 https://varcel.luoqi.icu/2023/11/22/%E9%80%9A%E8%BF%87RestTemplate%E8%BF%9B%E8%A1%8C%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/
@@ -91,6 +92,7 @@ https://varcel.luoqi.icu/tags/vim/
 https://varcel.luoqi.icu/tags/windows/
 https://varcel.luoqi.icu/tags/computer/
 https://varcel.luoqi.icu/tags/project/
+https://varcel.luoqi.icu/tags/thinking/
 https://varcel.luoqi.icu/tags/obsidian/
 https://varcel.luoqi.icu/tags/blog/
 https://varcel.luoqi.icu/categories/Exam/
