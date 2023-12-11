@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          384 字
+          581 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          4 分钟
+          5 分钟
         
       </span>
     
@@ -278,7 +278,7 @@
             
               <div class="markdown-body">
                 
-                <p>下载地址： <a target="_blank" rel="noopener" href="https://www.python.org/downloads/release/python-396/">https://www.python.org/downloads/release/python-396/</a></p>
+                <h3 id="1、python-3-9-版本安装"><a href="#1、python-3-9-版本安装" class="headerlink" title="1、python 3.9 版本安装"></a>1、python 3.9 版本安装</h3><p>下载地址： <a target="_blank" rel="noopener" href="https://www.python.org/downloads/release/python-396/">https://www.python.org/downloads/release/python-396/</a></p>
 <p>参考： <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_53280175/article/details/121107748">https://blog.csdn.net/qq_53280175/article/details/121107748</a></p>
 <p>下载链接： <a target="_blank" rel="noopener" href="https://www.python.org/ftp/python/3.9.6/python-3.9.6-amd64.exe">https://www.python.org/ftp/python/3.9.6/python-3.9.6-amd64.exe</a></p>
 <p>这里下载的是 win 64 位安装版</p>
@@ -287,10 +287,18 @@
 <p>选择自定义安装</p>
 <p>查看是否安装成功，cmd 窗口输入一下 <code>python</code> 看一下</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231203214605.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h3 id="降级python为2-0-版本"><a href="#降级python为2-0-版本" class="headerlink" title="降级python为2.0 版本"></a>降级python为2.0 版本</h3><p>找了一个 2.7.2 版本：<a target="_blank" rel="noopener" href="https://www.python.org/downloads/release/python-273/">https://www.python.org/downloads/release/python-273/</a></p>
+<h3 id="2、降级python为2-0-版本"><a href="#2、降级python为2-0-版本" class="headerlink" title="2、降级python为2.0 版本"></a>2、降级python为2.0 版本</h3><p>由于版本前端项目 node-sass 安装失败，部分建议是降级 Python 为 2.x 版本，这里记录一下实际操作。</p>
+<p>找了一个 2.7.2 版本：<a target="_blank" rel="noopener" href="https://www.python.org/downloads/release/python-273/">https://www.python.org/downloads/release/python-273/</a></p>
 <p>仍然选择安装版本</p>
 <p>安装完成后加一下 Path 环境变量（删除之前的）</p>
 <figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gcode">xxx\Pytho<span class="hljs-symbol">n27</span><br></code></pre></td></tr></table></figure>
+
+<p>输入 <code>Python -V</code> 验证释放安装成功</p>
+<p>实际操作在这一步输入后，没反映，<strong>使用完整路径运行 Python</strong> 却又是正常的</p>
+<figure class="highlight moonscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs moonscript"><span class="hljs-name">D</span>:\<span class="hljs-number">02</span>_Soft\xxxxx\Python27\python.exe -V<br></code></pre></td></tr></table></figure>
+
+<p>实际的一个操作，<strong>需要设置path优先级，把python的路径放置顶部</strong></p>
+
                 
               </div>
             
