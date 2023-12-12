@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          606 字
+          4.5k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          6 分钟
+          38 分钟
         
       </span>
     
@@ -310,9 +310,25 @@
 <h4 id="博客管理"><a href="#博客管理" class="headerlink" title="博客管理"></a>博客管理</h4><blockquote>
 <p>查找</p>
 </blockquote>
+<p>查询并分页获取博客列表</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 根据条件获取博客列表，并进行分页。</span><br><span class="hljs-comment"> * 使用MyBatis-Plus的QueryWrapper来构建查询条件。</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * @param blogVO 包含查询条件的VO对象</span><br><span class="hljs-comment"> * @return 分页后的博客列表</span><br><span class="hljs-comment"> */</span><br>@Override<br>public IPage&lt;Blog&gt; getPageList(BlogVO blogVO) &#123;<br>    <span class="hljs-comment">// 创建查询包装器</span><br>    QueryWrapper&lt;Blog&gt; queryWrapper = <span class="hljs-keyword">new</span> QueryWrapper&lt;&gt;();<br><br>    <span class="hljs-comment">// 构建搜索条件</span><br>    <span class="hljs-keyword">if</span> (StringUtils.isNotEmpty(blogVO.getKeyword()) &amp;&amp; !StringUtils.<span class="hljs-built_in">isEmpty</span>(blogVO.getKeyword().<span class="hljs-built_in">trim</span>())) &#123;<br>        queryWrapper.like(SQLConf.TITLE, blogVO.getKeyword().<span class="hljs-built_in">trim</span>());<br>    &#125;<br>    <span class="hljs-keyword">if</span> (!StringUtils.<span class="hljs-built_in">isEmpty</span>(blogVO.getTagUid())) &#123;<br>        queryWrapper.like(SQLConf.TAG_UID, blogVO.getTagUid());<br>    &#125;<br>    <span class="hljs-keyword">if</span> (!StringUtils.<span class="hljs-built_in">isEmpty</span>(blogVO.getBlogSortUid())) &#123;<br>        queryWrapper.like(SQLConf.BLOG_SORT_UID, blogVO.getBlogSortUid());<br>    &#125;<br>    <span class="hljs-keyword">if</span> (!StringUtils.<span class="hljs-built_in">isEmpty</span>(blogVO.getLevelKeyword())) &#123;<br>        queryWrapper.eq(SQLConf.LEVEL, blogVO.getLevelKeyword());<br>    &#125;<br>    <span class="hljs-keyword">if</span> (!StringUtils.<span class="hljs-built_in">isEmpty</span>(blogVO.getIsPublish())) &#123;<br>        queryWrapper.eq(SQLConf.IS_PUBLISH, blogVO.getIsPublish());<br>    &#125;<br>    <span class="hljs-keyword">if</span> (!StringUtils.<span class="hljs-built_in">isEmpty</span>(blogVO.getIsOriginal())) &#123;<br>        queryWrapper.eq(SQLConf.IS_ORIGINAL, blogVO.getIsOriginal());<br>    &#125;<br>    <span class="hljs-keyword">if</span>(!StringUtils.<span class="hljs-built_in">isEmpty</span>(blogVO.getType())) &#123;<br>        queryWrapper.eq(SQLConf.TYPE, blogVO.getType());<br>    &#125;<br><br>    <span class="hljs-comment">// 设置分页参数</span><br>    Page&lt;Blog&gt; page = <span class="hljs-keyword">new</span> Page&lt;&gt;();<br>    page.setCurrent(blogVO.getCurrentPage());<br>    page.setSize(blogVO.getPageSize());<br>    queryWrapper.eq(SQLConf.STATUS, EStatus.ENABLE);<br><br>    <span class="hljs-comment">// 设置排序方式</span><br>    <span class="hljs-keyword">if</span>(StringUtils.isNotEmpty(blogVO.getOrderByAscColumn())) &#123;<br>        <span class="hljs-comment">// 将驼峰命名转换成下划线命名</span><br>        String column = StringUtils.underLine(<span class="hljs-keyword">new</span> StringBuffer(blogVO.getOrderByAscColumn())).toString();<br>        queryWrapper.orderByAsc(column);<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(StringUtils.isNotEmpty(blogVO.getOrderByDescColumn())) &#123;<br>        String column = StringUtils.underLine(<span class="hljs-keyword">new</span> StringBuffer(blogVO.getOrderByDescColumn())).toString();<br>        queryWrapper.orderByDesc(column);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-comment">// 默认排序</span><br>        <span class="hljs-keyword">if</span> (blogVO.getUseSort() == <span class="hljs-number">0</span>) &#123;<br>            queryWrapper.orderByDesc(SQLConf.CREATE_TIME);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            queryWrapper.orderByDesc(SQLConf.<span class="hljs-built_in">SORT</span>);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">// 执行分页查询</span><br>    IPage&lt;Blog&gt; pageList = blogService.page(page, queryWrapper);<br>    List&lt;Blog&gt; list = pageList.getRecords();<br><br>    <span class="hljs-comment">// 若结果为空，直接返回</span><br>    <span class="hljs-keyword">if</span> (list.size() == <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-keyword">return</span> pageList;<br>    &#125;<br><br>    <span class="hljs-comment">// 处理查询结果，例如添加分类、标签等额外信息</span><br>    <span class="hljs-comment">// ... 省略了额外信息处理的代码 ...</span><br><br>    <span class="hljs-comment">// 返回处理后的分页结果</span><br>    pageList.setRecords(list);<br>    <span class="hljs-keyword">return</span> pageList;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>处理查询结果</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs pf">// ...省略方法的其它部分...<br><br>List<span class="hljs-variable">&lt;Blog&gt;</span> list = pageList.getRecords();<br><br>// 若查询结果为空，直接返回<br>if (list.isEmpty()) &#123;<br>    return pageList;<br>&#125;<br><br>// 初始化存储分类UID和标签UID的集合<br>List<span class="hljs-variable">&lt;String&gt;</span> sortUids = new ArrayList<span class="hljs-variable">&lt;&gt;</span>();<br>List<span class="hljs-variable">&lt;String&gt;</span> <span class="hljs-keyword">tag</span>Uids = new ArrayList<span class="hljs-variable">&lt;&gt;</span>();<br><br>// 遍历查询结果，收集分类UID和标签UID<br><span class="hljs-keyword">for</span> (B<span class="hljs-keyword">log</span> blog : list) &#123;<br>    if (StringUtils.isNotEmpty(blog.getB<span class="hljs-keyword">log</span>SortUid())) &#123;<br>        sortUids.add(blog.getB<span class="hljs-keyword">log</span>SortUid());<br>    &#125;<br>    if (StringUtils.isNotEmpty(blog.getTagUid())) &#123;<br>        <span class="hljs-keyword">tag</span>Uids.addAll(StringUtils.changeStringToString(blog.getTagUid(), SysConf.FILE_SEGMENTATION));<br>    &#125;<br>&#125;<br><br>// 根据分类UIDs和标签UIDs获取对应的分类和标签对象<br>Collection<span class="hljs-variable">&lt;BlogSort&gt;</span> sortList = blogSortService.listByIds(sortUids);<br>Collection<span class="hljs-variable">&lt;Tag&gt;</span> <span class="hljs-keyword">tag</span>List = <span class="hljs-keyword">tag</span>Service.listByIds(<span class="hljs-keyword">tag</span>Uids);<br><br>// 将分类和标签对象转换为Map，便于快速查找<br>Map<span class="hljs-variable">&lt;String, BlogSort&gt;</span> sortMap = sortList.stream()<br>    .collect(Collectors.<span class="hljs-keyword">to</span>Map(B<span class="hljs-keyword">log</span>Sort::getUid, Function.identity()));<br>Map<span class="hljs-variable">&lt;String, Tag&gt;</span> <span class="hljs-keyword">tag</span>Map = <span class="hljs-keyword">tag</span>List.stream()<br>    .collect(Collectors.<span class="hljs-keyword">to</span>Map(Tag::getUid, Function.identity()));<br><br>// 遍历查询结果，设置每个博客的分类和标签<br><span class="hljs-keyword">for</span> (B<span class="hljs-keyword">log</span> blog : list) &#123;<br>    blog.<span class="hljs-built_in">set</span>B<span class="hljs-keyword">log</span>Sort(sortMap.get(blog.getB<span class="hljs-keyword">log</span>SortUid()));<br>    List<span class="hljs-variable">&lt;String&gt;</span> <span class="hljs-keyword">tag</span>UidList = StringUtils.changeStringToString(blog.getTagUid(), SysConf.FILE_SEGMENTATION);<br>    List<span class="hljs-variable">&lt;Tag&gt;</span> blogTags = <span class="hljs-keyword">tag</span>UidList.stream()<br>        .map(<span class="hljs-keyword">tag</span>Map::get)<br>        .collect(Collectors.<span class="hljs-keyword">to</span>List());<br>    blog.<span class="hljs-built_in">set</span>TagList(blogTags);<br>&#125;<br><br>// 更新处理后的查询结果<br>pageList.<span class="hljs-built_in">set</span>Records(list);<br><br>// ...省略方法的其余部分...<br></code></pre></td></tr></table></figure>
+
+<ol>
+<li>首先检查查询结果列表是否为空，如果为空则直接返回。</li>
+<li>遍历博客列表，从每个博客对象中提取分类和标签的UID。</li>
+<li>使用收集的UIDs从服务层获取相应的分类和标签对象。</li>
+<li>将分类和标签对象转换成Map，方便后续根据UID快速查找。</li>
+<li>再次遍历博客列表，为每个博客设置对应的分类和标签列表。</li>
+<li>最后，将更新后的博客列表设置回分页结果对象中。</li>
+</ol>
+<p>这个过程允许在返回博客列表之前丰富每个博客对象的信息，如添加分类和标签数据。以便提供更详细的信息给前端显示。</p>
 <blockquote>
 <p>添加博客</p>
 </blockquote>
+<p>to be contined….</p>
 
                 
               </div>
@@ -400,6 +416,29 @@
 
 
 
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/12/11/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97_%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" title="消息队列_基础概念">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">消息队列_基础概念</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/12/11/%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E5%92%8C%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B/" title="业务场景和技术选型">
+                        <span class="hidden-mobile">业务场景和技术选型</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
               
             </div>
 

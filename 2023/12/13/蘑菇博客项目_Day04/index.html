@@ -1,0 +1,737 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/Xbox%20L.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Luo QI">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="蘑菇博客项目_Day04">
+<meta property="og:type" content="article">
+<meta property="og:title" content="蘑菇博客项目_Day04">
+<meta property="og:url" content="https://varcel.luoqi.icu/2023/12/13/%E8%98%91%E8%8F%87%E5%8D%9A%E5%AE%A2%E9%A1%B9%E7%9B%AE_Day04/index.html">
+<meta property="og:site_name" content="轻松的洛亓">
+<meta property="og:description" content="蘑菇博客项目_Day04">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-12-13T04:29:43.000Z">
+<meta property="article:modified_time" content="2023-12-13T04:29:43.000Z">
+<meta property="article:author" content="Luo QI">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="project">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>蘑菇博客项目_Day04 - 轻松的洛亓</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"varcel.luoqi.icu","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  <meta name="baidu-site-verification" content="codeva-Oq0KOjHuD3" />
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>轻松的洛亓</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="蘑菇博客项目_Day04"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-12-13 04:29" pubdate>
+          2023年12月13日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          13k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          112 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">蘑菇博客项目_Day04</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>继续讲述蘑菇博客里面一些写法的使用说明</p>
+<p>解释下面这段代码的使用</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-variable">@AvoidRepeatableCommit</span>  <br><span class="hljs-variable">@AuthorityVerify</span>  <br><span class="hljs-variable">@OperationLogger</span>(value = <span class="hljs-string">&quot;增加博客&quot;</span>)  <br><span class="hljs-variable">@ApiOperation</span>(value = <span class="hljs-string">&quot;增加博客&quot;</span>, notes = <span class="hljs-string">&quot;增加博客&quot;</span>, response = String.class)  <br><span class="hljs-variable">@PostMapping</span>(<span class="hljs-string">&quot;/add&quot;</span>)  <br>public String <span class="hljs-built_in">add</span>(<span class="hljs-variable">@Validated</span>(&#123;Insert.class&#125;) <span class="hljs-variable">@RequestBody</span> BlogVO blogVO, BindingResult result) &#123;  <br>  <br>    <span class="hljs-comment">// 参数校验  </span><br>    <span class="hljs-selector-tag">ThrowableUtils</span><span class="hljs-selector-class">.checkParamArgument</span>(result);  <br>    <span class="hljs-selector-tag">return</span> <span class="hljs-selector-tag">blogService</span><span class="hljs-selector-class">.addBlog</span>(blogVO);  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="1、自定义注解AvoidRepeatableCommit的使用"><a href="#1、自定义注解AvoidRepeatableCommit的使用" class="headerlink" title="1、自定义注解AvoidRepeatableCommit的使用"></a>1、自定义注解<code>AvoidRepeatableCommit</code>的使用</h3><p><code>@AvoidRepeatableCommit</code> 注解用于防止用户在指定时间内重复提交表单或请求。</p>
+<p>与Spring AOP（面向切面编程）一起使用，以便在方法执行之前执行某些预处理操作。</p>
+<blockquote>
+<p>自定义注解 AvoidRepeatableCommit</p>
+</blockquote>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-variable">@Target</span>(ElementType.METHOD)<br><span class="hljs-variable">@Retention</span>(RetentionPolicy.RUNTIME)<br>public <span class="hljs-variable">@interface</span> AvoidRepeatableCommit &#123;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 指定时间内不可重复提交,单位毫秒，默认1秒</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-selector-tag">long</span> <span class="hljs-selector-tag">timeout</span>() <span class="hljs-selector-tag">default</span> <span class="hljs-number">1000</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li><code>@Target(ElementType.METHOD)</code>: 表明这个注解只能用于方法。</li>
+<li><code>@Retention(RetentionPolicy.RUNTIME)</code>: 表明这个注解在运行时保留，可以通过反射读取。</li>
+<li><code>timeout()</code>: 注解的属性，表示不允许重复提交的时间窗口，默认为1000毫秒（1秒）。</li>
+</ul>
+<p>使用场景：在Spring MVC的控制器方法上使用此注解，防止用户在短时间内重复提交相同的请求</p>
+<blockquote>
+<p>AvoidRepeatableCommitAspect 切面</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Aspect</span><br><span class="hljs-meta">@Component</span><br><span class="hljs-meta">@Slf4j</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AvoidRepeatableCommitAspect</span> &#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> RedisUtil redisUtil;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 环绕通知，用于处理带有 <span class="hljs-doctag">@AvoidRepeatableCommit</span> 注解的方法。</span><br><span class="hljs-comment">     * 防止同一个用户在指定时间内重复提交相同的请求。</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> point 切点，提供对连接点的访问</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 方法执行的返回值</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@throws</span> Throwable 可能抛出的任何异常</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Around(&quot;@annotation(com.moxi.mogublog.admin.annotion.AvoidRepeatableCommit.AvoidRepeatableCommit)&quot;)</span><br>    <span class="hljs-keyword">public</span> Object <span class="hljs-title function_">around</span><span class="hljs-params">(ProceedingJoinPoint point)</span> <span class="hljs-keyword">throws</span> Throwable &#123;<br>        <span class="hljs-type">HttpServletRequest</span> <span class="hljs-variable">request</span> <span class="hljs-operator">=</span> RequestHolder.getRequest();<br><br>        <span class="hljs-comment">// 获取请求者的IP地址</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">ip</span> <span class="hljs-operator">=</span> IpUtils.getIpAddr(request);<br><br>        <span class="hljs-comment">// 获取注解标记的方法</span><br>        <span class="hljs-type">MethodSignature</span> <span class="hljs-variable">signature</span> <span class="hljs-operator">=</span> (MethodSignature) point.getSignature();<br>        <span class="hljs-type">Method</span> <span class="hljs-variable">method</span> <span class="hljs-operator">=</span> signature.getMethod();<br><br>        <span class="hljs-comment">// 获取类名和方法名</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">className</span> <span class="hljs-operator">=</span> method.getDeclaringClass().getName();<br>        <span class="hljs-type">String</span> <span class="hljs-variable">methodName</span> <span class="hljs-operator">=</span> method.getName();<br>        <span class="hljs-type">String</span> <span class="hljs-variable">ipKey</span> <span class="hljs-operator">=</span> String.format(<span class="hljs-string">&quot;%s#%s&quot;</span>, className, methodName);<br><br>        <span class="hljs-comment">// 生成基于IP和方法的唯一标识</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">hashCode</span> <span class="hljs-operator">=</span> Math.abs(ipKey.hashCode());<br>        <span class="hljs-type">String</span> <span class="hljs-variable">key</span> <span class="hljs-operator">=</span> String.format(<span class="hljs-string">&quot;%s:%s_%d&quot;</span>, RedisConf.AVOID_REPEATABLE_COMMIT, ip, hashCode);<br>        log.info(<span class="hljs-string">&quot;ipKey=&#123;&#125;, hashCode=&#123;&#125;, key=&#123;&#125;&quot;</span>, ipKey, hashCode, key);<br><br>        <span class="hljs-type">AvoidRepeatableCommit</span> <span class="hljs-variable">avoidRepeatableCommit</span> <span class="hljs-operator">=</span> method.getAnnotation(AvoidRepeatableCommit.class);<br>        <span class="hljs-type">long</span> <span class="hljs-variable">timeout</span> <span class="hljs-operator">=</span> avoidRepeatableCommit.timeout();<br><br>        <span class="hljs-comment">// 检查Redis中是否已存在该请求的标记</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">value</span> <span class="hljs-operator">=</span> redisUtil.get(key);<br>        <span class="hljs-keyword">if</span> (StringUtils.isNotBlank(value)) &#123;<br>            log.info(<span class="hljs-string">&quot;请勿重复提交表单&quot;</span>);<br>            <span class="hljs-keyword">return</span> ResultUtil.result(SysConf.ERROR, <span class="hljs-string">&quot;请勿重复提交表单&quot;</span>);<br>        &#125;<br><br>        <span class="hljs-comment">// 设置Redis标记以防止在timeout时间内重复提交</span><br>        redisUtil.setEx(key, StringUtils.getUUID(), timeout, TimeUnit.MILLISECONDS);<br><br>        <span class="hljs-comment">// 执行原方法</span><br>        <span class="hljs-keyword">return</span> point.proceed();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><code>@Around(&quot;@annotation(...AvoidRepeatableCommit)&quot;)</code>: 表明这个切面的方法会在所有标记有 <code>@AvoidRepeatableCommit</code> 注解的方法之前执行。</li>
+<li>切面的实现逻辑是：首先检查Redis中是否已经存储了针对该请求的标记。如果存在，表示该请求在指定时间内已经提交过，因此拒绝重复提交。如果不存在，允许执行方法，并在Redis中设置一个标记，以防止在指定时间内的重复提交。</li>
+</ul>
+<p>在这个方法中：</p>
+<ol>
+<li>首先，它获取当前请求的 <code>HttpServletRequest</code> 对象，并从中提取请求者的IP地址。</li>
+<li>然后，它获取了被 <code>@AvoidRepeatableCommit</code> 注解的方法的信息，包括类名和方法名，并生成一个基于这些信息和IP地址的唯一标识。</li>
+<li>接着，它检查Redis缓存中是否已经存在这个请求的标记。如果存在，表示在指定的时间窗口内该请求已经提交过，因此返回一个错误信息，防止重复处理相同的请求。</li>
+<li>如果不存在，则将该请求的标记存储到Redis中，并设置过期时间为注解中指定的 <code>timeout</code>。这样，如果在 <code>timeout</code> 时间内再次收到相同的请求，就会被拦截。</li>
+<li>最后，它执行原来标记了 <code>@AvoidRepeatableCommit</code> 注解的方法。</li>
+</ol>
+<p>通过这种方式，<code>AvoidRepeatableCommitAspect</code> 切面有效地防止了在短时间内对同一方法的重复调用，特别是对于防止表单的重复提交非常有效。</p>
+<h3 id="2、自定义注解-OperationLogger-的使用"><a href="#2、自定义注解-OperationLogger-的使用" class="headerlink" title="2、自定义注解 OperationLogger 的使用"></a>2、自定义注解 <code>OperationLogger</code> 的使用</h3><p><code>@OperationLogger</code> 是一个自定义注解，用于记录操作日志。结合Spring AOP，在方法执行前后添加日志记录的逻辑。</p>
+<h4 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h4><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-keyword">@Target</span>(ElementType.METHOD)<br><span class="hljs-keyword">@Retention</span>(RetentionPolicy.RUNTIME)<br>public <span class="hljs-keyword">@interface</span> OperationLogger &#123;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 业务名称。</span><br><span class="hljs-comment">     */</span><br>    String <span class="hljs-built_in">value</span>() default &quot;&quot;;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 平台</span><br><span class="hljs-comment">     */</span><br>    PlatformEnum <span class="hljs-built_in">platform</span>() default PlatformEnum<span class="hljs-selector-class">.ADMIN</span>;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 是否将当前日志记录到数据库中。</span><br><span class="hljs-comment">     */</span><br>    boolean <span class="hljs-built_in">save</span>() default true;<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li><code>@Target(ElementType.METHOD)</code>: 表示该注解只能用于方法。</li>
+<li><code>@Retention(RetentionPolicy.RUNTIME)</code>: 表示该注解在运行时有效，可以通过反射获取。</li>
+<li><code>value()</code>: 提供业务名称，默认为空。</li>
+<li><code>platform()</code>: 指定操作发生的平台，默认为 <code>ADMIN</code>。</li>
+<li><code>save()</code>: 指示是否将日志记录保存到数据库，默认为 <code>true</code>。</li>
+</ul>
+<h4 id="LoggerAspect"><a href="#LoggerAspect" class="headerlink" title="LoggerAspect"></a>LoggerAspect</h4><p><code>LoggerAspect</code> 是一个切面类，用于处理带有 <code>@OperationLogger</code> 注解的方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Aspect</span><br><span class="hljs-meta">@Component</span><br><span class="hljs-meta">@Slf4j</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LoggerAspect</span> &#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> RedisUtil redisUtil;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> ThreadPoolTaskExecutor threadPoolTaskExecutor;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 开始时间，用于计算方法执行时长</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> Date startTime;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 定义切点，匹配带有 <span class="hljs-doctag">@OperationLogger</span> 注解的方法</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> operationLogger 自定义注解</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Pointcut(value = &quot;@annotation(operationLogger)&quot;)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">pointcut</span><span class="hljs-params">(OperationLogger operationLogger)</span> &#123;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 环绕通知，用于在方法执行前后添加日志记录逻辑</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> joinPoint 切点信息</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> operationLogger 自定义注解</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 方法执行结果</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@throws</span> Throwable 可能抛出的任何异常</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Around(value = &quot;pointcut(operationLogger)&quot;)</span><br>    <span class="hljs-keyword">public</span> Object <span class="hljs-title function_">doAround</span><span class="hljs-params">(ProceedingJoinPoint joinPoint, OperationLogger operationLogger)</span> <span class="hljs-keyword">throws</span> Throwable &#123;<br>        startTime = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>();<br>        <span class="hljs-comment">// 执行原方法</span><br>        <span class="hljs-type">Object</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> joinPoint.proceed();<br><br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">// 日志收集</span><br>            handle(joinPoint);<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            log.error(<span class="hljs-string">&quot;日志记录出错!&quot;</span>, e);<br>        &#125;<br><br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 日志处理逻辑</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> point 切点信息</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@throws</span> Exception 可能抛出的异常</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">handle</span><span class="hljs-params">(ProceedingJoinPoint point)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-type">HttpServletRequest</span> <span class="hljs-variable">request</span> <span class="hljs-operator">=</span> RequestHolder.getRequest();<br>        <span class="hljs-type">Method</span> <span class="hljs-variable">currentMethod</span> <span class="hljs-operator">=</span> AspectUtil.INSTANCE.getMethod(point);<br>        <span class="hljs-type">OperationLogger</span> <span class="hljs-variable">annotation</span> <span class="hljs-operator">=</span> currentMethod.getAnnotation(OperationLogger.class);<br><br>        <span class="hljs-comment">// 判断是否需要保存日志</span><br>        <span class="hljs-type">boolean</span> <span class="hljs-variable">save</span> <span class="hljs-operator">=</span> annotation.save();<br>        <span class="hljs-type">String</span> <span class="hljs-variable">bussinessName</span> <span class="hljs-operator">=</span> AspectUtil.INSTANCE.parseParams(point.getArgs(), annotation.value());<br>        <span class="hljs-type">String</span> <span class="hljs-variable">ua</span> <span class="hljs-operator">=</span> RequestUtil.getUa();<br>        log.info(<span class="hljs-string">&quot;&#123;&#125; | &#123;&#125; - &#123;&#125; &#123;&#125; - &#123;&#125;&quot;</span>, bussinessName, IpUtils.getIpAddr(request), RequestUtil.getMethod(), RequestUtil.getRequestUrl(), ua);<br><br>        <span class="hljs-keyword">if</span> (!save) &#123;<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br><br>        <span class="hljs-comment">// 获取参数名称和值</span><br>        Map&lt;String, Object&gt; nameAndArgsMap = AopUtils.getFieldsName(point);<br>        <span class="hljs-type">SecurityUser</span> <span class="hljs-variable">securityUser</span> <span class="hljs-operator">=</span> (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();<br>        <span class="hljs-type">String</span> <span class="hljs-variable">paramsJson</span> <span class="hljs-operator">=</span> JSONObject.toJSONString(nameAndArgsMap);<br>        <span class="hljs-type">String</span> <span class="hljs-variable">type</span> <span class="hljs-operator">=</span> request.getMethod();<br>        <span class="hljs-type">String</span> <span class="hljs-variable">ip</span> <span class="hljs-operator">=</span> IpUtils.getIpAddr(request);<br>        <span class="hljs-type">String</span> <span class="hljs-variable">url</span> <span class="hljs-operator">=</span> request.getRequestURI();<br><br>        <span class="hljs-comment">// 异步存储日志</span><br>        threadPoolTaskExecutor.execute(<br>                <span class="hljs-keyword">new</span> <span class="hljs-title class_">SysLogHandle</span>(ip, type, url, securityUser, paramsJson, point.getTarget().getClass().getName(),<br>                        point.getSignature().getName(), bussinessName, startTime, redisUtil));<br>    &#125;<br>	<br>	<span class="hljs-comment">/**</span><br><span class="hljs-comment">	 * 在执行带有 <span class="hljs-doctag">@OperationLogger</span> 注解的方法时抛出异常后执行的通知。</span><br><span class="hljs-comment">	 * 用于记录异常信息和相关操作日志。</span><br><span class="hljs-comment">	 *</span><br><span class="hljs-comment">	 * <span class="hljs-doctag">@param</span> joinPoint 连接点，提供对目标方法的访问</span><br><span class="hljs-comment">	 * <span class="hljs-doctag">@param</span> operationLogger 操作日志的自定义注解</span><br><span class="hljs-comment">	 * <span class="hljs-doctag">@param</span> e 抛出的异常</span><br><span class="hljs-comment">	 * <span class="hljs-doctag">@throws</span> Exception 可能抛出的异常</span><br><span class="hljs-comment">	 */</span><br>	<span class="hljs-meta">@AfterThrowing(value = &quot;pointcut(operationLogger)&quot;, throwing = &quot;e&quot;)</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doAfterThrowing</span><span class="hljs-params">(JoinPoint joinPoint, OperationLogger operationLogger, Throwable e)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br><br>		<span class="hljs-comment">// 创建一个异常日志对象</span><br>		<span class="hljs-type">ExceptionLog</span> <span class="hljs-variable">exception</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ExceptionLog</span>();<br>		<span class="hljs-type">HttpServletRequest</span> <span class="hljs-variable">request</span> <span class="hljs-operator">=</span> RequestHolder.getRequest();<br>		<br>		<span class="hljs-comment">// 获取请求IP地址</span><br>		<span class="hljs-type">String</span> <span class="hljs-variable">ip</span> <span class="hljs-operator">=</span> IpUtils.getIpAddr(request);<br>		exception.setIp(ip);<br>		<br>		<span class="hljs-comment">// 解析操作名称</span><br>		<span class="hljs-type">String</span> <span class="hljs-variable">operationName</span> <span class="hljs-operator">=</span> AspectUtil.INSTANCE.parseParams(joinPoint.getArgs(), operationLogger.value());<br><br>		<span class="hljs-comment">// 尝试从Redis中获取IP来源信息</span><br>		<span class="hljs-type">String</span> <span class="hljs-variable">jsonResult</span> <span class="hljs-operator">=</span> redisUtil.get(RedisConf.IP_SOURCE + Constants.SYMBOL_COLON + ip);<br>		<span class="hljs-keyword">if</span> (StringUtils.isEmpty(jsonResult)) &#123;<br>			<span class="hljs-comment">// 如果Redis中没有IP来源信息，则查询并保存</span><br>			<span class="hljs-type">String</span> <span class="hljs-variable">addresses</span> <span class="hljs-operator">=</span> IpUtils.getAddresses(SysConf.IP + SysConf.EQUAL_TO + ip, SysConf.UTF_8);<br>			<span class="hljs-keyword">if</span> (StringUtils.isNotEmpty(addresses)) &#123;<br>				exception.setIpSource(addresses);<br>				redisUtil.setEx(RedisConf.IP_SOURCE + Constants.SYMBOL_COLON + ip, addresses, <span class="hljs-number">24</span>, TimeUnit.HOURS);<br>			&#125;<br>		&#125; <span class="hljs-keyword">else</span> &#123;<br>			<span class="hljs-comment">// 如果Redis中已有IP来源信息，直接使用</span><br>			exception.setIpSource(jsonResult);<br>		&#125;<br><br>		<span class="hljs-comment">// 设置异常日志的其他信息</span><br>		exception.setIp(ip);<br>		exception.setMethod(joinPoint.getSignature().getName());<br>		exception.setExceptionJson(JSON.toJSONString(e,<br>				SerializerFeature.DisableCircularReferenceDetect,<br>				SerializerFeature.WriteMapNullValue));<br>		exception.setExceptionMessage(e.getMessage());<br>		exception.setOperation(operationName);<br>		exception.setCreateTime(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>());<br>		exception.setUpdateTime(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>());<br><br>		<span class="hljs-comment">// 将异常日志保存到数据库</span><br>		exception.insert();<br>	&#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="SysLogHandle-类"><a href="#SysLogHandle-类" class="headerlink" title="SysLogHandle 类"></a><code>SysLogHandle</code> 类</h4><p><code>SysLogHandle</code> 是一个Runnable实现，用于异步记录日志信息。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SysLogHandle</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">AbstractRequestAwareRunnable</span> &#123;<br><br>    <span class="hljs-comment">// Redis工具类，用于操作Redis</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-title class_">RedisUtil</span> redisUtil;<br><br>    <span class="hljs-comment">// 请求的参数列表，以JSON字符串格式保存</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-title class_">String</span> paramsJson;<br><br>    <span class="hljs-comment">// 被调用的类的完整路径</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-title class_">String</span> classPath;<br><br>    <span class="hljs-comment">// 被调用的方法名称</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-title class_">String</span> methodName;<br><br>    <span class="hljs-comment">// 方法请求的开始时间</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-title class_">Date</span> startTime;<br><br>    <span class="hljs-comment">// 操作名称，通常从注解中获取</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-title class_">String</span> operationName;<br><br>    <span class="hljs-comment">// 请求的IP地址</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-title class_">String</span> ip;<br><br>    <span class="hljs-comment">// 请求类型（如GET、POST）</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-title class_">String</span> <span class="hljs-keyword">type</span>;<br><br>    <span class="hljs-comment">// 请求的URL</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-title class_">String</span> requestUrl;<br><br>    <span class="hljs-comment">// 当前操作的安全用户信息</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-title class_">SecurityUser</span> securityUser;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 构造函数，初始化日志处理所需的各种参数。</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> ip           请求的IP地址</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> type         请求类型（如GET、POST）</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> requestUrl   请求的URL</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> securityUser 当前操作的安全用户</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> paramsJson   请求的参数列表（JSON格式）</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> classPath    被调用的类的完整路径</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> methodName   被调用的方法名称</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> operationName 操作名称</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> startTime    方法请求的开始时间</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> redisUtil    Redis工具类</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-title class_">SysLogHandle</span>(<span class="hljs-title class_">String</span> ip, <span class="hljs-title class_">String</span> <span class="hljs-keyword">type</span>, <span class="hljs-title class_">String</span> requestUrl, <span class="hljs-title class_">SecurityUser</span> securityUser,<br>                        <span class="hljs-title class_">String</span> paramsJson, <span class="hljs-title class_">String</span> classPath,<br>                        <span class="hljs-title class_">String</span> methodName, <span class="hljs-title class_">String</span> operationName,<br>                        <span class="hljs-title class_">Date</span> startTime, <span class="hljs-title class_">RedisUtil</span> redisUtil) &#123;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">ip</span> = ip;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">type</span> = <span class="hljs-keyword">type</span>;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">requestUrl</span> = requestUrl;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">securityUser</span> = securityUser;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">paramsJson</span> = paramsJson;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">classPath</span> = classPath;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">methodName</span> = methodName;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">operationName</span> = operationName;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">startTime</span> = startTime;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">redisUtil</span> = redisUtil;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 执行日志记录的逻辑。</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-built_in">void</span> <span class="hljs-title function_">onRun</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-title class_">SysLog</span> sysLog = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SysLog</span>();<br><br>        <span class="hljs-comment">// 从Redis中获取IP来源信息</span><br>        <span class="hljs-title class_">String</span> jsonResult = redisUtil.<span class="hljs-title function_">get</span>(<span class="hljs-title class_">RedisConf</span>.<span class="hljs-property">IP_SOURCE</span> + <span class="hljs-title class_">Constants</span>.<span class="hljs-property">SYMBOL_COLON</span> + ip);<br>        <span class="hljs-keyword">if</span> (<span class="hljs-title class_">StringUtils</span>.<span class="hljs-title function_">isEmpty</span>(jsonResult)) &#123;<br>            <span class="hljs-title class_">String</span> addresses = <span class="hljs-title class_">IpUtils</span>.<span class="hljs-title function_">getAddresses</span>(<span class="hljs-title class_">SysConf</span>.<span class="hljs-property">IP</span> + <span class="hljs-title class_">SysConf</span>.<span class="hljs-property">EQUAL_TO</span> + ip, <span class="hljs-title class_">SysConf</span>.<span class="hljs-property">UTF_8</span>);<br>            <span class="hljs-keyword">if</span> (<span class="hljs-title class_">StringUtils</span>.<span class="hljs-title function_">isNotEmpty</span>(addresses)) &#123;<br>                sysLog.<span class="hljs-title function_">setIpSource</span>(addresses);<br>                redisUtil.<span class="hljs-title function_">setEx</span>(<span class="hljs-title class_">RedisConf</span>.<span class="hljs-property">IP_SOURCE</span> + <span class="hljs-title class_">Constants</span>.<span class="hljs-property">SYMBOL_COLON</span> + ip, addresses, <span class="hljs-number">24</span>, <span class="hljs-title class_">TimeUnit</span>.<span class="hljs-property">HOURS</span>);<br>            &#125;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            sysLog.<span class="hljs-title function_">setIpSource</span>(jsonResult);<br>        &#125;<br><br>        <span class="hljs-comment">// 设置日志的其他属性</span><br>        sysLog.<span class="hljs-title function_">setIp</span>(ip);<br>        sysLog.<span class="hljs-title function_">setClassPath</span>(classPath);<br>        sysLog.<span class="hljs-title function_">setMethod</span>(methodName);<br>        sysLog.<span class="hljs-title function_">setType</span>(<span class="hljs-keyword">type</span>);<br>        sysLog.<span class="hljs-title function_">setUrl</span>(requestUrl);<br>        sysLog.<span class="hljs-title function_">setOperation</span>(operationName);<br>        sysLog.<span class="hljs-title function_">setCreateTime</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>());<br>        sysLog.<span class="hljs-title function_">setUpdateTime</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>());<br>        sysLog.<span class="hljs-title function_">setUserName</span>(securityUser.<span class="hljs-title function_">getUsername</span>());<br>        sysLog.<span class="hljs-title function_">setAdminUid</span>(securityUser.<span class="hljs-title function_">getUid</span>());<br>        sysLog.<span class="hljs-title function_">setParams</span>(paramsJson);<br><br>        <span class="hljs-comment">// 计算并设置请求耗时</span><br>        <span class="hljs-title class_">Date</span> endTime = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>();<br>        <span class="hljs-title class_">Long</span> spendTime = <span class="hljs-title class_">DateUtil</span>.<span class="hljs-title function_">between</span>(startTime, endTime, <span class="hljs-title class_">DateUnit</span>.<span class="hljs-property">MS</span>);<br>        sysLog.<span class="hljs-title function_">setSpendTime</span>(spendTime);<br><br>        <span class="hljs-comment">// 将日志信息保存到数据库</span><br>        sysLog.<span class="hljs-title function_">insert</span>();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><code>SysLogHandle</code> 继承自 <code>AbstractRequestAwareRunnable</code>，它是一个Runnable实现，用于异步执行日志记录任务。</li>
+<li>构造函数接收所有必要的参数，包括请求信息、用户信息和方法信息。</li>
+<li><code>onRun</code> 方法是日志记录逻辑的实现。它首先从Redis中获取IP来源信息，然后创建一个 <code>SysLog</code> 对象并设置各种属性，包括请求信息、用户信息、操作名称、参数等。</li>
+<li>最后，计算请求耗时并将日志信息保存到数据库。</li>
+</ul>
+<p>这个类的主要作用是异步记录每次请求的详细日志，包括请求参数、执行时间等，</p>
+<p>通过异步处理，它还有助于减少日志记录对应用性能的影响。</p>
+<h4 id="异步日志记录的功能"><a href="#异步日志记录的功能" class="headerlink" title="异步日志记录的功能"></a>异步日志记录的功能</h4><p>在切面的时候，handle 方法保存日志的操作是异步进行的，这里单独拿出来分析一下。</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-comment">// 异步存储日志</span><br><span class="hljs-selector-tag">threadPoolTaskExecutor</span><span class="hljs-selector-class">.execute</span>(<br>        new <span class="hljs-built_in">SysLogHandle</span>(ip, type, url, securityUser,<br>                        paramsJson, point.<span class="hljs-built_in">getTarget</span>().<span class="hljs-built_in">getClass</span>().<span class="hljs-built_in">getName</span>(),<br>                        point.<span class="hljs-built_in">getSignature</span>().<span class="hljs-built_in">getName</span>(), bussinessName,<br>                        startTime, redisUtil));<br><br></code></pre></td></tr></table></figure>
+
+<ol>
+<li><strong>使用线程池</strong>:<ul>
+<li><code>threadPoolTaskExecutor.execute(...)</code>: 这部分代码利用Spring框架中的 <code>ThreadPoolTaskExecutor</code> 来执行一个任务。<code>ThreadPoolTaskExecutor</code> 是一个基于线程池的TaskExecutor实现，允许异步执行任务。</li>
+</ul>
+</li>
+<li><strong>创建日志处理任务</strong>:<ul>
+<li><code>new SysLogHandle(...)</code>: 这里创建了一个 <code>SysLogHandle</code> 对象，它是一个实现了 <code>Runnable</code> 接口的类，用于处理日志记录的具体逻辑。</li>
+</ul>
+</li>
+<li><strong>传递参数给日志处理任务</strong>:<ul>
+<li>向 <code>SysLogHandle</code> 构造器传递了多个参数，包括请求的IP地址 (<code>ip</code>)、请求类型 (<code>type</code>)、请求URL (<code>url</code>)、当前安全用户 (<code>securityUser</code>)、请求参数的JSON字符串 (<code>paramsJson</code>)、被调用的类名和方法名（通过 <code>point.getTarget().getClass().getName()</code> 和 <code>point.getSignature().getName()</code> 获取）、业务名称 (<code>bussinessName</code>)、方法开始执行的时间 (<code>startTime</code>)，以及Redis工具类 (<code>redisUtil</code>)。</li>
+</ul>
+</li>
+<li><strong>执行任务</strong>:<ul>
+<li><code>threadPoolTaskExecutor.execute(...)</code>: 这个方法将 <code>SysLogHandle</code> 的实例提交到线程池进行异步执行，不会阻塞当前线程的执行。这意味着原方法（被 <code>@OperationLogger</code> 注解的方法）的执行和日志的记录是并发进行的。</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>实际应用</p>
+</blockquote>
+<p>在实际应用中，这种异步日志记录方法非常有用，尤其是在高流量的Web应用中。它允许应用快速响应用户请求，同时将耗时的日志记录操作放在后台线程中执行，从而不会显著影响用户体验和应用性能。</p>
+<p>通过将日志记录逻辑从主执行路径中分离出来，可以减少对主业务逻辑的干扰，同时确保了重要的操作日志被正确记录和存储。</p>
+<h4 id="工具类AspectUtil"><a href="#工具类AspectUtil" class="headerlink" title="工具类AspectUtil"></a>工具类AspectUtil</h4><p>对于上面使用到的工具类 AspectUtil 进行记录说明</p>
+<figure class="highlight wren"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><code class="hljs wren"><span class="hljs-variable">public</span> <span class="hljs-variable">enum</span> <span class="hljs-title class_">AspectUtil</span> &#123;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 单例实例，枚举类型保证全局唯一。</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-variable">INSTANCE</span>;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 获取以类路径为前缀的键。</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> point 当前切面执行的方法的连接点</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> prefix 前缀字符串</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 以类路径为前缀的键字符串</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-variable">public</span> <span class="hljs-title class_">String</span> <span class="hljs-title function_">getKey</span>(<span class="hljs-params">JoinPoint</span> <span class="hljs-params">point</span>, <span class="hljs-params">String</span> <span class="hljs-params">prefix</span>) &#123;<br>        <span class="hljs-title class_">String</span> <span class="hljs-variable">keyPrefix</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;&quot;</span>;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-operator">!</span><span class="hljs-title class_">StringUtils</span>.<span class="hljs-property">isEmpty</span>(<span class="hljs-variable">prefix</span>)) &#123;<br>            <span class="hljs-variable">keyPrefix</span> <span class="hljs-operator">+</span><span class="hljs-operator">=</span> <span class="hljs-variable">prefix</span>;<br>        &#125;<br>        <span class="hljs-variable">keyPrefix</span> <span class="hljs-operator">+</span><span class="hljs-operator">=</span> <span class="hljs-title function_">getClassName</span>(<span class="hljs-variable">point</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-variable">keyPrefix</span>;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 获取当前切面执行的方法所在的类的名称，替换所有的点为下划线。</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> point 当前切面执行的方法的连接点</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 处理后的类名字符串</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-variable">public</span> <span class="hljs-title class_">String</span> <span class="hljs-title function_">getClassName</span>(<span class="hljs-params">JoinPoint</span> <span class="hljs-params">point</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-variable">point</span>.<span class="hljs-property">getTarget</span>().<span class="hljs-property">getClass</span>().<span class="hljs-property">getName</span>().<span class="hljs-property">replaceAll</span>(<span class="hljs-string">&quot;<span class="hljs-char escape_">\\</span>.&quot;</span>, <span class="hljs-string">&quot;_&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 获取当前切面执行的方法的Method对象。</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> point 当前切面执行的方法的连接点</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 当前执行方法的Method对象</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@throws</span> NoSuchMethodException 如果无法找到相应的方法</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-variable">public</span> <span class="hljs-title class_">Method</span> <span class="hljs-title function_">getMethod</span>(<span class="hljs-title class_">JoinPoint</span> <span class="hljs-variable">point</span>) <span class="hljs-variable">throws</span> <span class="hljs-title class_">NoSuchMethodException</span> &#123;<br>        <span class="hljs-title class_">Signature</span> <span class="hljs-variable">sig</span> <span class="hljs-operator">=</span> <span class="hljs-variable">point</span>.<span class="hljs-property">getSignature</span>();<br>        <span class="hljs-title class_">MethodSignature</span> <span class="hljs-variable">msig</span> <span class="hljs-operator">=</span> (<span class="hljs-title class_">MethodSignature</span>) <span class="hljs-variable">sig</span>;<br>        <span class="hljs-title class_">Object</span> <span class="hljs-variable">target</span> <span class="hljs-operator">=</span> <span class="hljs-variable">point</span>.<span class="hljs-property">getTarget</span>();<br>        <span class="hljs-keyword">return</span> <span class="hljs-variable">target</span>.<span class="hljs-property">getClass</span>().<span class="hljs-property">getMethod</span>(<span class="hljs-variable">msig</span>.<span class="hljs-property">getName</span>(), <span class="hljs-variable">msig</span>.<span class="hljs-property">getParameterTypes</span>());<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 解析业务名称中的占位符，并用方法参数替换。</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> params 方法参数数组</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> bussinessName 带占位符的业务名称</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 解析后的业务名称</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-variable">public</span> <span class="hljs-title class_">String</span> <span class="hljs-title function_">parseParams</span>(<span class="hljs-params">Object</span>[] <span class="hljs-params">params</span>, <span class="hljs-params">String</span> <span class="hljs-params">bussinessName</span>) &#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-variable">bussinessName</span>.<span class="hljs-property">contains</span>(<span class="hljs-string">&quot;&#123;&quot;</span>) <span class="hljs-operator">&amp;&amp;</span> <span class="hljs-variable">bussinessName</span>.<span class="hljs-property">contains</span>(<span class="hljs-string">&quot;&#125;&quot;</span>)) &#123;<br>            <span class="hljs-title class_">List</span><span class="hljs-operator">&lt;</span><span class="hljs-title class_">String</span><span class="hljs-operator">&gt;</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> <span class="hljs-title class_">RegexUtils</span>.<span class="hljs-property">match</span>(<span class="hljs-variable">bussinessName</span>, <span class="hljs-string">&quot;(?&lt;=<span class="hljs-char escape_">\\</span>&#123;)(<span class="hljs-char escape_">\\</span>d+)&quot;</span>);<br>            <span class="hljs-keyword">for</span> (<span class="hljs-title class_">String</span> <span class="hljs-variable">s</span> : <span class="hljs-variable">result</span>) &#123;<br>                int index <span class="hljs-operator">=</span> <span class="hljs-title class_">Integer</span>.<span class="hljs-property">parseInt</span>(<span class="hljs-variable">s</span>);<br>                <span class="hljs-variable">bussinessName</span> <span class="hljs-operator">=</span> <span class="hljs-variable">bussinessName</span>.<span class="hljs-property">replaceAll</span>(<span class="hljs-string">&quot;<span class="hljs-char escape_">\\</span>&#123;&quot;</span> <span class="hljs-operator">+</span> index <span class="hljs-operator">+</span> <span class="hljs-string">&quot;&#125;&quot;</span>, <span class="hljs-variable">JSON</span>.<span class="hljs-property">toJSONString</span>(<span class="hljs-variable">params</span>[index <span class="hljs-operator">-</span> <span class="hljs-number">1</span>]));<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-variable">bussinessName</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><code>AspectUtil</code> 是一个枚举类型，提供了一个全局唯一的实例 <code>INSTANCE</code>。</li>
+<li><code>getKey</code> 方法根据连接点 (<code>JoinPoint</code>) 和给定的前缀生成一个字符串键。该键通常用于识别特定的方法或类。</li>
+<li><code>getClassName</code> 方法获取连接点指向的目标类的名称，并将其中的点替换为下划线。这在需要基于类名生成唯一标识时很有用。</li>
+<li><code>getMethod</code> 方法返回连接点指向的具体方法的 <code>Method</code> 对象，用于进一步的反射操作。</li>
+<li><code>parseParams</code> 方法解析业务名称字符串中的占位符，并用方法的实际参数替换这些占位符。这对于生成动态的日志消息或错误消息非常有用，特别是当消息内容依赖于方法的输入参数时。</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%A1%B9%E7%9B%AE/" class="category-chain-item">项目</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/java/" class="print-no-link">#java</a>
+      
+        <a href="/tags/project/" class="print-no-link">#project</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>蘑菇博客项目_Day04</div>
+      <div>https://varcel.luoqi.icu/2023/12/13/蘑菇博客项目_Day04/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Luo QI</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年12月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/12/12/%E8%98%91%E8%8F%87%E5%8D%9A%E5%AE%A2%E9%A1%B9%E7%9B%AE_Day03/" title="蘑菇博客项目_Day03">
+                        <span class="hidden-mobile">蘑菇博客项目_Day03</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
