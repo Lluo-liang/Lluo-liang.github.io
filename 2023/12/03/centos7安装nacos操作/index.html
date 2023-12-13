@@ -18,21 +18,23 @@
   <meta name="author" content="Luo QI">
   <meta name="keywords" content="">
   
-    <meta name="description" content="讨论一下 RabbitMQ 方式的高可用方案 to be contined…  参考- https:&#x2F;&#x2F;blog.csdn.net&#x2F;BruceLiu_code&#x2F;article&#x2F;details&#x2F;123887101- https:&#x2F;&#x2F;doocs.github.io&#x2F;advanced-java&#x2F;#&#x2F;docs&#x2F;high-concurrency&#x2F;how-to-ensure-high-availability">
+    <meta name="description" content="centos7 安装 nacos 操作">
 <meta property="og:type" content="article">
-<meta property="og:title" content="轻松的洛亓">
-<meta property="og:url" content="https://varcel.luoqi.icu/2023/12/13/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97_%E8%BF%9B%E9%98%B6%E5%86%85%E5%AE%B91/index.html">
+<meta property="og:title" content="centos7 安装 nacos 操作">
+<meta property="og:url" content="https://varcel.luoqi.icu/2023/12/03/centos7%E5%AE%89%E8%A3%85nacos%E6%93%8D%E4%BD%9C/index.html">
 <meta property="og:site_name" content="轻松的洛亓">
-<meta property="og:description" content="讨论一下 RabbitMQ 方式的高可用方案 to be contined…  参考- https:&#x2F;&#x2F;blog.csdn.net&#x2F;BruceLiu_code&#x2F;article&#x2F;details&#x2F;123887101- https:&#x2F;&#x2F;doocs.github.io&#x2F;advanced-java&#x2F;#&#x2F;docs&#x2F;high-concurrency&#x2F;how-to-ensure-high-availability">
+<meta property="og:description" content="centos7 安装 nacos 操作">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-12-13T13:52:34.333Z">
-<meta property="article:modified_time" content="2023-12-13T13:52:34.333Z">
+<meta property="article:published_time" content="2023-12-03T10:28:41.000Z">
+<meta property="article:modified_time" content="2023-12-03T10:28:41.000Z">
 <meta property="article:author" content="Luo QI">
+<meta property="article:tag" content="nacos">
+<meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>轻松的洛亓</title>
+  <title>centos7 安装 nacos 操作 - 轻松的洛亓</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -192,13 +194,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text=""></span>
+            <span id="subtitle" data-typed-text="centos7 安装 nacos 操作"></span>
           
         </div>
 
@@ -209,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-12-13 13:52" pubdate>
-          2023年12月13日 下午
+        <time datetime="2023-12-03 10:28" pubdate>
+          2023年12月3日 上午
         </time>
       </span>
     
@@ -221,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          209 字
+          661 字
         
       </span>
     
@@ -232,7 +234,7 @@
         
         
         
-          2 分钟
+          6 分钟
         
       </span>
     
@@ -269,15 +271,31 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header"></h1>
+            <h1 id="seo-header">centos7 安装 nacos 操作</h1>
             
             
               <div class="markdown-body">
                 
-                <p>讨论一下 RabbitMQ 方式的高可用方案</p>
-<p>to be contined…</p>
-<hr>
-<h2 id="参考-https-blog-csdn-net-BruceLiu-code-article-details-123887101-https-doocs-github-io-advanced-java-docs-high-concurrency-how-to-ensure-high-availability-of-message-queues"><a href="#参考-https-blog-csdn-net-BruceLiu-code-article-details-123887101-https-doocs-github-io-advanced-java-docs-high-concurrency-how-to-ensure-high-availability-of-message-queues" class="headerlink" title="参考- https://blog.csdn.net/BruceLiu_code/article/details/123887101- https://doocs.github.io/advanced-java/#/docs/high-concurrency/how-to-ensure-high-availability-of-message-queues"></a>参考<br>- <a target="_blank" rel="noopener" href="https://blog.csdn.net/BruceLiu_code/article/details/123887101">https://blog.csdn.net/BruceLiu_code/article/details/123887101</a><br>- <a target="_blank" rel="noopener" href="https://doocs.github.io/advanced-java/#/docs/high-concurrency/how-to-ensure-high-availability-of-message-queues">https://doocs.github.io/advanced-java/#/docs/high-concurrency/how-to-ensure-high-availability-of-message-queues</a></h2>
+                <h3 id="centos7-安装-nacos-操作"><a href="#centos7-安装-nacos-操作" class="headerlink" title="centos7 安装 nacos 操作"></a>centos7 安装 nacos 操作</h3><p>前提需要：项目运行环境需要安装 nacos </p>
+<p>在 centos 中进行安装nacos，这里演示安装版本是 1.3.2，</p>
+<p>下载地址： <a target="_blank" rel="noopener" href="https://github.com/alibaba/nacos/releases/tag/1.3.2">https://github.com/alibaba/nacos/releases/tag/1.3.2</a></p>
+<p>nacos 运行需要先安装一下 JDK 环境，注意一下</p>
+<p>可以自己点击下载   <code>nacos-server-1.3.2.tar.gz</code></p>
+<p>或者在 Linux系统中下载命令：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">wget</span> https://github.com/alibaba/nacos/releases/download/<span class="hljs-number">1</span>.<span class="hljs-number">3</span>.<span class="hljs-number">2</span>/nacos-server-<span class="hljs-number">1</span>.<span class="hljs-number">3</span>.<span class="hljs-number">2</span>.tar.gz<br></code></pre></td></tr></table></figure>
+
+<p>下载完压缩包之后，上传指服务器任意目录，进行解压</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">tar</span> -zxvf nacos-server-<span class="hljs-number">1</span>.<span class="hljs-number">3</span>.<span class="hljs-number">2</span>.tar.gz<br></code></pre></td></tr></table></figure>
+
+<p>解压后会生成 nacos 文件夹，进入到 nacos 目录，输入命令启动(以单机的形式启动)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">bin/startup.sh -m standalone<br></code></pre></td></tr></table></figure>
+
+<p>如果需要持久化 配置到mysql，则调整nacos的配置</p>
+<p>如果你的服务器开了防火墙，则需要开放相应的端口</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-comment">#开放端口</span><br>firewall-cmd <span class="hljs-params">--zone=public</span> <span class="hljs-params">--add-port=8848/tcp</span> <span class="hljs-params">--permanent</span> <br><span class="hljs-comment"># 重启防火墙 </span><br>firewall-cmd <span class="hljs-params">--reload</span><br><span class="hljs-comment"># 查看开放的端口列表 </span><br>firewall-cmd <span class="hljs-params">--list-port</span><br></code></pre></td></tr></table></figure>
+
+<p>nacos默认的启动端口是 8848，访问 <code>http://ip:端口/nacos</code> 即可看到登录页面.默认的用户名密码是 <code>nacos/naocs</code>，登录即可使用</p>
+
                 
               </div>
             
@@ -285,6 +303,36 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Records/" class="category-chain-item">Records</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/nacos/" class="print-no-link">#nacos</a>
+      
+        <a href="/tags/linux/" class="print-no-link">#linux</a>
+      
+    </div>
   
 </div>
 
@@ -294,8 +342,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
-      <div>https://varcel.luoqi.icu/2023/12/13/消息队列_进阶内容1/</div>
+      <div>centos7 安装 nacos 操作</div>
+      <div>https://varcel.luoqi.icu/2023/12/03/centos7安装nacos操作/</div>
     </div>
     <div class="license-meta">
       
@@ -307,7 +355,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年12月13日</div>
+          <div>2023年12月3日</div>
         </div>
       
       
@@ -339,12 +387,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2023/12/03/linux%E7%B3%BB%E7%BB%9F%E4%B8%8BJava%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E7%9A%84%E9%85%8D%E7%BD%AE/" title="linux系统下 java环境变量的配置">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">linux系统下 java环境变量的配置</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/12/13/%E8%98%91%E8%8F%87%E5%8D%9A%E5%AE%A2%E9%A1%B9%E7%9B%AE_Day04/" title="蘑菇博客项目_Day04">
-                        <span class="hidden-mobile">蘑菇博客项目_Day04</span>
+                      <a href="/2023/12/01/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E5%B7%A5%E5%85%B7Neutrino-Proxy/" title="内网穿透工具Neutrino-Proxy">
+                        <span class="hidden-mobile">内网穿透工具Neutrino-Proxy</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
