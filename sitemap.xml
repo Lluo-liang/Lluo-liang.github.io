@@ -2,7 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://varcel.luoqi.icu/2023/12/14/Spring%E5%AD%A6%E4%B9%A0_IOC/</loc>
+    <loc>https://varcel.luoqi.icu/2023/12/14/Spring%E5%AD%A6%E4%B9%A0_Spring_Bean%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F/</loc>
+    
+    <lastmod>2023-12-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://varcel.luoqi.icu/2023/12/15/Spring%E5%AD%A6%E4%B9%A0_Spring_Bean%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</loc>
+    
+    <lastmod>2023-12-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://varcel.luoqi.icu/about/index.html</loc>
     
     <lastmod>2023-12-14</lastmod>
     
@@ -11,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/about/index.html</loc>
+    <loc>https://varcel.luoqi.icu/2023/12/14/Spring%E5%AD%A6%E4%B9%A0_IOC/</loc>
     
     <lastmod>2023-12-14</lastmod>
     
