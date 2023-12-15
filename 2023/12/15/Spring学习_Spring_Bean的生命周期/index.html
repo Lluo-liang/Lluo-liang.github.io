@@ -226,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.3k 字
+          4.1k 字
         
       </span>
     
@@ -237,7 +237,7 @@
         
         
         
-          20 分钟
+          35 分钟
         
       </span>
     
@@ -297,17 +297,18 @@
 <p>Bean 实例化的时机分为两种，一种是 BeanFactory，还有一种是  ApplicationContext；下面是两者差别：</p>
 <ul>
 <li>BeanFactory<ul>
-<li>其下管理的Bean在使用到Bean的时候才会进行实例化Bean操作</li>
+<li>其下管理的Bean <strong>在使用到Bean的时候</strong> 才会进行实例化Bean操作（懒加载策略）</li>
 </ul>
 </li>
 <li>ApplicationContext  <ul>
-<li>其下管理的Bean在IOC容器初始化的时候就完成了 Bean 实例化。</li>
+<li>其下管理的 Bean <strong>在IOC容器初始化</strong>的时候完成 Bean 实例化。</li>
 <li><code>ApplicationContext</code>是<code>BeanFactory</code>的子接口，复杂程度更高一些。</li>
 <li>如<code>AnnotationConfigApplicationContext</code>和<code>ClassPathXmlApplicationContext</code>等，提供了多种方便的方式来创建ApplicationContext实例</li>
 </ul>
 </li>
 </ul>
 <hr>
+<p><strong>AbstractApplicationContext  →   refresh()</strong>  Bean生命周期</p>
 <blockquote>
 <p>Bean 自身的方法</p>
 </blockquote>
@@ -350,7 +351,43 @@
 <blockquote>
 <p>Bean 容器找到配置文件中 Spring Bean 的定义。</p>
 </blockquote>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey"><br>ConfigurationClassBeanDefinitionReader<br>     专门用于处理带有`@Configuration`注解的类。<br>	 解析`@Configuration`类中的`@Bean`方法，并从这些方法中注册Bean定义<br>AbstractBeanDefinitionReader<br>	抽象基类，为所有Bean定义阅读器提供了通用的基础功能。<br>	定义了读取Bean定义的基本方法和模板，并提供了与资源加载和Bean工厂交互的基本结构。<br>	使用场景：此类及其子类通常用于直接从外部资源（如XML文件）加载Bean定义。<br>上面这两个类在Spring框架中的职责是互补的，不是直接相关或派生的。<br></code></pre></td></tr></table></figure>
+
+
+
+
+
 <p>to be contined…</p>
+<p>待后面整合一下</p>
+<h3 id="1、Spring-IoC容器和Bean简介"><a href="#1、Spring-IoC容器和Bean简介" class="headerlink" title="1、Spring IoC容器和Bean简介"></a>1、Spring IoC容器和Bean简介</h3><p><code>org.springframework.beans</code> 和 <code>org.springframework.context</code> 包是Spring Framework的IoC容器的基础。 </p>
+<ul>
+<li><code>BeanFactory</code> 接口提供了一种高级配置机制，能够管理任何类型的对象。<ul>
+<li>提供了配置框架和基本功能</li>
+</ul>
+</li>
+<li><code>ApplicationContext</code> 是 <code>BeanFactory</code> 的一个子接口.<ul>
+<li>增加了更多的企业特定功能, 是 <code>BeanFactory</code> 的一个完整的超集</li>
+</ul>
+</li>
+</ul>
+<h3 id="2、ApplicationContext"><a href="#2、ApplicationContext" class="headerlink" title="2、ApplicationContext"></a>2、<code>ApplicationContext</code></h3><p><code>org.springframework.context.ApplicationContext</code> 接口代表Spring IoC容器，负责实例化、配置和组装bean。</p>
+<p>容器通过读取配置元数据来获得关于要实例化、配置和组装哪些对象的指示。配置元数据以XML、Java注解或Java代码表示。它可以让你表达构成你的应用程序的对象以及这些对象之间丰富的相互依赖关系。</p>
+<p>Spring Bean 的生命周期<br>1.加载Bean定义<br>通过 loadBeanDefinitions 扫描所有xml配置、注解将Bean记录在 beanDefinitionMap 中</p>
+<p>2.创建Bean对象<br>通过 createBean 遍历 beanDefinitionMap 创建bean</p>
+<p>2.1.构建对象<br>容器通过 createBeanInstance 进行对象构造<br>获取构造方法：@Autowired<br>准备参数 根据类查找&gt;参数名查找<br>构造对象<br>无参对象直接实例化<br>2.2.填充属性<br>通过populateBean方法为Bean内部所需的属性进行赋值</p>
+<p>通常是 @Autowired 注解的变量<br>2.3.初始化Bean对象<br>通过initializeBean对填充后的实例进行初始化</p>
+<p>填充初始化容器相关信息<br>通过 invokeAwareMethods 方法：为实现aware接口【信息感知接口】的Bean 设置注入beanName、beanFactory等容器信息</p>
+<p>初始化构造方法<br>通过 invokeInitMethods 方法进行初始化：</p>
+<p>如果Bean实现InitializingBean接口进行处理【未实现则不进行】</p>
+<p>afterPropertiesSet方法【bean填充属性后执行】<br>initMethod 方法<br>Bean的后置处理<br>在invokeInitMethods 的前后进行</p>
+<p>applyBeanPostProcessorsBeforeInitialization<br>invokeInitMethods<br>applyBeanPostProcessorsAfterInitialization<br>在后置处理中处理了包括：AOP【AnnotationAwareAspectJAutoProxyCreator】</p>
+<p>负责 构造后@PostConstruct 和 销毁前@PreDestroy 的  InitDestoryAnnotationBeanPostProcessor 等</p>
+<p>注册销毁<br>通过reigsterDisposableBean处理实现了DisposableBean接口的Bean的注册</p>
+<p>3.添加到单例池<br>通过 addSingleton 方法，将Bean 加入到单例池 singleObjects </p>
+<p>4.销毁<br>4.1.销毁前<br>调用 bean中@PreDestory 注解的方法</p>
+<p>通过 postProcessBeforeDestruction 方法调用destoryBean逐一销毁Bean</p>
+<p>4.2.销毁<br>调用 destoryBeans</p>
+<p>4.3.执行客户自定义销毁<br>调用 invokeCustomDestoryMethod</p>
 <hr>
 <p>参考</p>
 <ul>
@@ -455,23 +492,6 @@
 
 
 
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2023/12/14/Spring%E5%AD%A6%E4%B9%A0_Spring_Bean%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F/" title="Spring学习_Spring_Bean的作用域">
-                        <span class="hidden-mobile">Spring学习_Spring_Bean的作用域</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
               
             </div>
 
