@@ -226,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          10k 字
+          12k 字
         
       </span>
     
@@ -237,7 +237,7 @@
         
         
         
-          85 分钟
+          101 分钟
         
       </span>
     
@@ -279,12 +279,19 @@
             
               <div class="markdown-body">
                 
-                <p>本篇讲述一下关于Bean的生命周期。bean的作用域有很多种，这里讨论一下完全被IOC容器控制的单例 Bean。</p>
-<h3 id="1、Spring-Bean-生命周期的四个阶段"><a href="#1、Spring-Bean-生命周期的四个阶段" class="headerlink" title="1、Spring Bean 生命周期的四个阶段"></a>1、Spring Bean 生命周期的四个阶段</h3><p>对于普通的 Java 对象来说，它们的生命周期是：</p>
+                <p>本篇讲述一下关于Bean的生命周期。</p>
+<p>bean的作用域有很多种，这里讨论一下完全被 IOC容器控制的单例 Bean。</p>
+<h3 id="1、Spring-Bean-生命周期的四个阶段"><a href="#1、Spring-Bean-生命周期的四个阶段" class="headerlink" title="1、Spring Bean 生命周期的四个阶段"></a>1、Spring Bean 生命周期的四个阶段</h3><blockquote>
+<p>普通的 Java 对象</p>
+</blockquote>
+<p>对于普通的 Java 对象来说，它们的生命周期是：</p>
 <ul>
 <li>实例化</li>
 <li>该对象不再被使用时通过垃圾回收机制进行回收</li>
 </ul>
+<blockquote>
+<p>Spring Bean</p>
+</blockquote>
 <p>而对于 Spring Bean 的生命周期来说，可以分为四个阶段：</p>
 <ul>
 <li>实例化 Instantiation</li>
@@ -293,41 +300,49 @@
 <li>销毁 Destruction</li>
 </ul>
 <p>其中初始化完成之后，就代表这个 Bean 可以使用了</p>
-<p>针对上面的四个步骤：实例化 -&gt; 属性赋值 -&gt; 初始化 -&gt; 销毁</p>
-<p>下面来具体讲述一下相关的一些引用和内容</p>
-<p>其中第一阶段 —— 实例化 Instantiation，</p>
-<p>Bean 实例化的时机分为两种，一种是 BeanFactory，还有一种是  ApplicationContext；</p>
-<p>下面是两者差别：</p>
-<ul>
-<li>BeanFactory<ul>
-<li>其下管理的Bean <strong>在使用到Bean的时候</strong> 才会进行实例化Bean操作（懒加载策略）</li>
-</ul>
-</li>
-<li>ApplicationContext  <ul>
-<li>其下管理的 Bean <strong>在IOC容器初始化</strong>的时候完成 Bean 实例化。</li>
-<li><code>ApplicationContext</code>是<code>BeanFactory</code>的子接口，复杂程度更高一些。</li>
-<li>如<code>AnnotationConfigApplicationContext</code>和<code>ClassPathXmlApplicationContext</code>等，提供了多种方便的方式来创建ApplicationContext实例</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h4 id="Bean-自身的方法"><a href="#Bean-自身的方法" class="headerlink" title="Bean 自身的方法"></a>Bean 自身的方法</h4><p>在Spring框架中，Bean的生命周期可以分为几个主要阶段：实例化、属性赋值、初始化和销毁。</p>
-<p>在这些阶段中，Bean的某些特定方法被调用，以完成其生命周期过程。</p>
-<p>比如构造函数、getter&#x2F;setter 以及 init-method 和 destory-method 所指定的方法等，也就对应着上文说的实例化 -&gt; 属性赋值 -&gt; 初始化 -&gt; 销毁四个阶段。</p>
+<p>上述四个阶段的大概的一个逻辑</p>
+<p>前面三个阶段的操作（先大概了解有这个印象，具体内容继续往下面看）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">protected</span> Object <span class="hljs-title function_">doCreateBean</span><span class="hljs-params">(String beanName, RootBeanDefinition mbd, <span class="hljs-meta">@Nullable</span> Object[] args)</span> <span class="hljs-keyword">throws</span> BeanCreationException &#123;<br>    <span class="hljs-type">BeanWrapper</span> <span class="hljs-variable">instanceWrapper</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>    <span class="hljs-keyword">if</span> (mbd.isSingleton()) &#123;<br>        instanceWrapper = (BeanWrapper)<span class="hljs-built_in">this</span>.factoryBeanInstanceCache.remove(beanName);<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (instanceWrapper == <span class="hljs-literal">null</span>) &#123;<br>    	<span class="hljs-comment">// 实例化阶段</span><br>        instanceWrapper = <span class="hljs-built_in">this</span>.createBeanInstance(beanName, mbd, args);<br>    &#125;<br><br>    ...<br><br>    <span class="hljs-type">Object</span> <span class="hljs-variable">exposedObject</span> <span class="hljs-operator">=</span> bean;<br><br>    <span class="hljs-keyword">try</span> &#123;<br>    	<span class="hljs-comment">// 属性赋值阶段</span><br>        <span class="hljs-built_in">this</span>.populateBean(beanName, mbd, instanceWrapper);<br>        <span class="hljs-comment">// 初始化阶段</span><br>        exposedObject = <span class="hljs-built_in">this</span>.initializeBean(beanName, exposedObject, mbd);<br>    &#125; <span class="hljs-keyword">catch</span> (Throwable var18) &#123;<br>        ...<br>    &#125;<br><br>    ...<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<p>销毁操作，是在容器关闭时调用的，详见 <code>ConfigurableApplicationContext#close()</code></p>
+<p>需要看 Bean 创建流程入口 源码的话，需要看 AbstractApplicationContext#refresh() 方法的 finishBeanFactoryInitialization(beanFactory) 这个方法。</p>
+<p>具体可以看一下 下面的这个章节内容  “Bean 创建流程入口 refresh()”。</p>
+<h3 id="2、Spring-Bean-的生命周期的扩展点"><a href="#2、Spring-Bean-的生命周期的扩展点" class="headerlink" title="2、Spring Bean 的生命周期的扩展点"></a>2、Spring Bean 的生命周期的扩展点</h3><p>上面讲述到Bean的生命周期有四个阶段，分别是：实例化  →  属性赋值  →  初始化  →  销毁；</p>
+<p>在不同阶段中间，Spring 框架会进行一些功能的扩展点，比如在实例化前后进行不同的操作，具体如何进行这些操作，我们就去了解一些具体的内容。</p>
+<h4 id="2-1-Bean-自身的方法"><a href="#2-1-Bean-自身的方法" class="headerlink" title="2.1  Bean 自身的方法"></a>2.1  Bean 自身的方法</h4><p>在Bean的生命周期中，Bean自身是有一些特定方法是能够被调用的，以便完成其生命周期过程。</p>
+<p>比如构造函数、getter&#x2F;setter 以及 init-method 和 destory-method 所指定的方法等，而这些方法又分别对应着上文说的四个阶段：例化、属性赋值、初始化和销毁。</p>
+<p>这些Bean自身的方法一般是我们在配置Bean的时候就已经定义好的，下面我们通过一个简单 Bean 的使用来看一些其用法。</p>
 <blockquote>
 <p>Bean 示例</p>
 </blockquote>
-<p>假设我们有一个简单的 Bean，名为 <code>MyBean</code>：</p>
+<p>我们定义一个简单的 Bean，名为 <code>MyBean</code>，</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MyBean</span> &#123;<br><br>    <span class="hljs-keyword">private</span> String <span class="hljs-keyword">value</span>;<br><br>    <span class="hljs-comment">// 构造函数 - 实例化阶段</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyBean</span>()</span> &#123;<br>        System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;MyBean Constructor: Bean is being instantiated.&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">// Setter 方法 - 属性赋值阶段</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setValue</span>(<span class="hljs-params">String <span class="hljs-keyword">value</span></span>)</span> &#123;<br>        System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;MyBean setValue: Setting property value.&quot;</span>);<br>        <span class="hljs-keyword">this</span>.<span class="hljs-keyword">value</span> = <span class="hljs-keyword">value</span>;<br>    &#125;<br><br>    <span class="hljs-comment">// 初始化方法 - 初始化阶段</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">init</span>()</span> &#123;<br>        System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;MyBean init: Bean is being initialized.&quot;</span>);<br>        <span class="hljs-comment">// 执行初始化逻辑</span><br>    &#125;<br><br>    <span class="hljs-comment">// 销毁方法 - 销毁阶段</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">destroy</span>()</span> &#123;<br>        System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;MyBean destroy: Bean is being destroyed.&quot;</span>);<br>        <span class="hljs-comment">// 执行清理逻辑</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>我们可以通过注解或者xml 配置声明  init-method 和 destory-method  对应的方法</p>
+<p>然后我们通过注解或者xml 配置声明  init-method 和 destory-method  对应的方法。</p>
+<blockquote>
+<p>xml 配置</p>
+</blockquote>
 <p><strong>在 Spring 配置中定义 Bean</strong></p>
-<p>在 Spring 的 XML 配置文件中，我们可以如下配置这个 Bean，并指定 <code>init-method</code> 和 <code>destroy-method</code>：</p>
+<p>在 Spring 的 XML 配置文件中，如下配置这个 Bean，并指定 <code>init-method</code> 和 <code>destroy-method</code>：</p>
 <figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs abnf">&lt;bean id<span class="hljs-operator">=</span><span class="hljs-string">&quot;myBean&quot;</span> class<span class="hljs-operator">=</span><span class="hljs-string">&quot;com.example.MyBean&quot;</span> init-method<span class="hljs-operator">=</span><span class="hljs-string">&quot;init&quot;</span> destroy-method<span class="hljs-operator">=</span><span class="hljs-string">&quot;destroy&quot;</span>&gt;<br>    &lt;property name<span class="hljs-operator">=</span><span class="hljs-string">&quot;value&quot;</span> value<span class="hljs-operator">=</span><span class="hljs-string">&quot;Some value&quot;</span>/&gt;<br>&lt;/bean&gt;<br></code></pre></td></tr></table></figure>
 
+<blockquote>
+<p>注解配置</p>
+</blockquote>
 <p>在基于 Java 的配置中，可以使用 <code>@Bean</code> 注解：</p>
 <figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-title class_"><span class="hljs-keyword">class</span> <span class="hljs-title">AppConfig</span> </span>&#123;<br><br>    <span class="hljs-meta">@Bean</span>(initMethod = <span class="hljs-string">&quot;init&quot;</span>, destroyMethod = <span class="hljs-string">&quot;destroy&quot;</span>)<br>    <span class="hljs-keyword">public</span> MyBean myBean() &#123;<br>        MyBean myBean = <span class="hljs-keyword">new</span> <span class="hljs-type">MyBean</span>();<br>        myBean.setValue(<span class="hljs-string">&quot;Some value&quot;</span>);<br>        <span class="hljs-keyword">return</span> myBean;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
+<blockquote>
+<p>使用 Bean</p>
+</blockquote>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> &#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-type">static</span> <span class="hljs-type">void</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">String</span>[] args)</span> </span>&#123;<br>        ApplicationContext context = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ClassPathXmlApplicationContext</span>(<span class="hljs-string">&quot;appContext.xml&quot;</span>);<br>        SimpleBean simpleBean = context.<span class="hljs-built_in">getBean</span>(<span class="hljs-string">&quot;myBean&quot;</span>, MyBean.<span class="hljs-keyword">class</span>);<br>        <span class="hljs-comment">// 使用 simpleBean ...</span><br>        ((ClassPathXmlApplicationContext) context).<span class="hljs-built_in">close</span>(); <span class="hljs-comment">// 关闭上下文以触发销毁方法</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<blockquote>
+<p>四个主要阶段以及代码解释</p>
+</blockquote>
+<p>通过注解或者xml配置的方式，我们指定了初始化和销毁方法，并在 <code>MyBean</code> 定义了 Setter 方法，具体在容器执行的时候，会进行以下的操作：</p>
 <ol>
 <li><strong>实例化阶段</strong>:<ul>
 <li>当 Spring 容器创建 <code>MyBean</code> 的实例时，首先调用其构造函数。</li>
@@ -346,11 +361,28 @@
 </ul>
 </li>
 </ol>
-<h4 id="容器级别方法"><a href="#容器级别方法" class="headerlink" title="容器级别方法"></a>容器级别方法</h4><p>在上述讲到的Bean 四个阶段，在这四个阶段的执行过程中，也会有一些容器级别的方法，进行一些前置或者后置的操作。</p>
+<h4 id="2-2-容器级别方法"><a href="#2-2-容器级别方法" class="headerlink" title="2.2  容器级别方法"></a>2.2  容器级别方法</h4><p>将这个容器级别方法理解为阶段中间容器会进行的一些操作，这些方法一般是BeanPostProcessor 的一系列接口。</p>
+<p>在上述讲到的Bean 四个阶段，在这四个阶段的执行过程中，进行一些前置或者后置的操作。</p>
 <p>这些操作独立于 Bean 之外，并且会注册到 Spring 容器中，在Spring 容器创建Bean的时候，会进行一些处理。</p>
+<p>具体的一个关系看下图（比较清晰）：</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312150342853.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>见上图，你可以理解  <code>InstantiationAwareBeanPostProcessor</code> 接口方法是 作为 实例化阶段的”产前产后护理”；<code>BeanPostProcessor</code> 是 初始化阶段的 “关键调整和增强”。</p>
-<h4 id="工厂后处理器方法"><a href="#工厂后处理器方法" class="headerlink" title="工厂后处理器方法"></a><strong>工厂后处理器方法</strong></h4><h4 id="Bean-级生命周期方法"><a href="#Bean-级生命周期方法" class="headerlink" title="Bean 级生命周期方法"></a><strong>Bean 级生命周期方法</strong></h4><p>可以理解为 Bean 类直接实现接口的方法，比如 <code>BeanNameAware</code>、<code>BeanFactoryAware</code>、<code>ApplicationContextAware</code>、<code>InitializingBean</code>、<code>DisposableBean</code> 等方法，这些方法只对当前 Bean 生效.</p>
+<p>你可以理解  <code>InstantiationAwareBeanPostProcessor</code> 接口方法是 作为 实例化阶段的”产前产后护理”；<code>BeanPostProcessor</code> 是 初始化阶段的 “关键调整和增强”。</p>
+<h4 id="2-3-源码内容分析（容器级别方法）"><a href="#2-3-源码内容分析（容器级别方法）" class="headerlink" title="2.3 源码内容分析（容器级别方法）"></a>2.3 源码内容分析（容器级别方法）</h4><p>需要去了解Bean的生命周期，这个源码对应的方法是必须去了解和看的。</p>
+<p>to be contined….</p>
+<h4 id="工厂后处理器方法"><a href="#工厂后处理器方法" class="headerlink" title="工厂后处理器方法"></a><strong>工厂后处理器方法</strong></h4><p><strong>BeanFactoryProcessor 一系列接口</strong></p>
+<p>这个可以理解为更上一层的接口，具体可以看代码理解。</p>
+<p>to be contined….</p>
+<h4 id="Bean-级生命周期方法"><a href="#Bean-级生命周期方法" class="headerlink" title="Bean 级生命周期方法"></a><strong>Bean 级生命周期方法</strong></h4><p>关于 Bean 级生命周期方法的理解：</p>
+<ul>
+<li>这些方法提供了针对 Bean 实例的<strong>个性化行为</strong>，允许 Bean 在其生命周期的关键点做出响应。</li>
+</ul>
+<p>通过这些方法，是可以对于某个Bean实例进行个性化操作的。</p>
+<p>可以理解为 Bean 类直接实现接口的方法，比如 <code>BeanNameAware</code>、<code>BeanFactoryAware</code>、<code>ApplicationContextAware</code>、<code>InitializingBean</code>、<code>DisposableBean</code> 等方法，这些方法只对当前 Bean 生效.</p>
+<p>Aware 类型的接口</p>
+<p>Aware 类型的接口的作用就是让我们能够拿到 Spring 容器中的一些资源。</p>
+<p>基本都能够见名知意，Aware 之前的名字就是可以拿到什么资源，例如 BeanNameAware 可以拿到 BeanName，以此类推。</p>
+<p>调用时机需要注意：所有的 Aware 方法都是在初始化阶段之前调用的。</p>
+<p>to be contined…</p>
 <h3 id="2、Spring-Bean-详细生命周期"><a href="#2、Spring-Bean-详细生命周期" class="headerlink" title="2、Spring Bean 详细生命周期"></a>2、Spring Bean 详细生命周期</h3><blockquote>
 <p>Bean 的生命周期</p>
 </blockquote>
@@ -361,7 +393,7 @@
 <li>如果 Bean 实现了 BeanNameAware 接口，调用 setBeanName() 方法，传入 Bean 的名字。</li>
 <li>如果 Bean 实现了 BeanClassLoaderAware 接口，调用 setBeanClassLoader() 方法，传入 ClassLoader 对象的实例。</li>
 <li>如果 Bean 实现了 BeanFactoryAware 接口，调用 setBeanFactory() 方法，传入 BeanFactory 对象的实例。</li>
-<li>与上面的类似，如果实现了其他 *.Aware 接口，就调用相应的方法。</li>
+<li>与上面的类似，如果实现了其他 * .Aware 接口，就调用相应的方法。</li>
 <li>如果有和加载这个 Bean 的 Spring 容器相关的 BeanPostProcessor 对象，执行 postProcessBeforeInitialization() 方法</li>
 <li>如果 Bean 实现了 InitializingBean 接口，执行 afterPropertiesSet() 方法。</li>
 <li>如果 Bean 在配置文件中的定义包含 init-method 属性，执行指定的方法。</li>
@@ -422,30 +454,68 @@
 
 
 
-
-
-
-
-
-
-
-
-<p>Spring Bean 的生命周期<br>1.加载Bean定义<br>通过 loadBeanDefinitions 扫描所有xml配置、注解将Bean记录在 beanDefinitionMap 中</p>
-<p>2.创建Bean对象<br>通过 createBean 遍历 beanDefinitionMap 创建bean</p>
-<p>2.1.构建对象<br>容器通过 createBeanInstance 进行对象构造<br>获取构造方法：@Autowired<br>准备参数 根据类查找&gt;参数名查找<br>构造对象<br>无参对象直接实例化<br>2.2.填充属性<br>通过populateBean方法为Bean内部所需的属性进行赋值</p>
-<p>通常是 @Autowired 注解的变量<br>2.3.初始化Bean对象<br>通过initializeBean对填充后的实例进行初始化</p>
-<p>填充初始化容器相关信息<br>通过 invokeAwareMethods 方法：为实现aware接口【信息感知接口】的Bean 设置注入beanName、beanFactory等容器信息</p>
-<p>初始化构造方法<br>通过 invokeInitMethods 方法进行初始化：</p>
+<blockquote>
+<p>下述待整理</p>
+</blockquote>
+<blockquote>
+<p>实例化 Instantiation</p>
+</blockquote>
+<p>其中第一阶段 —— 实例化 Instantiation，</p>
+<p>Bean 实例化的时机分为两种，一种是 BeanFactory，还有一种是  ApplicationContext；</p>
+<p>下面是两者差别：</p>
+<ul>
+<li>BeanFactory<ul>
+<li>其下管理的Bean <strong>在使用到Bean的时候</strong> 才会进行实例化Bean操作（懒加载策略）</li>
+</ul>
+</li>
+<li>ApplicationContext  <ul>
+<li>其下管理的 Bean <strong>在IOC容器初始化</strong>的时候完成 Bean 实例化。</li>
+<li><code>ApplicationContext</code>是<code>BeanFactory</code>的子接口，复杂程度更高一些。</li>
+<li>如<code>AnnotationConfigApplicationContext</code>和<code>ClassPathXmlApplicationContext</code>等，提供了多种方便的方式来创建ApplicationContext实例</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>视频地址：  <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1584y1r7n6/">https://www.bilibili.com/video/BV1584y1r7n6/</a></p>
+<p>Spring Bean 的生命周期</p>
+<p>1.加载Bean定义</p>
+<p>通过 loadBeanDefinitions 扫描所有xml配置、注解将Bean记录在 beanDefinitionMap 中</p>
+<p>2.创建Bean对象</p>
+<p>通过 createBean 遍历 beanDefinitionMap 创建bean</p>
+<p>2.1.构建对象</p>
+<p>容器通过 createBeanInstance 进行对象构造</p>
+<p>获取构造方法：@Autowired</p>
+<p>准备参数 根据类查找&gt;参数名查找</p>
+<p>构造对象</p>
+<p>无参对象直接实例化</p>
+<p>2.2.填充属性</p>
+<p>通过populateBean方法为Bean内部所需的属性进行赋值</p>
+<p>通常是 @Autowired 注解的变量</p>
+<p>2.3.初始化Bean对象</p>
+<p>通过initializeBean对填充后的实例进行初始化</p>
+<p>填充初始化容器相关信息</p>
+<p>通过 invokeAwareMethods 方法：为实现aware接口【信息感知接口】的Bean 设置注入beanName、beanFactory等容器信息</p>
+<p>初始化构造方法</p>
+<p>通过 invokeInitMethods 方法进行初始化：</p>
 <p>如果Bean实现InitializingBean接口进行处理【未实现则不进行】</p>
 <p>afterPropertiesSet方法【bean填充属性后执行】<br>initMethod 方法<br>Bean的后置处理<br>在invokeInitMethods 的前后进行</p>
 <p>applyBeanPostProcessorsBeforeInitialization<br>invokeInitMethods<br>applyBeanPostProcessorsAfterInitialization<br>在后置处理中处理了包括：AOP【AnnotationAwareAspectJAutoProxyCreator】</p>
 <p>负责 构造后@PostConstruct 和 销毁前@PreDestroy 的  InitDestoryAnnotationBeanPostProcessor 等</p>
-<p>注册销毁<br>通过reigsterDisposableBean处理实现了DisposableBean接口的Bean的注册</p>
-<p>3.添加到单例池<br>通过 addSingleton 方法，将Bean 加入到单例池 singleObjects </p>
-<p>4.销毁<br>4.1.销毁前<br>调用 bean中@PreDestory 注解的方法</p>
+<p>注册销毁</p>
+<p>通过reigsterDisposableBean处理实现了DisposableBean接口的Bean的注册</p>
+<p>3.添加到单例池</p>
+<p>通过 addSingleton 方法，将Bean 加入到单例池 singleObjects </p>
+<h3 id="销毁操作"><a href="#销毁操作" class="headerlink" title="销毁操作"></a>销毁操作</h3><p>4.1.销毁前</p>
+<p>调用 bean中@PreDestory 注解的方法</p>
 <p>通过 postProcessBeforeDestruction 方法调用destoryBean逐一销毁Bean</p>
-<p>4.2.销毁<br>调用 destoryBeans</p>
-<p>4.3.执行客户自定义销毁<br>调用 invokeCustomDestoryMethod</p>
+<p>4.2.销毁</p>
+<p>调用 destoryBeans</p>
+<p>4.3.执行客户自定义销毁</p>
+<p>调用 invokeCustomDestoryMethod</p>
+<blockquote>
+<p>使用示例</p>
+</blockquote>
+<p>to be contined…</p>
 <h3 id="4、Spring-Bean-生命周期流程图"><a href="#4、Spring-Bean-生命周期流程图" class="headerlink" title="4、Spring Bean 生命周期流程图"></a>4、<strong>Spring Bean 生命周期流程图</strong></h3><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312160247944.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <hr>
 <p>参考</p>
