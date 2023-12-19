@@ -25,12 +25,14 @@
 <meta property="og:site_name" content="轻松的洛亓">
 <meta property="og:description" content="SpringBoot学习_SpringBoot 自动装配原理">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231219202949.png">
 <meta property="article:published_time" content="2023-12-19T11:19:53.000Z">
 <meta property="article:modified_time" content="2023-12-19T11:19:53.000Z">
 <meta property="article:author" content="Luo QI">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="springboot">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231219202949.png">
   
   
   
@@ -194,7 +196,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/wallpaper1702453298378.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -223,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.7k 字
+          11k 字
         
       </span>
     
@@ -234,7 +236,7 @@
         
         
         
-          48 分钟
+          94 分钟
         
       </span>
     
@@ -276,7 +278,46 @@
             
               <div class="markdown-body">
                 
-                <h3 id="1、什么是Spring-Boot-的自动装配"><a href="#1、什么是Spring-Boot-的自动装配" class="headerlink" title="1、什么是Spring Boot 的自动装配"></a>1、什么是Spring Boot 的自动装配</h3><p>先了解一下自动装配类主要用的注解和自动配置类，了解其概念，并继续往下进行学习。</p>
+                <blockquote>
+<p>面试题：讲述一下Spring Boot 的自动装配原理。</p>
+</blockquote>
+<p>Spring Boot 的自动装配原理基于 Spring 框架的依赖注入和条件注册特性，通过一系列的“启动器”（starters）和自动配置（auto-configuration）类来简化配置过程。</p>
+<p>以下是关键点：</p>
+<ol>
+<li><strong>启动器（Starters）</strong>:<ul>
+<li>Spring Boot 提供了一系列的启动器，它们是预先打包好的依赖集合，旨在提供不同功能的快速集成，如 Web 应用、数据库访问等。</li>
+</ul>
+</li>
+<li><strong>@EnableAutoConfiguration</strong>:<ul>
+<li>这是自动装配的核心注解。通常，这个注解是通过 <code>@SpringBootApplication</code> 杂注引入的，它会触发 Spring Boot 的自动配置机制。</li>
+<li>它利用了 Spring 的 <code>ImportSelector</code> 接口来加载 <code>META-INF/spring.factories</code> 中指定的配置类。</li>
+</ul>
+</li>
+<li><strong>条件注解（Conditional Annotations）</strong>:<ul>
+<li>自动配置类使用一系列的条件注解（如 <code>@ConditionalOnClass</code>，<code>@ConditionalOnBean</code>），确保只有在满足特定条件时才启用配置。这些条件通常包括类路径上的类存在、某个 Bean 不存在、某个属性有特定的值等。</li>
+</ul>
+</li>
+<li><strong>spring.factories</strong>:<ul>
+<li>这是一个位于每个自动配置库 <code>META-INF</code> 目录下的属性文件。它列出了所有可用的自动配置类，这些类由 <code>AutoConfigurationImportSelector</code> 读取和处理。</li>
+</ul>
+</li>
+<li><strong>自动配置类（AutoConfiguration Classes）</strong>:<ul>
+<li>这些类通常采用 <code>@Configuration</code> 形式，并且它们自身也可以包含 <code>@Bean</code>、<code>@Component</code> 和其他配置相关的注解。</li>
+<li>自动配置类可以提供默认的 Bean 定义、属性绑定和其他自动化配置。</li>
+</ul>
+</li>
+<li><strong>细粒度控制</strong>:<ul>
+<li>开发者可以通过 <code>application.properties</code> 或 <code>application.yml</code> 文件来覆盖自动配置的默认值。</li>
+<li>如果需要，可以通过 <code>@EnableAutoConfiguration</code> 的 <code>exclude</code> 属性排除特定的自动配置类。</li>
+</ul>
+</li>
+<li><strong>事件监听与发布</strong>:<ul>
+<li>在自动配置的过程中，Spring Boot 也会发布和监听各种事件，允许用户在应用生命周期的不同阶段进行交互。</li>
+</ul>
+</li>
+</ol>
+<p>总结来说，Spring Boot 的自动装配是一个智能且灵活的机制，它减轻了传统 Spring 应用配置的负担，通过一系列条件匹配和约定优于配置的原则，提供了一个即插即用的开发体验。</p>
+<h3 id="1、什么是Spring-Boot-的自动装配"><a href="#1、什么是Spring-Boot-的自动装配" class="headerlink" title="1、什么是Spring Boot 的自动装配"></a>1、什么是Spring Boot 的自动装配</h3><p>先了解一下自动装配类主要用的注解和自动配置类，了解其概念，并继续往下进行学习。</p>
 <p>Spring Boot 的自动装配原理是基于 Spring 框架的依赖注入和条件装配特性。</p>
 <p>自动装配主要通过 <code>@EnableAutoConfiguration</code> 注解和一系列的自动配置类 (<code>*AutoConfiguration</code> 类) 来实现。</p>
 <p>以下是从源码角度对其原理的解析：</p>
@@ -387,8 +428,139 @@
 </ul>
 </li>
 </ol>
-<h4 id="2-4-getAutoConfigurationEntry"><a href="#2-4-getAutoConfigurationEntry" class="headerlink" title="2.4 getAutoConfigurationEntry"></a>2.4 getAutoConfigurationEntry</h4><p>重点关注一下<code>getAutoConfigurationEntry()</code>方法，这个方法主要负责加载自动配置类</p>
-<p>to be contined…..</p>
+<h4 id="2-4-getAutoConfigurationEntry"><a href="#2-4-getAutoConfigurationEntry" class="headerlink" title="2.4 getAutoConfigurationEntry"></a>2.4 getAutoConfigurationEntry</h4><p>重点关注一下<code>getAutoConfigurationEntry()</code>方法，这个方法的主要职责是收集所有应该被激活的自动配置类，并根据给定的条件来筛选和排除某些配置。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">protected</span> AutoConfigurationImportSelector.AutoConfigurationEntry getAutoConfigurationEntry(<br>    AutoConfigurationMetadata autoConfigurationMetadata, AnnotationMetadata annotationMetadata) &#123;<br>    <br>    <span class="hljs-comment">// 检查自动配置是否被启用，如果没有，则返回一个空的配置条目</span><br>    <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.isEnabled(annotationMetadata)) &#123;<br>        <span class="hljs-keyword">return</span> EMPTY_ENTRY;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-comment">// 获取注解的属性</span><br>        AnnotationAttributes attributes = <span class="hljs-keyword">this</span>.getAttributes(annotationMetadata);<br>        <br>        <span class="hljs-comment">// 获取所有候选的配置类</span><br>        List&lt;String&gt; configurations = <span class="hljs-keyword">this</span>.getCandidateConfigurations(annotationMetadata, attributes);<br>        <br>        <span class="hljs-comment">// 移除重复的配置</span><br>        configurations = <span class="hljs-keyword">this</span>.removeDuplicates(configurations);<br>        <br>        <span class="hljs-comment">// 获取需要排除的配置类</span><br>        Set&lt;String&gt; exclusions = <span class="hljs-keyword">this</span>.getExclusions(annotationMetadata, attributes);<br>        <br>        <span class="hljs-comment">// 检查排除的类是否真的存在于候选配置中，并抛出异常如果有的话</span><br>        <span class="hljs-keyword">this</span>.checkExcludedClasses(configurations, exclusions);<br>        <br>        <span class="hljs-comment">// 从候选配置中移除排除的配置</span><br>        configurations.removeAll(exclusions);<br>        <br>        <span class="hljs-comment">// 过滤配置，可能使用条件服务等进一步筛选配置</span><br>        configurations = <span class="hljs-keyword">this</span>.filter(configurations, autoConfigurationMetadata);<br>        <br>        <span class="hljs-comment">// 触发自动配置导入相关事件</span><br>        <span class="hljs-keyword">this</span>.fireAutoConfigurationImportEvents(configurations, exclusions);<br>        <br>        <span class="hljs-comment">// 返回一个新的 AutoConfigurationEntry 对象，包含最终确定的配置类和排除的类</span><br>        <span class="hljs-keyword">return</span> new AutoConfigurationImportSelector.AutoConfigurationEntry(configurations, exclusions);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>方法解释</p>
+<ol>
+<li><strong>isEnabled</strong>:<ul>
+<li>检查是否在注解元数据中设置了启用自动配置的属性。</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">protected</span> boolean isEnabled(AnnotationMetadata metadata) &#123;  <br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.getClass() == AutoConfigurationImportSelector.<span class="hljs-keyword">class</span> ? (<span class="hljs-built_in">Boolean</span>)<span class="hljs-keyword">this</span>.getEnvironment().getProperty(<span class="hljs-string">&quot;spring.boot.enableautoconfiguration&quot;</span>, <span class="hljs-built_in">Boolean</span>.<span class="hljs-keyword">class</span>, <span class="hljs-literal">true</span>) : <span class="hljs-literal">true</span>;  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>isEnabled</code> 方法会判断自动装配开关是否打开。</p>
+<p>默认<code>spring.boot.enableautoconfiguration=true</code>，可在 <code>application.properties</code> 或 <code>application.yml</code> 中设置</p>
+<ol start="2">
+<li><strong>getAttributes</strong>:<ul>
+<li>提取注解元数据中的属性，这些属性可能会影响自动配置的选择。</li>
+<li>用于获取<code>EnableAutoConfiguration</code>注解中的 <code>exclude</code> 和 <code>excludeName</code></li>
+</ul>
+</li>
+<li><strong>getCandidateConfigurations</strong>:<ul>
+<li>获取需要自动装配的所有配置类，读取<code>META-INF/spring.factories</code></li>
+</ul>
+</li>
+</ol>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stata">spring-<span class="hljs-keyword">boot</span>/spring-<span class="hljs-keyword">boot</span>-project/spring-<span class="hljs-keyword">boot</span>-autoconfigure/src/main/resources/<span class="hljs-keyword">META</span>-<span class="hljs-keyword">INF</span>/spring.factories<br></code></pre></td></tr></table></figure>
+
+<p>不光是单个依赖下的<code>META-INF/spring.factories</code>被读取到，所有 Spring Boot Starter 下的<code>META-INF/spring.factories</code>都会被读取到。</p>
+<p>你可以看一下 druid 数据库连接池的 Spring Boot Starter ，在它里面就创建了<code>META-INF/spring.factories</code>文件。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231219202949.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>如果，我们自己要创建一个 Spring Boot Starter，这一步是必不可少的。</p>
+<ol start="4">
+<li><strong>removeDuplicates</strong>:<ul>
+<li>保证配置列表中没有重复的条目。</li>
+</ul>
+</li>
+<li><strong>getExclusions</strong>:<ul>
+<li>读取注解元数据，找出需要从自动配置中排除的类。</li>
+</ul>
+</li>
+<li><strong>checkExcludedClasses</strong>:<ul>
+<li>确保排除的类是候选配置列表中的成员，如果不是，则抛出异常。</li>
+</ul>
+</li>
+<li><strong>configurations.removeAll(exclusions)</strong>:<ul>
+<li>实际从候选配置列表中移除被排除的类。</li>
+</ul>
+</li>
+<li><strong>filter</strong>:<ul>
+<li>使用 <code>AutoConfigurationMetadata</code> 对候选配置进行进一步的条件筛选。</li>
+</ul>
+</li>
+<li><strong>fireAutoConfigurationImportEvents</strong>:<ul>
+<li>发布事件，这可能会影响后续处理过程，例如通过监听器来进一步修改配置列表。</li>
+</ul>
+</li>
+<li><strong>返回 AutoConfigurationEntry</strong>:<ul>
+<li>创建并返回一个 <code>AutoConfigurationEntry</code> 对象，该对象包含了最终确定要导入的自动配置类和已排除的类。</li>
+</ul>
+</li>
+</ol>
+<p>我们在具体使用的时候，<code>spring.factories</code>中会有很多配置，但每次启动并不是全部加载；</p>
+<p>我们会在配置类上使用 ConditionalOnxxx 注解，<code>@ConditionalOnXXX</code> 中的所有条件都满足，该类才会生效。</p>
+<p>例如：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-variable">@Configuration</span><br><span class="hljs-comment">// 检查相关的类：RabbitTemplate 和 Channel是否存在</span><br><span class="hljs-comment">// 存在才会加载</span><br><span class="hljs-variable">@ConditionalOnClass</span>(&#123; RabbitTemplate.class, Channel.class &#125;)<br><span class="hljs-variable">@EnableConfigurationProperties</span>(RabbitProperties.class)<br><span class="hljs-variable">@Import</span>(RabbitAnnotationDrivenConfiguration.class)<br>public class RabbitAutoConfiguration &#123;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="3、新建一个-starter"><a href="#3、新建一个-starter" class="headerlink" title="3、新建一个 starter"></a>3、新建一个 starter</h3><p>创建过程：</p>
+<blockquote>
+<ol>
+<li>创建项目结构</li>
+</ol>
+</blockquote>
+<p>需要创建一个 Maven项目。</p>
+<p>为了遵循 Spring Boot Starter 命名约定，项目的名称通常以 <code>spring-boot-starter-</code> 开头，例如 <code>spring-boot-starter-myfeature</code>。</p>
+<blockquote>
+<ol start="2">
+<li>添加必要的依赖</li>
+</ol>
+</blockquote>
+<p>在项目的 <code>pom.xml</code> 文件中，添加 Spring Boot 以及其他所需库的依赖。</p>
+<p>示例 Maven <code>pom.xml</code>:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 添加其他自己 Starter 需要的依赖 --&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+<blockquote>
+<ol start="3">
+<li>创建自动配置类</li>
+</ol>
+</blockquote>
+<p>在项目中创建一个或多个配置类，使用 <code>@Configuration</code> 注解，并根据需要使用 <code>@Conditional</code> 注解来条件化配置。</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-variable">@Configuration</span><br><span class="hljs-variable">@ConditionalOnClass</span>(MyFeature.class)<br><span class="hljs-variable">@ConditionalOnProperty</span>(prefix = <span class="hljs-string">&quot;myfeature&quot;</span>, name = <span class="hljs-string">&quot;enabled&quot;</span>, havingValue = <span class="hljs-string">&quot;true&quot;</span>, matchIfMissing = true)<br>public class MyFeatureAutoConfiguration &#123;<br><br>    <span class="hljs-variable">@Bean</span><br>    <span class="hljs-variable">@ConditionalOnMissingBean</span><br>    public MyFeature <span class="hljs-built_in">myFeature</span>() &#123;<br>        <span class="hljs-selector-tag">return</span> <span class="hljs-selector-tag">new</span> <span class="hljs-selector-tag">MyFeature</span>();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<ol start="4">
+<li>创建 <code>spring.factories</code> 文件</li>
+</ol>
+</blockquote>
+<p>在项目的资源目录中创建一个 <code>META-INF/spring.factories</code> 文件，并指定自动配置类。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus">org<span class="hljs-selector-class">.springframework</span><span class="hljs-selector-class">.boot</span><span class="hljs-selector-class">.autoconfigure</span>.EnableAutoConfiguration=\<br>com<span class="hljs-selector-class">.example</span>.MyFeatureAutoConfiguration<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<ol start="5">
+<li>配置属性类（可选）</li>
+</ol>
+</blockquote>
+<p>如果你的 Starter 需要配置属性，创建一个属性类使用 <code>@ConfigurationProperties</code> 注解。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-meta">@ConfigurationProperties(prefix = <span class="hljs-string">&quot;myfeature&quot;</span>)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyFeatureProperties</span> &#123;<br>    <span class="hljs-keyword">private</span> boolean enabled = <span class="hljs-literal">true</span>;<br>    <span class="hljs-comment">// ... 其他属性和getter/setter</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<ol start="6">
+<li>测试 Starter</li>
+</ol>
+</blockquote>
+<p>创建一个简单的 Spring Boot 应用来验证 Starter 是否按预期工作。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-meta">@SpringBootApplication</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyStarterTestApp</span> &#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-built_in">void</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"><span class="hljs-built_in">String</span>[] args</span>) &#123;<br>        <span class="hljs-title class_">SpringApplication</span>.<span class="hljs-title function_">run</span>(<span class="hljs-title class_">MyStarterTestApp</span>.<span class="hljs-property">class</span>, args);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<ol start="7">
+<li>打包和发布</li>
+</ol>
+</blockquote>
+<p>使用 Maven 将 Starter 打包，并发布到 Maven 中央仓库或私有仓库，使得其他项目可以添加依赖使用。</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-string">`mvn clean install`</span><br></code></pre></td></tr></table></figure>
+
+<p>同时最好编写清晰的文档，说明如何添加 Starter 的依赖，以及如何配置和使用提供的功能。</p>
+<blockquote>
+<p>总结</p>
+</blockquote>
+<p>Spring Boot 通过<code>@EnableAutoConfiguration</code>开启自动装配，</p>
+<p>通过 SpringFactoriesLoader 最终加载<code>META-INF/spring.factories</code>中的自动配置类实现自动装配，</p>
+<p>自动配置类其实就是通过<code>@Conditional</code>按需加载的配置类，想要其生效必须引入<code>spring-boot-starter-xxx</code>包实现起步依赖</p>
 <hr>
 <p>参考</p>
 <ul>
@@ -488,6 +660,23 @@
 
 
 
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/12/18/Spring%E5%AD%A6%E4%B9%A0_Spring_Bean%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" title="Spring学习_Spring_Bean的生命周期">
+                        <span class="hidden-mobile">Spring学习_Spring_Bean的生命周期</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
               
             </div>
 
