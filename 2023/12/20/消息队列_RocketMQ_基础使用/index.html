@@ -21,15 +21,18 @@
     <meta name="description" content="消息队列_RocketMQ_基础使用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="消息队列_RocketMQ_基础使用">
-<meta property="og:url" content="https://varcel.luoqi.icu/2023/12/19/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97_RocketMQ_%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:url" content="https://varcel.luoqi.icu/2023/12/20/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97_RocketMQ_%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="轻松的洛亓">
 <meta property="og:description" content="消息队列_RocketMQ_基础使用">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-12-19T16:49:09.000Z">
-<meta property="article:modified_time" content="2023-12-19T16:49:09.000Z">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231220201308.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231220202235.png">
+<meta property="article:published_time" content="2023-12-20T16:49:09.000Z">
+<meta property="article:modified_time" content="2023-12-20T16:49:09.000Z">
 <meta property="article:author" content="Luo QI">
 <meta property="article:tag" content="MQ">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231220201308.png">
   
   
   
@@ -210,8 +213,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-12-19 16:49" pubdate>
-          2023年12月19日 下午
+        <time datetime="2023-12-20 16:49" pubdate>
+          2023年12月20日 下午
         </time>
       </span>
     
@@ -222,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          434 字
+          994 字
         
       </span>
     
@@ -233,7 +236,7 @@
         
         
         
-          4 分钟
+          9 分钟
         
       </span>
     
@@ -285,7 +288,7 @@
 <p>引入MQ需要处理的问题</p>
 <ul>
 <li>降低系统的可用性</li>
-<li>增加系统的复杂程度</li>
+<li>增加系统的复杂度</li>
 <li>需要解决<ul>
 <li>如何解决重复消费消息的问题</li>
 <li>如何解决消息的顺序消费问题</li>
@@ -295,6 +298,35 @@
 </li>
 </ul>
 <h3 id="1、RocketMQ是什么"><a href="#1、RocketMQ是什么" class="headerlink" title="1、RocketMQ是什么"></a>1、RocketMQ是什么</h3><p>RocketMQ 是一款开源的分布式消息和流处理平台，由阿里巴巴集团开发并贡献给 Apache 软件基金会。它被设计用于处理大规模、高吞吐量的消息传递，并在阿里巴巴集团内部及众多企业中广泛使用。</p>
+<p>特点：高性能，高可靠，高实时，分布式</p>
+<blockquote>
+<p>队列模型和主题模型</p>
+</blockquote>
+<ul>
+<li>队列模型<ul>
+<li>队列方式，生产者消费者</li>
+</ul>
+</li>
+<li>主题模型&#x2F;发布订阅<ul>
+<li>发布者将消息发送到指定主题中，订阅者需要 <strong>提前订阅主题</strong> 才能接受特定主题的消息。<img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231220201308.png" srcset="/img/loading.gif" lazyload alt="image.png|500"></li>
+</ul>
+</li>
+</ul>
+<h3 id="2、RocketMQ中的消息模型"><a href="#2、RocketMQ中的消息模型" class="headerlink" title="2、RocketMQ中的消息模型"></a>2、RocketMQ中的消息模型</h3><p><code>RocketMQ</code> 中的消息模型是按照 <strong>主题模型</strong> 所实现的，对于主题模型的实现来说每个消息中间件的底层设计不一样的，主题模型&#x2F;发布订阅模型 是一个标准，每个中间件按照这个标准去进行不同的实际实现。</p>
+<p>需要明白 RocketMQ 的主题模型是如何实现的，首先先了解 <code>Producer Group</code>、<code>Topic</code>、<code>Consumer Group</code> 三个角色概念：</p>
+<ul>
+<li><code>Producer Group</code> 生产者组：代表某一类的生产者，比如我们有多个秒杀系统作为生产者，这多个合在一起就是一个 <code>Producer Group</code> 生产者组，它们一般生产相同的消息。</li>
+<li><code>Consumer Group</code> 消费者组<ul>
+<li>代表某一类的消费者，比如我们有多个短信系统作为消费者，这多个合在一起就是一个 <code>Consumer Group</code> 消费者组，它们一般消费相同的消息。</li>
+</ul>
+</li>
+<li><code>Topic</code> 主题<ul>
+<li>一类消息的逻辑名字。</li>
+<li>在 RocketMQ 中，消息是按主题分类的。生产者将消息发送到指定的主题，消费者则从主题订阅并接收消息。</li>
+</ul>
+</li>
+</ul>
+<p>图解：<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231220202235.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <hr>
 <p>参考</p>
 <ul>
@@ -302,6 +334,7 @@
 <li><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/quickStart/01quickstart/">https://rocketmq.apache.org/zh/docs/quickStart/01quickstart/</a></li>
 <li><a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/788183">https://developer.aliyun.com/article/788183</a></li>
 <li><a target="_blank" rel="noopener" href="https://javaguide.cn/high-performance/message-queue/rocketmq-questions.html">https://javaguide.cn/high-performance/message-queue/rocketmq-questions.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/7134227366481494046">https://juejin.cn/post/7134227366481494046</a></li>
 </ul>
 
                 
@@ -356,7 +389,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>消息队列_RocketMQ_基础使用</div>
-      <div>https://varcel.luoqi.icu/2023/12/19/消息队列_RocketMQ_基础使用/</div>
+      <div>https://varcel.luoqi.icu/2023/12/20/消息队列_RocketMQ_基础使用/</div>
     </div>
     <div class="license-meta">
       
@@ -368,7 +401,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年12月19日</div>
+          <div>2023年12月20日</div>
         </div>
       
       
@@ -400,18 +433,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/12/19/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B_%E7%BA%BF%E7%A8%8B%E6%B1%A0/" title="Java并发编程_线程池">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Java并发编程_线程池</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/12/19/SpringBoot%E5%AD%A6%E4%B9%A0_SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E5%8E%9F%E7%90%86/" title="SpringBoot学习_SpringBoot 自动装配原理">
-                        <span class="hidden-mobile">SpringBoot学习_SpringBoot 自动装配原理</span>
+                      <a href="/2023/12/20/Java8%E6%96%B0%E7%89%B9%E6%80%A7/" title="Java8新特性">
+                        <span class="hidden-mobile">Java8新特性</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

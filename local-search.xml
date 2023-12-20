@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>消息队列_RocketMQ_基础使用</title>
+    <link href="/2023/12/20/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97_RocketMQ_%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/"/>
+    <url>/2023/12/20/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97_RocketMQ_%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>回顾</p></blockquote><p>MQ的好处</p><ul><li>解耦，削峰，异步</li></ul><p>引入MQ需要处理的问题</p><ul><li>降低系统的可用性</li><li>增加系统的复杂度</li><li>需要解决<ul><li>如何解决重复消费消息的问题</li><li>如何解决消息的顺序消费问题</li><li>解决分布式事务问题 </li><li>解决消息堆积的问题</li></ul></li></ul><h3 id="1、RocketMQ是什么"><a href="#1、RocketMQ是什么" class="headerlink" title="1、RocketMQ是什么"></a>1、RocketMQ是什么</h3><p>RocketMQ 是一款开源的分布式消息和流处理平台，由阿里巴巴集团开发并贡献给 Apache 软件基金会。它被设计用于处理大规模、高吞吐量的消息传递，并在阿里巴巴集团内部及众多企业中广泛使用。</p><p>特点：高性能，高可靠，高实时，分布式</p><blockquote><p>队列模型和主题模型</p></blockquote><ul><li>队列模型<ul><li>队列方式，生产者消费者</li></ul></li><li>主题模型&#x2F;发布订阅<ul><li>发布者将消息发送到指定主题中，订阅者需要 <strong>提前订阅主题</strong> 才能接受特定主题的消息。<img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231220201308.png" alt="image.png|500"></li></ul></li></ul><h3 id="2、RocketMQ中的消息模型"><a href="#2、RocketMQ中的消息模型" class="headerlink" title="2、RocketMQ中的消息模型"></a>2、RocketMQ中的消息模型</h3><p><code>RocketMQ</code> 中的消息模型是按照 <strong>主题模型</strong> 所实现的，对于主题模型的实现来说每个消息中间件的底层设计不一样的，主题模型&#x2F;发布订阅模型 是一个标准，每个中间件按照这个标准去进行不同的实际实现。</p><p>需要明白 RocketMQ 的主题模型是如何实现的，首先先了解 <code>Producer Group</code>、<code>Topic</code>、<code>Consumer Group</code> 三个角色概念：</p><ul><li><code>Producer Group</code> 生产者组：代表某一类的生产者，比如我们有多个秒杀系统作为生产者，这多个合在一起就是一个 <code>Producer Group</code> 生产者组，它们一般生产相同的消息。</li><li><code>Consumer Group</code> 消费者组<ul><li>代表某一类的消费者，比如我们有多个短信系统作为消费者，这多个合在一起就是一个 <code>Consumer Group</code> 消费者组，它们一般消费相同的消息。</li></ul></li><li><code>Topic</code> 主题<ul><li>一类消息的逻辑名字。</li><li>在 RocketMQ 中，消息是按主题分类的。生产者将消息发送到指定的主题，消费者则从主题订阅并接收消息。</li></ul></li></ul><p>图解：<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231220202235.png" alt="image.png"></p><hr><p>参考</p><ul><li><a href="https://rocketmq.apache.org/docs/quickStart/01quickstart">https://rocketmq.apache.org/docs/quickStart/01quickstart</a></li><li><a href="https://rocketmq.apache.org/zh/docs/quickStart/01quickstart/">https://rocketmq.apache.org/zh/docs/quickStart/01quickstart/</a></li><li><a href="https://developer.aliyun.com/article/788183">https://developer.aliyun.com/article/788183</a></li><li><a href="https://javaguide.cn/high-performance/message-queue/rocketmq-questions.html">https://javaguide.cn/high-performance/message-queue/rocketmq-questions.html</a></li><li><a href="https://juejin.cn/post/7134227366481494046">https://juejin.cn/post/7134227366481494046</a></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>中间件</category>
+      
+      <category>MQ</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>MQ</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Java8新特性</title>
     <link href="/2023/12/20/Java8%E6%96%B0%E7%89%B9%E6%80%A7/"/>
     <url>/2023/12/20/Java8%E6%96%B0%E7%89%B9%E6%80%A7/</url>
@@ -52,33 +79,6 @@
       <tag>java</tag>
       
       <tag>thread</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>消息队列_RocketMQ_基础使用</title>
-    <link href="/2023/12/19/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97_RocketMQ_%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/"/>
-    <url>/2023/12/19/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97_RocketMQ_%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/</url>
-    
-    <content type="html"><![CDATA[<blockquote><p>回顾</p></blockquote><p>MQ的好处</p><ul><li>解耦，削峰，异步</li></ul><p>引入MQ需要处理的问题</p><ul><li>降低系统的可用性</li><li>增加系统的复杂程度</li><li>需要解决<ul><li>如何解决重复消费消息的问题</li><li>如何解决消息的顺序消费问题</li><li>解决分布式事务问题 </li><li>解决消息堆积的问题</li></ul></li></ul><h3 id="1、RocketMQ是什么"><a href="#1、RocketMQ是什么" class="headerlink" title="1、RocketMQ是什么"></a>1、RocketMQ是什么</h3><p>RocketMQ 是一款开源的分布式消息和流处理平台，由阿里巴巴集团开发并贡献给 Apache 软件基金会。它被设计用于处理大规模、高吞吐量的消息传递，并在阿里巴巴集团内部及众多企业中广泛使用。</p><hr><p>参考</p><ul><li><a href="https://rocketmq.apache.org/docs/quickStart/01quickstart">https://rocketmq.apache.org/docs/quickStart/01quickstart</a></li><li><a href="https://rocketmq.apache.org/zh/docs/quickStart/01quickstart/">https://rocketmq.apache.org/zh/docs/quickStart/01quickstart/</a></li><li><a href="https://developer.aliyun.com/article/788183">https://developer.aliyun.com/article/788183</a></li><li><a href="https://javaguide.cn/high-performance/message-queue/rocketmq-questions.html">https://javaguide.cn/high-performance/message-queue/rocketmq-questions.html</a></li></ul>]]></content>
-    
-    
-    <categories>
-      
-      <category>中间件</category>
-      
-      <category>MQ</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>MQ</tag>
       
     </tags>
     
