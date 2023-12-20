@@ -60,6 +60,33 @@
   
   
   <entry>
+    <title>消息队列_RocketMQ_基础使用</title>
+    <link href="/2023/12/19/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97_RocketMQ_%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/"/>
+    <url>/2023/12/19/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97_RocketMQ_%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>回顾</p></blockquote><p>MQ的好处</p><ul><li>解耦，削峰，异步</li></ul><p>引入MQ需要处理的问题</p><ul><li>降低系统的可用性</li><li>增加系统的复杂程度</li><li>需要解决<ul><li>如何解决重复消费消息的问题</li><li>如何解决消息的顺序消费问题</li><li>解决分布式事务问题 </li><li>解决消息堆积的问题</li></ul></li></ul><h3 id="1、RocketMQ是什么"><a href="#1、RocketMQ是什么" class="headerlink" title="1、RocketMQ是什么"></a>1、RocketMQ是什么</h3><p>RocketMQ 是一款开源的分布式消息和流处理平台，由阿里巴巴集团开发并贡献给 Apache 软件基金会。它被设计用于处理大规模、高吞吐量的消息传递，并在阿里巴巴集团内部及众多企业中广泛使用。</p><hr><p>参考</p><ul><li><a href="https://rocketmq.apache.org/docs/quickStart/01quickstart">https://rocketmq.apache.org/docs/quickStart/01quickstart</a></li><li><a href="https://rocketmq.apache.org/zh/docs/quickStart/01quickstart/">https://rocketmq.apache.org/zh/docs/quickStart/01quickstart/</a></li><li><a href="https://developer.aliyun.com/article/788183">https://developer.aliyun.com/article/788183</a></li><li><a href="https://javaguide.cn/high-performance/message-queue/rocketmq-questions.html">https://javaguide.cn/high-performance/message-queue/rocketmq-questions.html</a></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>中间件</category>
+      
+      <category>MQ</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>MQ</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>SpringBoot学习_SpringBoot 自动装配原理</title>
     <link href="/2023/12/19/SpringBoot%E5%AD%A6%E4%B9%A0_SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E5%8E%9F%E7%90%86/"/>
     <url>/2023/12/19/SpringBoot%E5%AD%A6%E4%B9%A0_SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E5%8E%9F%E7%90%86/</url>

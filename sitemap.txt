@@ -1,6 +1,7 @@
-https://varcel.luoqi.icu/2023/12/20/Java8%E6%96%B0%E7%89%B9%E6%80%A7/
 https://varcel.luoqi.icu/about/index.html
+https://varcel.luoqi.icu/2023/12/20/Java8%E6%96%B0%E7%89%B9%E6%80%A7/
 https://varcel.luoqi.icu/2023/12/19/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B_%E7%BA%BF%E7%A8%8B%E6%B1%A0/
+https://varcel.luoqi.icu/2023/12/19/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97_RocketMQ_%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/
 https://varcel.luoqi.icu/2023/12/19/SpringBoot%E5%AD%A6%E4%B9%A0_SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E5%8E%9F%E7%90%86/
 https://varcel.luoqi.icu/2023/12/18/Spring%E5%AD%A6%E4%B9%A0_Spring_Bean%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/
 https://varcel.luoqi.icu/2023/12/14/Spring%E5%AD%A6%E4%B9%A0_Spring_Bean%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F/
