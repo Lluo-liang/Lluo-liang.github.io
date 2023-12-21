@@ -27,6 +27,8 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231220201308.png">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231220202235.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312211545167.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312211327443.png">
 <meta property="article:published_time" content="2023-12-20T16:49:09.000Z">
 <meta property="article:modified_time" content="2023-12-20T16:49:09.000Z">
 <meta property="article:author" content="Luo QI">
@@ -225,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          994 字
+          2.7k 字
         
       </span>
     
@@ -236,7 +238,7 @@
         
         
         
-          9 分钟
+          23 分钟
         
       </span>
     
@@ -312,21 +314,114 @@
 </ul>
 </li>
 </ul>
-<h3 id="2、RocketMQ中的消息模型"><a href="#2、RocketMQ中的消息模型" class="headerlink" title="2、RocketMQ中的消息模型"></a>2、RocketMQ中的消息模型</h3><p><code>RocketMQ</code> 中的消息模型是按照 <strong>主题模型</strong> 所实现的，对于主题模型的实现来说每个消息中间件的底层设计不一样的，主题模型&#x2F;发布订阅模型 是一个标准，每个中间件按照这个标准去进行不同的实际实现。</p>
-<p>需要明白 RocketMQ 的主题模型是如何实现的，首先先了解 <code>Producer Group</code>、<code>Topic</code>、<code>Consumer Group</code> 三个角色概念：</p>
+<h3 id="2、队列模型和主题模型"><a href="#2、队列模型和主题模型" class="headerlink" title="2、队列模型和主题模型"></a>2、队列模型和主题模型</h3><blockquote>
+<p>RocketMQ中的消息模型</p>
+</blockquote>
+<p><code>RocketMQ</code> 中的消息模型是按照 <strong>主题模型</strong> 所实现的，对于主题模型的实现来说每个消息中间件的底层设计不一样的，主题模型&#x2F;发布订阅模型 是一个标准，每个中间件按照这个标准去进行不同的实际实现。</p>
+<h4 id="RocketMQ-的主题模型如何实现"><a href="#RocketMQ-的主题模型如何实现" class="headerlink" title="RocketMQ 的主题模型如何实现"></a>RocketMQ 的主题模型如何实现</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231220202235.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>看上面这张图，RocketMQ 有是三个角色：</p>
 <ul>
-<li><code>Producer Group</code> 生产者组：代表某一类的生产者，比如我们有多个秒杀系统作为生产者，这多个合在一起就是一个 <code>Producer Group</code> 生产者组，它们一般生产相同的消息。</li>
-<li><code>Consumer Group</code> 消费者组<ul>
-<li>代表某一类的消费者，比如我们有多个短信系统作为消费者，这多个合在一起就是一个 <code>Consumer Group</code> 消费者组，它们一般消费相同的消息。</li>
+<li><code>Producer Group</code> 生产者组：代表某一类的生产者</li>
+<li><code>Consumer Group</code> 消费者组：代表某一类的消费者</li>
+<li><code>Topic</code> 主题：代表一类消息</li>
+</ul>
+<h3 id="RocketMQ架构设计"><a href="#RocketMQ架构设计" class="headerlink" title="RocketMQ架构设计"></a>RocketMQ架构设计</h3><p><code>RocketMQ</code> 技术架构中有四大角色 <code>NameServer</code>、<code>Broker</code>、<code>Producer</code>、<code>Consumer</code></p>
+<ul>
+<li><code>NameServer</code><ul>
+<li>注册中心，提供 <code>Broker</code>管理和路由信息管理</li>
+<li>操作步骤<ul>
+<li><ol>
+<li><code>Broker</code> 会将自己的信息注册到 <code>NameServer</code> 中（此时，<code>NameServer</code> 会存放很多 <code>Broker</code> 的信息  ←  Broker 的路由表信息）</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>消费者和生产者从 <code>NameServer</code> 获取路由表信息和对应的  <code>Broker</code> 进行通信(生产者和消费者定期会向 <code>NameServer</code> 去查询相关的 <code>Broker</code> 的信息)</li>
+</ol>
+</li>
 </ul>
 </li>
-<li><code>Topic</code> 主题<ul>
-<li>一类消息的逻辑名字。</li>
-<li>在 RocketMQ 中，消息是按主题分类的。生产者将消息发送到指定的主题，消费者则从主题订阅并接收消息。</li>
+<li>多个 NameServer 形成集群，但它们之间不同步信息。客户端（Producer 和 Consumer）可以连接任意一个 NameServer</li>
+</ul>
+</li>
+<li><code>Broker</code><ul>
+<li>消息队列服务器，生产者生产消息到 <code>Broker</code> ，消费者从 <code>Broker</code> 拉取消息并消费。</li>
+<li>Broker 可以是 Master 也可以是 Slave。<ul>
+<li>每个 Master 可以有多个 Slave。Master 负责读写消息，Slave 可以进行消息的同步，保证数据的高可用性。</li>
 </ul>
 </li>
 </ul>
-<p>图解：<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231220202235.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+</li>
+<li><code>Producer</code><ul>
+<li>生产者</li>
+</ul>
+</li>
+<li><code>Consumer</code><ul>
+<li>消费者</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p> <code>Broker</code>、<code>Topic</code> 和 队列的关系</p>
+</blockquote>
+<p>一个 <code>Topic</code> 中存在多个队列</p>
+<p>Topic 是逻辑上的概念，用于分类和分发消息。为了提高并行处理的能力和提升吞吐量，<strong>一个 Topic 会被分成多个队列（Queue）</strong>。这些队列分布在一个或多个 Broker 上，允许多个 Consumer 并行消费不同队列的消息。</p>
+<p>一个 <code>Topic</code> 分布在多个 <code>Broker</code>上，</p>
+<p>一个给定的主题（Topic）的消息可以被分散存储在多个 Broker 上。这是为了实现负载均衡和高可用性。当一个 Producer 发送消息到某个 Topic 时，这个消息会根据一定的策略（比如轮询、根据队列的负载等）被分配到这个 Topic 的一个 Queue 中，而这个 Queue 可以位于任何一个 Broker 上</p>
+<p>一个 <code>Broker</code> 可以配置多个 <code>Topic</code> ，<code>Topic</code>  与  <code>Broker</code> 是  多对多的关系</p>
+<p>单个 Broker 的存储空间可以被不同的 Topic 的队列共享。每个 Topic 都有自己独立的队列，但这些队列物理上存储在同一个 Broker 的存储系统中。</p>
+<hr>
+<p>当某个 <code>Topic</code> 消息量很大，应该给它多配置几个队列，并且 <strong>尽量多分布在不同 <code>Broker</code> 上，以减轻某个 <code>Broker</code> 的压力</strong> 。</p>
+<p><code>Topic</code> 消息量都比较均匀的情况下，如果某个 <code>broker</code> 上的队列越多，则该 <code>broker</code> 压力越大。</p>
+<blockquote>
+<p>RocketMQ 的高可用</p>
+</blockquote>
+<p>官网架构图</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312211545167.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>第一，构建 <code>broker</code>  集群并且进行主从部署，此时，消息会分布在多个  <code>broker</code> </p>
+<p>当某个 <code>Broker</code> 宕机，在<code>Rocketmq</code> 的 <code>master/slave</code> 结构下，<code>salve</code> 定时从 <code>master</code> 同步数据(同步刷盘或者异步刷盘)，如果 <code>master</code> 宕机，则 <code>slave</code> 提供消费服务，但是不能写入消息</p>
+<p>第二， <code>NameServer</code> 进行了集群部署（ <strong>去中心化</strong> 的，没有主节点）；</p>
+<p><code>Broker 会和所有 NameServer 保持长连接 ，并且在每隔 30 秒 </code>Broker<code>会向所有</code>Nameserver<code>发送心跳，心跳包含了自身的</code>Topic<code>配置信息，这个步骤就对应图中的</code>Routing Info&#96;</p>
+<p>第三，在生产者需要向 <code>Broker</code> 发送消息的时候，<strong>需要先从 <code>NameServer</code> 获取关于 <code>Broker</code> 的路由信息</strong>，然后通过 <strong>轮询</strong> 的方法去向每个队列中生产数据以达到 <strong>负载均衡</strong> 的效果。</p>
+<p>第四、消费者通过 <code>NameServer</code> 获取所有 <code>Broker</code> 的路由信息后，向 <code>Broker</code> 发送 <code>Pull</code> 请求来获取消息数据。</p>
+<p><code>Consumer</code> 可以以两种模式启动—— <strong>广播（Broadcast）和集群（Cluster）</strong>。广播模式下，一条消息会发送给 <strong>同一个消费组中的所有消费者</strong> ，集群模式下消息只会发送给一个消费者。</p>
+<h3 id="RocketMQ-持久化机制"><a href="#RocketMQ-持久化机制" class="headerlink" title="RocketMQ 持久化机制"></a>RocketMQ 持久化机制</h3><p>to be contined….</p>
+<h3 id="RocketMQ实现顺序消息"><a href="#RocketMQ实现顺序消息" class="headerlink" title="RocketMQ实现顺序消息"></a>RocketMQ实现顺序消息</h3><h3 id="RocketMQ的底层实现原理"><a href="#RocketMQ的底层实现原理" class="headerlink" title="RocketMQ的底层实现原理"></a>RocketMQ的底层实现原理</h3><h3 id="RocketMQ-如何保证不丢失消息"><a href="#RocketMQ-如何保证不丢失消息" class="headerlink" title="RocketMQ 如何保证不丢失消息"></a>RocketMQ 如何保证不丢失消息</h3><h3 id="RocketMQ-如何实现分布式事务"><a href="#RocketMQ-如何实现分布式事务" class="headerlink" title="RocketMQ 如何实现分布式事务"></a>RocketMQ 如何实现分布式事务</h3><p>RocketMQ给出一套实现分布式事务的解决方案：<strong>事务消息加上事务反查机制</strong></p>
+<p>下面讲述一下具体如何实现的。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312211327443.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li><ol>
+<li>发送 half 消息</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>MQ服务端响应消息</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>系统A 事务处理</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>根据事务执行情况 commit 或 rollback ；一般在第四步系统 A 就可以异步进行下一步操作了。</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>如果因为网络或者其他原因，MQ 服务端没有收到第四步的情况，则 MQ 服务端就会发送消息进行事务回查。</li>
+</ol>
+</li>
+<li><ol start="6">
+<li>检查本系统事务状态</li>
+</ol>
+</li>
+<li><ol start="7">
+<li>根据事务状态再次进行 commit 或者 Rollback</li>
+</ol>
+<ul>
+<li>成功之后进行持久化然后采用 push 或者 pull 的方式消费消息</li>
+<li>RollBack 的消息则不消费</li>
+</ul>
+</li>
+</ul>
 <hr>
 <p>参考</p>
 <ul>
@@ -335,6 +430,7 @@
 <li><a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/788183">https://developer.aliyun.com/article/788183</a></li>
 <li><a target="_blank" rel="noopener" href="https://javaguide.cn/high-performance/message-queue/rocketmq-questions.html">https://javaguide.cn/high-performance/message-queue/rocketmq-questions.html</a></li>
 <li><a target="_blank" rel="noopener" href="https://juejin.cn/post/7134227366481494046">https://juejin.cn/post/7134227366481494046</a></li>
+<li><a target="_blank" rel="noopener" href="https://b23.tv/GneHu8S">https://b23.tv/GneHu8S</a></li>
 </ul>
 
                 
@@ -432,6 +528,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/12/21/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97_RocketMQ_%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/" title="消息队列_RocketMQ_安装与使用">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">消息队列_RocketMQ_安装与使用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
