@@ -1,0 +1,805 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/Xbox%20L.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Luo QI">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="从Java构建线程的方式到线程池ThreadPoolExecutor源码剖析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从Java构建线程的方式到线程池ThreadPoolExecutor源码剖析">
+<meta property="og:url" content="https://varcel.luoqi.icu/2023/12/21/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B_%E4%BB%8EJava%E6%9E%84%E5%BB%BA%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%96%B9%E5%BC%8F%E5%88%B0%E7%BA%BF%E7%A8%8B%E6%B1%A0ThreadPoolExecutor%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/index.html">
+<meta property="og:site_name" content="轻松的洛亓">
+<meta property="og:description" content="从Java构建线程的方式到线程池ThreadPoolExecutor源码剖析">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231221203519.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231222005453.png">
+<meta property="article:published_time" content="2023-12-21T20:54:14.000Z">
+<meta property="article:modified_time" content="2023-12-21T20:54:14.000Z">
+<meta property="article:author" content="Luo QI">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="thread">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231221203519.png">
+  
+  
+  
+  <title>从Java构建线程的方式到线程池ThreadPoolExecutor源码剖析 - 轻松的洛亓</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"varcel.luoqi.icu","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  <meta name="baidu-site-verification" content="codeva-Oq0KOjHuD3" />
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>轻松的洛亓</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/wallpaper1700063471396.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="从Java构建线程的方式到线程池ThreadPoolExecutor源码剖析"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-12-21 20:54" pubdate>
+          2023年12月21日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          70 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">从Java构建线程的方式到线程池ThreadPoolExecutor源码剖析</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>大纲</p>
+</blockquote>
+<ul>
+<li>Java 构建线程的方式</li>
+<li>线程池的7个参数</li>
+<li>线程池的执行流程</li>
+<li>线程池属性标识</li>
+<li>线程池的 execute 方法执行</li>
+<li>Worker 的封装</li>
+</ul>
+<blockquote>
+<p>从Java构建线程的方式到线程池ThreadPoolExecutor源码剖析</p>
+</blockquote>
+<h3 id="一、Java-构建线程的方式（常识）"><a href="#一、Java-构建线程的方式（常识）" class="headerlink" title="一、Java 构建线程的方式（常识）"></a>一、Java 构建线程的方式（常识）</h3><ul>
+<li>继承 Thread</li>
+<li>实现 Runnable</li>
+<li>实现 Callable</li>
+<li>线程池方式（Java提供了构建线程池的方式）<ul>
+<li>Java提供了 Executors 可以去创建（规范中不允许使用这种方式创建线程池，这种方式对线程的控制粒度比较低）</li>
+<li>推荐手动创建线程池</li>
+</ul>
+</li>
+</ul>
+<h3 id="二、线程池的7个参数（常识）"><a href="#二、线程池的7个参数（常识）" class="headerlink" title="二、线程池的7个参数（常识）"></a>二、线程池的7个参数（常识）</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ThreadPoolExecutor</span><span class="hljs-params">(<span class="hljs-type">int</span> corePoolSize,   <span class="hljs-comment">//核心线程池</span></span></span><br><span class="hljs-params"><span class="hljs-function">                          <span class="hljs-type">int</span> maximumPoolSize,   <span class="hljs-comment">//最大线程数</span></span></span><br><span class="hljs-params"><span class="hljs-function">                          <span class="hljs-type">long</span> keepAliveTime,    <span class="hljs-comment">//最大空闲时间</span></span></span><br><span class="hljs-params"><span class="hljs-function">                          TimeUnit unit,         <span class="hljs-comment">//时间单位</span></span></span><br><span class="hljs-params"><span class="hljs-function">                          BlockingQueue&lt;Runnable&gt; workQueue,  <span class="hljs-comment">//阻塞队列</span></span></span><br><span class="hljs-params"><span class="hljs-function">                          ThreadFactory threadFactory,        <span class="hljs-comment">//线程工厂</span></span></span><br><span class="hljs-params"><span class="hljs-function">                          RejectedExecutionHandler handler)</span> </span>&#123;   <span class="hljs-comment">//拒绝策略</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="三、线程池的执行流程（常识）"><a href="#三、线程池的执行流程（常识）" class="headerlink" title="三、线程池的执行流程（常识）"></a>三、线程池的执行流程（常识）</h3><blockquote>
+<p>线程池执行流程</p>
+</blockquote>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231221203519.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>为什么要先进阻塞再去尝试创建非核心线程：</p>
+<p>饭店（线程池） - 厨子（线程） - 人多先排队（阻塞队列）- 招厨子（创建最大线程数） - 今日客满（拒绝策略）</p>
+<h3 id="四、线程池属性标识"><a href="#四、线程池属性标识" class="headerlink" title="四、线程池属性标识"></a>四、线程池属性标识</h3><h4 id="4-1-线程池属性"><a href="#4-1-线程池属性" class="headerlink" title="4.1 线程池属性"></a>4.1 线程池属性</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//ctl 是一个int 类型的数值，表达了两个意思，1：声明当前线程池的状态, 2: 声明线程池中的线程数</span><br><span class="hljs-comment">//高3位是：线程池状态</span><br><span class="hljs-comment">//低29位是： 线程池中的线程个数</span><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-type">AtomicInteger</span> <span class="hljs-variable">ctl</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">AtomicInteger</span>(ctlOf(RUNNING, <span class="hljs-number">0</span>));  <br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">COUNT_BITS</span> <span class="hljs-operator">=</span> Integer.SIZE - <span class="hljs-number">3</span>;  <span class="hljs-comment">//29，方便后面做位运算</span><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">CAPACITY</span>   <span class="hljs-operator">=</span> (<span class="hljs-number">1</span> &lt;&lt; COUNT_BITS) - <span class="hljs-number">1</span>;   <span class="hljs-comment">//通过位运算得出最大容量</span><br>  <br><span class="hljs-comment">// runState is stored in the high-order bits  </span><br><span class="hljs-comment">//线程池状态</span><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">RUNNING</span>    <span class="hljs-operator">=</span> -<span class="hljs-number">1</span> &lt;&lt; COUNT_BITS;  <span class="hljs-comment">//111 代表线程池为RUNNING，代表正常接收任务</span><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">SHUTDOWN</span>   <span class="hljs-operator">=</span>  <span class="hljs-number">0</span> &lt;&lt; COUNT_BITS;  <span class="hljs-comment">//000 代表线程池为`SHUTDOWN`状态，不接收新任务，但是内部还会处理阻塞队列中的任务，正在进行的任务也正常处理</span><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">STOP</span>       <span class="hljs-operator">=</span>  <span class="hljs-number">1</span> &lt;&lt; COUNT_BITS;  <span class="hljs-comment">//001  代表线程池为`STOP`状态，不接收新任务，也不去处理阻塞队列中的任务，同时会中断正在执行的任务</span><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">TIDYING</span>    <span class="hljs-operator">=</span>  <span class="hljs-number">2</span> &lt;&lt; COUNT_BITS;  <span class="hljs-comment">//010 代表线程池为`TIDYING`状态，过渡的状态，代表当前线程池即将Game Over</span><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">TERMINATED</span> <span class="hljs-operator">=</span>  <span class="hljs-number">3</span> &lt;&lt; COUNT_BITS;  <span class="hljs-comment">//011 代表线程池为`TERMINATED`，要执行terminated(),真的凉凉了</span><br>  <br><span class="hljs-comment">// Packing and unpacking ctl  </span><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">runStateOf</span><span class="hljs-params">(<span class="hljs-type">int</span> c)</span>     &#123; <span class="hljs-keyword">return</span> c &amp; ~CAPACITY; &#125;  <span class="hljs-comment">//得到线程池的状态</span><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">workerCountOf</span><span class="hljs-params">(<span class="hljs-type">int</span> c)</span>  &#123; <span class="hljs-keyword">return</span> c &amp; CAPACITY; &#125;   <span class="hljs-comment">//得到当前线程池的线程数量</span><br></code></pre></td></tr></table></figure>
+
+<p><code>ThreadPoolExecutor</code>类使用了一些高级的位操作来高效地管理线程池的状态和工作线程的数量。</p>
+<blockquote>
+<p>核心变量解释</p>
+</blockquote>
+<ul>
+<li><code>AtomicInteger ctl</code><ul>
+<li>实际它是使用了 <code>AtomicInteger ctl</code> 这个变量来进行存储线程池的状态和线程数。原子操作保证了线程安全，即在多线程环境下，对这个变量的修改是原子性的，避免了竞态条件。</li>
+<li>高3位是：线程池状态</li>
+<li>低29位是： 线程池中的线程个数</li>
+</ul>
+</li>
+<li><code>COUNT_BITS</code><ul>
+<li>用于计算和存储线程数量的位数。它是<code>Integer.SIZE</code>（Java中整数的位数，通常是32位）减去3。</li>
+<li>29，方便后面做位运算;3位用于表示线程池状态</li>
+</ul>
+</li>
+<li><code>CAPACITY</code><ul>
+<li>表示的最大线程数。它通过将1左移<code>COUNT_BITS</code>位然后减1来计算。</li>
+<li>类似 100000000 - 1 &#x3D; 011111111111 这种，是常见的位运算的一种表示方式</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>线程池状态</p>
+</blockquote>
+<p>线程池的状态被存储在<code>ctl</code>的高位。这些状态包括：</p>
+<ul>
+<li><strong><code>RUNNING</code></strong><ul>
+<li>111</li>
+<li>线程池可以接受新任务，并且也可以处理排队的任务。</li>
+</ul>
+</li>
+<li><strong><code>SHUTDOWN</code></strong><ul>
+<li>000</li>
+<li>不接受新任务，但是可以处理排队的任务。</li>
+</ul>
+</li>
+<li><strong><code>STOP</code></strong><ul>
+<li>001</li>
+<li>不接受新任务，不处理排队的任务，并且中断正在进行的任务。</li>
+</ul>
+</li>
+<li><strong><code>TIDYING</code></strong><ul>
+<li>010</li>
+<li>所有任务都已终止，workerCount（活动线程数）为零，线程池正在转换到状态<code>TERMINATED</code>。</li>
+</ul>
+</li>
+<li><strong><code>TERMINATED</code></strong><ul>
+<li>011</li>
+<li><code>terminated()</code>方法已经完成</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>位操作方法</p>
+</blockquote>
+<ul>
+<li><strong><code>runStateOf(int c)</code></strong>: 提取<code>ctl</code>中的状态部分。</li>
+<li><strong><code>workerCountOf(int c)</code></strong>: 提取<code>ctl</code>中的工作线程数部分。</li>
+<li><strong><code>ctlOf(int rs, int wc)</code></strong>: 将运行状态和工作线程数组合成一个<code>ctl</code>值</li>
+</ul>
+<h4 id="4-2-线程池状态变化"><a href="#4-2-线程池状态变化" class="headerlink" title="4.2 线程池状态变化"></a>4.2 线程池状态变化</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231222005453.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="五、线程池的-execute-方法执行"><a href="#五、线程池的-execute-方法执行" class="headerlink" title="五、线程池的 execute 方法执行"></a>五、线程池的 execute 方法执行</h3><p>在Java的<code>ThreadPoolExecutor</code>类中，<code>execute</code>方法是用于提交任务的关键方法。</p>
+<p>它决定如何将一个新的<code>Runnable</code>任务添加到线程池中。</p>
+<h4 id="execute-方法"><a href="#execute-方法" class="headerlink" title="execute 方法"></a>execute 方法</h4><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">execute</span>(<span class="hljs-params">Runnable command</span>)</span> &#123;<br>    <span class="hljs-comment">// 检查提交的任务不是null</span><br>    <span class="hljs-keyword">if</span> (command == <span class="hljs-literal">null</span>)<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> NullPointerException();<br><br>    <span class="hljs-comment">// 获取当前线程池状态和工作线程数</span><br>    <span class="hljs-built_in">int</span> c = ctl.<span class="hljs-keyword">get</span>();<br><br>    <span class="hljs-comment">// 如果当前工作线程数小于核心线程数</span><br>    <span class="hljs-keyword">if</span> (workerCountOf(c) &lt; corePoolSize) &#123;<br>        <span class="hljs-comment">// 尝试添加一个新工作线程来执行这个任务</span><br>        <span class="hljs-keyword">if</span> (addWorker(command, <span class="hljs-literal">true</span>))<br>            <span class="hljs-keyword">return</span>; <span class="hljs-comment">// 如果成功，直接返回</span><br>        <span class="hljs-comment">// 如果添加工作线程失败，重新获取线程池状态</span><br>        c = ctl.<span class="hljs-keyword">get</span>();<br>    &#125;<br><br>    <span class="hljs-comment">// 如果线程池处于运行状态，且任务能被添加到队列中</span><br>    <span class="hljs-keyword">if</span> (isRunning(c) &amp;&amp; workQueue.offer(command)) &#123;<br>        <span class="hljs-comment">// 重新检查线程池状态</span><br>        <span class="hljs-built_in">int</span> recheck = ctl.<span class="hljs-keyword">get</span>();<br>        <span class="hljs-comment">// 如果线程池不再运行，并且能从队列中移除任务，则拒绝任务</span><br>        <span class="hljs-keyword">if</span> (!isRunning(recheck) &amp;&amp; <span class="hljs-keyword">remove</span>(command))<br>            reject(command);<br>        <span class="hljs-comment">// 如果没有活动的工作线程，则添加一个新的工作线程</span><br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (workerCountOf(recheck) == <span class="hljs-number">0</span>)<br>            addWorker(<span class="hljs-literal">null</span>, <span class="hljs-literal">false</span>);<br>    &#125;<br>    <span class="hljs-comment">// 如果任务不能被添加到队列，尝试创建一个新工作线程来执行这个任务</span><br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!addWorker(command, <span class="hljs-literal">false</span>))<br>        reject(command); <span class="hljs-comment">// 如果创建失败，则拒绝任务</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>实现步骤：</p>
+<ol>
+<li><strong>参数检查</strong>: 首先检查传入的<code>Runnable</code>对象不是<code>null</code>。</li>
+<li><strong>工作线程数量检查</strong>: 如果当前工作线程的数量小于核心线程数<code>corePoolSize</code>，尝试直接创建一个新的工作线程来执行任务。</li>
+<li><strong>任务队列处理</strong>: 如果当前线程数已经达到或超过核心线程数，或者新工作线程的创建失败，则尝试将任务加入到等待队列中。</li>
+<li><strong>状态重新检查</strong>: 在成功将任务加入队列后，需要再次检查线程池的状态，确保线程池仍在运行。如果线程池状态改变（例如，被关闭了），则尝试移除刚加入的任务，并执行拒绝策略。</li>
+<li><strong>无活动线程处理</strong>: 如果任务被成功加入队列，但没有活动的工作线程可以处理队列中的任务，这时会尝试创建一个新的工作线程。</li>
+<li><strong>拒绝策略</strong>: 如果无法将任务加入队列，且无法创建新的工作线程，最后的选项是拒绝任务。</li>
+</ol>
+<h4 id="addWorker-方法"><a href="#addWorker-方法" class="headerlink" title="addWorker 方法"></a>addWorker 方法</h4><p>在Java的<code>ThreadPoolExecutor</code>类中，<code>addWorker</code>方法是用于向线程池中添加新的工作线程的关键方法。</p>
+<p>它在处理新任务或者需要增加线程池中的线程数量时被调用。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">addWorker</span><span class="hljs-params">(Runnable firstTask, <span class="hljs-type">boolean</span> core)</span> &#123;<br>    retry:<br>    <span class="hljs-keyword">for</span> (;;) &#123;<br>        <span class="hljs-comment">// 获取当前线程池的控制状态</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> ctl.get();<br>        <span class="hljs-comment">// 获取运行状态</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">rs</span> <span class="hljs-operator">=</span> runStateOf(c);<br><br>        <span class="hljs-comment">// 检查线程池的状态是否允许添加新的工作线程</span><br>        <span class="hljs-comment">// 仅在以下情况返回false：</span><br>        <span class="hljs-comment">// 1. 线程池状态为SHUTDOWN以上（不包括SHUTDOWN）且不满足以下所有条件：</span><br>        <span class="hljs-comment">//    - 状态为SHUTDOWN</span><br>        <span class="hljs-comment">//    - firstTask为null</span><br>        <span class="hljs-comment">//    - 工作队列不为空</span><br>        <span class="hljs-keyword">if</span> (rs &gt;= SHUTDOWN &amp;&amp;<br>            !(rs == SHUTDOWN &amp;&amp;<br>              firstTask == <span class="hljs-literal">null</span> &amp;&amp;<br>              !workQueue.isEmpty()))<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br><br>        <span class="hljs-comment">// 无限循环，尝试增加工作线程的数量</span><br>        <span class="hljs-keyword">for</span> (;;) &#123;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">wc</span> <span class="hljs-operator">=</span> workerCountOf(c);<br>            <span class="hljs-comment">// 检查当前工作线程数是否超过了最大容量或设置的阈值</span><br>            <span class="hljs-comment">// 如果超过容量或者超过corePoolSize/maximumPoolSize，则返回false</span><br>            <span class="hljs-keyword">if</span> (wc &gt;= CAPACITY ||<br>                wc &gt;= (core ? corePoolSize : maximumPoolSize))<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>            <span class="hljs-comment">// 使用CAS操作增加工作线程计数</span><br>            <span class="hljs-comment">// 如果CAS成功，跳出retry标签，继续向下执行</span><br>            <span class="hljs-keyword">if</span> (compareAndIncrementWorkerCount(c))<br>                <span class="hljs-keyword">break</span> retry;<br>            <span class="hljs-comment">// 如果CAS失败，重新读取ctl</span><br>            c = ctl.get(); <br>            <span class="hljs-comment">// 如果运行状态发生变化，重新开始外层循环</span><br>            <span class="hljs-keyword">if</span> (runStateOf(c) != rs)<br>                <span class="hljs-keyword">continue</span> retry;<br>            <span class="hljs-comment">// 如果CAS失败但运行状态没有变化，继续尝试内层循环的CAS操作</span><br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">// 添加工作线程的过程</span><br>    <span class="hljs-type">boolean</span> <span class="hljs-variable">workerStarted</span> <span class="hljs-operator">=</span> <span class="hljs-literal">false</span>;<br>    <span class="hljs-type">boolean</span> <span class="hljs-variable">workerAdded</span> <span class="hljs-operator">=</span> <span class="hljs-literal">false</span>;<br>    <span class="hljs-type">Worker</span> <span class="hljs-variable">w</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-comment">// 创建新的工作线程</span><br>        w = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Worker</span>(firstTask);<br>        <span class="hljs-keyword">final</span> <span class="hljs-type">Thread</span> <span class="hljs-variable">t</span> <span class="hljs-operator">=</span> w.thread;<br>        <span class="hljs-comment">// 如果成功创建线程</span><br>        <span class="hljs-keyword">if</span> (t != <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-keyword">final</span> <span class="hljs-type">ReentrantLock</span> <span class="hljs-variable">mainLock</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">this</span>.mainLock;<br>            mainLock.lock();<br>            <span class="hljs-keyword">try</span> &#123;<br>                <span class="hljs-comment">// 在持有锁的情况下再次检查线程池状态</span><br>                <span class="hljs-type">int</span> <span class="hljs-variable">rs</span> <span class="hljs-operator">=</span> runStateOf(ctl.get());<br><br>                <span class="hljs-comment">// 如果线程池状态允许添加工作线程，则将其添加到工作集合中</span><br>                <span class="hljs-keyword">if</span> (rs &lt; SHUTDOWN ||<br>                    (rs == SHUTDOWN &amp;&amp; firstTask == <span class="hljs-literal">null</span>)) &#123;<br>                    <span class="hljs-comment">// 检查线程是否已经启动（预防异常情况）</span><br>                    <span class="hljs-keyword">if</span> (t.isAlive()) <br>                        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IllegalThreadStateException</span>();<br>                    workers.add(w);<br>                    <span class="hljs-type">int</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> workers.size();<br>                    <span class="hljs-comment">// 更新记录的最大池大小</span><br>                    <span class="hljs-keyword">if</span> (s &gt; largestPoolSize)<br>                        largestPoolSize = s;<br>                    workerAdded = <span class="hljs-literal">true</span>;<br>                &#125;<br>            &#125; <span class="hljs-keyword">finally</span> &#123;<br>                <span class="hljs-comment">// 释放锁</span><br>                mainLock.unlock();<br>            &#125;<br>            <span class="hljs-comment">// 如果成功添加工作线程，则启动该线程</span><br>            <span class="hljs-keyword">if</span> (workerAdded) &#123;<br>                t.start();<br>                workerStarted = <span class="hljs-literal">true</span>;<br>            &#125;<br>        &#125;<br>    &#125; <span class="hljs-keyword">finally</span> &#123;<br>        <span class="hljs-comment">// 如果工作线程未能成功启动，处理失败情况</span><br>        <span class="hljs-keyword">if</span> (!workerStarted)<br>            addWorkerFailed(w);<br>    &#125;<br>    <span class="hljs-comment">// 返回工作线程是否成功启动</span><br>    <span class="hljs-keyword">return</span> workerStarted;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>实现步骤：</p>
+<ol>
+<li><strong>状态检查</strong>: 首先检查线程池的状态，确定是否可以添加新的工作线程。如果线程池正在关闭，并且条件不允许添加工作线程（例如，任务队列为空），则直接返回<code>false</code>。</li>
+<li><strong>增加工作线程数</strong>: 使用一个无限循环，通过CAS（Compare-And-Swap）操作尝试增加工作线程计数。如果CAS操作成功，跳出循环；如果失败，重新尝试。</li>
+<li><strong>创建和启动工作线程</strong>: 创建一个新的<code>Worker</code>对象，并尝试启动其线程。这个过程涉及获取一个全局锁以保证线程安全。</li>
+<li><strong>线程池状态再次检查</strong>: 在锁内部再次检查线程池的状态，以确保在获取锁的过程中状态没有改变。</li>
+<li><strong>添加到工作集合</strong>: 如果一切正常，将新的<code>Worker</code>添加到工作线程集合中，并更新记录的最大池大小。</li>
+<li><strong>启动线程</strong>: 尝试启动线程。如果启动成功，返回<code>true</code>；否则，在<code>finally</code>块中处理启动失败的情况。</li>
+</ol>
+<p><code>addWorker</code>方法的实现体现了线程池如何有效地管理线程的创建和添加。</p>
+<p>使用CAS操作保证了线程安全，而双重检查（在方法开始和持有锁时）确保了即使在高并发的情况下也能正确地管理线程池的状态。</p>
+<h3 id="六、Worker-的封装"><a href="#六、Worker-的封装" class="headerlink" title="六、Worker 的封装"></a>六、Worker 的封装</h3><p>在Java的<code>ThreadPoolExecutor</code>类中，<code>Worker</code>是一个关键的内部类，它封装了线程池中的工作线程的行为和属性。</p>
+<p><code>Worker</code>类继承自<code>AbstractQueuedSynchronizer</code>，是一个用于构建锁和其他同步组件的框架</p>
+<h4 id="ThreadPoolExecutor内部类Worker的构造函数"><a href="#ThreadPoolExecutor内部类Worker的构造函数" class="headerlink" title="ThreadPoolExecutor内部类Worker的构造函数"></a><code>ThreadPoolExecutor</code>内部类<code>Worker</code>的构造函数</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs kotlin">Worker(Runnable firstTask) &#123;<br>    <span class="hljs-comment">// 设置Worker的状态为-1，暂时阻止线程中断</span><br>    <span class="hljs-comment">// 这是为了防止在Worker真正开始运行前被中断</span><br>    setState(-<span class="hljs-number">1</span>);<br><br>    <span class="hljs-comment">// 将传入的任务（可能为null）设置为Worker的第一个任务</span><br>    <span class="hljs-comment">// 这个任务将是Worker创建后执行的第一个任务</span><br>    <span class="hljs-keyword">this</span>.firstTask = firstTask;<br><br>    <span class="hljs-comment">// 使用线程池的线程工厂创建一个新线程，并将当前Worker作为任务传递给这个新线程</span><br>    <span class="hljs-comment">// 这里，Worker自身实际上是一个Runnable，因为它实现了Runnable接口</span><br>    <span class="hljs-keyword">this</span>.thread = getThreadFactory().newThread(<span class="hljs-keyword">this</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>代码分析：</p>
+<ol>
+<li><strong>暂时禁用中断</strong>: <code>setState(-1)</code>设置Worker的状态，这个状态用于控制线程的中断。设置为-1意味着在<code>runWorker</code>方法真正开始执行之前，线程不应被中断。这是一个预防措施，以确保Worker在开始执行其任务前不会被意外中断。</li>
+<li><strong>设置第一个任务</strong>: <code>this.firstTask = firstTask</code>将传入的任务赋值给Worker的<code>firstTask</code>属性。这个任务是Worker将要执行的第一个任务。如果这个值是<code>null</code>，Worker将从线程池的任务队列中获取任务。</li>
+<li><strong>创建新线程</strong>: <code>this.thread = getThreadFactory().newThread(this)</code>调用线程工厂来创建一个新线程，并将当前Worker作为运行任务传递。由于Worker实现了<code>Runnable</code>接口，它可以被线程直接执行。线程工厂是线程池的一个组成部分，用于定制线程创建过程（例如设置线程名称、优先级等）。</li>
+</ol>
+<h4 id="runWorker-方法"><a href="#runWorker-方法" class="headerlink" title="runWorker 方法"></a>runWorker 方法</h4><p>定义了线程池中的工作线程（<code>Worker</code>）如何执行任务</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs gradle"><span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> runWorker(Worker w) &#123;<br>    <span class="hljs-comment">// 获取当前执行这个方法的线程</span><br>    Thread wt = Thread.currentThread();<br>    <span class="hljs-comment">// 从Worker获取第一个任务</span><br>    Runnable <span class="hljs-keyword">task</span> = w.firstTask;<br>    <span class="hljs-comment">// 设置Worker的第一个任务为null</span><br>    w.firstTask = <span class="hljs-keyword">null</span>;<br>    <span class="hljs-comment">// 释放Worker上的锁，允许中断</span><br>    w.unlock(); <br><br>    <span class="hljs-comment">// 标记是否异常完成任务</span><br>    <span class="hljs-keyword">boolean</span> completedAbruptly = <span class="hljs-keyword">true</span>;<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-comment">// 当有任务执行或者能从任务队列中获取到任务时，继续循环</span><br>        <span class="hljs-keyword">while</span> (<span class="hljs-keyword">task</span> != <span class="hljs-keyword">null</span> || (<span class="hljs-keyword">task</span> = getTask()) != <span class="hljs-keyword">null</span>) &#123;<br>            <span class="hljs-comment">// 锁定Worker，以开始执行任务</span><br>            w.lock();<br>            <span class="hljs-comment">// 如果线程池正在停止，确保线程被中断；</span><br>            <span class="hljs-comment">// 如果不是，则确保线程不被中断。这需要在第二种情况下重新检查以处理shutdownNow竞争状态</span><br>            <span class="hljs-keyword">if</span> ((runStateAtLeast(ctl.get(), STOP) ||<br>                 (Thread.interrupted() &amp;&amp;<br>                  runStateAtLeast(ctl.get(), STOP))) &amp;&amp;<br>                !wt.isInterrupted())<br>                wt.interrupt();<br>            <span class="hljs-keyword">try</span> &#123;<br>                <span class="hljs-comment">// 在执行任务前的钩子方法</span><br>                beforeExecute(wt, <span class="hljs-keyword">task</span>);<br>                Throwable thrown = <span class="hljs-keyword">null</span>;<br>                <span class="hljs-keyword">try</span> &#123;<br>                    <span class="hljs-comment">// 运行任务</span><br>                    <span class="hljs-keyword">task</span>.run();<br>                &#125; <span class="hljs-keyword">catch</span> (RuntimeException x) &#123;<br>                    thrown = x; <span class="hljs-keyword">throw</span> x;<br>                &#125; <span class="hljs-keyword">catch</span> (Error x) &#123;<br>                    thrown = x; <span class="hljs-keyword">throw</span> x;<br>                &#125; <span class="hljs-keyword">catch</span> (Throwable x) &#123;<br>                    thrown = x; <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Error(x);<br>                &#125; <span class="hljs-keyword">finally</span> &#123;<br>                    <span class="hljs-comment">// 在执行任务后的钩子方法</span><br>                    afterExecute(<span class="hljs-keyword">task</span>, thrown);<br>                &#125;<br>            &#125; <span class="hljs-keyword">finally</span> &#123;<br>                <span class="hljs-comment">// 任务执行完毕，清理工作</span><br>                <span class="hljs-keyword">task</span> = <span class="hljs-keyword">null</span>;<br>                w.completedTasks++;<br>                w.unlock();<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">// 如果正常退出循环，设置completedAbruptly为false</span><br>        completedAbruptly = <span class="hljs-keyword">false</span>;<br>    &#125; <span class="hljs-keyword">finally</span> &#123;<br>        <span class="hljs-comment">// 处理Worker退出</span><br>        processWorkerExit(w, completedAbruptly);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>执行步骤：</p>
+<ol>
+<li><strong>初始化</strong>: 首先获取当前线程和Worker中的第一个任务。解锁Worker以允许线程中断。</li>
+<li><strong>任务执行循环</strong>: 方法进入一个循环，不断执行任务。如果Worker的第一个任务为空，则尝试从线程池的任务队列中获取新的任务。</li>
+<li><strong>中断管理</strong>: 在每次任务执行前，检查线程池的状态，如果需要，根据线程池的状态来决定是否中断当前线程。</li>
+<li><strong>任务执行</strong>: 实际执行任务，并处理任何可能抛出的异常。同时，执行钩子方法<code>beforeExecute</code>和<code>afterExecute</code>，这些方法可以用于在任务执行前后做一些准备和清理工作。</li>
+<li><strong>任务完成后处理</strong>: 更新完成任务的计数，清理变量，解锁Worker。</li>
+<li><strong>异常处理与退出</strong>: 如果任务执行过程中发生异常导致线程意外结束，<code>completedAbruptly</code>标记会保持为<code>true</code>。在最后的<code>finally</code>块中，调用<code>processWorkerExit</code>来处理Worker的退出，这可能包括替换这个Worker或者根据当前线程池状态进行其他处理。</li>
+</ol>
+<hr>
+<p>参考</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1244y1n7bz">https://www.bilibili.com/video/BV1244y1n7bz</a></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Java%E5%9F%BA%E7%A1%80/" class="category-chain-item">Java基础</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Java%E5%9F%BA%E7%A1%80/Thread/" class="category-chain-item">Thread</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/java/" class="print-no-link">#java</a>
+      
+        <a href="/tags/thread/" class="print-no-link">#thread</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>从Java构建线程的方式到线程池ThreadPoolExecutor源码剖析</div>
+      <div>https://varcel.luoqi.icu/2023/12/21/Java并发编程_从Java构建线程的方式到线程池ThreadPoolExecutor源码剖析/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Luo QI</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年12月21日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/12/21/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B_%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" title="Java并发编程_线程池最佳实践">
+                        <span class="hidden-mobile">Java并发编程_线程池最佳实践</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

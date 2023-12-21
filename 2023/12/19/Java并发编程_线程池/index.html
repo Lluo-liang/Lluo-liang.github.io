@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.8k 字
+          4.3k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          40 分钟
+          36 分钟
         
       </span>
     
@@ -278,7 +278,18 @@
             
               <div class="markdown-body">
                 
-                <h3 id="1、什么是线程池"><a href="#1、什么是线程池" class="headerlink" title="1、什么是线程池"></a>1、什么是线程池</h3><p>线程池是管理一系列线程的资源池，其提供了一种限制和管理线程资源的方式。</p>
+                <blockquote>
+<p>大纲</p>
+</blockquote>
+<ul>
+<li>线程池介绍</li>
+<li>Executor 框架</li>
+<li>ThreadPoolExecutor 类</li>
+<li>线程池原理分析</li>
+<li>常见的内置线程池</li>
+<li>实践使用篇</li>
+</ul>
+<h3 id="1、什么是线程池"><a href="#1、什么是线程池" class="headerlink" title="1、什么是线程池"></a>1、什么是线程池</h3><p>线程池是管理一系列线程的资源池，其提供了一种限制和管理线程资源的方式。</p>
 <p><strong>线程池一般用于执行多个不相关联的耗时任务，没有多线程的情况下，任务顺序执行，使用了线程池的话可让多个不相关联的任务同时执行</strong></p>
 <p>使用线程池的一些好处：</p>
 <ul>
@@ -348,28 +359,11 @@
 <li><code>DelayedWorkQueue</code>（延迟阻塞队列）：<code>ScheduledThreadPool</code> 和 <code>SingleThreadScheduledExecutor</code> 。<code>DelayedWorkQueue</code> 的内部元素并不是按照放入的时间排序，而是会按照延迟的时间长短对任务进行排序，内部采用的是“堆”的数据结构，可以保证每次出队的任务都是当前队列中执行时间最靠前的。<code>DelayedWorkQueue</code> 添加元素满了之后会自动扩容原来容量的 1&#x2F;2，即永远不会阻塞，最大扩容可达 <code>Integer.MAX_VALUE</code>，所以最多只能创建核心线程数的线程。</li>
 </ul>
 <h3 id="4、线程池原理分析"><a href="#4、线程池原理分析" class="headerlink" title="4、线程池原理分析"></a>4、线程池原理分析</h3><p>to be contined….</p>
-<h3 id="5、从Java构建线程的方式-到-线程池ThreadPoolExecutor源码剖析"><a href="#5、从Java构建线程的方式-到-线程池ThreadPoolExecutor源码剖析" class="headerlink" title="5、从Java构建线程的方式 到 线程池ThreadPoolExecutor源码剖析"></a>5、从Java构建线程的方式 到 线程池ThreadPoolExecutor源码剖析</h3><p>视频地址： <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1244y1n7bz">https://www.bilibili.com/video/BV1244y1n7bz</a></p>
-<p>一、Java 构建线程的方式（常识）</p>
-<ul>
-<li>继承 Thread</li>
-<li>实现 Runnable</li>
-<li>实现 Callable</li>
-<li>线程池方式（Java提供了构建线程池的方式）<ul>
-<li>Java提供了 Executors 可以去创建（规范中不允许使用这种方式创建线程池，这种方式对线程的控制粒度比较低）</li>
-<li>推荐手动创建线程池</li>
-</ul>
-</li>
-</ul>
-<p>二、线程池的7个参数（常识）</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ThreadPoolExecutor</span><span class="hljs-params">(<span class="hljs-type">int</span> corePoolSize,   <span class="hljs-comment">//核心线程池</span></span></span><br><span class="hljs-params"><span class="hljs-function">                          <span class="hljs-type">int</span> maximumPoolSize,   <span class="hljs-comment">//最大线程数</span></span></span><br><span class="hljs-params"><span class="hljs-function">                          <span class="hljs-type">long</span> keepAliveTime,    <span class="hljs-comment">//最大空闲时间</span></span></span><br><span class="hljs-params"><span class="hljs-function">                          TimeUnit unit,         <span class="hljs-comment">//时间单位</span></span></span><br><span class="hljs-params"><span class="hljs-function">                          BlockingQueue&lt;Runnable&gt; workQueue,  <span class="hljs-comment">//阻塞队列</span></span></span><br><span class="hljs-params"><span class="hljs-function">                          ThreadFactory threadFactory,        <span class="hljs-comment">//线程工厂</span></span></span><br><span class="hljs-params"><span class="hljs-function">                          RejectedExecutionHandler handler)</span> </span>&#123;   <span class="hljs-comment">//拒绝策略</span><br></code></pre></td></tr></table></figure>
-
-<p>三、线程池的执行流程（常识）</p>
 <hr>
 <p>参考</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://javaguide.cn/java/concurrent/java-thread-pool-summary.html">https://javaguide.cn/java/concurrent/java-thread-pool-summary.html</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1eD4y1w7Rp">https://www.bilibili.com/video/BV1eD4y1w7Rp</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1244y1n7bz">https://www.bilibili.com/video/BV1244y1n7bz</a></li>
 </ul>
 
                 
