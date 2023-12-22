@@ -1,0 +1,897 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/Xbox%20L.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Luo QI">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="MySQL学习_进阶内容">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL学习_进阶内容">
+<meta property="og:url" content="https://varcel.luoqi.icu/2023/12/22/MySQL%E5%AD%A6%E4%B9%A0_%E8%BF%9B%E9%98%B6%E5%86%85%E5%AE%B901/index.html">
+<meta property="og:site_name" content="轻松的洛亓">
+<meta property="og:description" content="MySQL学习_进阶内容">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312221022103.png">
+<meta property="article:published_time" content="2023-12-22T10:00:31.000Z">
+<meta property="article:modified_time" content="2023-12-22T10:00:31.000Z">
+<meta property="article:author" content="Luo QI">
+<meta property="article:tag" content="mysql">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312221022103.png">
+  
+  
+  
+  <title>MySQL学习_进阶内容 - 轻松的洛亓</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"varcel.luoqi.icu","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  <meta name="baidu-site-verification" content="codeva-Oq0KOjHuD3" />
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>轻松的洛亓</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312221018758.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="MySQL学习_进阶内容"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-12-22 10:00" pubdate>
+          2023年12月22日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          47 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">MySQL学习_进阶内容</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>大纲</p>
+</blockquote>
+<ul>
+<li>基础架构</li>
+<li>日志系统</li>
+<li>事务隔离</li>
+<li>MySQL索引</li>
+<li>全局锁和表锁</li>
+<li>行锁</li>
+<li>explain</li>
+</ul>
+<h3 id="1、基础架构"><a href="#1、基础架构" class="headerlink" title="1、基础架构"></a>1、基础架构</h3><p>MySQL的逻辑架构可以从上到下分为几个主要层次：</p>
+<ul>
+<li>客户端层<ul>
+<li>包括了用户的接口，如命令行客户端和图形用户界面（GUI）</li>
+</ul>
+</li>
+<li>服务层<ul>
+<li>连接处理：管理客户端和服务器之间的连接，包括身份认证。</li>
+<li>SQL接口：接收SQL命令，并且返回查询结果。</li>
+<li>解析器：将SQL语句分解成可以理解和执行的部分。</li>
+<li>优化器：决定最佳的查询路径。</li>
+<li>缓存&#x2F;缓冲：存储数据，以便更快地访问。</li>
+</ul>
+</li>
+<li>存储引擎层<ul>
+<li>负责MySQL中数据的存储和提取。</li>
+<li>MySQL的存储引擎是可插拔的，最常见的如InnoDB（支持事务和行级锁定）和MyISAM（支持全文搜索但不支持事务）。</li>
+</ul>
+</li>
+<li>存储层<ul>
+<li>实际存储数据的地方</li>
+<li>包括数据文件、索引文件等</li>
+</ul>
+</li>
+</ul>
+<p>每一层在MySQL的运行中扮演着关键角色，并且它们共同工作以处理和存储数据。<br>客户端层接收用户输入的SQL查询，服务层对这些查询进行处理和优化，存储引擎层执行这些查询并通过存储层对数据进行物理存储和修改。</p>
+<blockquote>
+<p>餐厅与数据库</p>
+</blockquote>
+<p>现在，让我们用一个类比来帮助理解。想象MySQL是一家餐厅：</p>
+<p>客户端层像是餐厅的顾客，他们点菜（发送SQL查询）。</p>
+<p>服务层是服务员，他们接收订单，解释顾客的需求（解析SQL），并决定如何最有效地准备食物（优化查询）。<br>存储引擎层像是厨师，根据服务员给出的订单来准备食物（执行SQL查询）。</p>
+<p>存储层则是冰箱和储藏室，存储着所有食材（数据）。</p>
+<p>在这个过程中，每个员工和每个存储区都必须协调一致，以确保食物（数据）的质量和服务的效率。</p>
+<blockquote>
+<p>默认存储引擎</p>
+</blockquote>
+<p>现在最常用的存储引擎是 InnoDB，它从 MySQL 5.5.5 版本开始成为了默认存储引擎。</p>
+<blockquote>
+<p>Server层和存储引擎层</p>
+</blockquote>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312221022103.png" srcset="/img/loading.gif" lazyload alt="image.png|600"></p>
+<p>将这个描述与上面的类比结合起来，可以这样理解：</p>
+<ol>
+<li><strong>Server层</strong>：<ul>
+<li>这一层可以被视为餐厅的前台和服务区域。</li>
+<li><strong>连接器</strong>：餐厅的接待台，负责迎接顾客（建立客户端连接）。</li>
+<li><strong>查询缓存</strong>：已经准备好的菜肴，可以立即提供给顾客，无需再次等待厨师准备（缓存之前的查询结果）。</li>
+<li><strong>分析器</strong>：服务员听顾客点菜并确认菜单上有这道菜（解析SQL查询，检查语法）。</li>
+<li><strong>优化器</strong>：服务员决定为顾客服务的顺序，以确保效率（决定查询的最优执行计划）。</li>
+<li><strong>执行器</strong>：服务员将顾客的订单传达给厨师并确保菜肴能够按要求出品（执行查询）。</li>
+<li>此层包含所有的内置函数，就像餐厅有各种调味品和烹饪方法可供选择。</li>
+<li>跨存储引擎的功能，如存储过程、触发器、视图，都像是餐厅提供的特殊服务，无论使用哪个厨房（存储引擎），都可以提供。</li>
+</ul>
+</li>
+<li><strong>存储引擎层</strong>：<ul>
+<li>这一层相当于餐厅的厨房。</li>
+<li>每个存储引擎都像是一个专门的烹饪区域，有着不同的烹饪技术和设备（如InnoDB支持事务，MyISAM提供全文搜索功能）。</li>
+<li>存储引擎负责数据的物理存储和检索，就像厨师们管理食材并将其制作成菜肴一样。</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>对于SQL的解析和优化</p>
+</blockquote>
+<ul>
+<li><strong>SQL解析</strong>：当服务层接收到客户端层发送的SQL语句后，它首先进行语法检查和解析，将SQL分解为解析树。</li>
+<li><strong>SQL优化</strong>：然后，优化器会评估多个可能的查询执行计划，并选择一个成本最低（通常是执行时间最短）的计划</li>
+</ul>
+<blockquote>
+<p>连接器</p>
+</blockquote>
+<p>建议在使用中要尽量减少建立连接的动作，也就是尽量使用长连接。</p>
+<p>但如果使用长连接，服务器需要一直分配资源给这些连接（在执行过程中临时使用的内存是管理在连接对象里面），随着时间的推移，如果有很多大的操作，它占用的内存就会越来越大，最终可能会耗尽内存，导致数据库服务崩溃。</p>
+<p>解决这个问题，有两个方法：</p>
+<ol>
+<li><strong>定期断开连接</strong>：就像定期清理手机后台运行的应用，以释放内存，保持手机运行流畅。你可以在数据库中，用完连接后或者执行了一些大查询操作之后，断开连接，下次需要时再重新连接。</li>
+<li><strong>使用mysql_reset_connection</strong>：如果你用的是MySQL 5.7或更高版本，这就像给手机做个快速重启，清除所有运行的程序但不完全关机，这样可以迅速释放内存。<code>mysql_reset_connection</code>命令可以重置连接的状态，但不需要像完全断开连接那样再次进行繁琐的握手和权限验证。</li>
+</ol>
+<blockquote>
+<p>查询缓存</p>
+</blockquote>
+<p>作用：作为查询缓存</p>
+<ol>
+<li>当你执行一个<code>SELECT</code>语句时，MySQL会检查查询缓存。</li>
+<li>如果之前执行过相同的查询（这里的“相同”意味着字节到字节的完全匹配），并且结果已经缓存，MySQL就会立即返回结果，不用再次执行查询。</li>
+<li>查询的文本是缓存的“key”，查询的结果是“value”。</li>
+</ol>
+<p>缺点：</p>
+<ul>
+<li>查询缓存每当表更新时就会失效。如果表经常更新，那么缓存的命中率就会非常低。</li>
+<li>每次表更新，所有相关的缓存都会被清空。这意味着，即使你的查询结果被存入缓存，但如果表一更新，这些结果就会消失。</li>
+</ul>
+<p>因为这些限制，对于那些数据更新频繁的系统，启用查询缓存可能会带来更多的性能开销而不是好处。只有在数据很少变动的情况下，比如某些配置表，查询缓存才可能提高性能。</p>
+<p>如果你还是想要利用查询缓存，可以将<code>query_cache_type</code>设置为<code>DEMAND</code>。这样，只有那些你显式指定为<code>SQL_CACHE</code>的查询才会使用查询缓存，就像这样：</p>
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">SELECT</span> SQL_CACHE * <span class="hljs-keyword">FROM</span> T <span class="hljs-keyword">WHERE</span> ID=<span class="hljs-number">10</span>;<br></code></pre></td></tr></table></figure>
+
+<p>但是，值得注意的是，从MySQL 8.0版本开始，查询缓存功能被完全移除了。这是因为在实践中，维护查询缓存通常会导致更多的性能问题，而现代的数据库系统有更高效的方式来提高查询性能，比如更好的索引和优化器策略。</p>
+<p>所以，在最新的MySQL版本中，不需要也不能使用查询缓存了。</p>
+<blockquote>
+<p>分析器</p>
+</blockquote>
+<ul>
+<li>词法分析</li>
+<li>语法分析</li>
+</ul>
+<blockquote>
+<p>优化器:  决定查询的最优执行计划</p>
+</blockquote>
+<blockquote>
+<p>执行器：执行查询（操作存储引擎，返回结果）</p>
+</blockquote>
+<h3 id="2、日志系统"><a href="#2、日志系统" class="headerlink" title="2、日志系统"></a>2、日志系统</h3><p>MySQL的日志系统是其核心功能之一，就像黑匣子一样，记录了发生在数据库中的所有关键活动。它包括多种类型的日志，每种日志记录不同类型的信息，对于数据库的恢复、优化和故障排除都至关重要。</p>
+<p>下面是MySQL日志系统中最重要的几种日志类型：</p>
+<ul>
+<li>错误日志</li>
+<li>查询日志（通用查询日志）</li>
+<li>二进制日志（binlog）</li>
+<li>慢查询日志</li>
+<li>中继日志（Relay Log）</li>
+<li>InnoDB重做日志（Redo Log）</li>
+<li>InnoDB回滚日志（Undo Log）</li>
+</ul>
+<blockquote>
+<p>错误日志</p>
+</blockquote>
+<p>错误日志就像是医生的诊断记录，它记录MySQL服务器启动、运行或停止时遇到的问题。如果数据库出现问题，这是第一个要查看的地方。这里会有关于任何错误的详细信息，包括服务启动失败的原因。</p>
+<blockquote>
+<p>查询日志（通用查询日志）</p>
+</blockquote>
+<p>查询日志记录了所有对MySQL服务器的请求，无论这些请求是否得到了执行。可以把它看作是商店的客流记录器，记录每一个进门的顾客及其请求的商品。</p>
+<p>由于记录了所有活动，包括每条SQL语句的文字记录，这个日志很容易变得非常大，因此在高负载系统中通常不推荐开启。</p>
+<blockquote>
+<p>二进制日志（binlog）</p>
+</blockquote>
+<p>二进制日志是数据库活动的详细记录，包括所有修改数据或可能修改数据的语句（如<code>INSERT</code>、<code>UPDATE</code>、<code>DELETE</code>）。可以将二进制日志视为飞机的黑匣子，记录飞行过程中的所有重要事件。</p>
+<p>它对于复制和数据恢复是必不可少的，因为它可以用来在另一台服务器上重放数据更改，或者在数据丢失后恢复数据。</p>
+<blockquote>
+<p>慢查询日志</p>
+</blockquote>
+<p>慢查询日志记录执行时间超过特定时长的查询。</p>
+<p>将其想象为监控摄像头，特别关注那些在商店里逗留时间过长的顾客。这对于发现那些需要优化的查询非常有帮助。</p>
+<blockquote>
+<p>中继日志（Relay Log）</p>
+</blockquote>
+<p>在MySQL复制设置中，从服务器上的中继日志记录了从主服务器接收到的所有二进制日志事件。</p>
+<p>从服务器上的复制子系统会读取这些日志，并应用到从服务器的数据库中。这类似于接力赛中，接力棒在运动员之间传递的过程。</p>
+<blockquote>
+<p>InnoDB重做日志（Redo Log）</p>
+</blockquote>
+<p>InnoDB存储引擎专用的日志，它记录了导致数据库状态改变的所有操作，确保在系统崩溃后能够恢复数据。</p>
+<p>可以把它看作是飞机上的飞行记录仪，记录了飞行中所有的操作，以便在事故后重建发生了什么。</p>
+<blockquote>
+<p>InnoDB回滚日志（Undo Log）</p>
+</blockquote>
+<p>回滚日志是InnoDB用来处理事务的，它记录了数据的旧版本，使得数据库能够“回滚”到以前的状态。</p>
+<p>可以把它比作是时光机，能够把事情恢复到过去某个时间点的状态。</p>
+<h4 id="RedoLog-And-binlog"><a href="#RedoLog-And-binlog" class="headerlink" title="RedoLog And  binlog"></a>RedoLog And  binlog</h4><p><strong>InnoDB重做日志（Redo Log）与 二进制日志（binlog）</strong></p>
+<p>我们来看一下InnoDB的重做日志（Redo Log）和二进制日志（binlog）的作用和它们在MySQL中的应用。</p>
+<blockquote>
+<p>InnoDB重做日志（Redo Log）</p>
+</blockquote>
+<div style="background-color: #ecf0f1; color: #34495e; padding: 15px; border: 2px solid #bdc3c7; border-radius: 5px;">
+  <strong>Redo Log：</strong>重做日志文件大小是固定的，并组成一个循环写入的序列。（有一个擦除点和写入点，文件满的时候需要先擦除再写入）
+</div>
+
+<p>在InnoDB存储引擎中，重做日志用于记录对数据库所做的每个写操作，确保在系统崩溃后可以恢复这些操作。</p>
+<p>这个过程类似于传统账本与便笺的使用。想象一下，当店主在便笺上快速记下客户的购买记录，之后在每天结束时，他会将这些记录详细地转移到正式的账本中。便笺上的记录对应于重做日志，而正式账本就像是数据库文件。</p>
+<p>重做日志是循环使用的，有一个固定的大小。当数据库进行写操作时，InnoDB会将操作详情写入重做日志，并标记为准备（prepare）状态。</p>
+<p>随后，在合适的时机，这些操作会被实际应用到磁盘上的数据文件中。</p>
+<p>这种策略允许InnoDB引擎快速响应写操作，因为它不需要每次都同步写入磁盘。</p>
+<hr>
+<p>InnoDB的重做日志（Redo Log）包括两部分：内存中的重做日志缓冲（redo log buffer）和磁盘上的重做日志文件。</p>
+<ol>
+<li><p><strong>重做日志缓冲（Redo Log Buffer）</strong>：这是内存中的一部分，用于暂时存放那些还没有被写入到磁盘重做日志文件的数据。当事务被提交时，事务的重做日志信息首先被写入到这个缓冲区中。</p>
+</li>
+<li><p><strong>重做日志文件（Redo Log Files）</strong>：这些是存放在磁盘上的物理文件，用于持久保存重做日志数据。即使在系统崩溃的情况下，由于这些信息被存储在磁盘上，InnoDB也可以在重启后使用这些日志来恢复数据。</p>
+</li>
+</ol>
+<p>关于重做日志文件的大小，它们是固定的，并且可以通过MySQL的配置文件进行设置。通常，重做日志文件组成一个循环写入的序列，这意味着当最后一个日志文件写满后，系统会回到第一个日志文件开始覆盖旧的日志（这取决于日志的写入位置和检查点的位置）。</p>
+<p>在配置文件（通常是<code>my.cnf</code>或<code>my.ini</code>）中，可以通过以下参数来定义重做日志文件的大小和数量：</p>
+<ul>
+<li><code>innodb_log_file_size</code>：定义单个重做日志文件的大小。</li>
+<li><code>innodb_log_files_in_group</code>：定义重做日志文件组中文件的数量。</li>
+</ul>
+<p>例如，如果你设置<code>innodb_log_file_size</code>为512MB，并且设置<code>innodb_log_files_in_group</code>为4，那么总共会有2GB的重做日志空间可用（512MB * 4 &#x3D; 2048MB或2GB）。</p>
+<p>选择适当的重做日志文件大小是很重要的，因为它会影响数据库的性能和恢复能力。如果重做日志太小，可能会导致频繁的I&#x2F;O操作，因为日志空间会迅速填满并需要频繁地进行日志切换操作。如果太大，恢复过程可能会更慢，因为InnoDB可能需要处理大量的日志数据来恢复状态。通常，这个值应该根据系统的负载和I&#x2F;O能力来调整。</p>
+<blockquote>
+<p>二进制日志（binlog）</p>
+</blockquote>
+<p>二进制日志记录了所有对数据库进行更改的SQL语句。它不是特定于InnoDB的，而是MySQL服务器层面的日志。你可以把它看作是一部摄像机，记录下了发生的所有事件，无论是好是坏。</p>
+<p>在数据库需要恢复或者进行复制设置时，二进制日志是不可或缺的。</p>
+<p>与重做日志不同，二进制日志是逻辑日志，记录的是发生了什么（例如“给ID&#x3D;2的这一行的c字段加1”），而重做日志是物理日志，记录的是在哪个数据页上做了修改。二进制日志是按顺序追加的，并且不会覆盖旧的日志。</p>
+<blockquote>
+<p>两者的协同工作与两阶段提交</p>
+</blockquote>
+<div style="background-color: #ced6e0; color: #34495e; padding: 15px; border: 2px solid #bdc3c7; border-radius: 5px;">
+  <strong>两阶段提交：</strong>只有在重做日志和二进制日志都被成功写入后，事务才会提交。
+</div>
+
+<p>当执行一个更新操作时，InnoDB会先写入重做日志，这个操作会标记为prepare状态。一旦这个操作被写入，即使系统崩溃，这个操作也不会丢失，确保了数据库的crash-safe特性。<strong>只有在重做日志和二进制日志都被成功写入后，事务才会提交</strong>。</p>
+<p>这就引入了所谓的“两阶段提交”：</p>
+<ol>
+<li><strong>准备阶段</strong>：事务的修改先被写入重做日志，并将事务标记为prepare状态。</li>
+<li><strong>提交阶段</strong>：事务的修改被写入二进制日志，然后InnoDB事务会提交，重做日志的状态会变为commit。</li>
+</ol>
+<p>这种机制保证了即使在事务提交过程中发生故障，重做日志和二进制日志的状态也能保持一致。这对于恢复到精确的某一点以及主从复制是必要的，确保了数据的一致性。</p>
+<blockquote>
+<p>应用场景</p>
+</blockquote>
+<p>在应用中，你可以利用重做日志来确保事务的持久性和原子性。</p>
+<p>例如，如果你的系统突然断电或者崩溃，重做日志可以用来恢复未提交的事务，以及确保已提交的事务不会丢失。</p>
+<p>二进制日志主要用于：</p>
+<ul>
+<li><strong>数据复制</strong>：将binlog内容复制到从服务器，从服务器重放这些操作，保持和主服务器的数据一致。</li>
+<li><strong>数据恢复</strong>：当需要将数据库恢复到过去的某个状态时，可以使用全量备份加上二进制日志来达到这个目的。</li>
+</ul>
+<p>两阶段提交保证了在使用重做日志和二进制日志时，系统的状态是一致的，这对于确保数据的准确性和可恢复性非常重要。</p>
+<blockquote>
+<p>思考题： 在什么场景下，一天一备会比一周一备更有优势呢？</p>
+</blockquote>
+<p>日常全量备份相比周备份的优势在于减少了数据丢失的风险。如果发生灾难，你只会丢失一天的数据，而不是一周的。这直接影响了数据库系统的恢复点目标（Recovery Point Objective，RPO），即在数据丢失事件后数据恢复的能力。</p>
+<p>每天备份的RPO明显小于每周备份，因此一天一备的策略更适合对数据准确性要求较高的系统。</p>
+<hr>
+<p>参考</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ve411F794">https://www.bilibili.com/video/BV1ve411F794</a></li>
+<li><a target="_blank" rel="noopener" href="https://gitee.com/moxi159753/LearningNotes/tree/master/MySQL/MySQL45%E8%AE%B2">https://gitee.com/moxi159753/LearningNotes/tree/master/MySQL/MySQL45%E8%AE%B2</a></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="category-chain-item">数据库</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/" class="category-chain-item">MySQL</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/mysql/" class="print-no-link">#mysql</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>MySQL学习_进阶内容</div>
+      <div>https://varcel.luoqi.icu/2023/12/22/MySQL学习_进阶内容01/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Luo QI</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年12月22日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/12/22/MySQL%E5%AD%A6%E4%B9%A0_%E7%9B%B8%E5%85%B3%E9%9D%A2%E8%AF%95%E9%A2%98/" title="MySQL学习_相关面试题">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">MySQL学习_相关面试题</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/12/21/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B_%E4%BB%8EJava%E6%9E%84%E5%BB%BA%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%96%B9%E5%BC%8F%E5%88%B0%E7%BA%BF%E7%A8%8B%E6%B1%A0ThreadPoolExecutor%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="从Java构建线程的方式到线程池ThreadPoolExecutor源码剖析">
+                        <span class="hidden-mobile">从Java构建线程的方式到线程池ThreadPoolExecutor源码剖析</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
