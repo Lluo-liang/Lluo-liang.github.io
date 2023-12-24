@@ -1,11 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://varcel.luoqi.icu/2023/12/24/MySQL%E5%AD%A6%E4%B9%A0_%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B903/</loc>
+    <lastmod>2023-12-24</lastmod>
+  </url>
+  <url>
+    <loc>https://varcel.luoqi.icu/2023/12/24/%E6%95%B0%E6%8D%AE%E5%BA%93_SQL%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
+    <lastmod>2023-12-24</lastmod>
+  </url>
+  <url>
+    <loc>https://varcel.luoqi.icu/2023/12/24/%E6%95%B0%E6%8D%AE%E5%BA%93_SQL%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</loc>
+    <lastmod>2023-12-24</lastmod>
+  </url>
+  <url>
+    <loc>https://varcel.luoqi.icu/2023/12/24/%E6%95%B0%E6%8D%AE%E5%BA%93_%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</loc>
+    <lastmod>2023-12-24</lastmod>
+  </url>
+  <url>
+    <loc>https://varcel.luoqi.icu/2023/12/22/MySQL%E5%AD%A6%E4%B9%A0_%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B902/</loc>
+    <lastmod>2023-12-22</lastmod>
+  </url>
+  <url>
     <loc>https://varcel.luoqi.icu/2023/12/22/MySQL%E5%AD%A6%E4%B9%A0_%E7%9B%B8%E5%85%B3%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
     <lastmod>2023-12-22</lastmod>
   </url>
   <url>
-    <loc>https://varcel.luoqi.icu/2023/12/22/MySQL%E5%AD%A6%E4%B9%A0_%E8%BF%9B%E9%98%B6%E5%86%85%E5%AE%B901/</loc>
+    <loc>https://varcel.luoqi.icu/2023/12/22/MySQL%E5%AD%A6%E4%B9%A0_%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B901/</loc>
     <lastmod>2023-12-22</lastmod>
   </url>
   <url>
@@ -147,10 +167,6 @@
   <url>
     <loc>https://varcel.luoqi.icu/2023/12/01/SpringCloud_%E7%BB%84%E4%BB%B6%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8_Sleuth+Zipkin/</loc>
     <lastmod>2023-12-01</lastmod>
-  </url>
-  <url>
-    <loc>https://varcel.luoqi.icu/2023/11/27/MySQL%E5%AD%A6%E4%B9%A0_%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9/</loc>
-    <lastmod>2023-11-30</lastmod>
   </url>
   <url>
     <loc>https://varcel.luoqi.icu/2023/11/30/MongoDB_%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</loc>
