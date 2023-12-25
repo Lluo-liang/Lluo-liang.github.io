@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://varcel.luoqi.icu/about/index.html</loc>
+    
+    <lastmod>2023-12-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://varcel.luoqi.icu/2023/12/25/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0_MyBatis-Plus%E4%BD%BF%E7%94%A8/</loc>
     
     <lastmod>2023-12-25</lastmod>
@@ -21,15 +30,6 @@
   
   <url>
     <loc>https://varcel.luoqi.icu/2023/12/25/Redis%E5%85%A5%E9%97%A8_%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
-    
-    <lastmod>2023-12-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://varcel.luoqi.icu/about/index.html</loc>
     
     <lastmod>2023-12-25</lastmod>
     
@@ -282,6 +282,15 @@
   
   <url>
     <loc>https://varcel.luoqi.icu/2023/12/08/Docker%E5%85%A5%E9%97%A8_Docker%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</loc>
+    
+    <lastmod>2023-12-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://varcel.luoqi.icu/2023/12/08/Redis%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/</loc>
     
     <lastmod>2023-12-08</lastmod>
     
