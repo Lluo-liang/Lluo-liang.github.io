@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://varcel.luoqi.icu/2023/12/25/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0_MyBatis-Plus%E4%BD%BF%E7%94%A8/</loc>
+    
+    <lastmod>2023-12-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://varcel.luoqi.icu/2023/12/25/Redis%E5%85%A5%E9%97%A8_Redis%E5%AE%9E%E6%88%98%E7%AF%87/</loc>
     
     <lastmod>2023-12-25</lastmod>
@@ -1195,6 +1204,13 @@
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/%E6%A1%86%E6%9E%B6/SpringBoot/</loc>
+    <lastmod>2023-12-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://varcel.luoqi.icu/categories/%E6%A1%86%E6%9E%B6/MyBatis/</loc>
     <lastmod>2023-12-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
