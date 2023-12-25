@@ -18,22 +18,23 @@
   <meta name="author" content="Luo QI">
   <meta name="keywords" content="">
   
-    <meta name="description" content="消息队列_基础概念">
+    <meta name="description" content="Redis入门_Redis实战篇">
 <meta property="og:type" content="article">
-<meta property="og:title" content="消息队列_基础概念">
-<meta property="og:url" content="https://varcel.luoqi.icu/2023/12/11/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97_%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/index.html">
+<meta property="og:title" content="Redis入门_Redis实战篇">
+<meta property="og:url" content="https://varcel.luoqi.icu/2023/12/25/Redis%E5%85%A5%E9%97%A8_Redis%E5%AE%9E%E6%88%98%E7%AF%87/index.html">
 <meta property="og:site_name" content="轻松的洛亓">
-<meta property="og:description" content="消息队列_基础概念">
+<meta property="og:description" content="Redis入门_Redis实战篇">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-12-11T20:47:17.000Z">
-<meta property="article:modified_time" content="2023-12-11T20:47:17.000Z">
+<meta property="article:published_time" content="2023-12-25T16:47:48.000Z">
+<meta property="article:modified_time" content="2023-12-25T16:47:48.000Z">
 <meta property="article:author" content="Luo QI">
-<meta property="article:tag" content="MQ">
+<meta property="article:tag" content="NoSQL">
+<meta property="article:tag" content="redis">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>消息队列_基础概念 - 轻松的洛亓</title>
+  <title>Redis入门_Redis实战篇 - 轻松的洛亓</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="消息队列_基础概念"></span>
+            <span id="subtitle" data-typed-text="Redis入门_Redis实战篇"></span>
           
         </div>
 
@@ -210,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-12-11 20:47" pubdate>
-          2023年12月11日 晚上
+        <time datetime="2023-12-25 16:47" pubdate>
+          2023年12月25日 下午
         </time>
       </span>
     
@@ -222,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3k 字
+          334 字
         
       </span>
     
@@ -233,7 +234,7 @@
         
         
         
-          25 分钟
+          3 分钟
         
       </span>
     
@@ -270,220 +271,27 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">消息队列_基础概念</h1>
+            <h1 id="seo-header">Redis入门_Redis实战篇</h1>
             
             
               <div class="markdown-body">
                 
-                <blockquote>
-<p>大纲</p>
-</blockquote>
+                <h2 id="Redis-实战篇"><a href="#Redis-实战篇" class="headerlink" title="Redis 实战篇"></a>Redis 实战篇</h2><h3 id="1、Redis-分布式锁"><a href="#1、Redis-分布式锁" class="headerlink" title="1、Redis 分布式锁"></a>1、Redis 分布式锁</h3><p>分布式锁的实现常见的有：</p>
 <ul>
-<li>什么是消息队列</li>
-<li>消息队列优缺点</li>
-<li>JMS和AMQP(了解)</li>
-<li>RPC和消息队列(了解)</li>
-<li>分布式消息队列技术选型</li>
+<li>基于数据库的锁（乐观锁和悲观锁）</li>
+<li>基于缓存的锁</li>
+<li>基于Zookeeper 的锁（强一致性）</li>
+<li>基于消息队列的锁（少见）</li>
+<li>基于其他分布式协调服务</li>
 </ul>
-<p>在面试的时候，当你的简历上面写了用过<code>MQ</code> ,那么面试官的面试这个时候便开始了：</p>
-<ul>
-<li><ol>
-<li>你在系统里用过消息队列吗</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>你们在项目里是如何使用消息队列的。</li>
-</ol>
-</li>
-<li><ol start="3">
-<li>为什么你们这里要使用消息队列呢，为什么不直接调用接口处理呢。</li>
-</ol>
-</li>
-<li><ol start="4">
-<li>说说消息队列有哪些优点和缺点吧。</li>
-</ol>
-</li>
-<li><ol start="5">
-<li>消息队列的选型，他们之间的区别。</li>
-</ol>
-</li>
-<li><ol start="6">
-<li>如何保证消息不被重复消息，如何保证消费的时候是幂等，如何保证消息的可靠性，如何保证消息的顺序性。</li>
-</ol>
-</li>
-<li><ol start="7">
-<li>如何解决消息队列的延时以及过期失效问题？消息队列满了以后该如何处理？有几百万消息持续堆积几小时，要怎么解决？</li>
-</ol>
-</li>
-<li><ol start="8">
-<li>让你去设计一个MQ，该如何进行架构设计，说一下你的思路。</li>
-</ol>
-</li>
-</ul>
-<p>前几个问题的思考主要是围绕：为什么要使用消息队列；</p>
-<p>陈述回答的时候需要从消息队列利弊、优缺点、风险点等方面考虑，在进行技术选型的时候，主要还是围绕使用场景来决定。</p>
-<div style="box-shadow: 2px 2px 5px #888888; padding: 10px; border: 1px solid #3271ae;">
-    每一个 MQ 没有绝对的好坏，但是要看用在哪个场景可以扬长避短，利用其优势，规避其劣势。
-</div>
-
-
-<h3 id="消息队列的核心使用场景"><a href="#消息队列的核心使用场景" class="headerlink" title="消息队列的核心使用场景"></a>消息队列的核心使用场景</h3><p>消息队列（MQ）的核心使用场景主要包括三个方面：解耦、异步处理和削峰。</p>
-<blockquote>
-<p>解耦</p>
-</blockquote>
-<p><strong>类比解释</strong></p>
-<p>想象一下，你在组织一个大型派对，你需要通知很多朋友。如果你直接一个个打电话，每当新朋友加入或某人退出，你都需要更新你的通知列表。这很麻烦，对吧？现在，假设你创建了一个在线活动页面，你只需要更新这个页面，而你的朋友们自己决定是否查看这个页面。这就大大简化了你的工作。</p>
-<p><strong>技术解释</strong></p>
-<p>在没有消息队列的情况下，系统 A 需要直接和多个系统（如 B、C、D、E）进行通信。这种紧密耦合的方式使得系统 A 需要不断更新与其他系统的交互逻辑。使用消息队列后，系统 A 只需将消息发布到队列，而其他系统根据需要从队列中取出消息。这种发布&#x2F;订阅模式（Pub&#x2F;Sub）使得系统 A 与其他系统解耦，简化了维护和扩展的复杂性。</p>
-<blockquote>
-<p>异步处理</p>
-</blockquote>
-<p><strong>类比解释</strong></p>
-<p>假设你在一家餐厅点餐。如果厨师需要等待一个菜做完才开始做下一个，这将非常低效。但如果他们能同时处理多个订单，每道菜完成时就直接上菜，这样效率会更高。</p>
-<p><strong>技术解释</strong></p>
-<p>在同步处理模式中，系统 A 在完成所有操作（如更新多个数据库）之前不会响应用户请求，导致延迟。<br>而异步处理使用消息队列，系统 A 可以快速响应用户请求，将后续任务（如数据库更新）放入队列中，由其他系统或服务慢慢处理。这减少了用户的等待时间，提高了系统的响应能力。</p>
-<blockquote>
-<p>削峰</p>
-</blockquote>
-<p><strong>类比解释</strong></p>
-<p>想象一下，一个公交车站在高峰时段面临大量乘客。如果每个人都立即上车，公交车会被迅速塞满。但如果有一个等候区，让乘客按顺序上车，这样既保持了公交车的正常运行，又避免了拥挤。</p>
-<p><strong>技术解释</strong></p>
-<p>在流量削峰场景中，消息队列充当缓冲区，帮助处理短时的高流量。当系统 A 在高峰时段面临大量请求时，这些请求首先被放入消息队列。<br>系统 A 根据自己的处理能力逐渐从队列中取出并处理这些请求。这样可以避免在高峰期对系统造成过大的压力，同时保证了系统的稳定性和可用性。</p>
-<p>上面提及到的削峰、解耦、异步就是<strong>在特殊场景下其对应的好处</strong>，而缺点对应的是系统的复杂性变高，可用性降低，以及还有一致性问题。</p>
-<h3 id="技术选型"><a href="#技术选型" class="headerlink" title="技术选型"></a>技术选型</h3><p>技术选型可以参考看一下下面的内容</p>
-<table>
-<thead>
-<tr>
-<th>特性</th>
-<th>ActiveMQ</th>
-<th>RabbitMQ</th>
-<th>RocketMQ</th>
-<th>Kafka</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>单机吞吐量</td>
-<td>万级，比 RocketMQ、Kafka 低一个数量级</td>
-<td>同 ActiveMQ</td>
-<td>10 万级，支撑高吞吐</td>
-<td>10 万级，高吞吐，一般配合大数据类的系统来进行实时数据计算、日志采集等场景</td>
-</tr>
-<tr>
-<td>topic 数量对吞吐量的影响</td>
-<td></td>
-<td></td>
-<td>topic 可以达到几百&#x2F;几千的级别，吞吐量会有较小幅度的下降，这是 RocketMQ 的一大优势，在同等机器下，可以支撑大量的 topic</td>
-<td>topic 从几十到几百个时候，吞吐量会大幅度下降，在同等机器下，Kafka 尽量保证 topic 数量不要过多，如果要支撑大规模的 topic，需要增加更多的机器资源</td>
-</tr>
-<tr>
-<td>时效性</td>
-<td>ms 级</td>
-<td>微秒级，这是 RabbitMQ 的一大特点，延迟最低</td>
-<td>ms 级</td>
-<td>延迟在 ms 级以内</td>
-</tr>
-<tr>
-<td>可用性</td>
-<td>高，基于主从架构实现高可用</td>
-<td>同 ActiveMQ</td>
-<td>非常高，分布式架构</td>
-<td>非常高，分布式，一个数据多个副本，少数机器宕机，不会丢失数据，不会导致不可用</td>
-</tr>
-<tr>
-<td>消息可靠性</td>
-<td>有较低的概率丢失数据</td>
-<td>基本不丢</td>
-<td>经过参数优化配置，可以做到 0 丢失</td>
-<td>同 RocketMQ</td>
-</tr>
-<tr>
-<td>功能支持</td>
-<td>MQ 领域的功能极其完备</td>
-<td>基于 erlang 开发，并发能力很强，性能极好，延时很低</td>
-<td>MQ 功能较为完善，还是分布式的，扩展性好</td>
-<td>功能较为简单，主要支持简单的 MQ 功能，在大数据领域的实时计算以及日志采集被大规模使用</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>Kafka</p>
-</blockquote>
-<p>优点</p>
-<ol>
-<li><strong>高吞吐量</strong>：Kafka 设计用于处理高吞吐量数据，适合大规模消息处理应用。</li>
-<li><strong>分布式系统</strong>：它天生就是分布式的，易于扩展。</li>
-<li><strong>持久性和可靠性</strong>：Kafka 可以持久化消息到磁盘，因此对消息不会因为系统故障而丢失。</li>
-<li><strong>高效</strong>：Kafka 使用顺序磁盘I&#x2F;O，提供高性能与数据吞吐。</li>
-</ol>
-<p>缺点</p>
-<ol>
-<li><strong>复杂性</strong>：Kafka 的设置和管理相对复杂。</li>
-<li><strong>消息积压</strong>：在高负载下，消息延迟可能会增加。</li>
-<li><strong>不支持优先级队列</strong>。</li>
-</ol>
-<blockquote>
-<p>ActiveMQ</p>
-</blockquote>
-<p>优点</p>
-<ol>
-<li><strong>支持多种传输协议</strong>：如 OpenWire, STOMP, MQTT 等。</li>
-<li><strong>易于使用和配置</strong>：相比 Kafka，ActiveMQ 配置和管理较为简单。</li>
-<li><strong>JMS 支持</strong>：完全支持 JMS API 和 J2EE 集成。</li>
-</ol>
-<p>缺点</p>
-<ol>
-<li><strong>较低的吞吐量</strong>：相比 Kafka，ActiveMQ 的吞吐量较低。</li>
-<li><strong>可扩展性问题</strong>：在非常大的数据负载下，扩展性可能是一个问题。</li>
-</ol>
-<blockquote>
-<p>RabbitMQ</p>
-</blockquote>
-<p>优点</p>
-<ol>
-<li><strong>灵活的路由</strong>：支持复杂的路由。</li>
-<li><strong>多种消息协议</strong>：支持 AMQP, MQTT, STOMP 等。</li>
-<li><strong>管理界面友好</strong>：提供易于使用的管理界面。</li>
-</ol>
-<p>缺点</p>
-<ol>
-<li><strong>性能问题</strong>：在高吞吐量时，性能可能会受限。</li>
-<li><strong>持久化开销</strong>：消息持久化可能会导致性能问题。</li>
-</ol>
-<blockquote>
-<p>RocketMQ</p>
-</blockquote>
-<p>优点</p>
-<ol>
-<li><strong>高性能和低延迟</strong>：在分布式系统中表现出色。</li>
-<li><strong>丰富的功能</strong>：提供了大量的特性，如消息顺序、事务消息等。</li>
-<li><strong>可靠性和扩展性</strong>：保证了消息的可靠传输，同时支持水平和垂直扩展。</li>
-</ol>
-<p>缺点</p>
-<ol>
-<li><strong>社区和生态</strong>：相比 Kafka，RocketMQ 的社区和生态相对较小。</li>
-<li><strong>复杂性</strong>：配置和管理稍微复杂。</li>
-</ol>
-<blockquote>
-<p>技术选型考虑因素</p>
-</blockquote>
-<ol>
-<li><strong>吞吐量需求</strong>：如果你的系统需要处理大量的数据，Kafka 或 RocketMQ 可能是更好的选择。</li>
-<li><strong>系统复杂性</strong>：如果你需要一个易于设置和管理的系统，ActiveMQ 或 RabbitMQ 可能更合适。</li>
-<li><strong>功能需求</strong>：根据你需要的特定功能（如消息排序、事务处理等）选择相应的系统。</li>
-<li><strong>社区支持和生态系统</strong>：强大的社区可以提供更好的支持和更多的资源。</li>
-<li><strong>可靠性和持久性</strong>：如果这些是你的主要关注点，Kafka 和 RocketMQ 是不错的选择</li>
-</ol>
-<p>选择建议：</p>
-<ul>
-<li><strong>中小型公司</strong>，技术实力较为一般，技术挑战不是特别高，用 RabbitMQ 是不错的选择；</li>
-<li><strong>大型公司</strong>，基础架构研发实力较强，用 RocketMQ 是很好的选择。</li>
-<li>如果是<strong>大数据领域</strong>的实时计算、日志采集等场景，Kafka 是业内标准，社区活跃度很高，几乎是全世界该领域的事实性规范。</li>
-<li>ActiveMQ，最近逐年使用减少，没经过大规模吞吐量场景的验证，社区不是很活跃。</li>
-</ul>
+<p>这里主要介绍一下 Redis 分布式锁的实现方式，以及它是如何使用的。</p>
+<p>Redis 分布式锁通过是<strong>利用<code>SETNX</code>这个方法</strong>，如果插入Key成功，则表示获得到了锁，如果有人插入成功，那么其他人就回插入失败，无法获取到锁，利用这套逻辑完成<code>互斥</code>，从而实现分布式锁</p>
+<p>在使用 <code>SETNX</code>这个方法的时候，一般还会使用 EXPIRE 命令为锁设置一个过期时间防止死锁。</p>
+<p>to be contined…..</p>
 <hr>
 <p>参考</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://javaguide.cn/high-performance/message-queue/message-queue.html">https://javaguide.cn/high-performance/message-queue/message-queue.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://doocs.github.io/advanced-java/#/docs/high-concurrency/mq-interview">https://doocs.github.io/advanced-java/#/docs/high-concurrency/mq-interview</a></li>
+<li><a target="_blank" rel="noopener" href="https://cyborg2077.github.io/2022/10/22/RedisPractice/">https://cyborg2077.github.io/2022/10/22/RedisPractice/</a></li>
 </ul>
 
                 
@@ -508,7 +316,7 @@
   
     <span>></span>
     
-  <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/MQ/" class="category-chain-item">MQ</a>
+  <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/Redis/" class="category-chain-item">Redis</a>
   
   
 
@@ -525,7 +333,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/MQ/" class="print-no-link">#MQ</a>
+        <a href="/tags/NoSQL/" class="print-no-link">#NoSQL</a>
+      
+        <a href="/tags/redis/" class="print-no-link">#redis</a>
       
     </div>
   
@@ -537,8 +347,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>消息队列_基础概念</div>
-      <div>https://varcel.luoqi.icu/2023/12/11/消息队列_基础概念/</div>
+      <div>Redis入门_Redis实战篇</div>
+      <div>https://varcel.luoqi.icu/2023/12/25/Redis入门_Redis实战篇/</div>
     </div>
     <div class="license-meta">
       
@@ -550,7 +360,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年12月11日</div>
+          <div>2023年12月25日</div>
         </div>
       
       
@@ -582,18 +392,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/12/11/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97_RabbitMQ_%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/" title="消息队列_RabbitMQ_基础使用">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">消息队列_RabbitMQ_基础使用</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/12/11/%E8%98%91%E8%8F%87%E5%8D%9A%E5%AE%A2%E9%A1%B9%E7%9B%AE_Day02/" title="蘑菇博客项目_Day02">
-                        <span class="hidden-mobile">蘑菇博客项目_Day02</span>
+                      <a href="/2023/12/25/Redis%E5%85%A5%E9%97%A8_%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/" title="Redis入门_常见面试题">
+                        <span class="hidden-mobile">Redis入门_常见面试题</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
