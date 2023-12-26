@@ -4,6 +4,50 @@
   
   
   <entry>
+    <title>白板擦</title>
+    <link href="/2023/12/26/%E7%99%BD%E6%9D%BF%E6%93%A6/"/>
+    <url>/2023/12/26/%E7%99%BD%E6%9D%BF%E6%93%A6/</url>
+    
+    <content type="html"><![CDATA[<p>今日计划</p><ul><li><input disabled="" type="checkbox"> 根据JavaGuide和面试指北将RocketMQ的进度跟一下，补充一下相关内容知识</li><li><input disabled="" type="checkbox"> Redis继续完善一下，有余力再复习看一下MySQL相关内容</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>Diary</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Fluid主题</title>
+    <link href="/2023/12/26/Fluid%E4%B8%BB%E9%A2%98/"/>
+    <url>/2023/12/26/Fluid%E4%B8%BB%E9%A2%98/</url>
+    
+    <content type="html"><![CDATA[<p>to be contined…</p><hr><p>参考</p><ul><li><a href="https://hexo.fluid-dev.com/docs/start/">https://hexo.fluid-dev.com/docs/start/</a></li><li><a href="https://hexo.fluid-dev.com/">https://hexo.fluid-dev.com/</a></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>StatusPage</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>hexo</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>框架学习_MyBatis-Plus使用</title>
     <link href="/2023/12/25/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0_MyBatis-Plus%E4%BD%BF%E7%94%A8/"/>
     <url>/2023/12/25/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0_MyBatis-Plus%E4%BD%BF%E7%94%A8/</url>
