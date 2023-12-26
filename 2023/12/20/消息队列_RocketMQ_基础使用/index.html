@@ -27,6 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231220201308.png">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231220202235.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231226214425.png">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312211545167.png">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312211327443.png">
 <meta property="article:published_time" content="2023-12-20T16:49:09.000Z">
@@ -227,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.8k 字
+          4.2k 字
         
       </span>
     
@@ -238,7 +239,7 @@
         
         
         
-          23 分钟
+          35 分钟
         
       </span>
     
@@ -284,37 +285,113 @@
 <p>大纲</p>
 </blockquote>
 <ul>
-<li>RocketMQ的基础使用</li>
+<li>RocketMQ是什么</li>
+<li>队列模型和主题模型</li>
 <li>RocketMQ的队列模型和主题模型</li>
 <li>RocketMQ的实现架构</li>
 <li>消费者分组和生产者分组</li>
 <li>to be contined…..</li>
 </ul>
-<blockquote>
-<p>回顾</p>
-</blockquote>
-<p>MQ的好处</p>
+<h4 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h4><p>消息队列能用来干什么</p>
 <ul>
-<li>解耦，削峰，异步</li>
+<li>异步</li>
+<li>解耦</li>
+<li>削峰</li>
 </ul>
-<p>引入MQ需要处理的问题</p>
-<ul>
+<p>在引入消息队列时，同时意味着会给系统带来一系列的副作用和挑战，这些问题需要在设计和实施过程中予以特别考虑。</p>
+<p>以下是一些关键点和潜在解决方案：</p>
+<blockquote>
+<ol>
 <li>降低系统的可用性</li>
-<li>增加系统的复杂度</li>
-<li>需要解决<ul>
-<li>如何解决重复消费消息的问题</li>
-<li>如何解决消息的顺序消费问题</li>
-<li>解决分布式事务问题 </li>
-<li>解决消息堆积的问题</li>
+</ol>
+</blockquote>
+<ul>
+<li><strong>问题</strong>：消息队列本身可能成为系统的单点故障。如果消息队列不可用，整个系统的消息传递功能可能会受到影响。</li>
+<li><strong>解决方案</strong>：<ul>
+<li>使用高可用性部署，如集群或镜像队列。</li>
+<li>采用消息队列服务的监控和自动故障转移机制。</li>
+<li>保证消息队列有足够的冗余和备份策略。</li>
 </ul>
 </li>
 </ul>
-<h3 id="1、RocketMQ是什么"><a href="#1、RocketMQ是什么" class="headerlink" title="1、RocketMQ是什么"></a>1、RocketMQ是什么</h3><p>RocketMQ 是一款开源的分布式消息和流处理平台，由阿里巴巴集团开发并贡献给 Apache 软件基金会。它被设计用于处理大规模、高吞吐量的消息传递，并在阿里巴巴集团内部及众多企业中广泛使用。</p>
-<p>特点：高性能，高可靠，高实时，分布式</p>
 <blockquote>
-<p>队列模型和主题模型</p>
+<ol start="2">
+<li>增加系统的复杂度</li>
+</ol>
 </blockquote>
 <ul>
+<li><strong>问题</strong>：引入消息队列增加了系统架构的组件和交互逻辑，使得系统更加复杂。</li>
+<li><strong>解决方案</strong>：<ul>
+<li>设计清晰的系统架构和组件职责划分。</li>
+<li>对开发人员进行消息队列使用的培训和最佳实践指导。</li>
+<li>制定消息队列的使用规范和文档。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ol start="3">
+<li>如何解决重复消费消息的问题</li>
+</ol>
+</blockquote>
+<ul>
+<li><strong>问题</strong>：在某些情况下，例如消息队列服务重启或网络问题，可能会导致消息被重复消费。</li>
+<li><strong>解决方案</strong>：<ul>
+<li>使用消息的唯一标识符（如消息ID）来检测和防止重复处理。</li>
+<li>设计消费者逻辑使其具备幂等性，即重复处理同一消息不会产生副作用。</li>
+<li>在消息队列层面配置消息的重试策略和死信队列。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ol start="4">
+<li>如何解决消息的顺序消费问题</li>
+</ol>
+</blockquote>
+<ul>
+<li><strong>问题</strong>：在并发环境下，保证消息的严格顺序消费可能会遇到挑战。</li>
+<li><strong>解决方案</strong>：<ul>
+<li>使用单个消费者来保证消息顺序。</li>
+<li>对需要顺序处理的消息使用顺序消息队列。</li>
+<li>在消息中携带顺序字段，消费者根据该字段排序后处理。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ol start="5">
+<li>解决分布式事务问题</li>
+</ol>
+</blockquote>
+<ul>
+<li><strong>问题</strong>：如何在确保消息发送和业务数据变更原子性的同时，处理分布式事务。</li>
+<li><strong>解决方案</strong>：<ul>
+<li>使用本地事务表作为消息发送的准备队列，通过定期任务检查并发送。</li>
+<li>采用两阶段提交或事务消息机制，确保业务操作和消息发送的一致性。</li>
+<li>利用分布式事务协调器，如XA事务。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ol start="6">
+<li>解决消息堆积的问题</li>
+</ol>
+</blockquote>
+<ul>
+<li><strong>问题</strong>：在高负载或消费者故障的情况下，未处理的消息可能会在队列中堆积。</li>
+<li><strong>解决方案</strong>：<ul>
+<li>动态扩展消费者数量以处理增加的负载。</li>
+<li>优化消费者的处理速度和性能。</li>
+<li>为不同优先级的消息设置不同的队列。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p><strong>正文内容</strong></p>
+</blockquote>
+<h3 id="1、RocketMQ是什么"><a href="#1、RocketMQ是什么" class="headerlink" title="1、RocketMQ是什么"></a>1、RocketMQ是什么</h3><p>RocketMQ 是一款开源的分布式消息和流处理平台，由阿里巴巴集团开发并贡献给 Apache 软件基金会。它被设计用于处理大规模、高吞吐量的消息传递，并在阿里巴巴集团内部及众多企业中广泛使用。</p>
+<p>特点：高性能，高可靠，高实时，分布式</p>
+<h3 id="2、队列模型和主题模型"><a href="#2、队列模型和主题模型" class="headerlink" title="2、队列模型和主题模型"></a>2、队列模型和主题模型</h3><p>了解 RocketMQ 前，我们先了解下面两个名词概念：队列模型和主题模型</p>
+<h4 id="队列模型和主题模型"><a href="#队列模型和主题模型" class="headerlink" title="队列模型和主题模型"></a>队列模型和主题模型</h4><ul>
 <li>队列模型<ul>
 <li>队列方式，生产者消费者</li>
 </ul>
@@ -324,10 +401,46 @@
 </ul>
 </li>
 </ul>
-<h3 id="2、队列模型和主题模型"><a href="#2、队列模型和主题模型" class="headerlink" title="2、队列模型和主题模型"></a>2、队列模型和主题模型</h3><blockquote>
-<p>RocketMQ中的消息模型</p>
+<h4 id="RocketMQ中的消息模型"><a href="#RocketMQ中的消息模型" class="headerlink" title="RocketMQ中的消息模型"></a>RocketMQ中的消息模型</h4><div style="background-color: #ecf0f1; color: #34495e; padding: 15px; border: 2px solid #bdc3c7; border-radius: 5px;">
+  <strong>`RocketMQ` 中的消息模型是按照 主题模型 所实现的</strong>
+</div>
+
+
+<p>RocketMQ 实现的消息传递模型遵循了主题模型（也称为发布&#x2F;订阅模型）这一标准。</p>
+<p>主题模型是消息中间件中的一种设计模式，它定义了如何进行消息的发布和订阅。在这种模型中，消息生产者（发布者）发送消息到一个主题（Topic），而消息消费者（订阅者）订阅这个主题并接收相应的消息。</p>
+<blockquote>
+<p>核心概念理解：</p>
 </blockquote>
-<p><code>RocketMQ</code> 中的消息模型是按照 <strong>主题模型</strong> 所实现的，对于主题模型的实现来说每个消息中间件的底层设计不一样的，主题模型&#x2F;发布订阅模型 是一个标准，每个中间件按照这个标准去进行不同的实际实现。</p>
+<ul>
+<li><strong>主题模型（Topic Model）</strong>：<ul>
+<li>它是一种发布&#x2F;订阅消息传递的架构模式。</li>
+<li>消息生产者发布消息到主题，而不是直接发送给特定的消费者。</li>
+<li>消息消费者订阅主题来接收消息，而不是从特定生产者接收。</li>
+</ul>
+</li>
+<li><strong>发布&#x2F;订阅模型（Pub&#x2F;Sub Model）</strong>：<ul>
+<li>这是主题模型的另一种叫法，强调的是消息的发布和订阅机制。</li>
+<li>任何订阅了主题的消费者都能接收到主题中的消息，实现了生产者和消费者的解耦。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>RocketMQ 的实现</strong>：</p>
+</blockquote>
+<ul>
+<li>当我们说 RocketMQ 是按照主题模型实现的，意味着它使用了这一模式的核心概念来构建其消息传递功能。</li>
+<li>RocketMQ 中的每个主题可以拥有多个生产者和消费者，消费者可以是分布在不同实例上的集群。</li>
+<li>RocketMQ 允许你创建多个主题，每个主题可以有多个队列（Queue），这些队列分布在多个 Broker 上。</li>
+</ul>
+<blockquote>
+<p>中间件的不同实现：</p>
+</blockquote>
+<ul>
+<li>虽然主题模型是一个通用的标准，不同的消息中间件会根据自己的设计和需求对其进行不同的实现。</li>
+<li>不同的消息队列产品（如 Kafka、RabbitMQ、ActiveMQ 等）可能在底层存储机制、消息分发策略、持久化方式等方面有所差异。</li>
+<li>每个中间件产品都会在遵循主题模型的基础上，添加自己独特的特性和优化来满足不同的业务场景。</li>
+</ul>
+<p>总结来说，主题模型是一个广泛接受的消息传递模式，不同的消息中间件会有各自的实现方式。RocketMQ 是遵循这一模式并根据其性能和可用性需求进行了特定实现的一个例子。</p>
 <h4 id="RocketMQ-的主题模型如何实现"><a href="#RocketMQ-的主题模型如何实现" class="headerlink" title="RocketMQ 的主题模型如何实现"></a>RocketMQ 的主题模型如何实现</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231220202235.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>看上面这张图，RocketMQ 有是三个角色：</p>
 <ul>
@@ -335,7 +448,8 @@
 <li><code>Consumer Group</code> 消费者组：代表某一类的消费者</li>
 <li><code>Topic</code> 主题：代表一类消息</li>
 </ul>
-<h3 id="RocketMQ架构设计"><a href="#RocketMQ架构设计" class="headerlink" title="RocketMQ架构设计"></a>RocketMQ架构设计</h3><p><code>RocketMQ</code> 技术架构中有四大角色 <code>NameServer</code>、<code>Broker</code>、<code>Producer</code>、<code>Consumer</code></p>
+<h3 id="3、RocketMQ架构设计"><a href="#3、RocketMQ架构设计" class="headerlink" title="3、RocketMQ架构设计"></a>3、RocketMQ架构设计</h3><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231226214425.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><code>RocketMQ</code> 技术架构中有四大角色 <code>NameServer</code>、<code>Broker</code>、<code>Producer</code>、<code>Consumer</code></p>
 <ul>
 <li><code>NameServer</code><ul>
 <li>注册中心，提供 <code>Broker</code>管理和路由信息管理</li>
