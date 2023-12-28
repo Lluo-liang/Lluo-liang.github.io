@@ -21,7 +21,7 @@
     <meta name="description" content="消息队列_RocketMQ_基础使用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="消息队列_RocketMQ_基础使用">
-<meta property="og:url" content="https://varcel.luoqi.icu/2023/12/20/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97_RocketMQ_%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:url" content="https://varcel.luoqi.icu/2023/12/28/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97_RocketMQ_%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="轻松的洛亓">
 <meta property="og:description" content="消息队列_RocketMQ_基础使用">
 <meta property="og:locale" content="zh_CN">
@@ -29,8 +29,10 @@
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231226214425.png">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312271701523.png">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312211545167.png">
-<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231228074334.png">
-<meta property="article:published_time" content="2023-12-20T16:49:09.000Z">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312281351790.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312281358695.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312281520496.png">
+<meta property="article:published_time" content="2023-12-28T16:49:09.000Z">
 <meta property="article:modified_time" content="2023-12-20T16:49:09.000Z">
 <meta property="article:author" content="Luo QI">
 <meta property="article:tag" content="MQ">
@@ -199,7 +201,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312281640418.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -216,8 +218,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-12-20 16:49" pubdate>
-          2023年12月20日 下午
+        <time datetime="2023-12-28 16:49" pubdate>
+          2023年12月28日 下午
         </time>
       </span>
     
@@ -228,7 +230,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.9k 字
+          15k 字
         
       </span>
     
@@ -239,7 +241,7 @@
         
         
         
-          83 分钟
+          129 分钟
         
       </span>
     
@@ -287,10 +289,15 @@
 <ul>
 <li>RocketMQ是什么</li>
 <li>队列模型和主题模型</li>
-<li>RocketMQ的队列模型和主题模型</li>
-<li>RocketMQ的实现架构</li>
-<li>消费者分组和生产者分组</li>
-<li>to be contined…..</li>
+<li>RocketMQ架构设计</li>
+<li>RocketMQ 的功能特性</li>
+<li>如何解决顺序消费和重复消费</li>
+<li>RocketMQ 如何实现分布式事务</li>
+<li>如何解决消息堆积问题？</li>
+<li>回溯消费</li>
+<li>RocketMQ 如何保证高性能读写</li>
+<li>RocketMQ 的刷盘机制</li>
+<li>RocketMQ 如何保证不丢失消息</li>
 </ul>
 <h4 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h4><p>消息队列能用来干什么</p>
 <ul>
@@ -681,7 +688,7 @@
 <figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">producer.setRetryTimesWhenSendFailed(<span class="hljs-number">5</span>)<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
 
 <h5 id="消息过大"><a href="#消息过大" class="headerlink" title="消息过大"></a>消息过大</h5><p>消息超过 4k 时 RocketMQ 会将消息压缩后在发送到 Broker 上，减少网络资源的占用。</p>
-<h3 id="6、RocketMQ-如何实现分布式事务"><a href="#6、RocketMQ-如何实现分布式事务" class="headerlink" title="6、RocketMQ 如何实现分布式事务"></a>6、RocketMQ 如何实现分布式事务</h3><p>to be contined….</p>
+<h3 id="6、RocketMQ-如何实现分布式事务"><a href="#6、RocketMQ-如何实现分布式事务" class="headerlink" title="6、RocketMQ 如何实现分布式事务"></a>6、RocketMQ 如何实现分布式事务</h3><p>这里建议用实际例子去补充一下具体如何完成的，目前我们讲述一下 RocketMQ 是如何实现分布式事务的。</p>
 <blockquote>
 <p>分布式事务的常见实现方式（每种方法都有其适用场景和局限性）</p>
 </blockquote>
@@ -694,42 +701,17 @@
 <p>RocketMQ 的分布式事务实现</p>
 </blockquote>
 <p>在 RocketMQ 中，其采用的实现机制是：事务消息加上事务反查机制。</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231228074334.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>参考一下这篇博客中关于订单关于的一个流程使用： <a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904099993878536">https://juejin.cn/post/6844904099993878536</a></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312281351790.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>上述内容提及到自己认为需要注意的点：</p>
 <ul>
-<li><ol>
-<li>发送 half 消息</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>MQ服务端响应消息</li>
-</ol>
-</li>
-<li><ol start="3">
-<li>系统A 事务处理</li>
-</ol>
-</li>
-<li><ol start="4">
-<li>根据事务执行情况 commit 或 rollback ；一般在第四步系统 A 就可以异步进行下一步操作了。</li>
-</ol>
-</li>
-<li><ol start="5">
-<li>如果因为网络或者其他原因，MQ 服务端没有收到第四步的情况，则 MQ 服务端就会发送消息进行事务回查。</li>
-</ol>
-</li>
-<li><ol start="6">
-<li>检查本系统事务状态</li>
-</ol>
-</li>
-<li><ol start="7">
-<li>根据事务状态再次进行 commit 或者 Rollback</li>
-</ol>
-<ul>
-<li>成功之后进行持久化然后采用 push 或者 pull 的方式消费消息</li>
-<li>RollBack 的消息则不消费</li>
+<li>本地事务进行下一步操作后，服务方才会提交或者回滚半消息到 RocketMQ 的节点 Broker</li>
 </ul>
-</li>
-</ul>
-<p>to be contined…</p>
+<blockquote>
+<p>图：RocketMQ 实现分布式事务</p>
+</blockquote>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312281358695.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>关于 Half Message，半消息  和 事务状态回查  的一个基本表述：</p>
 <ol>
 <li><strong>事务消息（Half 消息）</strong>：<ul>
 <li><strong>第一步：发送 Half 消息</strong>：所谓的 Half 消息是指一种特殊状态的消息，它在事务完成之前对消费者是不可见的。</li>
@@ -747,19 +729,300 @@
 <li><strong>反查机制的作用</strong>：事务反查确保即使在网络波动或其他问题的情况下，事务消息的最终状态也能得到正确处理。</li>
 </ul>
 </li>
-<li><strong>与 Kafka 的对比</strong>：<ul>
-<li>在 Kafka 中，通常在出现事务问题时抛出异常，由用户自行处理。</li>
-</ul>
-</li>
-<li><strong>消息队列中的分布式事务特点</strong>：<ul>
-<li>消息队列中的分布式事务处理通常是异步的，每个系统只需保证自己部分的事务完整性。</li>
-<li>这种方法实现了事务的最终一致性，而不是传统意义上的严格ACID事务。</li>
-</ul>
-</li>
 </ol>
-<p>RocketMQ 中的分布式事务是通过发送特殊状态的事务消息（Half 消息）和事务反查机制来实现的。这种方法允许异步处理事务，确保即使在网络波动等异常情况下，事务的最终状态也能得到正确处理，实现分布式系统中事务的最终一致性。</p>
-<h3 id="RocketMQ-持久化机制"><a href="#RocketMQ-持久化机制" class="headerlink" title="RocketMQ 持久化机制"></a>RocketMQ 持久化机制</h3><p>to be contined….</p>
-<h3 id="RocketMQ-如何保证不丢失消息"><a href="#RocketMQ-如何保证不丢失消息" class="headerlink" title="RocketMQ 如何保证不丢失消息"></a>RocketMQ 如何保证不丢失消息</h3><hr>
+<p>其他的表述也是大同小异，具体更多的细节可以看一下具体实现，以及相关联的其他分布式事务是如何实现的，比较差异。</p>
+<h3 id="7、如何解决消息堆积问题？"><a href="#7、如何解决消息堆积问题？" class="headerlink" title="7、如何解决消息堆积问题？"></a>7、如何解决消息堆积问题？</h3><p>解决消息队列中的堆积问题通常需要从两个主要方面考虑：</p>
+<ul>
+<li>生产者生产消息减少</li>
+<li>消费者处理消息速率加快</li>
+</ul>
+<blockquote>
+<p>生产者生产消息减少</p>
+</blockquote>
+<p>处理策略一般是限流和降级：</p>
+<ul>
+<li><strong>生产者限流</strong>：在高峰期，如果生产者生产消息的速度过快，可以采取限流措施。这意味着暂时减少消息的生产速率，或者在非高峰时段再进行消息的发送。</li>
+<li><strong>服务降级</strong>：在系统负载过高时，可以临时关闭一些非核心业务功能，减少消息的产生。</li>
+</ul>
+<blockquote>
+<p>消费者处理消息速率加快</p>
+</blockquote>
+<p>处理策略可以是 增加消费者实例 以及 增加队列数量</p>
+<ul>
+<li>增加消费者实例（集群消费模式下增长同一个消费者组下的实例数对堆积消息消费处理帮助不大）<ul>
+<li>当现有队列中有消息堆积，并且现有的消费者处理能力不足以及时处理这些消息时。</li>
+<li>增加消费者实例可以帮助更快地处理现有队列中已经堆积的消息。</li>
+<li>在一个队列只被一个消费者消费的场景中（如 RocketMQ 的集群消费模式），增加同一消费者组的实例数对于加快处理一个单独队列中的堆积消息是无效的。</li>
+</ul>
+</li>
+<li>增加队列数量（增加队列数量后，新来的一些消息能够被策略分配到新的队列，从而减少堆积压力）<ul>
+<li>当预期未来将有高负载，或者想要提高系统处理新消息的能力时。</li>
+<li>增加队列数量可以为新生产的消息提供更多的存储空间，并允许更多的消费者并行处理这些新消息。</li>
+<li>仅仅增加队列数量而不增加消费者实例可能导致新队列中的消息未被及时消费，特别是在集群消费模式下。</li>
+</ul>
+</li>
+</ul>
+<div style="background: linear-gradient(to right, #74ebd5, #ACB6E5); color: #333; padding: 15px; border-radius: 10px; border: 1px solid #ddd; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+  <strong> </strong>最快速解决消息堆积问题的方法还是增加消费者实例，不过 同时你还需要增加每个主题的队列数量 。
+</div>
+
+<hr>
+<p>在消息堆积后，我们一般的处理是先排查消费端故障，让处理消费正常起来；</p>
+<p>但此时消息队列中已经堆积了大量的一个消息待处理，我们除了优化消费者端的消息处理逻辑和实施快速失败机制之外，还有其他几种方法可以考虑：</p>
+<ul>
+<li><ol>
+<li>调整队列和消费者的映射关系</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>临时增加特定队列的消费者</li>
+</ol>
+<ul>
+<li>尽管在集群模式下，一个队列在同一时间只能由一个消费者消费，但您可以尝试临时创建一个新的消费者组，专门用来处理那个堆积的队列。</li>
+</ul>
+</li>
+<li><ol start="3">
+<li>使用消息过滤</li>
+</ol>
+<ul>
+<li><strong>消息选择性消费</strong>：如果适用，可以在消费者端使用消息过滤，专注于处理最紧急或最重要的消息。</li>
+</ul>
+</li>
+<li><ol start="4">
+<li>短期策略</li>
+</ol>
+<ul>
+<li><strong>临时措施</strong>：作为一种短期策略，可以暂时将一些不太重要的业务处理延后，优先处理堆积的消息。</li>
+</ul>
+</li>
+<li><ol start="5">
+<li>系统资源优化，监控和动态调整</li>
+</ol>
+</li>
+</ul>
+<h3 id="8、回溯消费"><a href="#8、回溯消费" class="headerlink" title="8、回溯消费"></a>8、回溯消费</h3><blockquote>
+<p>官方文档解释</p>
+</blockquote>
+<p>回溯消费是指 <code>Consumer</code> 已经消费成功的消息，由于业务上需求需要重新消费，</p>
+<p>在<code>RocketMQ</code> 中， <code>Broker</code> 在向<code>Consumer</code> 投递成功消息后，<strong>消息仍然需要保留</strong> 。并且重新消费一般是按照时间维度，例如由于 <code>Consumer</code> 系统故障，恢复后需要重新消费 1 小时前的数据，那么 <code>Broker</code> 要提供一种机制，可以按照时间维度来回退消费进度。<code>RocketMQ</code> 支持按照时间回溯消费，时间维度精确到毫秒。</p>
+<h3 id="9、RocketMQ-如何保证高性能读写"><a href="#9、RocketMQ-如何保证高性能读写" class="headerlink" title="9、RocketMQ 如何保证高性能读写"></a>9、RocketMQ 如何保证高性能读写</h3><p>RocketMQ 内部主要是使用基于 mmap 实现的零拷贝，用来读写文件</p>
+<p>to be contined….</p>
+<h3 id="10、RocketMQ-的刷盘机制-🦅"><a href="#10、RocketMQ-的刷盘机制-🦅" class="headerlink" title="10、RocketMQ 的刷盘机制   🦅"></a>10、RocketMQ 的刷盘机制   🦅</h3><h4 id="同步刷盘和异步刷盘"><a href="#同步刷盘和异步刷盘" class="headerlink" title="同步刷盘和异步刷盘"></a>同步刷盘和异步刷盘</h4><p>在 RocketMQ 中，同步刷盘和异步刷盘是两种不同的消息持久化策略，它们各有优劣，并适用于不同的业务场景。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312281520496.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>以下是对这两种策略的详细说明和比较：</p>
+<blockquote>
+<p>同步刷盘（SYNC_FLUSH）</p>
+</blockquote>
+<ul>
+<li><strong>工作原理</strong>：在同步刷盘模式下，每当生产者发送一条消息，Broker 需要将消息写入磁盘并完成刷盘操作后，才会向生产者返回确认（ACK）。只有收到这个确认，生产者才知道消息已经安全存储。</li>
+<li><strong>优点</strong>：提供了更高的消息可靠性。即使在Broker意外宕机的情况下，也不会丢失已确认的消息。</li>
+<li><strong>缺点</strong>：影响性能。由于每条消息都需要等待磁盘写入完成，这会增加消息的延迟时间，降低吞吐量。</li>
+<li><strong>适用场景</strong>：适用于对消息可靠性有极高要求的场景，如金融交易、重要业务数据处理等。</li>
+</ul>
+<blockquote>
+<p>异步刷盘（ASYNC_FLUSH）</p>
+</blockquote>
+<ul>
+<li><strong>工作原理</strong>：在异步刷盘模式下，Broker 将消息写入内存后，就立即向生产者返回确认。实际的刷盘操作是由后台线程异步完成的，不会阻塞消息的发送。</li>
+<li><strong>优点</strong>：提高了性能和吞吐量。由于消息发送不需要等待磁盘操作完成，因此减少了延迟。</li>
+<li><strong>缺点</strong>：消息可靠性降低。如果Broker在消息还未刷入磁盘前发生宕机，那么这部分消息可能会丢失。</li>
+<li><strong>适用场景</strong>：适用于对性能要求较高，但对消息可靠性要求不是特别严格的场景，如日志收集、一些非关键的业务通知等。</li>
+</ul>
+<p><strong>刷盘策略的设置</strong></p>
+<ul>
+<li><strong>配置参数</strong>：在 RocketMQ 中，可以通过设置Broker的<code>FlushDiskType</code>参数来调整刷盘策略。</li>
+<li>可以选择<code>ASYNC_FLUSH</code>（异步刷盘）或<code>SYNC_FLUSH</code>（同步刷盘）。</li>
+</ul>
+<p>同步刷盘和异步刷盘在消息可靠性和性能之间提供了不同的平衡点。</p>
+<p>在实际应用中，应根据业务需求的不同，选择最合适的刷盘策略。对于那些要求高可靠性的场景，同步刷盘是更好的选择；而对于那些更看重性能和吞吐量的应用，异步刷盘则更为适合</p>
+<h4 id="同步复制和异步复制"><a href="#同步复制和异步复制" class="headerlink" title="同步复制和异步复制"></a>同步复制和异步复制</h4><p>同步复制和异步复制在 RocketMQ 中指的是主从Broker之间的数据复制方式，这直接影响消息的可靠性和系统的可用性。这两种复制策略在保证数据一致性和提高系统性能之间提供了不同的平衡点。以下是对这两种策略的详细说明和比较：</p>
+<blockquote>
+<p>同步复制（同步双写）</p>
+</blockquote>
+<ul>
+<li><strong>工作原理</strong>：在同步复制模式下，当消息被写入主Broker后，它必须同时被复制到从Broker上。只有当消息在主从Broker上都成功写入后，才向生产者返回写入成功的确认。</li>
+<li><strong>优点</strong>：提高了数据的可靠性。即使主Broker宕机，从Broker上仍然有消息的完整副本。</li>
+<li><strong>缺点</strong>：影响性能。由于消息写入操作需要在主从Broker上都完成，这可能导致较高的延迟和降低吞吐量。</li>
+<li><strong>适用场景</strong>：适用于对数据可靠性要求极高的场景，如金融交易。</li>
+</ul>
+<blockquote>
+<p>异步复制</p>
+</blockquote>
+<ul>
+<li><strong>工作原理</strong>：在异步复制模式下，当消息写入主Broker之后，系统就直接返回写入成功。消息的复制到从Broker是异步进行的。</li>
+<li><strong>优点</strong>：提高了性能。由于不需要等待从Broker确认，消息的写入和确认速度更快。</li>
+<li><strong>缺点</strong>：可能存在数据不一致的风险。如果主Broker在数据复制完成前宕机，从Broker可能缺少最新的数据。</li>
+<li><strong>适用场景</strong>：适用于对性能要求较高，但数据可靠性要求不是极端严格的场景。</li>
+</ul>
+<blockquote>
+<p>可用性与顺序性的考虑</p>
+</blockquote>
+<ul>
+<li><strong>可用性问题</strong>：由于RocketMQ不支持自动主从切换，如果主Broker宕机，整个系统将无法继续生产消息。虽然消费者可以从从Broker消费消息，但在主Broker宕机期间会存在短暂的主从数据不一致情况。</li>
+<li><strong>解决方案</strong>：通过部署多个主从集群（多Broker架构）来提高可用性。每个Topic分布在不同的Broker中，可以在一定程度上解决单个Broker宕机问题。</li>
+<li><strong>顺序性问题</strong>：在多Broker架构下，如果某个主Broker负责特定顺序消息宕机，其他Broker无法替代它处理这些消息，可能影响消息的顺序性。</li>
+<li><strong>Dledger</strong>：RocketMQ通过引入Dledger技术，支持半数以上节点的消息复制后才确认写入成功，并支持主节点的动态选举，解决了严格顺序性和高可用性的问题。</li>
+</ul>
+<p>同步复制和异步复制在RocketMQ中提供了不同的数据一致性和性能平衡。在设计系统时，需要根据业务需求的具体情况选择合适的复制策略。</p>
+<p>Dledger作为一种解决方案，虽然提高了可用性和顺序性保证，但在选举过程中可能会暂时无法提供服务，并且对节点的数量有一定要求。在实际应用中，需综合考虑业务场景的特性和对数据可靠性、系统性能的具体需求来决定使用哪种复制策略。</p>
+<h4 id="存储机制"><a href="#存储机制" class="headerlink" title="存储机制"></a>存储机制</h4><p>RocketMQ 的存储机制采用混合型结构，优化了数据的写入效率和读取效率。这种设计涉及到三个关键组件：CommitLog、ConsumeQueue 和 IndexFile。</p>
+<p>以下是这些组件的功能和它们在整个存储结构中的作用：</p>
+<blockquote>
+<p>CommitLog   核心文件</p>
+</blockquote>
+<ul>
+<li><strong>功能</strong>：CommitLog 是消息存储的核心文件，它存储了生产者写入的消息主体内容及其元数据。</li>
+<li><strong>存储结构</strong>：CommitLog 文件的大小默认为1GB，文件命名基于起始偏移量，例如 <code>00000000001073741824</code>。</li>
+<li><strong>写入方式</strong>：消息主要是顺序写入CommitLog文件，提高了写入效率。当一个文件写满后，写入会继续在下一个文件。</li>
+</ul>
+<blockquote>
+<p>ConsumeQueue   索引文件</p>
+</blockquote>
+<ul>
+<li><strong>功能</strong>：ConsumeQueue 作为消费消息的索引，提升读取效率。</li>
+<li><strong>结构</strong>：ConsumeQueue 保存了特定Topic下队列消息在CommitLog中的起始物理偏移量、消息大小和消息Tag的HashCode值。</li>
+<li><strong>存储路径</strong>：采用 <code>topic/queue/file</code> 的三层组织结构，文件路径为 <code>$HOME/store/consumequeue/&#123;topic&#125;/&#123;queueId&#125;/&#123;fileName&#125;</code>。</li>
+<li><strong>条目组织</strong>：每个条目固定20字节，包括commitlog的物理偏移量、消息长度和tag hashcode，允许像数组一样随机访问每个条目。</li>
+</ul>
+<blockquote>
+<p>IndexFile</p>
+</blockquote>
+<ul>
+<li><strong>功能</strong>：提供了通过key或时间区间查询消息的能力，但不涉及消息的主体内容。</li>
+</ul>
+<p>存储机制的特点</p>
+<ul>
+<li><strong>高效写入</strong>：不分Topic地顺序写入CommitLog，增加了写入效率。</li>
+<li><strong>索引优化</strong>：使用ConsumeQueue作为索引文件，加快了基于Topic的消息检索和消费。</li>
+<li><strong>文件大小</strong>：CommitLog文件设计成固定大小主要是为了支持内存映射机制，提高文件操作的效率。</li>
+</ul>
+<p>读取流程</p>
+<ul>
+<li>生产者发送消息时指定Topic和QueueId，消息被顺序存储到CommitLog。</li>
+<li>相应的索引信息（偏移量、大小、tag hash）被存入对应Topic和QueueId的ConsumeQueue文件。</li>
+<li>消费者根据消费偏移量（ConsumeOffset）在ConsumeQueue中检索下一条消息的位置，然后根据CommitLog中的位置找到实际消息。</li>
+</ul>
+<p>RocketMQ的存储架构通过将所有消息顺序存储在一个共享的CommitLog文件并使用ConsumeQueue和IndexFile作为索引文件来实现高效的消息读写。</p>
+<p>这种设计在提高写入效率的同时，通过索引机制加快了消息的检索和消费速度。<br>与Kafka的每个Topic独立存储文件相比，RocketMQ的这种混合型存储结构更注重写入效率和灵活的读取操作。</p>
+<blockquote>
+<p><code>IndexFile</code> 和 <code>ConsumeQueue</code> 的区别</p>
+</blockquote>
+<p>在 RocketMQ 中，<code>IndexFile</code> 和 <code>ConsumeQueue</code> 都是消息存储结构的重要部分，但它们的用途和工作方式有所不同。</p>
+<p>理解这两者之间的区别有助于更好地把握 RocketMQ 的消息存储和检索机制。</p>
+<p>以下是对 <code>IndexFile</code> 和 <code>ConsumeQueue</code> 的主要区别的概述：</p>
+<blockquote>
+<p>ConsumeQueue</p>
+</blockquote>
+<ul>
+<li><strong>目的</strong>：<code>ConsumeQueue</code> 作为消费消息的索引，其主要目的是加快消息消费的效率。</li>
+<li><strong>内容</strong>：它保存了特定 Topic 下的队列消息在 <code>CommitLog</code> 中的起始物理偏移量、消息大小和消息 Tag 的 HashCode 值。</li>
+<li><strong>结构</strong>：<code>ConsumeQueue</code> 文件是定长设计，每个条目包含了消息在 <code>CommitLog</code> 的偏移量、长度和 Tag HashCode，使得消费者能够快速定位消息。</li>
+<li><strong>使用</strong>：消费者使用 <code>ConsumeQueue</code> 来快速查找待消费的消息，有效提升了消息消费的速度和效率。</li>
+</ul>
+<blockquote>
+<p>IndexFile</p>
+</blockquote>
+<ul>
+<li><strong>目的</strong>：<code>IndexFile</code> 的主要作用是提供一种基于 key 或时间区间来快速查询消息的方法。</li>
+<li><strong>内容</strong>：它创建了消息属性（如消息的唯一标识符或业务键）的索引，以及消息在 <code>CommitLog</code> 中的物理偏移量。</li>
+<li><strong>结构</strong>：<code>IndexFile</code> 不是针对特定 Topic 或队列的，而是为了提供跨所有消息的快速查找功能。</li>
+<li><strong>使用</strong>：当需要根据特定关键字或者时间区间查询消息时，<code>IndexFile</code> 能够快速定位这些消息。</li>
+</ul>
+<p>区别：</p>
+<ul>
+<li><strong>使用场景</strong>：<code>ConsumeQueue</code> 是为了优化消息消费过程而设计的，而 <code>IndexFile</code> 则是为了提供一种灵活的消息查询机制。</li>
+<li><strong>数据内容</strong>：<code>ConsumeQueue</code> 侧重于消息消费的快速定位，而 <code>IndexFile</code> 侧重于提供基于关键字和时间的快速检索。</li>
+<li><strong>结构设计</strong>：<code>ConsumeQueue</code> 是基于 Topic 的逻辑消费队列，每个条目指向 <code>CommitLog</code> 中的特定消息；而 <code>IndexFile</code> 是一个全局索引，允许根据不同的查询条件找到消息。</li>
+</ul>
+<hr>
+<h3 id="11、RocketMQ-如何保证不丢失消息"><a href="#11、RocketMQ-如何保证不丢失消息" class="headerlink" title="11、RocketMQ 如何保证不丢失消息"></a>11、RocketMQ 如何保证不丢失消息</h3><p>RocketMQ 采用了多种机制来确保消息的可靠性，防止消息丢失。</p>
+<p>以下是 RocketMQ 实现消息不丢失的主要方法：</p>
+<ul>
+<li><ol>
+<li>消息持久化</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>高可用性设计</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>消息重试机制</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>事务消息</li>
+</ol>
+</li>
+<li><ol start="6">
+<li>同步复制</li>
+</ol>
+</li>
+<li><ol start="7">
+<li>消息确认机制</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<ol>
+<li>消息持久化</li>
+</ol>
+</blockquote>
+<ul>
+<li><strong>磁盘存储</strong>：默认情况下，所有消息在被消费之前都会被持久化到磁盘，确保即使在发生系统崩溃的情况下也不会丢失消息。</li>
+<li><strong>同步和异步刷盘</strong>：提供了同步刷盘和异步刷盘两种模式。同步刷盘提供更高的消息可靠性，而异步刷盘则提供更高的性能。</li>
+</ul>
+<blockquote>
+<ol start="2">
+<li>高可用性设计</li>
+</ol>
+</blockquote>
+<ul>
+<li><strong>主从架构</strong>：通过部署多个Broker实例（包括主Broker和从Broker），并使用数据复制机制来确保数据的一致性和可靠性。</li>
+<li><strong>故障自动转移</strong>：如果主Broker宕机，从Broker可以自动接管，保证服务的持续可用性。</li>
+</ul>
+<blockquote>
+<ol start="3">
+<li>消息重试机制</li>
+</ol>
+</blockquote>
+<ul>
+<li><strong>消费者重试</strong>：如果消费者处理消息失败，RocketMQ 提供了消息重试机制，允许消费者在一定时间后重新尝试处理消息。</li>
+</ul>
+<blockquote>
+<ol start="4">
+<li>死信队列</li>
+</ol>
+</blockquote>
+<ul>
+<li><strong>死信处理</strong>：对于多次重试仍然失败的消息，可以被发送到死信队列。这样做可以避免一直重试无法处理的消息，同时保留这些消息以便后续分析和处理。</li>
+</ul>
+<blockquote>
+<ol start="5">
+<li>事务消息</li>
+</ol>
+</blockquote>
+<ul>
+<li><strong>半消息和事务回查</strong>：对于需要事务支持的场景，RocketMQ 提供了事务消息功能。这包括发送半消息和在必要时进行事务状态的回查，以保证事务的一致性。</li>
+</ul>
+<blockquote>
+<ol start="6">
+<li>同步复制</li>
+</ol>
+</blockquote>
+<ul>
+<li><strong>数据复制</strong>：在主从架构中，可以配置数据同步复制，确保从Broker实时复制主Broker的数据。</li>
+</ul>
+<blockquote>
+<ol start="7">
+<li>消息确认机制</li>
+</ol>
+</blockquote>
+<ul>
+<li><strong>生产者确认</strong>：生产者可以等待Broker的确认回应，以确保消息已经成功存储在Broker上。</li>
+<li><strong>消费者确认</strong>：消费者在处理完消息后发送确认，确保消息不会被重复投递。</li>
+</ul>
+<hr>
 <p>参考</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/docs/quickStart/01quickstart">https://rocketmq.apache.org/docs/quickStart/01quickstart</a></li>
@@ -768,6 +1031,8 @@
 <li><a target="_blank" rel="noopener" href="https://javaguide.cn/high-performance/message-queue/rocketmq-questions.html">https://javaguide.cn/high-performance/message-queue/rocketmq-questions.html</a></li>
 <li><a target="_blank" rel="noopener" href="https://juejin.cn/post/7134227366481494046">https://juejin.cn/post/7134227366481494046</a></li>
 <li><a target="_blank" rel="noopener" href="https://b23.tv/GneHu8S">https://b23.tv/GneHu8S</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904099993878536">https://juejin.cn/post/6844904099993878536</a></li>
+<li><a target="_blank" rel="noopener" href="https://doocs.github.io/advanced-java/#/docs/high-concurrency/how-to-ensure-high-availability-of-message-queues">https://doocs.github.io/advanced-java/#/docs/high-concurrency/how-to-ensure-high-availability-of-message-queues</a></li>
 </ul>
 
                 
@@ -822,7 +1087,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>消息队列_RocketMQ_基础使用</div>
-      <div>https://varcel.luoqi.icu/2023/12/20/消息队列_RocketMQ_基础使用/</div>
+      <div>https://varcel.luoqi.icu/2023/12/28/消息队列_RocketMQ_基础使用/</div>
     </div>
     <div class="license-meta">
       
@@ -834,7 +1099,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年12月20日</div>
+          <div>2023年12月28日</div>
         </div>
       
       
@@ -866,18 +1131,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/12/21/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97_RocketMQ_%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/" title="消息队列_RocketMQ_安装与使用">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">消息队列_RocketMQ_安装与使用</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/12/20/Java8%E6%96%B0%E7%89%B9%E6%80%A7/" title="Java8新特性">
-                        <span class="hidden-mobile">Java8新特性</span>
+                      <a href="/2023/12/26/%E7%99%BD%E6%9D%BF%E6%93%A6/" title="白板擦">
+                        <span class="hidden-mobile">白板擦</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
