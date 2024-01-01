@@ -4,11 +4,69 @@
   
   
   <entry>
+    <title>面试题_Java集合</title>
+    <link href="/2023/12/30/%E9%9D%A2%E8%AF%95%E9%A2%98_Java%E9%9B%86%E5%90%88/"/>
+    <url>/2023/12/30/%E9%9D%A2%E8%AF%95%E9%A2%98_Java%E9%9B%86%E5%90%88/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>常见的面试题</p></blockquote><ul><li>基础<ul><li>说一下 List , Set , Map 三者的区别？</li><li>List, Set, Map 在 Java 中分别有哪些对应的实现类？底层的数据结构（讲一下Java集合整个体系中的常用类）</li><li>有哪些集合是线程不安全的，怎么解决的</li></ul></li><li>List<ul><li>ArrayList 和  Vector 的区别？</li><li>ArrayList 和 LinkedList 的区别？</li><li>ArrayList 扩容机制。</li></ul></li><li>Queue<ul><li>Queue 与 Deque 的区别。</li><li>ArrayDeque 与 LinkedList 的区别。</li><li>PriorityQueue 有什么特点。</li></ul></li><li>HashMap<ul><li>HashMap 查询，删除的时间复杂度。</li><li>HashMap  的底层实现。</li><li>HashMap 的长度为什么是 2 的幂次方。</li><li>比较 HashSet , LinkedHashSet 和 TreeSet 三者的异同。</li></ul></li><li>ConcurrentHashMap<ul><li>ConcurrentHashMap 和 Hashtable 的区别。</li><li>ConcurrentHashMap 线程安全的具体实现方式&#x2F;底层具体实现。</li></ul></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>面试题</category>
+      
+      <category>Java集合</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>java</tag>
+      
+      <tag>面试题</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>面试题_Java基础</title>
+    <link href="/2023/12/30/%E9%9D%A2%E8%AF%95%E9%A2%98_Java%E5%9F%BA%E7%A1%80/"/>
+    <url>/2023/12/30/%E9%9D%A2%E8%AF%95%E9%A2%98_Java%E5%9F%BA%E7%A1%80/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>常见的面试题</p></blockquote><ul><li>数据类型<ul><li>Java 中有哪 8 种 基本数据类型？他们的默认值和占用的空间大小说一下，说一下这 8 种基本数据类型对应的包装类型。</li><li>包装类型的常量池技术了解吗</li><li>为什么要有包装类型？</li><li>什么是自动拆装箱？原理</li><li>遇见过自动拆箱引发的 NPE 问题吗？</li></ul></li><li>面向对象<ul><li><code>String</code>、<code>StringBuffer</code> 和  <code>StringBuilder</code> 的区别是什么？<code>String</code> 为什么是不可变的？</li><li>重载和重写的区别？</li><li>内部类了解吗？匿名内部类了解吗</li><li>深拷贝和浅拷贝区别？什么是引用拷贝。</li><li>接口和抽象类有什么共同点和区别？在使用的时候如何选择。</li></ul></li><li>反射 &amp; 注解 &amp; 泛型<ul><li>讲一下 Java 反射，反射有什么优缺点，你是怎么理解反射的（为什么框架需要反射），你平时怎么使用的（说一个具体使用案例）</li><li>你对 Java 注解的理解，解决了什么问题。</li><li>Java 泛型了解吗，泛型的作用，什么是类型擦除？泛型有哪些限制，介绍一下常用的通配符。</li></ul></li><li>SPI<ul><li>什么是 SPI，有什么用。</li><li>SPI 和 API 有什么区别。</li><li>讲述一下 Java SPI 的实现原理（了解）</li></ul></li><li>I&#x2F;O<ul><li>I&#x2F;O 流为什么要分为字节流和字符流呢</li><li>Java IO 中的设计模式有哪些？</li><li>BIO, NIO,AIO 有什么区别？</li></ul></li></ul><hr><p>参考</p><ul><li><a href="https://www.yuque.com/snailclimb/mf2z3k/gre6gr">https://www.yuque.com/snailclimb/mf2z3k/gre6gr</a></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>面试题</category>
+      
+      <category>Java基础</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>java</tag>
+      
+      <tag>面试题</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>消息队列_Kafka_基础使用</title>
     <link href="/2023/12/30/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97_Kafka_%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/"/>
     <url>/2023/12/30/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97_Kafka_%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/</url>
     
-    <content type="html"><![CDATA[<blockquote><p>大纲</p></blockquote><ul><li>Kafka 是什么</li><li>Kafka 的核心概念</li></ul><p>to be contined….</p><hr><p>参考</p><ul><li><a href="https://javaguide.cn/high-performance/message-queue/kafka-questions-01.html">https://javaguide.cn/high-performance/message-queue/kafka-questions-01.html</a></li></ul>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>大纲</p></blockquote><ul><li>Kafka 是什么</li><li>Kafka 的核心概念</li></ul><h3 id="1、Kafka-是什么"><a href="#1、Kafka-是什么" class="headerlink" title="1、Kafka 是什么"></a>1、Kafka 是什么</h3><p>略</p><h3 id="2、Kafka-的核心概念"><a href="#2、Kafka-的核心概念" class="headerlink" title="2、Kafka 的核心概念"></a>2、Kafka 的核心概念</h3><p>核心概念主要是： Producer、Consumer、Broker、Topic、Partition</p><p>有点类似 RocketMQ，毕竟RocketMQ 的设计之处是参考了部分 Kafka 的设计，其中 Kafka 是没有 Queue 这个概念的，主题 Topic 下面的实际存储数据采用的是 Partion 分区。</p><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231230105605.png" alt="image.png"></p><hr><blockquote><p>kafka 和 Zookeeper 的关系</p></blockquote><p>在 Kafka 2.8 之前，Kafka 其重度依赖于 Zookeeper。</p><p>在 Kafka 2.8 之后，引入了基于 Raft 协议的 KRaft 模式，不再依赖 Zookeeper，简化了 Kafka 的架构。</p><p>Zookeeper 的作用就是注册中心，作为节点的 Broker 的路由管理 和集群负载等功能</p><blockquote><p>kafka 和 RocketMQ 的区别</p></blockquote><p>可以看一下下面这个解释,  具体更深层次的理解建议从实际的代码程序方面入手去理解。</p><p>Kafka 和 RocketMQ 都是高性能的消息中间件，广泛用于处理大规模数据流和实现分布式系统中的消息传递。</p><p>尽管它们有许多相似之处，但也存在一些关键的区别。以下是 Kafka 和 RocketMQ 主要区别的概述：</p><blockquote><ol><li>设计架构</li></ol></blockquote><ul><li><strong>Kafka</strong>：最初由LinkedIn开发，重点放在高吞吐量和可扩展性上。Kafka 使用分区（Partition）和复制（Replication）的概念来保证消息的可靠性和可伸缩性。</li><li><strong>RocketMQ</strong>：最初由阿里巴巴开发，设计重点是提供更丰富的消息模型和服务质量。它采用了更复杂的存储和消息路由机制。</li></ul><blockquote><ol start="2"><li>存储机制</li></ol></blockquote><ul><li><strong>Kafka</strong>：采用分布式、可伸缩的日志存储机制。每个主题（Topic）分为多个分区，每个分区在物理上对应一个日志文件。</li><li><strong>RocketMQ</strong>：使用单一的 <code>CommitLog</code> 文件来存储所有主题的消息，然后通过 <code>ConsumeQueue</code> 和 <code>IndexFile</code> 来为消息提供索引和快速访问。</li></ul><blockquote><ol start="3"><li>消息消费模型</li></ol></blockquote><ul><li><strong>Kafka</strong>：主要支持发布-订阅模型，但也可以通过分区分配实现类似队列的消费模式。Kafka 强调消费者的概念，每个消费者负责跟踪自己的偏移量。</li><li><strong>RocketMQ</strong>：提供更多样的消息模型，包括发布-订阅、点对点消息、顺序消息和延时消息等。</li></ul><blockquote><ol start="4"><li>事务消息</li></ol></blockquote><ul><li><strong>Kafka</strong>：在较新版本中增加了对事务消息的支持，但实现相对简单。</li><li><strong>RocketMQ</strong>：提供了更为复杂和强大的事务消息支持。</li></ul><blockquote><ol start="5"><li>性能和可靠性</li></ol></blockquote><ul><li><strong>Kafka</strong>：以其高性能和高吞吐量而著称，特别是在处理大量数据时。</li><li><strong>RocketMQ</strong>：虽然也提供高性能处理，但在某些场景下可能不如Kafka高效，尤其是在单一CommitLog设计下。</li></ul><blockquote><ol start="6"><li>社区和生态</li></ol></blockquote><ul><li><strong>Kafka</strong>：有着广泛的社区支持和成熟的生态系统，是流数据处理和实时分析的首选。</li><li><strong>RocketMQ</strong>：在中国有较强的社区支持，特别是在阿里巴巴及其生态系统中得到广泛应用。</li></ul><p>选择Kafka还是RocketMQ，取决于具体的应用场景和需求。</p><p>如果需要处理大规模的数据流，特别是在数据分析和流处理方面，Kafka可能是更好的选择。而如果需要更复杂的消息类型和服务质量，或者对事务消息有更高的要求，RocketMQ可能更适合。在实际选择时，还需要考虑团队的技术栈兼容性和具体的业务需求。</p><h3 id="3、Kafka-消费顺序、消息丢失和重复消费"><a href="#3、Kafka-消费顺序、消息丢失和重复消费" class="headerlink" title="3、Kafka 消费顺序、消息丢失和重复消费"></a>3、Kafka 消费顺序、消息丢失和重复消费</h3><p>to be contined…..</p><hr><p>参考</p><ul><li><a href="https://javaguide.cn/high-performance/message-queue/kafka-questions-01.html">https://javaguide.cn/high-performance/message-queue/kafka-questions-01.html</a></li></ul>]]></content>
     
     
     <categories>
@@ -91,7 +149,7 @@
     <link href="/2023/12/26/%E7%99%BD%E6%9D%BF%E6%93%A6/"/>
     <url>/2023/12/26/%E7%99%BD%E6%9D%BF%E6%93%A6/</url>
     
-    <content type="html"><![CDATA[<p>今日计划</p><ul><li><input disabled="" type="checkbox"> Kafka 的内容学习一下</li><li><input disabled="" type="checkbox"> Redis 继续完善（根据JavaGuide）</li><li><input disabled="" type="checkbox"> MySQL 内容完善</li><li><input disabled="" type="checkbox"> 根据 面试指北 完善相关的基础面试题内容</li><li><input disabled="" type="checkbox"> 根据  advanced-java 内容完善一下自己的MQ相关内容</li></ul>]]></content>
+    <content type="html"><![CDATA[<p>今日计划</p><ul><li><input disabled="" type="checkbox"> 根据 面试指北 过一下最初版的面试题，然后反复总结复习（不建议使用微信小程序面试题，重点需要着重在框架，源码，MySQL，Redis，MQ ; 并有自己的实际使用经验（在蘑菇博客上面）</li><li><input disabled="" type="checkbox"> 一轮复习后准备简历，开始正式投递面试之旅</li><li><input disabled="" type="checkbox"> 后续打算开启全心准备面试之旅</li></ul>]]></content>
     
     
     <categories>
