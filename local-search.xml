@@ -4,6 +4,114 @@
   
   
   <entry>
+    <title>面试题_MySQL</title>
+    <link href="/2024/01/02/%E9%9D%A2%E8%AF%95%E9%A2%98_MySQL/"/>
+    <url>/2024/01/02/%E9%9D%A2%E8%AF%95%E9%A2%98_MySQL/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>面试题</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>java</tag>
+      
+      <tag>面试题</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>面试题_Redis</title>
+    <link href="/2024/01/02/%E9%9D%A2%E8%AF%95%E9%A2%98_Redis/"/>
+    <url>/2024/01/02/%E9%9D%A2%E8%AF%95%E9%A2%98_Redis/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>大纲</p></blockquote><h3 id="Redis-基础"><a href="#Redis-基础" class="headerlink" title="Redis 基础"></a>Redis 基础</h3><h4 id="Redis-有什么作用，什么场景考虑会使用缓存？"><a href="#Redis-有什么作用，什么场景考虑会使用缓存？" class="headerlink" title="Redis 有什么作用，什么场景考虑会使用缓存？"></a>Redis 有什么作用，什么场景考虑会使用缓存？</h4><h4 id="Redis-你在项目中是如何使用的，结合使用场景讲一下。"><a href="#Redis-你在项目中是如何使用的，结合使用场景讲一下。" class="headerlink" title="Redis 你在项目中是如何使用的，结合使用场景讲一下。"></a>Redis 你在项目中是如何使用的，结合使用场景讲一下。</h4><h4 id="Redis-除了作为缓存，还能做什么用，怎么用的。"><a href="#Redis-除了作为缓存，还能做什么用，怎么用的。" class="headerlink" title="Redis 除了作为缓存，还能做什么用，怎么用的。"></a>Redis 除了作为缓存，还能做什么用，怎么用的。</h4><h4 id="讲一下分布式缓存的技术选型。"><a href="#讲一下分布式缓存的技术选型。" class="headerlink" title="讲一下分布式缓存的技术选型。"></a>讲一下分布式缓存的技术选型。</h4>]]></content>
+    
+    
+    <categories>
+      
+      <category>面试题</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>java</tag>
+      
+      <tag>面试题</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>面试题_JVM</title>
+    <link href="/2024/01/02/%E9%9D%A2%E8%AF%95%E9%A2%98_JVM/"/>
+    <url>/2024/01/02/%E9%9D%A2%E8%AF%95%E9%A2%98_JVM/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>面试题</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>java</tag>
+      
+      <tag>面试题</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>面试题_Java并发</title>
+    <link href="/2024/01/02/%E9%9D%A2%E8%AF%95%E9%A2%98_Java%E5%B9%B6%E5%8F%91/"/>
+    <url>/2024/01/02/%E9%9D%A2%E8%AF%95%E9%A2%98_Java%E5%B9%B6%E5%8F%91/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>面试题</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>java</tag>
+      
+      <tag>面试题</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>面试题_Java集合</title>
     <link href="/2023/12/30/%E9%9D%A2%E8%AF%95%E9%A2%98_Java%E9%9B%86%E5%90%88/"/>
     <url>/2023/12/30/%E9%9D%A2%E8%AF%95%E9%A2%98_Java%E9%9B%86%E5%90%88/</url>
@@ -14,8 +122,6 @@
     <categories>
       
       <category>面试题</category>
-      
-      <category>Java集合</category>
       
     </categories>
     
