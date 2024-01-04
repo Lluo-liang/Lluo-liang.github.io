@@ -284,28 +284,23 @@
 </blockquote>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312041349886.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <ol>
-<li><p><strong>路由转发：</strong></p>
-<ul>
+<li><strong>路由转发：</strong><ul>
 <li>网关负责接收客户端的请求，根据配置的路由规则将请求转发到不同的微服务。这有助于实现前后端的解耦，使得微服务可以独立演进。</li>
 </ul>
 </li>
-<li><p><strong>流量控制：</strong></p>
-<ul>
+<li><strong>流量控制：</strong><ul>
 <li>网关可以对请求进行流量控制，限制每个微服务的访问频率，防止某个微服务被过度请求而影响整体系统的稳定性。</li>
 </ul>
 </li>
-<li><p><strong>熔断保护：</strong></p>
-<ul>
+<li><strong>熔断保护：</strong><ul>
 <li>网关可以实现熔断保护，当某个微服务出现故障或超时时，网关可以快速拦截请求，避免请求堆积导致整个系统的崩溃。Sentinel是一种专注于流量控制、熔断降级、系统自适应保护的开源框架，它提供了更丰富的熔断保护功能，因此有些项目选择引入Sentinel来增强熔断保护能力。</li>
 </ul>
 </li>
-<li><p><strong>日志监控：</strong></p>
-<ul>
+<li><strong>日志监控：</strong><ul>
 <li>网关通常会记录请求和响应的日志信息，这有助于进行系统的监控和故障排查。业务日志和链路追踪也是重要的监控手段。</li>
 </ul>
 </li>
-<li><p><strong>安全认证：</strong></p>
-<ul>
+<li><strong>安全认证：</strong><ul>
 <li>网关可以提供安全认证机制，确保只有经过认证和授权的用户才能访问微服务。这可以通过集成框架（如Spring Security）或使用专门的认证服务来实现。</li>
 </ul>
 </li>
