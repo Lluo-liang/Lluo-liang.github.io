@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          816 字
+          960 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          7 分钟
+          9 分钟
         
       </span>
     
@@ -336,7 +336,9 @@
 <li><strong>缓存数据预热</strong>：系统启动时预先加载热点数据到缓存中。</li>
 <li><strong>使用高可用的缓存架构</strong>：比如使用Redis集群，提高缓存系统的稳定性和容错能力。</li>
 </ul>
-<h4 id="如何保证缓存和数据库的数据一致性"><a href="#如何保证缓存和数据库的数据一致性" class="headerlink" title="如何保证缓存和数据库的数据一致性"></a>如何保证缓存和数据库的数据一致性</h4><h4 id="哪些情况可能导致-Redis-阻塞"><a href="#哪些情况可能导致-Redis-阻塞" class="headerlink" title="哪些情况可能导致 Redis 阻塞"></a>哪些情况可能导致 Redis 阻塞</h4><h3 id="4、Redis-集群"><a href="#4、Redis-集群" class="headerlink" title="4、Redis 集群"></a>4、Redis 集群</h3><h3 id="5、Reids-使用规范"><a href="#5、Reids-使用规范" class="headerlink" title="5、Reids 使用规范"></a>5、Reids 使用规范</h3><hr>
+<h4 id="如何保证缓存和数据库的数据一致性"><a href="#如何保证缓存和数据库的数据一致性" class="headerlink" title="如何保证缓存和数据库的数据一致性"></a>如何保证缓存和数据库的数据一致性</h4><h4 id="哪些情况可能导致-Redis-阻塞"><a href="#哪些情况可能导致-Redis-阻塞" class="headerlink" title="哪些情况可能导致 Redis 阻塞"></a>哪些情况可能导致 Redis 阻塞</h4><h3 id="4、Redis-集群"><a href="#4、Redis-集群" class="headerlink" title="4、Redis 集群"></a>4、Redis 集群</h3><p>看一下这篇文字： <a target="_blank" rel="noopener" href="https://www.yuque.com/snailclimb/mf2z3k/ks9olb19hc9wse5k">https://www.yuque.com/snailclimb/mf2z3k/ks9olb19hc9wse5k</a></p>
+<p>里面讲述了从 主从节点复制 →  哨兵机制 Sentinel  → Redis 集群Cluster （自动配置了哨兵模式，且建议至少一主一从节点，三个主节点以上的单数节点集群模式）</p>
+<h3 id="5、Reids-使用规范"><a href="#5、Reids-使用规范" class="headerlink" title="5、Reids 使用规范"></a>5、Reids 使用规范</h3><hr>
 <p>参考</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://javaguide.cn/database/redis/redis-questions-02.html">https://javaguide.cn/database/redis/redis-questions-02.html</a></li>

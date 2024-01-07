@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6.5k 字
+          6.8k 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          54 分钟
+          57 分钟
         
       </span>
     
@@ -483,8 +483,39 @@
 <h4 id="索引-B-树"><a href="#索引-B-树" class="headerlink" title="索引(B+树)"></a>索引(B+树)</h4><blockquote>
 <p>B+ Tree 原理</p>
 </blockquote>
-<p>待看： <a target="_blank" rel="noopener" href="https://www.pdai.tech/md/db/sql-mysql/sql-mysql-b-tree.html">https://www.pdai.tech/md/db/sql-mysql/sql-mysql-b-tree.html</a></p>
-<p>to be contined….</p>
+<p>参考： </p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.pdai.tech/md/db/sql-mysql/sql-mysql-b-tree.html">https://www.pdai.tech/md/db/sql-mysql/sql-mysql-b-tree.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.yuque.com/snailclimb/mf2z3k/wghadf">https://www.yuque.com/snailclimb/mf2z3k/wghadf</a></li>
+</ul>
+<p>索引为什么使用 B+ 树</p>
+<p>引入各种树解决的问题以及面临的新问题</p>
+<ul>
+<li>二叉查找树（BST)<ul>
+<li>不平衡</li>
+<li>二叉查找树的平均时间复杂度是 O(lgn)；但是在极端情况下，BST会退化为链表，此时时间复杂度为 O(n)</li>
+</ul>
+</li>
+<li>平衡二叉树（AVL)<ul>
+<li>旋转耗时</li>
+<li>删除的一个耗时效率较低，比起使用的好处而言，综合使用并不广泛</li>
+</ul>
+</li>
+<li>红黑树<ul>
+<li>树太高</li>
+<li>红黑树在内存的表现优异；但是在真正存储在磁盘的时候，考虑的偏重是需要减少IO次数</li>
+</ul>
+</li>
+<li>B树<ul>
+<li>为磁盘而生</li>
+<li>将二叉树改为了多路平衡查找树</li>
+</ul>
+</li>
+<li>B+ 树<ul>
+<li>在 B 树的基础上，进一步降低了树的高度，部分改造，使得范围查询更加高效。</li>
+</ul>
+</li>
+</ul>
 <h3 id="5、锁机制"><a href="#5、锁机制" class="headerlink" title="5、锁机制"></a>5、锁机制</h3><p>MySQL的锁机制是一种用来管理多个事务对同一数据进行访问的机制，旨在保持数据的一致性和完整性。</p>
 <p>锁机制允许多个事务同时读写数据库，同时防止数据冲突和不一致。</p>
 <p>MySQL中的锁主要可以分为以下几种类型：</p>
@@ -641,6 +672,7 @@
 <li><a target="_blank" rel="noopener" href="https://developer.huawei.com/consumer/cn/forum/topic/0204405591412170236">https://developer.huawei.com/consumer/cn/forum/topic/0204405591412170236</a></li>
 <li><a target="_blank" rel="noopener" href="https://javaguide.cn/database/mysql/mysql-questions-01.html">https://javaguide.cn/database/mysql/mysql-questions-01.html</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.pdai.tech/md/db/sql-mysql/sql-mysql-overview.html">https://www.pdai.tech/md/db/sql-mysql/sql-mysql-overview.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.yuque.com/snailclimb/mf2z3k/wghadf">https://www.yuque.com/snailclimb/mf2z3k/wghadf</a></li>
 </ul>
 
                 

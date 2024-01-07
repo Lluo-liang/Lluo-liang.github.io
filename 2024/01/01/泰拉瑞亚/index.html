@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          388 字
+          2.5k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          4 分钟
+          22 分钟
         
       </span>
     
@@ -303,6 +303,74 @@
 </ul>
 <p>指南</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202401041533321.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>服务器部署：</p>
+<p>教程： <a target="_blank" rel="noopener" href="https://hub.docker.com/r/swsk33/terraria-server?spm=a2c6h.12873639.article-detail.10.44aa6e8ahenrRb">https://hub.docker.com/r/swsk33/terraria-server?spm=a2c6h.12873639.article-detail.10.44aa6e8ahenrRb</a></p>
+<p>创建数据卷</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker volume create terraria-config<br>docker volume create terraria-world<br></code></pre></td></tr></table></figure>
+
+<p>找到 Linux 服务器上面的实际地址：</p>
+<p>要找到创建的数据卷 <code>terraria-config</code> 的具体位置，可以使用以下 Docker 命令：</p>
+<ol>
+<li><p>首先，运行 <code>docker volume inspect terraria-config</code>。这个命令将显示关于指定数据卷的详细信息。</p>
+</li>
+<li><p>在命令的输出中，查找 “Mountpoint” 字段。这个字段将显示数据卷在主机系统上的实际存储位置。</p>
+</li>
+</ol>
+<p>创建容器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker run -itd --name=terraria-server -p 7777:7777 -v terraria-config:/terraria/config -v terraria-world:/terraria/world swsk33/terraria-server<br></code></pre></td></tr></table></figure>
+
+<p>命令各部分的详细解释：</p>
+<ol>
+<li><p><strong>docker run</strong>: 这是 Docker 的一个命令，用于创建并启动一个新的容器。</p>
+</li>
+<li><p><strong>-itd</strong>: 这是几个参数的组合。<code>-i</code> 代表交互模式（interactive），<code>-t</code> 分配一个伪终端（tty），而 <code>-d</code> 则代表后台运行（detached）。</p>
+</li>
+<li><p><strong>–name&#x3D;terraria-server</strong>: 这为容器指定了一个名称，即 <code>terraria-server</code>。</p>
+</li>
+<li><p><strong>-p 7777:7777</strong>: 这个参数将容器内的 7777 端口映射到主机的 7777 端口。Terraria 服务器默认在 7777 端口监听，因此这允许外部玩家连接到你的服务器。</p>
+</li>
+<li><p><strong>-v terraria-config:&#x2F;terraria&#x2F;config</strong>: 这是一个卷挂载指令。它挂载了之前创建的 <code>terraria-config</code> 数据卷到容器内的 <code>/terraria/config</code> 目录。这允许容器访问和存储配置文件。</p>
+</li>
+<li><p><strong>-v terraria-world:&#x2F;terraria&#x2F;world</strong>: 同样是一个卷挂载指令，挂载了另一个数据卷 <code>terraria-world</code> 到容器内的 <code>/terraria/world</code> 目录。这通常用于存储游戏世界数据。</p>
+</li>
+<li><p><strong>swsk33&#x2F;terraria-server</strong>: 这是 Docker 镜像的名称，Docker 会从 Docker Hub 或其它配置的镜像仓库中下载这个镜像。<code>swsk33/terraria-server</code> 指的是特定于 Terraria 服务器的 Docker 镜像。</p>
+</li>
+</ol>
+<p>这个命令创建并启动了一个 Terraria 服务器的 Docker 容器，映射了必要的端口，并挂载了配置和世界数据的卷，以便于持久化和管理这些数据。这样，你可以通过主机的 7777 端口访问 Terraria 服务器，而服务器的配置和世界数据则被安全地存储在 Docker 数据卷中。</p>
+<p>开启一下服务器防火墙地址 7777</p>
+<p>修改配置文件：略，具体看参考地址的内容</p>
+<p>配置文件地址： </p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/var/</span>lib<span class="hljs-regexp">/docker/</span>volumes<span class="hljs-regexp">/terraria-config/</span>_data/config.txt<br></code></pre></td></tr></table></figure>
+
+<p>改一下这个世界名称，然后将你需要放入的世界放入到服务器</p>
+<blockquote>
+<p>正确地停止服务端</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker attach terraria-server<br></code></pre></td></tr></table></figure>
+
+<p>此时就进入了泰拉瑞亚服务端的交互式控制台，可能你会发现连接上后并没有显示服务端先前在控制台输出的内容，看起来像卡死了一样的，但是事实上你已经成功连接上了服务端控制台，可以直接输入泰拉瑞亚服务端的指令，这时你试着输入<code>help</code>试试，能够如你所愿。</p>
+<p>输入<code>save</code>命令可以保存世界，若要停止服务端输入<code>exit</code>，这时服务端和容器都会停止，并回到宿主机终端。再次启动时使用<code>docker start</code>命令即可。修改配置文件之后就需要通过这种方式退出停止服务端并重新启动。</p>
+<p>进入容器内泰拉瑞亚服务端控制台后，如果想退出容器但是仍然保持容器运行，依次按下Ctrl + P和Ctrl + Q组合键即可</p>
+<p>常用命令</p>
+<ol>
+<li><p><strong>查看当前的容器镜像</strong>: 使用命令 <code>docker images</code> 来列出所有在你的系统上的 Docker 镜像。这个命令会显示镜像的仓库名、标签、镜像 ID、创建时间以及大小等信息。</p>
+<p> <code>docker images</code></p>
+</li>
+<li><p><strong>查看正在运行的容器</strong>: 使用命令 <code>docker ps</code> 来列出当前正在运行的容器。这个命令会显示容器的 ID、镜像名、命令、创建时间、状态、端口等信息。</p>
+<p> <code>docker ps</code></p>
+<p> 如果你想看到所有容器（包括停止的），可以使用 <code>docker ps -a</code>。</p>
+<p> <code>docker ps -a</code></p>
+</li>
+</ol>
+<p>他这里启动的是 swsk33&#x2F;terraria-server 这个镜像名称，如果没有运行起来，再执行一次启动命令；而且实际后面运行命令的时候是显示已经存在这个容器</p>
+<p>执行命令: 启动这个容器</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">docker <span class="hljs-keyword">start</span> terraria-<span class="hljs-keyword">server</span><br><br>docker attach terraria-<span class="hljs-keyword">server</span><br></code></pre></td></tr></table></figure>
+
+<p>查看 所有容器</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">docker ps -<span class="hljs-selector-tag">a</span><br></code></pre></td></tr></table></figure>
+
+<p>不管其他，先访问加入看一下： 139.9.94.208</p>
+<p>实际操作的时候主义一下启动命令，是通过连续执行两步命令来进行的，和文档说的有点不太一样。</p>
 
                 
               </div>
