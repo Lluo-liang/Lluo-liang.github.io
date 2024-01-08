@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://varcel.luoqi.icu/2024/01/08/Java%E5%9F%BA%E7%A1%80_%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B902/</loc>
+    <loc>https://varcel.luoqi.icu/2024/01/08/%E8%98%91%E8%8F%87%E5%8D%9A%E5%AE%A2%E9%A1%B9%E7%9B%AE_Day05/</loc>
     
     <lastmod>2024-01-08</lastmod>
     
@@ -21,6 +21,15 @@
   
   <url>
     <loc>https://varcel.luoqi.icu/about/index.html</loc>
+    
+    <lastmod>2024-01-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://varcel.luoqi.icu/2024/01/08/Java%E5%9F%BA%E7%A1%80_%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B902/</loc>
     
     <lastmod>2024-01-08</lastmod>
     

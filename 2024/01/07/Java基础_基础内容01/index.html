@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.7k 字
+          7.6k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          48 分钟
+          64 分钟
         
       </span>
     
@@ -743,7 +743,83 @@
 <td>Boolean</td>
 </tr>
 </tbody></table>
-<h4 id="3-2-基本类型和包装类型"><a href="#3-2-基本类型和包装类型" class="headerlink" title="3.2 基本类型和包装类型"></a>3.2 基本类型和包装类型</h4><p>to be contined….</p>
+<h4 id="3-2-基本类型和包装类型"><a href="#3-2-基本类型和包装类型" class="headerlink" title="3.2 基本类型和包装类型"></a>3.2 基本类型和包装类型</h4><blockquote>
+<p>区别</p>
+</blockquote>
+<ul>
+<li><strong>用途</strong>：除了定义一些常量和局部变量之外，我们在其他地方比如方法参数、对象属性中很少会使用基本类型来定义变量。并且，包装类型可用于泛型，而基本类型不可以。</li>
+<li><strong>存储方式</strong>：基本数据类型的局部变量存放在 Java 虚拟机栈中的局部变量表中，基本数据类型的成员变量（未被 <code>static</code> 修饰 ）存放在 Java 虚拟机的堆中。包装类型属于对象类型，我们知道几乎所有对象实例都存在于堆中。</li>
+<li><strong>占用空间</strong>：相比于包装类型（对象类型）， 基本数据类型占用的空间往往非常小。</li>
+<li><strong>默认值</strong>：成员变量包装类型不赋值就是 <code>null</code> ，而基本类型有默认值且不是 <code>null</code>。</li>
+<li><strong>比较方式</strong>：</li>
+</ul>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey">比较方式<br><br>对于基本数据类型来说，`==` 比较的是值。对于包装数据类型来说，`==` 比较的是对象的内存地址。所有整型包装类对象之间值的比较，全部使用 `equals()` 方法。<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>特点</p>
+</blockquote>
+<ol>
+<li><strong>对象特性</strong>：包装类型是对象，可以调用各种方法，例如<code>Integer.parseInt()</code>。</li>
+<li><strong>可用于泛型</strong>：在集合类等使用泛型的场合，只能使用对象，因此必须使用包装类型。</li>
+<li><strong>可表示空值</strong>：可以表示为<code>null</code>，而基本类型不能。</li>
+<li><strong>堆内存</strong>：对象通常存储在堆上，这可能导致处理稍慢于基本类型。</li>
+<li><strong>自动装箱和拆箱</strong>：Java提供自动将基本类型转换为包装类型（装箱）和将包装类型转换为基本类型（拆箱）的功能。</li>
+</ol>
+<blockquote>
+<p>比较和选择</p>
+</blockquote>
+<ul>
+<li>使用基本数据类型时，如果关注性能和内存，并且不需要对象的特性，比如在大量数值计算中。</li>
+<li>使用包装类型时，如果需要对象的特性，比如在使用集合类、需要表示空值或使用泛型时。</li>
+</ul>
+<h4 id="3-3-包装类型的缓存机制"><a href="#3-3-包装类型的缓存机制" class="headerlink" title="3.3 包装类型的缓存机制"></a>3.3 包装类型的缓存机制</h4><p>Java中的某些包装类实现了一个称为“缓存机制”的特性，主要是为了提高性能和减少内存使用。这一机制最常见于<code>Integer</code>和其他几种数字类型的包装类中。我们来详细探讨这一点。</p>
+<blockquote>
+<p>包装类型缓存机制的概述</p>
+</blockquote>
+<ol>
+<li><strong>Integer缓存</strong>: Java的<code>Integer</code>类缓存了从<code>-128</code>到<code>127</code>之间的整数。这意味着在这个范围内的整数会被预先创建并缓存。当代码需要这些值的包装实例时，会重用已经创建的对象，而不是每次都创建新对象。</li>
+<li><strong>其他类型</strong>: 类似的缓存机制也适用于<code>Byte</code>, <code>Short</code>, <code>Long</code>, <code>Character</code>等包装类。但具体的缓存范围可能不同。例如，<code>Byte</code>缓存了所有可能的值（从<code>-128</code>到<code>127</code>），而<code>Character</code>缓存了从<code>\u0000</code>到<code>\u007F</code>的字符。</li>
+</ol>
+<blockquote>
+<p>缓存机制的工作原理</p>
+</blockquote>
+<p>当你通过<code>valueOf</code>方法（这是自动装箱背后使用的方法）或者直接使用自动装箱来创建一个包装对象时，Java会首先检查其值是否在缓存范围内。如果是，它会从缓存中返回相应的对象实例；如果不是，它会创建一个新的对象实例。</p>
+<p>例如：</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs abnf">Integer a <span class="hljs-operator">=</span> <span class="hljs-number">100</span><span class="hljs-comment">;  // 使用缓存</span><br>Integer b <span class="hljs-operator">=</span> <span class="hljs-number">100</span><span class="hljs-comment">;  // 重用相同的对象</span><br>Integer c <span class="hljs-operator">=</span> <span class="hljs-number">200</span><span class="hljs-comment">;  // 创建新的对象实例，因为200不在缓存范围内</span><br></code></pre></td></tr></table></figure>
+
+<p>在上面的例子中，<code>a</code>和<code>b</code>引用的是内存中相同的<code>Integer</code>对象，因为100在缓存范围内。</p>
+<blockquote>
+<p>缓存机制的好处</p>
+</blockquote>
+<ul>
+<li><strong>性能提升</strong>：通过减少不必要的对象创建，提高了性能。</li>
+<li><strong>内存优化</strong>：减少了内存的占用，因为共享了相同的对象。</li>
+</ul>
+<blockquote>
+<p>使用时的注意事项</p>
+</blockquote>
+<ul>
+<li>当比较包装类型的值时，应该使用<code>equals</code>方法而不是&#x3D;&#x3D; 运算符，因为 &#x3D;&#x3D; 比较的是引用，而不是值。但在缓存范围内，使用 &#x3D;&#x3D; 可能会误导你认为比较的是值。</li>
+<li>在处理大量的整数运算时，要意识到自动装箱和拆箱可能会引入额外的性能开销</li>
+</ul>
+<hr>
+<p>Java 基本数据类型的包装类型的大部分都用到了缓存机制来提升性能。</p>
+<p><code>Byte</code>,<code>Short</code>,<code>Integer</code>,<code>Long</code> 这 4 种包装类默认创建了数值 <strong>[-128，127]</strong> 的相应类型的缓存数据，</p>
+<p><code>Character</code> 创建了数值在 <strong>[0,127]</strong> 范围的缓存数据，</p>
+<p><code>Boolean</code> 直接返回 <code>True</code> or <code>False</code>。</p>
+<p>下面我们来看一个问题：下面的代码的输出结果是 <code>true</code> 还是 <code>false</code> 呢？</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs abnf">Integer i1 <span class="hljs-operator">=</span> <span class="hljs-number">40</span><span class="hljs-comment">;</span><br>Integer i2 <span class="hljs-operator">=</span> new Integer(<span class="hljs-number">40</span>)<span class="hljs-comment">;</span><br>System.out.println(i1<span class="hljs-operator">=</span><span class="hljs-operator">=</span>i2)<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
+
+<p><code>Integer i1=40</code> 这一行代码会发生装箱，也就是说这行代码等价于 <code>Integer i1=Integer.valueOf(40)</code> 。</p>
+<p>因此，<code>i1</code> 直接使用的是缓存中的对象。而<code>Integer i2 = new Integer(40)</code> 会直接创建新的对象。</p>
+<p>因此，答案是 <code>false</code> 。</p>
+<p>记住：<strong>所有整型包装类对象之间值的比较，全部使用 equals 方法比较</strong>。</p>
+<div style="background-color: #ecf0f1; color: #34495e; padding: 15px; border: 2px solid #bdc3c7; border-radius: 5px;">
+  <strong>记住：</strong> 所有整型包装类对象之间值的比较，全部使用 equals 方法比较
+</div>
+
+<p> <img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240108224809.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="3-4-自动装箱与拆箱"><a href="#3-4-自动装箱与拆箱" class="headerlink" title="3.4 自动装箱与拆箱"></a>3.4 自动装箱与拆箱</h4><p>to be contined…</p>
 <hr>
 <p>参考</p>
 <ul>

@@ -1,6 +1,7 @@
-https://varcel.luoqi.icu/2024/01/08/Java%E5%9F%BA%E7%A1%80_%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B902/
+https://varcel.luoqi.icu/2024/01/08/%E8%98%91%E8%8F%87%E5%8D%9A%E5%AE%A2%E9%A1%B9%E7%9B%AE_Day05/
 https://varcel.luoqi.icu/2023/12/26/%E7%99%BD%E6%9D%BF%E6%93%A6/
 https://varcel.luoqi.icu/about/index.html
+https://varcel.luoqi.icu/2024/01/08/Java%E5%9F%BA%E7%A1%80_%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B902/
 https://varcel.luoqi.icu/2024/01/07/Java%E5%9F%BA%E7%A1%80_%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B901/
 https://varcel.luoqi.icu/2024/01/07/%E9%9D%A2%E8%AF%95%E9%A2%98_%E8%83%8C%E8%AF%B5%E7%89%88/
 https://varcel.luoqi.icu/2024/01/02/%E9%9D%A2%E8%AF%95%E9%A2%98_Redis/
