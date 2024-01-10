@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.7k 字
+          9.3k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          48 分钟
+          78 分钟
         
       </span>
     
@@ -581,11 +581,179 @@
 <li>对于基本数据类型来说，&#x3D;&#x3D; 比较的是值。</li>
 <li>对于引用数据类型来说，&#x3D;&#x3D; 比较的是对象的内存地址。</li>
 </ul>
+<p>在Java中，&#x3D;&#x3D; 运算符和<code>equals()</code>方法用于比较两个对象，但它们在比较方式上有本质的不同。</p>
+<blockquote>
+<p>&#x3D;&#x3D; 运算符</p>
+</blockquote>
+<ol>
+<li><p><strong>用途</strong>: 主要用于比较基本数据类型的值和引用类型的地址。</p>
+</li>
+<li><p><strong>对基本类型</strong>: 比较两个基本类型的值是否相同（例如，<code>int</code>, <code>char</code>, <code>double</code>等）。</p>
+</li>
+<li><p><strong>对引用类型</strong>: 比较两个对象引用是否指向内存中的同一位置。</p>
+</li>
+</ol>
+<blockquote>
+<p><code>equals()</code> 方法</p>
+</blockquote>
+<ol>
+<li><p><strong>用途</strong>: 主要用于比较两个对象的内容或状态是否相等。</p>
+</li>
+<li><p><strong>默认行为</strong>: 在 <code>Object</code> 类中定义的 <code>equals()</code> 方法默认行为与  &#x3D;&#x3D; 相同，即比较对象的内存地址。</p>
+</li>
+<li><p><strong>重写</strong>: 多数类，如 <code>String</code>, <code>Date</code> 等，都重写了 <code>equals()</code> 方法来进行逻辑比较，即比较对象的内容而不是内存地址。</p>
+</li>
+</ol>
+<blockquote>
+<p>表格比较</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>&#x3D;&#x3D; 运算符</th>
+<th><code>equals()</code> 方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>比较类型</td>
+<td>基本数据类型的值 &#x2F; 引用类型的内存地址</td>
+<td>对象内容（可重写）</td>
+</tr>
+<tr>
+<td>默认行为</td>
+<td>比较内存地址（对于引用类型）</td>
+<td>在 <code>Object</code> 类中也是比较内存地址</td>
+</tr>
+<tr>
+<td>可重写性</td>
+<td>不可重写</td>
+<td>可以重写以提供自定义比较逻辑</td>
+</tr>
+<tr>
+<td>使用场景</td>
+<td>当需要检查两个变量是否指向相同的对象时使用</td>
+<td>当需要检查两个对象是否在逻辑上相等时使用</td>
+</tr>
+<tr>
+<td>例子</td>
+<td><code>a == b</code>（对于基本类型或检查两个引用是否指向同一对象）</td>
+<td><code>a.equals(b)</code>（对于检查两个对象的内容是否相等）</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>类比</p>
+</blockquote>
+<ul>
+<li><p><strong>&#x3D;&#x3D; 运算符</strong>: 就像检查两张名片上的地址是否一样，即使两张名片属于同一人，但如果地址不同，结果就是不相等。</p>
+</li>
+<li><p><strong><code>equals()</code> 方法</strong>: 就像比较两个人的面貌，即使他们住在不同的地方（不同的内存地址），只要面貌相同（内容相同），就认为他们相等。</p>
+</li>
+</ul>
+<p>扩展的一些问题：</p>
+<p>to be conteind…</p>
+<h4 id="2-3-hashCode-有什么用"><a href="#2-3-hashCode-有什么用" class="headerlink" title="2.3 hashCode 有什么用"></a>2.3 hashCode 有什么用</h4><p><code>hashCode()</code> 的作用是获取哈希码（<code>int</code> 整数），也称为散列码。这个哈希码的作用是确定该对象在哈希表中的索引位置。</p>
+<p><code>hashCode()</code> 定义在 JDK 的 <code>Object</code> 类中，这就意味着 Java 中的任何类都包含有 <code>hashCode()</code> 函数。另外需要注意的是：<code>Object</code> 的 <code>hashCode()</code> 方法是本地方法，也就是用 C 语言或 C++ 实现的。</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs aspectj"><span class="hljs-keyword">public</span> <span class="hljs-keyword">native</span> <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">hashCode</span><span class="hljs-params">()</span></span>;<br></code></pre></td></tr></table></figure>
+
+<p>散列表存储的是键值对(key-value)，它的特点是：<strong>能根据“键”快速的检索出对应的“值”。这其中就利用到了散列码！（可以快速找到所需要的对象）</strong></p>
+<p>hashCode() 和  equals() 方法</p>
+<ul>
+<li>如果两个对象的<code>hashCode</code> 值相等，那这两个对象不一定相等（哈希碰撞）。</li>
+<li>如果两个对象的<code>hashCode</code> 值相等并且<code>equals()</code>方法也返回 <code>true</code>，我们才认为这两个对象相等。</li>
+<li>如果两个对象的<code>hashCode</code> 值不相等，我们就可以直接认为这两个对象不相等。</li>
+</ul>
+<blockquote>
+<p>为什么重写 equals() 时必须重写 hashCode() 方法？</p>
+</blockquote>
+<p>因为两个相等的对象的 <code>hashCode</code> 值必须是相等。也就是说如果 <code>equals</code> 方法判断两个对象是相等的，那这两个对象的 <code>hashCode</code> 值也要相等。</p>
+<p>如果重写 <code>equals()</code> 时没有重写 <code>hashCode()</code> 方法的话就可能会导致 <code>equals</code> 方法判断是相等的两个对象，<code>hashCode</code> 值却不相等。</p>
+<p><strong>思考</strong>：重写 <code>equals()</code> 时没有重写 <code>hashCode()</code> 方法的话，使用 <code>HashMap</code> 可能会出现什么问题。</p>
+<p>如果没有重写哈希函数的话，两个键获取哈希表位置索引可能会不对，造成一些现象，比如：在集合中查找对象时可能会失败，即使该对象已经存在；即使使用一个逻辑上相等的键去查找，也可能无法找到对应的值，导致数据访问上的问题等。</p>
+<blockquote>
+<p>散列表</p>
+</blockquote>
+<p>散列表（Hash table，也叫哈希表），是根据键（Key）而直接访问在存储器存储位置的数据结构。也就是说，它通过计算出一个键值的函数，将所需查询的数据映射到表中一个位置来让人访问，这加快了查找速度。</p>
+<p>这个映射函数称做散列函数，存放记录的数组称做散列表。</p>
+<p>一个通俗的例子是，</p>
+<p>为了查找电话簿中某人的号码，可以创建一个按照人名首字母顺序排列的表（即建立人名 x 到首字母 F(x) 的一个函数关系），在首字母为W的表中查找“王”姓的电话号码，显然比直接查找就要快得多。这里使用人名作为关键字，“取首字母”是这个例子中散列函数的函数法则 F( )，存放首字母的表对应散列表。关键字和函数法则理论上可以任意确定。</p>
+<blockquote>
+<p>哈希表</p>
+</blockquote>
+<p>哈希表（Hash Table）其实也叫散列表，是一个数据结构。</p>
+<p>哈希表本质上就是一个数组，只不过数组存放的是单一的数据，而哈希表中存放的是键值对（key - value pair）</p>
+<p>key 通过哈希函数（hash function）得到数组的索引，进而存取索引位置的值。</p>
+<p>不同的 key 通过哈希函数可能得到相同的索引值，此时，产生了哈希碰撞。</p>
+<p>通过在数组中插入链表或者二叉树，可以解决哈希碰撞问题。</p>
+<h3 id="三、String"><a href="#三、String" class="headerlink" title="三、String"></a>三、String</h3><h4 id="3-1-String、StringBuffer、StringBuilder-的区别？"><a href="#3-1-String、StringBuffer、StringBuilder-的区别？" class="headerlink" title="3.1  String、StringBuffer、StringBuilder 的区别？"></a>3.1  String、StringBuffer、StringBuilder 的区别？</h4><table>
+<thead>
+<tr>
+<th>特性</th>
+<th><code>String</code></th>
+<th><code>StringBuffer</code></th>
+<th><code>StringBuilder</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>可变性</td>
+<td>不可变</td>
+<td>可变</td>
+<td>可变</td>
+</tr>
+<tr>
+<td>线程安全</td>
+<td>是</td>
+<td>是</td>
+<td>否</td>
+</tr>
+<tr>
+<td>性能</td>
+<td>较低（对于频繁修改）</td>
+<td>高（线程安全）</td>
+<td>高（非线程安全）</td>
+</tr>
+<tr>
+<td>用途</td>
+<td>文本不频繁改变时</td>
+<td>多线程中文本频繁改变</td>
+<td>单线程中文本频繁改变</td>
+</tr>
+</tbody></table>
+<h4 id="3-2-String-为什么是不可变的"><a href="#3-2-String-为什么是不可变的" class="headerlink" title="3.2 String 为什么是不可变的"></a>3.2 String 为什么是不可变的</h4><p><code>String</code> 真正不可变有下面几点原因：</p>
+<ol>
+<li>保存字符串的数组被 <code>final</code> 修饰且为私有的，并且<code>String</code> 类没有提供&#x2F;暴露修改这个字符串的方法。</li>
+<li><code>String</code> 类被 <code>final</code> 修饰导致其不能被继承，进而避免了子类破坏 <code>String</code> 不可变</li>
+</ol>
+<h4 id="3-3-字符串拼接用“-”-还是-StringBuilder"><a href="#3-3-字符串拼接用“-”-还是-StringBuilder" class="headerlink" title="3.3  字符串拼接用“+” 还是 StringBuilder?"></a>3.3  字符串拼接用“+” 还是 StringBuilder?</h4><p>Java 语言本身并不支持运算符重载，“+”和“+&#x3D;”是专门为 String 类重载过的运算符，也是 Java 中仅有的两个重载过的运算符。</p>
+<p>在JDK8中，字符串对象通过“+”的字符串拼接方式，实际上是通过 <code>StringBuilder</code> 调用 <code>append()</code> 方法实现的，拼接完成之后调用 <code>toString()</code> 得到一个 <code>String</code> 对象 。</p>
+<p>不过，在循环内使用“+”进行字符串的拼接的话，存在比较明显的缺陷：<strong>编译器不会创建单个 <code>StringBuilder</code> 以复用，会导致创建过多的 <code>StringBuilder</code> 对象</strong>。</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-type">String</span> str1 = <span class="hljs-string">&quot;he&quot;</span>;<br><span class="hljs-type">String</span> str2 = <span class="hljs-string">&quot;llo&quot;</span>;<br><span class="hljs-type">String</span> str3 = <span class="hljs-string">&quot;world&quot;</span>;<br><span class="hljs-type">String</span> str4 = str1 + str2 + str3;<br></code></pre></td></tr></table></figure>
+
+<p>对应字节码</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202401101412356.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-type">String</span>[] arr = &#123;<span class="hljs-string">&quot;he&quot;</span>, <span class="hljs-string">&quot;llo&quot;</span>, <span class="hljs-string">&quot;world&quot;</span>&#125;;<br><span class="hljs-type">String</span> s = <span class="hljs-string">&quot;&quot;</span>;<br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; arr.length; i++) &#123;<br>    s += arr[i];<br>&#125;<br>System.out.<span class="hljs-built_in">println</span>(s);<br></code></pre></td></tr></table></figure>
+
+<p><code>StringBuilder</code> 对象是在循环内部被创建的，这意味着每循环一次就会创建一个 <code>StringBuilder</code> 对象</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202401101412821.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>如果直接使用 <code>StringBuilder</code> 对象进行字符串拼接的话，就不会存在这个问题。</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-keyword">String</span>[] arr = &#123;<span class="hljs-string">&quot;he&quot;</span>, <span class="hljs-string">&quot;llo&quot;</span>, <span class="hljs-string">&quot;world&quot;</span>&#125;;<br>StringBuilder s = <span class="hljs-keyword">new</span> <span class="hljs-type">StringBuilder</span>();<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">String</span> value : <span class="hljs-type">arr</span>) &#123;<br>    s.append(value);<br>&#125;<br>System.out.println(s);<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202401101413874.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>而在 JDK9中，字符串相加 “+” 改为了用动态方法 <code>makeConcatWithConstants()</code> 来实现，而不是大量的 <code>StringBuilder</code>；这也意味着 JDK 9 之后，我们可以放心使用“+” 进行字符串拼接。</p>
+<h4 id="3-4-String-equals-和-Object-equals-有何区别"><a href="#3-4-String-equals-和-Object-equals-有何区别" class="headerlink" title="3.4  String#equals() 和 Object#equals() 有何区别"></a>3.4  String#equals() 和 Object#equals() 有何区别</h4><p><code>String</code> 中的 <code>equals</code> 方法是被重写过的，比较的是 String 字符串的值是否相等。 <code>Object</code> 的 <code>equals</code> 方法是比较的对象的内存地址。</p>
+<h4 id="3-5-字符串常量池-🐎"><a href="#3-5-字符串常量池-🐎" class="headerlink" title="3.5 字符串常量池   🐎"></a>3.5 字符串常量池   🐎</h4><p><strong>字符串常量池</strong> 是 JVM 为了提升性能和减少内存消耗针对字符串（String 类）专门开辟的一块区域，主要目的是为了避免字符串的重复创建。</p>
 <p>to be contined….</p>
+<h4 id="3-6-String-s1-new-String-“abc”-这句话创建了几个字符串对象-🐕"><a href="#3-6-String-s1-new-String-“abc”-这句话创建了几个字符串对象-🐕" class="headerlink" title="3.6 String s1 &#x3D; new String(“abc”);这句话创建了几个字符串对象  🐕"></a>3.6 String s1 &#x3D; new String(“abc”);这句话创建了几个字符串对象  🐕</h4><p>会创建 1 或 2 个字符串对象。</p>
+<p>to be contined…</p>
+<h4 id="3-7-intern-方法"><a href="#3-7-intern-方法" class="headerlink" title="3.7 intern 方法"></a>3.7 intern 方法</h4><p><code>String.intern()</code> 是一个 native（本地）方法，其作用是将指定的字符串对象的引用保存在字符串常量池中</p>
+<p>to be contined…</p>
+<h4 id="3-8-String-类型的变量和常量做“-”运算时发生了什么"><a href="#3-8-String-类型的变量和常量做“-”运算时发生了什么" class="headerlink" title="3.8 String 类型的变量和常量做“+”运算时发生了什么"></a>3.8 String 类型的变量和常量做“+”运算时发生了什么</h4><p>to be contined…</p>
 <hr>
 <p>参考</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://javaguide.cn/java/basis/java-basic-questions-02.html">https://javaguide.cn/java/basis/java-basic-questions-02.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%93%88%E5%B8%8C%E8%A1%A8">https://zh.wikipedia.org/wiki/%E5%93%88%E5%B8%8C%E8%A1%A8</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Steven-HU/p/14505316.html">https://www.cnblogs.com/Steven-HU/p/14505316.html</a></li>
 </ul>
 
                 

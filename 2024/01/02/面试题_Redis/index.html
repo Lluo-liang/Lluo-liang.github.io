@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.7k 字
+          2.9k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          23 分钟
+          25 分钟
         
       </span>
     
@@ -377,7 +377,14 @@
 <li><strong>延迟双删</strong>: 更新数据库后，先删除缓存，稍作延时，然后再次删除缓存。这种方法的目的是为了覆盖那些在第一次删除缓存和数据库更新之间由于其他读操作引入的旧数据。</li>
 <li><strong>Write-Through&#x2F;Read-Through缓存</strong>: 在Write-Through策略中，应用程序先写缓存，缓存再同步到数据库；在Read-Through策略中，如果缓存未命中，缓存系统会从数据库加载数据并返回，同时更新缓存。这些策略可以由缓存框架自动管理，减少了手动处理缓存一致性的负担。</li>
 </ol>
-<h4 id="6、在分布式缓存环境中，如何处理多个节点之间的缓存一致性问题？"><a href="#6、在分布式缓存环境中，如何处理多个节点之间的缓存一致性问题？" class="headerlink" title="6、在分布式缓存环境中，如何处理多个节点之间的缓存一致性问题？"></a>6、在分布式缓存环境中，如何处理多个节点之间的缓存一致性问题？</h4>
+<h4 id="6、在分布式缓存环境中，如何处理多个节点之间的缓存一致性问题？"><a href="#6、在分布式缓存环境中，如何处理多个节点之间的缓存一致性问题？" class="headerlink" title="6、在分布式缓存环境中，如何处理多个节点之间的缓存一致性问题？"></a>6、在分布式缓存环境中，如何处理多个节点之间的缓存一致性问题？</h4><hr>
+<p>参考</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/7hfkBOrbdVUNkepuQ0PX6Q">https://mp.weixin.qq.com/s/7hfkBOrbdVUNkepuQ0PX6Q</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.yuque.com/snailclimb/mf2z3k/fg8lgc">https://www.yuque.com/snailclimb/mf2z3k/fg8lgc</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.yuque.com/snailclimb/mf2z3k/es0afc">https://www.yuque.com/snailclimb/mf2z3k/es0afc</a></li>
+</ul>
+
                 
               </div>
             
