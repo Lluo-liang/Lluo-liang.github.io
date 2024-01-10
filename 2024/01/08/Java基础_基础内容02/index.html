@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          843 字
+          5.7k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          8 分钟
+          48 分钟
         
       </span>
     
@@ -315,12 +315,12 @@
 <li>如何使用 try-with-resources 代替try-catch-finally？</li>
 <li>异常使用有哪些需要注意的地方？</li>
 </ul>
-<h3 id="面向对象基础"><a href="#面向对象基础" class="headerlink" title="面向对象基础"></a>面向对象基础</h3><h4 id="1、面向对象和面向过程的区别"><a href="#1、面向对象和面向过程的区别" class="headerlink" title="1、面向对象和面向过程的区别"></a>1、面向对象和面向过程的区别</h4><p>两者的主要区别在于解决问题的方式不同：</p>
+<h3 id="一、面向对象基础"><a href="#一、面向对象基础" class="headerlink" title="一、面向对象基础"></a>一、面向对象基础</h3><h4 id="1-1、面向对象和面向过程的区别"><a href="#1-1、面向对象和面向过程的区别" class="headerlink" title="1.1、面向对象和面向过程的区别"></a>1.1、面向对象和面向过程的区别</h4><p>两者的主要区别在于解决问题的方式不同：</p>
 <ul>
 <li>面向过程把解决问题的过程拆成一个个方法，通过一个个方法的执行解决问题。</li>
 <li>面向对象会先抽象出对象，然后用对象执行方法的方式解决问题。</li>
 </ul>
-<h4 id="2、创建对象"><a href="#2、创建对象" class="headerlink" title="2、创建对象"></a>2、创建对象</h4><p>new 运算符，new 创建对象实例（对象实例在堆内存中），对象引用指向对象实例（对象引用存放在栈内存中）。</p>
+<h4 id="1-2、创建对象"><a href="#1-2、创建对象" class="headerlink" title="1.2、创建对象"></a>1.2、创建对象</h4><p>new 运算符，new 创建对象实例（对象实例在堆内存中），对象引用指向对象实例（对象引用存放在栈内存中）。</p>
 <ul>
 <li>一个对象引用可以指向 0 个或 1 个对象（一根绳子可以不系气球，也可以系一个气球）；</li>
 <li>一个对象可以有 n 个引用指向它（可以用 n 条绳子系住一个气球）。</li>
@@ -332,7 +332,262 @@
 <li>对象的相等一般比较的是内存中存放的内容是否相等。</li>
 <li>引用相等一般比较的是他们指向的内存地址是否相等。</li>
 </ul>
-<h4 id="3、构造方法"><a href="#3、构造方法" class="headerlink" title="3、构造方法"></a>3、构造方法</h4><h4 id="4、面相对象特征"><a href="#4、面相对象特征" class="headerlink" title="4、面相对象特征"></a>4、面相对象特征</h4><h4 id="5、接口与抽象类"><a href="#5、接口与抽象类" class="headerlink" title="5、接口与抽象类"></a>5、接口与抽象类</h4><h4 id="6、深拷贝与浅拷贝"><a href="#6、深拷贝与浅拷贝" class="headerlink" title="6、深拷贝与浅拷贝"></a>6、深拷贝与浅拷贝</h4>
+<p>对象是什么？</p>
+<p>对象是类的一个实例，类定义了对象的状态（属性）和行为（方法）</p>
+<p>创建对象的步骤：</p>
+<ol>
+<li><strong>定义类</strong>: 首先，需要定义一个类，作为对象的蓝图。类定义了对象的属性和方法。</li>
+<li><strong>声明对象</strong>: 接下来，声明一个类的变量。这个变量将引用新创建的对象。</li>
+<li><strong>实例化对象</strong>: 使用 <code>new</code> 关键字创建类的一个实例。</li>
+<li><strong>初始化对象</strong>: 通过调用类的构造器来初始化新创建的对象</li>
+</ol>
+<p>创建对象示例：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-comment">// 定义Person类</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Person</span> &#123;<br>    <span class="hljs-type">String</span> name;<br>    <span class="hljs-type">int</span> age;<br><br>    <span class="hljs-built_in">Person</span>(<span class="hljs-type">String</span> name, <span class="hljs-type">int</span> age) &#123;<br>        <span class="hljs-keyword">this</span>.name = name;<br>        <span class="hljs-keyword">this</span>.age = age;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 在另一个类中创建Person的对象</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> &#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-type">static</span> <span class="hljs-type">void</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">String</span>[] args)</span> </span>&#123;<br>        <span class="hljs-comment">// 创建Person对象</span><br>        Person person = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Person</span>(<span class="hljs-string">&quot;Alice&quot;</span>, <span class="hljs-number">30</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>new Person(&quot;Alice&quot;, 30);</code> 创建了一个 <code>Person</code> 类的实例，并且用 <code>Alice</code> 和 <code>30</code> 初始化这个对象的 <code>name</code> 和 <code>age</code> 属性。</p>
+<h4 id="1-3、构造方法"><a href="#1-3、构造方法" class="headerlink" title="1.3、构造方法"></a>1.3、构造方法</h4><p>构造方法的作用：构造方法是一种特殊的方法，主要作用是完成对象的初始化工作。</p>
+<p>如果没有声明构造方法，类会有一个默认的不带参数的改造方法。</p>
+<p>构造方法的特点：</p>
+<ul>
+<li>名字与类名相同。</li>
+<li>没有返回值，但不能用 void 声明构造函数。</li>
+<li>生成类的对象时自动执行，无需调用。</li>
+</ul>
+<p>构造方法不能被 override（重写）,但是可以 overload（重载）,所以你可以看到一个类中有多个构造函数的情况</p>
+<h4 id="1-4、面向对象特征"><a href="#1-4、面向对象特征" class="headerlink" title="1.4、面向对象特征"></a>1.4、面向对象特征</h4><p>面向对象的三大特征：</p>
+<ul>
+<li>封装</li>
+<li>继承</li>
+<li>多态</li>
+</ul>
+<p>面向对象编程（OOP）的三大特征是封装、继承和多态。这些特征共同为创建模块化、可重用和易于维护的代码提供了基础。</p>
+<table>
+<thead>
+<tr>
+<th>特征</th>
+<th>描述</th>
+<th>优点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>封装</td>
+<td>封装是把数据（属性）和行为（方法）组合成一个单元（类），并对数据的访问进行限制和保护。在Java中，可以通过使用访问修饰符（如<code>private</code>, <code>public</code>）来实现。</td>
+<td>- 提高了数据安全性<br>- 减少了代码间的耦合<br>- 增强了代码的可读性和可维护性</td>
+</tr>
+<tr>
+<td>继承</td>
+<td>继承是一种使得一个类（子类）能够继承另一个类（父类）的属性和方法的机制。子类可以扩展或修改继承自父类的行为。</td>
+<td>- 促进了代码的重用<br>- 建立了类之间的层次关系<br>- 提高了代码的可维护性</td>
+</tr>
+<tr>
+<td>多态</td>
+<td>多态是指允许不同类的对象对同一消息作出响应的能力，即同一操作作用于不同的对象时可以有不同的解释和行为。</td>
+<td>- 增强了程序的灵活性和扩展性<br>- 允许不同类的对象被统一处理</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>类比</p>
+</blockquote>
+<ol>
+<li><strong>封装</strong>: 就像一个咖啡机，它隐藏了内部的复杂机械过程，只暴露出简单的接口（按钮）给用户使用。</li>
+<li><strong>继承</strong>: 类似于父母与孩子的关系。孩子会继承父母的一些特征（如眼睛的颜色），同时也可以发展自己独特的特性（如不同的职业技能）。</li>
+<li><strong>多态</strong>: 可以比作一个通用的电源插座。不同的电器（即使是不同类型的电器）都可以插入同一个插座，但插入后的行为（如充电、运转）依赖于接入的具体电器。</li>
+</ol>
+<h4 id="1-5、接口与抽象类"><a href="#1-5、接口与抽象类" class="headerlink" title="1.5、接口与抽象类"></a>1.5、接口与抽象类</h4><p>接口（Interfaces）和抽象类（Abstract Classes）是用于实现抽象层次的两种主要方式。</p>
+<p>它们都不能被实例化，但在用法和目的上存在一些关键区别。</p>
+<blockquote>
+<p>对比</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>特征</th>
+<th>接口（Interfaces）</th>
+<th>抽象类（Abstract Classes）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>实例化</td>
+<td>不能直接实例化。</td>
+<td>也不能直接实例化。</td>
+</tr>
+<tr>
+<td>方法定义</td>
+<td>可以有默认方法和静态方法。所有方法默认为public。不需要使用<code>abstract</code>关键字。</td>
+<td>可以包含抽象方法（没有实现体的方法）和非抽象方法。抽象方法使用<code>abstract</code>关键字。</td>
+</tr>
+<tr>
+<td>属性定义</td>
+<td>只能定义常量（默认为public static final）。</td>
+<td>可以包含非常量字段，且这些字段可以有各种访问控制。</td>
+</tr>
+<tr>
+<td>实现&#x2F;扩展</td>
+<td>一个类可以实现多个接口。</td>
+<td>一个类只能继承一个抽象类。</td>
+</tr>
+<tr>
+<td>构造器</td>
+<td>不能有构造器。</td>
+<td>可以有构造器。</td>
+</tr>
+<tr>
+<td>多重继承的支持</td>
+<td>支持（一个类可以实现多个接口）。</td>
+<td>不支持（一个类只能继承一个类，但可以实现多个接口）。</td>
+</tr>
+<tr>
+<td>默认方法</td>
+<td>Java 8之后，接口可以有默认方法（有方法体）。</td>
+<td>抽象类可以有具有实现的方法。</td>
+</tr>
+<tr>
+<td>访问修饰符限制</td>
+<td>接口中的方法默认是public的，属性默认是public static final的。</td>
+<td>抽象类中的方法和属性可以有多种访问修饰符。</td>
+</tr>
+<tr>
+<td>使用场景</td>
+<td>当各个实现之间没有共享的代码，但需要共同遵守某些规则（方法）时使用。</td>
+<td>当各个实现之间有大量共享的代码或属性时使用。</td>
+</tr>
+</tbody></table>
+<p>类比</p>
+<ol>
+<li><strong>接口</strong>: 就像一个标准或协议，它定义了规范，但不提供完整的实现。就像电器的插头和插座的标准，制造商需要按照这个标准制造产品。</li>
+<li><strong>抽象类</strong>: 可以看作是半成品，它定义了一些基本功能和结构，但留下了一些空白（抽象方法）供继承它的子类完成。</li>
+</ol>
+<h4 id="1-6、深拷贝与浅拷贝，引用拷贝"><a href="#1-6、深拷贝与浅拷贝，引用拷贝" class="headerlink" title="1.6、深拷贝与浅拷贝，引用拷贝"></a>1.6、深拷贝与浅拷贝，引用拷贝</h4><p>区别：</p>
+<ul>
+<li><strong>浅拷贝</strong>：浅拷贝会在堆上创建一个新的对象（区别于引用拷贝的一点），不过，如果原对象内部的属性是引用类型的话，浅拷贝会直接复制内部对象的引用地址，也就是说拷贝对象和原对象共用同一个内部对象。</li>
+<li><strong>深拷贝</strong>：深拷贝会完全复制整个对象，包括这个对象所包含的内部对象</li>
+</ul>
+<p>对比</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>描述</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>浅拷贝</td>
+<td>只复制对象的基本类型字段和引用类型字段的引用，不复制引用对象本身。</td>
+<td>两个对象共享引用类型的成员。</td>
+</tr>
+<tr>
+<td>深拷贝</td>
+<td>复制对象的所有字段，包括基本类型和引用类型字段，引用类型的对象也会被复制。</td>
+<td>两个对象完全独立，不共享任何成员。</td>
+</tr>
+<tr>
+<td>引用拷贝</td>
+<td>只复制对象的引用，不复制对象本身。</td>
+<td>两个引用指向同一个对象，任何一个对象的改变都会影响到另一个。</td>
+</tr>
+</tbody></table>
+<p> 类比</p>
+<ul>
+<li><strong>浅拷贝</strong>: 就像拍摄一张画作的照片，你得到的是画作的表面复制品，但它仍然连接着原来的画。</li>
+<li><strong>深拷贝</strong>: 就像复制一个画作的每一笔细节来创建一个全新的画作，完全独立于原作。</li>
+<li><strong>引用拷贝</strong>: 就像给别人画作的一个指向地址，两人看的是同一幅画。</li>
+</ul>
+<p>图描述：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240109211507.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="二、Object"><a href="#二、Object" class="headerlink" title="二、Object"></a>二、Object</h3><h4 id="2-1-Object-类的常用方法"><a href="#2-1-Object-类的常用方法" class="headerlink" title="2.1 Object 类的常用方法"></a>2.1 Object 类的常用方法</h4><p>Object 类是一个特殊的类，是所有类的父类。它主要提供了以下 11 个方法：</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs processing"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * native 方法，用于返回当前运行时对象的 Class 对象，使用了 final 关键字修饰，故不允许子类重写。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">native</span> Class&lt;?&gt; <span class="hljs-title function_">getClass</span>()<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * native 方法，用于返回对象的哈希码，主要使用在哈希表中，比如 JDK 中的HashMap。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">native</span> <span class="hljs-type">int</span> <span class="hljs-title function_">hashCode</span>()<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 用于比较 2 个对象的内存地址是否相等，String 类对该方法进行了重写以用于比较字符串的值是否相等。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">equals</span>(<span class="hljs-built_in">Object</span> obj)<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * native 方法，用于创建并返回当前对象的一份拷贝。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">protected</span> <span class="hljs-keyword">native</span> <span class="hljs-built_in">Object</span> <span class="hljs-title function_">clone</span>() <span class="hljs-keyword">throws</span> CloneNotSupportedException<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 返回类的名字实例的哈希码的 16 进制的字符串。建议 Object 所有的子类都重写这个方法。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-built_in">String</span> <span class="hljs-title function_">toString</span>()<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * native 方法，并且不能重写。唤醒一个在此对象监视器上等待的线程(监视器相当于就是锁的概念)。如果有多个线程在等待只会任意唤醒一个。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">native</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">notify</span>()<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * native 方法，并且不能重写。跟 notify 一样，唯一的区别就是会唤醒在此对象监视器上等待的所有线程，而不是一个线程。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">native</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">notifyAll</span>()<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * native方法，并且不能重写。暂停线程的执行。注意：sleep 方法没有释放锁，而 wait 方法释放了锁 ，timeout 是等待时间。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">native</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">wait</span>(<span class="hljs-type">long</span> timeout) <span class="hljs-keyword">throws</span> InterruptedException<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 多了 nanos 参数，这个参数表示额外时间（以纳秒为单位，范围是 0-999999）。 所以超时的时间还需要加上 nanos 纳秒。。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">wait</span>(<span class="hljs-type">long</span> timeout, <span class="hljs-type">int</span> nanos) <span class="hljs-keyword">throws</span> InterruptedException<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 跟之前的2个wait方法一样，只不过该方法一直等待，没有超时时间这个概念</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">wait</span>() <span class="hljs-keyword">throws</span> InterruptedException<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 实例被垃圾回收器回收的时候触发的操作</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">finalize</span>() <span class="hljs-keyword">throws</span> Throwable &#123; &#125;<br></code></pre></td></tr></table></figure>
+
+<p>以下是Java中 <code>Object</code> 类的常用方法的总结，包括每个方法的功能和特性：</p>
+<table>
+<thead>
+<tr>
+<th>方法签名</th>
+<th>返回类型</th>
+<th>描述</th>
+<th>特性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>public final native Class&lt;?&gt; getClass()</code></td>
+<td><code>Class&lt;?&gt;</code></td>
+<td>返回当前运行时对象的Class对象。</td>
+<td>使用 <code>final</code> 和 <code>native</code> 关键字，不能被子类重写</td>
+</tr>
+<tr>
+<td><code>public native int hashCode()</code></td>
+<td>int</td>
+<td>返回对象的哈希码，主要用于哈希表。</td>
+<td><code>native</code> 方法，通常与 <code>equals()</code> 方法一起使用。</td>
+</tr>
+<tr>
+<td><code>public boolean equals(Object obj)</code></td>
+<td>boolean</td>
+<td>比较两个对象的内存地址是否相等。String类重写了此方法来比较字符串值。</td>
+<td>可被子类重写以提供相等性逻辑。</td>
+</tr>
+<tr>
+<td><code>protected native Object clone()</code></td>
+<td>Object</td>
+<td>创建并返回当前对象的一份拷贝。</td>
+<td><code>native</code> 方法，类必须实现 <code>Cloneable</code> 接口才能使用此方法。</td>
+</tr>
+<tr>
+<td><code>public String toString()</code></td>
+<td>String</td>
+<td>返回对象的字符串表示，通常包括类名和哈希码的16进制字符串。</td>
+<td>建议所有子类重写此方法。</td>
+</tr>
+<tr>
+<td><code>public final native void notify()</code></td>
+<td>void</td>
+<td>唤醒在此对象监视器上等待的单个线程。</td>
+<td>使用 <code>final</code> 和 <code>native</code> 关键字，不能被子类重写。</td>
+</tr>
+<tr>
+<td><code>public final native void notifyAll()</code></td>
+<td>void</td>
+<td>唤醒在此对象监视器上等待的所有线程。</td>
+<td>使用 <code>final</code> 和 <code>native</code> 关键字，不能被子类重写。</td>
+</tr>
+<tr>
+<td><code>public final native void wait(long timeout)</code></td>
+<td>void</td>
+<td>使当前线程等待直到另一个线程调用 <code>notify()</code> 或 <code>notifyAll()</code>，或超时。</td>
+<td>使用 <code>final</code> 和 <code>native</code> 关键字，不能被子类重写。释放对象的锁。</td>
+</tr>
+<tr>
+<td><code>public final void wait(long timeout, int nanos)</code></td>
+<td>void</td>
+<td>使当前线程等待直到另一个线程调用 <code>notify()</code> 或 <code>notifyAll()</code>，或超时加额外纳秒。</td>
+<td>使用 <code>final</code> 关键字，不能被子类重写。释放对象的锁。</td>
+</tr>
+<tr>
+<td><code>public final void wait()</code></td>
+<td>void</td>
+<td>使当前线程无限期等待，直到另一个线程调用 <code>notify()</code> 或 <code>notifyAll()</code>。</td>
+<td>使用 <code>final</code> 关键字，不能被子类重写。释放对象的锁。</td>
+</tr>
+<tr>
+<td><code>protected void finalize()</code></td>
+<td>void</td>
+<td>在对象被垃圾回收器回收时触发的操作。</td>
+<td>在Java 9中被弃用，但子类可以重写以进行清理操作。</td>
+</tr>
+</tbody></table>
+<p>这些方法提供了对象行为的基本框架，从对象的生命周期管理到线程间的通信。</p>
+<h4 id="2-2-和-equals-的区别"><a href="#2-2-和-equals-的区别" class="headerlink" title="2.2 &#x3D;&#x3D; 和 equals() 的区别"></a>2.2 &#x3D;&#x3D; 和 equals() 的区别</h4><p>&#x3D;&#x3D; 对于基本类型和引用类型的作用效果是不同的：</p>
+<ul>
+<li>对于基本数据类型来说，&#x3D;&#x3D; 比较的是值。</li>
+<li>对于引用数据类型来说，&#x3D;&#x3D; 比较的是对象的内存地址。</li>
+</ul>
+<p>to be contined….</p>
+<hr>
+<p>参考</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://javaguide.cn/java/basis/java-basic-questions-02.html">https://javaguide.cn/java/basis/java-basic-questions-02.html</a></li>
+</ul>
+
                 
               </div>
             
