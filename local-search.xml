@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>日记_20240110</title>
+    <link href="/2024/01/10/%E6%97%A5%E8%AE%B0_%E8%BF%91%E6%9C%9F%E8%AE%A1%E5%88%9220240110/"/>
+    <url>/2024/01/10/%E6%97%A5%E8%AE%B0_%E8%BF%91%E6%9C%9F%E8%AE%A1%E5%88%9220240110/</url>
+    
+    <content type="html"><![CDATA[<p>近期计划</p><ul><li><input disabled="" type="checkbox"> 面试题学习，准备一下八股（主要根据面试指北和Java面试库学习），继续完善知识库内容</li><li><input disabled="" type="checkbox"> 蘑菇项目继续学习，实际练习，从需求分析到架构设计，到最后的实现，写一下主要过程。部分内容待学习。</li><li><input disabled="" type="checkbox"> 写一个自习室项目和酒店管理项目。（可选）</li><li><input disabled="" type="checkbox"> 有空可以模仿写一个Java面试库项目，包括小程序版本。（可选）</li><li><input disabled="" type="checkbox"> 项目优化（Excel 优化导入和 接口配置）</li><li><input disabled="" type="checkbox"> 简历准备和完善（持续优化），准备投递</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>Diary</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>blog</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>蘑菇博客项目_Day05</title>
     <link href="/2024/01/08/%E8%98%91%E8%8F%87%E5%8D%9A%E5%AE%A2%E9%A1%B9%E7%9B%AE_Day05/"/>
     <url>/2024/01/08/%E8%98%91%E8%8F%87%E5%8D%9A%E5%AE%A2%E9%A1%B9%E7%9B%AE_Day05/</url>
@@ -332,7 +357,7 @@
     <link href="/2023/12/26/%E7%99%BD%E6%9D%BF%E6%93%A6/"/>
     <url>/2023/12/26/%E7%99%BD%E6%9D%BF%E6%93%A6/</url>
     
-    <content type="html"><![CDATA[<p>今日计划</p><ul><li><input disabled="" type="checkbox"> 根据 面试指北 过一下最初版的面试题，然后反复总结复习（不建议使用微信小程序面试题，重点需要着重在框架，源码，MySQL，Redis，MQ ; 并有自己的实际使用经验（在蘑菇博客上面）</li><li><input disabled="" type="checkbox"> 一轮复习后准备简历，开始正式投递面试之旅</li><li><input disabled="" type="checkbox"> 后续打算开启全心准备面试之旅</li></ul>]]></content>
+    <content type="html"><![CDATA[<p>今日计划</p><ul><li><input disabled="" type="checkbox"> 过一下面试题，准备一下八股（主要根据面试指北和Java面试库学习）</li><li><input disabled="" type="checkbox"> 完善知识库内容</li><li><input disabled="" type="checkbox"> 通过输出倒逼输入</li></ul>]]></content>
     
     
     <categories>
@@ -2381,10 +2406,10 @@
   
   <entry>
     <title>日记_20231114</title>
-    <link href="/2023/11/14/%E6%97%A5%E8%AE%B0_%E8%BF%91%E6%9C%9F%E8%AE%A1%E5%88%92/"/>
-    <url>/2023/11/14/%E6%97%A5%E8%AE%B0_%E8%BF%91%E6%9C%9F%E8%AE%A1%E5%88%92/</url>
+    <link href="/2023/11/14/%E6%97%A5%E8%AE%B0_%E8%BF%91%E6%9C%9F%E8%AE%A1%E5%88%9220231127/"/>
+    <url>/2023/11/14/%E6%97%A5%E8%AE%B0_%E8%BF%91%E6%9C%9F%E8%AE%A1%E5%88%9220231127/</url>
     
-    <content type="html"><![CDATA[<p>近期计划</p><ul><li><input disabled="" type="checkbox"> Java集合、Java多线程、MySQL数据库、Spring 进行复习</li><li><input disabled="" type="checkbox"> Redis、MQ </li><li><input disabled="" type="checkbox"> 微服务 SpringCloud Alibaba 学习</li><li><input checked="" disabled="" type="checkbox"> <del>学成在线项目进行（放弃）</del></li><li><input disabled="" type="checkbox"> 项目：蘑菇博客的学习（个人一直趋向学习这个项目，趁这段时间有空，学习一下）</li><li><input disabled="" type="checkbox"> 考研数学</li></ul><hr>]]></content>
+    <content type="html"><![CDATA[<p>近期计划</p><ul><li><input checked="" disabled="" type="checkbox"> Java集合、Java多线程、MySQL数据库、Spring 进行复习</li><li><input checked="" disabled="" type="checkbox"> Redis、MQ </li><li><input checked="" disabled="" type="checkbox"> 微服务 SpringCloud Alibaba 学习</li><li><input checked="" disabled="" type="checkbox"> <del>学成在线项目进行（放弃）</del></li><li><input disabled="" type="checkbox"> 项目：蘑菇博客的学习（个人一直趋向学习这个项目，趁这段时间有空，学习一下）</li><li><input disabled="" type="checkbox"> 考研数学</li></ul><hr>]]></content>
     
     
     <categories>
