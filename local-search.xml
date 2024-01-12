@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>obsidian常用插件使用记录</title>
+    <link href="/2024/01/12/obsidian%E5%B8%B8%E7%94%A8%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/"/>
+    <url>/2024/01/12/obsidian%E5%B8%B8%E7%94%A8%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/</url>
+    
+    <content type="html"><![CDATA[<p>插件功能</p><ul><li>导出 pdf 带上目录</li></ul><hr><h4 id="1、导出-pdf-带上目录"><a href="#1、导出-pdf-带上目录" class="headerlink" title="1、导出 pdf 带上目录"></a>1、导出 pdf 带上目录</h4><p>使用 better-export-pdf 导出 pdf 带上目录</p><p>这个插件需要下载使用，下载地址：  <a href="https://github.com/l1xnan/obsidian-better-export-pdf/releases">https://github.com/l1xnan/obsidian-better-export-pdf/releases</a></p><p>下载对应的 obsidian-better-export-pdf.zip 文件即可。</p><p>参考： <a href="https://pkmer.cn/Pkmer-Docs/10-obsidian/obsidian%E7%A4%BE%E5%8C%BA%E6%8F%92%E4%BB%B6/better-export-pdf/">https://pkmer.cn/Pkmer-Docs/10-obsidian/obsidian%E7%A4%BE%E5%8C%BA%E6%8F%92%E4%BB%B6/better-export-pdf/</a></p><hr>]]></content>
+    
+    
+    <categories>
+      
+      <category>工具</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>obsidian</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>centos7系统_常用操作</title>
     <link href="/2024/01/12/centos7%E7%B3%BB%E7%BB%9F_%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/"/>
     <url>/2024/01/12/centos7%E7%B3%BB%E7%BB%9F_%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</url>
