@@ -21,15 +21,17 @@
     <meta name="description" content="Docker入门_Docker的基本使用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker入门_Docker的基本使用">
-<meta property="og:url" content="https://varcel.luoqi.icu/2023/12/08/Docker%E5%85%A5%E9%97%A8_Docker%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:url" content="https://varcel.luoqi.icu/2024/01/12/Docker%E5%85%A5%E9%97%A8_Docker%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="轻松的洛亓">
 <meta property="og:description" content="Docker入门_Docker的基本使用">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-12-08T21:35:33.000Z">
-<meta property="article:modified_time" content="2023-12-08T21:35:33.000Z">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg">
+<meta property="article:published_time" content="2024-01-12T07:54:17.000Z">
+<meta property="article:modified_time" content="2024-01-12T07:54:17.000Z">
 <meta property="article:author" content="Luo QI">
 <meta property="article:tag" content="docker">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg">
   
   
   
@@ -210,8 +212,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-12-08 21:35" pubdate>
-          2023年12月8日 晚上
+        <time datetime="2024-01-12 07:54" pubdate>
+          2024年1月12日 早上
         </time>
       </span>
     
@@ -222,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k 字
+          4.4k 字
         
       </span>
     
@@ -233,7 +235,7 @@
         
         
         
-          16 分钟
+          37 分钟
         
       </span>
     
@@ -328,7 +330,176 @@
 <p>小结：</p>
 <figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs dockerfile">docker pull redis<br>docker <span class="hljs-keyword">run</span><span class="language-bash"> --name redis -d -p 6379:6379 redis</span><br>firewall-<span class="hljs-keyword">cmd</span><span class="language-bash"> --permanent --add-port=6379/tcp</span><br>firewall-<span class="hljs-keyword">cmd</span><span class="language-bash"> --reload      <span class="hljs-comment"># 重启防火墙</span></span><br></code></pre></td></tr></table></figure>
 
+<h3 id="4、docker-的一些常用命令-🦌"><a href="#4、docker-的一些常用命令-🦌" class="headerlink" title="4、docker 的一些常用命令   🦌"></a>4、docker 的一些常用命令   🦌</h3><p>常用的Docker命令：</p>
+<h4 id="容器管理"><a href="#容器管理" class="headerlink" title="容器管理"></a>容器管理</h4><p>1、 <strong>启动容器</strong>:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">docker run <span class="hljs-selector-attr">[OPTIONS]</span> IMAGE <span class="hljs-selector-attr">[COMMAND]</span> <span class="hljs-selector-attr">[ARG...]</span><br></code></pre></td></tr></table></figure>
 
+<p>例如：<code>docker run -d -p 80:80 nginx</code> 会以守护态运行一个nginx容器，并将本机的80端口映射到容器的80端口。</p>
+<p>2、<strong>列出容器</strong>:</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">docker</span> ps<span class="hljs-meta"> [OPTIONS]</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>只显示运行中的容器：<code>docker ps</code></li>
+<li>显示所有容器（包括未运行的）：<code>docker ps -a</code></li>
+</ul>
+<p>3、 <strong>停止容器</strong>:</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs inform7">docker stop <span class="hljs-comment">[OPTIONS]</span> <span class="hljs-keyword">CONTAINER</span> <span class="hljs-comment">[CONTAINER...]</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>例如：<code>docker stop my_container</code> 停止名为 <code>my_container</code> 的容器。</li>
+</ul>
+<p>4、<strong>删除容器</strong>:</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs inform7">docker rm <span class="hljs-comment">[OPTIONS]</span> <span class="hljs-keyword">CONTAINER</span> <span class="hljs-comment">[CONTAINER...]</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>例如：<code>docker rm my_container</code> 删除名为 <code>my_container</code> 的容器。</li>
+</ul>
+<p>5、<strong>查看容器日志</strong>:</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs inform7">docker logs <span class="hljs-comment">[OPTIONS]</span> <span class="hljs-keyword">CONTAINER</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>例如：<code>docker logs my_container</code> 查看名为 <code>my_container</code> 的容器的日志。</li>
+</ul>
+<p>6、重启 docker 容器</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs inform7">docker restart <span class="hljs-comment">[OPTIONS]</span> <span class="hljs-keyword">CONTAINER</span> <span class="hljs-comment">[CONTAINER...]</span><br></code></pre></td></tr></table></figure>
+
+<p>如果你的容器名称是 <code>my_container</code>，那么重启这个容器的命令将是：</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">docker restart my_container</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="镜像管理"><a href="#镜像管理" class="headerlink" title="镜像管理"></a>镜像管理</h4><p>1、<strong>列出镜像</strong>:</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs inform7">docker images <span class="hljs-comment">[OPTIONS]</span> <span class="hljs-comment">[REPOSITORY<span class="hljs-comment">[:TAG]</span>]</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>例如：<code>docker images</code> 列出所有本地镜像。</li>
+</ul>
+<p>2、<strong>拉取镜像</strong>:</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs elixir">docker pull [<span class="hljs-title class_">OPTIONS</span>] <span class="hljs-title class_">NAME</span>[<span class="hljs-symbol">:TAG|</span><span class="hljs-variable">@DIGEST</span>]<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>例如：<code>docker pull nginx</code> 拉取最新的nginx镜像。</li>
+</ul>
+<p>3、<strong>构建镜像</strong>:</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gherkin">docker build [OPTIONS] PATH |<span class="hljs-string"> URL </span>|<span class="hljs-string"> -</span><br></code></pre></td></tr></table></figure>
+
+
+<ul>
+<li>例如：<code>docker build -t my_image .</code> 会根据当前目录下的 <code>Dockerfile</code> 构建一个名为 <code>my_image</code> 的镜像。</li>
+</ul>
+<p>4、 <strong>删除镜像</strong>:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">docker rmi <span class="hljs-selector-attr">[OPTIONS]</span> IMAGE <span class="hljs-selector-attr">[IMAGE...]</span><br></code></pre></td></tr></table></figure>
+
+
+<ul>
+<li>例如：<code>docker rmi my_image</code> 删除名为 <code>my_image</code> 的镜像。</li>
+</ul>
+<h4 id="网络管理"><a href="#网络管理" class="headerlink" title="网络管理"></a>网络管理</h4><ol>
+<li><p><strong>列出网络</strong>:</p>
+<p> <code>docker network ls</code></p>
+</li>
+<li><p><strong>创建网络</strong>:</p>
+<p> <code>docker network create [OPTIONS] NETWORK  </code></p>
+<ul>
+<li>例如：<code>docker network create my_network</code> 创建一个名为 <code>my_network</code> 的网络。</li>
+</ul>
+</li>
+<li><p><strong>删除网络</strong>:</p>
+<p> <code>docker network rm NETWORK</code></p>
+<ul>
+<li>例如：<code>docker network rm my_network</code> 删除名为 <code>my_network</code> 的网络。</li>
+</ul>
+</li>
+</ol>
+<h4 id="卷管理"><a href="#卷管理" class="headerlink" title="卷管理"></a>卷管理</h4><ol>
+<li><p><strong>创建卷</strong>:</p>
+<p> <code>docker volume create [OPTIONS] [VOLUME]</code></p>
+<ul>
+<li>例如：<code>docker volume create my_volume</code> 创建一个名为 <code>my_volume</code> 的卷。</li>
+</ul>
+</li>
+<li><p><strong>列出卷</strong>:</p>
+<p> <code>docker volume ls</code></p>
+</li>
+<li><p><strong>删除卷</strong>:</p>
+<p> <code>docker volume rm VOLUME</code></p>
+<ul>
+<li>例如：<code>docker volume rm my_volume</code> 删除名为 <code>my_volume</code> 的卷。</li>
+</ul>
+</li>
+</ol>
+<h4 id="其他常用命令"><a href="#其他常用命令" class="headerlink" title="其他常用命令"></a>其他常用命令</h4><ol>
+<li><p><strong>查看Docker版本</strong>:</p>
+<p> <code>docker version</code></p>
+</li>
+<li><p><strong>查看Docker系统信息</strong>:</p>
+<p> <code>docker info</code></p>
+</li>
+<li><p><strong>查看容器&#x2F;镜像&#x2F;卷等的详细信息</strong>:</p>
+<p> <code>docker inspect NAME|ID</code></p>
+</li>
+</ol>
+<h3 id="5、docker-安装-Mysql-操作"><a href="#5、docker-安装-Mysql-操作" class="headerlink" title="5、docker 安装 Mysql 操作"></a>5、docker 安装 Mysql 操作</h3><p>以下是使用Docker安装和运行MySQL 5.7和8.0版本的步骤：</p>
+<blockquote>
+<ol>
+<li><strong>运行MySQL 5.7</strong></li>
+</ol>
+</blockquote>
+<ol>
+<li><p><strong>拉取MySQL 5.7镜像</strong>:</p>
+<p> <code>docker pull mysql:5.7</code></p>
+</li>
+<li><p><strong>启动MySQL 5.7容器</strong>:</p>
+</li>
+</ol>
+<p>以下命令启动一个名为 <code>mysql57</code> 的MySQL 5.7容器，设置root密码（在此示例中为<code>yourpassword</code>），并映射端口3306（或选择其他未使用的端口）到宿主机。<br>同时，你可以指定一个数据卷来持久化MySQL数据。</p>
+<p><code>docker run --name mysql57 -e MYSQL_ROOT_PASSWORD=yourpassword -p 3306:3306 -d mysql:5.7</code></p>
+<ul>
+<li>如果需要持久化数据到特定路径，可以添加 <code>-v</code> 参数，如:</li>
+</ul>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">docker</span> run --name mysql57 -e MYSQL_ROOT_PASSWORD=yourpassword -p <span class="hljs-number">3306</span>:<span class="hljs-number">3306</span> -v /my/own/datadir:/var/lib/mysql -d mysql:<span class="hljs-number">5</span>.<span class="hljs-number">7</span><br></code></pre></td></tr></table></figure>
+
+
+<blockquote>
+<ol start="2">
+<li><strong>运行MySQL 8.0</strong></li>
+</ol>
+</blockquote>
+<ol>
+<li><p><strong>拉取MySQL 8.0镜像</strong>:</p>
+<p> <code>docker pull mysql:8.0</code></p>
+</li>
+<li><p><strong>启动MySQL 8.0容器</strong>:</p>
+</li>
+</ol>
+<ul>
+<li>由于MySQL 5.7已经使用了3306端口，所以对于MySQL 8.0，你需要映射到宿主机的另一个端口，例如3307。</li>
+</ul>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">docker</span> run --name mysql8 -e MYSQL_ROOT_PASSWORD=yourpassword -p <span class="hljs-number">3307</span>:<span class="hljs-number">3306</span> -d mysql:<span class="hljs-number">8</span>.<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>同样，你也可以指定数据卷来持久化MySQL 8.0的数据。</li>
+<li><code>mysql:8.0</code> 指的是Docker镜像的名称和标签。在这里，<code>mysql</code> 是镜像的名称，<code>8.0</code> 是镜像的标签，它指定了MySQL的具体版本。</li>
+</ul>
+<ol start="3">
+<li><p><strong>验证和连接</strong></p>
+</li>
+<li><p><strong>验证容器运行状态</strong>:</p>
+<p> <code>docker ps</code></p>
+</li>
+<li><p><strong>连接到MySQL容器</strong>:</p>
+</li>
+</ol>
+<p>使用Docker内置的命令行或者使用任何MySQL客户端连接到数据库。例如，要连接到MySQL 5.7实例，可以使用：<br><code>docker exec -it mysql57 mysql -uroot -pyourpassword</code></p>
+<ul>
+<li>对于MySQL 8.0，连接命令类似，只是容器名称不同。</li>
+</ul>
+<blockquote>
+<p>注意事项</p>
+</blockquote>
+<ul>
+<li>替换上述命令中的 <code>yourpassword</code> 为你自己的强密码。</li>
+<li>如果你使用了自定义数据卷路径（如 <code>/my/own/datadir</code>），确保该路径在宿主机上存在，并且Docker有权限访问。</li>
+<li>MySQL 8.0 默认使用了更强的密码加密策略（caching_sha2_password），某些客户端可能需要更新或配置以支持新的加密方式。</li>
+</ul>
 <hr>
 <p>参考</p>
 <ul>
@@ -382,7 +553,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Docker入门_Docker的基本使用</div>
-      <div>https://varcel.luoqi.icu/2023/12/08/Docker入门_Docker的基本使用/</div>
+      <div>https://varcel.luoqi.icu/2024/01/12/Docker入门_Docker的基本使用/</div>
     </div>
     <div class="license-meta">
       
@@ -394,7 +565,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年12月8日</div>
+          <div>2024年1月12日</div>
         </div>
       
       
@@ -426,9 +597,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/12/11/%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E5%92%8C%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B/" title="业务场景和技术选型">
+                      <a href="/2024/01/12/centos7%E7%B3%BB%E7%BB%9F_%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/" title="centos7系统_常用操作">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">业务场景和技术选型</span>
+                        <span class="hidden-mobile">centos7系统_常用操作</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -436,8 +607,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/12/08/Redis%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" title="Redis入门_基础概念">
-                        <span class="hidden-mobile">Redis入门_基础概念</span>
+                      <a href="/2024/01/11/%E9%9D%A2%E8%AF%95%E9%A2%98_Java%E5%9F%BA%E7%A1%80_String%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/" title="面试题_Java基础_String常见面试题">
+                        <span class="hidden-mobile">面试题_Java基础_String常见面试题</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
