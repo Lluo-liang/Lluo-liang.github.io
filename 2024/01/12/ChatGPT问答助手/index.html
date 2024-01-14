@@ -226,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          18k 字
+          20k 字
         
       </span>
     
@@ -237,7 +237,7 @@
         
         
         
-          152 分钟
+          166 分钟
         
       </span>
     
@@ -279,7 +279,8 @@
             
               <div class="markdown-body">
                 
-                <p>本项目来自知识星球《码农会锁》的开源项目【ChatGPT AI 问答助手】</p>
+                <p>前面一部分内容是开源项目 <a target="_blank" rel="noopener" href="https://github.com/fuzhengwei/chatbot-api">https://github.com/fuzhengwei/chatbot-api</a> 的一些内容，后面是微信API 调用和 通义千问的部分使用介绍。</p>
+<p>本项目来自知识星球《码农会锁》的开源项目【ChatGPT AI 问答助手】</p>
 <p>项目地址：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://gitcode.net/fuzhengwei/chatbot-api">https://gitcode.net/fuzhengwei/chatbot-api</a></li>
@@ -305,11 +306,12 @@
 <p>B 站视频地址： <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1RR4y1b7UQ">https://www.bilibili.com/video/BV1RR4y1b7UQ</a></p>
 <p>大纲</p>
 <ul>
-<li>工程创建</li>
-<li>爬取知识星球的接口信息</li>
-<li>接口开发</li>
-<li>对接ChatGpt，调用接口</li>
-<li>打包镜像，部署到 Docker 容器</li>
+<li>项目运行</li>
+<li>领域服务核心内容分析</li>
+<li>二开（订阅号信息回复）定时发送消息</li>
+<li>接收微信消息并进行回复</li>
+<li>QQ消息回复</li>
+<li>尝试国内的大语言模型</li>
 </ul>
 <h3 id="1、项目运行"><a href="#1、项目运行" class="headerlink" title="1、项目运行"></a>1、项目运行</h3><p>从 项目地址 <a target="_blank" rel="noopener" href="https://gitcode.net/fuzhengwei/chatbot-api">https://gitcode.net/fuzhengwei/chatbot-api</a>  ；</p>
 <h4 id="项目加载"><a href="#项目加载" class="headerlink" title="项目加载"></a>项目加载</h4><p>拉取项目代码后，需要在 Maven 下面的 Lifecycle 下先进行总体的一个 clean 再 install ；</p>
@@ -426,7 +428,34 @@
 <h4 id="微信消息推送"><a href="#微信消息推送" class="headerlink" title="微信消息推送"></a>微信消息推送</h4><p>看了一下调用关系，其中核心方法是： executeInternal</p>
 <figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs aspectj"><span class="hljs-keyword">public</span> &lt;T, E&gt; <span class="hljs-function">T <span class="hljs-title">executeInternal</span><span class="hljs-params">(RequestExecutor&lt;T, E&gt; executor, String uri, E data)</span> <span class="hljs-keyword">throws</span> WxErrorException </span>&#123;<br>    <span class="hljs-comment">// 处理日志中的敏感数据，例如脱敏。</span><br>    E dataForLog = DataUtils.handleDataWithSecret(data);<br><br>    <span class="hljs-comment">// 检查 URI 是否错误地包含 access_token，如果包含则抛出异常。</span><br>    <span class="hljs-keyword">if</span> (uri.contains(<span class="hljs-string">&quot;access_token=&quot;</span>)) &#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalArgumentException(<span class="hljs-string">&quot;uri参数中不允许有access_token: &quot;</span> + uri);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-comment">// 获取 access token，并构造带有 access token 的完整 URI。</span><br>        String accessToken = <span class="hljs-keyword">this</span>.getAccessToken(<span class="hljs-keyword">false</span>);<br>        String uriWithAccessToken = uri + (uri.contains(<span class="hljs-string">&quot;?&quot;</span>) ? <span class="hljs-string">&quot;&amp;&quot;</span> : <span class="hljs-string">&quot;?&quot;</span>) + <span class="hljs-string">&quot;access_token=&quot;</span> + accessToken;<br><br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">// 使用传入的 executor 执行请求，并获取结果。</span><br>            T result = executor.execute(uriWithAccessToken, data);<br><br>            <span class="hljs-comment">// 记录请求和响应数据到日志。</span><br>            <span class="hljs-keyword">this</span>.log.debug(<span class="hljs-string">&quot;\n【请求地址】: &#123;&#125;\n【请求参数】：&#123;&#125;\n【响应数据】：&#123;&#125;&quot;</span>, <span class="hljs-keyword">new</span> Object[]&#123;uriWithAccessToken, dataForLog, result&#125;);<br>            <span class="hljs-keyword">return</span> result;<br>        &#125; <span class="hljs-keyword">catch</span> (WxErrorException var9) &#123;<br>            <span class="hljs-comment">// 处理微信错误异常。</span><br>            WxError <span class="hljs-keyword">error</span> = var9.getError();<br><br>            <span class="hljs-comment">// 检查是否是因为 access token 过期引起的错误，并尝试刷新。</span><br>            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">error</span>.getErrorCode() == <span class="hljs-number">42001</span> || <span class="hljs-keyword">error</span>.getErrorCode() == <span class="hljs-number">40001</span> || <span class="hljs-keyword">error</span>.getErrorCode() == <span class="hljs-number">40014</span>) &#123;<br>                <span class="hljs-keyword">this</span>.getWxMpConfigStorage().expireAccessToken();<br>                <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.getWxMpConfigStorage().autoRefreshToken()) &#123;<br>                    <span class="hljs-function"><span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.<span class="hljs-title">execute</span><span class="hljs-params">(executor, uri, data)</span></span>;<br>                &#125;<br>            &#125;<br><br>            <span class="hljs-comment">// 如果错误码不为0，记录错误并抛出异常。</span><br>            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">error</span>.getErrorCode() != <span class="hljs-number">0</span>) &#123;<br>                <span class="hljs-keyword">this</span>.log.<span class="hljs-keyword">error</span>(<span class="hljs-string">&quot;\n【请求地址】: &#123;&#125;\n【请求参数】：&#123;&#125;\n【错误信息】：&#123;&#125;&quot;</span>, <span class="hljs-keyword">new</span> Object[]&#123;uriWithAccessToken, dataForLog, <span class="hljs-keyword">error</span>&#125;);<br>                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> WxErrorException(<span class="hljs-keyword">error</span>, var9);<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>            &#125;<br>        &#125; <span class="hljs-keyword">catch</span> (IOException var10) &#123;<br>            <span class="hljs-comment">// 处理 IO 异常。</span><br>            <span class="hljs-keyword">this</span>.log.<span class="hljs-keyword">error</span>(<span class="hljs-string">&quot;\n【请求地址】: &#123;&#125;\n【请求参数】：&#123;&#125;\n【异常信息】：&#123;&#125;&quot;</span>, <span class="hljs-keyword">new</span> Object[]&#123;uriWithAccessToken, dataForLog, var10.getMessage()&#125;);<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> WxErrorException(WxError.builder().errorMsg(var10.getMessage()).build(), var10);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>具体的调用关系在这个项目中感觉看的不是很清楚，后续待复习一下。</p>
+<p>具体的调用关系有兴趣可以看一下项目代码。</p>
+<h4 id="天气查询"><a href="#天气查询" class="headerlink" title="天气查询"></a>天气查询</h4><p>通过百度地图开发平台获取当地天气，需要申请成为开发者： <a target="_blank" rel="noopener" href="https://lbsyun.baidu.com/apiconsole/center">https://lbsyun.baidu.com/apiconsole/center</a></p>
+<p>国内天气查询： <a target="_blank" rel="noopener" href="https://lbs.baidu.com/faq/api?title=webapi/weather/base">https://lbs.baidu.com/faq/api?title=webapi/weather/base</a></p>
+<p>用户可通过行政区划代码查询实时天气信息及未来5天天气预报。</p>
+<p>api 服务地址： </p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//</span>api.map.baidu.com<span class="hljs-regexp">/weather/</span>v1/?district_id=<span class="hljs-number">222405</span>&amp;data_type=all&amp;ak=你的ak  <br><span class="hljs-regexp">//</span>GET请求<br></code></pre></td></tr></table></figure>
+
+<p>需要先获取到 Access Key </p>
+<p>在控制台管理 →  应用管理 → 我的应用： <a target="_blank" rel="noopener" href="https://lbs.baidu.com/apiconsole/key/create">https://lbs.baidu.com/apiconsole/key/create</a></p>
+<p>需要创建一个应用才能看到 AK</p>
+<p>有兴趣可以看一下，通过IP地址获取邮政编码: <a target="_blank" rel="noopener" href="https://blog.51cto.com/u_16175454/7185643">https://blog.51cto.com/u_16175454/7185643</a></p>
+<p>但实际并不是邮政编码，而是看一下官网文档给的ID编号。</p>
+<p>官网有一份文档 <a target="_blank" rel="noopener" href="https://lbs.baidu.com/faq/api?title=webapi/weather/base">https://lbs.baidu.com/faq/api?title=webapi/weather/base</a>   ，</p>
+<p>可以下载看一下：广州 440100  深圳 440300</p>
+<p>设置IP访问白名单：  建议直接设置  0.0.0.0&#x2F;0 </p>
+<p>由于不是公网访问，设置的IP应该是有点问题。</p>
+<h4 id="”彩虹屁“接口"><a href="#”彩虹屁“接口" class="headerlink" title="”彩虹屁“接口"></a>”彩虹屁“接口</h4><p>调用的第三方接口，天聚数行平台的</p>
+<p>接口地址： <a target="_blank" rel="noopener" href="https://www.tianapi.com/apiview/181">https://www.tianapi.com/apiview/181</a></p>
+<p>访问需要密钥： <a target="_blank" rel="noopener" href="https://www.tianapi.com/console/">https://www.tianapi.com/console/</a></p>
+<p>控制台 → 安全管理</p>
+<p>实际使用的时候他这个第三方接口的 IP 白名单有遇到坑，设置不生效，新增之后；</p>
+<p>后面不断尝试之后发现你充值他的 密钥Key 好像才刷新生效了。</p>
+<h4 id="编辑模板"><a href="#编辑模板" class="headerlink" title="编辑模板"></a>编辑模板</h4><p>最后推送的时候用到了一个模板ID，我们需要在测试微信公众号这里编辑一下模板</p>
+<figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs handlebars"><span class="language-xml">你好，今天是</span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">date.DATA</span>&#125;&#125;</span><span class="language-xml"></span><br><span class="language-xml">农历</span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">lunar.DATA</span>&#125;&#125;</span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">festival.DATA</span>&#125;&#125;</span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">remark.DATA</span>&#125;&#125;</span><span class="language-xml"></span><br><span class="language-xml">你所在的城市位置:</span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">city.DATA</span>&#125;&#125;</span><span class="language-xml"></span><br><span class="language-xml">当前天气:</span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">weather.DATA</span>&#125;&#125;</span><span class="language-xml"></span><br><span class="language-xml">最低气温: </span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">low.DATA</span>&#125;&#125;</span><span class="language-xml">度</span><br><span class="language-xml">最高气温: </span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">high.DATA</span>&#125;&#125;</span><span class="language-xml">度</span><br><span class="language-xml">风力: </span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">wc_day.DATA</span>&#125;&#125;</span><span class="language-xml"></span><br><span class="language-xml">风向: </span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">wd_day.DATA</span>&#125;&#125;</span><span class="language-xml"></span><br><span class="language-xml"></span><br><span class="language-xml">学习打卡~</span><br><span class="language-xml">请开始今天晚上的学习吧！</span><br><span class="language-xml">今天是打卡的第</span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">loveDays.DATA</span>&#125;&#125;</span><span class="language-xml">天</span><br><span class="language-xml">距离一年还剩下</span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">birthdays.DATA</span>&#125;&#125;</span><span class="language-xml">天</span><br><span class="language-xml">Encourage:</span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">rainbow.DATA</span>&#125;&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>自定义模板后进行提交，复制提交后的 模板ID，放到配置文件中</p>
+<p>userID 也是直接可以在公众号平台的列表可以看到</p>
+<p>调用测试地址： <a target="_blank" rel="noopener" href="http://localhost/test">http://localhost/test</a></p>
 <h3 id="4、接收微信消息并进行回复"><a href="#4、接收微信消息并进行回复" class="headerlink" title="4、接收微信消息并进行回复"></a>4、接收微信消息并进行回复</h3><p>项目地址： <a target="_blank" rel="noopener" href="https://github.com/tsmyk0715/wechatproject">https://github.com/tsmyk0715/wechatproject</a></p>
 <h4 id="项目介绍-🦌🦌🦌"><a href="#项目介绍-🦌🦌🦌" class="headerlink" title="项目介绍  🦌🦌🦌"></a>项目介绍  🦌🦌🦌</h4><p>先申请一个订阅号，登陆地址： <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/cgi-bin/loginpage?t=wxm2-login&lang=zh_CN">https://mp.weixin.qq.com/cgi-bin/loginpage?t=wxm2-login&amp;lang=zh_CN</a></p>
 <p>授权信息在 设置与开发 → 基本配置（申请成为开发者）</p>
@@ -491,6 +520,9 @@
 
 <h5 id="接收用户发送的消息"><a href="#接收用户发送的消息" class="headerlink" title="接收用户发送的消息"></a><strong>接收用户发送的消息</strong></h5><p>当微信用户向公众号发送消息时，微信服务器会通过公众号后台配置的URL把信息发送到我们后台的接口上，注意此时的请求格式为 <code>POST</code>请求，发送过来的消息报文格式是XML格式的，每种消息类型的XML格式不一样。</p>
 <p>这里跳过，具体内容看一下开源项目的代码。</p>
+<h5 id="响应微信发出的请求消息"><a href="#响应微信发出的请求消息" class="headerlink" title="响应微信发出的请求消息"></a>响应微信发出的请求消息</h5><p>接口文档： <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/doc/offiaccount/Message_Management/Passive_user_reply_message.html">https://developers.weixin.qq.com/doc/offiaccount/Message_Management/Passive_user_reply_message.html</a></p>
+<p>微信要求响应信息必须要在五秒内，因此实际调用 API 的时候会有一个时间冲突。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240114222207.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="项目运行"><a href="#项目运行" class="headerlink" title="项目运行"></a>项目运行</h4><p>通过你获取的测试号的 appid、appsecret、token 信息，配置号内网穿透（获取到微信发送的消息）</p>
 <p>就可以启动这个项目了，启动类： WechatprojectApplication</p>
 <h3 id="5、QQ消息回复"><a href="#5、QQ消息回复" class="headerlink" title="5、QQ消息回复"></a>5、QQ消息回复</h3><p>既然都了解到这里了，不如也看一下QQ消息是否能自动获取并问答。</p>
