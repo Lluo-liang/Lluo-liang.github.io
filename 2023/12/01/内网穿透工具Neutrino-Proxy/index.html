@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.2k 字
+          2.8k 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          19 分钟
+          24 分钟
         
       </span>
     
@@ -275,18 +275,26 @@
             
               <div class="markdown-body">
                 
-                <p>一款简单易用的内网穿透使用工具</p>
+                <h3 id="1、基本介绍"><a href="#1、基本介绍" class="headerlink" title="1、基本介绍"></a>1、基本介绍</h3><p>一款简单易用的内网穿透使用工具</p>
 <p>官网： <a target="_blank" rel="noopener" href="https://neutrino-proxy.dromara.org/">https://neutrino-proxy.dromara.org/</a></p>
 <p>项目地址： <a target="_blank" rel="noopener" href="https://gitee.com/dromara/neutrino-proxy/releases">https://gitee.com/dromara/neutrino-proxy/releases</a></p>
 <p>部署方式有三种，这里通过原生部署的方式进行启动</p>
 <p>原生部署的方式需要下载zip包，进行解压，然后启动 exe 文件。部分exe程序同一目录下有Pom.xml配置文件，可进行修改对应配置。</p>
 <p>服务器下载<code>neutrino-proxy-server-ubuntu-20.04-native.zip</code>文件，</p>
 <p>客户端下载<code>neutrino-proxy-client-windows-2022-native.zip</code></p>
-<blockquote>
+<h3 id="2、服务端部署"><a href="#2、服务端部署" class="headerlink" title="2、服务端部署"></a>2、服务端部署</h3><blockquote>
 <p>部署服务器端</p>
 </blockquote>
-<p>默认先采用原生配置h2数据库，实际使用中，个人使用的是h2数据库（这种数据库的缺点是数据放在内存中，如果需要持久化放到本地，建议修改配置为 mysql 数据库）</p>
-<p>实际操作：</p>
+<h4 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h4><p>默认先采用原生配置h2数据库，（这种数据库的缺点是数据放在内存中，如果需要持久化放到本地，建议修改配置为 mysql 数据库）</p>
+<p>原配置</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs ruby"><span class="hljs-symbol">data:</span><br>  <span class="hljs-symbol">db:</span><br>    <span class="hljs-comment"># 数据库类型，目前支持h2、mysql、mariadb</span><br>    <span class="hljs-symbol">type:</span> <span class="hljs-variable">$&#123;</span><span class="hljs-variable constant_">DB_TYPE</span><span class="hljs-symbol">:h2</span>&#125;<br>    <span class="hljs-comment"># 数据库连接URL</span><br>    <span class="hljs-symbol">url:</span> <span class="hljs-variable">$&#123;</span><span class="hljs-variable constant_">DB_URL</span><span class="hljs-symbol">:jdbc</span><span class="hljs-symbol">:h2</span><span class="hljs-symbol">:file</span><span class="hljs-symbol">:</span>./data/db;<span class="hljs-variable constant_">MODE</span>=<span class="hljs-title class_">My</span>SQL;<span class="hljs-variable constant_">AUTO_SERVER</span>=<span class="hljs-variable constant_">TRUE</span>&#125;<br>    <span class="hljs-comment"># 数据库用户名</span><br>    <span class="hljs-symbol">username:</span> <span class="hljs-variable">$&#123;</span><span class="hljs-variable constant_">DB_USER</span><span class="hljs-symbol">:</span>&#125;<br>    <span class="hljs-comment"># 数据库密码</span><br>    <span class="hljs-symbol">password:</span> <span class="hljs-variable">$&#123;</span><span class="hljs-variable constant_">DB_PASSWORD</span><span class="hljs-symbol">:</span>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>修改配置(修改为MySQL数据库)</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs ruby"><span class="hljs-symbol">data:</span><br>  <span class="hljs-symbol">db:</span><br>    <span class="hljs-comment"># 数据库类型，目前支持h2、mysql、mariadb</span><br>    <span class="hljs-symbol">type:</span> <span class="hljs-variable">$&#123;</span><span class="hljs-variable constant_">DB_TYPE</span><span class="hljs-symbol">:mysql</span>&#125; <br>    <span class="hljs-symbol">url:</span> <span class="hljs-variable">$&#123;</span><span class="hljs-variable constant_">DB_URL</span><span class="hljs-symbol">:jdbc</span><span class="hljs-symbol">:mysql</span><span class="hljs-symbol">://localhost</span><span class="hljs-symbol">:</span><span class="hljs-number">3306</span>/neutrino-proxy&#125;<br>    <span class="hljs-comment"># 数据库用户名</span><br>    <span class="hljs-symbol">username:</span> <span class="hljs-variable">$&#123;</span><span class="hljs-variable constant_">DB_USER</span><span class="hljs-symbol">:root</span>&#125;<br>    <span class="hljs-comment"># 数据库密码</span><br>    <span class="hljs-symbol">password:</span> <span class="hljs-variable">$&#123;</span><span class="hljs-variable constant_">DB_PASSWORD</span><span class="hljs-symbol">:yourpassword</span>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>关于上面的配置项，如果不清楚，建议直接下载Gitee项目，自己查看项目代码，搜索对应配置内容参数。</p>
+<p>源码建议也学习一下，它这里对应的配置文件是：DbConfiguration</p>
+<h4 id="部署运行"><a href="#部署运行" class="headerlink" title="部署运行"></a>部署运行</h4><p>实际操作：</p>
 <p>1、将下载文件复制到服务器的某个目录下，进行解压操作：</p>
 <figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs axapta">unzip  neutrino-proxy-<span class="hljs-keyword">server</span>-ubuntu<span class="hljs-number">-20.04</span>-native.zip<br><br><span class="hljs-meta">#启动服务端可执行程序</span><br>./neutrino-proxy-<span class="hljs-keyword">server</span><br></code></pre></td></tr></table></figure>
 
@@ -309,42 +317,37 @@
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">sudo yum <span class="hljs-keyword">install</span> screen<br></code></pre></td></tr></table></figure>
 
 <ol>
-<li><p><strong>启动一个新的 <code>screen</code> 会话：</strong></p>
-<p> <code>screen</code></p>
-<p> 这将创建一个新的 <code>screen</code> 会话，并将你切换到该会话中。</p>
+<li><p><strong>启动一个新的 <code>screen</code> 会话：</strong><br> <code>screen</code><br> 这将创建一个新的 <code>screen</code> 会话，并将你切换到该会话中。</p>
 </li>
 <li><p><strong>在 <code>screen</code> 会话中运行你的程序：</strong></p>
 <p> 在 <code>screen</code> 会话中，你可以运行你的程序，比如：</p>
-<p> <code>./your_program.exe</code></p>
-<p> 如果你需要在程序后台运行，你可以使用 <code>Ctrl + A</code> 然后按下 <code>d</code> 键，这会将 <code>screen</code> 会话放入后台，但会话中的程序仍在运行。</p>
+<p> <code>./your_program.exe</code><br> 如果你需要在程序后台运行，你可以使用 <code>Ctrl + A</code> 然后按下 <code>d</code> 键，这会将 <code>screen</code> 会话放入后台，但会话中的程序仍在运行。</p>
 </li>
-<li><p><strong>列出 <code>screen</code> 会话：</strong></p>
-<p> <code>screen -ls</code></p>
-<p> 这将显示当前所有的 <code>screen</code> 会话。</p>
+<li><p><strong>列出 <code>screen</code> 会话：</strong><br> <code>screen -ls</code><br> 这将显示当前所有的 <code>screen</code> 会话。</p>
 </li>
 <li><p><strong>重新连接到 <code>screen</code> 会话：</strong></p>
-<p> 如果你关闭了终端或断开了SSH连接，你可以重新连接到之前创建的 <code>screen</code> 会话：</p>
-<p> <code>screen -r</code></p>
-<p> 如果有多个会话，你可能需要指定要连接的会话ID，例如：</p>
-<p> <code>screen -r &lt;session_id&gt;</code></p>
+<p> 如果你关闭了终端或断开了SSH连接，你可以重新连接到之前创建的 <code>screen</code> 会话：<br> <code>screen -r</code><br> 如果有多个会话，你可能需要指定要连接的会话ID，例如：<br> <code>screen -r &lt;session_id&gt;</code></p>
 </li>
 <li><p><strong>退出 <code>screen</code> 会话：</strong></p>
 <p> 在 <code>screen</code> 会话中，你可以使用 <code>exit</code> 或者 <code>Ctrl + D</code> 来退出。</p>
 </li>
 </ol>
 <p>这是 <code>screen</code> 的基本用法。</p>
-<blockquote>
+<h3 id="3、客户端部署"><a href="#3、客户端部署" class="headerlink" title="3、客户端部署"></a>3、客户端部署</h3><blockquote>
 <p>部署客户端</p>
 </blockquote>
 <p>需要下载后修改一下配置文件</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">neutrino:</span><br>  <span class="hljs-attr">proxy:</span><br>    <span class="hljs-attr">tunnel:</span><br>      <span class="hljs-comment"># ssl证书密钥（使用jjar包内自带的证书，则此处无需修改）</span><br>      <span class="hljs-attr">key-store-password:</span> <span class="hljs-number">123456</span><br>      <span class="hljs-comment"># ssl证书管理密钥（使用jjar包内自带的证书，则此处无需修改。自定义证书，则此处配置对应的路径）</span><br>      <span class="hljs-attr">jks-path:</span> <span class="hljs-string">classpath:/test.jks</span><br>      <span class="hljs-comment"># 代理服务端IP</span><br>      <span class="hljs-attr">server-ip:</span> <span class="hljs-string">xxxx</span><br>      <span class="hljs-comment"># 代理服务端IP, 若是非ssl端口，则ssl-enable需要配置为false</span><br>      <span class="hljs-attr">server-port:</span> <span class="hljs-number">9002</span><br>      <span class="hljs-comment"># 是否启用ssl</span><br>      <span class="hljs-attr">ssl-enable:</span> <span class="hljs-literal">true</span><br>      <span class="hljs-comment"># licenseKey，客户端凭证。此处需要配置刚刚从管理后台复制的LicenseKey</span><br>      <span class="hljs-attr">license-key:</span> <span class="hljs-string">xxxx</span><br></code></pre></td></tr></table></figure>
 
 <p>这里有一个注意的地方就是 9002 这个端口，需要我们去看一下服务器端的配置文件对应的端口，它默认是 9002 ，需要在防火墙端口开启一下，<strong>或者改一下这个端口配置</strong></p>
-<p>server-port  →  服务端端口(对应服务端app.yml中的tunnel.port、tunnel.ssl-port)</p>
+<p>如果是 true，对应的是 SSL_PORT  下参数</p>
+<p>server-port  →  服务端端口(对应服务端app.yml中的 tunnel.port、tunnel.ssl-port)</p>
 <p>然后复制一下客户端凭证即可</p>
 <p>如果出现问题，建议先删掉文件重新解压，再配置一遍，重新启动。</p>
 <p>Linux 客户端配置同理。（注意是一个客户端对应一个凭证）</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">unzip</span>  neutrino-proxy-client-ubuntu-<span class="hljs-number">20</span>.<span class="hljs-number">04</span>-native.zip<br><span class="hljs-attribute">cd</span> neutrino-proxy-client-ubuntu-<span class="hljs-number">20</span>.<span class="hljs-number">04</span>-native<br><br><span class="hljs-attribute">screen</span><br><br><span class="hljs-attribute">nohup</span> ./neutrino-proxy-client &amp;<br></code></pre></td></tr></table></figure>
+
+
                 
               </div>
             

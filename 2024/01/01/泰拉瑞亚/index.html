@@ -277,7 +277,7 @@
             
               <div class="markdown-body">
                 
-                <p>鹿角怪：</p>
+                <h3 id="玩法建议"><a href="#玩法建议" class="headerlink" title="玩法建议"></a>玩法建议</h3><p>鹿角怪：</p>
 <p>1.鹿角怪可以在暴雪期间的地表雪原生物群落中，在午夜时自然生成。生成条件需满足：<br>1）至少有一名玩家有9防御或200生命；<br>2）有一名玩家在地表雪原生物群落中，且附近没有城镇NPC；<br>3）没有其他Boss或敌对事件。<br>在电脑版中，如果玩家已经击败了独眼巨鹿，它将只有25%的几率自然生成。<br>2.在暴雪期间的雪原生物群落中，在一天中的任意时间，通过使用鹿华召唤召唤鹿角怪。<br>3.即使在旅行模式中将敌怪生成滑条设为 0×，独眼巨鹿仍能自然生成</p>
 <p>参考链接：</p>
 <ul>
@@ -303,8 +303,7 @@
 </ul>
 <p>指南</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202401041533321.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>服务器部署：</p>
-<p>教程： <a target="_blank" rel="noopener" href="https://hub.docker.com/r/swsk33/terraria-server?spm=a2c6h.12873639.article-detail.10.44aa6e8ahenrRb">https://hub.docker.com/r/swsk33/terraria-server?spm=a2c6h.12873639.article-detail.10.44aa6e8ahenrRb</a></p>
+<h3 id="服务器部署"><a href="#服务器部署" class="headerlink" title="服务器部署"></a>服务器部署</h3><p>教程： <a target="_blank" rel="noopener" href="https://hub.docker.com/r/swsk33/terraria-server?spm=a2c6h.12873639.article-detail.10.44aa6e8ahenrRb">https://hub.docker.com/r/swsk33/terraria-server?spm=a2c6h.12873639.article-detail.10.44aa6e8ahenrRb</a></p>
 <p>创建数据卷</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker volume create terraria-config<br>docker volume create terraria-world<br></code></pre></td></tr></table></figure>
 
@@ -327,7 +326,7 @@
 </li>
 <li><p><strong>–name&#x3D;terraria-server</strong>: 这为容器指定了一个名称，即 <code>terraria-server</code>。</p>
 </li>
-<li><p><strong>-p 7777:7777</strong>: 这个参数将容器内的 7777 端口映射到主机的 7777 端口。Terraria 服务器默认在 7777 端口监听，因此这允许外部玩家连接到你的服务器。</p>
+<li><p><strong>-p 7777:7777</strong>: 这个参数将容器内的 7777 端口映射到主机的 7777 端口。Terraria 服务器默认在 7777 端口监听，因此这允许外部玩家连接到你的服务器。【主机端口:容器端口】</p>
 </li>
 <li><p><strong>-v terraria-config:&#x2F;terraria&#x2F;config</strong>: 这是一个卷挂载指令。它挂载了之前创建的 <code>terraria-config</code> 数据卷到容器内的 <code>/terraria/config</code> 目录。这允许容器访问和存储配置文件。</p>
 </li>
