@@ -237,7 +237,7 @@
         
         
         
-          166 分钟
+          170 分钟
         
       </span>
     
@@ -456,6 +456,9 @@
 <p>自定义模板后进行提交，复制提交后的 模板ID，放到配置文件中</p>
 <p>userID 也是直接可以在公众号平台的列表可以看到</p>
 <p>调用测试地址： <a target="_blank" rel="noopener" href="http://localhost/test">http://localhost/test</a></p>
+<h4 id="定时推送"><a href="#定时推送" class="headerlink" title="定时推送"></a>定时推送</h4><p>建立了一个定时任务配置类</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">package</span> com.tsmyk.wechatproject.wechat.scheduled;<br><br><span class="hljs-keyword">import</span> com.tsmyk.wechatproject.wechat.utils.PushMessageUtils;<br><span class="hljs-keyword">import</span> org.springframework.context.<span class="hljs-keyword">annotation</span>.Configuration;<br><span class="hljs-keyword">import</span> org.springframework.scheduling.<span class="hljs-keyword">annotation</span>.EnableScheduling;<br><span class="hljs-keyword">import</span> org.springframework.scheduling.<span class="hljs-keyword">annotation</span>.Scheduled;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Task 定时任务</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> cws</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span> 2022/8/22 21:42</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@EnableScheduling</span><br><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Task</span> &#123;<br>    <span class="hljs-comment">// 定时任务</span><br>    <span class="hljs-meta">@Scheduled(cron = <span class="hljs-string">&quot;<span class="hljs-subst">$&#123;wechat.cron&#125;</span>&quot;</span>)</span><br>    <span class="hljs-keyword">public</span> void goodMorning() &#123;<br>        PushMessageUtils.push();;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
 <h3 id="4、接收微信消息并进行回复"><a href="#4、接收微信消息并进行回复" class="headerlink" title="4、接收微信消息并进行回复"></a>4、接收微信消息并进行回复</h3><p>项目地址： <a target="_blank" rel="noopener" href="https://github.com/tsmyk0715/wechatproject">https://github.com/tsmyk0715/wechatproject</a></p>
 <h4 id="项目介绍-🦌🦌🦌"><a href="#项目介绍-🦌🦌🦌" class="headerlink" title="项目介绍  🦌🦌🦌"></a>项目介绍  🦌🦌🦌</h4><p>先申请一个订阅号，登陆地址： <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/cgi-bin/loginpage?t=wxm2-login&lang=zh_CN">https://mp.weixin.qq.com/cgi-bin/loginpage?t=wxm2-login&amp;lang=zh_CN</a></p>
 <p>授权信息在 设置与开发 → 基本配置（申请成为开发者）</p>
