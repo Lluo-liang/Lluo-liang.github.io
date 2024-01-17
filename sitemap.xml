@@ -2,9 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://varcel.luoqi.icu/2023/12/26/%E7%99%BD%E6%9D%BF%E6%93%A6/</loc>
+    <loc>https://varcel.luoqi.icu/2024/01/17/%E9%9D%A2%E8%AF%95%E9%A2%98_MQ/</loc>
     
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -13,7 +13,16 @@
   <url>
     <loc>https://varcel.luoqi.icu/about/index.html</loc>
     
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://varcel.luoqi.icu/2023/12/26/%E7%99%BD%E6%9D%BF%E6%93%A6/</loc>
+    
+    <lastmod>2024-01-17</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -967,7 +976,7 @@
 
   <url>
     <loc>https://varcel.luoqi.icu/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -975,322 +984,322 @@
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/math/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/project/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/java/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/chatgpt/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/docker/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/hexo/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/web/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/elasticsearch/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/git/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/jvm/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/JavaFx/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/index/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/thread/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/%E9%9B%86%E5%90%88/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/maven/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/mongodb/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/mysql/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/netty/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/nginx/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/NoSQL/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/blog/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/oracle/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/work/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/python/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/redis/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/springboot/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/Build/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/springcloud/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/spring/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/soft/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/game/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/vue/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/github/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/nacos/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/linux/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/jdk/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/node/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/obsidian/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/vim/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/windows/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/computer/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/thinking/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/MQ/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/network/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/String/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -1299,273 +1308,273 @@
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/Exam/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/%E9%A1%B9%E7%9B%AE/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/%E9%83%A8%E7%BD%B2/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/StatusPage/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/Java%E5%9F%BA%E7%A1%80/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/UI/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/Elasticsearch/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/Java%E5%9F%BA%E7%A1%80/JVM/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/Java%E5%9F%BA%E7%A1%80/Thread/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/Java%E5%9F%BA%E7%A1%80/JDK8/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/Java%E5%9F%BA%E7%A1%80/%E9%9B%86%E5%90%88/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/Java%E5%9F%BA%E7%A1%80/Base/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/Diary/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/Redis/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/%E6%A1%86%E6%9E%B6/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/Soft/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/web/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/Records/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/NoSQL/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/Oracle/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/%E6%A1%86%E6%9E%B6/SpringBoot/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/%E6%A1%86%E6%9E%B6/MyBatis/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/Game/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/MQ/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/%E6%A1%86%E6%9E%B6/Spring/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/CodeProgram/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/project/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/web/Vue/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Linux/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/web/Node/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1k 字
+          613 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          9 分钟
+          6 分钟
         
       </span>
     
@@ -281,8 +281,10 @@
                 <p><strong>自测题</strong></p>
 <ul>
 <li>讲一下Java 中的基本数据类型，有几种，他们默认的占用空间和默认值，对应的包装类型是什么。</li>
+<li>包装类型的常量池技术了解吗。</li>
 <li>包装类型和基础数据类型的区别，为什么要有包装类型</li>
 <li>自动拆装箱的原理</li>
+<li>遇到过自动拆箱引发的 NPE 问题吗</li>
 <li>String、StringBuffer、StringBuilder 的区别</li>
 <li>重载和重写的区别</li>
 <li>讲一下内部类，匿名内部类怎么使用的</li>
@@ -291,116 +293,14 @@
 <li>Java反射你怎么理解的，框架为什么需要使用反射，你是怎么理解反射的</li>
 <li>谈一下你对 Java 注解的理解，平时你怎么用的，讲一个你使用 Java 注解解决的问题</li>
 <li>讲一下 Java 泛型，泛型是什么，他怎么使用的，类型擦除讲一下，常用的通配符有哪些。</li>
+<li>什么是 SPI，有什么用。</li>
+<li>SPI 和 API 有什么区别。</li>
+<li>Java SPI 实现原理了解吗。</li>
+<li>I&#x2F;O 流为什么要分为字节流和字符流呢？</li>
+<li>Java IO 中的设计模式有哪些。</li>
 <li>什么是I&#x2F;O; 常见的 IO 模型有哪些（BIO&#x2F;NIO&#x2F;AIO 的区别讲一下）</li>
-<li>I&#x2F;O流为什么要分字节流和字符流</li>
 </ul>
 <hr>
-<p>关于 String 有一些常见的面试题，放在另外一篇文章： <strong>面试题_Java基础_String常见面试题</strong></p>
-<p>自测题相关内容：</p>
-<h4 id="1、Java-中的基本数据类型"><a href="#1、Java-中的基本数据类型" class="headerlink" title="1、Java 中的基本数据类型"></a>1、Java 中的基本数据类型</h4><table>
-<thead>
-<tr>
-<th>类型</th>
-<th>基础类型</th>
-<th>默认值</th>
-<th>占用空间大小</th>
-<th>对应包装类型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>数字类型</td>
-<td>byte</td>
-<td>0</td>
-<td>1字节</td>
-<td>Byte</td>
-</tr>
-<tr>
-<td>数字类型</td>
-<td>short</td>
-<td>0</td>
-<td>2字节</td>
-<td>Short</td>
-</tr>
-<tr>
-<td>数字类型</td>
-<td>int</td>
-<td>0</td>
-<td>4字节</td>
-<td>Integer</td>
-</tr>
-<tr>
-<td>数字类型</td>
-<td>long</td>
-<td>0L</td>
-<td>8字节</td>
-<td>Long</td>
-</tr>
-<tr>
-<td>数字类型</td>
-<td>float</td>
-<td>0.0f</td>
-<td>4字节</td>
-<td>Float</td>
-</tr>
-<tr>
-<td>数字类型</td>
-<td>double</td>
-<td>0.0d</td>
-<td>8字节</td>
-<td>Double</td>
-</tr>
-<tr>
-<td>字符类型</td>
-<td>char</td>
-<td>‘\u0000’（即空字符）</td>
-<td>2字节（使用Unicode编码）</td>
-<td>Character</td>
-</tr>
-<tr>
-<td>布尔类型</td>
-<td>boolean</td>
-<td>false</td>
-<td>1字节</td>
-<td>Boolean</td>
-</tr>
-</tbody></table>
-<h4 id="2、包装类型和基础类型的区别"><a href="#2、包装类型和基础类型的区别" class="headerlink" title="2、包装类型和基础类型的区别"></a>2、包装类型和基础类型的区别</h4><p>包装类型能够通过对象的方式进行操作，在使用泛型的时候会用到。</p>
-<p>同时我们运算的时候也会有自动拆箱和自动装箱子</p>
-<h4 id="3、String、StringBuffer、StringBuilder-的区别"><a href="#3、String、StringBuffer、StringBuilder-的区别" class="headerlink" title="3、String、StringBuffer、StringBuilder 的区别"></a>3、String、StringBuffer、StringBuilder 的区别</h4><table>
-<thead>
-<tr>
-<th>特性</th>
-<th><code>String</code></th>
-<th><code>StringBuffer</code></th>
-<th><code>StringBuilder</code></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>可变性</td>
-<td>不可变</td>
-<td>可变</td>
-<td>可变</td>
-</tr>
-<tr>
-<td>线程安全</td>
-<td>是</td>
-<td>是</td>
-<td>否</td>
-</tr>
-<tr>
-<td>性能</td>
-<td>较低（对于频繁修改）</td>
-<td>高（线程安全）</td>
-<td>高（非线程安全）</td>
-</tr>
-<tr>
-<td>用途</td>
-<td>文本不频繁改变时</td>
-<td>多线程中文本频繁改变</td>
-<td>单线程中文本频繁改变</td>
-</tr>
-</tbody></table>
-<h4 id="4、重载和重写的区别"><a href="#4、重载和重写的区别" class="headerlink" title="4、重载和重写的区别"></a>4、重载和重写的区别</h4><hr>
 <p>参考</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://www.yuque.com/snailclimb/mf2z3k/gre6gr">https://www.yuque.com/snailclimb/mf2z3k/gre6gr</a></li>
