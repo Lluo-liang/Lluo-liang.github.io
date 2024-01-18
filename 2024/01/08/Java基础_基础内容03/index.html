@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          160 字
+          2.1k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          2 分钟
+          18 分钟
         
       </span>
     
@@ -277,35 +277,60 @@
             
               <div class="markdown-body">
                 
-                <p>泛型</p>
+                <h3 id="1、异常"><a href="#1、异常" class="headerlink" title="1、异常"></a>1、异常</h3><h4 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202401181322703.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="Checked-Exception-和-Unchecked-Exception"><a href="#Checked-Exception-和-Unchecked-Exception" class="headerlink" title="Checked Exception 和 Unchecked Exception"></a>Checked Exception 和 Unchecked Exception</h4><p><strong>Checked Exception</strong> 即 受检查异常 ，Java 代码在编译过程中，如果受检查异常没有被 <code>catch</code>或者<code>throws</code> 关键字处理的话，就没办法通过编译。</p>
+<p>比如下面这段 IO 操作的代码：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202401181324094.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>除了<code>RuntimeException</code>及其子类以外，其他的<code>Exception</code>类及其子类都属于受检查异常 。常见的受检查异常有：IO 相关的异常、<code>ClassNotFoundException</code>、<code>SQLException</code>…。</p>
+<p><strong>Unchecked Exception</strong> 即 <strong>不受检查异常</strong> ，Java 代码在编译过程中 ，我们即使不处理不受检查异常也可以正常通过编译。</p>
+<p><code>RuntimeException</code> 及其子类都统称为非受检查异常，常见的有（建议记下来，日常开发中会经常用到）：</p>
 <ul>
-<li>什么是泛型</li>
-<li>泛型的使用方式</li>
-<li>项目中哪里使用到了泛型</li>
+<li><code>NullPointerException</code>(空指针错误)</li>
+<li><code>IllegalArgumentException</code>(参数错误比如方法入参类型错误)</li>
+<li><code>NumberFormatException</code>（字符串转换为数字格式错误，<code>IllegalArgumentException</code>的子类）</li>
+<li><code>ArrayIndexOutOfBoundsException</code>（数组越界错误）</li>
+<li><code>ClassCastException</code>（类型转换错误）</li>
+<li><code>ArithmeticException</code>（算术错误）</li>
+<li><code>SecurityException</code> （安全错误比如权限不够）</li>
+<li><code>UnsupportedOperationException</code>(不支持的操作错误比如重复创建同一用户)</li>
+<li>……</li>
 </ul>
-<p>反射</p>
-<ul>
-<li>什么是反射</li>
-<li>反射的优缺点</li>
-<li>反射的应用场景</li>
+<h4 id="Throwable-类常用方法"><a href="#Throwable-类常用方法" class="headerlink" title="Throwable 类常用方法"></a>Throwable 类常用方法</h4><ul>
+<li><code>String getMessage()</code>: 返回异常发生时的简要描述</li>
+<li><code>String toString()</code>: 返回异常发生时的详细信息</li>
+<li><code>String getLocalizedMessage()</code>: 返回异常对象的本地化信息。使用 <code>Throwable</code> 的子类覆盖这个方法，可以生成本地化信息。如果子类没有覆盖该方法，则该方法返回的信息与 <code>getMessage()</code>返回的结果相同</li>
+<li><code>void printStackTrace()</code>: 在控制台上打印 <code>Throwable</code> 对象封装的异常信息</li>
 </ul>
-<p>注解</p>
+<h3 id="2、泛型"><a href="#2、泛型" class="headerlink" title="2、泛型"></a>2、泛型</h3><p><strong>Java 泛型（Generics）</strong> 是 JDK 5 中引入的一个新特性。</p>
+<p>一般有三种使用方式:<strong>泛型类</strong>、<strong>泛型接口</strong>、<strong>泛型方法</strong></p>
+<h4 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h4><p>定义</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-comment">//此处T可以随便写为任意标识，常见的如T、E、K、V等形式的参数常用于表示泛型</span><br><span class="hljs-comment">//在实例化泛型类时，必须指定T的具体类型</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Generic</span>&lt;<span class="hljs-title">T</span>&gt;&#123;<br><br>    <span class="hljs-keyword">private</span> T key;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Generic</span>(<span class="hljs-params">T key</span>)</span> &#123;<br>        <span class="hljs-keyword">this</span>.key = key;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> T <span class="hljs-title">getKey</span>()</span>&#123;<br>        <span class="hljs-keyword">return</span> key;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>使用：</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vhdl"><span class="hljs-keyword">Generic</span>&lt;<span class="hljs-built_in">Integer</span>&gt; genericInteger = <span class="hljs-keyword">new</span> <span class="hljs-keyword">Generic</span>&lt;<span class="hljs-built_in">Integer</span>&gt;(<span class="hljs-number">123456</span>);<br></code></pre></td></tr></table></figure>
+
+<h4 id="泛型接口"><a href="#泛型接口" class="headerlink" title="泛型接口"></a>泛型接口</h4><p>定义</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">Generator</span>&lt;<span class="hljs-title">T</span>&gt; &#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> T <span class="hljs-title">method</span>()</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>实现泛型接口，不指定类型：</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-keyword">class</span> <span class="hljs-symbol">GeneratorImpl</span>&lt;<span class="hljs-symbol">T</span>&gt; <span class="hljs-symbol">implements</span> <span class="hljs-symbol">Generator</span>&lt;<span class="hljs-symbol">T</span>&gt;&#123;<br>    @Override<br>    <span class="hljs-keyword">public</span> T method() &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>实现泛型接口，指定类型：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">GeneratorImpl</span>&lt;T&gt; <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Generator</span>&lt;<span class="hljs-title class_">String</span>&gt;&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-title class_">String</span> <span class="hljs-title function_">method</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;hello&quot;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="泛型方法"><a href="#泛型方法" class="headerlink" title="泛型方法"></a>泛型方法</h4><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> &lt; E &gt; <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">printArray</span>(<span class="hljs-params"> E[] inputArray </span>)</span><br>&#123;<br>      <span class="hljs-keyword">for</span> ( E element : inputArray )&#123;<br>         System.<span class="hljs-keyword">out</span>.printf( <span class="hljs-string">&quot;%s &quot;</span>, element );<br>      &#125;<br>      System.<span class="hljs-keyword">out</span>.println();<br> &#125;<br></code></pre></td></tr></table></figure>
+
+<p>使用：</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-operator">//</span> 创建不同类型数组：<span class="hljs-built_in">Integer</span><span class="hljs-operator">,</span> <span class="hljs-variable">Double</span> 和 <span class="hljs-built_in">Character</span><br><span class="hljs-built_in">Integer</span><span class="hljs-punctuation">[</span><span class="hljs-punctuation">]</span> <span class="hljs-variable">intArray</span> <span class="hljs-operator">=</span> <span class="hljs-punctuation">&#123;</span> <span class="hljs-number">1</span><span class="hljs-operator">,</span> <span class="hljs-number">2</span><span class="hljs-operator">,</span> <span class="hljs-number">3</span> <span class="hljs-punctuation">&#125;</span><span class="hljs-operator">;</span><br><span class="hljs-built_in">String</span><span class="hljs-punctuation">[</span><span class="hljs-punctuation">]</span> <span class="hljs-variable">stringArray</span> <span class="hljs-operator">=</span> <span class="hljs-punctuation">&#123;</span> <span class="hljs-string">&quot;Hello&quot;</span><span class="hljs-operator">,</span> <span class="hljs-string">&quot;World&quot;</span> <span class="hljs-punctuation">&#125;</span><span class="hljs-operator">;</span><br><span class="hljs-variable">printArray</span><span class="hljs-punctuation">(</span> <span class="hljs-variable">intArray</span>  <span class="hljs-punctuation">)</span><span class="hljs-operator">;</span><br><span class="hljs-variable">printArray</span><span class="hljs-punctuation">(</span> <span class="hljs-variable">stringArray</span>  <span class="hljs-punctuation">)</span><span class="hljs-operator">;</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：静态泛型方法是没有办法使用类上声明的泛型的。只能使用自己声明的 <code>&lt;E&gt;</code> （静态方法的加载在类前面）</p>
+</blockquote>
+<h3 id="3、反射"><a href="#3、反射" class="headerlink" title="3、反射"></a>3、反射</h3><p>to be contined…</p>
+<h3 id="4、注解"><a href="#4、注解" class="headerlink" title="4、注解"></a>4、注解</h3><h3 id="5、SPI"><a href="#5、SPI" class="headerlink" title="5、SPI"></a>5、SPI</h3><h3 id="6、序列化和反序列化"><a href="#6、序列化和反序列化" class="headerlink" title="6、序列化和反序列化"></a>6、序列化和反序列化</h3><h3 id="7、语法糖"><a href="#7、语法糖" class="headerlink" title="7、语法糖"></a>7、语法糖</h3><hr>
+<p>参考：</p>
 <ul>
-<li>什么是注解</li>
-<li>注解怎么用的，注解的解析方法有哪几种。</li>
-</ul>
-<p>SPI</p>
-<ul>
-<li>什么是SPI</li>
-<li>SPI  和 API  有什么区别</li>
-<li>SPI 的优缺点</li>
-</ul>
-<p>序列化和反序列化</p>
-<ul>
-<li>什么是序列化，什么是反序列化</li>
-<li>如果有些字段不想进行序列化，如何操作</li>
-<li>常见序列化协议</li>
-<li>不推荐使用JDK自带的序列化</li>
+<li><a target="_blank" rel="noopener" href="https://javaguide.cn/java/basis/java-basic-questions-03.html">https://javaguide.cn/java/basis/java-basic-questions-03.html</a></li>
 </ul>
 
                 
@@ -399,6 +424,29 @@
 
 
 
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/01/08/%E8%98%91%E8%8F%87%E5%8D%9A%E5%AE%A2%E9%A1%B9%E7%9B%AE_Day05/" title="蘑菇博客项目_Day05">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">蘑菇博客项目_Day05</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/01/08/Java%E5%9F%BA%E7%A1%80_%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B902/" title="Java基础_基础内容02">
+                        <span class="hidden-mobile">Java基础_基础内容02</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
               
             </div>
 
