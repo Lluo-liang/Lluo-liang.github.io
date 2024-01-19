@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          84 字
+          785 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          1 分钟
+          7 分钟
         
       </span>
     
@@ -277,7 +277,62 @@
             
               <div class="markdown-body">
                 
-                <p>参考：</p>
+                <p>Excel的存储格式</p>
+<ul>
+<li>XLS<ul>
+<li>XLS一个Sheet最多也只能有 65535 行数据</li>
+<li>每个Sheet最多只能有 256 列（从A到IV）</li>
+</ul>
+</li>
+<li>XLSX（底层使用xml存储）<ul>
+<li>一个Sheet最多可以有 1048576 行数据</li>
+<li>每个Sheet最多可以有 16384 列（从A到XFD）</li>
+<li>文件大小更小</li>
+</ul>
+</li>
+</ul>
+<p>导出优化</p>
+<p>导入优化</p>
+<p>POI对导入分为3种模式，用户模式User Model，事件模式Event Model，还有Event User Model。</p>
+<ul>
+<li>POI对XLS支持Event Model</li>
+<li>POI对 XLSX 支持 Event Model 和 Event User Model</li>
+</ul>
+<p>参考这篇： <a target="_blank" rel="noopener" href="https://albenw.github.io/posts/d093ca4e/">https://albenw.github.io/posts/d093ca4e/</a></p>
+<p>导入细节:</p>
+<ul>
+<li>数据导入：导入使用的模板由系统提供，格式是 xlsx (支持 65535+行数据) ，用户按照表头在对应列写入相应的数据。</li>
+<li>数据校验：数据校验有两种：<ul>
+<li>字段长度、字段正则表达式校验等，内存内校验不存在外部数据交互。对性能影响较小。</li>
+<li>数据重复性校验(需要查询数据库，十分影响性能)。</li>
+</ul>
+</li>
+<li>数据插入：测试环境数据库使用 MySQL 5.7，未分库分表，连接池使用 Druid</li>
+</ul>
+<p>迭代记录：</p>
+<ul>
+<li><ol>
+<li>POI + 逐行查询校对 + 逐行插入</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>EasyPOI + 缓存数据库查询操作 + 批量插入</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>EasyExcel + 缓存数据库查询操作 + 批量插入</li>
+</ol>
+</li>
+</ul>
+<p>提升Excel导入速度的方法：</p>
+<ul>
+<li>使用更快的 Excel 读取框架(推荐使用阿里 EasyExcel)。</li>
+<li>对于需要与数据库交互的校验、按照业务逻辑适当的使用缓存。用空间换时间。</li>
+<li>使用 values(),(),() 拼接长 SQL 一次插入多行数据。</li>
+<li>使用多线程插入数据，利用掉网络IO等待时间(推荐使用并行流，简单易用)。</li>
+<li>避免在循环中打印无用的日志。</li>
+</ul>
+<p>参考：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://albenw.github.io/posts/d093ca4e/">https://albenw.github.io/posts/d093ca4e/</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.51cto.com/article/717718.html">https://www.51cto.com/article/717718.html</a></li>

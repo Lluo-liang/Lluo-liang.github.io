@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k 字
+          1.3k 字
         
       </span>
     
@@ -280,6 +280,7 @@
                 
                 <p>参考： <a target="_blank" rel="noopener" href="https://wx.zsxq.com/dweb2/index/topic_detail/212244125425151">https://wx.zsxq.com/dweb2/index/topic_detail/212244125425151</a></p>
 <p>4个常见的性能优化方向： 多线程、JVM、数据库&#x2F;缓存、数据结构优化</p>
+<h3 id="业务优化："><a href="#业务优化：" class="headerlink" title="业务优化："></a>业务优化：</h3><p>Excel 导入优化：[[Excel 大批量导入导出操作优化]]</p>
 <h3 id="1、多线程"><a href="#1、多线程" class="headerlink" title="1、多线程"></a>1、多线程</h3><h4 id="异步方式"><a href="#异步方式" class="headerlink" title="异步方式"></a>异步方式</h4><p>在 SpringBoot 中使用异步方法优化 Service 逻辑提高接口响应速度?</p>
 <p>参考： <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43441509/article/details/119855613">https://blog.csdn.net/weixin_43441509/article/details/119855613</a></p>
 <p>参考的这篇文章介绍了使用SpringBoot提供的异步方法支持注解的使用；同时介绍了自定义线程池和获取返回值以及捕获异常操作如何进行。</p>
@@ -287,7 +288,7 @@
 <p>问答：两者在设计理念、使用场景和特性上有所不同；如果是涉及多个服务间的通信，建议使用MQ，而在单个应用内部需要异步处理，使用<code>@Async</code>可能更简单方便；同时MQ在可靠性、解耦、异步通信等方面更有优势。</p>
 <p>建议学习项目： <a target="_blank" rel="noopener" href="https://gitee.com/jd-platform-opensource/asyncTool">https://gitee.com/jd-platform-opensource/asyncTool</a></p>
 <p>（京东零售开源的一个并行框架，里面大量使用到了 CompletableFuture ，可以学习其精华来运用在自己的项目上）</p>
-<h4 id="CompletableFuture-原理与实践？"><a href="#CompletableFuture-原理与实践？" class="headerlink" title="CompletableFuture 原理与实践？"></a>CompletableFuture 原理与实践？</h4><p>参考： <a target="_blank" rel="noopener" href="https://juejin.cn/post/7168261825165787149#heading-7">https://juejin.cn/post/7168261825165787149#heading-7</a></p>
+<h4 id="CompletableFuture-原理与实践"><a href="#CompletableFuture-原理与实践" class="headerlink" title="CompletableFuture 原理与实践"></a>CompletableFuture 原理与实践</h4><p>参考： <a target="_blank" rel="noopener" href="https://juejin.cn/post/7168261825165787149#heading-7">https://juejin.cn/post/7168261825165787149#heading-7</a></p>
 <p>建议先看这篇文章，介绍了一下异步任务编排 CompletableFuture 操作 </p>
 <p>里面通过代码讲述了 同步串行、异步串行、并行任务、多任务结果合并计算以及其他的使用示例。</p>
 <p>参考： <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/515993095">https://zhuanlan.zhihu.com/p/515993095</a></p>
@@ -302,8 +303,9 @@
 </ul>
 <p>关于 CompletableFuture 的使用：</p>
 <p>根据CompletableFuture依赖数量，可以分为以下几类：零依赖、一元依赖、二元依赖和多元依赖。</p>
-<p>to be contined….</p>
-<p>后续内容待更新</p>
+<p>(等待 N 个 其他任务完成，启动异步任务)</p>
+<p>原理与设计思想：to be contined…</p>
+<p>附录：略。</p>
 
                 
               </div>
