@@ -29,7 +29,8 @@
 <meta property="article:published_time" content="2024-01-18T17:14:38.000Z">
 <meta property="article:modified_time" content="2024-01-18T17:14:38.000Z">
 <meta property="article:author" content="Luo QI">
-<meta property="article:tag" content="blog">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="thread">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312221018803.jpg">
   
@@ -224,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          70 字
+          674 字
         
       </span>
     
@@ -235,7 +236,7 @@
         
         
         
-          1 分钟
+          6 分钟
         
       </span>
     
@@ -277,11 +278,34 @@
             
               <div class="markdown-body">
                 
-                <p>to be contined….</p>
+                <p>ThreadLocal 一般是用作独立变量副本（线程的变量副本），避免线程共享变量可能导致的并发问题。</p>
+<p>建议先看一下这篇文章： <a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1636025">https://cloud.tencent.com/developer/article/1636025</a></p>
+<p>ThreadLocal包含了四个方法:</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs processing"><span class="hljs-keyword">void</span> <span class="hljs-built_in">set</span>(<span class="hljs-built_in">Object</span> value)设置当前线程的线程局部变量的值。<br><span class="hljs-keyword">public</span> <span class="hljs-built_in">Object</span> <span class="hljs-built_in">get</span>()该方法返回当前线程所对应的线程局部变量。<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">remove</span>()将当前线程局部变量的值删除，其目的是为了减少内存使用，加快内存回收。<br><span class="hljs-keyword">protected</span> <span class="hljs-built_in">Object</span> <span class="hljs-title function_">initialValue</span>()返回该线程局部变量的初始值，该方法是一个<span class="hljs-keyword">protected</span>的方法，目的是为了让子类覆盖而设计的。<br></code></pre></td></tr></table></figure>
+
+<p>使用到 ThreadLocal 的三个常用场景：</p>
+<ul>
+<li><ol>
+<li>代替参数的显示传递</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>全局存储用户信息</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>解决线程安全问题（比如数据库连接的Connection)</li>
+</ol>
+</li>
+</ul>
+<p>慎用的场景：线程池中线程调用使用ThreadLocal、异步程序；同时注意的是使用完ThreadLocal ，最好手动调用 remove() 方法。</p>
+<hr>
+<p>关于 ThreadLocal 的数据结构，方法源码，扩容机制等可以看一下这篇文章： <a target="_blank" rel="noopener" href="https://javaguide.cn/java/concurrent/threadlocal.html">https://javaguide.cn/java/concurrent/threadlocal.html</a></p>
 <hr>
 <p>参考：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://javaguide.cn/java/concurrent/threadlocal.html">https://javaguide.cn/java/concurrent/threadlocal.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1636025">https://cloud.tencent.com/developer/article/1636025</a></li>
 </ul>
 
                 
@@ -301,8 +325,15 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Diary/" class="category-chain-item">Diary</a>
+  <a href="/categories/Java%E5%9F%BA%E7%A1%80/" class="category-chain-item">Java基础</a>
   
+  
+    <span>></span>
+    
+  <a href="/categories/Java%E5%9F%BA%E7%A1%80/Thread/" class="category-chain-item">Thread</a>
+  
+  
+
   
 
       </span>
@@ -316,7 +347,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/blog/" class="print-no-link">#blog</a>
+        <a href="/tags/java/" class="print-no-link">#java</a>
+      
+        <a href="/tags/thread/" class="print-no-link">#thread</a>
       
     </div>
   
@@ -368,6 +401,23 @@
 
 
 
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/01/16/Netty%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/" title="Netty基础使用">
+                        <span class="hidden-mobile">Netty基础使用</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
               
             </div>
 
