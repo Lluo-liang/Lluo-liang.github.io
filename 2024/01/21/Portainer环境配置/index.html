@@ -18,25 +18,25 @@
   <meta name="author" content="Luo QI">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Java并发编程_ThreadLocal">
+    <meta name="description" content="Portainer环境配置">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java并发编程_ThreadLocal">
-<meta property="og:url" content="https://varcel.luoqi.icu/2024/01/18/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B_ThreadLocal/index.html">
+<meta property="og:title" content="Portainer环境配置">
+<meta property="og:url" content="https://varcel.luoqi.icu/2024/01/21/Portainer%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="轻松的洛亓">
-<meta property="og:description" content="Java并发编程_ThreadLocal">
+<meta property="og:description" content="Portainer环境配置">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312221018803.jpg">
-<meta property="article:published_time" content="2024-01-18T17:14:38.000Z">
-<meta property="article:modified_time" content="2024-01-18T17:14:38.000Z">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/wallpaper1702453206266.jpg">
+<meta property="article:published_time" content="2024-01-21T16:39:15.000Z">
+<meta property="article:modified_time" content="2024-01-21T16:39:15.000Z">
 <meta property="article:author" content="Luo QI">
 <meta property="article:tag" content="java">
-<meta property="article:tag" content="thread">
+<meta property="article:tag" content="docker">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312221018803.jpg">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/wallpaper1702453206266.jpg">
   
   
   
-  <title>Java并发编程_ThreadLocal - 轻松的洛亓</title>
+  <title>Portainer环境配置 - 轻松的洛亓</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -202,7 +202,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Java并发编程_ThreadLocal"></span>
+            <span id="subtitle" data-typed-text="Portainer环境配置"></span>
           
         </div>
 
@@ -213,8 +213,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-01-18 17:14" pubdate>
-          2024年1月18日 下午
+        <time datetime="2024-01-21 16:39" pubdate>
+          2024年1月21日 下午
         </time>
       </span>
     
@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          674 字
+          819 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          6 分钟
+          7 分钟
         
       </span>
     
@@ -273,40 +273,37 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Java并发编程_ThreadLocal</h1>
+            <h1 id="seo-header">Portainer环境配置</h1>
             
             
               <div class="markdown-body">
                 
-                <p>ThreadLocal 一般是用作独立变量副本（线程的变量副本），避免线程共享变量可能导致的并发问题。</p>
-<p>建议先看一下这篇文章： <a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1636025">https://cloud.tencent.com/developer/article/1636025</a></p>
-<p>ThreadLocal包含了四个方法:</p>
-<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs processing"><span class="hljs-keyword">void</span> <span class="hljs-built_in">set</span>(<span class="hljs-built_in">Object</span> value)设置当前线程的线程局部变量的值。<br><span class="hljs-keyword">public</span> <span class="hljs-built_in">Object</span> <span class="hljs-built_in">get</span>()该方法返回当前线程所对应的线程局部变量。<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">remove</span>()将当前线程局部变量的值删除，其目的是为了减少内存使用，加快内存回收。<br><span class="hljs-keyword">protected</span> <span class="hljs-built_in">Object</span> <span class="hljs-title function_">initialValue</span>()返回该线程局部变量的初始值，该方法是一个<span class="hljs-keyword">protected</span>的方法，目的是为了让子类覆盖而设计的。<br></code></pre></td></tr></table></figure>
+                <h3 id="1、基础安装"><a href="#1、基础安装" class="headerlink" title="1、基础安装"></a>1、基础安装</h3><p>Portainer 是一个轻量级的管理界面，可以让你轻松地管理不同的Docker环境。Portainer 可以运行作为一个容器，允许你管理容器、镜像、网络等。</p>
+<blockquote>
+<p>拉取最新的 Portainer</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker pull portainer/portainer<br></code></pre></td></tr></table></figure>
 
-<p>使用到 ThreadLocal 的三个常用场景：</p>
+<h3 id="2、安装和启动"><a href="#2、安装和启动" class="headerlink" title="2、安装和启动"></a>2、安装和启动</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">docker <span class="hljs-built_in">run</span> -d -p 9000:9000 <span class="hljs-attribute">--name</span>=portainer <span class="hljs-attribute">--restart</span>=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer<br></code></pre></td></tr></table></figure>
+
 <ul>
-<li><ol>
-<li>代替参数的显示传递</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>全局存储用户信息</li>
-</ol>
-</li>
-<li><ol start="3">
-<li>解决线程安全问题（比如数据库连接的Connection)</li>
-</ol>
-</li>
+<li><code>-d</code>: 后台运行容器。</li>
+<li><code>-p 9000:9000</code>: 将容器的 9000 端口映射到主机的 9000 端口。</li>
+<li><code>--name=portainer</code>: 将容器命名为 portainer。</li>
+<li><code>--restart=always</code>: 确保容器总是重新启动。</li>
+<li><code>-v /var/run/docker.sock:/var/run/docker.sock</code>: 将 Docker 的 Unix socket 映射到容器，允许 Portainer 与本地 Docker 守护进程通信。</li>
+<li><code>-v portainer_data:/data</code>: 将 Portainer 数据存储在名为 portainer_data 的卷中。</li>
 </ul>
-<p>慎用的场景：线程池中线程调用使用ThreadLocal、异步程序；同时注意的是使用完ThreadLocal ，最好手动调用 remove() 方法。</p>
-<hr>
-<p>关于 ThreadLocal 的数据结构，方法源码，扩容机制等可以看一下这篇文章： <a target="_blank" rel="noopener" href="https://javaguide.cn/java/concurrent/threadlocal.html">https://javaguide.cn/java/concurrent/threadlocal.html</a></p>
-<hr>
-<p>参考：</p>
+<p>开放一下端口</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-comment">#开放端口</span><br>firewall-cmd <span class="hljs-params">--zone=public</span> <span class="hljs-params">--add-port=9000/tcp</span> <span class="hljs-params">--permanent</span> <br><span class="hljs-comment"># 重启防火墙 </span><br>firewall-cmd <span class="hljs-params">--reload</span><br><span class="hljs-comment"># 查看开放的端口列表 </span><br>firewall-cmd <span class="hljs-params">--list-port</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="3、使用"><a href="#3、使用" class="headerlink" title="3、使用"></a>3、使用</h3><p>访问： IP:9000</p>
+<p>建议参考一下这篇文章：</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://javaguide.cn/java/concurrent/threadlocal.html">https://javaguide.cn/java/concurrent/threadlocal.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1636025">https://cloud.tencent.com/developer/article/1636025</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/bbwangj/article/details/80973219">https://blog.csdn.net/bbwangj/article/details/80973219</a></li>
+<li><a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_7fr6g496c05k.html">https://articles.zsxq.com/id_7fr6g496c05k.html</a></li>
 </ul>
+<p>里面是谈到了一个集群的容器管理，不过如果是单机选择本地就可以。</p>
 
                 
               </div>
@@ -325,15 +322,8 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Java%E5%9F%BA%E7%A1%80/" class="category-chain-item">Java基础</a>
+  <a href="/categories/%E5%B7%A5%E5%85%B7/" class="category-chain-item">工具</a>
   
-  
-    <span>></span>
-    
-  <a href="/categories/Java%E5%9F%BA%E7%A1%80/Thread/" class="category-chain-item">Thread</a>
-  
-  
-
   
 
       </span>
@@ -349,7 +339,7 @@
       
         <a href="/tags/java/" class="print-no-link">#java</a>
       
-        <a href="/tags/thread/" class="print-no-link">#thread</a>
+        <a href="/tags/docker/" class="print-no-link">#docker</a>
       
     </div>
   
@@ -361,8 +351,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Java并发编程_ThreadLocal</div>
-      <div>https://varcel.luoqi.icu/2024/01/18/Java并发编程_ThreadLocal/</div>
+      <div>Portainer环境配置</div>
+      <div>https://varcel.luoqi.icu/2024/01/21/Portainer环境配置/</div>
     </div>
     <div class="license-meta">
       
@@ -374,7 +364,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年1月18日</div>
+          <div>2024年1月21日</div>
         </div>
       
       
@@ -406,18 +396,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/01/21/Portainer%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" title="Portainer环境配置">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Portainer环境配置</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/01/16/Netty%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/" title="Netty基础使用">
-                        <span class="hidden-mobile">Netty基础使用</span>
+                      <a href="/2024/01/18/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B_ThreadLocal/" title="Java并发编程_ThreadLocal">
+                        <span class="hidden-mobile">Java并发编程_ThreadLocal</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
