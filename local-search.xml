@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>Kubernetes</title>
+    <link href="/2024/01/22/Kubernetes/"/>
+    <url>/2024/01/22/Kubernetes/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>复习一下 docker</p></blockquote><p>docker →  进程隔离 ；操作系统层虚拟化（同一个操作系统下隔离软件环境）</p><p>镜像 image →  容器 Container  →  仓库</p><p>查看容器占用资源：</p><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">docker status</span><br></code></pre></td></tr></table></figure><p>微服务：负载均衡（多节点，实现高可用，平稳过度）</p><p>将一个整体的服务拆分为多个微服务</p><p>考虑的内容：日志收集（多节点），服务监控，资源服务器分配，判断服务的前置依赖</p><p>上面这些考虑的内容可以通过 K8s 来进行处理。</p><ul><li>K8s: 容器编排系统，用于管理和扩展大规模的容器部署</li><li>Portainer: 容器管理工具，提供了一个易于使用的界面来管理 Docker 和 Kubernetes 资源。</li></ul><h3 id="1、K8s-是什么"><a href="#1、K8s-是什么" class="headerlink" title="1、K8s 是什么"></a>1、K8s 是什么</h3><p>Kubernetes（也称 k8s 或 “kube”）是一个开源的容器编排平台，可以自动化在部署、管理和扩展容器化应用过程中涉及的许多手动操作</p><p>建议阅读文档： </p><ul><li><a href="https://www.kubernetes.org.cn/k8s">https://www.kubernetes.org.cn/k8s</a></li><li><a href="https://kubernetes.io/zh-cn/docs/home/">https://kubernetes.io/zh-cn/docs/home/</a></li></ul><p>to be contined….</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>工具</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>java</tag>
+      
+      <tag>docker</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Portainer环境配置</title>
     <link href="/2024/01/21/Portainer%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
     <url>/2024/01/21/Portainer%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</url>
