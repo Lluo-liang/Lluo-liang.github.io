@@ -96,7 +96,7 @@ https://varcel.luoqi.icu/2023/11/19/Docsify%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/
 https://varcel.luoqi.icu/2023/11/19/NoSQL_%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/
 https://varcel.luoqi.icu/2023/11/17/%E6%8F%92%E4%BB%B6%E5%AE%9E%E7%8E%B0Obsidian%E5%AE%9E%E6%97%B6%E5%90%8C%E6%AD%A5/
 https://varcel.luoqi.icu/2023/11/17/Docker%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/
-https://varcel.luoqi.icu/2023/11/16/JVM%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/
+https://varcel.luoqi.icu/2024/01/23/JVM%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/
 https://varcel.luoqi.icu/2023/11/15/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B_%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/
 https://varcel.luoqi.icu/2023/11/15/Java%E9%9B%86%E5%90%88_HashMap%E5%AD%A6%E4%B9%A0/
 https://varcel.luoqi.icu/2023/11/14/Java%E9%9B%86%E5%90%88_ArrayList%E5%AD%A6%E4%B9%A0/
@@ -165,8 +165,8 @@ https://varcel.luoqi.icu/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/Elasticsearch/
 https://varcel.luoqi.icu/categories/Java%E5%9F%BA%E7%A1%80/JVM/
 https://varcel.luoqi.icu/categories/Java%E5%9F%BA%E7%A1%80/Thread/
 https://varcel.luoqi.icu/categories/Java%E5%9F%BA%E7%A1%80/JDK8/
-https://varcel.luoqi.icu/categories/Java%E5%9F%BA%E7%A1%80/%E9%9B%86%E5%90%88/
 https://varcel.luoqi.icu/categories/Java%E5%9F%BA%E7%A1%80/Base/
+https://varcel.luoqi.icu/categories/Java%E5%9F%BA%E7%A1%80/%E9%9B%86%E5%90%88/
 https://varcel.luoqi.icu/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/
 https://varcel.luoqi.icu/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/
 https://varcel.luoqi.icu/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/Redis/
@@ -180,8 +180,8 @@ https://varcel.luoqi.icu/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/
 https://varcel.luoqi.icu/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/
 https://varcel.luoqi.icu/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/NoSQL/
 https://varcel.luoqi.icu/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/Oracle/
-https://varcel.luoqi.icu/categories/Diary/
 https://varcel.luoqi.icu/categories/%E6%A1%86%E6%9E%B6/SpringBoot/
+https://varcel.luoqi.icu/categories/Diary/
 https://varcel.luoqi.icu/categories/%E6%A1%86%E6%9E%B6/MyBatis/
 https://varcel.luoqi.icu/categories/Game/
 https://varcel.luoqi.icu/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/MQ/
