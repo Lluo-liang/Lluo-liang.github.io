@@ -228,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.9k 字
+          5.9k 字
         
       </span>
     
@@ -239,7 +239,7 @@
         
         
         
-          25 分钟
+          49 分钟
         
       </span>
     
@@ -344,6 +344,87 @@
 <li><code>ClassLoader.loadClass()</code>: 只干一件事情，就是将.class文件加载到jvm中，不会执行static中的内容,只有在newInstance才会去执行static块。</li>
 <li><code>Class.forName(name, initialize, loader)</code>带参函数也可控制是否加载static块。并且只有调用了newInstance()方法采用调用构造函数，创建类的对象</li>
 </ul>
+<hr>
+<p>Java的类加载机制是Java虚拟机（JVM）的一个核心组成部分，它负责动态加载、链接和初始化所有的类和接口。类加载机制的工作原理是分阶段进行的，主要包括加载（Loading）、链接（Linking）和初始化（Initialization）三个阶段。</p>
+<ol>
+<li>加载（Loading）</li>
+</ol>
+<p>在加载阶段，JVM会通过类加载器（ClassLoader）读取二进制数据（通常是从<code>.class</code>文件中）并将其转换为<code>java.lang.Class</code>的一个实例。这个实例代表了类在JVM中的一个原始数据结构。</p>
+<p>类加载器类型：</p>
+<ul>
+<li><strong>引导类加载器（Bootstrap ClassLoader）</strong>: 加载JVM的核心类库。</li>
+<li><strong>扩展类加载器（Extension ClassLoader）</strong>: 加载<code>jre/lib/ext</code>目录下或者由系统属性<code>java.ext.dirs</code>指定位置中的类库。</li>
+<li><strong>系统类加载器（System ClassLoader）</strong>: 加载系统类路径（<code>classpath</code>）上的类库。</li>
+</ul>
+<ol start="2">
+<li>链接（Linking）</li>
+</ol>
+<p>链接阶段负责将加载的类或接口的二进制数据合并到JVM的运行状态中。链接阶段分为三个子阶段：</p>
+<ul>
+<li><strong>验证（Verification）</strong>: 确保被加载的类或接口的二进制表示符合JVM规范，没有安全问题。</li>
+<li><strong>准备（Preparation）</strong>: JVM为类变量分配内存并设置默认初始值，这些变量所使用的内存在方法区中进行分配。</li>
+<li><strong>解析（Resolution）</strong>: JVM将常量池内的符号引用替换为直接引用。</li>
+</ul>
+<ol start="3">
+<li>初始化（Initialization）</li>
+</ol>
+<p>在初始化阶段，JVM负责执行类构造器 <code>&lt;clinit&gt;()</code> 方法的过程。<code>&lt;clinit&gt;()</code> 方法由编译器自动收集类中的所有类变量的赋值动作和静态代码块（static{}块）中的语句合并而成。初始化阶段是执行这些初始化语句和静态代码块的过程。</p>
+<p>类加载机制的特点</p>
+<ul>
+<li><strong>懒加载</strong>: 类加载器采用懒加载策略，即当首次使用某个类时才加载。</li>
+<li><strong>缓存机制</strong>: 加载的类信息会被缓存，同一个类加载器下，一个类型只会被加载一次。</li>
+</ul>
+<p>类比</p>
+<p>可以把类加载机制想象成图书馆的工作流程：</p>
+<ul>
+<li><strong>加载</strong>: 类似于根据书名找到书籍的过程。</li>
+<li><strong>链接</strong>: 类似于检查书籍是否完整、页码是否正确，并准备好放到书架上。</li>
+<li><strong>初始化</strong>: 类似于将书籍放到指定的书架上，标记为可借阅状态。</li>
+</ul>
+<hr>
+<h4 id="双亲委派模型"><a href="#双亲委派模型" class="headerlink" title="双亲委派模型"></a>双亲委派模型</h4><p>双亲委派模型（Parent Delegation Model）是Java类加载器（ClassLoader）中的一个核心概念，用于加载类和接口。这个模型旨在提供一种安全性较高的类加载机制，确保Java核心库的类型安全，避免类的重复加载。</p>
+<p>双亲委派模型的工作原理</p>
+<ol>
+<li><strong>委派过程</strong>: 当一个类加载器尝试加载某个类时，它不会立即尝试加载这个类。相反，它会首先将加载任务委派给父类加载器去完成。</li>
+<li><strong>向上递归</strong>: 这个过程会递归向上进行，直到顶层的启动类加载器（Bootstrap ClassLoader）。</li>
+<li><strong>尝试加载</strong>: 如果父类加载器可以完成类的加载工作，那么就成功返回；如果父类加载器无法完成这个加载（因为类不在其搜索范围内），那么子类加载器会尝试自己去加载这个类。</li>
+</ol>
+<p>双亲委派模型的优势</p>
+<ol>
+<li><strong>避免类的重复加载</strong>: 由于在向上委派的过程中，系统类加载器在加载类时会先检查这个类是否已经被加载过了，这样就可以避免重复加载。</li>
+<li><strong>保护程序安全性</strong>: 防止核心API被随意篡改。例如，用户可以自己写一个名为<code>java.lang.Object</code>的类，但系统类加载器会在用户的类加载器之前加载<code>Object</code>类，因此不会加载到用户自定义的那个类。</li>
+</ol>
+<p>双亲委派模型的例外</p>
+<p>尽管双亲委派模型是Java推荐的类加载机制，但在某些情况下，类加载器可能需要违反这个模型。例如，Java的SPI(Service Provider Interface)机制允许服务提供者在运行时被插入和替换，这就需要用到一种不同于标准双亲委派模型的类加载方式。此外，一些应用服务器也会对Java的双亲委派模型进行修改以满足特定需求。</p>
+<p>类比</p>
+<p>可以将双亲委派模型类比于组织中的任务委托过程。当一个任务到来时，员工会先上报给自己的直接上司，上司再上报给更高层的管理者。管理者层层审批，如果上层可以处理这个任务，就不再往下传递。这样可以确保任务处理的正确性和权威性，同时避免重复处理同一个任务。</p>
+<hr>
+<h4 id="打破双亲委派机制"><a href="#打破双亲委派机制" class="headerlink" title="打破双亲委派机制"></a>打破双亲委派机制</h4><p>打破双亲委派机制通常涉及自定义类加载器，并重写其<code>loadClass</code>方法的行为。这通常是出于对特定环境的特殊需求，比如在容器中隔离应用程序、热部署、插件加载等。</p>
+<p>打破双亲委派机制的方法</p>
+<p>要打破双亲委派机制，可以通过创建自定义的类加载器并重写<code>loadClass</code>方法来实现：</p>
+<ol>
+<li><strong>创建自定义类加载器</strong>：继承<code>ClassLoader</code>类。</li>
+<li><strong>重写<code>loadClass</code>方法</strong>：在自定义的<code>loadClass</code>方法中，可以先尝试自己加载类，如果不成功，再根据需要选择是否委托给父加载器。</li>
+</ol>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs scala">public <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomClassLoader</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ClassLoader</span> </span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    public <span class="hljs-type">Class</span>&lt;?&gt; loadClass(<span class="hljs-type">String</span> name) <span class="hljs-keyword">throws</span> <span class="hljs-type">ClassNotFoundException</span> &#123;<br>        <span class="hljs-comment">// 首先, 检查请求的类是否已经被加载</span><br>        <span class="hljs-type">Class</span>&lt;?&gt; loadedClass = findLoadedClass(name);<br>        <span class="hljs-keyword">if</span> (loadedClass == <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-keyword">try</span> &#123;<br>                <span class="hljs-comment">// 尝试自己加载类</span><br>                loadedClass = findClass(name);<br>            &#125; <span class="hljs-keyword">catch</span> (<span class="hljs-type">ClassNotFoundException</span> e) &#123;<br>                <span class="hljs-comment">// 如果自己无法加载, 则委托给父加载器</span><br>                loadedClass = <span class="hljs-keyword">super</span>.loadClass(name, <span class="hljs-literal">false</span>);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> loadedClass;<br>    &#125;<br>    <br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-type">Class</span>&lt;?&gt; findClass(<span class="hljs-type">String</span> name) <span class="hljs-keyword">throws</span> <span class="hljs-type">ClassNotFoundException</span> &#123;<br>        <span class="hljs-comment">// 实现自己的加载逻辑</span><br>        <span class="hljs-comment">// ...</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<p>双亲委派机制的设计理念</p>
+<p>双亲委派机制的设计主要基于以下几个目的：</p>
+<ol>
+<li><strong>安全性</strong>：防止核心API被随意篡改。例如，防止用户自定义的类替换掉核心的类，如<code>java.lang.Object</code>。</li>
+<li><strong>避免类的重复加载</strong>：当父加载器已经加载了该类时，就没有必要子加载器再重新加载一次。</li>
+<li><strong>保持命名空间的清晰</strong>：通过该机制，可以确保在不同的类加载器中加载的类能够相互不见，避免不同类加载器加载相同全名类而引起的冲突。</li>
+</ol>
+<p>打破双亲委派机制的理由</p>
+<p>尽管双亲委派机制在多数情况下是合理的，但在某些场景下可能需要打破这一机制：</p>
+<ol>
+<li><strong>隔离加载</strong>：在容器化的环境中，比如在一个JVM中运行多个应用程序，每个应用程序可能需要使用不同版本的同一库。</li>
+<li><strong>热替换和热部署</strong>：在开发过程中或者某些应用程序中，可能需要重新加载修改过的类，以实现不重启应用程序的更新。</li>
+<li><strong>插件化架构</strong>：应用程序可能需要加载扩展或插件，这些插件与应用程序的类加载器相独立。</li>
+</ol>
+<p>在设计自定义类加载器和考虑是否打破双亲委派模型时，需要仔细权衡安全性、隔离性以及动态加载的需求。</p>
+<hr>
 <h3 id="3、JVM的结构体系"><a href="#3、JVM的结构体系" class="headerlink" title="3、JVM的结构体系"></a>3、JVM的结构体系</h3><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231116235359.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>Java 虚拟机在执行 Java 程序的过程中会把它管理的内存划分成若干个不同的数据区域。</p>
 <blockquote>
