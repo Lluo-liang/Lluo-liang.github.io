@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2k 字
+          3.8k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          17 分钟
+          32 分钟
         
       </span>
     
@@ -409,6 +409,115 @@
 <p>自动装配原理你怎么理解的。</p>
 </blockquote>
 <hr>
+<p>面试官会考察什么？</p>
+<ul>
+<li>技术面试     40%<ul>
+<li>八股文系列</li>
+<li>框架源码</li>
+<li>物理架构（硬件层而）</li>
+</ul>
+</li>
+<li>项目<ul>
+<li>项目的功能怎么实现的</li>
+<li>项目的亮点、项目深度、细节</li>
+<li>场景设计问题</li>
+<li>哪些功能具有挑战性？为什么</li>
+</ul>
+</li>
+<li>算法问题</li>
+<li>感性的部分（给面试官的感受）</li>
+</ul>
+<p>给到面试官作为一个评价依据，人才的筛选是靠经验的判断！</p>
+<blockquote>
+<p>前提：面试官本身是比较成熟！（第一面是问技术，第二面是问项目）</p>
+</blockquote>
+<ul>
+<li>理性（80%）<ul>
+<li>技术能力强不强</li>
+<li>项目的思考和项目中的负责板块的设计和理解（用起来很舒服）</li>
+<li>技术底蕴（场景问题）</li>
+</ul>
+</li>
+<li>感性部分</li>
+</ul>
+<hr>
+<p>了解一些情况：</p>
+<ol>
+<li>你认为单体项目和微服务项目之间的差别在哪里，你在搭建整套项目的时候有遇到什么问题。</li>
+<li>当初技术选型的时候是怎么考虑的，</li>
+<li>你上面讲你使用的通信是使用的OpenFeign 这一套，讲一下你对于OpenFeign 的理解</li>
+<li>你有在里面参与的难点的工作吗</li>
+<li>你对Nacos 的理解是怎么样的。</li>
+<li>说一下项目中你参与度最高的模块整体的业务逻辑，以及你的一些设计方案。</li>
+<li>1</li>
+</ol>
+<hr>
+<p>视频学习： <a target="_blank" rel="noopener" href="https://space.bilibili.com/1031543543/channel/collectiondetail?sid=466872">https://space.bilibili.com/1031543543/channel/collectiondetail?sid=466872</a></p>
+<p>视频： <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1eu411i7ja/?spm_id_from=333.999.0.0&vd_source=6a019ecccfe7d8f62b9a3fe99c723bd0">https://www.bilibili.com/video/BV1eu411i7ja/?spm_id_from=333.999.0.0&amp;vd_source=6a019ecccfe7d8f62b9a3fe99c723bd0</a></p>
+<p>自我介绍：</p>
+<p>面试官，你好，我是20年本科软件工程专业毕业的，至今为止已经工作3年多时间了；然后呢，我最近这份工作是在一家XXX的公司工作，这个工作的团队主要是</p>
+<blockquote>
+<p>技术架构是如何设计的</p>
+</blockquote>
+<p>这部分呢，这个平台用到的一些技术就是用到了 Spring Cloud Alibaba 这么一套微服务的组件</p>
+<p>比如说Nacos 是做分布式注册与配置中心的，使用 OpenFeign + Ribbon 做远程 RPC调用</p>
+<p>Hysrix 做服务的熔断机制，然后用 Gateway 做我们的这个网关，然后用我们的 SpringSecurtiy + OAuth2.0 协议 做一套那个分布式认证服务。</p>
+<blockquote>
+<p>对于 Spring Cloud Alibaba 怎么理解</p>
+</blockquote>
+<p>Spring Cloud Alibaba 的话，首先它相对于 Spring Cloud Netflix 的话，它主要是替换了XXX 等组件；进行一些升级和优化，</p>
+<p>比如是这个 Nacos 是替换原来 Netflix 里面的 Eureka ，然后这个网关也是 gateway 也是替换掉了 原来 Netflix 里面的 Zuul 。</p>
+<blockquote>
+<p>Spring Cloud Alibaba 有哪些组件。</p>
+</blockquote>
+<p>Spring Cloud Alibaba 他自己的生态中，有 Nacos 注册中心、配置中心，还有一些我项目中没有用到的 Sentinel 做这个限流垄断的，还有 Seata 做这个分布式事务的。</p>
+<p>（Gateway 网关 是 Spring 官方孵化的一个项目）</p>
+<blockquote>
+<p>Nacos 的动态更新怎么实现</p>
+</blockquote>
+<p>他是通过长轮训的这种定时的机制去拉取这个 Nacos 上的这些的配置文件，然后去看他的 MD5 的这个编码；判定他配置文件是否有新的变化，如果有新的变化，则进行拉取；</p>
+<blockquote>
+<p>什么是长轮训</p>
+</blockquote>
+<p>长轮训和短轮训相比，短轮训他的频率比较高，如果我轮训查询查不到东西的话就立马返回；</p>
+<p>长轮训他的频率他的频率比较低，他不会立即返回，而是有一个超时时间，在这个超时时间内继续查询。</p>
+<blockquote>
+<p>配置与服务器之间配置变更整个方案如何实现</p>
+</blockquote>
+<ul>
+<li>假设我现在一个应用中有一万多个 key 的配置，这个时候我需要想配置中心看我哪些配置发生了变更，这个地方我的方案是怎么设计（怎么实现配置变更的这个一个判断）</li>
+</ul>
+<blockquote>
+<p>Nacos 怎么实现配置的变更与对比</p>
+</blockquote>
+<blockquote>
+<p>Redis 用了哪些数据结构</p>
+</blockquote>
+<p>Redis 中用到了String，List、Set、Hash、ZSet等数据结构；</p>
+<ul>
+<li>其中String 就是单一的普通 key-value 结构，</li>
+<li>lIst 是相当于一对多的这么一个列表，</li>
+<li>Set 也是一个一对多的列表结构，但是他本身是无序的，且key 是唯一的；</li>
+<li>Hash 与 String 相比的话，他能够在 key-value 的基础上，再根据多个 Field 的这种属性再进行细分；</li>
+<li>Zset 和 Set 相比的话，他是有序的，是通过一个 Score 的这么一个字段来进行排序的</li>
+</ul>
+<blockquote>
+<p>五种数据类型中其底层各用了哪些数据结构</p>
+</blockquote>
+<blockquote>
+<p>你对跳跃表的理解</p>
+</blockquote>
+<blockquote>
+<p>压缩表的实现原理</p>
+</blockquote>
+<blockquote>
+<p>谈谈你对 Dubbo 的理解。</p>
+</blockquote>
+<blockquote>
+<p>谈谈你在这份工作中的最大的成就</p>
+</blockquote>
+<p>xxx  在某个场景下遇到什么问题，但这个问题不满足我们的需求，所以需要去改造；</p>
+<p>实现效果：业务上、性能优化上。</p>
 
                 
               </div>
