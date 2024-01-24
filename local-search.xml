@@ -53,6 +53,8 @@
       
       <tag>docker</tag>
       
+      <tag>运维</tag>
+      
     </tags>
     
   </entry>
@@ -79,6 +81,8 @@
       <tag>java</tag>
       
       <tag>docker</tag>
+      
+      <tag>运维</tag>
       
     </tags>
     
@@ -135,33 +139,6 @@
       <tag>java</tag>
       
       <tag>netty</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>面试题_MySQL</title>
-    <link href="/2024/01/16/%E9%9D%A2%E8%AF%95%E9%A2%98_MySQL/"/>
-    <url>/2024/01/16/%E9%9D%A2%E8%AF%95%E9%A2%98_MySQL/</url>
-    
-    <content type="html"><![CDATA[<blockquote><p>面试自测题</p></blockquote><ul><li>说一下MySQL的架构。</li><li>讲一下SQL语句在 MySQL 中的执行过程。</li><li>MySQL提供了哪些存储引擎。</li><li>讲一下 MySQL中存储引擎的 InnoDB 和 MyIsam 的区别。</li><li>什么是MySQL事务。</li><li>事务中 的 ACID 是指什么。</li><li>并发事务会带来什么问题。</li><li>SQL 事务隔离级别有哪些。</li><li>不可重复读和幻读的区别。</li><li>MySQL的默认隔离是什么，能解决幻读问题吗。</li><li>InnoDB 事务隔离级别实现原理。</li><li>什么是MVCC，有什么用，原理了解吗。</li><li>表级锁和行级锁了解吗，有什么区别。</li><li>行级锁的使用有什么注意事项。</li><li>讲一下共享锁和排他锁。</li><li>意向锁有什么作用。</li><li>MySQL 的 InnoDB 引擎中行锁有几种类型？</li><li>索引有什么用？讲一下索引的优缺点。</li><li>讲一下索引的底层结构。</li><li>MySQL 索引：索引为什么使用 B+树？</li><li>讲一下这些区别：主键索引和二级索引、聚集索引和非聚集索引。</li><li>讲一下 联合索引、覆盖索引。</li><li>建立索引的时候会遵守最左前缀匹配原则，讲一下这个。</li><li>创建索引需要注意什么。</li><li>MySQL 日志：常见的日志都有什么用？</li><li>慢查询日志有什么用。</li><li>binlog 是什么，它主要记录了什么，有什么用。</li><li>讲一下 redolog ；同时说一下 redo log 如何保证事务的持久性。</li><li>页修改之后为什么不直接刷盘。</li><li>binlog 和 redolog 有什么区别。</li><li>undo log 如何保证事务的原子性。</li><li>讲一下SQL优化常见手段。</li><li>讲一下慢查询问题排查。</li></ul><hr><p>参考</p><ul><li><a href="https://gitee.com/moxi159753/LearningNotes/tree/master/MySQL/MySQL45%E8%AE%B2">https://gitee.com/moxi159753/LearningNotes/tree/master/MySQL/MySQL45%E8%AE%B2</a></li><li><a href="https://javaguide.cn/database/mysql/mysql-index.html">https://javaguide.cn/database/mysql/mysql-index.html</a></li><li><a href="https://www.yuque.com/snailclimb/mf2z3k/wghadf">https://www.yuque.com/snailclimb/mf2z3k/wghadf</a></li><li><a href="https://www.yuque.com/snailclimb/mf2z3k/bcr9lr">https://www.yuque.com/snailclimb/mf2z3k/bcr9lr</a></li></ul>]]></content>
-    
-    
-    <categories>
-      
-      <category>面试题</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>java</tag>
-      
-      <tag>面试题</tag>
       
     </tags>
     
@@ -294,11 +271,11 @@
     
     <tags>
       
+      <tag>chatgpt</tag>
+      
       <tag>project</tag>
       
       <tag>java</tag>
-      
-      <tag>chatgpt</tag>
       
     </tags>
     
@@ -323,9 +300,9 @@
     
     <tags>
       
-      <tag>project</tag>
-      
       <tag>chatgpt</tag>
+      
+      <tag>project</tag>
       
     </tags>
     
@@ -379,9 +356,9 @@
     
     <tags>
       
-      <tag>project</tag>
-      
       <tag>chatgpt</tag>
+      
+      <tag>project</tag>
       
     </tags>
     
@@ -406,11 +383,11 @@
     
     <tags>
       
+      <tag>chatgpt</tag>
+      
       <tag>project</tag>
       
       <tag>java</tag>
-      
-      <tag>chatgpt</tag>
       
     </tags>
     
@@ -558,7 +535,7 @@
     <link href="/2024/01/10/%E6%97%A5%E8%AE%B0_%E8%BF%91%E6%9C%9F%E8%AE%A1%E5%88%9220240110/"/>
     <url>/2024/01/10/%E6%97%A5%E8%AE%B0_%E8%BF%91%E6%9C%9F%E8%AE%A1%E5%88%9220240110/</url>
     
-    <content type="html"><![CDATA[<p>近期计划</p><ul><li><input disabled="" type="checkbox"> 面试题学习，准备一下八股（主要根据面试指北和Java面试库学习），继续完善知识库内容</li><li><input disabled="" type="checkbox"> 蘑菇项目继续学习，实际练习，从需求分析到架构设计，到最后的实现，写一下主要过程。部分内容待学习。</li><li><input disabled="" type="checkbox"> 学习一下码农会锁知识星球里面的项目，并真正加强自己的实际代码能力和编程能力</li><li><input disabled="" type="checkbox"> 写一个自习室项目和酒店管理项目。（可选）</li><li><input disabled="" type="checkbox"> 有空可以模仿写一个Java面试库项目，包括小程序版本。（可选）</li><li><input disabled="" type="checkbox"> 项目优化（Excel 优化导入和 接口配置）</li><li><input disabled="" type="checkbox"> 简历准备和完善（持续优化），准备投递</li><li><input disabled="" type="checkbox"> 考研数学</li></ul>]]></content>
+    <content type="html"><![CDATA[<p>近期计划</p><ul><li><input disabled="" type="checkbox"> 面试题学习，准备一下八股（主要根据面试指北和Java面试库学习），继续完善知识库内容</li><li><input disabled="" type="checkbox"> 学习一下码农会锁知识星球里面的项目，并真正加强自己的实际代码能力和编程能力</li><li><input disabled="" type="checkbox"> 项目优化（Excel 优化导入和 接口配置）【实际运行跑一下】</li><li><input disabled="" type="checkbox"> 蘑菇项目继续学习，实际练习，从需求分析到架构设计，到最后的实现，写一下主要过程。部分内容待学习。</li><li><input disabled="" type="checkbox"> 简历准备和完善（持续优化），准备投递</li><li><input disabled="" type="checkbox"> 写一个自习室项目和酒店管理项目。（可选）</li><li><input disabled="" type="checkbox"> 有空可以模仿写一个Java面试库项目，包括小程序版本。（可选）</li><li><input disabled="" type="checkbox"> 考研数学(放后面)</li></ul>]]></content>
     
     
     <categories>
@@ -677,141 +654,6 @@
     <tags>
       
       <tag>java</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>面试题_Redis</title>
-    <link href="/2024/01/02/%E9%9D%A2%E8%AF%95%E9%A2%98_Redis/"/>
-    <url>/2024/01/02/%E9%9D%A2%E8%AF%95%E9%A2%98_Redis/</url>
-    
-    <content type="html"><![CDATA[<blockquote><p>面试自测题</p></blockquote><ul><li>Redis 有什么作用，为什么要用缓存，为什么选择Redis。</li><li>Redis 除了做缓存，还能做什么，可以做消息队列吗？</li><li>分布式缓存常见的技术选型方案有哪些。</li><li>Redis 常用的数据结构有哪些。</li><li>使用 Redis 统计网站 UV 怎么做？</li><li>使用 Redis 实现一个排行榜 怎么做。</li><li>Redis 单线程模型了解吗&#x2F;</li><li>Redis 6.0 之前为什么不使用多线程，Redis 之后为啥引入了多线程。</li><li>Redis 给缓存数据设置过期时间有什么用。</li><li>Redis 是如何判定数据是否过期。</li><li>过期的数据的删除策略了解吗。</li><li>Redis 内存淘汰机制了解吗</li><li>怎么保证 Redis 挂掉之后再重启数据可以进行恢复？</li><li>什么是 RDB 持久化。</li><li>什么是 AOF 持久化。</li><li>Redis 4.0 对于持久化机制做了什么优化？</li><li>如何使用 Redis 事务，Redis 事务支持原子性吗，Redis 事务有什么缺陷。</li><li>如何解决 Redis 事务的缺陷。</li><li>什么是 bigkey？ 有什么危害。</li><li>如何发现 bigkey。</li><li>如何避免大量 key 集中过期。</li><li>什么是 Redis 内存碎片，为什么会有  Redis 内存碎片？</li><li>在使用Redis作为缓存时，遇到缓存穿透，你会怎么处理。</li><li>讲一下缓存雪崩、缓存击穿。</li><li>当数据同时存储在数据库和缓存中时，如何保证缓存和数据库之间的数据一致性？</li><li>在分布式缓存环境下，如何处理多个节点之间的缓存一致性问题。</li><li>如何保证 Redis 服务高可用。</li><li>Sentinel（哨兵）有什么作用。</li><li>Redis 缓存的数据量太大怎么办。</li><li>Redis Cluster 虚拟槽分区有什么优点。</li><li>Redis Cluster 中的各个节点是如何实现数据一致性的。</li></ul><hr><p>参考</p><ul><li><a href="https://mp.weixin.qq.com/s/7hfkBOrbdVUNkepuQ0PX6Q">https://mp.weixin.qq.com/s/7hfkBOrbdVUNkepuQ0PX6Q</a></li><li><a href="https://www.yuque.com/snailclimb/mf2z3k/fg8lgc">https://www.yuque.com/snailclimb/mf2z3k/fg8lgc</a></li><li><a href="https://www.yuque.com/snailclimb/mf2z3k/es0afc">https://www.yuque.com/snailclimb/mf2z3k/es0afc</a></li></ul>]]></content>
-    
-    
-    <categories>
-      
-      <category>面试题</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>java</tag>
-      
-      <tag>面试题</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>面试题_JVM</title>
-    <link href="/2024/01/02/%E9%9D%A2%E8%AF%95%E9%A2%98_JVM/"/>
-    <url>/2024/01/02/%E9%9D%A2%E8%AF%95%E9%A2%98_JVM/</url>
-    
-    <content type="html"><![CDATA[<p>下面的面试题主要针对的是 HotSpot VM。</p><blockquote><p>面试自测题</p></blockquote><ul><li>运行时数据区中包含哪些区域？哪些线程共享？哪些线程独享。哪些区域可能会出现 OutOfMemoryError ？ 哪些区域不会出现 OutOfMemoryError ？</li><li>讲一下 JDK 1.8 之前和 JDK1.8 JVM的区别。</li><li>方法区和永久代的关系。</li><li>讲一下 Java 对象的创建过程。</li><li>对象的访问定位的两种方式知道吗，各有什么优缺点。</li><li>堆空间的基本结构了解吗？什么情况下对象会进入老年代。</li><li>如何判断对象是否死亡（两种方法）</li><li>讲一下可达性分析算法的流程。哪些对象可以作为 GC Roots ？</li><li>对象可以被回收，就代表一定会被回收吗？</li><li>JDK 中有几种引用类型？分别的特点是什么？</li><li>垃圾收集有哪些算法，各自的特点？</li><li>有哪些常见的 GC？ 谈谈你对 Minor GC，还有 Full GC 的理解。Minor GC 与 Full GC 分别在什么时候发生？ Minor GC 会发生 stop the world 现象吗？</li><li>讲一下 CMS 垃圾收集器的四个步骤。CMS 有什么缺点。</li><li>并发标记要解决什么问题？并发标记带来了什么问题？如何解决并发扫描时对象消失问题？</li><li>G1 垃圾收集器的步骤。有什么缺点？</li><li>ZGC 了解吗。</li><li>JVM 中的安全点和安全区各代表什么？</li><li>什么是字节码，类文件结构的组成了解吗</li><li>类的生命周期？类加载的过程了解吗？加载这一步主要做了什么事情？初始化阶段中有哪几种情况必须对类初始化。</li><li>双亲委派模型了解吗，如果我们不想用双亲委派模型怎么办。</li><li>双亲委派模型有什么好处，双亲委派模型是为了一个保证一个 Java 类 在 JVM 中是唯一的？</li><li>JDK 中有哪些 默认的类加载器。</li><li>虚拟机基础故障处理工具有哪些？（性能调优 &amp; 问题排查）</li><li>堆内存相关的 JVM 参数有哪些？你在项目中实际配置过了吗?</li><li>你在项目中遇到过 GC 问题吗， 怎么分析和解决的？</li><li>GC 性能指标了解吗，调优原则呢</li><li>如何降低 Full FC 的频率。</li><li>项目中实践过 JVM 调优吗，怎么做的？</li></ul><hr><blockquote><p>什么是类加载机制，讲一下双亲委派机制，为什么有时候要打破双亲委派机制，怎么打破。</p></blockquote><p>类加载机制是 JVM 的一个核心功能，他能够将类和接口加载；</p><p>类加载主要分为三个阶段，分别是：加载、连接和初始化；</p><p>在第一个阶段中，JVM 会通过类加载器将 .class 文件进行读取二进制数据并转换为 Class 实例；</p><p>其中类加载器主要分为：引导类加载器 Bootstrap ClassLoader 、扩展类加载器 Extension ClassLoader、系统类加载器  System ClassLoader</p><p>在第二个阶段中，连接会将加载的类或者接口的二进制数据合并到 JVM 的运行状态中。</p><p>同时连接又分为三个子阶段，分别是：验证、准备、解析。</p><p>在第三个阶段中，初始化会执行类构造器方法，即执行初始化语句和静态代码块的过程。</p><p>双亲委派机制是类加载器中的一个核心概念，用于加载类和接口。他的一个核心过程是通过向上递归的操作，子加载器会先委派任务给父加载器，直到顶层的类加载器 Bootstrap ClassLoader ，如果父加载器无法完成这个加载，那么此时子加载器才会尝试自己去加载这个类。<br>这种操作可以避免类的重复加载和防止核心API被随意篡改。</p><p>打破双亲委派机制通常是需要创建自定义的类加载器并重写 <code>loadClass</code> 方法来实现。</p><blockquote><p>JVM 的运行时数据区区域有哪些。</p></blockquote><p>JVM 将 .class 文件进行类加载后，数据会到达 运行时数据区。</p><p>区域主要包括：堆（Heap）、方法区（Method Area）、虚拟机栈（VM Stacks）、本地方法栈（Native Method Stacks）和程序计数器（Program Counter Register）</p><p>区分可以看一下这个： [[JVM入门_基础概念#3、JVM的结构体系]]</p><blockquote><p>垃圾回收主要是针对哪块区域进行回收的</p></blockquote><p>垃圾回收主要是针对堆内存进行的，这是大部分Java对象存储和回收的地方。</p><p>堆内存是垃圾收集器的主要工作区域，这里是动态分配内存的地方，对象实例和数组在这里创建和回收。</p><blockquote><p>新生代的对象怎么到达老年代的。</p></blockquote><p>在Java虚拟机（JVM）中，对象通常首先在新生代（Young Generation）分配。随着时间的推移和垃圾回收的进行，对象可能会从新生代晋升（Promotion）到老年代（Old Generation）。这个过程是JVM自动内存管理的一部分，主要基于对象的存活周期和垃圾回收机制。以下是对象从新生代到达老年代的过程：</p><ol><li>对象的初始分配</li></ol><p>大部分情况下，新创建的对象首先在新生代的Eden区域分配。这是基于假设大多数对象都是朝生夕死的。</p><ol start="2"><li>Minor GC（小垃圾回收）</li></ol><p>当新生代的Eden区域填满时，JVM会进行一次Minor GC。这次GC会检查Eden区以及两个Survivor区（通常称为From和To，或者S0和S1）：</p><ul><li><strong>存活对象的复制</strong>：存活的对象会被复制到当前的Survivor区（例如，从Eden复制到S1）。</li><li><strong>年龄计数</strong>：每当对象在Minor GC后存活，它的年龄就会增加。当对象在新生代中存活足够长的时间（超过特定的年龄阈值，通常由参数<code>-XX:MaxTenuringThreshold</code>设定）后，它就会被认为足够成熟，可以晋升到老年代。</li></ul><ol start="3"><li>对象的晋升</li></ol><p>对象不是在每次Minor GC后都会晋升到老年代。它们可能会在新生代的Survivor区之间来回复制几次。对象晋升到老年代通常是基于以下几个条件：</p><ul><li><strong>年龄阈值</strong>：当对象的年龄达到预设的阈值时。</li><li><strong>Survivor空间不足</strong>：如果Survivor空间不足以容纳一次Minor GC后存活的对象，这些对象将直接晋升到老年代。</li><li><strong>大对象</strong>：大对象（大于<code>-XX:PretenureSizeThreshold</code>设定的大小）可能直接在老年代分配，以避免在新生代中反复复制。</li></ul><p>类比：一个人的成长</p><p>可以将对象从新生代晋升到老年代类比为一个人的成长过程：</p><ul><li><strong>新生代</strong>：就像儿童时期，个体（对象）在这个阶段快速成长（创建），但许多很快就不再存在（朝生夕死）。</li><li><strong>Minor GC</strong>：就像学校的考试，检验哪些学生（对象）足够强壮（存活）以继续到下一个学期（Survivor区或老年代）。</li><li><strong>晋升到老年代</strong>：个体（对象）通过多次考验（Minor GC）证明了其稳定性（存活率高），因此可以进入更为稳定的成年阶段（老年代）。</li></ul><blockquote><p>分代年龄为什么要设计为 15，默认值是 15， 最大是多少。</p></blockquote><p>在垃圾回收和内存分配之间的一个平衡值,最大值是 15，默认值也是15</p><p>参考：![[JVM入门_基础概念#JVM分代年龄为什么是15]]</p><blockquote><p>垃圾回收器</p></blockquote><blockquote><p>哪些对象是可以被看做是 GCRoot</p></blockquote><p>在Java虚拟机（JVM）中，垃圾收集器在回收内存之前需要确定哪些对象是活动的，即不应该被回收的。这是通过可达性分析（Reachability Analysis）来完成的，过程中以一组称为“GC Roots”（垃圾回收根）的对象为起点。以下是常见的GC Root对象：</p><ol><li>在虚拟机栈中引用的对象</li></ol><ul><li><strong>局部变量表</strong>中的引用对象。这些引用来自于各个线程的方法调用栈。每个线程都有自己的虚拟机栈，其中的局部变量表可能引用了其他对象。</li></ul><ol start="2"><li>方法区中的类静态属性引用的对象</li></ol><ul><li><strong>静态属性</strong>（static field）位于方法区，它们引用的对象也作为GC Roots。</li></ul><ol start="3"><li>方法区中常量引用的对象</li></ol><ul><li><strong>常量</strong>，比如字符串常量池（String Constant Pool）中的引用。</li></ul><ol start="4"><li>本地方法栈中JNI（即通常所说的Native方法）引用的对象</li></ol><ul><li>由Java本地接口（JNI）引用的对象，例如在本地代码（C或C++等）中创建并被Java代码使用的对象。</li></ul><ol start="5"><li>活动的Java线程（Thread对象）</li></ol><ul><li>活动的线程也是一个GC Root。</li></ul><p>类比</p><p>可以将GC Roots想象为家族树的根：家族树中的每个成员（对象）都可以通过一系列的关系（引用）追溯到家族的始祖（GC Roots）。如果一个成员（对象）不能通过任何关系（引用链）与始祖（GC Roots）相连，那么可以认为这个成员（对象）已经“离世”（可以被垃圾回收）。</p><blockquote><p>在并发标记过程中，可以会出现一些多标、漏标的过程，CMS是怎么处理的。</p></blockquote><p>在CMS（Concurrent Mark-Sweep）垃圾回收器中，并发标记过程确实可能会面临多标（多次标记同一个对象）或漏标（未标记到应该存活的对象）的问题，特别是因为应用程序的线程在这个阶段是处于活动状态的，对象的引用关系可能会发生变化。CMS采用了几种技术和策略来处理这些问题，确保标记过程的准确性。以下是CMS处理这些问题的一些方法：</p><ol><li>写屏障（Write Barrier）</li></ol><ul><li><strong>写屏障</strong>是一种系统机制，用于监控和拦截对象引用字段的写操作。</li><li>在并发标记阶段，JVM通过写屏障来记录那些被修改的引用。这些信息将在稍后的重新标记阶段被使用，以确保所有存活的对象都被正确标记。</li></ul><ol start="2"><li>增量更新（Incremental Update）</li></ol><ul><li>增量更新是在写屏障的帮助下实现的。它记录了在并发标记阶段和应用程序线程同时运行时，引用关系发生变化的对象。</li><li>在接下来的重新标记阶段，增量更新的信息被用来修正并发标记期间可能出现的漏标问题。</li></ul><ol start="3"><li>重新标记（Remark Phase）</li></ol><ul><li>尽管写屏障和增量更新可以减少漏标的问题，但仍然需要一个STW（Stop-The-World）的阶段来最终确保所有存活的对象都被正确标记。这个阶段就是重新标记。</li><li>在重新标记阶段，CMS收集器会处理所有的增量更新信息，并且通过一种名为“快照算法”（Snapshot-at-the-beginning, SATB）来处理在并发阶段发生的引用变化。</li></ul><p>类比</p><p>可以将CMS的并发标记过程类比为绘制一幅复杂的画作：</p><ul><li><strong>并发标记</strong>就像是为画作勾勒初步的轮廓。画家（垃圾收集器）在绘制的同时，模特（应用程序中的对象）可能会稍微移动，从而使得画作的某些部分需要调整。</li><li><strong>写屏障和增量更新</strong>就像是画家记录下模特的每一个小动作，以便稍后修正画作的细节。</li><li><strong>重新标记</strong>则是画家最终审视画作，根据之前记录的所有小动作调整画作，确保画作的准确性。</li></ul><p>CMS的设计是为了减少垃圾回收时的停顿时间，但为了确保准确性，它需要采用上述机制来处理并发标记过程中可能出现的问题。</p><blockquote><p>三色标记算法有了解过吗</p></blockquote><p>三色标记（Tri-color Marking）算法是垃圾回收中使用的一种标记算法，特别是在支持并发垃圾收集的情况下，例如在CMS（Concurrent Mark-Sweep）和G1（Garbage-First）垃圾回收器中。它的基本思想是在标记过程中，用三种颜色来表示对象的状态，从而确保在并发环境下能够正确地进行垃圾回收。这三种颜色通常是白色、灰色和黑色。</p><p>三色标记算法的工作原理</p><ol><li><strong>白色</strong>：表示对象尚未被访问。初始时，所有对象都标记为白色。</li><li><strong>灰色</strong>：表示对象已被访问，但该对象引用的其他对象还没有全部访问。换句话说，从根集合出发，引用路径上的对象已被访问，但这些对象的子对象还未被全部访问。</li><li><strong>黑色</strong>：表示对象已被访问，且该对象引用的所有其他对象也都已访问。黑色对象是安全的，因为它和它引用的对象都已经被扫描过，不会再引用任何白色对象。</li></ol><p>三色标记的过程</p><ul><li><strong>初始阶段</strong>：所有对象都标记为白色。</li><li><strong>标记阶段</strong>：<ul><li>从根集合开始，访问和标记对象。首先，将根对象标记为灰色。</li><li>遍历灰色对象，将其引用的对象标记为灰色（如果它们是白色的），然后将该对象标记为黑色。</li><li>重复这个过程，直到没有灰色对象为止。</li></ul></li></ul><p>三色标记和并发垃圾回收</p><p>在并发垃圾回收中，应用线程和垃圾收集线程是同时运行的。这可能导致所谓的“浮动垃圾”（Floating Garbage），即在标记过程中由于应用线程的运行产生的新垃圾。三色标记算法通过维护这些颜色的不变性和使用一些技术，如写屏障（Write Barrier）和增量更新（Incremental Update），来确保垃圾收集的正确性。</p><p>类比</p><p>可以将三色标记算法类比为管理一家图书馆的过程：</p><ul><li><strong>白色书籍</strong>：尚未检查的书籍。</li><li><strong>灰色书籍</strong>：检查过，但书籍里面的引用（例如书中的引用文献）还没有全部检查的书籍。</li><li><strong>黑色书籍</strong>：完全检查过的书籍，包括书本及其引用的所有内容。</li></ul><p>图书管理员（垃圾收集器）需要确保所有的书籍都被正确地检查过，同时处理图书馆运营期间新加入或变动的书籍（应用线程的活动）。</p><hr><p>参考：</p><ul><li><a href="https://javaguide.cn/java/jvm/jvm-in-action.html">https://javaguide.cn/java/jvm/jvm-in-action.html</a></li><li><a href="https://www.yuque.com/snailclimb/mf2z3k/xkhs3e">https://www.yuque.com/snailclimb/mf2z3k/xkhs3e</a></li></ul>]]></content>
-    
-    
-    <categories>
-      
-      <category>面试题</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>java</tag>
-      
-      <tag>面试题</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>面试题_Java并发</title>
-    <link href="/2024/01/02/%E9%9D%A2%E8%AF%95%E9%A2%98_Java%E5%B9%B6%E5%8F%91/"/>
-    <url>/2024/01/02/%E9%9D%A2%E8%AF%95%E9%A2%98_Java%E5%B9%B6%E5%8F%91/</url>
-    
-    <content type="html"><![CDATA[<blockquote><p>面试自测题</p></blockquote><ul><li>什么是线程，线程和进程的区别是什么。</li><li>为什么要使用多线程。</li><li>线程的生命周期和状态讲一下。</li><li>什么是线程死锁，如何预防和避免线程死锁。</li><li>讲一下线程中的乐观锁和悲观锁，并讲一下其对应的一种实现方案。（如何实现乐观锁和悲观锁）</li><li>乐观锁和悲观锁的区别。</li><li>如何实现乐观锁。</li><li>CAS 了解吗，原理说一下。</li><li>乐观锁存在哪些问题。</li><li>什么是 ABA 问题，ABA 问题怎么解决。</li><li>并发编程的三个重要特性。</li><li>什么是 JMM, 为什么需要 JMM？</li><li>JMM 是如何抽象线程 和 主内存之间的关系。</li><li>Java 内存区域和 JMM 有何区别。</li><li>happens-before 原则是什么，为什么需要 happens-before 原则。</li><li>synchronized 关键字有什么作用，你平时怎么使用 synchronized 的。</li><li>synchronized 关键字的底层原理讲一下。</li><li>JDK1.6 之后的 synchronized 关键字底层做了哪些优化。synchronized 锁升级流程。</li><li>synchronized 和 ReentrantLock 有什么区别。</li><li>synchronized 和 volatile 的区别讲一下。讲一下 volatile 关键字。</li><li>ThreadLocal 的底层原理讲一下，你在平时的项目中是如何使用 ThreadLocal 关键字的。</li><li>线程池有哪几种，线程池的重要参数有哪些？</li><li>AQS 是什么，AQS 的原理是什么？</li><li>Semaphore 有什么用，他的原理是什么？</li><li>CountDownLatch，CyclicBarrier 了解吗。</li></ul><hr><blockquote><p>并发和并行有什么区别。</p></blockquote><p>并发是多个任务在同一时刻内同时进行；</p><p>并行是多个任务在同一段时间段内同时进行。</p><blockquote><p>你对 synchronized 的理解。</p></blockquote><p>synchronized 关键字是 Java 中多线程锁的悲观锁的一种应用方式，</p><p>一般使用 synchronized 关键字修饰同步方法与同步代码块，此时对该方法&#x2F;代码块访问的时候会进行加锁，其他线程访问只有等待该线程释放锁后才能进行。</p><blockquote><p>说一下偏向锁、轻量级锁、重量级锁（锁升级过程）。</p></blockquote><p>在Java中，为了优化同步操作的性能，引入了偏向锁、轻量级锁和重量级锁的概念。</p><p>这些锁是对<code>synchronized</code>关键字的优化，旨在减少锁操作的开销。在不同竞争条件下，锁可以从偏向锁升级到轻量级锁，再升级到重量级锁。</p><p>偏向锁（Biased Locking）</p><ul><li><strong>目的</strong>：在只有一个线程访问同步块的情况下，减少不必要的锁竞争开销。</li><li><strong>原理</strong>：当锁被第一次获取时，它会将锁对象的头部信息标记为偏向模式，并记录获取它的线程ID。之后，该线程进入同步块时不需要再进行同步。</li><li><strong>升级条件</strong>：当有另一个线程尝试获取这个锁时，偏向锁会升级为轻量级锁。</li></ul><p> 轻量级锁（Lightweight Locking）</p><ul><li><strong>目的</strong>：在无明显线程竞争的情况下，减少传统的锁机制（重量级锁）的性能消耗。</li><li><strong>原理</strong>：线程在获取锁时，会在栈帧中创建一个锁记录（Lock Record）空间，用于存储锁对象的头部信息。然后，尝试使用CAS（Compare And Swap）操作替换对象头部信息，将其指向锁记录。如果成功，线程获得锁；如果失败，表示其他线程竞争锁。</li><li><strong>升级条件</strong>：当多个线程竞争同一个锁时，轻量级锁会升级为重量级锁。</li></ul><p>重量级锁（Heavyweight Locking）</p><ul><li><strong>目的</strong>：在强竞争条件下，保证线程安全。</li><li><strong>原理</strong>：当锁处于重量级状态时，线程尝试获取锁失败，会进入阻塞状态。这需要操作系统的帮助，代价比轻量级锁和偏向锁要高。</li><li><strong>特点</strong>：重量级锁是最传统的同步方式，当有多个线程频繁竞争同一个锁时，使用重量级锁可以确保线程安全。</li></ul><p>锁升级过程</p><ol><li><strong>初始状态</strong>：新创建的锁对象默认是无锁状态。</li><li><strong>偏向锁</strong>：当第一个线程访问同步块时，锁会变为偏向锁。该线程后续进入同步块不需要真正的锁操作。</li><li><strong>轻量级锁</strong>：当有另一个线程尝试获取这个偏向锁时，如果持有偏向锁的线程不活跃，偏向锁可以撤销并升级为轻量级锁。</li><li><strong>重量级锁</strong>：如果轻量级锁的自旋失败（即多个线程竞争同一个锁），则升级为重量级锁。</li></ol><p>类比</p><p>可以将这些锁的升级过程类比为不同安全级别的门禁系统：</p><ul><li><strong>偏向锁</strong>：类似于一扇只允许一个特定员工进入的门。只要是这个员工，门会自动打开，无需任何验证。</li><li><strong>轻量级锁</strong>：类似于有一个简单的锁系统，员工需要刷卡（CAS操作）进入，如果门没有被其他人使用，这个过程很快。</li><li><strong>重量级锁</strong>：如果门经常被多人同时尝试使用，系统会升级到一个有保安的更复杂的门禁系统，来确保每次只有一个人进入。</li></ul><hr><p>参考</p><ul><li><a href="https://www.yuque.com/snailclimb/mf2z3k/cm70wa">https://www.yuque.com/snailclimb/mf2z3k/cm70wa</a></li></ul>]]></content>
-    
-    
-    <categories>
-      
-      <category>面试题</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>java</tag>
-      
-      <tag>面试题</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>面试题_Java集合</title>
-    <link href="/2023/12/30/%E9%9D%A2%E8%AF%95%E9%A2%98_Java%E9%9B%86%E5%90%88/"/>
-    <url>/2023/12/30/%E9%9D%A2%E8%AF%95%E9%A2%98_Java%E9%9B%86%E5%90%88/</url>
-    
-    <content type="html"><![CDATA[<p><strong>自测题</strong></p><ul><li>讲一下 List、Map、Set 的区别</li><li>List, Set, Map 在 Java 中分别由哪些对应的实现类，底层的数据结构是什么。</li><li>常见的集合实现类怎么用的大致说一下。</li><li>哪些集合是线程不安全的，在并发情况下，如何保证集合线程安全呢。</li><li>讲一下List 的实现类，其中：ArrayList 和 Vector、ArrayList 和 ArrayLinked 的区别讲一下。</li><li>ArrayList 的扩容机制了解吗，讲述一下怎么扩容的。</li><li>说一下 HashSet、LinkedHashSet 和 TreeSet 三者的区别。</li><li>Queue 了解吗，讲一下他的实现类。</li><li>Queue 与 Deque 的区别。</li><li>ArrayDeque 与 LinkedList 的区别。</li><li>PriorityQueue 有什么特点。</li><li>HashMap 的查询、删除的时间复杂度是多少？</li><li>讲一下HashMap 的底层实现。</li><li>HashMap 的长度为什么是 2 的幂次方。</li><li>HashMap 和 Hashtable 的区别？HashMap 和 HashSet 区别？ HashMap 和 TreeMap 区别。</li><li>讲一下 HashMap 和 ConcurrentHashMap 的区别。</li><li>ConcurrentHashMap 和 Hashtable 的区别。</li><li>ConcurrentHashMap 线程安全的底层实现原理讲一下。</li></ul><hr><p>参考</p><ul><li><a href="https://www.yuque.com/snailclimb/mf2z3k/vlf8gd">https://www.yuque.com/snailclimb/mf2z3k/vlf8gd</a></li></ul>]]></content>
-    
-    
-    <categories>
-      
-      <category>面试题</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>java</tag>
-      
-      <tag>面试题</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>面试题_Java基础</title>
-    <link href="/2023/12/30/%E9%9D%A2%E8%AF%95%E9%A2%98_Java%E5%9F%BA%E7%A1%80/"/>
-    <url>/2023/12/30/%E9%9D%A2%E8%AF%95%E9%A2%98_Java%E5%9F%BA%E7%A1%80/</url>
-    
-    <content type="html"><![CDATA[<p><strong>自测题</strong></p><ul><li>讲一下Java 中的基本数据类型，有几种，他们默认的占用空间和默认值，对应的包装类型是什么。</li><li>包装类型的常量池技术了解吗。</li><li>包装类型和基础数据类型的区别，为什么要有包装类型</li><li>自动拆装箱的原理</li><li>遇到过自动拆箱引发的 NPE 问题吗</li><li>String、StringBuffer、StringBuilder 的区别</li><li>重载和重写的区别</li><li>讲一下内部类，匿名内部类怎么使用的</li><li>讲一下深拷贝、浅拷贝和引用拷贝</li><li>接口和抽象类的区别</li><li>Java反射你怎么理解的，框架为什么需要使用反射，你是怎么理解反射的</li><li>谈一下你对 Java 注解的理解，平时你怎么用的，讲一个你使用 Java 注解解决的问题</li><li>讲一下 Java 泛型，泛型是什么，他怎么使用的，类型擦除讲一下，常用的通配符有哪些。</li><li>什么是 SPI，有什么用。</li><li>SPI 和 API 有什么区别。</li><li>Java SPI 实现原理了解吗。</li><li>I&#x2F;O 流为什么要分为字节流和字符流呢？</li><li>Java IO 中的设计模式有哪些。</li><li>什么是I&#x2F;O; 常见的 IO 模型有哪些（BIO&#x2F;NIO&#x2F;AIO 的区别讲一下）</li></ul><hr><p>参考</p><ul><li><a href="https://www.yuque.com/snailclimb/mf2z3k/gre6gr">https://www.yuque.com/snailclimb/mf2z3k/gre6gr</a></li><li><a href="https://javaguide.cn/java/basis/java-basic-questions-01.html#%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%B8%B8%E8%AF%86">https://javaguide.cn/java/basis/java-basic-questions-01.html#%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%B8%B8%E8%AF%86</a></li></ul>]]></content>
-    
-    
-    <categories>
-      
-      <category>面试题</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>java</tag>
-      
-      <tag>面试题</tag>
       
     </tags>
     
