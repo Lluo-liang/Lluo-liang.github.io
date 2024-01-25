@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.8k 字
+          2.6k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          16 分钟
+          22 分钟
         
       </span>
     
@@ -286,6 +286,7 @@
 <li>什么是线程，线程和进程的区别是什么。</li>
 <li>为什么要使用多线程。</li>
 <li>线程的生命周期和状态讲一下。</li>
+<li>如何优雅的终止一个线程</li>
 <li>什么是线程死锁，如何预防和避免线程死锁。</li>
 <li>讲一下线程中的乐观锁和悲观锁，并讲一下其对应的一种实现方案。（如何实现乐观锁和悲观锁）</li>
 <li>乐观锁和悲观锁的区别。</li>
@@ -300,14 +301,37 @@
 <li>happens-before 原则是什么，为什么需要 happens-before 原则。</li>
 <li>synchronized 关键字有什么作用，你平时怎么使用 synchronized 的。</li>
 <li>synchronized 关键字的底层原理讲一下。</li>
+<li>你刚才提到获取对象的锁，这个“锁”到底是什么？如何确定对象的锁？</li>
+<li>什么是可重入性，为什么说 Synchronized 是可重入锁？</li>
+<li>JVM 对 Java 的原生锁做了哪些优化？</li>
 <li>JDK1.6 之后的 synchronized 关键字底层做了哪些优化。synchronized 锁升级流程。</li>
+<li>为什么说 Synchronized 是非公平锁？</li>
+<li>什么是锁消除和锁粗化？</li>
+<li>为什么说 Synchronized 是一个悲观锁？乐观锁的实现原理又是什么？什么是 CAS，它有什么特性？</li>
+<li>乐观锁一定就是好的吗？</li>
+<li>跟 Synchronized 相比，可重入锁 ReentrantLock 其实现原理有什么不同？</li>
 <li>synchronized 和 ReentrantLock 有什么区别。</li>
+<li>ReentrantLock 是如何实现可重入性的？</li>
+<li>除了 ReetrantLock，你还接触过 JUC 中的哪些并发工具？</li>
 <li>synchronized 和 volatile 的区别讲一下。讲一下 volatile 关键字。</li>
 <li>ThreadLocal 的底层原理讲一下，你在平时的项目中是如何使用 ThreadLocal 关键字的。</li>
 <li>线程池有哪几种，线程池的重要参数有哪些？</li>
-<li>AQS 是什么，AQS 的原理是什么？</li>
+<li>AQS 是什么，AQS 的原理是什么？那么请谈谈 AQS 框架是怎么回事儿？</li>
+<li>什么是ABA问题，怎么解决？</li>
 <li>Semaphore 有什么用，他的原理是什么？</li>
-<li>CountDownLatch，CyclicBarrier 了解吗。</li>
+<li>CountDownLatch，CyclicBarrier 了解吗。CyclicBarrier 和 CountDownLatch 看起来很相似，请对比下呢？</li>
+<li>请谈谈 ReadWriteLock 和 StampedLock。</li>
+<li>如何让 Java 的线程彼此同步？你了解过哪些同步器？请分别介绍下。</li>
+<li>Java 中的线程池是如何实现的？创建线程池的几个核心构造参数？</li>
+<li>线程池中的线程是怎么创建的？是一开始就随着线程池的启动创建好的吗？</li>
+<li>既然提到可以通过配置不同参数创建出不同的线程池，那么 Java 中默认实现好的线程池又有哪些呢？请比较它们的异同</li>
+<li>如何在 Java 线程池中提交线程？</li>
+<li>什么是 Java 的内存模型，Java 中各个线程是怎么彼此看到对方的变量的？</li>
+<li>请谈谈 volatile 有什么特点，为什么它能保证变量对所有线程的可见性？</li>
+<li>既然 volatile 能够保证线程间的变量可见性，是不是就意味着基于 volatile变量的运算就是并发安全的？</li>
+<li>请对比下 volatile 对比 Synchronized 的异同。</li>
+<li>请谈谈 ThreadLocal 是怎么解决并发安全的？</li>
+<li>很多人都说要慎用 ThreadLocal，谈谈你的理解，使用 ThreadLocal 需要注意些什么。</li>
 </ul>
 <h3 id="面试解答篇"><a href="#面试解答篇" class="headerlink" title="面试解答篇"></a>面试解答篇</h3><p>to be contined….</p>
 <blockquote>
