@@ -18,16 +18,16 @@
   <meta name="author" content="Luo QI">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Java面试题简要讲解">
+    <meta name="description" content="面试题_RocketMQ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java面试题简要讲解">
-<meta property="og:url" content="https://varcel.luoqi.icu/2024/01/24/Java%E9%9D%A2%E8%AF%95%E9%A2%98%E7%AE%80%E8%A6%81%E8%AE%B2%E8%A7%A3/index.html">
+<meta property="og:title" content="面试题_RocketMQ">
+<meta property="og:url" content="https://varcel.luoqi.icu/2024/01/25/%E9%9D%A2%E8%AF%95%E9%A2%98_RocketMQ/index.html">
 <meta property="og:site_name" content="轻松的洛亓">
-<meta property="og:description" content="Java面试题简要讲解">
+<meta property="og:description" content="面试题_RocketMQ">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/wallpaper1702453206266.jpg">
-<meta property="article:published_time" content="2024-01-24T22:08:22.000Z">
-<meta property="article:modified_time" content="2024-01-24T22:08:22.000Z">
+<meta property="article:published_time" content="2024-01-25T09:33:14.000Z">
+<meta property="article:modified_time" content="2024-01-25T09:33:14.000Z">
 <meta property="article:author" content="Luo QI">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="面试题">
@@ -36,7 +36,7 @@
   
   
   
-  <title>Java面试题简要讲解 - 轻松的洛亓</title>
+  <title>面试题_RocketMQ - 轻松的洛亓</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -202,7 +202,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Java面试题简要讲解"></span>
+            <span id="subtitle" data-typed-text="面试题_RocketMQ"></span>
           
         </div>
 
@@ -213,8 +213,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-01-24 22:08" pubdate>
-          2024年1月24日 晚上
+        <time datetime="2024-01-25 09:33" pubdate>
+          2024年1月25日 上午
         </time>
       </span>
     
@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          1k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          13 分钟
+          9 分钟
         
       </span>
     
@@ -273,54 +273,50 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Java面试题简要讲解</h1>
+            <h1 id="seo-header">面试题_RocketMQ</h1>
             
             
               <div class="markdown-body">
                 
-                <h3 id="Java基础"><a href="#Java基础" class="headerlink" title="Java基础"></a>Java基础</h3><ol>
-<li><strong>基本数据类型</strong>：Java有8种基本数据类型，包括整型（byte, short, int, long）、浮点型（float, double）、字符型（char）和布尔型（boolean）。每种类型有固定的内存占用和默认值，例如int类型占用4字节，默认值为0。对应的包装类是Integer、Float等。</li>
-<li><strong>包装类型</strong>：包装类型提供了基本数据类型的对象形式，支持自动装箱（自动转换为基本数据类型）和拆箱（自动转换为对象）。常量池技术用于提高对象的创建效率，避免重复创建相同的对象。</li>
-<li><strong>String、StringBuffer、StringBuilder</strong>：String是不可变的，StringBuffer是线程安全的，StringBuilder是非线程安全的。默认容量大小通常为16，可以通过构造函数指定。</li>
-<li><strong>Object方法</strong>：Object类是所有类的超类，提供了一些通用方法，如equals、hashCode、toString等。</li>
-<li><strong>重载与重写</strong>：重载（Overloading）是在同一类中定义多个同名方法，但参数列表不同；重写（Overriding）是在子类中重新实现父类的方法。</li>
-<li><strong>内部类</strong>：内部类是定义在另一个类中的类，可以访问外部类的私有成员。匿名内部类通常用于创建一次性使用的对象。</li>
-<li><strong>深拷贝与浅拷贝</strong>：深拷贝创建新对象并复制所有引用对象，浅拷贝只复制引用，不复制引用的对象。</li>
-<li><strong>接口与抽象类</strong>：接口定义了一组方法规范，抽象类可以包含部分实现。</li>
-<li><strong>反射</strong>：反射允许程序在运行时访问和操作类的信息，如类名、方法、字段等。框架如Spring使用反射来实现依赖注入。</li>
-<li><strong>注解</strong>：注解用于提供元数据，可以用于编译时检查、运行时处理等。例如，@Override注解用于检查方法是否正确重写了父类方法。</li>
-</ol>
-<h3 id="Java集合"><a href="#Java集合" class="headerlink" title="Java集合"></a>Java集合</h3><ol>
-<li><strong>List、Map、Set</strong>：List是有序集合，可以包含重复元素；Map是键值对集合，键唯一；Set是无序集合，元素唯一。</li>
-<li><strong>集合实现类</strong>：如ArrayList、LinkedList、HashMap、TreeMap等，它们底层使用不同的数据结构实现，如数组、链表、红黑树等。</li>
-<li><strong>并发集合</strong>：在并发环境下，使用ConcurrentHashMap等集合类可以保证线程安全。</li>
-<li><strong>集合特性</strong>：如快速失败（fail-fast）和安全失败（fail-safe）迭代器，以及扩容机制等。</li>
-</ol>
-<h3 id="Java并发"><a href="#Java并发" class="headerlink" title="Java并发"></a>Java并发</h3><ol>
-<li><strong>线程与进程</strong>：线程是进程中的执行单元，轻量级；进程是资源分配的基本单位，重量级。</li>
-<li><strong>线程生命周期</strong>：包括新建、就绪、运行、阻塞、死亡等状态。</li>
-<li><strong>线程同步</strong>：使用synchronized、ReentrantLock等机制来保证线程安全。</li>
-<li><strong>并发工具类</strong>：如CountDownLatch、CyclicBarrier、Semaphore等，用于控制线程间的协调。</li>
-</ol>
-<h3 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h3><ol>
-<li><strong>类加载过程</strong>：包括加载、链接（验证、准备、解析）、初始化等步骤。</li>
-<li><strong>垃圾回收</strong>：JVM自动回收不再被引用的对象，以释放内存。垃圾回收器如Serial、Parallel、CMS、G1等。</li>
-<li><strong>内存模型</strong>：JVM内存分为堆、栈、方法区等，垃圾回收主要发生在堆上。</li>
-</ol>
-<h3 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h3><ol>
-<li><strong>架构与执行过程</strong>：MySQL的存储引擎、查询优化器、缓存等。</li>
-<li><strong>事务与隔离级别</strong>：事务的ACID特性，隔离级别的实现和影响。</li>
-<li><strong>索引与优化</strong>：索引的创建、使用和优化，以及对查询性能的影响。</li>
-</ol>
-<h3 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h3><ol>
-<li><strong>缓存与数据结构</strong>：Redis作为缓存的使用场景，支持的数据结构如字符串、列表、集合、哈希、有序集合等。</li>
-<li><strong>持久化</strong>：RDB和AOF持久化机制，以及4.0版本后的优化。</li>
-<li><strong>高可用与集群</strong>：Redis Sentinel和Cluster实现高可用和数据分片。</li>
-</ol>
-<h3 id="MQ（消息队列）"><a href="#MQ（消息队列）" class="headerlink" title="MQ（消息队列）"></a>MQ（消息队列）</h3><ol>
-<li><strong>作用与技术选型</strong>：消息队列用于异步处理、解耦、流量削峰等。</li>
-<li><strong>消息处理</strong>：消息的发送、接收、持久化、顺序保证等。</li>
-</ol>
+                <h3 id="面试自测题"><a href="#面试自测题" class="headerlink" title="面试自测题"></a>面试自测题</h3><ul>
+<li>RocketMQ是什么？</li>
+<li>RocketMQ的架构是怎样的？</li>
+<li>RocketMQ的架构主要包括哪些组件？</li>
+<li>NameServer在RocketMQ中扮演什么角色？RocketMQ的NameServer有什么作用？</li>
+<li>Broker在RocketMQ中的作用是什么？</li>
+<li>RocketMQ的Producer和Consumer有什么区别？Producer和Consumer在RocketMQ中分别承担什么职责？</li>
+<li>讲一下RocketMQ 的领域模型，RocketMQ 支持的消息传输模型有哪些。</li>
+<li>RocketMQ 主题拆分不合理会有什么后果。</li>
+<li>RocketMQ 怎么避免产生大量垃圾主题。</li>
+<li>RocketMQ 中的主题，什么场景下需要增加队列数？当主题内的队列数过多，可能会导致什么问题。</li>
+<li>RocketMQ如何保证消息的可靠性传输？</li>
+<li>RocketMQ的消息模型有哪些？</li>
+<li>RocketMQ的顺序消息是什么？RocketMQ中的顺序消息分为哪几种。</li>
+<li>RocketMQ的消息顺序性如何保证？如何实现消息的顺序消费。</li>
+<li>RocketMQ如何处理消息的重复消费问题？</li>
+<li>RocketMQ的事务消息是如何实现的？</li>
+<li>RocketMQ如何实现消息的广播和集群？</li>
+<li>RocketMQ的集群模式有哪些？</li>
+<li>RocketMQ的Topic和Tag有什么作用？</li>
+<li>RocketMQ如何实现消息的过滤？</li>
+<li>RocketMQ的Offset是什么？RocketMQ的Offset机制是如何工作的？</li>
+<li>RocketMQ 消费者启动后从哪里开始消费消息。</li>
+<li>RocketMQ如何实现消息的过滤？</li>
+<li>RocketMQ的存储机制是怎样的？</li>
+<li>RocketMQ如何实现消息的持久化?</li>
+<li>RocketMQ 中的消息有没有大小限制?</li>
+<li>RocketMQ如何实现消息的延迟投递？RocketMQ 延时消息可以设置任意时间吗？</li>
+<li>RocketMQ如何处理消息的重试机制？如何实现的？</li>
+<li>RocketMQ 的消费充实的应用场景有哪些？在什么情况下会实现消费重试，怎么避免无限消费重试。</li>
+<li>RocketMQ 如果出现异常需要故障恢复，已消费的消息是否被重新消费？</li>
+<li>RocketMQ 消费者建议打印日志吗？RocketMQ 消息发送重试是否会阻塞业务调用。</li>
+<li>RocketMQ如何实现消息的回溯消费？</li>
+<li>RocketMQ的监控和报警机制是怎样的？</li>
+<li>RocketMQ如何进行集群的扩容和缩容？</li>
+<li>RocketMQ如何进行故障恢复和数据备份？</li>
+<li>RocketMQ如何进行消息的监控和管理？</li>
+<li>RocketMQ如何实现消息的批量发送？</li>
+</ul>
 
                 
               </div>
@@ -368,8 +364,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Java面试题简要讲解</div>
-      <div>https://varcel.luoqi.icu/2024/01/24/Java面试题简要讲解/</div>
+      <div>面试题_RocketMQ</div>
+      <div>https://varcel.luoqi.icu/2024/01/25/面试题_RocketMQ/</div>
     </div>
     <div class="license-meta">
       
@@ -381,7 +377,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年1月24日</div>
+          <div>2024年1月25日</div>
         </div>
       
       
