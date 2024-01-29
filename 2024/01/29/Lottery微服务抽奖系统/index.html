@@ -18,26 +18,25 @@
   <meta name="author" content="Luo QI">
   <meta name="keywords" content="">
   
-    <meta name="description" content="OpenAi生成式服务微服务应用体系构建">
+    <meta name="description" content="Lottery 微服务抽奖系统">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OpenAi生成式服务微服务应用体系构建">
-<meta property="og:url" content="https://varcel.luoqi.icu/2024/01/16/OpenAi%E7%94%9F%E6%88%90%E5%BC%8F%E6%9C%8D%E5%8A%A1%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%BA%94%E7%94%A8%E4%BD%93%E7%B3%BB%E6%9E%84%E5%BB%BA/index.html">
+<meta property="og:title" content="Lottery 微服务抽奖系统">
+<meta property="og:url" content="https://varcel.luoqi.icu/2024/01/29/Lottery%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%BD%E5%A5%96%E7%B3%BB%E7%BB%9F/index.html">
 <meta property="og:site_name" content="轻松的洛亓">
-<meta property="og:description" content="OpenAi生成式服务微服务应用体系构建">
+<meta property="og:description" content="Lottery 微服务抽奖系统">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/wallpaper1702453206266.jpg">
-<meta property="article:published_time" content="2024-01-16T22:15:05.000Z">
-<meta property="article:modified_time" content="2024-01-16T22:15:05.000Z">
+<meta property="article:published_time" content="2024-01-29T17:16:17.000Z">
+<meta property="article:modified_time" content="2024-01-29T17:16:17.000Z">
 <meta property="article:author" content="Luo QI">
 <meta property="article:tag" content="project">
 <meta property="article:tag" content="java">
-<meta property="article:tag" content="chatgpt">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/wallpaper1702453206266.jpg">
   
   
   
-  <title>OpenAi生成式服务微服务应用体系构建 - 轻松的洛亓</title>
+  <title>Lottery 微服务抽奖系统 - 轻松的洛亓</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -203,7 +202,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="OpenAi生成式服务微服务应用体系构建"></span>
+            <span id="subtitle" data-typed-text="Lottery 微服务抽奖系统"></span>
           
         </div>
 
@@ -214,8 +213,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-01-16 22:15" pubdate>
-          2024年1月16日 晚上
+        <time datetime="2024-01-29 17:16" pubdate>
+          2024年1月29日 下午
         </time>
       </span>
     
@@ -226,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.1k 字
+          99 字
         
       </span>
     
@@ -237,7 +236,7 @@
         
         
         
-          18 分钟
+          1 分钟
         
       </span>
     
@@ -274,98 +273,14 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">OpenAi生成式服务微服务应用体系构建</h1>
+            <h1 id="seo-header">Lottery 微服务抽奖系统</h1>
             
             
               <div class="markdown-body">
                 
-                <p>学习文档地址： <a target="_blank" rel="noopener" href="https://wx.zsxq.com/dweb2/index/columns/48411118851818">https://wx.zsxq.com/dweb2/index/columns/48411118851818</a></p>
-<p>ChatGLM大模型地址： <a target="_blank" rel="noopener" href="https://open.bigmodel.cn/login">https://open.bigmodel.cn/login</a></p>
-<p>项目地址： </p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://gitcode.net/KnowledgePlanet/chatgpt">https://gitcode.net/KnowledgePlanet/chatgpt</a></li>
-<li><a target="_blank" rel="noopener" href="https://gitcode.net/KnowledgePlanet/chatgpt/chatgpt-data">https://gitcode.net/KnowledgePlanet/chatgpt/chatgpt-data</a></li>
-</ul>
-<h3 id="1、项目介绍"><a href="#1、项目介绍" class="headerlink" title="1、项目介绍"></a>1、项目介绍</h3><p>项目学习目标：去熟练一下微服务应用体系的构建，在这个体系上通过配置环境Docker + Nginx + SSL；开发出鉴权、认证、微信公众号、企业微信、支付宝交易等模块，完善体系的物料服务。</p>
-<p>将核心的基础物料【物料指SDK和服务】通过 API 的方式与具体的物料服务模块解耦。</p>
-<p>那么就开始吧。</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240118071619.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>技术栈：SpringBoot、MyBatis、MySQL、Redis</p>
-<p>开发工具： IntelliJ IDEA、WebStorm、Docker、Protainter、Nginx、Git、Maven、Navicat、SSH工具</p>
-<p>前端：Next.js、Typescript</p>
-<p>课程目录</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240118072039.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>开发流程：</p>
-<ul>
-<li><ol>
-<li>基础设置的服务搭建</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>接口鉴权开发</li>
-</ol>
-</li>
-<li><ol start="3">
-<li>API-SDK 的开发，网页的简单开发</li>
-</ol>
-</li>
-<li><ol start="4">
-<li>ChatGPT-WEB-UI -&gt; API-SDK -&gt; 鉴权 -&gt; OpenAI 的使用</li>
-</ol>
-</li>
-<li><ol start="5">
-<li>ChatGPT-WEB-UI 流程🏃🏻跑通，逐步扩展其他服务模块。让业务与场景结合</li>
-</ol>
-<ul>
-<li>关注公众号、公众号回复、企业微信机器人、交易支付购买授权Token</li>
-<li>让 ChatGPT-WEB-UI 与各个模块结合使用。</li>
-</ul>
-</li>
-</ul>
-<p>推荐工具：</p>
-<ul>
-<li>Termius：云服务器链接工具，自带一套 SFTP 工具，很好用。</li>
-<li>IDEA 插件：Sequence Diagram - 用于方法上右键查看代码流程的，主要帮助大家理解代码。</li>
-<li>Docker - 可本地安装，不需要非得购买云服务器，也可以满足学习诉求。</li>
-<li>natapp - 内网穿透工具，相当于你开启后，可以分配给你一个域名，让外网访问到你的服务</li>
-</ul>
-<h3 id="2、push-工程到仓库"><a href="#2、push-工程到仓库" class="headerlink" title="2、push 工程到仓库"></a>2、push 工程到仓库</h3><p>文档地址： <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_z9wh4hsg21dn.html">https://articles.zsxq.com/id_z9wh4hsg21dn.html</a></p>
-<p>进入到： <a target="_blank" rel="noopener" href="https://gitcode.net/CreativeAlliance">https://gitcode.net/CreativeAlliance</a></p>
-<p>创建一个新的仓库： chatgpt-dev-ops-10863-lq</p>
-<p>拉取这个项目到本地，然后用 IDEA打开并提交</p>
-<p>命令行指引</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240119205949.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>推送现有的 Git 仓库</p>
-<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs maxima">cd existing_repo<br>git remote <span class="hljs-built_in">rename</span> <span class="hljs-built_in">origin</span> old-<span class="hljs-built_in">origin</span><br>git remote add <span class="hljs-built_in">origin</span> https://gitcode.net/CreativeAlliance/chatgpt-dev-ops-<span class="hljs-number">10863</span>-lq.git<br>git <span class="hljs-built_in">push</span> -u <span class="hljs-built_in">origin</span> --all<br>git <span class="hljs-built_in">push</span> -u <span class="hljs-built_in">origin</span> --tags<br></code></pre></td></tr></table></figure>
-
-<p>推送现有文件夹</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">cd</span> existing_folder<br><span class="hljs-symbol">git</span> init<br><span class="hljs-symbol">git</span> remote <span class="hljs-keyword">add</span> origin https:<span class="hljs-comment">//gitcode.net/CreativeAlliance/chatgpt-dev-ops-10863-lq.git</span><br><span class="hljs-symbol">git</span> <span class="hljs-keyword">add</span> .<br><span class="hljs-symbol">git</span> commit -m <span class="hljs-string">&quot;Initial commit&quot;</span><br><span class="hljs-symbol">git</span> <span class="hljs-keyword">push</span> -u origin master<br></code></pre></td></tr></table></figure>
-
-<p>gitcode 的登陆方是需要 CSDN 的账号密码。</p>
-<hr>
-<h3 id="2、环境安装"><a href="#2、环境安装" class="headerlink" title="2、环境安装"></a>2、环境安装</h3><p>Docker 安装使用</p>
-<p>Portainer 环境配置</p>
-<p>Nginx 环境配置： <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_1lcdsxia3ld3.html">https://articles.zsxq.com/id_1lcdsxia3ld3.html</a></p>
-<p>安装操作: [[Docker入门_Docker的基本使用#6、docker 安装 nginx]]</p>
-<p>Nginx 的使用包括的配置有；配置、首页、日志、SSL等，而这些内容在默认基础安装的情况下，都是在 Docker 容器中的，不容易被管理和使用。所以一般我们在安装 Nginx 的时候是需要做映射处理。这个时候我们可以把在 Docker 上安装的 Nginx 配置信息拷贝到本地，之后做一些修改后，再去重新执行 Nginx 的安装【重新安装前记得把之前的 Nginx 删掉】。</p>
-<p>常用命令:</p>
-<ol>
-<li>停止：docker stop Nginx</li>
-<li>重启：docker restart Nginx</li>
-<li>删除服务：docker rm Nginx</li>
-<li>删除镜像：docker rmi Nginx</li>
-<li>进入服务：docker exec -it Nginx &#x2F;bin&#x2F;bash</li>
-</ol>
-<p>其他:</p>
-<ol>
-<li>查看配置：ls &#x2F;etc&#x2F;nginx&#x2F;</li>
-<li>查看页面：ls &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html</li>
-<li>其他说明：conf.d 是个文件夹</li>
-</ol>
-<p>这个 Portainer 控制台的使用可以看一下</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240127222958.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h3 id="3、服务镜像构建和容器部署"><a href="#3、服务镜像构建和容器部署" class="headerlink" title="3、服务镜像构建和容器部署"></a>3、服务镜像构建和容器部署</h3><p>参考： <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_q9d1o7nvj5nb.html">https://articles.zsxq.com/id_q9d1o7nvj5nb.html</a></p>
-<h4 id="前后端构建镜像部署"><a href="#前后端构建镜像部署" class="headerlink" title="前后端构建镜像部署"></a>前后端构建镜像部署</h4><p>参考： <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_soxvwros9icn.html">https://articles.zsxq.com/id_soxvwros9icn.html</a></p>
-<h4 id="网站添加百度统计"><a href="#网站添加百度统计" class="headerlink" title="网站添加百度统计"></a>网站添加百度统计</h4><p>参考： <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_54o9ezlrnd8w.html">https://articles.zsxq.com/id_54o9ezlrnd8w.html</a></p>
+                <h3 id="1、项目介绍"><a href="#1、项目介绍" class="headerlink" title="1、项目介绍"></a>1、项目介绍</h3><p>文档地址： <a target="_blank" rel="noopener" href="https://wx.zsxq.com/dweb2/index/columns/48411118851818">https://wx.zsxq.com/dweb2/index/columns/48411118851818</a></p>
+<p>核心学习内容是 第 2 部分 领域开发相关的知识</p>
+<p>to be contined….</p>
 
                 
               </div>
@@ -384,7 +299,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E9%A1%B9%E7%9B%AE/" class="category-chain-item">项目</a>
+  <a href="/categories/project/" class="category-chain-item">project</a>
   
   
 
@@ -403,8 +318,6 @@
       
         <a href="/tags/java/" class="print-no-link">#java</a>
       
-        <a href="/tags/chatgpt/" class="print-no-link">#chatgpt</a>
-      
     </div>
   
 </div>
@@ -415,8 +328,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>OpenAi生成式服务微服务应用体系构建</div>
-      <div>https://varcel.luoqi.icu/2024/01/16/OpenAi生成式服务微服务应用体系构建/</div>
+      <div>Lottery 微服务抽奖系统</div>
+      <div>https://varcel.luoqi.icu/2024/01/29/Lottery微服务抽奖系统/</div>
     </div>
     <div class="license-meta">
       
@@ -428,7 +341,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年1月16日</div>
+          <div>2024年1月29日</div>
         </div>
       
       
