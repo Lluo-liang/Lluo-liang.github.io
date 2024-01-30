@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          11k 字
+          13k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          89 分钟
+          107 分钟
         
       </span>
     
@@ -702,6 +702,20 @@
 <td>Boolean</td>
 </tr>
 </tbody></table>
+<p>补充一下计算机存储字节相关的知识：</p>
+<ol>
+<li><strong>位（Bit）</strong>:<ul>
+<li>计算机中数据的最小单位。</li>
+<li>一个位可以表示一个二进制值，即0或1。</li>
+</ul>
+</li>
+<li><strong>字节（Byte）</strong>:<ul>
+<li>常用的数据存储单位。</li>
+<li>1字节 &#x3D; 8位。</li>
+<li>例如，如果一个数据类型占用1字节，那么它实际上可以存储8位二进制信息。</li>
+</ul>
+</li>
+</ol>
 <h4 id="3-2-基本类型和包装类型"><a href="#3-2-基本类型和包装类型" class="headerlink" title="3.2 基本类型和包装类型"></a>3.2 基本类型和包装类型</h4><blockquote>
 <p>区别</p>
 </blockquote>
@@ -778,10 +792,102 @@
 </div>
 
 <p> <img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240108224809.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h5 id="常量池技术"><a href="#常量池技术" class="headerlink" title="常量池技术"></a>常量池技术</h5><p>看到一个概念，即将这个缓存机制也称为常量池技术；解释可以看下面的内容：</p>
+<p>Java中的包装类型（如<code>Integer</code>、<code>Long</code>、<code>Byte</code>、<code>Character</code>、<code>Short</code>等）使用了常量池技术，主要目的是为了减少不必要的对象创建，提高空间和时间效率。</p>
+<p>示例：</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-comment">// 示例：使用Integer的常量池</span><br><span class="hljs-keyword">Integer</span> a = <span class="hljs-number">127</span>;  <span class="hljs-comment">// 使用常量池</span><br><span class="hljs-keyword">Integer</span> b = <span class="hljs-number">127</span>;  <span class="hljs-comment">// 同样使用常量池，a和b指向相同的对象</span><br><br><span class="hljs-keyword">Integer</span> c = <span class="hljs-number">128</span>;  <span class="hljs-comment">// 超出常量池范围，创建新的Integer对象</span><br><span class="hljs-keyword">Integer</span> d = <span class="hljs-number">128</span>;  <span class="hljs-comment">// 同样创建新的Integer对象，c和d指向不同的对象</span><br></code></pre></td></tr></table></figure>
+
+<p>常量池的一些相关内容：</p>
+<ol>
+<li><strong>常量池</strong>:<ul>
+<li>常量池是一种特殊的存储区域，用于存储包装类的常用对象。</li>
+<li>在Java中，<code>Byte</code>、<code>Short</code>、<code>Integer</code>、<code>Long</code>、<code>Character</code>这些类的对象有常量池。</li>
+</ul>
+</li>
+<li><strong>Integer常量池范围</strong>:<ul>
+<li>对于<code>Integer</code>，常量池的范围默认是从-128到127。</li>
+<li>当你创建一个在这个范围内的<code>Integer</code>对象时，Java会直接从常量池中返回已存在的对象而不是创建一个新的对象。</li>
+</ul>
+</li>
+<li><strong>超出常量池范围</strong>:<ul>
+<li>如果创建的对象超出了常量池的范围，Java会创建一个新的对象。</li>
+</ul>
+</li>
+<li><strong>节省内存</strong>:<ul>
+<li>由于常量池的使用，相同的数值会指向相同的对象，这在一定程度上节省了内存。</li>
+</ul>
+</li>
+<li><strong><code>Character</code>常量池范围</strong>:<ul>
+<li>对于<code>Character</code>，常量池的范围是从<code>\u0000</code>到<code>\u007F</code>（即0到127）。</li>
+</ul>
+</li>
+<li><strong>自动装箱</strong>:<ul>
+<li>当你将基本数据类型转换为包装类时，Java会自动使用常量池（如果值在常量池的范围内），这个过程称为自动装箱。</li>
+</ul>
+</li>
+<li><strong>注意事项</strong>:<ul>
+<li>在比较包装类型对象时，应该使用<code>equals</code>方法而不是&#x3D;&#x3D; ，因为 &#x3D;&#x3D; 比较的是引用，而不是值。但在常量池范围内， &#x3D;&#x3D; 可以正常工作因为引用指向相同的对象。</li>
+</ul>
+</li>
+</ol>
+<p>常量池技术是Java中一种重要的内存优化手段，它在处理大量的包装类型对象时尤为有效。</p>
 <h4 id="3-4-自动装箱与拆箱"><a href="#3-4-自动装箱与拆箱" class="headerlink" title="3.4 自动装箱与拆箱"></a>3.4 自动装箱与拆箱</h4><ul>
 <li><strong>装箱</strong>：将基本类型用它们对应的引用类型包装起来；</li>
 <li><strong>拆箱</strong>：将包装类型转换为基本数据类型；</li>
 </ul>
+<p>实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 示例：自动装箱和拆箱</span><br><span class="hljs-type">Integer</span> <span class="hljs-variable">boxed</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>; <span class="hljs-comment">// 自动装箱，相当于 Integer.valueOf(10)</span><br><span class="hljs-type">int</span> <span class="hljs-variable">unboxed</span> <span class="hljs-operator">=</span> boxed; <span class="hljs-comment">// 自动拆箱，相当于 boxed.intValue()</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>自动装箱（Autoboxing）</strong>:</p>
+<ul>
+<li>当需要一个包装类型的对象时，Java会自动将基本数据类型转换为对应的包装类型。</li>
+<li>这是通过调用包装类的静态<code>valueOf</code>方法实现的。</li>
+<li>例如，当你写<code>Integer boxed = 10;</code>时，实际上执行的是<code>Integer boxed = Integer.valueOf(10);</code>。</li>
+</ul>
+<p><strong>自动拆箱（Unboxing）</strong>:</p>
+<ul>
+<li>当需要一个基本数据类型的值时，Java会自动将包装类型的对象转换为基本数据类型。</li>
+<li>这是通过调用包装类对象的<code>xxxValue</code>方法实现的（例如，<code>intValue</code>、<code>doubleValue</code>等）。</li>
+<li>例如，当你写<code>int unboxed = boxed;</code>时，实际上执行的是<code>int unboxed = boxed.intValue();</code>。</li>
+</ul>
+<p><strong>注意事项</strong>:</p>
+<ul>
+<li><strong>空指针异常</strong>：自动拆箱可能导致空指针异常。如果包装类型的引用为<code>null</code>，在自动拆箱时会尝试调用<code>null</code>的<code>xxxValue</code>方法，从而抛出<code>NullPointerException</code>。</li>
+<li><strong>性能考虑</strong>：虽然自动装箱和拆箱很方便，但在性能敏感的场景下应当谨慎使用，因为装箱和拆箱操作涉及额外的对象创建和方法调用。</li>
+</ul>
+<p>自动装箱和拆箱让开发者可以更加自然地编写代码，无需显式地在基本数据类型和包装类型之间转换，但同时也需要了解其背后的原理和潜在陷阱。</p>
+<h5 id="可能导致NPE的自动拆箱"><a href="#可能导致NPE的自动拆箱" class="headerlink" title="可能导致NPE的自动拆箱"></a>可能导致NPE的自动拆箱</h5><p>NPE 指的是空指针异常</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 示例：可能导致NPE的自动拆箱</span><br><span class="hljs-type">Integer</span> <span class="hljs-variable">myInteger</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br><span class="hljs-type">int</span> <span class="hljs-variable">myInt</span> <span class="hljs-operator">=</span> myInteger; <span class="hljs-comment">// 自动拆箱时可能抛出NullPointerException</span><br></code></pre></td></tr></table></figure>
+
+<p>上述我们也讲到，如果包装类型的引用为<code>null</code>，在自动拆箱时会尝试调用<code>null</code>的<code>xxxValue</code>方法，从而抛出<code>NullPointerException</code>。</p>
+<p>说一下这种情况如何处理：</p>
+<p><strong>处理方法</strong>:</p>
+<ol>
+<li><strong>检查空值</strong>:<ul>
+<li>在进行自动拆箱之前，先检查包装类型的对象是否为<code>null</code>。</li>
+<li>示例：<code>if (myInteger != null) &#123; myInt = myInteger; &#125;</code></li>
+</ul>
+</li>
+<li><strong>使用默认值</strong>:<ul>
+<li>如果包装类型可能为<code>null</code>，可以使用默认值来避免NPE。</li>
+<li>示例：<code>myInt = (myInteger != null) ? myInteger : defaultValue;</code></li>
+</ul>
+</li>
+<li><strong>避免不必要的装箱和拆箱</strong>:<ul>
+<li>在可能的情况下，尽量避免不必要的自动装箱和拆箱，特别是在关键的业务逻辑中。</li>
+</ul>
+</li>
+<li><strong>使用Optional类</strong>:<ul>
+<li>在Java 8及以上版本，可以使用<code>Optional</code>类来优雅地处理可能为<code>null</code>的情况。</li>
+<li>示例：<code>myInt = Optional.ofNullable(myInteger).orElse(defaultValue);</code></li>
+</ul>
+</li>
+<li><strong>代码审查和测试</strong>:<ul>
+<li>在编码阶段进行严格的代码审查，确保对可能为<code>null</code>的对象进行了适当的处理。</li>
+<li>编写单元测试来覆盖可能产生NPE的场景。</li>
+</ul>
+</li>
+</ol>
 <h4 id="3-5-浮点数运算精度丢失"><a href="#3-5-浮点数运算精度丢失" class="headerlink" title="3.5 浮点数运算精度丢失"></a>3.5 浮点数运算精度丢失</h4><p>看一下下面这个代码示例：</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">float</span> a = <span class="hljs-number">2</span>.<span class="hljs-number">0</span>f - <span class="hljs-number">1</span>.<span class="hljs-number">9</span>f;<br><span class="hljs-attribute">float</span> b = <span class="hljs-number">1</span>.<span class="hljs-number">8</span>f - <span class="hljs-number">1</span>.<span class="hljs-number">7</span>f;<br><span class="hljs-attribute">System</span>.out.println(a);// <span class="hljs-number">0</span>.<span class="hljs-number">100000024</span><br><span class="hljs-attribute">System</span>.out.println(b);// <span class="hljs-number">0</span>.<span class="hljs-number">099999905</span><br><span class="hljs-attribute">System</span>.out.println(a == b);// false<br></code></pre></td></tr></table></figure>
 
