@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          14k 字
+          15k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          117 分钟
+          125 分钟
         
       </span>
     
@@ -617,6 +617,47 @@
 <li><code>return;</code>：直接使用 return 结束方法执行，用于没有返回值函数的方法</li>
 <li><code>return value;</code>：return 一个特定值，用于有返回值函数的方法</li>
 </ol>
+<hr>
+<h4 id="2-6-switch-case"><a href="#2-6-switch-case" class="headerlink" title="2.6  switch case"></a>2.6  switch case</h4><p>语法</p>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs mel"><span class="hljs-keyword">switch</span>(<span class="hljs-keyword">expression</span>)&#123;<br>    <span class="hljs-keyword">case</span> value :<br>       <span class="hljs-comment">//语句</span><br>       <span class="hljs-keyword">break</span>; <span class="hljs-comment">//可选</span><br>    <span class="hljs-keyword">case</span> value :<br>       <span class="hljs-comment">//语句</span><br>       <span class="hljs-keyword">break</span>; <span class="hljs-comment">//可选</span><br>    <span class="hljs-comment">//你可以有任意数量的case语句</span><br>    <span class="hljs-keyword">default</span> : <span class="hljs-comment">//可选</span><br>       <span class="hljs-comment">//语句</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>switch case用来判断一个变量与一系列值中某个值是否相等，每个值称为一个分支</p>
+<p>使用规则：</p>
+<ul>
+<li>switch语句中变量类型可以是：byte、short、int、char。从Java SE 7开始，switch支持String类型，同时case必须为字符串常量</li>
+<li>switch语句可以拥有多个case，每个case后面跟一个要比较的值和冒号</li>
+<li>case语句中的值的数据类型必须与变量的数据类型相同</li>
+<li>当变量的值与case语句的值相等，case语句之后的语句开始执行，直到出现break语句才会跳出switch</li>
+<li>当遇到break时，switch终止。程序跳转到switch后面的语句执行。case不必须要包含break。如果没有break出现，程序会继续执行下一条case，直到出现break</li>
+<li>switch可以包含一个default分支，该分支是switch的最后一个分支，该分支可以在任何位置，但建议写在最后。default在没有case的值和变量相等时执行。default不需要break</li>
+</ul>
+<blockquote>
+<p>switch case 支持哪几种数据类型</p>
+</blockquote>
+<p>在Java中，<code>switch</code>语句支持以下几种数据类型：</p>
+<ol>
+<li><strong>整数类型</strong>:<ul>
+<li>包括<code>byte</code>、<code>short</code>、<code>int</code>以及它们的包装类<code>Byte</code>、<code>Short</code>、<code>Integer</code>。</li>
+<li><code>char</code>和<code>Character</code>也被支持，因为它们可以被转换为整数类型。</li>
+</ul>
+</li>
+<li><strong>枚举类型</strong> (<code>enum</code>):<ul>
+<li>可以使用枚举类型的常量作为<code>case</code>标签。</li>
+</ul>
+</li>
+<li><strong>字符串类型</strong> (<code>String</code>):<ul>
+<li>从Java 7开始，<code>switch</code>语句支持字符串类型。</li>
+<li>字符串比较是基于字符串的内容而不是引用。</li>
+</ul>
+</li>
+<li><strong>Java 12 引入的新特性</strong>:<ul>
+<li>从Java 12开始，<code>switch</code>表达式支持更多的数据类型和更灵活的使用方式（作为预览特性）。</li>
+</ul>
+</li>
+</ol>
+<p>需要注意的是，<code>long</code>、<code>float</code>、<code>double</code>及其包装类不被<code>switch</code>语句支持。此外，<code>switch</code>语句中的<code>case</code>标签必须使用常量表达式，不能使用变量。</p>
+<p><code>switch</code>语句的这种类型限制主要是出于性能考虑，因为<code>switch</code>通常是通过整数跳转表实现的，这使得<code>switch</code>语句在处理整数类型时非常高效。使用枚举和字符串则是为了提供更多的编程便利。</p>
+<hr>
 <h3 id="三、基本数据类型"><a href="#三、基本数据类型" class="headerlink" title="三、基本数据类型"></a>三、基本数据类型</h3><h4 id="3-1、Java-中的基本数据类型"><a href="#3-1、Java-中的基本数据类型" class="headerlink" title="3.1、Java 中的基本数据类型"></a>3.1、Java 中的基本数据类型</h4><table>
 <thead>
 <tr>

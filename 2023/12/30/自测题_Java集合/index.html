@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.3k 字
+          2.6k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          11 分钟
+          22 分钟
         
       </span>
     
@@ -283,24 +283,31 @@
 <li><a target="_blank" rel="noopener" href="https://www.yuque.com/snailclimb/mf2z3k/vlf8gd">https://www.yuque.com/snailclimb/mf2z3k/vlf8gd</a></li>
 </ul>
 <h3 id="面试自测题"><a href="#面试自测题" class="headerlink" title="面试自测题"></a>面试自测题</h3><ul>
+<li>基础<ul>
 <li>讲一下 List、Map、Set 的区别；他们在存取元素的时候，各有什么特点。</li>
 <li>List, Set, Map 在 Java 中分别由哪些对应的实现类，底层的数据结构是什么。</li>
 <li>常见的集合实现类怎么用的大致说一下。</li>
 <li>哪些集合是线程不安全的，在并发情况下，如何保证集合线程安全呢。</li>
+<li>快速失败 (fail-fast) 和安全失败 (fail-safe) 的区别是什么？</li>
+<li>为什么集合类没有实现 Cloneable 和 Serializable 接口？</li>
+</ul>
+</li>
+<li>List<ul>
 <li>讲一下List 的实现类，其中：ArrayList 和 Vector、ArrayList 和 ArrayLinked 的区别讲一下。</li>
 <li>说说 ArrayList，Vector，LinkedList 的存储性能和特性。</li>
-<li>快速失败 (fail-fast) 和安全失败 (fail-safe) 的区别是什么？</li>
 <li>ArrayList 的扩容机制了解吗，讲述一下怎么扩容的。</li>
-<li>说一下 HashSet、LinkedHashSet 和 TreeSet 三者的区别。</li>
 <li>数组 (Array) 和列表 (ArrayList) 有什么区别？什么时候应该使用 Array 而不是 ArrayList？</li>
-<li>Queue 了解吗，讲一下他的实现类。</li>
-<li>Queue 与 Deque 的区别。</li>
-<li>ArrayDeque 与 LinkedList 的区别。</li>
-<li>PriorityQueue 有什么特点。</li>
+</ul>
+</li>
+<li>Set<ul>
+<li>说一下 HashSet、LinkedHashSet 和 TreeSet 三者的区别。</li>
 <li>Set 里的元素是不能重复的，那么用什么方法来区分重复与否？使用 &#x3D;&#x3D; 还是 equals，这两者有何区别。 </li>
 <li>HashSet 和 TreeSet 有什么区别？</li>
 <li>HashSet 的底层实现是什么？</li>
 <li>Set 里的元素是不能重复的，那么用什么方法来区分重复与否呢？是用 &#x3D;&#x3D; 还是 equals()？它们有何区别？</li>
+</ul>
+</li>
+<li>Map<ul>
 <li>HashMap 的数据结构。</li>
 <li>HashMap 是线程安全的吗？</li>
 <li>HashMap 在 JDK8 中有哪些改变？</li>
@@ -319,12 +326,89 @@
 <li>LinkedHashMap 的实现原理？</li>
 <li>ConcurrentHashMap 和 Hashtable 的区别。</li>
 <li>ConcurrentHashMap 线程安全的底层实现原理讲一下。</li>
-<li>为什么集合类没有实现 Cloneable 和 Serializable 接口？</li>
-<li>Comparable 和 Comparator 接口是干什么的？列出它们的区别。</li>
-<li>Collection 和 Collections 的区别</li>
+</ul>
+</li>
+<li>Queue<ul>
+<li>Queue 了解吗，讲一下他的实现类。</li>
+<li>Queue 与 Deque 的区别。</li>
+<li>ArrayDeque 与 LinkedList 的区别。</li>
+<li>PriorityQueue 有什么特点。</li>
+</ul>
+</li>
+<li>阻塞队列<ul>
 <li>什么是阻塞队列，队列队列是线程安全的吗，有哪些场景的应用场景。</li>
 </ul>
-<h3 id="面试解答篇"><a href="#面试解答篇" class="headerlink" title="面试解答篇"></a>面试解答篇</h3>
+</li>
+<li>其他<ul>
+<li>Comparable 和 Comparator 接口是干什么的？列出它们的区别。</li>
+<li>Collection 和 Collections 的区别</li>
+</ul>
+</li>
+</ul>
+<h3 id="面试解答篇"><a href="#面试解答篇" class="headerlink" title="面试解答篇"></a>面试解答篇</h3><ul>
+<li>基础<ul>
+<li>讲一下 List、Map、Set 的区别；他们在存取元素的时候，各有什么特点。</li>
+<li>List, Set, Map 在 Java 中分别由哪些对应的实现类，底层的数据结构是什么。</li>
+<li>常见的集合实现类怎么用的大致说一下。</li>
+<li>哪些集合是线程不安全的，在并发情况下，如何保证集合线程安全呢。</li>
+<li>快速失败 (fail-fast) 和安全失败 (fail-safe) 的区别是什么？</li>
+<li>为什么集合类没有实现 Cloneable 和 Serializable 接口？</li>
+</ul>
+</li>
+<li>List<ul>
+<li>讲一下List 的实现类，其中：ArrayList 和 Vector、ArrayList 和 ArrayLinked 的区别讲一下。</li>
+<li>说说 ArrayList，Vector，LinkedList 的存储性能和特性。</li>
+<li>ArrayList 的扩容机制了解吗，讲述一下怎么扩容的。</li>
+<li>数组 (Array) 和列表 (ArrayList) 有什么区别？什么时候应该使用 Array 而不是 ArrayList？</li>
+</ul>
+</li>
+<li>Set<ul>
+<li>说一下 HashSet、LinkedHashSet 和 TreeSet 三者的区别。</li>
+<li>Set 里的元素是不能重复的，那么用什么方法来区分重复与否？使用 &#x3D;&#x3D; 还是 equals，这两者有何区别。 </li>
+<li>HashSet 和 TreeSet 有什么区别？</li>
+<li>HashSet 的底层实现是什么？</li>
+<li>Set 里的元素是不能重复的，那么用什么方法来区分重复与否呢？是用 &#x3D;&#x3D; 还是 equals()？它们有何区别？</li>
+</ul>
+</li>
+<li>Map<ul>
+<li>HashMap 的数据结构。</li>
+<li>HashMap 是线程安全的吗？</li>
+<li>HashMap 在 JDK8 中有哪些改变？</li>
+<li>HashMap 键可以使用可变对象吗？</li>
+<li>讲一下HashMap 的底层实现（工作原理）。</li>
+<li>HashMap 的 put 方法逻辑？（HashMap 是怎么扩容的）</li>
+<li>HashMap 是先插入元素还是先扩容，为什么这么设计？</li>
+<li>HashMap 有没有容量限制，HashMap 中的负载因子是多少。</li>
+<li>HashMap 是怎么解决 hash 冲突的。</li>
+<li>HashMap 的查询、删除的时间复杂度是多少？</li>
+<li>Hashmap 什么时候进行扩容？</li>
+<li>对两个对象值相同 (x.equals(y) &#x3D;&#x3D; true)，但却可有不同的 hash code，这句话对不对？</li>
+<li>HashMap 的长度为什么是 2 的幂次方。</li>
+<li>HashMap 和 Hashtable 的区别？HashMap 和 HashSet 区别？ HashMap 和 TreeMap 区别。</li>
+<li>讲一下 HashMap 和 ConcurrentHashMap 的区别。</li>
+<li>LinkedHashMap 的实现原理？</li>
+<li>ConcurrentHashMap 和 Hashtable 的区别。</li>
+<li>ConcurrentHashMap 线程安全的底层实现原理讲一下。</li>
+</ul>
+</li>
+<li>Queue<ul>
+<li>Queue 了解吗，讲一下他的实现类。</li>
+<li>Queue 与 Deque 的区别。</li>
+<li>ArrayDeque 与 LinkedList 的区别。</li>
+<li>PriorityQueue 有什么特点。</li>
+</ul>
+</li>
+<li>阻塞队列<ul>
+<li>什么是阻塞队列，队列队列是线程安全的吗，有哪些场景的应用场景。</li>
+</ul>
+</li>
+<li>其他<ul>
+<li>Comparable 和 Comparator 接口是干什么的？列出它们的区别。</li>
+<li>Collection 和 Collections 的区别</li>
+</ul>
+</li>
+</ul>
+
                 
               </div>
             

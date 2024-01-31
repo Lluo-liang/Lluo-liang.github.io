@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          65 字
+          1.5k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          1 分钟
+          13 分钟
         
       </span>
     
@@ -277,13 +277,61 @@
             
               <div class="markdown-body">
                 
-                <p>I&#x2F;O</p>
+                <h3 id="1、基础知识"><a href="#1、基础知识" class="headerlink" title="1、基础知识"></a>1、基础知识</h3><p>参考： <a target="_blank" rel="noopener" href="https://javaguide.cn/java/io/io-basis.html">https://javaguide.cn/java/io/io-basis.html</a></p>
+<p>IO  指的是输入和输出（主体是计算机内存）</p>
 <ul>
-<li>Java 的 IO 流</li>
-<li>I&#x2F;O  流为什么要分为字节流和字符流</li>
-<li>Java IO  中的设计模式</li>
-<li>BIO、NIO  和 AIO  的区别。</li>
+<li>输入： 数据输入到计算机内存</li>
+<li>输出：从计算机内存输出到外部设备</li>
 </ul>
+<p>了解 Java IO 流，需要知道四个基本的抽象类基类：</p>
+<ul>
+<li><code>InputStream</code>&#x2F;<code>Reader</code>: 所有的输入流的基类，前者是字节输入流，后者是字符输入流。</li>
+<li><code>OutputStream</code>&#x2F;<code>Writer</code>: 所有输出流的基类，前者是字节输出流，后者是字符输出流。</li>
+</ul>
+<p>常用方法建议直接看一下 API 方法</p>
+<p>IO</p>
+<ul>
+<li>字节流<ul>
+<li>InputStream  字节输入流</li>
+<li>OutputStream 字节输出流</li>
+</ul>
+</li>
+<li>字符流<ul>
+<li>Reader</li>
+<li>Writer</li>
+</ul>
+</li>
+<li>字节缓冲流<ul>
+<li>BufferedInputStream（字节缓冲输入流）</li>
+<li>BufferedOutputStream（字节缓冲输出流）</li>
+</ul>
+</li>
+<li>字符缓冲流</li>
+<li>打印流</li>
+<li>随机访问流</li>
+</ul>
+<p>一般来说，我们是建议如果读取文字的时候使用字符流，字符流默认采用的是 <code>Unicode</code> 编码，因此不会出现很明显的输入和输出编码不一致的情况；</p>
+<p>对于音频、图片等建议使用字节流。</p>
+<p>记录一个面试题</p>
+<blockquote>
+<p>常用字符编码所占字节数？&gt;</p>
+</blockquote>
+<p><code>utf8</code> :英文占 1 字节，中文占 3 字节，<code>unicode</code>：任何字符都占 2 个字节，<code>gbk</code>：英文占 1 字节，中文占 2 字节</p>
+<h3 id="2、缓冲流"><a href="#2、缓冲流" class="headerlink" title="2、缓冲流"></a>2、缓冲流</h3><h4 id="BufferedInputStream（字节缓冲输入流）"><a href="#BufferedInputStream（字节缓冲输入流）" class="headerlink" title="BufferedInputStream（字节缓冲输入流）"></a>BufferedInputStream（字节缓冲输入流）</h4><p><code>BufferedInputStream</code> 从源头（通常是文件）读取数据（字节信息）到内存的过程中不会一个字节一个字节的读取，而是会先将读取到的字节存放在缓存区，并从内部缓冲区中单独读取字节。这样大幅减少了 IO 次数，提高了读取效率。</p>
+<p><code>BufferedInputStream</code> 内部维护了一个缓冲区，这个缓冲区实际就是一个字节数组，通过阅读 <code>BufferedInputStream</code> 源码即可得到这个结论。</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs gradle"><span class="hljs-keyword">public</span><br><span class="hljs-keyword">class</span> BufferedInputStream <span class="hljs-keyword">extends</span> FilterInputStream &#123;<br>    <span class="hljs-comment">// 内部缓冲区数组</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">volatile</span> <span class="hljs-keyword">byte</span> buf[];<br>    <span class="hljs-comment">// 缓冲区的默认大小</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> DEFAULT_BUFFER_SIZE = <span class="hljs-number">8192</span>;<br>    <span class="hljs-comment">// 使用默认的缓冲区大小</span><br>    <span class="hljs-keyword">public</span> BufferedInputStream(InputStream in) &#123;<br>        <span class="hljs-keyword">this</span>(in, DEFAULT_BUFFER_SIZE);<br>    &#125;<br>    <span class="hljs-comment">// 自定义缓冲区大小</span><br>    <span class="hljs-keyword">public</span> BufferedInputStream(InputStream in, <span class="hljs-keyword">int</span> <span class="hljs-keyword">size</span>) &#123;<br>        <span class="hljs-keyword">super</span>(in);<br>        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">size</span> &lt;= <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalArgumentException(<span class="hljs-string">&quot;Buffer size &lt;= 0&quot;</span>);<br>        &#125;<br>        buf = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[<span class="hljs-keyword">size</span>];<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>缓冲区的大小默认为 <strong>8192</strong> 字节，当然，你也可以通过 <code>BufferedInputStream(InputStream in, int size)</code> 这个构造方法来指定缓冲区的大小。</p>
+<h3 id="3、IO-设计模式"><a href="#3、IO-设计模式" class="headerlink" title="3、IO 设计模式"></a>3、IO 设计模式</h3><p>to be contined…</p>
+<h3 id="4、NIO"><a href="#4、NIO" class="headerlink" title="4、NIO"></a>4、NIO</h3><h4 id="IO-模型"><a href="#IO-模型" class="headerlink" title="IO 模型"></a>IO 模型</h4><p>UNIX 系统下， IO 模型一共有 5 种：<strong>同步阻塞 I&#x2F;O</strong>、<strong>同步非阻塞 I&#x2F;O</strong>、<strong>I&#x2F;O 多路复用</strong>、<strong>信号驱动 I&#x2F;O</strong> 和<strong>异步 I&#x2F;O</strong></p>
+<p>参考： <a target="_blank" rel="noopener" href="https://javaguide.cn/java/io/io-model.html#java-%E4%B8%AD-3-%E7%A7%8D%E5%B8%B8%E8%A7%81-io-%E6%A8%A1%E5%9E%8B">Java IO 模型详解 | JavaGuide</a></p>
+<p>Java 中 3 种常见 IO 模型</p>
+<ul>
+<li>NIO</li>
+<li>BIO</li>
+<li>AIO</li>
+</ul>
+<h4 id="NIO详解"><a href="#NIO详解" class="headerlink" title="NIO详解"></a>NIO详解</h4><p>to be contined…</p>
 
                 
               </div>
