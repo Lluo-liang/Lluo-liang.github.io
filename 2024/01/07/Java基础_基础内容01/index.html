@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          13k 字
+          14k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          107 分钟
+          117 分钟
         
       </span>
     
@@ -1201,6 +1201,45 @@
 <td>实现运行时多态，提供特定的实现</td>
 </tr>
 </tbody></table>
+<h5 id="重载和重写-02"><a href="#重载和重写-02" class="headerlink" title="重载和重写_02"></a>重载和重写_02</h5><blockquote>
+<p>重载和重写的区别</p>
+</blockquote>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-comment">// 示例：重载和重写的区别</span><br><span class="hljs-keyword">class</span> <span class="hljs-title">ParentClass</span> &#123;<br>    <span class="hljs-comment">// 方法重写</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">display</span>()</span> &#123;<br>        System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;Parent display()&quot;</span>);<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title">ChildClass</span> <span class="hljs-title">extends</span> <span class="hljs-title">ParentClass</span> &#123;<br>    <span class="hljs-comment">// 方法重写</span><br>    @Override<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">display</span>()</span> &#123;<br>        System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;Child display()&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">// 方法重载</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">display</span>(<span class="hljs-params">String message</span>)</span> &#123;<br>        System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;Child display() with Message: &quot;</span> + message);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>重载（Overloading）</strong>:</p>
+<ul>
+<li>发生在同一个类中。</li>
+<li>指的是一个类中有多个同名方法，但它们的参数列表不同（参数的数量、类型或者顺序不同）。</li>
+<li>与方法的返回类型、访问修饰符无关。</li>
+<li>编译时多态：方法调用是根据方法签名（方法名和参数列表）在编译时确定的。</li>
+</ul>
+<p><strong>重写（Overriding）</strong>:</p>
+<ul>
+<li>发生在父子类之间。</li>
+<li>子类提供了一个具有相同名称、返回类型及参数列表的方法，用以重写（覆盖）父类中的相应方法。</li>
+<li>访问权限不能比父类中被重写的方法更严格。</li>
+<li>运行时多态：具体调用哪个方法是在运行时根据对象的实际类型确定的。</li>
+<li>必须保持一致的异常声明（或不声明异常）。</li>
+</ul>
+<p>这两种机制是Java实现多态性的重要手段。重载允许同一个类中定义功能相似但参数不同的方法，而重写则允许子类改变或扩展从父类继承的行为.</p>
+<blockquote>
+<p>重载与方法的返回类型、访问修饰符无关</p>
+</blockquote>
+<p>在Java中，方法重载（Overloading）的定义是指在同一个类中可以存在多个同名方法，只要它们的参数列表不同即可。这里的“参数列表不同”可以是参数的数量、类型或者参数顺序的不同。</p>
+<p>当提到“与方法的返回类型、访问修饰符无关”时，意思是：</p>
+<ol>
+<li><strong>返回类型无关</strong>:<ul>
+<li>重载的方法可以有不同的返回类型。方法的返回类型不是重载考虑的因素。</li>
+<li>比如，你可以有一个返回<code>void</code>的<code>display()</code>方法和一个返回<code>String</code>的<code>display(String message)</code>方法。</li>
+</ul>
+</li>
+<li><strong>访问修饰符无关</strong>:<ul>
+<li>重载的方法可以有不同的访问权限（如<code>public</code>、<code>private</code>等）。</li>
+<li>重载仅仅关注于方法的名称和参数列表。</li>
+</ul>
+</li>
+</ol>
+<p>这意味着，当你重载一个方法时，你可以改变它的返回类型和访问修饰符，但这不会影响到重载的本质。重载完全是基于方法的参数列表的。重载提供了一种便利，使得你可以用同一个方法名来定义做相似事情但参数不同的方法。</p>
 <h4 id="5-5-可变长参数"><a href="#5-5-可变长参数" class="headerlink" title="5.5 可变长参数"></a>5.5 可变长参数</h4><p>略</p>
 <hr>
 <p>参考</p>
