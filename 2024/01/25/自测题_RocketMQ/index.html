@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1k 字
+          2k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          9 分钟
+          17 分钟
         
       </span>
     
@@ -278,36 +278,112 @@
             
               <div class="markdown-body">
                 
-                <h3 id="面试自测题"><a href="#面试自测题" class="headerlink" title="面试自测题"></a>面试自测题</h3><ul>
-<li>RocketMQ是什么？</li>
-<li>RocketMQ的架构是怎样的？</li>
-<li>RocketMQ的架构主要包括哪些组件？</li>
+                <h3 id="面试自测题"><a href="#面试自测题" class="headerlink" title="面试自测题"></a>面试自测题</h3><h3 id="面试解答篇"><a href="#面试解答篇" class="headerlink" title="面试解答篇"></a>面试解答篇</h3><ul>
+<li>基础内容<ul>
+<li>RocketMQ 是什么？<ul>
+<li>RocketMQ 是一款阿里开源的中间件，经受过双11 的考验，具有高性能、低延迟、高可靠、分布式的特点，是一款比较稳定、可靠的中间件产品。</li>
+<li>建议从技术选型的角度去看，说一下为什么自己觉得要使用 RocketMQ，同时引入一下它的架构和基础使用。</li>
+</ul>
+</li>
+<li>RocketMQ的架构是怎样的？<ul>
+<li>NameServer<ul>
+<li>去中心化的注册中心：进行Broker节点管理和路由信息管理</li>
+<li>负载均衡，路由管理，注册中心</li>
+</ul>
+</li>
+<li>生产者<ul>
+<li>生产者会定期向 NameServer 查询 Broker 的信息</li>
+<li>当生产者准备发送消息时，它首先联系 NameServer 以获取 Topic 所在的 Broker 信息。然后，根据这些信息，生产者将消息发送到正确的 Broker 和对应的队列中。</li>
+</ul>
+</li>
+<li>消费者<ul>
+<li>定期向 NameServer 查询 Broker 的信息</li>
+<li>订阅主题：消费者向 Broker 订阅特定的 Topic。这个过程可能会涉及 NameServer 来找到托管该 Topic 的 Broker。</li>
+<li>消息接收：一旦 Broker 中的 Topic 收到消息，符合条件的消费者（那些订阅了该 Topic 的消费者）就可以接收到这些消息。</li>
+</ul>
+</li>
+<li>Broker<ul>
+<li>定期向 Name Server 发送心跳包（包含自身的主题信息）；Broker：消息处理的节点中心；NameSpace 管理的路由也是对应节点来处理的；一个Broker 节点下有多个Queue</li>
+<li>消息存储和转发：Broker 是消息存储和转发的核心。生产者将消息发送到 Broker，Broker 负责将消息保存在相应的队列中。</li>
+<li>消息处理：Broker 处理所有与消息相关的操作，包括消息的存储、检索、删除以及向消费者分发消息。</li>
+<li>维护队列状态：Broker 负责维护每个队列的状态，如消息偏移量（Offset），确保消息能够被正确地消费。</li>
+</ul>
+</li>
+<li>Topic<ul>
+<li>将Queue进行分类，类似分组、标签（逻辑上）</li>
+</ul>
+</li>
+<li>Queue<ul>
+<li>物理实际分区，消息的实际存储地方</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>常见问题<ul>
+<li>RocketMQ如何保证消息的可靠性传输？RocketMQ 如何保证不丢失消息？</li>
+<li>RocketMQ 如何实现顺序消息？</li>
+<li>RocketMQ如何实现消息的延迟投递？</li>
+<li>RocketMQ如何处理消息的重复消费问题？</li>
+<li>RocketMQ的事务消息是如何实现的？</li>
+<li>RocketMQ如何实现消息的持久化?</li>
+</ul>
+</li>
+<li>to be contined…</li>
+<li>组件<ul>
 <li>NameServer在RocketMQ中扮演什么角色？RocketMQ的NameServer有什么作用？</li>
 <li>Broker在RocketMQ中的作用是什么？</li>
 <li>RocketMQ的Producer和Consumer有什么区别？Producer和Consumer在RocketMQ中分别承担什么职责？</li>
-<li>讲一下RocketMQ 的领域模型，RocketMQ 支持的消息传输模型有哪些。</li>
-<li>RocketMQ 主题拆分不合理会有什么后果。</li>
-<li>RocketMQ 怎么避免产生大量垃圾主题。</li>
-<li>RocketMQ 中的主题，什么场景下需要增加队列数？当主题内的队列数过多，可能会导致什么问题。</li>
-<li>RocketMQ如何保证消息的可靠性传输？</li>
-<li>RocketMQ的消息模型有哪些？</li>
-<li>RocketMQ的顺序消息是什么？RocketMQ中的顺序消息分为哪几种。</li>
-<li>RocketMQ的消息顺序性如何保证？如何实现消息的顺序消费。</li>
-<li>RocketMQ如何处理消息的重复消费问题？</li>
-<li>RocketMQ的事务消息是如何实现的？</li>
-<li>RocketMQ如何实现消息的广播和集群？</li>
-<li>RocketMQ的集群模式有哪些？</li>
 <li>RocketMQ的Topic和Tag有什么作用？</li>
-<li>RocketMQ如何实现消息的过滤？</li>
-<li>RocketMQ的Offset是什么？RocketMQ的Offset机制是如何工作的？</li>
-<li>RocketMQ 消费者启动后从哪里开始消费消息。</li>
-<li>RocketMQ如何实现消息的过滤？</li>
-<li>RocketMQ的存储机制是怎样的？</li>
-<li>RocketMQ如何实现消息的持久化?</li>
-<li>RocketMQ 中的消息有没有大小限制?</li>
+<li>RocketMQ中的Topic和JMS的queue有什么区别？</li>
+<li>RocketMQ 主题拆分不合理会有什么后果。</li>
+<li>RocketMQ 中的主题，什么场景下需要增加队列数？当主题内的队列数过多，可能会导致什么问题。</li>
+<li>RocketMQ 怎么避免产生大量垃圾主题。</li>
+</ul>
+</li>
+<li>模型<ul>
+<li>讲一下RocketMQ 的领域模型，RocketMQ 支持的消息传输模型有哪些。</li>
+<li>RocketMQ的消息模型有哪些？</li>
+<li>RocketMQ的消息顺序性如何保证？如何实现消息的顺序消费。</li>
+</ul>
+</li>
+<li>发送<ul>
 <li>RocketMQ如何实现消息的延迟投递？RocketMQ 延时消息可以设置任意时间吗？</li>
 <li>RocketMQ如何处理消息的重试机制？如何实现的？</li>
+</ul>
+</li>
+<li>消费<ul>
 <li>RocketMQ 的消费充实的应用场景有哪些？在什么情况下会实现消费重试，怎么避免无限消费重试。</li>
+<li>RocketMQ Broker中的消息被消费后会立即删除吗？</li>
+<li>RocketMQ的Offset是什么？RocketMQ的Offset机制是如何工作的？</li>
+<li>RocketMQ 消费者启动后从哪里开始消费消息。</li>
+<li>消费消息是push还是pull？</li>
+<li>为什么要主动拉取消息而不使用事件监听方式？</li>
+<li>broker如何处理拉取请求的？</li>
+</ul>
+</li>
+<li>事务<ul>
+<li>RocketMQ的事务消息是如何实现的？</li>
+</ul>
+</li>
+<li>集群<ul>
+<li>RocketMQ消费模式有几种？</li>
+<li>RocketMQ如何实现消息的广播和集群？</li>
+<li>RocketMQ的集群模式有哪些？</li>
+</ul>
+</li>
+<li>其他<ul>
+<li>RocketMQ如何实现消息的过滤？</li>
+<li>消息会堆积吗？什么时候清理过期消息？</li>
+</ul>
+</li>
+<li>存储<ul>
+<li>RocketMQ的存储机制是怎样的？</li>
+<li>RocketMQ 中的消息有没有大小限制?</li>
+</ul>
+</li>
+<li>生产问题<ul>
 <li>RocketMQ 如果出现异常需要故障恢复，已消费的消息是否被重新消费？</li>
 <li>RocketMQ 消费者建议打印日志吗？RocketMQ 消息发送重试是否会阻塞业务调用。</li>
 <li>RocketMQ如何实现消息的回溯消费？</li>
@@ -317,7 +393,11 @@
 <li>RocketMQ如何进行消息的监控和管理？</li>
 <li>RocketMQ如何实现消息的批量发送？</li>
 </ul>
-<h3 id="面试解答篇"><a href="#面试解答篇" class="headerlink" title="面试解答篇"></a>面试解答篇</h3>
+</li>
+</ul>
+<hr>
+<p>参考：</p>
+
                 
               </div>
             
