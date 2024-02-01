@@ -1,3 +1,4 @@
+https://varcel.luoqi.icu/2024/02/01/Java%E5%AD%A6%E4%B9%A0%E7%9A%84%E8%BD%BB%E6%9D%BE%E4%B9%8B%E6%97%85-%E4%BA%8C%E5%91%A8%E7%9B%AE/
 https://varcel.luoqi.icu/about/index.html
 https://varcel.luoqi.icu/2024/01/29/MySQL%E5%AD%A6%E4%B9%A0_%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B4%A2%E5%BC%95/
 https://varcel.luoqi.icu/2024/01/27/SSL%E8%AF%81%E4%B9%A6%E5%AE%89%E8%A3%85/
@@ -93,7 +94,6 @@ https://varcel.luoqi.icu/2023/11/15/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B_%E5
 https://varcel.luoqi.icu/2023/11/15/Java%E9%9B%86%E5%90%88_HashMap%E5%AD%A6%E4%B9%A0/
 https://varcel.luoqi.icu/2023/11/14/Java%E9%9B%86%E5%90%88_ArrayList%E5%AD%A6%E4%B9%A0/
 https://varcel.luoqi.icu/2023/11/15/Java%E5%AD%A6%E4%B9%A0%E7%9A%84%E8%BD%BB%E6%9D%BE%E4%B9%8B%E6%97%85/
-https://varcel.luoqi.icu/2023/11/14/Java%E9%9B%86%E5%90%88_%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/
 https://varcel.luoqi.icu/2023/11/14/Java%E9%9B%86%E5%90%88_%E7%9B%B8%E5%85%B3%E9%9D%A2%E8%AF%95%E9%A2%98/
 https://varcel.luoqi.icu/2023/11/14/Java%E9%9B%86%E5%90%88_%E8%BF%9B%E9%98%B6%E5%86%85%E5%AE%B9/
 https://varcel.luoqi.icu/2023/11/13/Git%20%E9%85%8D%E7%BD%AE%20SSH%20%E8%BF%9E%E6%8E%A5/
@@ -167,10 +167,10 @@ https://varcel.luoqi.icu/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/Redis/
 https://varcel.luoqi.icu/categories/%E6%A1%86%E6%9E%B6/
 https://varcel.luoqi.icu/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/
 https://varcel.luoqi.icu/categories/Soft/
-https://varcel.luoqi.icu/categories/web/
 https://varcel.luoqi.icu/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/
-https://varcel.luoqi.icu/categories/Records/
+https://varcel.luoqi.icu/categories/web/
 https://varcel.luoqi.icu/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/
+https://varcel.luoqi.icu/categories/Records/
 https://varcel.luoqi.icu/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/
 https://varcel.luoqi.icu/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/NoSQL/
 https://varcel.luoqi.icu/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/Oracle/

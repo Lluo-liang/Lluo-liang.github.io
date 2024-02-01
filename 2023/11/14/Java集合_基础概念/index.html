@@ -228,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.2k 字
+          3.3k 字
         
       </span>
     
@@ -239,7 +239,7 @@
         
         
         
-          19 分钟
+          28 分钟
         
       </span>
     
@@ -281,7 +281,7 @@
             
               <div class="markdown-body">
                 
-                <h4 id="1、成员关系"><a href="#1、成员关系" class="headerlink" title="1、成员关系"></a>1、成员关系</h4><p>Java 集合相关的成员关系图<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311141122413.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+                <h3 id="1、成员关系"><a href="#1、成员关系" class="headerlink" title="1、成员关系"></a>1、成员关系</h3><p>Java 集合相关的成员关系图<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311141122413.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <ul>
 <li>Collection<ul>
 <li>Set<ul>
@@ -329,12 +329,19 @@
 </ul>
 <p>通过下面表格可说明之间部分的区别和联系</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311141123120.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311141123036.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="2、基础概念"><a href="#2、基础概念" class="headerlink" title="2、基础概念"></a>2、基础概念</h4><h5 id="Collection"><a href="#Collection" class="headerlink" title="Collection"></a>Collection</h5><p>Collection接口：最基本的集合接口，所代表的是一种规则，它所包含的元素都必须遵循一条或者多条规则。如有些允许重复而有些则不能重复、有些必须要按照顺序插入而有些则是散列，有些支持排序但是有些则不支持。</p>
+<h3 id="2、基础概念"><a href="#2、基础概念" class="headerlink" title="2、基础概念"></a>2、基础概念</h3><h4 id="Collection"><a href="#Collection" class="headerlink" title="Collection"></a>Collection</h4><p>Collection接口：最基本的集合接口，所代表的是一种规则，它所包含的元素都必须遵循一条或者多条规则。如有些允许重复而有些则不能重复、有些必须要按照顺序插入而有些则是散列，有些支持排序但是有些则不支持。</p>
 <p>在Java中所有实现了Collection接口的类都必须提供两套标准的构造函数，一个是无参，用于创建一个空的Collection，一个是带有Collection参数的有参构造函数，用于创建一个新的Collection，这个新的Collection与传入进来的Collection具备相同的元素。</p>
-<h5 id="List"><a href="#List" class="headerlink" title="List"></a>List</h5><p>List接口：有序的Collection，用某种特定的插入顺序来维护元素顺序；用户可以对列表中每个元素的插入位置进行精确地控制，同时可以根据元素的整数索引（在列表中的位置）访问元素，并搜索列表中的元素。</p>
+<h4 id="List"><a href="#List" class="headerlink" title="List"></a>List</h4><p>List接口：有序的Collection，用某种特定的插入顺序来维护元素顺序；用户可以对列表中每个元素的插入位置进行精确地控制，同时可以根据元素的整数索引（在列表中的位置）访问元素，并搜索列表中的元素。</p>
 <p>实现List接口的集合主要有：ArrayList、LinkedList、Vector、Stack。</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311141634443.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h5 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h5><p>Map接口：由一系列键值对组成的集合，提供了key到Value的映射。同时它没有继承Collection；它保证了key与value之间的一一对应关系，一个key对应一个value，它不能存在相同的key值，value值可以相同。</p>
+<h5 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h5><p>LinkedList 底层的数据结构是双向链表；非常适合频繁的插入、删除操作（修改指针就行）；查询性能不太好（需要遍历链表查找元素）</p>
+<p>参考：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/7134602521423101983">https://juejin.cn/post/7134602521423101983</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.54benniao.com/a/ptarer.html">https://www.54benniao.com/a/ptarer.html</a></li>
+</ul>
+<h5 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h5><p>to be contined….</p>
+<h4 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h4><p>Map接口：由一系列键值对组成的集合，提供了key到Value的映射。同时它没有继承Collection；它保证了key与value之间的一一对应关系，一个key对应一个value，它不能存在相同的key值，value值可以相同。</p>
 <p>实现map的有：HashMap、TreeMap、HashTable、Properties、EnumMap。</p>
 <ul>
 <li>HashMap（JDK1.8及以上）<ul>
@@ -385,7 +392,34 @@
 </ul>
 </li>
 </ul>
-<h5 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h5><p>Set 接口：不包括重复元素的Collection，同样允许 null的存在但是仅有一个</p>
+<h5 id="LinkedHashMap"><a href="#LinkedHashMap" class="headerlink" title="LinkedHashMap"></a>LinkedHashMap</h5><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-comment">// 示例代码：LinkedHashMap的简化实现概述</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-symbol">LinkedHashMap</span>&lt;<span class="hljs-symbol">K, <span class="hljs-symbol">V</span></span>&gt; <span class="hljs-symbol">extends</span> <span class="hljs-symbol">HashMap</span>&lt;<span class="hljs-symbol">K, <span class="hljs-symbol">V</span></span>&gt; &#123;<br>    <span class="hljs-comment">// 维护一个双向链表来记录元素的插入顺序或访问顺序</span><br>    <span class="hljs-keyword">private</span> static <span class="hljs-keyword">class</span> <span class="hljs-symbol">Entry</span>&lt;<span class="hljs-symbol">K, <span class="hljs-symbol">V</span></span>&gt; &#123;<br>        K key;<br>        V value;<br>        Entry&lt;K, V&gt; before, after;<br>        <span class="hljs-comment">// ... 其他节点数据</span><br>    &#125;<br><br>    <span class="hljs-comment">// HashMap的存储结构用于存储键值对</span><br>    <span class="hljs-comment">// 双向链表用于维护键值对的顺序</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>LinkedHashMap</code>是Java集合框架中的一部分，它是<code>HashMap</code>的一个子类，底层基于<code>HashMap</code>实现，但同时使用了一个双向链表来维护元素的插入顺序或访问顺序。以下是<code>LinkedHashMap</code>的关键实现细节：</p>
+<ol>
+<li><strong>哈希表</strong>:<ul>
+<li><code>LinkedHashMap</code>继承自<code>HashMap</code>，因此它的基本数据结构是哈希表，用于存储键值对。</li>
+<li>哈希表提供了快速的查找、插入和删除操作。</li>
+</ul>
+</li>
+<li><strong>双向链表</strong>:<ul>
+<li><code>LinkedHashMap</code>内部维护了一个双向链表来记录所有的键值对。</li>
+<li>双向链表中的每个节点包含了键、值、指向前一个节点的引用和指向后一个节点的引用。</li>
+</ul>
+</li>
+<li><strong>插入顺序或访问顺序</strong>:<ul>
+<li>默认情况下，<code>LinkedHashMap</code>按照元素的插入顺序保存这些元素。</li>
+<li>如果在构造函数中设置了<code>accessOrder</code>为<code>true</code>，则会按照访问顺序（最近最少使用顺序）来保存元素。</li>
+</ul>
+</li>
+<li><strong>性能特点</strong>:<ul>
+<li>由于使用了双向链表，<code>LinkedHashMap</code>在维护插入顺序方面需要额外的内存。</li>
+<li>查找元素的性能与<code>HashMap</code>相似，因为底层都是基于哈希表实现的。</li>
+<li>在迭代整个集合时，<code>LinkedHashMap</code>比普通的<code>HashMap</code>效率更高，因为它通过链表顺序访问元素，而不是哈希表的桶位顺序。</li>
+</ul>
+</li>
+</ol>
+<p>因此，<code>LinkedHashMap</code>是<code>HashMap</code>和双向链表结构的结合，这使得它既具有哈希表的高效键值对存取特性，又能保持键值对的顺序。</p>
+<h4 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h4><p>Set 接口：不包括重复元素的Collection，同样允许 null的存在但是仅有一个</p>
 <p>实现了Set接口的集合有：EnumSet、HashSet、TreeSet。</p>
 <ul>
 <li>HashSet<ul>
@@ -408,7 +442,7 @@
 </ul>
 </li>
 </ul>
-<h5 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h5><p>队列，主要分为两大类，</p>
+<h4 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h4><p>队列，主要分为两大类，</p>
 <p>一类是阻塞式队列，队列满了以后再插入元素则会抛出异常，主要包括ArrayBlockQueue、PriorityBlockingQueue、LinkedBlockingQueue。</p>
 <p>另一种队列则是双端队列，支持在头、尾两端插入和移除元素，主要包括：ArrayDeque、LinkedBlockingDeque、LinkedList。</p>
 <hr>
@@ -510,29 +544,6 @@
 
 
 
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2023/11/14/Java%E9%9B%86%E5%90%88_%E8%BF%9B%E9%98%B6%E5%86%85%E5%AE%B9/" title="Java 集合_进阶内容">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Java 集合_进阶内容</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2023/11/13/Git%20%E9%85%8D%E7%BD%AE%20SSH%20%E8%BF%9E%E6%8E%A5/" title="Git 配置 SSH 连接">
-                        <span class="hidden-mobile">Git 配置 SSH 连接</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
               
             </div>
 
