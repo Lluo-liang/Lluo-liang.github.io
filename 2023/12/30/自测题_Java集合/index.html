@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.6k 字
+          3.5k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          22 分钟
+          30 分钟
         
       </span>
     
@@ -289,7 +289,6 @@
 <li>常见的集合实现类怎么用的大致说一下。</li>
 <li>哪些集合是线程不安全的，在并发情况下，如何保证集合线程安全呢。</li>
 <li>快速失败 (fail-fast) 和安全失败 (fail-safe) 的区别是什么？</li>
-<li>为什么集合类没有实现 Cloneable 和 Serializable 接口？</li>
 </ul>
 </li>
 <li>List<ul>
@@ -340,6 +339,7 @@
 </ul>
 </li>
 <li>其他<ul>
+<li>为什么集合类没有实现 Cloneable 和 Serializable 接口？</li>
 <li>Comparable 和 Comparator 接口是干什么的？列出它们的区别。</li>
 <li>Collection 和 Collections 的区别</li>
 </ul>
@@ -347,12 +347,78 @@
 </ul>
 <h3 id="面试解答篇"><a href="#面试解答篇" class="headerlink" title="面试解答篇"></a>面试解答篇</h3><ul>
 <li>基础<ul>
-<li>讲一下 List、Map、Set 的区别；他们在存取元素的时候，各有什么特点。</li>
-<li>List, Set, Map 在 Java 中分别由哪些对应的实现类，底层的数据结构是什么。</li>
-<li>常见的集合实现类怎么用的大致说一下。</li>
-<li>哪些集合是线程不安全的，在并发情况下，如何保证集合线程安全呢。</li>
-<li>快速失败 (fail-fast) 和安全失败 (fail-safe) 的区别是什么？</li>
-<li>为什么集合类没有实现 Cloneable 和 Serializable 接口？</li>
+<li>讲一下 List、Map、Set 的区别；他们在存取元素的时候，各有什么特点。<ul>
+<li>List<ul>
+<li>有序集合，可以包含重复元素，元素可以通过索引访问，典型实现：ArrayList、LinkedList</li>
+</ul>
+</li>
+<li>Set<ul>
+<li>无序集合，不允许重复元素；常用于去重，典型实现：HashSet、TreeSet、LinkedHashSet</li>
+</ul>
+</li>
+<li>Map<ul>
+<li>键值对集合，不允许重复的键；每个键映射到一个值；典型实现：HashMap、TreeMap、LinkedHashMap</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>List, Set, Map 在 Java 中分别由哪些对应的实现类，底层的数据结构是什么。<ul>
+<li>List<ul>
+<li>ArrayList  动态数组</li>
+<li>LinkedList  双向链表</li>
+</ul>
+</li>
+<li>Set<ul>
+<li>HashSet   基于HashMap</li>
+<li>TreeSet     红黑树</li>
+<li>LinkedHashSet   哈希表 + 双向链表</li>
+</ul>
+</li>
+<li>Map<ul>
+<li>HashMap   哈希表</li>
+<li>TreeMap     红黑树</li>
+<li>LinkedHashMap    哈希表 + 双向链表</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>常见的集合实现类怎么用的大致说一下。<ul>
+<li><strong>ArrayList</strong>: 动态数组，适用于频繁的随机访问和少量的插入和删除操作。</li>
+<li><strong>LinkedList</strong>: 双向链表，适用于频繁的插入和删除操作。</li>
+<li><strong>HashSet</strong>: 哈希表实现，适用于快速查找、插入、删除操作，不保证元素顺序。</li>
+<li><strong>TreeSet</strong>: 红黑树实现，适用于有序访问，提供排序功能。</li>
+<li><strong>HashMap</strong>: 哈希表实现，提供快速访问，不保证元素顺序。</li>
+<li><strong>TreeMap</strong>: 红黑树实现，键值有序。</li>
+<li><strong>LinkedHashMap</strong>: 保持插入顺序或访问顺序</li>
+</ul>
+</li>
+<li>哪些集合是线程不安全的，在并发情况下，如何保证集合线程安全呢。<ul>
+<li><strong>线程不安全的集合</strong>:<ul>
+<li>如<code>ArrayList</code>, <code>HashMap</code>, <code>HashSet</code>。</li>
+</ul>
+</li>
+<li><strong>线程安全解决方法</strong>:<ul>
+<li>使用线程安全的集合类，如<code>Vector</code>, <code>ConcurrentHashMap</code>。</li>
+<li>使用<code>Collections.synchronizedList</code>, <code>Collections.synchronizedMap</code>, <code>Collections.synchronizedSet</code>来包装不安全的集合。</li>
+<li>使用Java并发包中的类，如<code>CopyOnWriteArrayList</code>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>快速失败 (fail-fast) 和安全失败 (fail-safe) 的区别是什么？<ul>
+<li><strong>快速失败 (fail-fast)</strong>:<ul>
+<li>迭代器在遍历时，如果发现集合被修改，则会立即抛出<code>ConcurrentModificationException</code>。</li>
+<li>例子：<code>ArrayList</code>, <code>HashMap</code>.</li>
+</ul>
+</li>
+<li><strong>安全失败 (fail-safe)</strong>:<ul>
+<li>迭代器在遍历时，对原集合的修改不会影响迭代器，它们在原集合的副本上进行操作。</li>
+<li>不会抛出<code>ConcurrentModificationException</code>。</li>
+<li>例子：<code>CopyOnWriteArrayList</code>, <code>ConcurrentHashMap</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>List<ul>
@@ -403,6 +469,7 @@
 </ul>
 </li>
 <li>其他<ul>
+<li>为什么集合类没有实现 Cloneable 和 Serializable 接口？</li>
 <li>Comparable 和 Comparator 接口是干什么的？列出它们的区别。</li>
 <li>Collection 和 Collections 的区别</li>
 </ul>
