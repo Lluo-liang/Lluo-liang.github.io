@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          862 字
+          1.6k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          8 分钟
+          14 分钟
         
       </span>
     
@@ -335,7 +335,71 @@
 </ul>
 </li>
 </ul>
-<h3 id="面试解答篇"><a href="#面试解答篇" class="headerlink" title="面试解答篇"></a>面试解答篇</h3><h4 id="Redis-常用的数据结构有哪些。"><a href="#Redis-常用的数据结构有哪些。" class="headerlink" title="Redis 常用的数据结构有哪些。"></a>Redis 常用的数据结构有哪些。</h4><p>String、Set、Hash、List、ZSet</p>
+<h3 id="面试解答篇"><a href="#面试解答篇" class="headerlink" title="面试解答篇"></a>面试解答篇</h3><ul>
+<li>基础概念<ul>
+<li>Redis 有什么作用，为什么要用缓存，为什么选择Redis。</li>
+<li>Redis 除了做缓存，还能做什么，可以做消息队列吗？ </li>
+<li>分布式缓存常见的技术选型方案有哪些。</li>
+<li>Redis 给缓存数据设置过期时间有什么用。</li>
+<li>Redis 是如何判定数据是否过期。</li>
+<li>过期的数据的删除策略了解吗。</li>
+<li>Redis 单线程模型了解吗</li>
+<li>Redis 6.0 之前为什么不使用多线程，Redis 之后为啥引入了多线程。</li>
+</ul>
+</li>
+<li>数据结构<ul>
+<li>Redis 常用的数据结构有哪些。<ul>
+<li>String、Set、Hash、List、ZSet</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>持久化、内存<ul>
+<li>Redis 内存淘汰机制了解吗</li>
+<li>什么是 RDB 持久化。</li>
+<li>什么是 AOF 持久化。</li>
+<li>Redis 4.0 对于持久化机制做了什么优化？</li>
+</ul>
+</li>
+<li>事务<ul>
+<li>如何使用 Redis 事务，Redis 事务支持原子性吗，Redis 事务有什么缺陷。</li>
+<li>如何解决 Redis 事务的缺陷。</li>
+</ul>
+</li>
+<li>生产问题<ul>
+<li>怎么保证 Redis 挂掉之后再重启数据可以进行恢复？</li>
+<li>什么是 bigkey？ 有什么危害。</li>
+<li>如何发现 bigkey。</li>
+<li>如何避免大量 key 集中过期。</li>
+<li>在使用Redis作为缓存时，遇到缓存穿透，你会怎么处理。</li>
+<li>讲一下缓存雪崩、缓存击穿。</li>
+<li>当数据同时存储在数据库和缓存中时，如何保证缓存和数据库之间的数据一致性？</li>
+<li>在分布式缓存环境下，如何处理多个节点之间的缓存一致性问题。</li>
+</ul>
+</li>
+<li>内存<ul>
+<li>什么是 Redis 内存碎片，为什么会有  Redis 内存碎片？</li>
+</ul>
+</li>
+<li>高可用<ul>
+<li>如何保证 Redis 服务高可用。</li>
+<li>Sentinel（哨兵）有什么作用。</li>
+<li>Redis Cluster 虚拟槽分区有什么优点。</li>
+<li>Redis Cluster 中的各个节点是如何实现数据一致性的。</li>
+<li>为什么要用分布式缓存。</li>
+<li>常见的缓存更新策略有哪几种?</li>
+<li>Redis主从复制：主从节点之间如何同步数据？</li>
+<li>Redis Sentinel：如何实现自动化地故障转移？</li>
+<li>Redis Cluster：缓存的数据量太大怎么办？</li>
+</ul>
+</li>
+<li>扩展问题<ul>
+<li>使用 Redis 统计网站 UV 怎么做？</li>
+<li>使用 Redis 实现一个排行榜 怎么做。</li>
+<li>Redis 缓存的数据量太大怎么办。</li>
+</ul>
+</li>
+</ul>
 <hr>
 <p>参考</p>
 <ul>
