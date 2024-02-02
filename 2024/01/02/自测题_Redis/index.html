@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k 字
+          1.9k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          14 分钟
+          16 分钟
         
       </span>
     
@@ -377,7 +377,28 @@
 <li>在分布式缓存环境下，如何处理多个节点之间的缓存一致性问题。</li>
 </ul>
 </li>
-<li>内存<ul>
+<li>内存管理<ul>
+<li>Redis 的默认内存分配器是哪个？<ul>
+<li>Jemalloc</li>
+</ul>
+</li>
+<li>Redis 在什么情况下会清理内存数据？<ul>
+<li>什么时候会是否内存，一种情况是键过期，还有就是触发了内存淘汰策略的时候（在内存使用达到限制时）</li>
+</ul>
+</li>
+<li>讲一下常用的内存管理配置。<ul>
+<li>可以在 Redis 配置文件中设置 <code>maxmemory</code> 选项来限制 Redis 使用的最大内存量。</li>
+<li>还可以通过 <strong>maxmemory-policy</strong> 定义当内存达到限制时 Redis 应该执行的淘汰策略。</li>
+</ul>
+</li>
+<li>Redis 内存使用监控了解吗？<ul>
+<li>可以通过一些指令查看内存使用情况，比如:  <code>used_memory</code>、<code>used_memory_rss</code>、<code>used_memory_peak</code> 等</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>性能优化<ul>
+<li>什么时候会产生 Redis 内存碎片？</li>
 <li>什么是 Redis 内存碎片，为什么会有  Redis 内存碎片？</li>
 </ul>
 </li>

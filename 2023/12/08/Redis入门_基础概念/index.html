@@ -30,7 +30,6 @@
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231225211235.png">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231225212801.png">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231225212846.png">
-<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240202075109.png">
 <meta property="article:published_time" content="2023-12-08T14:51:06.000Z">
 <meta property="article:modified_time" content="2023-12-08T14:51:06.000Z">
 <meta property="article:author" content="Luo QI">
@@ -230,7 +229,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.7k 字
+          6.1k 字
         
       </span>
     
@@ -241,7 +240,7 @@
         
         
         
-          48 分钟
+          51 分钟
         
       </span>
     
@@ -595,26 +594,16 @@
 <li>数据结构优化</li>
 <li>内存回收</li>
 </ul>
-<h4 id="Redis-内存碎片"><a href="#Redis-内存碎片" class="headerlink" title="Redis 内存碎片"></a>Redis 内存碎片</h4><blockquote>
-<p>什么是内存碎片</p>
-</blockquote>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240202075109.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="过期时间"><a href="#过期时间" class="headerlink" title="过期时间"></a>过期时间</h4><p>一般情况下，我们设置保存的缓存数据的时候都会设置一个过期时间。为什么呢？</p>
+<p>因为内存是有限的，如果缓存中的所有数据都是一直保存的话，分分钟直接 Out of memory。</p>
+<p>Redis 自带了给缓存数据设置过期时间的功能，比如：</p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs accesslog"><span class="hljs-number">127.0.0.1:6379</span>&gt; expire key <span class="hljs-number">60</span> # 数据在 60s 后过期<br>(integer) <span class="hljs-number">1</span><br><span class="hljs-number">127.0.0.1:6379</span>&gt; setex key <span class="hljs-number">60</span> value # 数据在 60s 后过期 (setex:<span class="hljs-string">[set]</span> + <span class="hljs-string">[ex]</span>pire)<br>OK<br><span class="hljs-number">127.0.0.1:6379</span>&gt; ttl key # 查看数据还有多久过期<br>(integer) <span class="hljs-number">56</span><br></code></pre></td></tr></table></figure>
+
 <blockquote>
-<p>Redis 为什么会有内存碎片</p>
+<p>注意：<strong>Redis 中除了字符串类型有自己独有设置过期时间的命令 <code>setex</code> 外，其他方法都需要依靠 <code>expire</code> 命令来设置过期时间 。另外， <code>persist</code> 命令可以移除一个键的过期时间。</strong></p>
 </blockquote>
-<p>常见的两个原因：</p>
-<ul>
-<li><ol>
-<li><strong>Redis 存储存储数据的时候向操作系统申请的内存空间可能会大于数据实际需要的存储空间。</strong></li>
-</ol>
-</li>
-<li><ol start="2">
-<li><strong>频繁修改 Redis 中的数据也会产生内存碎片。</strong></li>
-</ol>
-</li>
-</ul>
-<p>to be contined….</p>
-<hr>
+<p>过期时间还可以用于某些业务场景：比如手机短信验证码的有效期保持在 1 分钟，token 登录的有效期在 1 天内。</p>
+<h4 id="如何判断键是否过期"><a href="#如何判断键是否过期" class="headerlink" title="如何判断键是否过期"></a>如何判断键是否过期</h4><hr>
 <p>参考</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://javaguide.cn/database/redis/cache-basics.html">https://javaguide.cn/database/redis/cache-basics.html</a></li>
