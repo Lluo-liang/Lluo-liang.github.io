@@ -258,7 +258,7 @@
         
         
         
-          326 分钟
+          327 分钟
         
       </span>
     
@@ -752,6 +752,13 @@
 <p>Spring Boot 通过<code>@EnableAutoConfiguration</code>开启自动装配，</p>
 <p>通过 SpringFactoriesLoader 最终加载<code>META-INF/spring.factories</code>中的自动配置类实现自动装配，</p>
 <p>自动配置类其实就是通过<code>@Conditional</code>按需加载的配置类，想要其生效必须引入<code>spring-boot-starter-xxx</code>包实现起步依赖</p>
+<hr>
+<p>常见的一些问题：</p>
+<blockquote>
+<p>SpringBoot 的 starter 和 打包为 maven 依赖有什么区别，在什么实际使用场景下会考虑使用？</p>
+</blockquote>
+<p>前者 starter 更倾向于某个程序启动，它内部是包含了 SpringBoot 启动类的，通常封装了统一配置，隐藏了实现细节。</p>
+<p>后者更倾向于是某一个公共服务，然后在多个模块中引入这个依赖（可以将这个公共服务打包为一个 mavne 依赖以供其他模块调用）</p>
 <hr>
 <h4 id="手撸一个-Starter（视频学习）"><a href="#手撸一个-Starter（视频学习）" class="headerlink" title="手撸一个 Starter（视频学习）"></a>手撸一个 Starter（视频学习）</h4><p>视频学习： <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Zu4116714">https://www.bilibili.com/video/BV1Zu4116714</a></p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202401261636199.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>

@@ -226,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.2k 字
+          7.2k 字
         
       </span>
     
@@ -237,7 +237,7 @@
         
         
         
-          44 分钟
+          60 分钟
         
       </span>
     
@@ -286,15 +286,15 @@
 <li><a target="_blank" rel="noopener" href="https://gitcode.net/KnowledgePlanet/chatgpt">https://gitcode.net/KnowledgePlanet/chatgpt</a></li>
 <li><a target="_blank" rel="noopener" href="https://gitcode.net/KnowledgePlanet/chatgpt/chatgpt-data">https://gitcode.net/KnowledgePlanet/chatgpt/chatgpt-data</a></li>
 </ul>
-<h3 id="1、项目介绍"><a href="#1、项目介绍" class="headerlink" title="1、项目介绍"></a>1、项目介绍</h3><p>项目学习目标：去熟练一下微服务应用体系的构建，在这个体系上通过配置环境Docker + Nginx + SSL；开发出鉴权、认证、微信公众号、企业微信、支付宝交易等模块，完善体系的物料服务。</p>
-<p>将核心的基础物料【物料指SDK和服务】通过 API 的方式与具体的物料服务模块解耦。</p>
-<p>那么就开始吧。</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240118071619.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="1、介绍和使用"><a href="#1、介绍和使用" class="headerlink" title="1、介绍和使用"></a>1、介绍和使用</h3><p>这个项目是属于 知识星球-码农会锁  里面的一个项目 《OpenAi(ChatGPT&#x2F;ChatGLM) 微服务应用体系构建》</p>
+<p>Day01 这一部分的文章内容主要是记录一下相关的学习文档地址和学习内容（建议直接加入一下这个星球去看一下相关文件内容）</p>
+<h4 id="这个项目是做什么的"><a href="#这个项目是做什么的" class="headerlink" title="这个项目是做什么的"></a>这个项目是做什么的</h4><p>这个是一个学习使用 chatgpt&#x2F;chatglm 使用的项目，在调用 大模型语言 第三方接口的基础上，加入了 网关、鉴权认证、微信公众号、企业微信、支付包支付相关的服务，并在此基础上面构建了一套微服务应用体系。</p>
+<p>配置环境是基于 Nginx + Docker ，部署和监控在这个项目中也有使用到</p>
+<h4 id="项目介绍"><a href="#项目介绍" class="headerlink" title="项目介绍"></a>项目介绍</h4><p>先是一下这个项目使用到的技术栈和使用工具</p>
 <p>技术栈：SpringBoot、MyBatis、MySQL、Redis</p>
 <p>开发工具： IntelliJ IDEA、WebStorm、Docker、Protainter、Nginx、Git、Maven、Navicat、SSH工具</p>
 <p>前端：Next.js、Typescript</p>
-<p>课程目录</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240118072039.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>开发流程：</p>
+<p>开发流程：</p>
 <ul>
 <li><ol>
 <li>基础设置的服务搭建</li>
@@ -328,7 +328,16 @@
 <li>Docker - 可本地安装，不需要非得购买云服务器，也可以满足学习诉求。</li>
 <li>natapp - 内网穿透工具，相当于你开启后，可以分配给你一个域名，让外网访问到你的服务</li>
 </ul>
-<h3 id="2、push-工程到仓库"><a href="#2、push-工程到仓库" class="headerlink" title="2、push 工程到仓库"></a>2、push 工程到仓库</h3><p>文档地址： <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_z9wh4hsg21dn.html">https://articles.zsxq.com/id_z9wh4hsg21dn.html</a></p>
+<p>服务关系图和课程目录</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240118071619.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240118072039.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="服务解耦思想"><a href="#服务解耦思想" class="headerlink" title="服务解耦思想"></a>服务解耦思想</h4><p>这里使用了一种方式，是将核心的基础物料通过 API 的方式与具体的物料服务模块解，其中物料指SDK和服务；</p>
+<p>项目中具体的做法是将 SDK 项目进行了打包到本地仓库的操作，然后在微服务应用程序中直接引用这个依赖。</p>
+<h3 id="2、项目初步学习"><a href="#2、项目初步学习" class="headerlink" title="2、项目初步学习"></a>2、项目初步学习</h3><p>看这个文档的时候建议还是有自己的一个学习节奏，保持更新迭代自己的文档相关内容，可以将自己的理解输出，尝试使用更简短的语言更新一下之前的内容，并补充一下没有注意到的地方。</p>
+<h4 id="拉取项目操作和上传仓库"><a href="#拉取项目操作和上传仓库" class="headerlink" title="拉取项目操作和上传仓库"></a>拉取项目操作和上传仓库</h4><blockquote>
+<p>push 工程到仓库</p>
+</blockquote>
+<p>文档地址： <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_z9wh4hsg21dn.html">https://articles.zsxq.com/id_z9wh4hsg21dn.html</a></p>
 <p>进入到： <a target="_blank" rel="noopener" href="https://gitcode.net/CreativeAlliance">https://gitcode.net/CreativeAlliance</a></p>
 <p>创建一个新的仓库： chatgpt-dev-ops-10863-lq</p>
 <p>拉取这个项目到本地，然后用 IDEA打开并提交</p>
@@ -342,7 +351,7 @@
 
 <p>gitcode 的登陆方是需要 CSDN 的账号密码。</p>
 <hr>
-<h3 id="2、环境安装"><a href="#2、环境安装" class="headerlink" title="2、环境安装"></a>2、环境安装</h3><p>Docker 安装使用</p>
+<h4 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h4><p>Docker 安装使用</p>
 <p>Portainer 环境配置</p>
 <p>Nginx 环境配置： <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_1lcdsxia3ld3.html">https://articles.zsxq.com/id_1lcdsxia3ld3.html</a></p>
 <p>安装操作: [[Docker入门_Docker的基本使用#6、docker 安装 nginx]]</p>
@@ -363,7 +372,7 @@
 </ol>
 <p>这个 Portainer 控制台的使用可以看一下</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240127222958.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h3 id="3、API工程搭建"><a href="#3、API工程搭建" class="headerlink" title="3、API工程搭建"></a>3、API工程搭建</h3><h4 id="简单访问认证"><a href="#简单访问认证" class="headerlink" title="简单访问认证"></a>简单访问认证</h4><p>流程设计：</p>
+<h4 id="API工程搭建"><a href="#API工程搭建" class="headerlink" title="API工程搭建"></a>API工程搭建</h4><h5 id="简单访问认证"><a href="#简单访问认证" class="headerlink" title="简单访问认证"></a>简单访问认证</h5><p>流程设计：</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202401291538617.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>实现效果：以用户视角访问API开始，进入 Nginx 的 auth 认证模块，调用 SpringBoot 提供的认证服务。根据认证结果调用重定向到对应的 API 接口或者 404 页面。</p>
 <blockquote>
@@ -385,7 +394,7 @@
 <figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">server &#123;<br><br>    listen       <span class="hljs-number">80</span>;<br>    server_name  <span class="hljs-number">192.168</span>.<span class="hljs-number">1.101</span>;<br><br>    <span class="hljs-comment"># 首页</span><br>    index index.html;<br><br>    <span class="hljs-keyword">location</span> <span class="hljs-title">/ &#123;</span><br><span class="hljs-title">        root</span>   /usr/share/nginx/html;<br>        index  index.html index.htm;<br>    &#125;<br><br>    <span class="hljs-keyword">location</span> <span class="hljs-title">/api</span>/ &#123;<br>        auth_request /auth;<br>        <span class="hljs-comment"># 鉴权通过后的处理方式</span><br>        proxy_pass http://<span class="hljs-number">192.168</span>.<span class="hljs-number">1.101</span>:<span class="hljs-number">8080</span>/success;<br>    &#125;<br><br>    <span class="hljs-keyword">location</span> <span class="hljs-title">= /auth</span> &#123;<br>        <span class="hljs-comment"># 发送子请求到HTTP服务，验证客户端的凭据，返回响应码</span><br>        internal;<br>        <span class="hljs-comment"># 设置参数</span><br>        set $query &#x27;&#x27;;<br>        if ($request_uri ~* <span class="hljs-string">&quot;[^\?]+\?(.*)$&quot;</span>) &#123;<br>            set $query $<span class="hljs-number">1</span>;<br>        &#125;<br>        <span class="hljs-comment"># 验证成功，返回200 OK</span><br>        proxy_pass http://<span class="hljs-number">192.168</span>.<span class="hljs-number">1.101</span>:<span class="hljs-number">8080</span>/verify?$query;<br>        <span class="hljs-comment"># 发送原始请求</span><br>        proxy_pass_request_body off;<br>        <span class="hljs-comment"># 清空 Content-Type</span><br>        proxy_set_header Content-<span class="hljs-keyword">Type</span> <span class="hljs-string">&quot;&quot;</span>;<br>     &#125;<br><br>    error_page <span class="hljs-number">404</span> /<span class="hljs-number">404</span>.html;<br>        <span class="hljs-keyword">location</span> <span class="hljs-title">= /40x</span>.html &#123;<br><br>        &#125;<br><br>    error_page   <span class="hljs-number">500</span> <span class="hljs-number">502</span> <span class="hljs-number">503</span> <span class="hljs-number">504</span>  /<span class="hljs-number">50</span>x.html;<br>     <span class="hljs-keyword">location</span> <span class="hljs-title">= /50x</span>.html &#123;<br>     &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
 
 
-<h4 id="Shiro登录授权发放访问token"><a href="#Shiro登录授权发放访问token" class="headerlink" title="Shiro登录授权发放访问token"></a>Shiro登录授权发放访问token</h4><p>需要去看一下相关的代码和进行整理，这里主要阅读一下相关的课程文章并推进进度。</p>
+<h5 id="Shiro登录授权发放访问token"><a href="#Shiro登录授权发放访问token" class="headerlink" title="Shiro登录授权发放访问token"></a>Shiro登录授权发放访问token</h5><p>需要去看一下相关的代码和进行整理，这里主要阅读一下相关的课程文章并推进进度。</p>
 <p>这里是先实现一个效果： 验证通过后发放 Token，之后再使用 Token 访问 OpenAI 地址。</p>
 <p>本章是在 SpringBoot 项目中引入进来 Shiro、JWT，从而进行处理。</p>
 <p>代码内容待后续分析</p>
@@ -406,26 +415,131 @@
 <p>当登录的时候校验通过，然后返回一个授权 token ；后续登录的时候通过解析这个 token 判断是否有对应权限操作。</p>
 <p>看一下这篇课程文章： <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_0843dvwa4j2i.html">https://articles.zsxq.com/id_0843dvwa4j2i.html</a></p>
 <p>登录这方面的内容建议单独开一个单章去理解一下流行的一些技术和实现思路。</p>
-<h4 id="chatgpt-api-项目"><a href="#chatgpt-api-项目" class="headerlink" title="chatgpt-api 项目"></a>chatgpt-api 项目</h4><p>项目地址： <a target="_blank" rel="noopener" href="https://gitcode.net/KnowledgePlanet/chatgpt/chatgpt-api">https://gitcode.net/KnowledgePlanet/chatgpt/chatgpt-api</a></p>
-<h3 id="4、服务镜像构建和容器部署"><a href="#4、服务镜像构建和容器部署" class="headerlink" title="4、服务镜像构建和容器部署"></a>4、服务镜像构建和容器部署</h3><p>参考： <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_q9d1o7nvj5nb.html">https://articles.zsxq.com/id_q9d1o7nvj5nb.html</a></p>
+<h5 id="chatgpt-api-项目"><a href="#chatgpt-api-项目" class="headerlink" title="chatgpt-api 项目"></a>chatgpt-api 项目</h5><p>项目地址： <a target="_blank" rel="noopener" href="https://gitcode.net/KnowledgePlanet/chatgpt/chatgpt-api">https://gitcode.net/KnowledgePlanet/chatgpt/chatgpt-api</a></p>
+<p>to be contined….</p>
+<h4 id="服务镜像构建和容器部署"><a href="#服务镜像构建和容器部署" class="headerlink" title="服务镜像构建和容器部署"></a>服务镜像构建和容器部署</h4><p>参考： <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_q9d1o7nvj5nb.html">https://articles.zsxq.com/id_q9d1o7nvj5nb.html</a></p>
 <p>这一章的实现功能： 将上一章的实现的简易项目构建工程项目并推送到 Docker 仓库。</p>
 <p>流程说明： 在工程中添加 Dockerfile 配置文件，对工程进行镜像打包。并把工程推送到本地和远程 Docker 仓库进行部署验证。</p>
 <p>本地的 Docker 直接在 IDEA 配置即可启动，远程的服务仓库一种是配置开启2375端口，另外一种把镜像文件推送到 <a target="_blank" rel="noopener" href="https://hub.docker.com/">https://hub.docker.com</a> 再通过拉取的方式使用</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202401291634686.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>看一下课程文件，然后实际操作一下： <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_q9d1o7nvj5nb.html">https://articles.zsxq.com/id_q9d1o7nvj5nb.html</a></p>
-<p>难度应该比较小，需要实际去跑一下。</p>
+<p>难度应该比较小，需要实际去跑一下。to be contined…</p>
 <hr>
-<h3 id="5、ChatGPT-SDK组件工程简单功能实现"><a href="#5、ChatGPT-SDK组件工程简单功能实现" class="headerlink" title="5、ChatGPT-SDK组件工程简单功能实现"></a>5、ChatGPT-SDK组件工程简单功能实现</h3><p>地址： <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_637o58swvzwv.html">https://articles.zsxq.com/id_637o58swvzwv.html</a></p>
+<h4 id="ChatGPT-SDK组件工程简单功能实现"><a href="#ChatGPT-SDK组件工程简单功能实现" class="headerlink" title="ChatGPT-SDK组件工程简单功能实现"></a>ChatGPT-SDK组件工程简单功能实现</h4><p>地址： <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_637o58swvzwv.html">https://articles.zsxq.com/id_637o58swvzwv.html</a></p>
 <p>实现效果： 搭建一个 ChatGPT-SDK 组件工程，专门用于封装对 OpenAI 接口的使用。</p>
 <p>流程设计：</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202401291645971.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="3、项目内容学习"><a href="#3、项目内容学习" class="headerlink" title="3、项目内容学习"></a>3、项目内容学习</h3><p>将课程文档对应的链接放一下，后续实际使用和学习到的时候用一下。</p>
+<ul>
+<li>微信公众号验签和初步对接OpenAI<ul>
+<li>地址： <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_e9r7rfv308px.html">https://articles.zsxq.com/id_e9r7rfv308px.html</a></li>
+<li>跟之前自己做的 [[ChatGPT问答助手]]  里面部分内容差不多，实现过程类似。</li>
+</ul>
+</li>
+<li>流式应答会话设计实现<ul>
+<li>地址： <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_4r1ifost3bhh.html">https://articles.zsxq.com/id_4r1ifost3bhh.html</a></li>
+<li>功能效果： 丰富 OpenAiSession 会话服务接口，增加流式回答的事件监听处理。</li>
+</ul>
+</li>
+<li>gpt-sdk 完善实现各类常用接口<ul>
+<li>地址： <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_hif1r28gp3i4.html">https://articles.zsxq.com/id_hif1r28gp3i4.html</a></li>
+<li>实现效果： 实现 gpt 官网的一些其他接口功能</li>
+</ul>
+</li>
+<li>学习文档地址： <a target="_blank" rel="noopener" href="https://wx.zsxq.com/dweb2/index/columns/48411118851818">https://wx.zsxq.com/dweb2/index/columns/48411118851818</a></li>
+<li>1、前端项目构建<ul>
+<li>Web页面工程初始化<ul>
+<li>地址： <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_t56b7jqr7a95.html">https://articles.zsxq.com/id_t56b7jqr7a95.html</a></li>
+</ul>
+</li>
+<li>工具栏面板<ul>
+<li>地址： <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_7oetre5ef0wo.html">https://articles.zsxq.com/id_7oetre5ef0wo.html</a></li>
+<li>按钮定义与事件实现</li>
+<li>地址： <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_eosfsi8mkzw3.html">https://articles.zsxq.com/id_eosfsi8mkzw3.html</a></li>
+</ul>
+</li>
+<li>对话框列表<ul>
+<li>地址： <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_13if2wn4jhlg.html">https://articles.zsxq.com/id_13if2wn4jhlg.html</a></li>
+</ul>
+</li>
+<li>对话框消息<ul>
+<li>地址： <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_57ho2v2ol52r.html">https://articles.zsxq.com/id_57ho2v2ol52r.html</a></li>
+</ul>
+</li>
+<li>完善对话处理<ul>
+<li>地址： <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_vux657zw1e0c.html">https://articles.zsxq.com/id_vux657zw1e0c.html</a></li>
+</ul>
+</li>
+<li>对话角色设定<ul>
+<li>地址： <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_44wg8c8os2o2.html">https://articles.zsxq.com/id_44wg8c8os2o2.html</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2、工程重构和流式异步响应接口实现<ul>
+<li>地址： <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_cnp0sxnfmpww.html">https://articles.zsxq.com/id_cnp0sxnfmpww.html</a></li>
+</ul>
+</li>
+<li>3、流式接口对接<br>  地址：  <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_ifllevif6p6i.html">https://articles.zsxq.com/id_ifllevif6p6i.html</a></li>
+<li>4、公众号发送验证码鉴权登录<ul>
+<li>地址：  <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_kt4oql6efmmo.html">https://articles.zsxq.com/id_kt4oql6efmmo.html</a></li>
+</ul>
+</li>
+<li>5、公众号扫码登录<ul>
+<li>地址： <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_a89dt3lfkm83.html">https://articles.zsxq.com/id_a89dt3lfkm83.html</a></li>
+</ul>
+</li>
+<li>6、前后端构建镜像部署<ul>
+<li>地址： <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_soxvwros9icn.html">https://articles.zsxq.com/id_soxvwros9icn.html</a></li>
+</ul>
+</li>
+<li>7、网站添加百度统计<ul>
+<li>地址：  <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_54o9ezlrnd8w.html">https://articles.zsxq.com/id_54o9ezlrnd8w.html</a></li>
+</ul>
+</li>
+<li>chatgpt-api 白名单和敏感词规则过滤<ul>
+<li>地址：  <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_w35g7d56q72z.html">https://articles.zsxq.com/id_w35g7d56q72z.html</a></li>
+</ul>
+</li>
+<li>chatgpt-sdk  支持多渠道对话<ul>
+<li>地址：  <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_j8cowvswwzgh.html">https://articles.zsxq.com/id_j8cowvswwzgh.html</a></li>
+</ul>
+</li>
+<li>用户额度账户的校验领域实现<ul>
+<li>地址： <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_6en8ra41apnw.html">https://articles.zsxq.com/id_6en8ra41apnw.html</a></li>
+</ul>
+</li>
+<li>商品下单对接微信支付<ul>
+<li>地址：  <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_z7jj23ml1eum.html">https://articles.zsxq.com/id_z7jj23ml1eum.html</a></li>
+</ul>
+</li>
+<li>商品支付页<ul>
+<li>地址：  <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_twprn855gkwg.html">https://articles.zsxq.com/id_twprn855gkwg.html</a></li>
+</ul>
+</li>
+<li>OpenAi多渠道策略模式<ul>
+<li>地址：  <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_hmjpsiji69lb.html">https://articles.zsxq.com/id_hmjpsiji69lb.html</a></li>
+</ul>
+</li>
+<li>应用监控(Prometheus + Grafana)<ul>
+<li>地址：  <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_lai3vqzlp2pr.html">https://articles.zsxq.com/id_lai3vqzlp2pr.html</a></li>
+</ul>
+</li>
+<li>应用分布式设计<ul>
+<li>地址：  <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_9smix85x3e3e.html">https://articles.zsxq.com/id_9smix85x3e3e.html</a></li>
+</ul>
+</li>
+<li>整体部署上线<ul>
+<li>地址： <a target="_blank" rel="noopener" href="https://wx.zsxq.com/dweb2/index/topic_detail/188414845252452">https://wx.zsxq.com/dweb2/index/topic_detail/188414845252452</a></li>
+</ul>
+</li>
+<li>dall-e 文生图<ul>
+<li>地址：  <a target="_blank" rel="noopener" href="https://wx.zsxq.com/dweb2/index/topic_detail/588581121148184">https://wx.zsxq.com/dweb2/index/topic_detail/588581121148184</a></li>
+</ul>
+</li>
+</ul>
 <p>to be contined….</p>
-<h3 id="6、微信公众号验签和初步对接OpenAI"><a href="#6、微信公众号验签和初步对接OpenAI" class="headerlink" title="6、微信公众号验签和初步对接OpenAI"></a>6、微信公众号验签和初步对接OpenAI</h3><p>地址： <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_e9r7rfv308px.html">https://articles.zsxq.com/id_e9r7rfv308px.html</a></p>
-<p>跟之前自己做的 [[ChatGPT问答助手]]  里面部分内容差不多，实现过程类似。</p>
-<h3 id="7、流式应答会话设计实现"><a href="#7、流式应答会话设计实现" class="headerlink" title="7、流式应答会话设计实现"></a>7、流式应答会话设计实现</h3><p>地址： <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_4r1ifost3bhh.html">https://articles.zsxq.com/id_4r1ifost3bhh.html</a></p>
-<p>功能效果： 丰富 OpenAiSession 会话服务接口，增加流式回答的事件监听处理。</p>
-<h3 id="8、gpt-sdk-完善实现各类常用接口"><a href="#8、gpt-sdk-完善实现各类常用接口" class="headerlink" title="8、gpt-sdk 完善实现各类常用接口"></a>8、gpt-sdk 完善实现各类常用接口</h3><p>地址： <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_hif1r28gp3i4.html">https://articles.zsxq.com/id_hif1r28gp3i4.html</a></p>
-<p>实现效果： 实现 gpt 官网的一些其他接口功能</p>
+<p>后续内容麻烦看一下 [[OpenAi生成式服务微服务应用体系构建_Day02]] 相关的内容。</p>
 
                 
               </div>

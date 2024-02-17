@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          810 字
+          3.4k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          7 分钟
+          29 分钟
         
       </span>
     
@@ -334,7 +334,120 @@
 </ul>
 </li>
 </ul>
-<h3 id="面试解答篇"><a href="#面试解答篇" class="headerlink" title="面试解答篇"></a>面试解答篇</h3><hr>
+<h3 id="面试解答篇"><a href="#面试解答篇" class="headerlink" title="面试解答篇"></a>面试解答篇</h3><ul>
+<li>基础<ul>
+<li>说一下MySQL的架构。<ul>
+<li>MySQL的架构包括连接层、服务层和存储层。连接层负责与客户端建立连接、授权认证、及连接管理。服务层包括SQL接口、查询解析、分析、优化、缓存以及内置函数等，负责SQL语句的解析、优化、以及执行计划的生成。存储层负责数据的存储和提取，其核心是存储引擎，MySQL支持多种存储引擎，每种引擎有其特性。<ul>
+<li>（客户端、连接器、分析器、优化器、执行器、查询缓存、存储引擎）</li>
+<li>MySQL 8.0版本开始，查询缓存功能被完全移除了</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>讲一下SQL语句在 MySQL 中的执行过程。<ul>
+<li>在MySQL中，SQL语句的执行过程包括：客户端发送一条SQL给服务器，服务器先检查查询缓存，如果命中则直接返回结果；否则进行SQL解析、预处理，然后优化器生成执行计划，最后由存储引擎执行并返回结果。在执行过程中，涉及权限检查和查询优化等步骤。</li>
+</ul>
+</li>
+<li>MySQL提供了哪些存储引擎。<ul>
+<li>MySQL提供了多种存储引擎，不同版本的MySQL支持的存储引擎可能有所不同，其中InnoDB和MyISAM是最常用的。<ul>
+<li>MySQL 5.5.5 之前，MyISAM 是 MySQL 的默认存储引擎。5.5.5 版本之后，InnoDB 是 MySQL 的默认存储引擎。</li>
+<li>MySQL 的 存储引擎有：InnoDB、MyISAM、Memory（HEAP）、MERGE、BDB（BerkeleyDB）、EXAMPLE、NDB（MySQL Cluster）、ARCHIVE、CSV、BLACKHOLE、FEDERATED 等 （了解）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>讲一下 MySQL中存储引擎的 InnoDB 和 MyIsam 的区别。<ul>
+<li>MyISAM 不支持事务和行级锁，最大的缺陷是崩溃后无法安全恢复。5.5.5 版本之后，InnoDB 是 MySQL 的默认存储引擎。</li>
+<li>关于之间的一个差别，可以从是否支持行级锁、是否支持事务、是否支持外键、是否支持数据库异常崩溃后的安全恢复、是否支持MVCC、索引实现、性能等方面来看。首先是：</li>
+<li>锁机制：InnoDB支持行级锁，提高了多用户并发操作的性能；而 MyISAM只支持表级锁。</li>
+<li>事务：InnoDB支持事务，具有提交、回滚和崩溃恢复能力，而MyISAM不支持事务</li>
+<li>MVCC:  MyISAM 不支持 MVCC，而 InnoDB 支持</li>
+<li>安全恢复：MyISAM 不支持，而 InnoDB 支持。使用 InnoDB 的数据库在异常崩溃后，数据库重新启动的时候会保证数据库恢复到崩溃前的状态。这个恢复的过程依赖于 <code>redo log</code></li>
+<li>外键：InnoDB支持外键，可以用来维护数据的完整性；MyISAM不支持外键。不过一般不建议使用外键。在阿里的《Java 开发手册》也是明确规定禁止使用外键的。</li>
+<li>索引实现： 虽然 MyISAM 引擎和 InnoDB 引擎都是使用 B+Tree 作为索引结构，但是两者的实现方式不太一样。<ul>
+<li>InnoDB 引擎中，其数据文件本身就是索引文件。其表数据文件本身就是按 B+Tree 组织的一个索引结构，树的叶节点 data 域保存了完整的数据记录。</li>
+<li>而在 MyISAM 引擎，索引文件和数据文件是分离的，索引文件仅存储数据记录的地址，查找数据的话需要每次去先查找索引文件中对应数据的地址。</li>
+</ul>
+</li>
+<li>性能： InnoDB 的性能比 MyISAM 更强大。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>事务 （DEBUG)<ul>
+<li>什么是MySQL事务。<ul>
+<li>MySQL <strong>事务是</strong>由一系列的数据库操作组成，他可以保证批量操作的完整性，要么全部执行，要么全部不执行。</li>
+<li>同时事务支持原子性、隔离性、持久性和一致性的特点。</li>
+</ul>
+</li>
+<li>事务中 的 ACID 是指什么。<ul>
+<li>ACID是事务必须满足的四个基本特性：原子性（Atomicity）、一致性（Consistency）、隔离性（Isolation）、持久性（Durability）。这些特性确保数据库事务是可靠和安全的。</li>
+</ul>
+</li>
+<li>并发事务会带来什么问题。<ul>
+<li>并发事务可能导致脏读、不可重复读和幻读等问题，这些问题影响数据的一致性和完整性。数据库通过事务隔离级别来控制并发事务中数据的可见性，以解决这些问题。</li>
+</ul>
+</li>
+<li>SQL 事务隔离级别有哪些。<ul>
+<li>SQL标准定义了四种事务隔离级别：读未提交（Read Uncommitted）、读已提交（Read Committed）、可重复读（Repeatable Read）和串行化（Serializable）</li>
+</ul>
+</li>
+<li>不可重复读和幻读的区别。<ul>
+<li>不可重复读指在同一事务内，多次读取同一数据集合时，由于其他事务的修改操作，导致后续读取的数据与前面的不一致。幻读指在同一事务内，两次查询同一范围的数据时，第二次查询出现了第一次查询未出现的数据，通常是因为其他事务插入了新的数据。</li>
+</ul>
+</li>
+<li>MySQL的默认隔离是什么，能解决幻读问题吗。<ul>
+<li>MySQL的默认隔离级别是可重复读（Repeatable Read）。在可重复读隔离级别下，MySQL使用Next-Key Locking避免幻读问题，因此能够有效解决幻读问题。</li>
+</ul>
+</li>
+<li>InnoDB 事务隔离级别实现原理。<ul>
+<li>InnoDB通过锁和多版本并发控制（MVCC）来实现不同的事务隔离级别。锁机制包括行锁和表锁，用于实现串行化；MVCC允许在同一时间内，不同的事务看到不同版本的快照数据，用于实现读未提交、读已提交和可重复读。</li>
+</ul>
+</li>
+<li>什么是MVCC，有什么用，原理了解吗。<ul>
+<li>MVCC，即多版本并发控制，是一种用于实现数据库事务隔离的技术。MVCC允许事务在不加锁的情况下读取数据的旧版本，从而提高并发性能。它通过为每个写操作创建数据的新版本，每个读操作可以访问版本链中的某个版本，这样就能根据事务的隔离级别返回适当的数据版本。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>锁<ul>
+<li>表级锁和行级锁了解吗，有什么区别。</li>
+<li>行级锁的使用有什么注意事项。</li>
+<li>讲一下共享锁和排他锁。</li>
+<li>意向锁有什么作用。</li>
+<li>MySQL 的 InnoDB 引擎中行锁有几种类型？</li>
+</ul>
+</li>
+<li>索引<ul>
+<li>索引有什么用？讲一下索引的优缺点。</li>
+<li>讲一下索引的底层结构。</li>
+<li>MySQL 索引：索引为什么使用 B+树？</li>
+<li>讲一下这些区别：主键索引和二级索引、聚集索引和非聚集索引。</li>
+<li>讲一下 联合索引、覆盖索引。</li>
+<li>建立索引的时候会遵守最左前缀匹配原则，讲一下这个。</li>
+<li>创建索引需要注意什么。</li>
+</ul>
+</li>
+<li>日志<ul>
+<li>MySQL 日志：常见的日志都有什么用？</li>
+<li>慢查询日志有什么用。</li>
+<li>binlog 是什么，它主要记录了什么，有什么用。</li>
+<li>讲一下 redolog ；同时说一下 redo log 如何保证事务的持久性。</li>
+<li>binlog 和 redolog 有什么区别。</li>
+<li>undo log 如何保证事务的原子性。</li>
+</ul>
+</li>
+<li>内存<ul>
+<li>页修改之后为什么不直接刷盘。</li>
+</ul>
+</li>
+<li>SQL优化<ul>
+<li>讲一下SQL优化常见手段。</li>
+<li>讲一下慢查询问题排查。</li>
+</ul>
+</li>
+</ul>
+<hr>
 <p>参考</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://gitee.com/moxi159753/LearningNotes/tree/master/MySQL/MySQL45%E8%AE%B2">https://gitee.com/moxi159753/LearningNotes/tree/master/MySQL/MySQL45%E8%AE%B2</a></li>

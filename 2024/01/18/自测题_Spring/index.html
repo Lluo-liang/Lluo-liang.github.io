@@ -226,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          782 字
+          1.6k 字
         
       </span>
     
@@ -237,7 +237,7 @@
         
         
         
-          7 分钟
+          14 分钟
         
       </span>
     
@@ -280,19 +280,21 @@
               <div class="markdown-body">
                 
                 <h3 id="面试自测题"><a href="#面试自测题" class="headerlink" title="面试自测题"></a>面试自测题</h3><ul>
-<li>Spring 框架是什么？有什么好处，常用模块是哪些。</li>
-<li>Spring 常用的注解讲一下。</li>
+<li>基础内容<ul>
 <li>讲一下 Spring 的 IOC。</li>
 <li>Spring的IoC和DI有什么区别？</li>
-<li>Spring 依赖注入有哪几种方式。</li>
-<li>Spring 可以注入 null 和 空字符串吗？</li>
 <li>讲一下 Spring 的 AOP，Spring AOP 有哪些实现方式。</li>
-<li>Spring AOP中的JoinPoint、Advice、Pointcut、Aspect、Target和Weaving是什么？</li>
 <li>讲一下 Bean 的生命周期。</li>
 <li>Spring Bean 支持哪几种作用域。</li>
+</ul>
+</li>
+<li>八股内容<ul>
+<li>Spring 框架是什么？有什么好处，常用模块是哪些。</li>
+<li>Spring 常用的注解讲一下。</li>
+<li>Spring 依赖注入有哪几种方式。</li>
+<li>Spring AOP中的JoinPoint、Advice、Pointcut、Aspect、Target和Weaving是什么？</li>
 <li>Spring Bean 默认是单例还是多例，为什么默认为单例。</li>
 <li>Spring Bean 是线程安全的吗。</li>
-<li>Spring 怎么防止相同类型 Bean 注入异常。</li>
 <li>Spring中的Bean如何实现自动装配？</li>
 <li>Spring 循环依赖是指什么？Spring如何处理循环依赖问题？</li>
 <li>Spring 中 的 BeanFactory 和 ApplicationContext 的区别，以及讲一下你对他们的理解。</li>
@@ -300,16 +302,72 @@
 <li>Spring 常用的 Aware 接口有哪些？</li>
 <li>Spring 中 @Component，@Service，@Repository，@Controller 的区别？</li>
 <li>Spring 中的 @Autowired 注解有什么用。</li>
-<li>Spring的@Qualifier注解如何用于区分同名Bean？</li>
+<li>Spring 事务的隔离级别有哪些？</li>
+</ul>
+</li>
+<li>事务<ul>
 <li>Spring 用什么注解开启事务。</li>
 <li>Spring中如何实现事务管理？</li>
+</ul>
+</li>
+<li>代码细节<ul>
+<li>Spring 可以注入 null 和 空字符串吗？</li>
+<li>Spring 怎么防止相同类型 Bean 注入异常。</li>
+<li>Spring的@Qualifier注解如何用于区分同名Bean？</li>
 <li>Spring 中的 @Transactional 事务注解支持哪些参数？</li>
-<li>Spring 事务的隔离级别有哪些？</li>
-<li>Spring如何实现异步处理？Spring的@Async注解如何实现异步方法调用？</li>
 <li>Spring的@Scheduled注解如何实现定时任务？</li>
 <li>Spring的@Valid注解如何使用？</li>
+<li>Spring如何实现异步处理？Spring的@Async注解如何实现异步方法调用？</li>
 </ul>
-<h3 id="面试解答篇"><a href="#面试解答篇" class="headerlink" title="面试解答篇"></a>面试解答篇</h3>
+</li>
+</ul>
+<h3 id="面试解答篇"><a href="#面试解答篇" class="headerlink" title="面试解答篇"></a>面试解答篇</h3><p>重新整理一下核心的两个点：IOC 和 AOP</p>
+<p>ioc di apo</p>
+<p>然后看一下循环依赖的相关问题，循环依赖、一级缓存、二级缓存、三级缓存</p>
+<hr>
+<ul>
+<li>基础内容<ul>
+<li>讲一下 Spring 的 IOC。</li>
+<li>Spring的IoC和DI有什么区别？</li>
+<li>讲一下 Spring 的 AOP，Spring AOP 有哪些实现方式。</li>
+<li>讲一下 Bean 的生命周期。</li>
+<li>Spring Bean 支持哪几种作用域。</li>
+</ul>
+</li>
+<li>八股内容<ul>
+<li>Spring 框架是什么？有什么好处，常用模块是哪些。</li>
+<li>Spring 常用的注解讲一下。</li>
+<li>Spring 依赖注入有哪几种方式。</li>
+<li>Spring AOP中的JoinPoint、Advice、Pointcut、Aspect、Target和Weaving是什么？</li>
+<li>Spring Bean 默认是单例还是多例，为什么默认为单例。</li>
+<li>Spring Bean 是线程安全的吗。</li>
+<li>Spring中的Bean如何实现自动装配？</li>
+<li>Spring 循环依赖是指什么？Spring如何处理循环依赖问题？</li>
+<li>Spring 中 的 BeanFactory 和 ApplicationContext 的区别，以及讲一下你对他们的理解。</li>
+<li>Spring的BeanPostProcessor和BeanFactoryPostProcessor有什么区别？</li>
+<li>Spring 常用的 Aware 接口有哪些？</li>
+<li>Spring 中 @Component，@Service，@Repository，@Controller 的区别？</li>
+<li>Spring 中的 @Autowired 注解有什么用。</li>
+<li>Spring 事务的隔离级别有哪些？</li>
+</ul>
+</li>
+<li>事务<ul>
+<li>Spring 用什么注解开启事务。</li>
+<li>Spring中如何实现事务管理？</li>
+</ul>
+</li>
+<li>代码细节<ul>
+<li>Spring 可以注入 null 和 空字符串吗？</li>
+<li>Spring 怎么防止相同类型 Bean 注入异常。</li>
+<li>Spring的@Qualifier注解如何用于区分同名Bean？</li>
+<li>Spring 中的 @Transactional 事务注解支持哪些参数？</li>
+<li>Spring的@Scheduled注解如何实现定时任务？</li>
+<li>Spring的@Valid注解如何使用？</li>
+<li>Spring如何实现异步处理？Spring的@Async注解如何实现异步方法调用？</li>
+</ul>
+</li>
+</ul>
+
                 
               </div>
             

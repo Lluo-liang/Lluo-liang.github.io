@@ -26,6 +26,7 @@
 <meta property="og:description" content="MySQL学习_基础内容01">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312221022103.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240217210220.png">
 <meta property="article:published_time" content="2023-12-22T10:00:31.000Z">
 <meta property="article:modified_time" content="2023-12-22T10:00:31.000Z">
 <meta property="article:author" content="Luo QI">
@@ -224,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.6k 字
+          6.6k 字
         
       </span>
     
@@ -235,7 +236,7 @@
         
         
         
-          47 分钟
+          56 分钟
         
       </span>
     
@@ -400,6 +401,25 @@
 <blockquote>
 <p>执行器：执行查询（操作存储引擎，返回结果）</p>
 </blockquote>
+<h4 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h4><p>MySQL 的存储引擎负责MySQL中数据的存储和提取。其中 MySQL的存储引擎是可插拔的，最常见的如InnoDB（支持事务和行级锁定）和MyISAM（支持全文搜索但不支持事务）。</p>
+<p>在 MySQL 中，我们可以使用 <code>SHOW ENGINES</code> 命令来查看 MySQL 支持的所有存储引擎。</p>
+<p>我们可以使用 <code>SELECT VERSION()</code> 命令查看你的 MySQL 版本。不同的 MySQL 版本之间的默认存储引擎可能会有差别。</p>
+<p>MySQL 5.5.5 之前，MyISAM 是 MySQL 的默认存储引擎。5.5.5 版本之后，InnoDB 是 MySQL 的默认存储引擎。</p>
+<p>MySQL 当前默认的存储引擎是 InnoDB。并且，所有的存储引擎中只有 InnoDB 是事务性存储引擎，也就是说只有 InnoDB 支持事务。</p>
+<p>InnoDB 存储引擎详细介绍：<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/innodb-storage-engine.html">https://dev.mysql.com/doc/refman/8.0/en/innodb-storage-engine.html</a> 。</p>
+<p>常见的几种 MySQL 存储引擎：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240217210220.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<blockquote>
+<p>MyISAM 和 InnoDB 两种 MySQL 存储引擎在索引实现上的根本区别</p>
+</blockquote>
+<ol>
+<li><p><strong>InnoDB 的索引和数据存储方式</strong>：InnoDB 使用的是一种称为聚集索引（Clustered Index）的结构，其中数据表是按照主键顺序存储和组织的，这就意味着表数据本身就是索引的一部分。因此，InnoDB 的数据文件本身就充当了索引的角色，叶节点包含了实际的表数据。这种方式的优点是访问主键索引非常快，但缺点是次级索引（非主键索引）需要存储主键的值来引用实际的数据行。</p>
+</li>
+<li><p><strong>MyISAM 的索引和数据存储方式</strong>：与 InnoDB 不同，MyISAM 将索引和数据存储在分开的文件中。它使用非聚集索引，索引文件仅存储数据记录的地址。这意味着无论是主键索引还是次级索引，MyISAM 都需要进行额外的查找步骤来定位实际的数据记录。这种方式的优点是简化了索引的管理，尤其是对于非主键索引的操作；但缺点是访问数据可能需要更多的磁盘I&#x2F;O，尤其是对主键的查询。</p>
+</li>
+</ol>
+<p>简而言之，InnoDB 的数据文件就是按 B+Tree 组织的聚集索引，数据直接存储在索引的叶节点中，而 MyISAM 使用分离的文件存储数据和索引，索引文件中存储的是指向数据文件中记录的指针。这两种不同的实现方式影响了数据访问的性能和存储效率。</p>
+<hr>
 <h3 id="2、日志系统"><a href="#2、日志系统" class="headerlink" title="2、日志系统"></a>2、日志系统</h3><p>MySQL的日志系统是其核心功能之一，就像黑匣子一样，记录了发生在数据库中的所有关键活动。它包括多种类型的日志，每种日志记录不同类型的信息，对于数据库的恢复、优化和故障排除都至关重要。</p>
 <p>下面是MySQL日志系统中最重要的几种日志类型：</p>
 <ul>
@@ -516,6 +536,7 @@
 <ul>
 <li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ve411F794">https://www.bilibili.com/video/BV1ve411F794</a></li>
 <li><a target="_blank" rel="noopener" href="https://gitee.com/moxi159753/LearningNotes/tree/master/MySQL/MySQL45%E8%AE%B2">https://gitee.com/moxi159753/LearningNotes/tree/master/MySQL/MySQL45%E8%AE%B2</a></li>
+<li><a target="_blank" rel="noopener" href="https://javaguide.cn/database/mysql/mysql-questions-01.html#mysql-%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E">https://javaguide.cn/database/mysql/mysql-questions-01.html#mysql-%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E</a></li>
 </ul>
 
                 

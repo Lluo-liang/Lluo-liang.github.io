@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.4k 字
+          4.3k 字
         
       </span>
     
@@ -342,132 +342,68 @@
 </li>
 </ul>
 <h3 id="面试解答篇"><a href="#面试解答篇" class="headerlink" title="面试解答篇"></a>面试解答篇</h3><ul>
-<li>基础<ul>
-<li>讲一下 List、Map、Set 的区别；他们在存取元素的时候，各有什么特点。<ul>
-<li>List: 有序集合，元素通过索引访问（可以包含重复元素）</li>
-<li>Set: 无序集合，不允许重复元素</li>
-<li>Map: 键值对集合，不允许重复的键，键值一一映射</li>
-</ul>
-</li>
-<li>List, Set, Map 在 Java 中分别由哪些对应的实现类，底层的数据结构是什么。<ul>
-<li>List: ArrayList（动态数组）、LinkedList（双向链表）</li>
-<li>Set：TreeSet（红黑树）、HashSet（基于HashMap）、LinkedHashSet（哈希表+双向链表）</li>
-<li>Map：HashMap（哈希表）、TreeMap（红黑树）、LinkedHashMap（哈希表+双向链表）</li>
-</ul>
-</li>
-<li>常见的集合实现类怎么用的大致说一下。<ul>
+<li><h2 id="基础-讲一下-List、Map、Set-的区别；他们在存取元素的时候，各有什么特点。-List-有序集合，元素通过索引访问（可以包含重复元素）-Set-无序集合，不允许重复元素-Map-键值对集合，不允许重复的键，键值一一映射-List-Set-Map-在-Java-中分别由哪些对应的实现类，底层的数据结构是什么。-List-ArrayList（动态数组）、LinkedList（双向链表）-Set：TreeSet（红黑树）、HashSet（基于HashMap）、LinkedHashSet（哈希表-双向链表）-Map：HashMap（哈希表）、TreeMap（红黑树）、LinkedHashMap（哈希表-双向链表）-哪些集合是线程不安全的，在并发情况下，如何保证集合线程安全呢。-常见的集合类-ArrayList、HashSet、HashMap-都是线程不安全的，但是在单线程情况下执行效率比较高。-在并发情况下，建议使用-线程安全的类，比如-ConcurrentHashMap-等，或者使用-Java并发包下的类，比如-CopyOnWriteArrayList；除此之外呢，还可以使用Collections-synchronizedList-Collections-synchronizedMap-Collections-synchronizedSet来包装不安全的集合。-常见的两个概念：快速失败-fail-fast-和安全失败-fail-safe-讲一下。-快速失败-fail-fast-指的是迭代器在遍历时，如果发现集合被修改，则会立即抛出ConcurrentModificationException。-安全失败-fail-safe-指的是迭代器在遍历时，对原集合的修改不会影响迭代器，它们在原集合的副本上进行操作，不会抛出ConcurrentModificationException。-常见的-fail-fast-集合-有-ArrayList、HashMap-常见的-fail-safe-集合有-CopyOnWriteArrayList、ConcurrentHashMap。"><a href="#基础-讲一下-List、Map、Set-的区别；他们在存取元素的时候，各有什么特点。-List-有序集合，元素通过索引访问（可以包含重复元素）-Set-无序集合，不允许重复元素-Map-键值对集合，不允许重复的键，键值一一映射-List-Set-Map-在-Java-中分别由哪些对应的实现类，底层的数据结构是什么。-List-ArrayList（动态数组）、LinkedList（双向链表）-Set：TreeSet（红黑树）、HashSet（基于HashMap）、LinkedHashSet（哈希表-双向链表）-Map：HashMap（哈希表）、TreeMap（红黑树）、LinkedHashMap（哈希表-双向链表）-哪些集合是线程不安全的，在并发情况下，如何保证集合线程安全呢。-常见的集合类-ArrayList、HashSet、HashMap-都是线程不安全的，但是在单线程情况下执行效率比较高。-在并发情况下，建议使用-线程安全的类，比如-ConcurrentHashMap-等，或者使用-Java并发包下的类，比如-CopyOnWriteArrayList；除此之外呢，还可以使用Collections-synchronizedList-Collections-synchronizedMap-Collections-synchronizedSet来包装不安全的集合。-常见的两个概念：快速失败-fail-fast-和安全失败-fail-safe-讲一下。-快速失败-fail-fast-指的是迭代器在遍历时，如果发现集合被修改，则会立即抛出ConcurrentModificationException。-安全失败-fail-safe-指的是迭代器在遍历时，对原集合的修改不会影响迭代器，它们在原集合的副本上进行操作，不会抛出ConcurrentModificationException。-常见的-fail-fast-集合-有-ArrayList、HashMap-常见的-fail-safe-集合有-CopyOnWriteArrayList、ConcurrentHashMap。" class="headerlink" title="基础  - 讲一下 List、Map、Set 的区别；他们在存取元素的时候，各有什么特点。      - List: 有序集合，元素通过索引访问（可以包含重复元素）      - Set: 无序集合，不允许重复元素      - Map: 键值对集合，不允许重复的键，键值一一映射  - List, Set, Map 在 Java 中分别由哪些对应的实现类，底层的数据结构是什么。      - List: ArrayList（动态数组）、LinkedList（双向链表）      - Set：TreeSet（红黑树）、HashSet（基于HashMap）、LinkedHashSet（哈希表+双向链表）      - Map：HashMap（哈希表）、TreeMap（红黑树）、LinkedHashMap（哈希表+双向链表）  - 哪些集合是线程不安全的，在并发情况下，如何保证集合线程安全呢。      - 常见的集合类 ArrayList、HashSet、HashMap 都是线程不安全的，但是在单线程情况下执行效率比较高。      - 在并发情况下，建议使用 线程安全的类，比如 ConcurrentHashMap 等，或者使用 Java并发包下的类，比如 CopyOnWriteArrayList；除此之外呢，还可以使用Collections.synchronizedList, Collections.synchronizedMap, Collections.synchronizedSet来包装不安全的集合。  - 常见的两个概念：快速失败 (fail-fast) 和安全失败 (fail-safe) 讲一下。      - 快速失败 (fail-fast) 指的是迭代器在遍历时，如果发现集合被修改，则会立即抛出ConcurrentModificationException。      - 安全失败 (fail-safe) 指的是迭代器在遍历时，对原集合的修改不会影响迭代器，它们在原集合的副本上进行操作，不会抛出ConcurrentModificationException。      - 常见的 fail-fast 集合 有 ArrayList、HashMap;  常见的 fail-safe 集合有 CopyOnWriteArrayList、ConcurrentHashMap。"></a>基础<br>  - 讲一下 List、Map、Set 的区别；他们在存取元素的时候，各有什么特点。<br>      - List: 有序集合，元素通过索引访问（可以包含重复元素）<br>      - Set: 无序集合，不允许重复元素<br>      - Map: 键值对集合，不允许重复的键，键值一一映射<br>  - List, Set, Map 在 Java 中分别由哪些对应的实现类，底层的数据结构是什么。<br>      - List: ArrayList（动态数组）、LinkedList（双向链表）<br>      - Set：TreeSet（红黑树）、HashSet（基于HashMap）、LinkedHashSet（哈希表+双向链表）<br>      - Map：HashMap（哈希表）、TreeMap（红黑树）、LinkedHashMap（哈希表+双向链表）<br>  - 哪些集合是线程不安全的，在并发情况下，如何保证集合线程安全呢。<br>      - 常见的集合类 ArrayList、HashSet、HashMap 都是线程不安全的，但是在单线程情况下执行效率比较高。<br>      - 在并发情况下，建议使用 线程安全的类，比如 ConcurrentHashMap 等，或者使用 Java并发包下的类，比如 CopyOnWriteArrayList；除此之外呢，还可以使用<code>Collections.synchronizedList</code>, <code>Collections.synchronizedMap</code>, <code>Collections.synchronizedSet</code>来包装不安全的集合。<br>  - 常见的两个概念：快速失败 (fail-fast) 和安全失败 (fail-safe) 讲一下。<br>      - <strong>快速失败 (fail-fast)</strong> 指的是迭代器在遍历时，如果发现集合被修改，则会立即抛出<code>ConcurrentModificationException</code>。<br>      - <strong>安全失败 (fail-safe)</strong> 指的是迭代器在遍历时，对原集合的修改不会影响迭代器，它们在原集合的副本上进行操作，不会抛出<code>ConcurrentModificationException</code>。<br>      - 常见的 fail-fast 集合 有 ArrayList、HashMap;  常见的 fail-safe 集合有 CopyOnWriteArrayList、ConcurrentHashMap。</h2></li>
+<li>List<ul>
+<li>常见的集合实现类怎么用的大致说一下。ArrayList、LinkedList、<ul>
 <li>ArrayList：底层数据结构是动态数组，由于是动态数组，比较适合查询操作，对于插入、删除操作不太友好</li>
 <li>LinkedList: 底层数据结构是双向链表：适合频发插入、删除操作；查询性能不太好（需要遍历链表查找元素）</li>
-<li>HashSet： 哈希表实现，适用于快速查找、插入、删除操作，不保证元素顺序</li>
-<li>TreeSet： 红黑树实现，适用于有序访问，提供排序功能</li>
-<li>HashMap：哈希表实现，提供快速访问，不保证元素顺序</li>
-<li>TreeMap: 底层是通过红黑树实现，主要是用于键的自然顺序（例如，整数或字符串顺序）或自定义排序来存储键值对</li>
-<li>LinkedHashMap：通过哈希表+双向链表实现，能够保证插入顺序的一个排序</li>
 </ul>
 </li>
-<li>哪些集合是线程不安全的，在并发情况下，如何保证集合线程安全呢。<ul>
-<li><strong>线程不安全的集合</strong>:<ul>
-<li>如<code>ArrayList</code>, <code>HashMap</code>, <code>HashSet</code>。</li>
-</ul>
-</li>
-<li><strong>线程安全解决方法</strong>:<ul>
-<li>使用线程安全的集合类，如<code>Vector</code>, <code>ConcurrentHashMap</code>。</li>
-<li>使用<code>Collections.synchronizedList</code>, <code>Collections.synchronizedMap</code>, <code>Collections.synchronizedSet</code>来包装不安全的集合。</li>
-<li>使用Java并发包中的类，如<code>CopyOnWriteArrayList</code>。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>快速失败 (fail-fast) 和安全失败 (fail-safe) 的区别是什么？<ul>
-<li><strong>快速失败 (fail-fast)</strong>:<ul>
-<li>迭代器在遍历时，如果发现集合被修改，则会立即抛出<code>ConcurrentModificationException</code>。</li>
-<li>例子：<code>ArrayList</code>, <code>HashMap</code>.</li>
-</ul>
-</li>
-<li><strong>安全失败 (fail-safe)</strong>:<ul>
-<li>迭代器在遍历时，对原集合的修改不会影响迭代器，它们在原集合的副本上进行操作。</li>
-<li>不会抛出<code>ConcurrentModificationException</code>。</li>
-<li>例子：<code>CopyOnWriteArrayList</code>, <code>ConcurrentHashMap</code>.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>List<ul>
-<li>讲一下List 的实现类，其中：ArrayList 和 Vector、ArrayList 和 ArrayLinked 的区别讲一下。<ul>
-<li><strong>List 实现类</strong>:<ul>
-<li><code>ArrayList</code>: 基于动态数组实现。</li>
-<li><code>LinkedList</code>: 基于双向链表实现。</li>
-<li><code>Vector</code>: 和<code>ArrayList</code>类似，但所有方法都是同步的。</li>
-</ul>
-</li>
-<li><strong>ArrayList vs Vector</strong>:<ul>
-<li><strong>同步性</strong>: <code>Vector</code>是线程安全的，因为它的方法是同步的；<code>ArrayList</code>不是线程安全的。</li>
-<li><strong>性能</strong>: 因为同步，<code>Vector</code>在多线程环境中比<code>ArrayList</code>性能低。</li>
-<li><strong>扩容机制</strong>: <code>Vector</code>默认扩容为原来的2倍，而<code>ArrayList</code>扩容为原来的1.5倍。</li>
-</ul>
-</li>
-<li><strong>ArrayList vs LinkedList</strong>:<ul>
-<li><strong>内部结构</strong>: <code>ArrayList</code>基于动态数组，<code>LinkedList</code>基于双向链表。</li>
-<li><strong>随机访问</strong>: <code>ArrayList</code>提供更好的随机访问性能。</li>
-<li><strong>插入和删除</strong>: <code>LinkedList</code>在列表中间的插入和删除操作更高效。</li>
-<li><strong>内存占用</strong>: <code>LinkedList</code>由于使用节点对象，每个元素占用更多内存。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>说说 ArrayList，Vector，LinkedList 的存储性能和特性。<ul>
-<li><strong>ArrayList</strong>:<ul>
-<li>基于动态数组，提供快速的随机访问。</li>
-<li>插入和删除操作可能比较慢，特别是在列表的前部。</li>
-</ul>
-</li>
-<li><strong>Vector</strong>:<ul>
-<li>类似于<code>ArrayList</code>，但线程安全。</li>
-<li>由于同步，通常比<code>ArrayList</code>慢。</li>
-</ul>
-</li>
-<li><strong>LinkedList</strong>:<ul>
-<li>基于双向链表，每个元素都有指向前后的引用。</li>
-<li>插入和删除操作比<code>ArrayList</code>和<code>Vector</code>快。</li>
-<li>随机访问速度慢。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>ArrayList 的扩容机制了解吗，讲述一下怎么扩容的。<ul>
-<li>当添加元素超过<code>ArrayList</code>的当前容量时，它会进行扩容。</li>
-<li>默认情况下，<code>ArrayList</code>的新容量是旧容量的1.5倍。</li>
+<li>ArrayList默认大小是多少，是如何扩容的？<ul>
+<li>ArrayList 的默认初始容量是10，容量不足时，会扩容到原来的 1.5 倍。</li>
 <li>在扩容过程中，<code>ArrayList</code>会创建一个新的更大的数组，并将旧数组的内容复制到新数组中。</li>
 </ul>
 </li>
-<li>数组 (Array) 和列表 (ArrayList) 有什么区别？什么时候应该使用 Array 而不是 ArrayList？<ul>
-<li><strong>数组 (Array)</strong>:<ul>
-<li>大小固定，一旦创建后不能改变。</li>
-<li>性能更优，因为它不涉及任何动态内存分配。</li>
-<li>可以存储基本数据类型或对象。</li>
-<li>更适合于有固定大小且不需要动态改变的场景。</li>
+<li>ArrayList 和 Vector 的区别讲一下<ul>
+<li>ArrayList：动态数组实现，线程不安全，底层使用 <code>Object[]</code>存储</li>
+<li>Vector：List 的古老实现类，线程安全，底层使用 <code>Object[]</code>存储，目前已废弃使用，推荐使用 <code>CopyOnWriteArrayList</code> 等。</li>
 </ul>
 </li>
-<li><strong>列表 (ArrayList)</strong>:<ul>
-<li>大小动态可变，可以根据需要增加和删除元素。</li>
-<li>提供了更多的方法和功能，例如查找、排序等。</li>
-<li>只能存储对象类型（不能存储基本数据类型）。</li>
-<li>适用于数据量未知或经常变化的情况。</li>
+<li>ArrayList 和 LinkedList 的区别讲一下<ul>
+<li>ArrayList 和 LinkedList 都是线程不安全的，前者是基于动态数组实现的，后者基于双向链表。ArrayList 比较适合查询操作，对于插入、删除操作不太友好; LinkedList 适合频发插入、删除操作；查询性能不太好。</li>
 </ul>
 </li>
-<li>什么适合使用数组<ul>
-<li>当知道元素的数量并且数量不会变化时。</li>
-<li>对性能有较高的要求，尤其是在大量数据的情况下。</li>
-<li>需要存储基本数据类型的元素。</li>
+<li>ArrayList 可以插入 null  值吗<ul>
+<li>可以，但不建议</li>
 </ul>
 </li>
+<li>了解 Stack 吗，讲一下它与 Vector 的区别。<ul>
+<li>两者都是线程安全的，Stack  是一个先进后出的栈，Vector 是一个列表，并不是很推荐使用这两者，推荐使用 ConcurrentHashMap、CopyOnWriteArrayList 等。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Map<ul>
+<li>常见的集合实现类怎么用的大致说一下。HashMap、TreeMap、LinkedHashMap、ConcurrentHashMap<ul>
+<li>HashMap：哈希表实现，提供快速访问，不保证元素顺序</li>
+<li>TreeMap: 底层是通过红黑树实现，主要是用于键的自然顺序（例如，整数或字符串顺序）或自定义排序来存储键值对</li>
+<li>LinkedHashMap：通过哈希表+双向链表实现，能够保证插入顺序的一个排序</li>
+<li>ConcurrentHashMap： 哈希表实现，线程安全，通过分段锁机制实现，Java8 中通过分段锁 + CAS 来实现。</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>Set<ul>
+<li>常见的集合实现类怎么用的大致说一下。HashSet、TreeSet、LinkedHashSet<ul>
+<li>HashSet： 哈希表实现，适用于快速查找、插入、删除操作，不保证元素顺序，基于 HashMap 实现，实际就是 HashMap 的键值对里面的键，</li>
+<li>LinkedHashSet:  继承于 HashSet ，底层是 HashMap 来实现的，与 HashSet 不同的是，它维护了一个链表来维护元素的插入顺序。</li>
+<li>TreeSet： 红黑树实现，适用于有序访问，提供排序功能（自定义排序），基于 TreeMap 来实现的</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Queue</li>
+</ul>
+<p>重构相关内容</p>
+<ul>
+<li><p>ConcurrentHashMap 和 HashMap 的内容（细化到详细的面试题内容）</p>
+</li>
+<li><p>ArrayList 的扩容机制</p>
+</li>
+<li><p>面试题相关内容</p>
+</li>
+<li><p>Set</p>
+<ul>
 <li>说一下 HashSet、LinkedHashSet 和 TreeSet 三者的区别。</li>
 <li>Set 里的元素是不能重复的，那么用什么方法来区分重复与否？使用 &#x3D;&#x3D; 还是 equals，这两者有何区别。 </li>
 <li>HashSet 和 TreeSet 有什么区别？</li>
@@ -475,7 +411,8 @@
 <li>Set 里的元素是不能重复的，那么用什么方法来区分重复与否呢？是用 &#x3D;&#x3D; 还是 equals()？它们有何区别？</li>
 </ul>
 </li>
-<li>Map<ul>
+<li><p>Map</p>
+<ul>
 <li>HashMap 的数据结构。</li>
 <li>HashMap 是线程安全的吗？</li>
 <li>HashMap 在 JDK8 中有哪些改变？</li>
@@ -496,18 +433,21 @@
 <li>ConcurrentHashMap 线程安全的底层实现原理讲一下。</li>
 </ul>
 </li>
-<li>Queue<ul>
+<li><p>Queue</p>
+<ul>
 <li>Queue 了解吗，讲一下他的实现类。</li>
 <li>Queue 与 Deque 的区别。</li>
 <li>ArrayDeque 与 LinkedList 的区别。</li>
 <li>PriorityQueue 有什么特点。</li>
 </ul>
 </li>
-<li>阻塞队列<ul>
+<li><p>阻塞队列</p>
+<ul>
 <li>什么是阻塞队列，队列队列是线程安全的吗，有哪些场景的应用场景。</li>
 </ul>
 </li>
-<li>其他<ul>
+<li><p>其他</p>
+<ul>
 <li>为什么集合类没有实现 Cloneable 和 Serializable 接口？</li>
 <li>Comparable 和 Comparator 接口是干什么的？列出它们的区别。</li>
 <li>Collection 和 Collections 的区别</li>

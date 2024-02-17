@@ -18,21 +18,26 @@
   <meta name="author" content="Luo QI">
   <meta name="keywords" content="">
   
-    <meta name="description" content="01Java学习的轻松之旅:   [[Java学习的轻松之旅_Obsidian]]      [[Java学习的轻松之旅_Obsidian_02]] [[Java学习的轻松之旅_Obsidian_03]]  工作随手记:  [[平凡的打工人_Obsidian]]  日常：[[日常_L]] 模版： [[文件Templage]] 白板擦： [[白板擦]]     [[模拟卷]] [[分类_轻松的洛亓]">
+    <meta name="description" content="OpenAi生成式服务微服务应用体系构建_Day02">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HomePage">
-<meta property="og:url" content="https://varcel.luoqi.icu/2024/02/03/HomePage/index.html">
+<meta property="og:title" content="OpenAi生成式服务微服务应用体系构建_Day02">
+<meta property="og:url" content="https://varcel.luoqi.icu/2024/02/02/OpenAi%E7%94%9F%E6%88%90%E5%BC%8F%E6%9C%8D%E5%8A%A1%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%BA%94%E7%94%A8%E4%BD%93%E7%B3%BB%E6%9E%84%E5%BB%BA_Day02/index.html">
 <meta property="og:site_name" content="轻松的洛亓">
-<meta property="og:description" content="01Java学习的轻松之旅:   [[Java学习的轻松之旅_Obsidian]]      [[Java学习的轻松之旅_Obsidian_02]] [[Java学习的轻松之旅_Obsidian_03]]  工作随手记:  [[平凡的打工人_Obsidian]]  日常：[[日常_L]] 模版： [[文件Templage]] 白板擦： [[白板擦]]     [[模拟卷]] [[分类_轻松的洛亓]">
+<meta property="og:description" content="OpenAi生成式服务微服务应用体系构建_Day02">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-02-03T04:58:15.637Z">
-<meta property="article:modified_time" content="2024-02-03T04:58:15.637Z">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/wallpaper1702453206266.jpg">
+<meta property="article:published_time" content="2024-02-02T10:19:41.000Z">
+<meta property="article:modified_time" content="2024-02-02T10:19:41.000Z">
 <meta property="article:author" content="Luo QI">
+<meta property="article:tag" content="project">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="chatgpt">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/wallpaper1702453206266.jpg">
   
   
   
-  <title>HomePage - 轻松的洛亓</title>
+  <title>OpenAi生成式服务微服务应用体系构建_Day02 - 轻松的洛亓</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -192,13 +197,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="HomePage"></span>
+            <span id="subtitle" data-typed-text="OpenAi生成式服务微服务应用体系构建_Day02"></span>
           
         </div>
 
@@ -209,8 +214,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-02-03 04:58" pubdate>
-          2024年2月3日 凌晨
+        <time datetime="2024-02-02 10:19" pubdate>
+          2024年2月2日 上午
         </time>
       </span>
     
@@ -221,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          526 字
+          864 字
         
       </span>
     
@@ -232,7 +237,7 @@
         
         
         
-          5 分钟
+          8 分钟
         
       </span>
     
@@ -269,39 +274,60 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">HomePage</h1>
+            <h1 id="seo-header">OpenAi生成式服务微服务应用体系构建_Day02</h1>
             
             
               <div class="markdown-body">
                 
-                <h4 id="01"><a href="#01" class="headerlink" title="01"></a>01</h4><p>Java学习的轻松之旅: </p>
+                <h3 id="1、项目分析"><a href="#1、项目分析" class="headerlink" title="1、项目分析"></a>1、项目分析</h3><h4 id="项目实现功能"><a href="#项目实现功能" class="headerlink" title="项目实现功能"></a>项目实现功能</h4><p>先说一下这个项目实现的功能：</p>
 <ul>
-<li>[[Java学习的轻松之旅_Obsidian]]     </li>
-<li>[[Java学习的轻松之旅_Obsidian_02]]</li>
-<li>[[Java学习的轻松之旅_Obsidian_03]]</li>
+<li><ol>
+<li>将使用 chatgpt 或者 chatglm 的服务进行打包封装为了 SDK，然后在服务中可以进行依赖引入</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>chat-web 是使用的 react 的一个项目，可以了解一下相关是如何使用的</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>项目做了一个网关服务，调用其他服务会通过这个网关服务集中进行访问操作</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>除了基本的 chatgpt 访问公共服务，还在这个基础上衍生了 微信公众号、支付宝支付、企业微信开发服务。</li>
+</ol>
+</li>
 </ul>
-<p>工作随手记:  [[平凡的打工人_Obsidian]] </p>
-<p>日常：[[日常_L]]</p>
-<p>模版： [[文件Templage]]</p>
-<p>白板擦： [[白板擦]]     [[模拟卷]]</p>
-<p>[[分类_轻松的洛亓]]</p>
-<p>[[更新时间_轻松的洛亓]]</p>
-<h4 id="最近文件"><a href="#最近文件" class="headerlink" title="最近文件"></a>最近文件</h4><p>最近文件（根据 date 降序）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs dataview">table<br>from &quot;&quot;<br>sort date desc<br>limit 10<br></code></pre></td></tr></table></figure>
-
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dataview">table<br>from &quot;&quot;<br></code></pre></td></tr></table></figure>
-
+<h4 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h4><ul>
+<li>chatgpt-web<ul>
+<li>项目地址： <a target="_blank" rel="noopener" href="https://gitcode.net/KnowledgePlanet/chatgpt/chatgpt-web">https://gitcode.net/KnowledgePlanet/chatgpt/chatgpt-web</a></li>
+</ul>
+</li>
+<li>chatgpt-api 项目<ul>
+<li>项目地址： <a target="_blank" rel="noopener" href="https://gitcode.net/KnowledgePlanet/chatgpt/chatgpt-api">https://gitcode.net/KnowledgePlanet/chatgpt/chatgpt-api</a></li>
+<li>需要先打包一下 sdk 项目，然后在 api 项目中引入，注意版本号需要一致</li>
+</ul>
+</li>
+<li>chatgpt-sdk 项目<ul>
+<li>项目地址： <a target="_blank" rel="noopener" href="https://gitcode.net/KnowledgePlanet/chatgpt/chatgpt-web">https://gitcode.net/KnowledgePlanet/chatgpt/chatgpt-web</a></li>
+</ul>
+</li>
+<li>chatglm-sdk<ul>
+<li>项目地址： <a target="_blank" rel="noopener" href="https://gitee.com/fustack/chatglm-sdk-java">https://gitee.com/fustack/chatglm-sdk-java</a></li>
+<li>文档地址： <a target="_blank" rel="noopener" href="https://bugstack.cn/md/project/chatgpt/sdk/chatglm-sdk-java.html">https://bugstack.cn/md/project/chatgpt/sdk/chatglm-sdk-java.html</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="企业微信开发服务"><a href="#企业微信开发服务" class="headerlink" title="企业微信开发服务"></a>企业微信开发服务</h4><p>这里主要记录一下企业微信相关开发服务的一些内容。</p>
+<h3 id="记录-Records"><a href="#记录-Records" class="headerlink" title="记录 Records"></a>记录 Records</h3><p>在引入项目中和实际使用这个项目的时候可能会遇到一些问题，这里将这些内容进行记录并以供后续的学习和复习。</p>
+<blockquote>
+<p>关于 <code>SNAPSHOT</code> </p>
+</blockquote>
+<p>这个问题是在引入依赖的时候遇到的，注意一下引入第三方 maven 包的时候，公共服务打入 maven 依赖到本地仓库的时候，需要引入方保持 groupId 和 版本号一致才可以引入。</p>
+<p>有时候我们的 maven 依赖会有一个 xxx- <code>SNAPSHOT</code>  的版本号，这个 <code>SNAPSHOT</code> 版本指的是开发版本，通常用于开发过程中。它不是稳定的版本，内容可能随时改变。</p>
+<p>可以看一下下面的区别，两个依赖的差别：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402021100415.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <hr>
-<h4 id="Java-相关内容"><a href="#Java-相关内容" class="headerlink" title="Java 相关内容"></a>Java 相关内容</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs dataview">table<br>from &quot;&quot;<br>where contains(file.tags,&quot;java&quot;) and contains(file.path,&quot;_posts&quot;) <br>sort  date<br></code></pre></td></tr></table></figure>
-
-
-
-<h4 id="世界很大，古灵精怪"><a href="#世界很大，古灵精怪" class="headerlink" title="世界很大，古灵精怪"></a>世界很大，古灵精怪</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs dataview">table<br>from &quot;&quot;<br>where contains(file.tags,&quot;blog&quot;) and contains(file.path,&quot;_posts&quot;) <br>sort file.name<br></code></pre></td></tr></table></figure>
-
-
-
-
 
                 
               </div>
@@ -310,6 +336,38 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%A1%B9%E7%9B%AE/" class="category-chain-item">项目</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/project/" class="print-no-link">#project</a>
+      
+        <a href="/tags/java/" class="print-no-link">#java</a>
+      
+        <a href="/tags/chatgpt/" class="print-no-link">#chatgpt</a>
+      
+    </div>
   
 </div>
 
@@ -319,8 +377,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>HomePage</div>
-      <div>https://varcel.luoqi.icu/2024/02/03/HomePage/</div>
+      <div>OpenAi生成式服务微服务应用体系构建_Day02</div>
+      <div>https://varcel.luoqi.icu/2024/02/02/OpenAi生成式服务微服务应用体系构建_Day02/</div>
     </div>
     <div class="license-meta">
       
@@ -332,7 +390,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年2月3日</div>
+          <div>2024年2月2日</div>
         </div>
       
       

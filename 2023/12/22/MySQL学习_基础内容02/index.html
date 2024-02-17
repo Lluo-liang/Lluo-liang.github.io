@@ -276,7 +276,8 @@
               <div class="markdown-body">
                 
                 <h3 id="3、事务隔离"><a href="#3、事务隔离" class="headerlink" title="3、事务隔离"></a>3、事务隔离</h3><p>事务就是要保证一组数据库操作，要么全部成功，要么全部失败。</p>
-<p>在 <strong>MySQL</strong> 中，事务支持是在引擎层实现的，MyISAM 引擎不支持事务，InnoDB 支持；下述内容也是围绕 InnoDB 引擎来讲述的。</p>
+<p>在 <strong>MySQL</strong> 中，事务支持是在引擎层实现的，MyISAM 引擎是不支持事务的，InnoDB 支持；</p>
+<p>下述内容是围绕 InnoDB 引擎来讲述。</p>
 <h4 id="隔离性与隔离级别"><a href="#隔离性与隔离级别" class="headerlink" title="隔离性与隔离级别"></a>隔离性与隔离级别</h4><p>在MySQL中，事务隔离级别定义了一个事务可能受其他并发事务影响的程度。</p>
 <p>这个概念对于理解并发操作时可能出现的问题（如脏读、不可重复读、幻读）至关重要。</p>
 <p>MySQL支持以下四种标准的事务隔离级别：</p>
