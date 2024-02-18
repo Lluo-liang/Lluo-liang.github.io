@@ -226,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          8.4k 字
+          4.1k 字
         
       </span>
     
@@ -237,7 +237,7 @@
         
         
         
-          71 分钟
+          34 分钟
         
       </span>
     
@@ -280,243 +280,171 @@
               <div class="markdown-body">
                 
                 <h3 id="面试自测题"><a href="#面试自测题" class="headerlink" title="面试自测题"></a>面试自测题</h3><ul>
+<li>自动配置原理<ul>
 <li>Spring Boot的自动配置原理是什么？</li>
-<li>Spring Boot怎么兼容老Spring项目？</li>
+<li>Spring Boot配置加载顺序是怎样的？</li>
+</ul>
+</li>
+<li>基础内容<ul>
+<li>Spring Boot支持哪些日志框架？</li>
+<li>Spring Boot如何配置日志？</li>
+<li>Spring Boot的配置文件有哪几种格式？核心配置文件有哪些？</li>
+<li>Spring Boot支持哪几种内嵌容器？</li>
+<li>Spring Boot的SpringApplication类有什么作用？</li>
+<li>Spring Boot的配置文件application.properties和application.yml有什么区别？</li>
+</ul>
+</li>
+<li>启动器<ul>
 <li>Spring Boot官方的启动器命名规范是？</li>
 <li>Spring Boot的starter是什么？</li>
 <li>怎么自定义一个 starter</li>
+</ul>
+</li>
+<li>注解<ul>
 <li>SpringBoot 有哪些条件注解，这些注解怎么使用的</li>
-<li>Spring Boot支持哪些日志框架？</li>
-<li>Spring Boot如何配置日志？</li>
-<li>Spring Boot配置加载顺序是怎样的？</li>
-<li>Spring Boot的配置文件有哪几种格式？核心配置文件有哪些？</li>
-<li>Spring Boot支持哪几种内嵌容器？</li>
-<li>1</li>
+</ul>
+</li>
+<li>其他<ul>
+<li>Spring Boot怎么兼容老Spring项目？</li>
 <li>Spring Boot的Actuator有什么作用？</li>
 <li>Spring Boot如何实现热部署？</li>
-<li>Spring Boot的配置文件application.properties和application.yml有什么区别？</li>
-<li>Spring Boot的SpringApplication类有什么作用？</li>
 <li>Spring Boot如何实现跨域请求处理？</li>
 <li>Spring Boot如何进行单元测试？</li>
 <li>Spring Boot如何配置多环境部署？</li>
 <li>Spring Boot如何进行配置文件的加密解密？</li>
 </ul>
-<h3 id="面试解答篇"><a href="#面试解答篇" class="headerlink" title="面试解答篇"></a>面试解答篇</h3><h4 id="Spring-Boot的自动配置原理是什么？"><a href="#Spring-Boot的自动配置原理是什么？" class="headerlink" title="Spring Boot的自动配置原理是什么？"></a>Spring Boot的自动配置原理是什么？</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// 示例：使用自动配置的注解</span><br><span class="hljs-meta">@SpringBootApplication</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyApplication</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-built_in">void</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"><span class="hljs-built_in">String</span>[] args</span>) &#123;<br>        <span class="hljs-title class_">SpringApplication</span>.<span class="hljs-title function_">run</span>(<span class="hljs-title class_">MyApplication</span>.<span class="hljs-property">class</span>, args);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>Spring Boot的自动配置原理基于以下几个核心概念：</p>
-<ol>
-<li><p><strong>@SpringBootApplication注解</strong>:</p>
-<ul>
-<li>这是一个便利注解，相当于同时使用了<code>@Configuration</code>、<code>@EnableAutoConfiguration</code>和<code>@ComponentScan</code>。</li>
-<li><code>@EnableAutoConfiguration</code>是自动配置的关键，它告诉Spring Boot开始加载基于类路径下的内容、其他bean和各种属性设置的自动配置。</li>
+</li>
+</ul>
+<h3 id="面试解答篇"><a href="#面试解答篇" class="headerlink" title="面试解答篇"></a>面试解答篇</h3><ul>
+<li>自动配置原理<ul>
+<li>Spring Boot的自动配置原理是什么？<ul>
+<li>Spring Boot的自动配置原理基于<code>@EnableAutoConfiguration</code>注解，它告诉Spring Boot基于classpath下的jar依赖为当前项目进行自动配置。Spring Boot会扫描项目依赖的jar包，根据jar包中的<code>spring.factories</code>文件内列出的配置类，自动配置项目所需的组件。</li>
 </ul>
 </li>
-<li><p><strong>条件注解</strong> (<code>@Conditional...</code>):</p>
-<ul>
-<li>Spring Boot自动配置是条件化的，意味着自动配置类会根据环境和classpath下的类的存在与否应用。</li>
-<li>这些条件可以是类的存在、bean的存在、属性的存在或匹配等。</li>
-</ul>
-</li>
-<li><p><strong><code>spring.factories</code>文件</strong>:</p>
-<ul>
-<li>Spring Boot利用<code>spring.factories</code>文件来加载自动配置候选者。</li>
-<li>在这个文件中，通过<code>org.springframework.boot.autoconfigure.EnableAutoConfiguration</code>键指定自动配置类。</li>
-</ul>
-</li>
-<li><p><strong>自动配置类</strong> (<code>@Configuration</code>):</p>
-<ul>
-<li>自动配置类是常规的Spring配置类，通常用<code>@Configuration</code>标记，并通过条件注解进行条件化配置。</li>
-<li>这些类通过<code>@Bean</code>方法提供了默认的bean定义，并且通常是通过<code>@ConditionalOn...</code>注解来条件化的。</li>
-</ul>
-</li>
+<li>Spring Boot配置加载顺序是怎样的？<ul>
+<li>Spring Boot配置加载顺序从高到低依次是：<ol>
+<li>命令行参数</li>
+<li><code>SPRING_APPLICATION_JSON</code>中的属性</li>
+<li><code>ServletConfig</code>初始化参数</li>
+<li><code>ServletContext</code>初始化参数</li>
+<li>JNDI属性</li>
+<li>Java系统属性（<code>System.getProperties()</code>）</li>
+<li>操作系统环境变量</li>
+<li>随机生成的属性（<code>random.*</code>）</li>
+<li>JAR包外部的<code>application-&#123;profile&#125;.properties</code>或<code>application.yml</code>（带profile）</li>
+<li>JAR包内部的<code>application-&#123;profile&#125;.properties</code>或<code>application.yml</code>（带profile）</li>
+<li>JAR包外部的<code>application.properties</code>或<code>application.yml</code>（不带profile）</li>
+<li>JAR包内部的<code>application.properties</code>或<code>application.yml</code>（不带profile）</li>
+<li><code>@Configuration</code>类上的<code>@PropertySource</code>注解</li>
+<li>默认属性（使用<code>SpringApplication.setDefaultProperties</code>指定）</li>
 </ol>
-<p>原理简述：</p>
-<ul>
-<li>当Spring应用启动时，<code>@EnableAutoConfiguration</code>注解触发了一个自动配置的过程。</li>
-<li>这个过程从<code>classpath</code>中的<code>META-INF/spring.factories</code>文件中读取并加载所有可用的自动配置类。</li>
-<li>每个自动配置类可以根据条件（比如classpath中是否存在某个类、是否存在某个bean、某个属性是否有特定的值等）决定配置是否应用。</li>
-<li>如果条件满足，相应的配置被应用（比如创建一个bean、添加属性值等）。</li>
-</ul>
-<p>这种自动配置机制大大简化了Spring应用的配置，尤其是在构建独立的、生产级别的Spring应用时。</p>
-<hr>
-<p>to be contined…</p>
-<p>自动装配原理：</p>
-<p>Spring Boot的自动配置原理是通过<strong>条件化配置</strong>和Spring的<strong>注解机制</strong>来实现的，当应用启动时，Spring Boot会自动扫描应用中的依赖，根据依赖自动配置Spring应用程序上下文，以便开箱即用。</p>
-<h4 id="Spring-Boot怎么兼容老Spring项目？"><a href="#Spring-Boot怎么兼容老Spring项目？" class="headerlink" title="Spring Boot怎么兼容老Spring项目？"></a>Spring Boot怎么兼容老Spring项目？</h4><p>答案是可以兼容，可以使用 <code>@ImportResource</code>注解 来导入之前是 Spring 项目的配置文件</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-variable">@Configuration</span><br><span class="hljs-variable">@ImportResource</span>(&#123; <span class="hljs-string">&quot;classpath*:legacy-spring-context.xml&quot;</span> &#125;)<br>public class LegacyConfig &#123;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<ol>
-<li><strong>创建一个新的Spring Boot项目</strong>: 初始化一个标准的Spring Boot项目结构。</li>
-<li><strong>集成老项目的配置</strong>:<ul>
-<li>使用<code>@ImportResource</code>注解导入老Spring项目的XML配置文件。</li>
-<li>如果老项目使用的是Java配置，可以直接在Spring Boot的配置类中导入。</li>
+</li>
 </ul>
 </li>
-<li><strong>逐步迁移</strong>:<ul>
-<li>将老项目的代码和资源文件复制到Spring Boot项目中。</li>
-<li>逐步替换老项目中的Spring功能实现，如数据源配置、事务管理等，使用Spring Boot的自动配置功能。</li>
 </ul>
 </li>
-<li><strong>测试和调优</strong>:<ul>
-<li>仔细测试整合后的应用，确保功能正常。</li>
-<li>根据需要调优Spring Boot的配置，比如日志级别、数据库连接等。</li>
+<li>基础内容<ul>
+<li>Spring Boot支持哪些日志框架？<ul>
+<li>Spring Boot支持Java的Logging API、Logback、Log4j2和SLF4J等日志框架。</li>
 </ul>
 </li>
+<li>Spring Boot如何配置日志？<ul>
+<li>在Spring Boot中，可以通过在<code>application.properties</code>或<code>application.yml</code>文件中设置logging级别和路径来配置日志。例如，使用<code>logging.level.root=WARN</code>设置日志级别，使用<code>logging.file.name=myapp.log</code>指定日志文件名。</li>
+</ul>
+</li>
+<li>Spring Boot的配置文件有哪几种格式？核心配置文件有哪些？<ul>
+<li>Spring Boot的配置文件格式有<code>.properties</code>和<code>.yml</code>两种。核心配置文件是<code>application.properties</code>或<code>application.yml</code>，它们用于配置Spring Boot应用的各种属性。</li>
+</ul>
+</li>
+<li>Spring Boot支持哪几种内嵌容器？<ul>
+<li>Spring Boot支持Tomcat、Jetty和Undertow作为内嵌容器。</li>
+</ul>
+</li>
+<li>Spring Boot的SpringApplication类有什么作用？<ul>
+<li><code>SpringApplication</code>类提供了一种从main方法启动Spring应用的便捷方式。它负责启动Spring应用上下文、自动配置以及启动内嵌容器（如果有的话）。</li>
+</ul>
+</li>
+<li>Spring Boot的配置文件application.properties和application.yml有什么区别？<ul>
+<li><code>application.properties</code>和<code>application.yml</code>都用于配置Spring Boot应用，区别在于文件格式。<code>application.properties</code>使用简单的键值对格式，而<code>application.yml</code>使用YAML格式，更适合表示层次性的配置和列表。选择哪种格式主要取决于个人偏好。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>启动器<ul>
+<li>Spring Boot官方的启动器命名规范是？<ul>
+<li>Spring Boot官方的启动器（Starters）命名规范通常是<code>spring-boot-starter-</code>后接具体的功能名，如<code>spring-boot-starter-web</code>用于开发web应用，<code>spring-boot-starter-data-jpa</code>用于支持JPA数据访问等。</li>
+</ul>
+</li>
+<li>Spring Boot的starter是什么？<ul>
+<li>Spring Boot的starter是一组方便的依赖描述符，可以添加到应用的构建配置中。每个starter都是为特定的开发场景设计的，它们提供了所需的所有依赖，简化了构建配置和依赖管理。</li>
+</ul>
+</li>
+<li>怎么自定义一个 starter<ul>
+<li>自定义一个Spring Boot starter包括以下步骤：<ol>
+<li>创建一个Maven项目。</li>
+<li>在项目中添加<code>spring-boot-starter</code>作为依赖。</li>
+<li>添加你想要集成的库的依赖。</li>
+<li>创建自动配置类，使用<code>@Configuration</code>注解，并根据条件使用<code>@ConditionalOnClass</code>、<code>@ConditionalOnMissingBean</code>等注解。</li>
+<li>在<code>src/main/resources/META-INF</code>目录下创建<code>spring.factories</code>文件，列出你的自动配置类，以便Spring Boot自动发现它。</li>
+<li>打包发布你的starter供其他项目使用。</li>
 </ol>
-<h4 id="Spring-Boot官方的启动器命名规范是？"><a href="#Spring-Boot官方的启动器命名规范是？" class="headerlink" title="Spring Boot官方的启动器命名规范是？"></a>Spring Boot官方的启动器命名规范是？</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-*<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>注解<ul>
+<li>SpringBoot 有哪些条件注解，这些注解怎么使用的<ul>
+<li>Spring Boot提供了多种条件注解，用于条件化地配置bean，包括：<ul>
+<li><strong>@ConditionalOnBean</strong>：当容器里有指定的Bean的条件下。</li>
+<li><strong>@ConditionalOnMissingBean</strong>：当容器里没有指定的Bean的条件下。</li>
+<li><strong>@ConditionalOnClass</strong>：当classpath上有指定的类的条件下。</li>
+<li><strong>@ConditionalOnMissingClass</strong>：当classpath上缺少指定的类的条件下。</li>
+<li><strong>@ConditionalOnProperty</strong>：当指定的配置属性满足特定值的条件下。</li>
+<li><strong>@ConditionalOnExpression</strong>：基于SpEL表达式的结果来判断。</li>
+<li><strong>@ConditionalOnWebApplication</strong>和**@ConditionalOnNotWebApplication**：基于应用是否是web应用。</li>
+</ul>
+</li>
+<li>这些注解通常用在自动配置类上，以条件化地配置Spring Beans，根据不同的环境和配置来启用或禁用某些配置。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>其他<ul>
+<li>Spring Boot怎么兼容老Spring项目？<ul>
+<li>将老Spring项目迁移到Spring Boot，首先需要添加Spring Boot的起步依赖（starter）到项目的构建配置中。</li>
+<li>然后创建一个主类，使用<code>@SpringBootApplication</code>注解标注，用以启动Spring Boot应用。</li>
+<li>根据需要，可以逐步替换旧的XML配置为Java配置或者利用Spring Boot的自动配置。</li>
+</ul>
+</li>
+<li>Spring Boot的Actuator有什么作用？<ul>
+<li>Spring Boot Actuator提供了一系列生产级别的监控和管理功能，如应用的健康状况、审计、统计和HTTP追踪等。通过HTTP端点或JMX可以访问这些信息，帮助开发者了解和监控应用的运行状态。</li>
+</ul>
+</li>
+<li>Spring Boot如何实现热部署？<ul>
+<li>Spring Boot可以通过添加<code>spring-boot-devtools</code>依赖来实现热部署。<code>devtools</code>模块会在代码改动时自动重启应用，减少手动重启的需要。也可以结合JRebel等第三方工具来实现更高级的热部署功能。</li>
+</ul>
+</li>
+<li>Spring Boot如何实现跨域请求处理？<ul>
+<li>Spring Boot可以通过<code>@CrossOrigin</code>注解在Controller层处理跨域请求。也可以通过全局配置注册<code>WebMvcConfigurer</code>的实现，并重写<code>addCorsMappings</code>方法，配置跨域的路径、方法、来源、头信息和是否发送Cookie等信息。</li>
+</ul>
+</li>
+<li>Spring Boot如何进行单元测试？<ul>
+<li>Spring Boot单元测试通常使用Spring Boot Test Starter，它包含了JUnit、Spring Test等测试库。可以使用<code>@SpringBootTest</code>注解来加载应用上下文，<code>@MockBean</code>和<code>@DataJpaTest</code>等注解来模拟Bean或测试JPA相关的组件。</li>
+</ul>
+</li>
+<li>Spring Boot如何配置多环境部署？<ul>
+<li>Spring Boot支持通过<code>application.properties</code>或<code>application.yml</code>文件结合Profile来配置多环境，如开发、测试、生产等。通过在配置文件名称中添加对应环境的后缀（如<code>application-dev.yml</code>），并在运行应用时通过<code>spring.profiles.active</code>属性指定活跃的Profile。</li>
+</ul>
+</li>
+<li>Spring Boot如何进行配置文件的加密解密？<ul>
+<li>Spring Boot配置文件的加密解密可以通过Jasypt Spring Boot库实现。首先添加Jasypt依赖，然后在配置文件中使用加密的属性值，并在应用启动时提供解密的密钥。Jasypt会自动对加密的属性值进行解密。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
-<p>Spring Boot官方的启动器（starters）遵循以下命名规范：</p>
-<ul>
-<li><strong>基本格式</strong>: <code>spring-boot-starter-XYZ</code></li>
-<li><strong>XYZ</strong>: 描述启动器的功能，例如 <code>web</code>, <code>data-jpa</code>, <code>security</code> 等。</li>
-<li><strong>版本号</strong>: 根据项目需求指定合适的Spring Boot版本。</li>
-</ul>
-<p>Spring Boot官方的启动器都是以spring-boot-starter–* 命名的，* 代表了一个特定的应用类型。</p>
-<p>第三方的启动器不能以spring-boot开头命名，它们都被Spring Boot官方保留。</p>
-<p>一般一个第三方的应该这样命名，像mybatis的  mybatis-spring-boot-starter。.</p>
-<hr>
-<h4 id="Spring-Boot的starter是什么？"><a href="#Spring-Boot的starter是什么？" class="headerlink" title="Spring Boot的starter是什么？"></a>Spring Boot的starter是什么？</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml">// Spring Boot Starter Dependency Example<br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
-<p>Spring Boot Starter是一种依赖管理器，它简化了Spring应用程序的依赖配置。</p>
-<p>每个Starter都是一个Maven项目，它封装了特定于某一功能（如Web开发、数据访问等）的依赖关系。使用Starter时，你只需声明单个依赖项，Spring Boot就会为你提供该功能所需的所有依赖项。这极大地简化了项目的构建配置，并有助于避免版本冲突和依赖性问题。</p>
-<h4 id="怎么自定义一个-starter"><a href="#怎么自定义一个-starter" class="headerlink" title="怎么自定义一个 starter"></a>怎么自定义一个 starter</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// 1. 创建一个新的Maven项目作为自定义Starter</span><br><br><span class="hljs-comment">// 2. 在pom.xml中添加Spring Boot的parent和基本依赖</span><br>&lt;parent&gt;<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span></span><br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span></span><br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.x.x.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span></span><br>&lt;/parent&gt;<br><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span></span><br><span class="language-xml">    // 添加所需功能的依赖</span><br><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span></span><br><br><span class="hljs-comment">// 3. 创建自动配置类，使用@Configuration和@ConditionalOn...注解</span><br><span class="hljs-meta">@Configuration</span><br><span class="hljs-meta">@ConditionalOnClass</span>(&#123; <span class="hljs-title class_">YourService</span>.<span class="hljs-property">class</span> &#125;)<br><span class="hljs-meta">@ConditionalOnProperty</span>(prefix = <span class="hljs-string">&quot;your.starter&quot;</span>, name = <span class="hljs-string">&quot;enabled&quot;</span>, havingValue = <span class="hljs-string">&quot;true&quot;</span>, matchIfMissing = <span class="hljs-literal">true</span>)<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">YourStarterAutoConfiguration</span> &#123;<br><br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-meta">@ConditionalOnMissingBean</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-title class_">YourService</span> <span class="hljs-title function_">yourService</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">YourServiceImpl</span>();<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 4. 在resources/META-INF下创建spring.factories文件，声明自动配置类</span><br>org.<span class="hljs-property">springframework</span>.<span class="hljs-property">boot</span>.<span class="hljs-property">autoconfigure</span>.<span class="hljs-property">EnableAutoConfiguration</span>=\<br>your.<span class="hljs-property">package</span>.<span class="hljs-property">YourStarterAutoConfiguration</span><br></code></pre></td></tr></table></figure>
-
-<p>步骤：</p>
-<ol>
-<li><strong>创建项目</strong>: 创建一个Maven项目作为你的Starter。</li>
-<li><strong>添加依赖</strong>: 在<code>pom.xml</code>中声明Spring Boot的parent依赖，和其他所需的依赖。</li>
-<li><strong>编写自动配置</strong>: 创建配置类，使用<code>@Configuration</code>注解，通过<code>@ConditionalOn...</code>注解确保只在满足特定条件时才应用配置。</li>
-<li><strong>声明配置</strong>: 在<code>resources/META-INF/spring.factories</code>文件中，声明你的自动配置类，以便Spring Boot在启动时自动发现它。</li>
-</ol>
-<hr>
-<h4 id="SpringBoot-有哪些条件注解，这些注解怎么使用的"><a href="#SpringBoot-有哪些条件注解，这些注解怎么使用的" class="headerlink" title="SpringBoot 有哪些条件注解，这些注解怎么使用的"></a>SpringBoot 有哪些条件注解，这些注解怎么使用的</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// 示例: 使用条件注解</span><br><br><span class="hljs-meta">@Configuration</span><br><span class="hljs-meta">@ConditionalOnClass</span>(&#123;<span class="hljs-title class_">ExampleService</span>.<span class="hljs-property">class</span>&#125;)<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ExampleAutoConfiguration</span> &#123;<br><br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-meta">@ConditionalOnMissingBean</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-title class_">ExampleService</span> <span class="hljs-title function_">exampleService</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ExampleServiceImpl</span>();<br>    &#125;<br><br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-meta">@ConditionalOnProperty</span>(name = <span class="hljs-string">&quot;example.enabled&quot;</span>, havingValue = <span class="hljs-string">&quot;true&quot;</span>, matchIfMissing = <span class="hljs-literal">true</span>)<br>    <span class="hljs-keyword">public</span> <span class="hljs-title class_">ExampleFeature</span> <span class="hljs-title function_">exampleFeature</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ExampleFeature</span>();<br>    &#125;<br>    <br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-meta">@ConditionalOnExpression</span>(<span class="hljs-string">&quot;$&#123;example.expression:true&#125;&quot;</span>)<br>    <span class="hljs-keyword">public</span> <span class="hljs-title class_">ExampleComponent</span> <span class="hljs-title function_">exampleComponent</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ExampleComponent</span>();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>Spring Boot提供了多种条件注解来控制配置的条件化创建，以下是一些常用的条件注解及其用法：</p>
-<ol>
-<li><strong>@ConditionalOnClass</strong> &#x2F; <strong>@ConditionalOnMissingClass</strong>:<ul>
-<li>根据类路径上是否存在某个类来决定是否创建Bean。</li>
-</ul>
-</li>
-<li><strong>@ConditionalOnBean</strong> &#x2F; <strong>@ConditionalOnMissingBean</strong>:<ul>
-<li>根据上下文中是否存在（或缺失）某个Bean来决定是否创建Bean。</li>
-</ul>
-</li>
-<li><strong>@ConditionalOnProperty</strong>:<ul>
-<li>根据配置文件中是否存在某个属性，或该属性的值是否符合预期来决定是否创建Bean。</li>
-</ul>
-</li>
-<li><strong>@ConditionalOnResource</strong>:<ul>
-<li>根据类路径上是否存在某个资源来决定是否创建Bean。</li>
-</ul>
-</li>
-<li><strong>@ConditionalOnExpression</strong>:<ul>
-<li>根据SpEL表达式的计算结果来决定是否创建Bean。</li>
-</ul>
-</li>
-<li><strong>@ConditionalOnWebApplication</strong> &#x2F; <strong>@ConditionalOnNotWebApplication</strong>:<ul>
-<li>根据应用是否是Web应用来决定是否创建Bean。</li>
-</ul>
-</li>
-<li><strong>@ConditionalOnJndi</strong>:<ul>
-<li>根据JNDI位置的存在与否来决定是否创建Bean。</li>
-</ul>
-</li>
-</ol>
-<p>这些注解通常用在自动配置类中，使得Bean的创建可以根据不同的环境或配置动态地进行。</p>
-<p>上面这写是跟 @Conditional 的基础上组合使用的，介绍一下它：</p>
-<ul>
-<li>@Conditional</li>
-<li>这是Spring4.0添加的新注解，用来标识一个Spring Bean或者Configuration配置文件，当满足指定的条件才开启配置。</li>
-</ul>
-<hr>
-<h4 id="Spring-Boot支持哪些日志框架？"><a href="#Spring-Boot支持哪些日志框架？" class="headerlink" title="Spring Boot支持哪些日志框架？"></a>Spring Boot支持哪些日志框架？</h4><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-comment">// Spring Boot配置示例，指定日志框架为Logback</span><br><span class="hljs-symbol">spring:</span><br><span class="hljs-symbol">  main:</span><br>    web-application-type: none<br><span class="hljs-symbol">logging:</span><br><span class="hljs-symbol">  config:</span> classpath:logback-spring.xml<br></code></pre></td></tr></table></figure>
-
-<p>Spring Boot支持以下日志框架：</p>
-<ol>
-<li><strong>Logback</strong> (默认): Spring Boot默认使用Logback作为日志框架。</li>
-<li><strong>Log4j2</strong>: 通过排除Spring Boot的默认日志依赖并包含log4j2的依赖，可以使用Log4j2。</li>
-<li><strong>JUL (Java Util Logging)</strong>: Spring Boot也支持JUL，但通常需要额外的配置来整合。</li>
-<li><strong>SLF4J</strong>: Spring Boot使用SLF4J作为日志抽象层，你可以将其与上述任何日志实现配合使用。</li>
-</ol>
-<p>为了使用特定的日志框架，你需要在项目的依赖管理文件中（如pom.xml或build.gradle）包含对应的依赖，并适当配置日志框架的配置文件（如logback-spring.xml, log4j2.xml等）。</p>
-<p>同时需要注意的是：目前Apache已经宣布停止对Log4j 1.x的更新和支持，并且 Log4j 出现了严重的安全漏洞（如Log4Shell）；因此目前 SpringBoot 也不支持  Log4j 版本；我们在使用的时候需要选择 <strong>Log4j2</strong> 而不是 Log4j。</p>
-<h4 id="Spring-Boot如何配置日志？"><a href="#Spring-Boot如何配置日志？" class="headerlink" title="Spring Boot如何配置日志？"></a>Spring Boot如何配置日志？</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">// application.properties中配置日志级别和日志文件路径的示例</span><br>logging<span class="hljs-selector-class">.level</span>.root=INFO<br>logging<span class="hljs-selector-class">.level</span><span class="hljs-selector-class">.org</span><span class="hljs-selector-class">.springframework</span>.web=DEBUG<br>logging<span class="hljs-selector-class">.level</span><span class="hljs-selector-class">.com</span>.yourpackage=TRACE<br><br>logging<span class="hljs-selector-class">.file</span>.name=app<span class="hljs-selector-class">.log</span><br>logging<span class="hljs-selector-class">.file</span>.path=/var/log<br></code></pre></td></tr></table></figure>
-
-<p>在Spring Boot中，你可以通过<code>application.properties</code>或<code>application.yml</code>文件来配置日志。</p>
-<p>以下是一些常用的日志配置选项：</p>
-<ol>
-<li><strong>设置日志级别</strong>:<ul>
-<li>通过<code>logging.level.&lt;logger-name&gt;=&lt;level&gt;</code>设置特定日志记录器的日志级别。</li>
-<li>日志级别包括：<code>TRACE</code>, <code>DEBUG</code>, <code>INFO</code>, <code>WARN</code>, <code>ERROR</code>, <code>FATAL</code>, <code>OFF</code>。</li>
-</ul>
-</li>
-<li><strong>日志文件配置</strong>:<ul>
-<li><code>logging.file.name</code>: 设置日志文件名，会在当前目录生成日志文件。</li>
-<li><code>logging.file.path</code>: 设置日志文件路径，日志文件会在指定的目录生成。</li>
-</ul>
-</li>
-<li><strong>日志格式配置</strong>:<ul>
-<li><code>logging.pattern.console</code>: 设置控制台输出的日志格式。</li>
-<li><code>logging.pattern.file</code>: 设置写入文件的日志格式。</li>
-</ul>
-</li>
-<li><strong>日志归档</strong>:<ul>
-<li>如果使用Logback，默认会进行日志归档（每天生成一个日志文件，过期删除等）。</li>
-<li>详细的归档策略可以通过Logback的<code>logback-spring.xml</code>配置文件来设置。</li>
-</ul>
-</li>
-<li><strong>使用<code>logback-spring.xml</code>或<code>log4j2-spring.xml</code>文件</strong>:<ul>
-<li>对于更复杂的配置，如日志归档、异步记录等，可以使用XML配置文件。</li>
-<li>将这些文件放在<code>src/main/resources</code>目录下，Spring Boot会自动加载它们。</li>
-</ul>
-</li>
-</ol>
-<p>通过这些配置，你可以根据需要灵活地设置日志级别、格式、输出位置等。</p>
-<h4 id="Spring-Boot配置加载顺序是怎样的？"><a href="#Spring-Boot配置加载顺序是怎样的？" class="headerlink" title="Spring Boot配置加载顺序是怎样的？"></a>Spring Boot配置加载顺序是怎样的？</h4><p>Spring Boot的配置加载顺序设计用于支持不同的配置需求和环境，从而允许在运行时覆盖应用程序的配置。以下是Spring Boot配置加载的顺序，从高优先级到低优先级：</p>
-<ol>
-<li><strong>开发者工具的配置属性</strong> (如果使用Spring Boot的开发者工具)。</li>
-<li><strong>命令行参数</strong> (<code>java -jar myproject.jar --name=&quot;Spring&quot;</code>).</li>
-<li><strong>来自<code>SPRING_APPLICATION_JSON</code>的属性</strong> (环境变量或系统属性中的内联JSON)。</li>
-<li><strong><code>ServletConfig</code>初始化参数</strong>。</li>
-<li><strong><code>ServletContext</code>初始化参数</strong>。</li>
-<li><strong><code>java:comp/env</code>里的JNDI属性</strong>。</li>
-<li><strong>Java系统属性</strong> (<code>System.getProperties()</code>).</li>
-<li><strong>操作系统环境变量</strong>。</li>
-<li><ul>
-<li>只有在random. 里定义的随机属性。</li>
-</ul>
-</li>
-<li><strong>应用程序在打包时提供的JAR文件外的<code>application.properties</code>或<code>application.yml</code>文件</strong>。</li>
-<li><strong>应用程序打包在JAR内的<code>application.properties</code>或<code>application.yml</code>文件</strong>。</li>
-<li><strong>通过<code>@PropertySource</code>注解在<code>@Configuration</code>类上定义的属性</strong>。</li>
-<li><strong>默认属性</strong> (通过<code>SpringApplication.setDefaultProperties</code>指定)。</li>
-</ol>
-<p>在这个顺序中，较高的属性将覆盖较低的属性。这就是为什么命令行参数可以覆盖<code>application.properties</code>中的属性，因为命令行参数的优先级更高。</p>
-<h4 id="Spring-Boot的配置文件有哪几种格式？核心配置文件有哪些？"><a href="#Spring-Boot的配置文件有哪几种格式？核心配置文件有哪些？" class="headerlink" title="Spring Boot的配置文件有哪几种格式？核心配置文件有哪些？"></a>Spring Boot的配置文件有哪几种格式？核心配置文件有哪些？</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-comment">// 示例: 在Spring Boot中指定不同格式的配置文件</span><br><span class="hljs-variable">@SpringBootApplication</span><br><span class="hljs-variable">@PropertySource</span>(<span class="hljs-string">&quot;classpath:config/app-config.properties&quot;</span>)<br>public class Application &#123;<br>    <span class="hljs-selector-tag">public</span> <span class="hljs-selector-tag">static</span> <span class="hljs-selector-tag">void</span> <span class="hljs-selector-tag">main</span>(String[] args) &#123;<br>        <span class="hljs-selector-tag">SpringApplication</span><span class="hljs-selector-class">.run</span>(Application.class, args);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>Spring Boot支持以下几种格式的配置文件：</p>
-<ol>
-<li><strong>properties文件</strong>：传统的Java属性文件，使用<code>.properties</code>后缀。</li>
-<li><strong>YAML文件</strong>：更为现代的配置文件格式，使用<code>.yml</code>或<code>.yaml</code>后缀。</li>
-</ol>
-<p>核心配置文件通常是指：</p>
-<ol>
-<li><strong>application.properties</strong> 或 <strong>application.yml</strong>：这是Spring Boot的主要配置文件。在此文件中定义的属性可以应用于你的Spring Boot应用程序的任何部分。</li>
-<li><strong>bootstrap.properties</strong> 或 <strong>bootstrap.yml</strong>：当使用Spring Cloud Config时，这些文件用于外部配置的早期加载。</li>
-</ol>
-<p>这些文件可以放在以下位置：</p>
-<ul>
-<li>项目的根目录。</li>
-<li><code>/config</code> 子目录。</li>
-<li>类路径的根目录 (<code>/resources</code> 或 <code>/src/main/resources</code>)。</li>
-<li>类路径的<code>/config</code> 包。</li>
-</ul>
-<p>Spring Boot会按照特定的顺序来加载这些配置文件，以确保属性的正确覆盖和加载。</p>
-<p>上面提到的  bootstrap 配置文件是属于 SpringCloud 环境，需要引入相关依赖；</p>
-<p>在 SpringCloud 环境中，<strong>bootstrap配置文件会优先于application配置文件加载</strong>，它主要用于从额外的资源来加载配置参数，通常用来加载外部配置，如Spring Cloud用于加载配置中心的配置参数，也可以用来定义系统不会被改变的参数，它们默认不能被本地相同的配置所覆盖。</p>
-<h4 id="Spring-Boot支持哪几种内嵌容器？"><a href="#Spring-Boot支持哪几种内嵌容器？" class="headerlink" title="Spring Boot支持哪几种内嵌容器？"></a>Spring Boot支持哪几种内嵌容器？</h4><p>Spring支特的内嵌式容器有：Tomcat、Jetty、Undertow</p>
-<p>默认的内嵌式容器是：Tomcat。</p>
-<h3 id="2"><a href="#2" class="headerlink" title="2"></a>2</h3>
                 
               </div>
             

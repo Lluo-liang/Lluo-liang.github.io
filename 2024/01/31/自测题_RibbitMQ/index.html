@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          598 字
+          2.3k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          5 分钟
+          19 分钟
         
       </span>
     
@@ -302,23 +302,81 @@
 </ul>
 <h3 id="面试解答篇"><a href="#面试解答篇" class="headerlink" title="面试解答篇"></a>面试解答篇</h3><ul>
 <li>基础内容<ul>
-<li>讲一下你 对 RabbitMQ 的理解。</li>
-<li>RabbitMQ 重要的组件讲一下</li>
-<li>RabbitMQ 交换器类型有哪些？</li>
-<li>RabbitMQ 消息基于什么传输。</li>
-<li>RabbitMQ 支持消息顺序性吗？RabbitMQ 如何保证消息的顺序性。</li>
-<li>RabbitMQ 是否支持消息幂等性？</li>
-<li>RabbitMQ 支持优先队列吗？</li>
+<li>讲一下你 对 RabbitMQ 的理解。<ul>
+<li>RabbitMQ 是一个开源的消息代理和队列服务器，用于在分布式系统中存储、转发消息。它支持多种消息协议，提供高可用性、可靠性以及灵活的消息路由功能，帮助系统解耦，提高系统的扩展性和响应性</li>
+</ul>
+</li>
+<li>RabbitMQ 重要的组件讲一下<ul>
+<li>RabbitMQ 的重要组件包括：<ul>
+<li><strong>交换器（Exchange）</strong>：决定消息应该被路由到哪个队列。</li>
+<li><strong>队列（Queue）</strong>：存储消息直到它们被消费。</li>
+<li><strong>绑定（Binding）</strong>：Exchange 和 Queue 之间的链接，路由规则。</li>
+<li><strong>生产者（Producer）</strong>：发送消息到交换器的应用程序。</li>
+<li><strong>消费者（Consumer）</strong>：从队列接收消息的应用程序。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>RabbitMQ 交换器类型有哪些？<ul>
+<li>RabbitMQ 支持四种交换器类型：</li>
+<li><strong>直接（Direct）</strong>：消息被路由到那些binding key与routing key完全匹配的队列。</li>
+<li><strong>主题（Topic）</strong>：通过模式匹配routing key和binding key来路由消息。</li>
+<li><strong>扇形（Fanout）</strong>：将消息路由到所有绑定到它的队列，忽略routing key。</li>
+<li><strong>头（Headers）</strong>：根据发送的消息内容中的headers属性进行匹配。</li>
+</ul>
+</li>
+<li>RabbitMQ 消息基于什么传输。<ul>
+<li>RabbitMQ 消息传输基于AMQP（高级消息队列协议），这是一个网络协议，用于在分布式系统中安全地传递和接收消息。</li>
+</ul>
+</li>
+<li>RabbitMQ 支持消息顺序性吗？RabbitMQ 如何保证消息的顺序性。<ul>
+<li>RabbitMQ 本身支持消息的顺序性，但只在单个队列的范围内。它保证按照消息发送到队列中的顺序来逐一分发消息。为了保证全局的消息顺序性，需要设计适当的消息分发策略，确保相关消息发送到同一个队列中。</li>
+</ul>
+</li>
+<li>RabbitMQ 是否支持消息幂等性？<ul>
+<li>RabbitMQ 本身不直接支持消息的幂等性，消息的幂等性需要由应用程序逻辑来保证。可以通过在消息中包含唯一标识符，并在消费端实现逻辑来避免重复处理实现幂等性。</li>
+</ul>
+</li>
+<li>RabbitMQ 支持优先队列吗？<ul>
+<li>是的，RabbitMQ 支持优先队列。通过在队列声明时设置<code>x-max-priority</code>参数，可以定义队列支持的最大优先级，之后可以根据需要发送带有不同优先级的消息到队列中，消费者会优先消费高优先级的消息。</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>常见问题<ul>
-<li>RabbitMQ  怎么避免消息丢失? RabbitMQ 怎么保证消息的稳定性？</li>
-<li>讲一下RabbitMQ 的事务消息。</li>
-<li>死信队列了解吗？</li>
-<li>RabbitMQ 如何确认消息已被消费掉了？</li>
-<li>讲一下 RabbitMQ 的持久化。</li>
-<li>关于 RabbitMQ 的延迟队列了解吗? 怎么实现消息延迟推送？</li>
-<li>RabbtiQM 消息是推模式？还是拉模式？</li>
+<li>RabbitMQ  怎么避免消息丢失? RabbitMQ 怎么保证消息的稳定性？<ul>
+<li>为了避免消息丢失，RabbitMQ 可以通过以下方式保证消息的稳定性：<ul>
+<li><strong>消息持久化</strong>：将队列和消息都设置为持久化，即使在RabbitMQ重启之后也不会丢失。</li>
+<li><strong>事务机制</strong>：使用事务保证消息的发送和接收，但这会降低性能。</li>
+<li><strong>确认机制（Publisher Confirms）</strong>：生产者等待服务器确认消息已被接收。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>讲一下RabbitMQ 的事务消息。<ul>
+<li>RabbitMQ 支持事务机制，允许生产者在发送消息前开启一个事务（<code>txSelect</code>），然后发送消息，如果所有操作都成功，可以提交事务（<code>txCommit</code>），如果出现异常则回滚（<code>txRollback</code>）。但事务机制会显著影响RabbitMQ的性能，通常建议使用更高效的确认机制代替事务。</li>
+</ul>
+</li>
+<li>死信队列了解吗？<ul>
+<li>死信队列（DLX，Dead-Letter-Exchange）是用来接收其他队列中无法正常处理的消息的特殊队列。当消息因为超时、队列达到最大长度或被消费者拒绝且不重新入队时，这些消息会被发送到配置的死信队列中。</li>
+</ul>
+</li>
+<li>RabbitMQ 如何确认消息已被消费掉了？<ul>
+<li>RabbitMQ 通过消息确认机制来确认消息是否已被消费。消费者在成功处理消息后，可以发送一个acknowledgment给RabbitMQ，RabbitMQ接收到确认后才会从队列中移除该消息。如果消费者未能处理消息，则可以发送nack或requeue，根据配置决定是否重新放入队列。</li>
+</ul>
+</li>
+<li>讲一下 RabbitMQ 的持久化。<ul>
+<li>RabbitMQ 的持久化包括对队列和消息的持久化。通过在声明队列时设置<code>durable</code>为<code>true</code>来持久化队列，确保RabbitMQ服务重启后队列仍然存在。对消息持久化，需要在发布消息时将<code>delivery_mode</code>属性设置为<code>2</code>（表示持久化消息）。这样即使RabbitMQ重启，消息也不会丢失。</li>
+</ul>
+</li>
+<li>关于 RabbitMQ 的延迟队列了解吗? 怎么实现消息延迟推送？<ul>
+<li>RabbitMQ 延迟队列可以通过使用TTL（Time-To-Live，生存时间）和死信交换器实现消息的延迟推送。设置消息的TTL或队列的TTL属性，当消息过期后，如果队列配置了死信交换器，则消息会被发送到指定的死信队列，实现延时消息的效果。</li>
+</ul>
+</li>
+<li>RabbtiQM 消息是推模式？还是拉模式？<ul>
+<li>RabbitMQ 既支持推模式（Push mode），也支持拉模式（Pull mode）。在推模式下，消息会自动推送给消费者；在拉模式下，消费者需要主动从队列拉取消息。选择哪种模式取决于应用场景的具体需求.</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

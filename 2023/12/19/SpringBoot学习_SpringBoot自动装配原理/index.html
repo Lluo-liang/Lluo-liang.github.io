@@ -563,6 +563,7 @@
 <p><strong>Spring Boot 3.0 新变化</strong></p>
 <p>最新Spring Boot3.0中，老的自动配置文件META-NF&#x2F;spring.factories已经正式被废除了，虽然配置文件还在，但仅保留系统级的组件注册，不再作为应用级的自动配置类加载了，</p>
 <p>也就是说，它已经不能再注册自定义的自动配置类了，必须使用新的自动配置文件规范进行注册。</p>
+<hr>
 <h3 id="2、解读-SpringBootApplication-注解（第一版）"><a href="#2、解读-SpringBootApplication-注解（第一版）" class="headerlink" title="2、解读@SpringBootApplication 注解（第一版）"></a>2、解读@SpringBootApplication 注解（第一版）</h3><p>上述内容也谈论到 条件注解是 Spring Framework 的核心特性之一，Spring Boot 在其基础上，通过 SPI 的方式，做了进一步优化，并进而实现了自动装配。</p>
 <blockquote>
 <p>我们从启动类开始了解其自动装配原理</p>

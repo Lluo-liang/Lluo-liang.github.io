@@ -235,7 +235,7 @@
         
         
         
-          130 分钟
+          137 分钟
         
       </span>
     
@@ -462,6 +462,56 @@
 <p>第三，在生产者需要向 <code>Broker</code> 发送消息的时候，<strong>需要先从 <code>NameServer</code> 获取关于 <code>Broker</code> 的路由信息</strong>，然后通过 <strong>轮询</strong> 的方法去向每个队列中生产数据以达到 <strong>负载均衡</strong> 的效果。</p>
 <p>第四、消费者通过 <code>NameServer</code> 获取所有 <code>Broker</code> 的路由信息后，向 <code>Broker</code> 发送 <code>Pull</code> 请求来获取消息数据。</p>
 <p><code>Consumer</code> 可以以两种模式启动—— <strong>广播（Broadcast）和集群（Cluster）</strong>。广播模式下，一条消息会发送给 <strong>同一个消费组中的所有消费者</strong> ，集群模式下消息只会发送给一个消费者。</p>
+<hr>
+<blockquote>
+<p>RocketMQ 是什么？</p>
+</blockquote>
+<ul>
+<li>RocketMQ 是什么？<ul>
+<li>RocketMQ 是一款阿里开源的中间件，经受过双11 的考验，具有高性能、低延迟、高可靠、分布式的特点，是一款比较稳定、可靠的中间件产品。</li>
+<li>建议从技术选型的角度去看，说一下为什么自己觉得要使用 RocketMQ，同时引入一下它的架构和基础使用。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>RocketMQ的架构是怎样的？</p>
+</blockquote>
+<ul>
+<li>RocketMQ的架构是怎样的？<ul>
+<li>NameServer<ul>
+<li>去中心化的注册中心：进行Broker节点管理和路由信息管理</li>
+<li>负载均衡，路由管理，注册中心</li>
+</ul>
+</li>
+<li>生产者<ul>
+<li>生产者会定期向 NameServer 查询 Broker 的信息</li>
+<li>当生产者准备发送消息时，它首先联系 NameServer 以获取 Topic 所在的 Broker 信息。然后，根据这些信息，生产者将消息发送到正确的 Broker 和对应的队列中。</li>
+</ul>
+</li>
+<li>消费者<ul>
+<li>定期向 NameServer 查询 Broker 的信息</li>
+<li>订阅主题：消费者向 Broker 订阅特定的 Topic。这个过程可能会涉及 NameServer 来找到托管该 Topic 的 Broker。</li>
+<li>消息接收：一旦 Broker 中的 Topic 收到消息，符合条件的消费者（那些订阅了该 Topic 的消费者）就可以接收到这些消息。</li>
+</ul>
+</li>
+<li>Broker<ul>
+<li>定期向 Name Server 发送心跳包（包含自身的主题信息）；Broker：消息处理的节点中心；NameSpace 管理的路由也是对应节点来处理的；一个Broker 节点下有多个Queue</li>
+<li>消息存储和转发：Broker 是消息存储和转发的核心。生产者将消息发送到 Broker，Broker 负责将消息保存在相应的队列中。</li>
+<li>消息处理：Broker 处理所有与消息相关的操作，包括消息的存储、检索、删除以及向消费者分发消息。</li>
+<li>维护队列状态：Broker 负责维护每个队列的状态，如消息偏移量（Offset），确保消息能够被正确地消费。</li>
+</ul>
+</li>
+<li>Topic<ul>
+<li>将Queue进行分类，类似分组、标签（逻辑上）</li>
+</ul>
+</li>
+<li>Queue<ul>
+<li>物理实际分区，消息的实际存储地方</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h3 id="4、RocketMQ-的功能特性"><a href="#4、RocketMQ-的功能特性" class="headerlink" title="4、RocketMQ 的功能特性"></a>4、RocketMQ 的功能特性</h3><h4 id="消息"><a href="#消息" class="headerlink" title="消息"></a>消息</h4><p>在 RocketMQ 中，一般使用的是普通消息，还有定时消息、顺序消息、事务消息；下面我们分别来了解一下具体的一些使用。</p>
 <blockquote>
 <p>普通消息</p>
