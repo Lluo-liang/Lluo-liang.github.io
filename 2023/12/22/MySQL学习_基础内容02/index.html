@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6.8k 字
+          11k 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          57 分钟
+          88 分钟
         
       </span>
     
@@ -363,6 +363,41 @@
 <p>由于长事务可能会访问旧版本的数据，MySQL必须保留长事务开始之前的所有回滚信息。这不仅占用了大量存储空间，而且可能影响系统性能。</p>
 <p>例如，在MySQL 5.5及以前的版本中，大量的回滚日志可能导致ibdata文件过大，即使长事务最终提交，这些空间也不会自动释放，有时需要重建整个数据库来清理这些空间。</p>
 <p>因此，虽然REPEATABLE READ提供了较强的隔离性，但也需要合理管理事务的生命周期，避免长事务对系统性能和存储空间的负面影响。</p>
+<hr>
+<p>刚刚看到一个概念，叫 Next-Key Locking。他可以保持在可重复隔离级别下，同时避免脏读的一种锁机制。</p>
+<p>可串行化的化就完全是强制事务顺序执行，而 Next-Key Locking 的话是结合了行锁和间隙锁，避免了一定范围内出现脏读。</p>
+<h4 id="Next-Key-Locking"><a href="#Next-Key-Locking" class="headerlink" title="Next-Key Locking"></a>Next-Key Locking</h4><p>Next-Key Locking 是 InnoDB 存储引擎特有的锁机制，它结合了行锁和间隙锁（gap lock）的特性。Next-Key Lock 实际上锁定了一个范围，不仅锁定了行记录本身，还锁定了记录之间的间隙，从而防止其他事务在这个范围内插入新的记录。</p>
+<blockquote>
+<p>作用与效果</p>
+</blockquote>
+<ul>
+<li><strong>作用</strong>：通过 Next-Key Locking，MySQL 能够确保在可重复读隔离级别下，一个事务在其执行期间看到的数据范围保持不变，即使有其他事务试图在这个范围内插入新的数据，也会因为锁的存在而被阻塞，直到原事务完成。这样就有效地避免了幻读问题。</li>
+<li><strong>效果</strong>：因此，在可重复读隔离级别下，MySQL 能够有效解决幻读问题，确保事务的一致性和隔离性。</li>
+</ul>
+<p>简而言之，通过 Next-Key Locking 机制，MySQL 在可重复读隔离级别下通过锁定数据范围和间隙来防止幻读，从而保证了数据的一致性和事务的隔离性。</p>
+<blockquote>
+<p>和串行化的区别</p>
+</blockquote>
+<p>Next-Key Locking 不是串行化（Serializable）隔离级别，而是一种锁机制，主要用于 InnoDB 存储引擎在可重复读（Repeatable Read）隔离级别下防止幻读问题的一种实现方法。串行化隔离级别和可重复读隔离级别是事务隔离级别的两种不同标准，它们在处理并发事务时有不同的特性和行为。</p>
+<p>Next-Key Locking</p>
+<ul>
+<li>Next-Key Locking 是 InnoDB 特有的一种锁机制，结合了行锁和间隙锁（Gap Lock）。</li>
+<li>它锁定一个范围而不仅仅是单个行记录，包括记录本身和记录之间的间隙。</li>
+<li>主要用在可重复读（Repeatable Read）隔离级别下，用于防止幻读问题。</li>
+</ul>
+<p>串行化隔离级别（Serializable）</p>
+<ul>
+<li>串行化是最高的事务隔离级别，它通过强制事务顺序执行来避免并发事务带来的问题，包括脏读、不可重复读和幻读。</li>
+<li>在串行化隔离级别下，读操作会加锁，使得其他事务不能同时进行写操作。</li>
+<li>串行化通过对所有读取的行加锁达到与单线程顺序执行相同的效果，从而保证了数据的绝对一致性。</li>
+</ul>
+<p>区别</p>
+<ul>
+<li><strong>隔离级别</strong>：Next-Key Locking 是可重复读隔离级别下防止幻读的一种锁机制，而串行化是一个事务隔离的标准级别，它通过加锁来序列化所有的事务。</li>
+<li><strong>性能和并发</strong>：由于 Next-Key Locking 只锁定需要的数据范围，所以可重复读级别下的并发性能比串行化级别更好。串行化隔离级别通过加锁限制了并发，虽然数据一致性最强，但性能开销也最大。</li>
+<li><strong>应用场景</strong>：Next-Key Locking 在需要防止幻读同时又要保持较高并发性的场景下使用较多。串行化适用于对数据一致性要求极高的场景，但并发要求不高。</li>
+</ul>
+<p>总结来说，Next-Key Locking 是一种锁机制，用于可重复读隔离级别下的 InnoDB 存储引擎，而串行化是最高等级的事务隔离级别，两者在并发控制和性能开销上有明显的差异。</p>
 <h4 id="事务的启动方式"><a href="#事务的启动方式" class="headerlink" title="事务的启动方式"></a>事务的启动方式</h4><div style="background-color: #ecf0f1; color: #34495e; padding: 15px; border: 2px solid #bdc3c7; border-radius: 5px;">
   <strong>事务的启动方式：</strong>显示启动事务；自动提交模式
 </div>
@@ -518,7 +553,7 @@
 </li>
 </ul>
 <h3 id="5、锁机制"><a href="#5、锁机制" class="headerlink" title="5、锁机制"></a>5、锁机制</h3><p>MySQL的锁机制是一种用来管理多个事务对同一数据进行访问的机制，旨在保持数据的一致性和完整性。</p>
-<p>锁机制允许多个事务同时读写数据库，同时防止数据冲突和不一致。</p>
+<p>锁机制允许多个事务同时读写数据库，同时防止数据冲突和不一致。（锁是一种常见的并发事务的控制方式）</p>
 <p>MySQL中的锁主要可以分为以下几种类型：</p>
 <ul>
 <li>表级锁（Table-level Locks）</li>
@@ -565,8 +600,15 @@
 </ol>
 </blockquote>
 <ul>
-<li><strong>共享锁（Shared Locks）</strong>：又称读锁，允许事务读一行数据。</li>
-<li><strong>排他锁（Exclusive Locks）</strong>：又称写锁，允许事务排他地写一行数据。</li>
+<li><strong>共享锁（Shared Locks）</strong>：又称读锁，允许事务读一行数据。<ul>
+<li>读锁，事务在读取记录的时候获取共享锁，允许多个事务同时获取（锁兼容）。</li>
+</ul>
+</li>
+<li><strong>排他锁（Exclusive Locks）</strong>：又称写锁，允许事务排他地写一行数据。<ul>
+<li>又称写锁&#x2F;独占锁，事务在修改记录的时候获取排他锁，不允许多个事务同时获取。如果一个记录已经被加了排他锁，那其他事务不能再对这条事务加任何类型的锁（锁不兼容）。</li>
+<li>排他锁与任何的锁都不兼容，共享锁仅和共享锁兼容。</li>
+</ul>
+</li>
 </ul>
 <blockquote>
 <ol start="5">
@@ -596,7 +638,127 @@
 <li>在高并发的数据库系统中，适当的锁策略对于维护数据的完整性和提高系统性能至关重要。</li>
 <li>理解不同锁的行为和影响可以帮助数据库管理员和开发人员优化查询，减少死锁，并提高数据库的整体性能。</li>
 </ul>
-<h3 id="DEBUYG"><a href="#DEBUYG" class="headerlink" title="DEBUYG"></a>DEBUYG</h3><p>待完善，参考 <a target="_blank" rel="noopener" href="https://javaguide.cn/database/mysql/mysql-questions-01.html#mysql-%E9%94%81">https://javaguide.cn/database/mysql/mysql-questions-01.html#mysql-%E9%94%81</a></p>
+<p>参考 <a target="_blank" rel="noopener" href="https://javaguide.cn/database/mysql/mysql-questions-01.html#mysql-%E9%94%81">https://javaguide.cn/database/mysql/mysql-questions-01.html#mysql-%E9%94%81</a></p>
+<h4 id="表级锁和行级锁"><a href="#表级锁和行级锁" class="headerlink" title="表级锁和行级锁"></a>表级锁和行级锁</h4><p>概念：</p>
+<blockquote>
+<ol>
+<li>表级锁（Table-level Locks）</li>
+</ol>
+</blockquote>
+<ul>
+<li><strong>简单但开销小</strong>：锁定整个表，是最简单的锁策略，开销最小。</li>
+<li><strong>并发性低</strong>：不适合高并发操作，因为它阻止了对同一表的其他访问。</li>
+<li><strong>应用</strong>：MyISAM存储引擎主要使用表级锁。</li>
+</ul>
+<blockquote>
+<ol start="2">
+<li>行级锁（Row-level Locks）</li>
+</ol>
+</blockquote>
+<ul>
+<li><strong>高并发处理</strong>：只锁定需要访问的数据行。是最细粒度的锁，允许高度的并发。</li>
+<li><strong>开销大</strong>：比表级锁更多的内存和CPU资源。</li>
+<li><strong>死锁</strong>：可能会引起死锁，需要额外的逻辑来处理。</li>
+<li><strong>应用</strong>：InnoDB存储引擎使用行级锁。</li>
+</ul>
+<p>在实际的使用中，MySQL 目前默认的存储引擎 InnoDB 中，默认为行级锁，同时 InnoDB 也支持表级锁。</p>
+<p>与之对应的 MyISAM 存储引擎，它只支持表级锁（table-level locking），一锁就锁整张表。</p>
+<p>行级锁的粒度更小，仅对相关的记录上锁即可（对一行或者多行记录加锁），所以对于并发写入操作来说， InnoDB 的性能更高。</p>
+<p><strong>表级锁和行级锁对比</strong>：</p>
+<ul>
+<li><strong>表级锁：</strong> MySQL 中锁定粒度最大的一种锁（全局锁除外），是针对非索引字段加的锁，对当前操作的整张表加锁，实现简单，资源消耗也比较少，加锁快，不会出现死锁。不过，触发锁冲突的概率最高，高并发下效率极低。表级锁和存储引擎无关，MyISAM 和 InnoDB 引擎都支持表级锁。</li>
+<li><strong>行级锁：</strong> MySQL 中锁定粒度最小的一种锁，是 <strong>针对索引字段加的锁</strong> ，只针对当前操作的行记录进行加锁。 行级锁能大大减少数据库操作的冲突。其加锁粒度最小，并发度高，但加锁的开销也最大，加锁慢，会出现死锁。行级锁和存储引擎有关，是在存储引擎层面实现的。</li>
+</ul>
+<blockquote>
+<p>行级锁的使用有什么注意事项？</p>
+</blockquote>
+<p>InnoDB 的行锁是针对索引字段加的锁，表级锁是针对非索引字段加的锁。当我们执行 <code>UPDATE</code>、<code>DELETE</code> 语句时，如果 <code>WHERE</code>条件中字段没有命中唯一索引或者索引失效的话，就会导致扫描全表对表中的所有行记录进行加锁。这个在我们日常工作开发中经常会遇到，一定要多多注意！！！</p>
+<p>不过，很多时候即使用了索引也有可能会走全表扫描，这是因为 MySQL 优化器的原因</p>
+<h4 id="行锁分类"><a href="#行锁分类" class="headerlink" title="行锁分类"></a>行锁分类</h4><blockquote>
+<p>InnoDB 有哪几类行锁</p>
+</blockquote>
+<p>InnoDB 行锁是通过对索引数据页上的记录加锁实现的，MySQL InnoDB 支持三种行锁定方式：</p>
+<ul>
+<li><strong>记录锁（Record Lock）</strong>：也被称为记录锁，属于单个行记录上的锁。</li>
+<li><strong>间隙锁（Gap Lock）</strong>：锁定一个范围，不包括记录本身。</li>
+<li><strong>临键锁（Next-Key Lock）</strong>：Record Lock+Gap Lock，锁定一个范围，包含记录本身，主要目的是为了解决幻读问题（MySQL 事务部分提到过）。记录锁只能锁住已经存在的记录，为了避免插入新记录，需要依赖间隙锁。</li>
+</ul>
+<p><strong>在 InnoDB 默认的隔离级别 REPEATABLE-READ 下，行锁默认使用的是 Next-Key Lock。但是，如果操作的索引是唯一索引或主键，InnoDB 会对 Next-Key Lock 进行优化，将其降级为 Record Lock，即仅锁住索引本身，而不是范围。</strong></p>
+<p>一些大厂面试中可能会问到 Next-Key Lock 的加锁范围： <a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000040129107">https://segmentfault.com/a/1190000040129107</a></p>
+<hr>
+<h4 id="意向锁"><a href="#意向锁" class="headerlink" title="意向锁"></a>意向锁</h4><p>作用： 通过意向锁来快速判断是否可以对某个表使用表锁。</p>
+<p>意向锁是表级锁，共有两种：</p>
+<ul>
+<li><strong>意向共享锁（Intention Shared Lock，IS 锁）</strong>：事务有意向对表中的某些记录加共享锁（S 锁），加共享锁前必须先取得该表的 IS 锁。</li>
+<li><strong>意向排他锁（Intention Exclusive Lock，IX 锁）</strong>：事务有意向对表中的某些记录加排他锁（X 锁），加排他锁之前必须先取得该表的 IX 锁。</li>
+</ul>
+<p><strong>意向锁是由数据引擎自己维护的，用户无法手动操作意向锁，在为数据行加共享&#x2F;排他锁之前，InooDB 会先获取该数据行所在在数据表的对应意向锁。</strong></p>
+<p>意向锁之间是互相兼容的。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>IS 锁</th>
+<th>IX 锁</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IS 锁</td>
+<td>兼容</td>
+<td>兼容</td>
+</tr>
+<tr>
+<td>IX 锁</td>
+<td>兼容</td>
+<td>兼容</td>
+</tr>
+</tbody></table>
+<p>意向锁和共享锁和排它锁互斥（这里指的是表级别的共享锁和排他锁，意向锁不会与行级的共享锁和排他锁互斥）。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>IS 锁</th>
+<th>IX 锁</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>S 锁</td>
+<td>兼容</td>
+<td>互斥</td>
+</tr>
+<tr>
+<td>X 锁</td>
+<td>互斥</td>
+<td>互斥</td>
+</tr>
+</tbody></table>
+<hr>
+<p>再看一下下面的这个解释：</p>
+<p>意向锁是 InnoDB 引擎用来优化行锁和表锁之间操作的一种锁机制。其主要目的是为了在数据库中实现多粒度锁定（即同时使用行锁和表锁），并且能够提供一种机制来判断是否可以安全地对整个表加锁。意向锁是表级锁，但它是用来表明事务在接下来的操作中，对表中行记录所计划使用的锁类型（共享或排他）。</p>
+<blockquote>
+<p>意向锁的作用</p>
+</blockquote>
+<ul>
+<li><strong>快速判断表锁兼容性</strong>：意向锁让数据库快速知道是否可以不检查每一行而对整个表加锁。例如，如果一个事务已经对某行加了排他锁，那么此时不能对整个表加共享锁，因为存在不兼容的行锁。</li>
+<li><strong>避免死锁</strong>：通过先获取意向锁再获取具体的行锁，可以减少死锁的可能性。</li>
+</ul>
+<blockquote>
+<p>意向锁的类型</p>
+</blockquote>
+<ul>
+<li><strong>意向共享锁（IS锁）</strong>：表明事务打算对表中的某些行加共享锁。在加共享锁之前，必须先获得表的IS锁。</li>
+<li><strong>意向排他锁（IX锁）</strong>：表明事务打算对表中的某些行加排他锁。在加排他锁之前，必须先获得表的IX锁。</li>
+</ul>
+<blockquote>
+<p>工作原理</p>
+</blockquote>
+<p>当事务想要对某个数据行进行操作（读取或修改）时，它会根据操作类型（是否会修改数据）尝试在该行上加共享锁或排他锁。但在此之前，事务必须先在整个表上获取对应的意向锁（IS或IX）。这样，当另一个事务尝试对整个表加锁时，它可以通过检查表上的意向锁来快速确定是否存在行级锁冲突，而不必检查表中每一行的锁状态。</p>
+<blockquote>
+<p>用户透明</p>
+</blockquote>
+<p>对于数据库的使用者而言，意向锁是完全透明的，即用户无需手动管理意向锁。InnoDB 存储引擎会自动管理意向锁的获取和释放，以确保数据库操作的一致性和并发性。</p>
+<p>总结来说，意向锁是一种表级锁，用于声明事务对表中行记录的加锁意图，它使得数据库能够在保持高并发的同时，有效地管理和调和行级锁和表级锁之间的关系。</p>
 <h3 id="6、explain的使用"><a href="#6、explain的使用" class="headerlink" title="6、explain的使用"></a>6、explain的使用</h3><p>在MySQL中，<code>EXPLAIN</code>是一个非常有用的工具，它用于分析MySQL如何执行SQL查询，特别是用于优化查询性能。</p>
 <p>使用<code>EXPLAIN</code>可以帮助你理解MySQL如何处理你的SQL语句，包括选择哪些索引，如何连接表，以及估计的行数等。</p>
 <blockquote>
