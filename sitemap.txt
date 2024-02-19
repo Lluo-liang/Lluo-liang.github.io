@@ -1,5 +1,5 @@
-https://varcel.luoqi.icu/2024/02/19/SpringBoot%E5%AD%A6%E4%B9%A0_%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9/
 https://varcel.luoqi.icu/about/index.html
+https://varcel.luoqi.icu/2024/02/19/SpringBoot%E5%AD%A6%E4%B9%A0_%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9/
 https://varcel.luoqi.icu/2024/02/08/Dubbo%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/
 https://varcel.luoqi.icu/2024/02/01/Java%E5%AD%A6%E4%B9%A0%E7%9A%84%E8%BD%BB%E6%9D%BE%E4%B9%8B%E6%97%85-%E4%BA%8C%E5%91%A8%E7%9B%AE/
 https://varcel.luoqi.icu/2024/01/29/MySQL%E5%AD%A6%E4%B9%A0_%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B4%A2%E5%BC%95/
@@ -177,8 +177,8 @@ https://varcel.luoqi.icu/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/
 https://varcel.luoqi.icu/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/NoSQL/
 https://varcel.luoqi.icu/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/Oracle/
 https://varcel.luoqi.icu/categories/%E6%A1%86%E6%9E%B6/SpringBoot/
-https://varcel.luoqi.icu/categories/%E6%A1%86%E6%9E%B6/Spring/
 https://varcel.luoqi.icu/categories/Diary/
+https://varcel.luoqi.icu/categories/%E6%A1%86%E6%9E%B6/Spring/
 https://varcel.luoqi.icu/categories/%E6%A1%86%E6%9E%B6/MyBatis/
 https://varcel.luoqi.icu/categories/Game/
 https://varcel.luoqi.icu/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/MQ/

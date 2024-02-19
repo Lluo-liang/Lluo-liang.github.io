@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          25k 字
+          26k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          209 分钟
+          218 分钟
         
       </span>
     
@@ -327,7 +327,7 @@
 <h4 id="领域开发"><a href="#领域开发" class="headerlink" title="领域开发"></a>领域开发</h4><p>初步记录一下核心模块 Lottery 的实现</p>
 <p>下载一下上面的项目地址的项目，并本地打开。</p>
 <p>（项目运行）</p>
-<p>下面部分内容直接跳转至 第四章 阅读。</p>
+<p>核心代码思路的部分内容直接跳转至 第四章 阅读。</p>
 <blockquote>
 <p>运营后台&#x2F;应用场景</p>
 </blockquote>
@@ -352,8 +352,11 @@
 <figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-meta"># http:<span class="hljs-comment">//39.96.73.167:7397/xxl-job-admin</span></span><br><span class="hljs-meta"># 账号：admin</span><br><span class="hljs-meta"># 密码：123456</span><br><span class="hljs-symbol">xxl:</span><br><span class="hljs-symbol">  job:</span><br><span class="hljs-symbol">    admin:</span><br>      <span class="hljs-meta">### 调度中心部署跟地址 [选填]：如调度中心集群部署存在多个地址则用逗号分隔。执行器将会使用该地址进行<span class="hljs-string">&quot;执行器心跳注册&quot;</span>和<span class="hljs-string">&quot;任务结果回调&quot;</span>；为空则关闭自动注册；</span><br><span class="hljs-symbol">      addresses:</span> http:<span class="hljs-comment">//39.96.73.167:7397/xxl-job-admin</span><br><span class="hljs-symbol">    executor:</span><br>      <span class="hljs-meta">### 执行器AppName [选填]：执行器心跳注册分组依据；为空则关闭自动注册</span><br><span class="hljs-symbol">      appname:</span> lottery-job<br>      <span class="hljs-meta">### 执行器注册 [选填]：优先使用该配置作为注册地址，为空时使用内嵌服务 ”IP:PORT“ 作为注册地址。从而更灵活的支持容器类型执行器动态IP和动态映射端口问题。</span><br><span class="hljs-symbol">      address:</span><br>      <span class="hljs-meta">### 执行器IP [选填]：默认为空表示自动获取IP，多网卡时可手动设置指定IP，该IP不会绑定Host仅作为通讯实用；地址信息用于 <span class="hljs-string">&quot;执行器注册&quot;</span> 和 <span class="hljs-string">&quot;调度中心请求并触发任务&quot;</span>；</span><br><span class="hljs-symbol">      ip:</span> <span class="hljs-number">3e62</span>f9.natappfree.cc<br>      <span class="hljs-meta">### 执行器端口号 [选填]：小于等于0则自动获取；默认端口为9999，单机部署多个执行器时，注意要配置不同执行器端口；</span><br><span class="hljs-symbol">      port:</span> <span class="hljs-number">9999</span><br><span class="hljs-symbol">      logpath:</span> /Users<span class="hljs-keyword">/fuzhengwei/</span>itstack<span class="hljs-keyword">/data/</span>applogs<span class="hljs-keyword">/xxl-job/</span>jobhandler<br><span class="hljs-symbol">      logretentiondays:</span> <span class="hljs-number">50</span><br><span class="hljs-symbol">    accessToken:</span> xdsl3ewi3al1oehxmo68pqxer<br></code></pre></td></tr></table></figure>
 
 <p>测试：测试一下远程调度的效果。</p>
-<h3 id="二、领域开发-Detail"><a href="#二、领域开发-Detail" class="headerlink" title="二、领域开发 Detail"></a>二、领域开发 Detail</h3><h4 id="2-1-跑通-RPC-广播调用模式"><a href="#2-1-跑通-RPC-广播调用模式" class="headerlink" title="2.1 跑通 RPC 广播调用模式"></a>2.1 跑通 RPC 广播调用模式</h4><p>这里使用了 Dubbo 作为广播远程RPC调用方式的组件，</p>
-<p>常见错误：</p>
+<h3 id="二、领域开发-Detail"><a href="#二、领域开发-Detail" class="headerlink" title="二、领域开发 Detail"></a>二、领域开发 Detail</h3><p>该项目主要的内容是 分布式核心功能服务系统  Lottery 模块中的相关功能实现，具体的功能你可以先看一下下述的内容，会有更好的理解。</p>
+<h4 id="2-1-跑通-RPC-广播调用模式"><a href="#2-1-跑通-RPC-广播调用模式" class="headerlink" title="2.1 跑通 RPC 广播调用模式"></a>2.1 跑通 RPC 广播调用模式</h4><p>Lottery 提供了一个 RPC 接口调用的方式，其他服务可以通过 Dubbo 这个组件进行调用该项目下对外开放的接口。（RPC 方式）</p>
+<p>这里使用了 Dubbo 作为广播远程RPC调用方式的组件，Dubbo 的基础使用可以看另外一个文章 [[Dubbo基础使用]]</p>
+<p>DEBUG： Dubbo 的学习使用需要再看一下（但不是目前阶段的核心，先看一下这个项目主要的实现思路和学习的点，整合一下到简历面试准备中，后续有空再学习 dubbo 并且专研一下）</p>
+<p>使用的时候会有一些常见错误，需要注意一下：</p>
 <ul>
 <li>Dubbo 接口无论是入参、出参，以及参数中的包括的对象，都必须 implements Serializable</li>
 <li>Dubbo 接口实现需要使用 <code>@org.apache.dubbo.config.annotation.Service</code> 不要用 Spring 的 Service</li>
@@ -366,6 +369,17 @@
 <li>在 dependencies 会包含所有需要用到的 SpringBoot 配置，也会包括对其他各个模块的引入。</li>
 <li>在 build 构建配置上还会看到一些关于测试包的处理，比如这里包括了资源的引入也可以包括构建时候跳过测试包的配置。</li>
 </ul>
+<hr>
+<p>直接看一下这个项目的 RPC 模块</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402200115155.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>上述代码目录中定义了一个 activity 活动领域，其中这个 rpc 模块主要还是定义了一下接口；</p>
+<p>具体实现是在 interface 模块下，在该模块下，是引入了 dubbo 的相关依赖，相关配置也是在该模块下进行定义的；</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402200118158.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>并且在 interface 模块下的 test 目录下是写了一下对应的 RPC 服务调用测试类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RunWith(SpringRunner.class)</span>  <br><span class="hljs-meta">@SpringBootTest</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LotteryActivityBoothTest</span> &#123;  <br>  <br>    <span class="hljs-keyword">private</span> <span class="hljs-type">Logger</span> <span class="hljs-variable">logger</span> <span class="hljs-operator">=</span> LoggerFactory.getLogger(LotteryActivityBoothTest.class);  <br>  <br>    <span class="hljs-meta">@Resource</span>  <br>    <span class="hljs-keyword">private</span> ILotteryActivityBooth lotteryActivityBooth;  <br>  <br>    <span class="hljs-meta">@Test</span>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test_doDraw</span><span class="hljs-params">()</span> &#123;  <br>        <span class="hljs-type">DrawReq</span> <span class="hljs-variable">drawReq</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DrawReq</span>();  <br>        drawReq.setuId(<span class="hljs-string">&quot;xiaofuge&quot;</span>);  <br>        drawReq.setActivityId(<span class="hljs-number">100001L</span>);  <br>        <span class="hljs-type">DrawRes</span> <span class="hljs-variable">drawRes</span> <span class="hljs-operator">=</span> lotteryActivityBooth.doDraw(drawReq);  <br>        logger.info(<span class="hljs-string">&quot;请求参数：&#123;&#125;&quot;</span>, JSON.toJSONString(drawReq));  <br>        logger.info(<span class="hljs-string">&quot;测试结果：&#123;&#125;&quot;</span>, JSON.toJSONString(drawRes));  <br>  <br>    &#125;<br><br>......<br></code></pre></td></tr></table></figure>
+
+
+<p>下述是部分文档的内容</p>
 <blockquote>
 <p>操作示例：</p>
 </blockquote>
@@ -415,8 +429,10 @@
 <blockquote>
 <p>总结一下相关内容</p>
 </blockquote>
-<p>这个 Dubbo 主要还算节点的配置，然后通过 @Service 注解配置来实现相关接口的调用，这里大概是服务对外提供了一个接口，然后其他服务通过访问这个接口来进行调用。</p>
-<h4 id="2-2-抽奖活动策略库表设计"><a href="#2-2-抽奖活动策略库表设计" class="headerlink" title="2.2 抽奖活动策略库表设计"></a>2.2 抽奖活动策略库表设计</h4><p>大概看一下这个表的设计</p>
+<p>这个 Dubbo 主要还是节点的配置，然后通过 @Service 注解配置来实现相关接口的调用，这里大概是服务对外提供了一个接口，然后其他服务通过访问这个接口来进行调用。</p>
+<h4 id="2-2-抽奖活动策略库表设计"><a href="#2-2-抽奖活动策略库表设计" class="headerlink" title="2.2 抽奖活动策略库表设计"></a>2.2 抽奖活动策略库表设计</h4><p>通过 Dubbo 服务提供了第三方服务调用接口，我们再看一下具体的抽奖策略等是如何实现的；</p>
+<p>下面是抽奖活动策略的表如何设计：</p>
+<p>大概看一下这个表的设计</p>
 <ul>
 <li>活动配置</li>
 <li>策略配置</li>
@@ -466,6 +482,7 @@
 <li>to be contined….</li>
 </ul>
 <hr>
+<p>（熟悉一下 DDD 架构）</p>
 <p>关于 DDD 架构的再一次说明，一般我们使用 MVC 架构是使用 dao、service、control、domain 的这种结构，然后 domain 下面存放 pojo 类。</p>
 <p>在 DDD 架构中，有所不同的是，它不会将多个 pojo 类放到同一个 domain 下，而是不同的领域中进行划分，一个领域一个 domain ，其中再存放 model、repository、service 等；然后另外一个领域再使用一个 domain 的这种结构。</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240204214552.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
@@ -645,6 +662,7 @@
 <li>活动的创建操作主要包括：添加活动配置、添加奖品配置、添加策略配置、添加策略明细配置，这些都是在同一个注解事务配置下进行处理 <code>@Transactional(rollbackFor = Exception.class)</code></li>
 <li>这里需要注意一点，奖品配置和策略配置都是集合形式的，这里使用了 Mybatis 的一次插入多条数据配置。_ 如果之前没用过，可以注意下使用方式_</li>
 </ul>
+<p>等一下去看一下相关面试相关内容  </p>
 <h4 id="模板模式"><a href="#模板模式" class="headerlink" title="模板模式"></a>模板模式</h4><p>待看一下代码，具体分析一下 to be contined….</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240204221652.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h3 id="三、项目运行"><a href="#三、项目运行" class="headerlink" title="三、项目运行"></a>三、项目运行</h3><p>打开 分库分表路由组件 项目，并在终端输入：<code>mvn install -X</code></p>
