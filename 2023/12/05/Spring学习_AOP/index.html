@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          729 字
+          967 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          7 分钟
+          9 分钟
         
       </span>
     
@@ -320,6 +320,14 @@
 <li>对于未实现接口的对象，使用Cglib生成被代理对象的子类。</li>
 </ul>
 <p>Spring AOP还集成了AspectJ，AspectJ是Java生态系统中最完整的AOP框架，拥有更多功能，特别在切面较多的情况下，选择AspectJ相比Spring AOP更为高效。</p>
+<hr>
+<p>Spring的AOP（面向切面编程）允许开发者定义横切关注点（如日志、事务管理等），这些关注点通常与业务逻辑的主流程解耦，可以跨越应用的多个点。AOP通过在运行时动态地将代码注入到指定位置来实现这一点，而这正是通过“代理”完成的。</p>
+<p>实现AOP的方式主要有两种：</p>
+<ol>
+<li><strong>JDK动态代理</strong>：适用于那些实现了接口的对象。它通过反射机制在运行时创建代理对象，将横切逻辑织入到这些对象中。</li>
+<li><strong>CGLIB代理</strong>：适用于没有实现接口的对象。它通过底层的字节码技术生成被代理对象的子类，并在子类中注入横切逻辑。</li>
+</ol>
+<hr>
 <p>to be contined…..</p>
 <hr>
 <p>参考</p>

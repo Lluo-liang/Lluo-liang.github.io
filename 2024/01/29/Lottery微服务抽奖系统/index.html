@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          15k 字
+          16k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          124 分钟
+          134 分钟
         
       </span>
     
@@ -738,7 +738,39 @@
 <li>transactionTemplate.execute 是编程式事务，用的就是路由中间件提供的事务对象，通过这样的方式也可以更加方便的处理细节的回滚，而不需要抛异常处理。</li>
 </ul>
 <h4 id="2-10-在应用层编排抽奖过程"><a href="#2-10-在应用层编排抽奖过程" class="headerlink" title="2.10 在应用层编排抽奖过程"></a>2.10 在应用层编排抽奖过程</h4><p>这个过程的业务主要包括了：对活动的领取、对抽奖的操作、对中奖结果的存放，以及如何处理发奖，对于发奖流程我们设计为MQ触发，后续再补全这部分内容。</p>
-<h3 id="记录-Records"><a href="#记录-Records" class="headerlink" title="记录 Records"></a>记录 Records</h3><p>一些问题（待整理）</p>
+<p>流程编排是指在软件开发中，通过预定义和管理业务流程中的各个步骤或任务来优化和自动化业务操作的过程。它涉及将各个操作按照特定顺序组织起来，以确保业务流程按照既定的规则高效、一致地执行。使用流程编排，开发者可以通过图形界面或编码方式定义业务逻辑，将复杂的业务流程简化为可管理和可监控的单元。</p>
+<p>使用方法:</p>
+<ol>
+<li>定义任务和状态: 如在示例中，为抽奖活动的参与表添加状态字段（state）和策略ID（strategy_id），用于跟踪活动单的使用状态和处理领取后抽奖失败的情况。</li>
+<li>创建流程编排逻辑: 在lottery-application模块下新增process包，用于封装领域功能，通过流程编排工具可视化定义业务流程（如抽奖活动的领取、执行、结果存储等）。</li>
+<li>实现具体业务逻辑: 如抽奖流程的实现（ActivityProcessImpl），包括领取活动、执行抽奖、结果落库等步骤，通过编码实现各步骤的具体逻辑。</li>
+<li>测试和验证: 通过单元测试（如ActivityProcessTest）验证流程编排的正确性，包括活动状态、时间、库存限制等业务规则的处理。</li>
+</ol>
+<p>流程编排的优点包括提高业务流程的透明度、减少重复代码、易于监控和调试以及支持复杂业务逻辑的灵活实现。通过引入MQ、Worker等技术，还可以实现异步处理和解耦，进一步提升系统的可扩展性和性能。</p>
+<h4 id="2-11-规则引擎量化人群参与活动"><a href="#2-11-规则引擎量化人群参与活动" class="headerlink" title="2.11 规则引擎量化人群参与活动"></a>2.11 规则引擎量化人群参与活动</h4><p>这块的功能主要是用于用户在参加活动前的一个操作：需要做一层规则引擎过滤。</p>
+<p>具体如何实现：</p>
+<p>to be contined….</p>
+<h4 id="2-12-门面接口封装和对象转换"><a href="#2-12-门面接口封装和对象转换" class="headerlink" title="2.12 门面接口封装和对象转换"></a>2.12 门面接口封装和对象转换</h4><p>该内容的内容主要是对于抽奖活动的接口封装，对外提供抽奖服务(开发 lottery-interfaces 接口层)</p>
+<blockquote>
+<p>对象转换</p>
+</blockquote>
+<p>当前比较流行的一些对象转换的方式</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402210945593.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>对比分析：</p>
+<ul>
+<li><code>BeanUtils.copyProperties</code> 是大家代码里最常出现的工具类，但只要你不把它用错成 <code>Apache</code> 包下的，而是使用 Spring 提供的，就基本还不会对性能造成多大影响。</li>
+<li>但如果说性能更好，可替代手动<code>get、set</code>的，还是 <code>MapStruct</code> 更好用，因为它本身就是在编译期生成<code>get、set</code>代码，和我们写<code>get、set</code>一样。</li>
+<li>其他一些组件包主要基于 <code>AOP</code>、<code>ASM</code>、<code>CGlib</code>，的技术手段实现的，所以也会有相应的性能损耗</li>
+</ul>
+<hr>
+<p>这两部分内容仍然是代码层面的一个优化，需要具体代码实现看一下整个过程。</p>
+<h4 id="2-13-搭建MQ消息组件Kafka服务环境"><a href="#2-13-搭建MQ消息组件Kafka服务环境" class="headerlink" title="2.13 搭建MQ消息组件Kafka服务环境"></a>2.13 搭建MQ消息组件Kafka服务环境</h4><p>这里的 kafka 使用版本是 kafka_2.13-2.8.0.tgz</p>
+<p>基础的使用可以稍微看一下</p>
+<h4 id="2-14-使用-MQ-解耦抽奖发货流程"><a href="#2-14-使用-MQ-解耦抽奖发货流程" class="headerlink" title="2.14 使用 MQ 解耦抽奖发货流程"></a>2.14 使用 MQ 解耦抽奖发货流程</h4><p>发货流程：用户抽奖完成后，进行奖品的发货</p>
+<p>过程包括：消息的发送、库表中状态的更新、消息的接收消费、发奖状态的处理等。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402211403848.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="2-15-引入-xxl-job-处理活动状态扫描"><a href="#2-15-引入-xxl-job-处理活动状态扫描" class="headerlink" title="2.15 引入 xxl job 处理活动状态扫描"></a>2.15 引入 xxl job 处理活动状态扫描</h4><p>后续这些内容需要项目跑起来才有点可能 to be contined…</p>
+<h4 id="2-16-扫描库表补偿发货单-MQ-消息"><a href="#2-16-扫描库表补偿发货单-MQ-消息" class="headerlink" title="2.16  扫描库表补偿发货单 MQ 消息"></a>2.16  扫描库表补偿发货单 MQ 消息</h4><h4 id="2-17-设计滑动库存分布式锁处理活动秒杀"><a href="#2-17-设计滑动库存分布式锁处理活动秒杀" class="headerlink" title="2.17 设计滑动库存分布式锁处理活动秒杀"></a>2.17 设计滑动库存分布式锁处理活动秒杀</h4><h3 id="记录-Records"><a href="#记录-Records" class="headerlink" title="记录 Records"></a>记录 Records</h3><p>一些问题（待整理）</p>
 <ul>
 <li><ol>
 <li>怎么看待 RPC 远程调用方式，和 HTTP 方式调用有什么区别。</li>

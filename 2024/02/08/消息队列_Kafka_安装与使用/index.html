@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          240 字
+          1.4k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          3 分钟
+          12 分钟
         
       </span>
     
@@ -286,7 +286,9 @@
 <p>安装操作： <a target="_blank" rel="noopener" href="https://www.cnblogs.com/paopaoT/p/17461562.html">https://www.cnblogs.com/paopaoT/p/17461562.html</a></p>
 <p>这里跳过上述操作，直接使用 docker 安装 kafka </p>
 <p>to be contined….</p>
-
+<hr>
+<p>下述内容是 gpt4 中的部分内容，待具体实践一下：kafka 服务（docker 中）的一个搭建过程（centos系统）</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-meta"># 1. 安装Docker</span><br>sudo yum update -y<br>sudo yum install -y docker<br><br><span class="hljs-meta"># 2. 启动Docker服务</span><br>sudo systemctl start docker<br>sudo systemctl enable docker<br><br><span class="hljs-meta"># 3. 使用Docker拉取Kafka镜像</span><br><span class="hljs-meta"># 这里使用wurstmeister/kafka和wurstmeister/zookeeper镜像作为示例</span><br>docker pull wurstmeister/zookeeper<br>docker pull wurstmeister/kafka<br><br><span class="hljs-meta"># 4. 创建一个docker-compose.yml文件来配置Kafka和Zookeeper服务</span><br><span class="hljs-meta"># 创建文件并编辑</span><br>touch docker-compose.yml<br>nano docker-compose.yml<br><br><span class="hljs-meta"># docker-compose.yml内容如下:</span><br><span class="hljs-symbol">version:</span> <span class="hljs-string">&#x27;2&#x27;</span><br><span class="hljs-symbol">services:</span><br><span class="hljs-symbol">  zookeeper:</span><br><span class="hljs-symbol">    image:</span> wurstmeister/zookeeper<br><span class="hljs-symbol">    ports:</span><br>      - <span class="hljs-string">&quot;2181:2181&quot;</span><br><span class="hljs-symbol">  kafka:</span><br><span class="hljs-symbol">    image:</span> wurstmeister/kafka<br><span class="hljs-symbol">    ports:</span><br>      - <span class="hljs-string">&quot;9092:9092&quot;</span><br><span class="hljs-symbol">    environment:</span><br><span class="hljs-symbol">      KAFKA_ADVERTISED_HOST_NAME:</span> <span class="hljs-params">&lt;YOUR_HOST_IP&gt;</span><br><span class="hljs-symbol">      KAFKA_ZOOKEEPER_CONNECT:</span> zookeeper:<span class="hljs-number">2181</span><br><span class="hljs-symbol">    volumes:</span><br>      - <span class="hljs-keyword">/var/</span>run/docker.sock:<span class="hljs-keyword">/var/</span>run/docker.sock<br><br><span class="hljs-meta"># 注意: 将&lt;YOUR_HOST_IP&gt;替换成您的宿主机IP地址</span><br><br><span class="hljs-meta"># 5. 启动Zookeeper和Kafka容器</span><br>docker-compose up -d<br><br><span class="hljs-meta"># 验证Kafka和Zookeeper是否正常运行</span><br>docker ps<br><br><span class="hljs-meta"># 6. 创建一个Kafka主题进行测试（可选）</span><br><span class="hljs-meta"># 进入Kafka容器</span><br>docker exec -it <span class="hljs-params">&lt;KAFKA_CONTAINER_ID&gt;</span> bash<br><br><span class="hljs-meta"># 创建主题</span><br>kafka-topics.sh --create --zookeeper zookeeper:<span class="hljs-number">2181</span> --replication-factor <span class="hljs-number">1</span> --partitions <span class="hljs-number">1</span> --topic testTopic<br><br><span class="hljs-meta"># 列出所有主题来验证创建成功</span><br>kafka-topics.sh --list --zookeeper zookeeper:<span class="hljs-number">2181</span><br><br><span class="hljs-meta"># 退出容器</span><br>exit<br></code></pre></td></tr></table></figure>
                 
               </div>
             
