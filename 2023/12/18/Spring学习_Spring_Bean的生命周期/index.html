@@ -227,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          20k 字
+          21k 字
         
       </span>
     
@@ -238,7 +238,7 @@
         
         
         
-          164 分钟
+          173 分钟
         
       </span>
     
@@ -364,22 +364,31 @@
 </ul>
 <p>通过实现<code>BeanPostProcessor</code>接口并注册为Spring容器的Bean，可以对所有Bean的实例化和初始化过程进行干预。</p>
 <p>可以理解  <code>InstantiationAwareBeanPostProcessor</code> 接口方法是 作为 实例化阶段的”产前产后护理”；<code>BeanPostProcessor</code> 是 初始化阶段的 “关键调整和增强”。</p>
-<p>具体的一个关系看下图（比较清晰）：</p>
+<p>具体的一个关系看下图：</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312150342853.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>to be contined….</p>
-<h3 id="三、源码解析"><a href="#三、源码解析" class="headerlink" title="三、源码解析"></a>三、源码解析</h3><h5 id="源码内容分析（容器级别方法）"><a href="#源码内容分析（容器级别方法）" class="headerlink" title="源码内容分析（容器级别方法）"></a>源码内容分析（容器级别方法）</h5><p>需要去了解Bean的生命周期，这个源码对应的方法是必须去了解和看的。</p>
-<h5 id="InstantiationAwareBeanPostProcessor-接口分析"><a href="#InstantiationAwareBeanPostProcessor-接口分析" class="headerlink" title="InstantiationAwareBeanPostProcessor 接口分析"></a>InstantiationAwareBeanPostProcessor 接口分析</h5><p>查看源码，可以看到 InstantiationAwareBeanPostProcessor 接口是继承  BeanPostProcessor</p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-symbol">InstantiationAwareBeanPostProcessor</span> <span class="hljs-symbol">extends</span> <span class="hljs-symbol">BeanPostProcessor</span><br></code></pre></td></tr></table></figure>
-
 <blockquote>
-<p>BeanPostProcessor</p>
+<p>补充一点关于<code>InstantiationAwareBeanPostProcessor</code>的描述以确保概念的完整性和准确性。</p>
 </blockquote>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">BeanPostProcessor</span> &#123;  <br>    <span class="hljs-meta">@Nullable</span>  <br>    <span class="hljs-keyword">default</span> <span class="hljs-title class_">Object</span> <span class="hljs-title function_">postProcessBeforeInitialization</span>(<span class="hljs-title class_">Object</span> bean, <span class="hljs-title class_">String</span> beanName) throws <span class="hljs-title class_">BeansException</span> &#123;  <br>        <span class="hljs-keyword">return</span> bean;  <br>    &#125;  <br>  <br>    <span class="hljs-meta">@Nullable</span>  <br>    <span class="hljs-keyword">default</span> <span class="hljs-title class_">Object</span> <span class="hljs-title function_">postProcessAfterInitialization</span>(<span class="hljs-title class_">Object</span> bean, <span class="hljs-title class_">String</span> beanName) throws <span class="hljs-title class_">BeansException</span> &#123;  <br>        <span class="hljs-keyword">return</span> bean;  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
+<p><code>BeanPostProcessor</code>接口和<code>InstantiationAwareBeanPostProcessor</code>接口的使用:</p>
+<ul>
+<li>**<code>BeanPostProcessor</code>**：允许在Bean的初始化前后执行自定义逻辑。这包括：<ul>
+<li><code>postProcessBeforeInitialization</code>: 在Bean初始化之前调用（如调用<code>@PostConstruct</code>注解的方法、<code>InitializingBean</code>的<code>afterPropertiesSet</code>方法或自定义的init-method之前）。</li>
+<li><code>postProcessAfterInitialization</code>: 在Bean初始化之后调用（如上述初始化方法执行之后）。</li>
+</ul>
+</li>
+<li>**<code>InstantiationAwareBeanPostProcessor</code>**：是<code>BeanPostProcessor</code>的一个扩展，提供了更多控制，包括：<ul>
+<li><code>postProcessBeforeInstantiation</code>: 在Bean实例化之前调用，允许返回一个代理对象来代替真正的实例。</li>
+<li><code>postProcessAfterInstantiation</code>: 在Bean实例化之后、设置属性之前调用，允许对Bean实例进行额外的处理。</li>
+</ul>
+</li>
+</ul>
+<p>通过这些接口，Spring允许开发者在Bean生命周期的关键阶段介入，提供了极高的灵活性来定制Bean的行为，比如通过代理模式增强Bean、修改Bean属性、注入额外的依赖等。</p>
+<p>这些特性使得Spring非常适合于企业级应用的开发，因为它们允许面向切面的编程（AOP）、事务管理等高级功能的实现。</p>
+<p>示例：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyBeanPostProcessor</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">BeanPostProcessor</span> &#123;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-title class_">Object</span> <span class="hljs-title function_">postProcessBeforeInitialization</span>(<span class="hljs-title class_">Object</span> bean, <span class="hljs-title class_">String</span> beanName) throws <span class="hljs-title class_">BeansException</span> &#123;<br>        <span class="hljs-comment">// 在初始化之前执行的逻辑</span><br>        <span class="hljs-keyword">return</span> bean;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-title class_">Object</span> <span class="hljs-title function_">postProcessAfterInitialization</span>(<span class="hljs-title class_">Object</span> bean, <span class="hljs-title class_">String</span> beanName) throws <span class="hljs-title class_">BeansException</span> &#123;<br>        <span class="hljs-comment">// 在初始化之后执行的逻辑</span><br>        <span class="hljs-keyword">return</span> bean;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>AbstractAutowireCapableBeanFactory#createBean</p>
-<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-comment">// 创建Bean实例的方法，接收Bean的名称、RootBeanDefinition（Bean的定义信息）和参数数组</span><br>protected Object createBean(<span class="hljs-keyword">String</span> beanName, RootBeanDefinition mbd, <span class="hljs-meta">@Nullable Object[] args) throws BeanCreationException &#123;</span><br>    <span class="hljs-comment">// 如果启用了跟踪日志，输出创建Bean实例的跟踪信息</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.logger.isTraceEnabled()) &#123;<br>        <span class="hljs-built_in">this</span>.logger.<span class="hljs-built_in">trace</span>(<span class="hljs-string">&quot;Creating instance of bean &#x27;&quot;</span> + beanName + <span class="hljs-string">&quot;&#x27;&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">// 解析Bean的类信息，如果已经有解析过的类信息，使用之前解析得到的类信息</span><br>    RootBeanDefinition mbdToUse = mbd;<br>    Class&lt;?&gt; resolvedClass = <span class="hljs-built_in">this</span>.resolveBeanClass(mbd, beanName, <span class="hljs-keyword">new</span> <span class="hljs-type">Class</span>[<span class="hljs-number">0</span>]);<br>    <span class="hljs-comment">// 如果解析得到的类信息不为空，且当前Bean的定义信息没有指定类信息，则更新Bean的定义信息</span><br>    <span class="hljs-keyword">if</span> (resolvedClass != <span class="hljs-literal">null</span> &amp;&amp; !mbd.hasBeanClass() &amp;&amp; mbd.getBeanClassName() != <span class="hljs-literal">null</span>) &#123;<br>        mbdToUse = <span class="hljs-keyword">new</span> <span class="hljs-type">RootBeanDefinition</span>(mbd);<br>        mbdToUse.setBeanClass(resolvedClass);<br>    &#125;<br><br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-comment">// 准备处理方法的覆盖，即准备解析方法注解</span><br>        mbdToUse.prepareMethodOverrides();<br>    &#125; <span class="hljs-keyword">catch</span> (BeanDefinitionValidationException var9) &#123;<br>        <span class="hljs-comment">// 如果方法注解解析失败，抛出BeanDefinitionStoreException异常</span><br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-type">BeanDefinitionStoreException</span>(mbdToUse.getResourceDescription(), beanName, <span class="hljs-string">&quot;Validation of method overrides failed&quot;</span>, var9);<br>    &#125;<br><br>    Object beanInstance;<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-comment">// 在实例化Bean之前，尝试调用BeanPostProcessor的beforeInstantiation方法</span><br>        beanInstance = <span class="hljs-built_in">this</span>.resolveBeforeInstantiation(beanName, mbdToUse);<br>        <span class="hljs-comment">// 如果beforeInstantiation方法返回非空，表示已经创建了Bean实例，直接返回该实例</span><br>        <span class="hljs-keyword">if</span> (beanInstance != <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-keyword">return</span> beanInstance;<br>        &#125;<br>    &#125; <span class="hljs-keyword">catch</span> (Throwable var10) &#123;<br>        <span class="hljs-comment">// 如果beforeInstantiation方法抛出异常，抛出BeanCreationException异常</span><br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-type">BeanCreationException</span>(mbdToUse.getResourceDescription(), beanName, <span class="hljs-string">&quot;BeanPostProcessor before instantiation of bean failed&quot;</span>, var10);<br>    &#125;<br><br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-comment">// 执行真正的Bean创建逻辑，包括实例化、属性注入等过程</span><br>        beanInstance = <span class="hljs-built_in">this</span>.doCreateBean(beanName, mbdToUse, args);<br>        <span class="hljs-comment">// 如果启用了跟踪日志，输出Bean实例创建完成的跟踪信息</span><br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.logger.isTraceEnabled()) &#123;<br>            <span class="hljs-built_in">this</span>.logger.<span class="hljs-built_in">trace</span>(<span class="hljs-string">&quot;Finished creating instance of bean &#x27;&quot;</span> + beanName + <span class="hljs-string">&quot;&#x27;&quot;</span>);<br>        &#125;<br>        <span class="hljs-comment">// 返回创建的Bean实例</span><br>        <span class="hljs-keyword">return</span> beanInstance;<br>    &#125; <span class="hljs-keyword">catch</span> (ImplicitlyAppearedSingletonException | BeanCreationException var7) &#123;<br>        <span class="hljs-comment">// 如果Bean创建过程中出现了异常，抛出异常</span><br>        <span class="hljs-keyword">throw</span> var7;<br>    &#125; <span class="hljs-keyword">catch</span> (Throwable var8) &#123;<br>        <span class="hljs-comment">// 如果Bean创建过程中出现了未捕获的异常，抛出BeanCreationException异常</span><br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-type">BeanCreationException</span>(mbdToUse.getResourceDescription(), beanName, <span class="hljs-string">&quot;Unexpected exception during bean creation&quot;</span>, var8);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-
+<p>通过注册上述<code>BeanPostProcessor</code>的实现类到Spring容器，可以实现对所有Bean实例化和初始化过程的自定义干预。</p>
+<p>这不仅提高了代码的可维护性和可扩展性，也为实现复杂的业务逻辑提供了便利。</p>
 <h4 id="2-3-工厂后处理器方法"><a href="#2-3-工厂后处理器方法" class="headerlink" title="2.3 工厂后处理器方法"></a>2.3 <strong>工厂后处理器方法</strong></h4><p><strong>BeanFactoryProcessor 一系列接口</strong></p>
 <p>包括 AspectJWeavingEnabler、CustomAutowireConfigurer、ConfigurationClassPostProcessor 等。</p>
 <p>这些都是 Spring 框架中已经实现好的 BeanFactoryPostProcessor，用来实现某些特定的功能</p>
@@ -427,7 +436,7 @@
 <p>Aware 类型的接口</p>
 <p>Aware 类型的接口的作用就是让我们能够拿到 Spring 容器中的一些资源。</p>
 <p>基本都能够见名知意，Aware 之前的名字就是可以拿到什么资源，例如 BeanNameAware 可以拿到 BeanName，以此类推。</p>
-<h3 id="3、Spring-Bean-详细生命周期"><a href="#3、Spring-Bean-详细生命周期" class="headerlink" title="3、Spring Bean 详细生命周期"></a>3、Spring Bean 详细生命周期</h3><blockquote>
+<h3 id="三、Spring-Bean-详细生命周期"><a href="#三、Spring-Bean-详细生命周期" class="headerlink" title="三、Spring Bean 详细生命周期"></a>三、Spring Bean 详细生命周期</h3><blockquote>
 <p>Bean 的生命周期</p>
 </blockquote>
 <ul>
@@ -445,7 +454,30 @@
 <li>当要销毁 Bean 的时候，如果 Bean 实现了 DisposableBean 接口，执行 destroy() 方法。</li>
 <li>当要销毁 Bean 的时候，如果 Bean 在配置文件中的定义包含 destroy-method 属性，执行指定的方法。</li>
 </ul>
-<h3 id="4、Bean-创建流程入口-refresh"><a href="#4、Bean-创建流程入口-refresh" class="headerlink" title="4、Bean 创建流程入口 refresh()"></a>4、Bean 创建流程入口 refresh()</h3><h4 id="相关概念回顾"><a href="#相关概念回顾" class="headerlink" title="相关概念回顾"></a>相关概念回顾</h4><h5 id="Spring上下文"><a href="#Spring上下文" class="headerlink" title="Spring上下文"></a>Spring上下文</h5><p>从代码级别来说，就是指Spring Context</p>
+<h3 id="四、源码解析"><a href="#四、源码解析" class="headerlink" title="四、源码解析"></a>四、源码解析</h3><p>这部分内容待后续完善分析。</p>
+<blockquote>
+<p>源码内容分析（容器级别方法）</p>
+</blockquote>
+<p>需要去了解Bean的生命周期，这个源码对应的方法是必须去了解和看的。</p>
+<blockquote>
+<p>InstantiationAwareBeanPostProcessor 接口分析</p>
+</blockquote>
+<p>查看源码，可以看到 InstantiationAwareBeanPostProcessor 接口是继承  BeanPostProcessor</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-symbol">InstantiationAwareBeanPostProcessor</span> <span class="hljs-symbol">extends</span> <span class="hljs-symbol">BeanPostProcessor</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>BeanPostProcessor</p>
+</blockquote>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">BeanPostProcessor</span> &#123;  <br>    <span class="hljs-meta">@Nullable</span>  <br>    <span class="hljs-keyword">default</span> <span class="hljs-title class_">Object</span> <span class="hljs-title function_">postProcessBeforeInitialization</span>(<span class="hljs-title class_">Object</span> bean, <span class="hljs-title class_">String</span> beanName) throws <span class="hljs-title class_">BeansException</span> &#123;  <br>        <span class="hljs-keyword">return</span> bean;  <br>    &#125;  <br>  <br>    <span class="hljs-meta">@Nullable</span>  <br>    <span class="hljs-keyword">default</span> <span class="hljs-title class_">Object</span> <span class="hljs-title function_">postProcessAfterInitialization</span>(<span class="hljs-title class_">Object</span> bean, <span class="hljs-title class_">String</span> beanName) throws <span class="hljs-title class_">BeansException</span> &#123;  <br>        <span class="hljs-keyword">return</span> bean;  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>AbstractAutowireCapableBeanFactory#createBean</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-comment">// 创建Bean实例的方法，接收Bean的名称、RootBeanDefinition（Bean的定义信息）和参数数组</span><br>protected Object createBean(<span class="hljs-keyword">String</span> beanName, RootBeanDefinition mbd, <span class="hljs-meta">@Nullable Object[] args) throws BeanCreationException &#123;</span><br>    <span class="hljs-comment">// 如果启用了跟踪日志，输出创建Bean实例的跟踪信息</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.logger.isTraceEnabled()) &#123;<br>        <span class="hljs-built_in">this</span>.logger.<span class="hljs-built_in">trace</span>(<span class="hljs-string">&quot;Creating instance of bean &#x27;&quot;</span> + beanName + <span class="hljs-string">&quot;&#x27;&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">// 解析Bean的类信息，如果已经有解析过的类信息，使用之前解析得到的类信息</span><br>    RootBeanDefinition mbdToUse = mbd;<br>    Class&lt;?&gt; resolvedClass = <span class="hljs-built_in">this</span>.resolveBeanClass(mbd, beanName, <span class="hljs-keyword">new</span> <span class="hljs-type">Class</span>[<span class="hljs-number">0</span>]);<br>    <span class="hljs-comment">// 如果解析得到的类信息不为空，且当前Bean的定义信息没有指定类信息，则更新Bean的定义信息</span><br>    <span class="hljs-keyword">if</span> (resolvedClass != <span class="hljs-literal">null</span> &amp;&amp; !mbd.hasBeanClass() &amp;&amp; mbd.getBeanClassName() != <span class="hljs-literal">null</span>) &#123;<br>        mbdToUse = <span class="hljs-keyword">new</span> <span class="hljs-type">RootBeanDefinition</span>(mbd);<br>        mbdToUse.setBeanClass(resolvedClass);<br>    &#125;<br><br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-comment">// 准备处理方法的覆盖，即准备解析方法注解</span><br>        mbdToUse.prepareMethodOverrides();<br>    &#125; <span class="hljs-keyword">catch</span> (BeanDefinitionValidationException var9) &#123;<br>        <span class="hljs-comment">// 如果方法注解解析失败，抛出BeanDefinitionStoreException异常</span><br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-type">BeanDefinitionStoreException</span>(mbdToUse.getResourceDescription(), beanName, <span class="hljs-string">&quot;Validation of method overrides failed&quot;</span>, var9);<br>    &#125;<br><br>    Object beanInstance;<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-comment">// 在实例化Bean之前，尝试调用BeanPostProcessor的beforeInstantiation方法</span><br>        beanInstance = <span class="hljs-built_in">this</span>.resolveBeforeInstantiation(beanName, mbdToUse);<br>        <span class="hljs-comment">// 如果beforeInstantiation方法返回非空，表示已经创建了Bean实例，直接返回该实例</span><br>        <span class="hljs-keyword">if</span> (beanInstance != <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-keyword">return</span> beanInstance;<br>        &#125;<br>    &#125; <span class="hljs-keyword">catch</span> (Throwable var10) &#123;<br>        <span class="hljs-comment">// 如果beforeInstantiation方法抛出异常，抛出BeanCreationException异常</span><br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-type">BeanCreationException</span>(mbdToUse.getResourceDescription(), beanName, <span class="hljs-string">&quot;BeanPostProcessor before instantiation of bean failed&quot;</span>, var10);<br>    &#125;<br><br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-comment">// 执行真正的Bean创建逻辑，包括实例化、属性注入等过程</span><br>        beanInstance = <span class="hljs-built_in">this</span>.doCreateBean(beanName, mbdToUse, args);<br>        <span class="hljs-comment">// 如果启用了跟踪日志，输出Bean实例创建完成的跟踪信息</span><br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.logger.isTraceEnabled()) &#123;<br>            <span class="hljs-built_in">this</span>.logger.<span class="hljs-built_in">trace</span>(<span class="hljs-string">&quot;Finished creating instance of bean &#x27;&quot;</span> + beanName + <span class="hljs-string">&quot;&#x27;&quot;</span>);<br>        &#125;<br>        <span class="hljs-comment">// 返回创建的Bean实例</span><br>        <span class="hljs-keyword">return</span> beanInstance;<br>    &#125; <span class="hljs-keyword">catch</span> (ImplicitlyAppearedSingletonException | BeanCreationException var7) &#123;<br>        <span class="hljs-comment">// 如果Bean创建过程中出现了异常，抛出异常</span><br>        <span class="hljs-keyword">throw</span> var7;<br>    &#125; <span class="hljs-keyword">catch</span> (Throwable var8) &#123;<br>        <span class="hljs-comment">// 如果Bean创建过程中出现了未捕获的异常，抛出BeanCreationException异常</span><br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-type">BeanCreationException</span>(mbdToUse.getResourceDescription(), beanName, <span class="hljs-string">&quot;Unexpected exception during bean creation&quot;</span>, var8);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="Bean-创建流程入口-refresh"><a href="#Bean-创建流程入口-refresh" class="headerlink" title="Bean 创建流程入口 refresh()"></a>Bean 创建流程入口 refresh()</h4><h4 id="相关概念回顾"><a href="#相关概念回顾" class="headerlink" title="相关概念回顾"></a>相关概念回顾</h4><h5 id="Spring上下文"><a href="#Spring上下文" class="headerlink" title="Spring上下文"></a>Spring上下文</h5><p>从代码级别来说，就是指Spring Context</p>
 <p>从源码级别，我们初始化Spring Context的时候，一堆的Spring组件围绕在一起，使其能够正常工作，这个状态就被称为Spring环境。</p>
 <h5 id="Spring-初始化操作"><a href="#Spring-初始化操作" class="headerlink" title="Spring 初始化操作"></a>Spring 初始化操作</h5><p>具体操作可以见下#ClassPathXmlApplicationContext 的构造方法哪里会被加载并使用</p>
 <p>使用前需要引入 spring-context 相关的依赖，初始化Bean可以通过注解的方式也可以通过xml的方式。</p>
@@ -518,8 +550,9 @@
 </li>
 </ul>
 <hr>
-<p>视频地址：  <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1584y1r7n6/">https://www.bilibili.com/video/BV1584y1r7n6/</a></p>
-<h4 id="Spring-Bean-的生命周期"><a href="#Spring-Bean-的生命周期" class="headerlink" title="Spring Bean 的生命周期"></a>Spring Bean 的生命周期</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231218215844.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="五、视频学习"><a href="#五、视频学习" class="headerlink" title="五、视频学习"></a>五、视频学习</h3><h4 id="Spring-Bean-的生命周期001"><a href="#Spring-Bean-的生命周期001" class="headerlink" title="Spring Bean 的生命周期001"></a>Spring Bean 的生命周期001</h4><p>视频地址：  <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1584y1r7n6/">https://www.bilibili.com/video/BV1584y1r7n6/</a></p>
+<p>作为部分内容学习和回顾。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231218215844.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>生产 →  使用  →  销毁</p>
 <h5 id="生产"><a href="#生产" class="headerlink" title="生产"></a>生产</h5><p>启动，准备容器&#x2F;环境等</p>
 <p>① 加载 Bean 定义（BeanDefinitions)</p>
@@ -559,8 +592,25 @@
 
 
 <hr>
-<h5 id="销毁操作"><a href="#销毁操作" class="headerlink" title="销毁操作"></a>销毁操作</h5><p>销毁操作<br>销毁前<br>    销毁之前会执行 postProcessBeforeDestruction “销毁前处理器“，这步会执行 Bean 中 @PreDestroy 注解的方法<br>容器销毁<br>    后续通过 destoryBeans 方法逐一“销毁”容器中的Bean，销毁的时候会执行 destroy 方法（通过registerDisposableBean方法注册的Bean，该接口只有一个方法 destroy。在Bean销毁的时候，Spring容器会调用这个方法。）<br>Bean自定义销毁方法<br>    “客户销毁方法”invokeCustomDestroyMethod; →  执行Bean上自定义的 destoryMethod 方法</p>
-<h3 id="5、Spring-Bean-生命周期流程图"><a href="#5、Spring-Bean-生命周期流程图" class="headerlink" title="5、Spring Bean 生命周期流程图"></a>5、<strong>Spring Bean 生命周期流程图</strong></h3><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312160247944.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h5 id="销毁操作"><a href="#销毁操作" class="headerlink" title="销毁操作"></a>销毁操作</h5><ul>
+<li>销毁操作<ul>
+<li>销毁前<ul>
+<li>销毁之前会执行 postProcessBeforeDestruction “销毁前处理器“，这步会执行 Bean 中 @PreDestroy 注解的方法</li>
+</ul>
+</li>
+<li>容器销毁<ul>
+<li>后续通过 destoryBeans 方法逐一“销毁”容器中的Bean，销毁的时候会执行 destroy 方法（通过registerDisposableBean方法注册的Bean，该接口只有一个方法 destroy。</li>
+<li>在Bean销毁的时候，Spring容器会调用这个方法。）</li>
+</ul>
+</li>
+<li>Bean自定义销毁方法<ul>
+<li>“客户销毁方法”invokeCustomDestroyMethod; →  执行Bean上自定义的 destoryMethod 方法</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h3><h4 id="Spring-Bean-生命周期流程图"><a href="#Spring-Bean-生命周期流程图" class="headerlink" title="Spring Bean 生命周期流程图"></a><strong>Spring Bean 生命周期流程图</strong></h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312160247944.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <hr>
 <p>参考</p>
 <ul>
