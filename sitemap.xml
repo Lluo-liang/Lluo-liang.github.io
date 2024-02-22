@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://varcel.luoqi.icu/2024/02/22/Spring%E5%AD%A6%E4%B9%A0_%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E5%AD%A6%E4%B9%A0/</loc>
+    <loc>https://varcel.luoqi.icu/about/index.html</loc>
     
     <lastmod>2024-02-22</lastmod>
     
@@ -11,7 +11,7 @@
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/about/index.html</loc>
+    <loc>https://varcel.luoqi.icu/2024/02/22/Spring%E5%AD%A6%E4%B9%A0_%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E5%AD%A6%E4%B9%A0/</loc>
     
     <lastmod>2024-02-22</lastmod>
     
@@ -1245,6 +1245,13 @@
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/MQ/</loc>
+    <lastmod>2024-02-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://varcel.luoqi.icu/tags/kafka/</loc>
     <lastmod>2024-02-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

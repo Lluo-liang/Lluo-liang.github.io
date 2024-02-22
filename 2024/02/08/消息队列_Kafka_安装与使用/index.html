@@ -30,6 +30,7 @@
 <meta property="article:modified_time" content="2024-02-08T19:02:07.000Z">
 <meta property="article:author" content="Luo QI">
 <meta property="article:tag" content="MQ">
+<meta property="article:tag" content="kafka">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/wallpaper1702453206266.jpg">
   
@@ -224,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.4k 字
+          1.9k 字
         
       </span>
     
@@ -235,7 +236,7 @@
         
         
         
-          12 分钟
+          16 分钟
         
       </span>
     
@@ -285,10 +286,43 @@
 <p>在 Kafka 2.8 之前，Kafka 其重度依赖于 Zookeeper</p>
 <p>安装操作： <a target="_blank" rel="noopener" href="https://www.cnblogs.com/paopaoT/p/17461562.html">https://www.cnblogs.com/paopaoT/p/17461562.html</a></p>
 <p>这里跳过上述操作，直接使用 docker 安装 kafka </p>
-<p>to be contined….</p>
-<hr>
-<p>下述内容是 gpt4 中的部分内容，待具体实践一下：kafka 服务（docker 中）的一个搭建过程（centos系统）</p>
-<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-meta"># 1. 安装Docker</span><br>sudo yum update -y<br>sudo yum install -y docker<br><br><span class="hljs-meta"># 2. 启动Docker服务</span><br>sudo systemctl start docker<br>sudo systemctl enable docker<br><br><span class="hljs-meta"># 3. 使用Docker拉取Kafka镜像</span><br><span class="hljs-meta"># 这里使用wurstmeister/kafka和wurstmeister/zookeeper镜像作为示例</span><br>docker pull wurstmeister/zookeeper<br>docker pull wurstmeister/kafka<br><br><span class="hljs-meta"># 4. 创建一个docker-compose.yml文件来配置Kafka和Zookeeper服务</span><br><span class="hljs-meta"># 创建文件并编辑</span><br>touch docker-compose.yml<br>nano docker-compose.yml<br><br><span class="hljs-meta"># docker-compose.yml内容如下:</span><br><span class="hljs-symbol">version:</span> <span class="hljs-string">&#x27;2&#x27;</span><br><span class="hljs-symbol">services:</span><br><span class="hljs-symbol">  zookeeper:</span><br><span class="hljs-symbol">    image:</span> wurstmeister/zookeeper<br><span class="hljs-symbol">    ports:</span><br>      - <span class="hljs-string">&quot;2181:2181&quot;</span><br><span class="hljs-symbol">  kafka:</span><br><span class="hljs-symbol">    image:</span> wurstmeister/kafka<br><span class="hljs-symbol">    ports:</span><br>      - <span class="hljs-string">&quot;9092:9092&quot;</span><br><span class="hljs-symbol">    environment:</span><br><span class="hljs-symbol">      KAFKA_ADVERTISED_HOST_NAME:</span> <span class="hljs-params">&lt;YOUR_HOST_IP&gt;</span><br><span class="hljs-symbol">      KAFKA_ZOOKEEPER_CONNECT:</span> zookeeper:<span class="hljs-number">2181</span><br><span class="hljs-symbol">    volumes:</span><br>      - <span class="hljs-keyword">/var/</span>run/docker.sock:<span class="hljs-keyword">/var/</span>run/docker.sock<br><br><span class="hljs-meta"># 注意: 将&lt;YOUR_HOST_IP&gt;替换成您的宿主机IP地址</span><br><br><span class="hljs-meta"># 5. 启动Zookeeper和Kafka容器</span><br>docker-compose up -d<br><br><span class="hljs-meta"># 验证Kafka和Zookeeper是否正常运行</span><br>docker ps<br><br><span class="hljs-meta"># 6. 创建一个Kafka主题进行测试（可选）</span><br><span class="hljs-meta"># 进入Kafka容器</span><br>docker exec -it <span class="hljs-params">&lt;KAFKA_CONTAINER_ID&gt;</span> bash<br><br><span class="hljs-meta"># 创建主题</span><br>kafka-topics.sh --create --zookeeper zookeeper:<span class="hljs-number">2181</span> --replication-factor <span class="hljs-number">1</span> --partitions <span class="hljs-number">1</span> --topic testTopic<br><br><span class="hljs-meta"># 列出所有主题来验证创建成功</span><br>kafka-topics.sh --list --zookeeper zookeeper:<span class="hljs-number">2181</span><br><br><span class="hljs-meta"># 退出容器</span><br>exit<br></code></pre></td></tr></table></figure>
+<h3 id="一、Kafka-服务的安装与测试使用步骤"><a href="#一、Kafka-服务的安装与测试使用步骤" class="headerlink" title="一、Kafka 服务的安装与测试使用步骤"></a>一、Kafka 服务的安装与测试使用步骤</h3><p>安装手册： <a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/1318521">https://developer.aliyun.com/article/1318521</a></p>
+<p>拉取 ZooKeeper</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker pull wurstmeister/zookeeper<br></code></pre></td></tr></table></figure>
+
+<p>改一下挂载文件目录</p>
+<p>启动 ZooKeeper 服务</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs dockerfile"><span class="hljs-comment">#创建对应的目录来挂载Zookeeper,个人是放在 /root/RunEnvironment/zookeeper 目录下</span><br><br>docker <span class="hljs-keyword">run</span><span class="language-bash"> -d --name zookeeper  -p 2181:2181 -v /root/RunEnvironment/zookeeper:/data --restart always wurstmeister/zookeeper</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><ul>
+<li>p 2181:2181 # 对端口进行映射，将本地2181端口映射到容器内部的2181端口</li>
+</ul>
+</li>
+<li>– name # 设置创建的容器名称 -v # 将本地目录(文件)挂载到容器指定目录；</li>
+<li>– restart always   # 始终重新启动zookeeper</li>
+</ul>
+<p>拉取Kafka</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker pull wurstmeister/kafka<br></code></pre></td></tr></table></figure>
+
+<p>启动 Kafka </p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">docker <span class="hljs-built_in">run</span> -d --name kafka -p 9092:9092 -e <span class="hljs-attribute">KAFKA_BROKER_ID</span>=0 -e <span class="hljs-attribute">KAFKA_ZOOKEEPER_CONNECT</span>=【ZooKeeper地址】:2181 -e <span class="hljs-attribute">KAFKA_ADVERTISED_LISTENERS</span>=PLAINTEXT://【kafka地址】:9092 -e <span class="hljs-attribute">KAFKA_LISTENERS</span>=PLAINTEXT://0.0.0.0:9092 wurstmeister/kafka<br></code></pre></td></tr></table></figure>
+
+<p>实际使用的时候是讲两个服务的地址都改为了服务器的IP地址，然后启动运行</p>
+<p>打开 Portainer 中的容器管理，选择进入容器</p>
+<p>测试：</p>
+<p>创建一个名为“testTopic”的topic，它有一个分区和一个副本</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-comment"># 创建主题</span><br>kafka-topics.sh <span class="hljs-params">--create</span> <span class="hljs-params">--zookeeper</span> zookeeper地址<span class="hljs-function">:2181</span> <span class="hljs-params">--replication-factor</span> 1 <span class="hljs-params">--partitions</span> 1 <span class="hljs-params">--topic</span> testTopic<br><br><span class="hljs-comment"># 列出所有主题来验证创建成功</span><br>kafka-topics.sh <span class="hljs-params">--list</span> <span class="hljs-params">--zookeeper</span> zookeeper地址<span class="hljs-function">:2181</span><br><br><span class="hljs-comment">#发送消息</span><br>kafka-console-producer.sh <span class="hljs-params">--broker-list</span> kafka地址<span class="hljs-function">:9092</span> <span class="hljs-params">--topic</span> testTopic<br><br><span class="hljs-comment">#启动一个 consumer,将消息转储到标准输出</span><br><span class="hljs-comment">#从指定的Kafka集群的`testTopic`主题中，从最开始的消息起，消费并在控制台显示所有消息</span><br>kafka-console-consumer.sh <span class="hljs-params">--bootstrap-server</span> kafka地址<span class="hljs-function">:9092</span> <span class="hljs-params">--topic</span> testTopic <span class="hljs-params">--from-beginning</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><code>--from-beginning</code>：这个参数告诉消费者从主题的起始位置开始消费消息。如果不指定此参数，那么消费者将从最新的消息开始消费，即只消费自消费者启动之后发布到主题的新消息。</li>
+</ul>
+<p>实际运行的时候需要讲上述命令的IP地址换为服务器的地址：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs stylus">kafka-topics<span class="hljs-selector-class">.sh</span> <span class="hljs-attr">--create</span> <span class="hljs-attr">--zookeeper</span> <span class="hljs-number">192.168</span>.<span class="hljs-number">31.43</span>:<span class="hljs-number">2181</span> <span class="hljs-attr">--replication-factor</span> <span class="hljs-number">1</span> <span class="hljs-attr">--partitions</span> <span class="hljs-number">1</span> <span class="hljs-attr">--topic</span> testTopic<br>kafka-topics<span class="hljs-selector-class">.sh</span> <span class="hljs-attr">--list</span> <span class="hljs-attr">--zookeeper</span> <span class="hljs-number">192.168</span>.<span class="hljs-number">31.43</span>:<span class="hljs-number">2181</span><br>kafka-console-producer<span class="hljs-selector-class">.sh</span> <span class="hljs-attr">--broker-list</span> <span class="hljs-number">192.168</span>.<span class="hljs-number">31.43</span>:<span class="hljs-number">9092</span> <span class="hljs-attr">--topic</span> testTopic<br>kafka-console-consumer<span class="hljs-selector-class">.sh</span> <span class="hljs-attr">--bootstrap-server</span> <span class="hljs-number">192.168</span>.<span class="hljs-number">31.43</span>:<span class="hljs-number">9092</span> <span class="hljs-attr">--topic</span> testTopic <span class="hljs-attr">--from-beginning</span><br></code></pre></td></tr></table></figure>
+
+
+<p>还看到一种方式是通过 docker-compose.yml 的操作讲上述串联起来，后续有兴趣可以研究一下。</p>
+
                 
               </div>
             
@@ -329,6 +363,8 @@
       <i class="iconfont icon-tags"></i>
       
         <a href="/tags/MQ/" class="print-no-link">#MQ</a>
+      
+        <a href="/tags/kafka/" class="print-no-link">#kafka</a>
       
     </div>
   
