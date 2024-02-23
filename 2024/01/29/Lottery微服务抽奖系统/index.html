@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          16k 字
+          17k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          134 分钟
+          141 分钟
         
       </span>
     
@@ -338,9 +338,32 @@
 <li>rpc  远程过程调用层：服务接口的定义、远程服务的客户端和服务端实现</li>
 </ul>
 <h3 id="二、领域开发-Detail"><a href="#二、领域开发-Detail" class="headerlink" title="二、领域开发 Detail"></a>二、领域开发 Detail</h3><p>该部分是 分布式核心功能服务系统 Lottery 模块中的核心功能实现</p>
-<h4 id="2-1-跑通-RPC-广播调用模式"><a href="#2-1-跑通-RPC-广播调用模式" class="headerlink" title="2.1 跑通 RPC 广播调用模式"></a>2.1 跑通 RPC 广播调用模式</h4><p>Lottery 提供了一个 RPC 接口调用的方式，其他服务可以通过 Dubbo 这个组件进行调用该项目下对外开放的接口。（RPC 方式）</p>
-<p>这里使用了 Dubbo 作为广播远程RPC调用方式的组件，Dubbo 的基础使用可以看另外一个文章 [[Dubbo基础使用]]</p>
-<p>DEBUG： Dubbo 的学习使用需要再看一下（但不是目前阶段的核心，先看一下这个项目主要的实现思路和学习的点，整合一下到简历面试准备中，后续有空再学习 dubbo 并且专研一下）</p>
+<h4 id="2-1-跑通-RPC-广播调用模式"><a href="#2-1-跑通-RPC-广播调用模式" class="headerlink" title="2.1 跑通 RPC 广播调用模式"></a>2.1 跑通 RPC 广播调用模式</h4><ul>
+<li>RPC 调用方式<ul>
+<li>RPC允许一个程序调用另一个位置（通常是远程服务器）上的函数或方法，就像调用本地方法一样，隐藏了网络通信的细节</li>
+</ul>
+</li>
+<li>Dubbo 组件<ul>
+<li>服务提供方<ul>
+<li>对外提供了一个提供Rpc 接口的服务模块 qwe</li>
+<li>在业务实现模块中进行接口实现，实现类添加 Dubbo 的注解</li>
+<li>引入注册中心，Dubbo会在配置路径下查找服务实现类，并自动注册到注册中心</li>
+</ul>
+</li>
+<li>服务调用方<ul>
+<li>第三方系统引入这个服务模块 qwe 依赖</li>
+<li>添加 dubbo 和 注册中心的依赖，进行服务调用</li>
+<li>根据 Dubbo 的约定俗成的方式调用接口</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>如果不使用注册中心的方式，可以用广播方式配置。</p>
+<blockquote>
+<p>相关知识：</p>
+</blockquote>
+<p>广播方式配置(<code>unicast: false</code>)，通常用于多播注册中心配置，如使用<code>multicast://224.5.6.7:1234</code>这样的地址配置，允许服务在没有中心注册中心的情况下通过广播方式发现服务。但在生产环境下，推荐使用如Zookeeper、Nacos这样的注册中心，因为它们提供了更稳定的服务发现和管理能力。</p>
 <hr>
 <p>使用的时候会有一些常见错误，需要注意一下：</p>
 <ul>
@@ -357,39 +380,21 @@
 </ul>
 <hr>
 <p>代码分析：</p>
-<p>直接看一下这个项目的 RPC 模块</p>
+<p>直接看一下这个项目的 RPC 模块（对外提供的公共模块，服务消费方也会引入这个模块的依赖）</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402200115155.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>上述代码目录中定义了一个 activity 活动领域，其中这个 rpc 模块主要还是定义了一下接口；</p>
-<p>具体实现是在 interface 模块下，在该模块下，是引入了 dubbo 的相关依赖，相关配置也是在该模块下进行定义的；</p>
+<p>具体实现是在 interface 模块下，在该模块下，是引入了 dubbo 的相关依赖，相关配置也是在该模块下进行定义的；（ interface 进行了接口方法的实现，并且实现类上添加了 dubbo 的注解）</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402200118158.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>并且在 interface 模块下的 test 目录下是写了一下对应的 RPC 服务调用测试类。</p>
+<p> interface 模块下的 test 目录下</p>
+<p>先本地测试一下这个方法是否是成功运行</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RunWith(SpringRunner.class)</span>  <br><span class="hljs-meta">@SpringBootTest</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LotteryActivityBoothTest</span> &#123;  <br>  <br>    <span class="hljs-keyword">private</span> <span class="hljs-type">Logger</span> <span class="hljs-variable">logger</span> <span class="hljs-operator">=</span> LoggerFactory.getLogger(LotteryActivityBoothTest.class);  <br>  <br>    <span class="hljs-meta">@Resource</span>  <br>    <span class="hljs-keyword">private</span> ILotteryActivityBooth lotteryActivityBooth;  <br>  <br>    <span class="hljs-meta">@Test</span>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test_doDraw</span><span class="hljs-params">()</span> &#123;  <br>        <span class="hljs-type">DrawReq</span> <span class="hljs-variable">drawReq</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DrawReq</span>();  <br>        drawReq.setuId(<span class="hljs-string">&quot;xiaofuge&quot;</span>);  <br>        drawReq.setActivityId(<span class="hljs-number">100001L</span>);  <br>        <span class="hljs-type">DrawRes</span> <span class="hljs-variable">drawRes</span> <span class="hljs-operator">=</span> lotteryActivityBooth.doDraw(drawReq);  <br>        logger.info(<span class="hljs-string">&quot;请求参数：&#123;&#125;&quot;</span>, JSON.toJSONString(drawReq));  <br>        logger.info(<span class="hljs-string">&quot;测试结果：&#123;&#125;&quot;</span>, JSON.toJSONString(drawRes));  <br>  <br>    &#125;<br><br>......<br></code></pre></td></tr></table></figure>
 
+<p>服务消费方</p>
+<p>调用服务的测试是放在另外一个项目 lottery-test 中</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RunWith(SpringRunner.class)</span><br><span class="hljs-meta">@SpringBootTest</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ApiTest</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">Logger</span> <span class="hljs-variable">logger</span> <span class="hljs-operator">=</span> LoggerFactory.getLogger(ApiTest.class);<br>    <span class="hljs-meta">@Reference(interfaceClass = IActivityBooth.class, url = &quot;dubbo://127.0.0.1:20880&quot;)</span><br>    <span class="hljs-keyword">private</span> IActivityBooth activityBooth;<br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test_rpc</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-type">ActivityReq</span> <span class="hljs-variable">req</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ActivityReq</span>();<br>        req.setActivityId(<span class="hljs-number">100001L</span>);<br>        <span class="hljs-type">ActivityRes</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> activityBooth.queryActivityById(req);<br>        logger.info(<span class="hljs-string">&quot;测试结果：&#123;&#125;&quot;</span>, JSON.toJSONString(result));<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>如何进行配置和跑通，示例的一个写法和流程：（具体可以看代码，后续回顾相关内容）</p>
-<p>步骤：</p>
-<ul>
-<li><ol>
-<li>引入了相关依赖</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>定义了相关接口</li>
-</ol>
-</li>
-<li><ol start="3">
-<li>开发实现接口</li>
-</ol>
-</li>
-<li><ol start="4">
-<li>dubbo 组件相关配置</li>
-</ol>
-</li>
-<li><ol start="5">
-<li>调用接口，测试调通。</li>
-</ol>
-</li>
-</ul>
+<p>其中服务消费方和服务提供方需要配置服务到注册中心，或者通过广播模式；消费方也需要引入  dubbo的相关依赖以及公共模块依赖。</p>
+<p>下面是文档部分内容：</p>
 <blockquote>
 <p>操作示例：</p>
 </blockquote>
@@ -404,6 +409,9 @@
 <li>首先说说为什么要配置广播模式的 Dubbo，其实最早 RPC 的设计和使用都是依赖于注册中心，那就是需要把服务接口信息在程序启动的时候，推送到一个统一的注册中心，在其他需要调用 RPC 接口的服务上再通过注册中心的均衡算法来匹配可以连接的接口落到本地保存和更新。</li>
 <li>那么这样的标准的使用方式可以提供更大的连接数和更强的负载均衡作用，但目前我们这个以学习实践为目的的工程开发则需要尽可能减少学习成本，也就需要在开发阶段少一些引入一些额外的配置，那么目前使用广播模式就非常适合，以后也可以直接把 Dubbo 配置成注册中心模式。官网：<a target="_blank" rel="noopener" href="https://dubbo.apache.org/zh/docs/quick-start/">https://dubbo.apache.org</a></li>
 </ul>
+<blockquote>
+<p>服务提供方（相关配置）</p>
+</blockquote>
 <p>配置 yml</p>
 <figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-meta"># Dubbo 广播方式配置</span><br><span class="hljs-symbol">dubbo:</span><br><span class="hljs-symbol">  application:</span><br><span class="hljs-symbol">    name:</span> Lottery<br><span class="hljs-symbol">    version:</span> <span class="hljs-number">1.0</span><span class="hljs-number">.0</span><br><span class="hljs-symbol">  registry:</span><br><span class="hljs-symbol">    address:</span> N/A <span class="hljs-meta">#multicast:<span class="hljs-comment">//224.5.6.7:1234</span></span><br><span class="hljs-symbol">  protocol:</span><br><span class="hljs-symbol">    name:</span> dubbo<br><span class="hljs-symbol">    port:</span> <span class="hljs-number">20880</span><br><span class="hljs-symbol">  scan:</span><br>    base-packages: cn.itedus.lottery.rpc<br></code></pre></td></tr></table></figure>
 
@@ -413,6 +421,9 @@
 <li>protocol，配置的通信协议和端口</li>
 <li>scan，相当于 Spring 中自动扫描包的地址，可以把此包下的所有 rpc 接口都注册到服务中</li>
 </ul>
+<blockquote>
+<p>接口服务实现</p>
+</blockquote>
 <p>定义和开发 RPC 接口</p>
 <ul>
 <li>定义接口</li>
@@ -421,6 +432,9 @@
 </ul>
 </li>
 </ul>
+<blockquote>
+<p>接口 rpc 调用</p>
+</blockquote>
 <p>搭建测试工程调用 RPC</p>
 <p>项目中使用 lottery-test 这个模块中进行测试调用，</p>
 <p>配置</p>
@@ -436,11 +450,11 @@
 <li>如果广播模式不太稳定，可以在 @Reference 注解的 url 属性指定直连模式。后续真正的业务使用一般都是使用注册中心模式，此案例中的模式主要是为了更简单的方式学习验证</li>
 <li>IActivityBooth 是 RPC 接口，通过 Dubbo 的注解 <code>@Reference</code> 进行注入配置。有了这个注解的配置其实调用上就没有太多不同了。</li>
 </ul>
-<blockquote>
-<p>总结一下相关内容</p>
-</blockquote>
-<p>这个 Dubbo 主要还是节点的配置，然后通过 @Service 注解配置来实现相关接口的调用，这里大概是服务对外提供了一个接口，然后其他服务通过访问这个接口来进行调用。</p>
-<h4 id="2-2-抽奖活动策略库表设计"><a href="#2-2-抽奖活动策略库表设计" class="headerlink" title="2.2 抽奖活动策略库表设计"></a>2.2 抽奖活动策略库表设计</h4><p>通过 Dubbo 服务提供了第三方服务调用接口，我们再看一下具体的抽奖策略等是如何实现的；</p>
+<h4 id="2-2-抽奖活动策略库表设计"><a href="#2-2-抽奖活动策略库表设计" class="headerlink" title="2.2 抽奖活动策略库表设计"></a>2.2 抽奖活动策略库表设计</h4><ul>
+<li>需求：👇</li>
+<li>策略库表设计： 了解一下如果需要实现抽奖策略功能，表如何设计的</li>
+</ul>
+<p>通过 Dubbo 服务提供了第三方服务调用接口，我们再看一下具体的抽奖策略等是如何实现的；</p>
 <p>如果是需要设计一个抽奖策略的功能，这个是核心参考，否则作为了解；同时通过这部分内容熟悉一下 DDD 架构的设计。</p>
 <p>下面是抽奖活动策略的表如何设计：</p>
 <p>大概看一下这个表的设计</p>
@@ -499,7 +513,17 @@
 <p>DDD 架构的具体的一个代码设计可以看下面的内容，这个代码层次设计是基于在“抽奖策略领域”这一个领域中进行实现并进行设计的；</p>
 <p>其中又分为了聚合对象、数据仓储、领域服务（见下面代码结构内容）</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240204215009.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="2-3-抽奖策略领域模块开发"><a href="#2-3-抽奖策略领域模块开发" class="headerlink" title="2.3  抽奖策略领域模块开发"></a>2.3  抽奖策略领域模块开发</h4><p>包括：单项概率抽奖和整体概率抽奖，并提供统一的调用方式</p>
+<h4 id="2-3-抽奖策略领域模块开发"><a href="#2-3-抽奖策略领域模块开发" class="headerlink" title="2.3  抽奖策略领域模块开发"></a>2.3  抽奖策略领域模块开发</h4><ul>
+<li>领域模块开发<ul>
+<li>统一接口（概率抽奖）<ul>
+<li>奖品池</li>
+<li>固定概率抽奖</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>包括：单项概率抽奖和整体概率抽奖，并提供统一的调用方式</p>
 <p>需求：在抽奖这个玩法中，可以有不同的方式，比如抽奖、盲盒等</p>
 <p>常见的两种方式</p>
 <ul>
@@ -592,7 +616,14 @@
 <p>这个策略分为了一个总体策略和一个单体策略，个人理解是一个有固定奖品池，一个是固定概率的抽奖的方式。</p>
 <p>代码设计方面不算可圈可点，仍然主要是这个架构的编码方式是如何进行的，并对他熟练。</p>
 <p>核心实现看一下代码，不太理解看一下教程【第05节】</p>
-<h4 id="2-4-模板模式处理抽奖流程"><a href="#2-4-模板模式处理抽奖流程" class="headerlink" title="2.4 模板模式处理抽奖流程"></a>2.4 模板模式处理抽奖流程</h4><p>描述：基于模板设计模式，规范化抽奖执行流程。包括：提取抽象类、编排模板流程、定义抽象方法、执行抽奖策略、扣减中奖库存、包装返回结果等，并基于P3C标准完善本次开发涉及到的代码规范化处理。</p>
+<h4 id="2-4-模板模式处理抽奖流程"><a href="#2-4-模板模式处理抽奖流程" class="headerlink" title="2.4 模板模式处理抽奖流程"></a>2.4 模板模式处理抽奖流程</h4><ul>
+<li>模板模式<ul>
+<li>抽象类基类</li>
+<li>基于公共类实现不同的抽奖方式</li>
+</ul>
+</li>
+</ul>
+<p>描述：基于模板设计模式，规范化抽奖执行流程。包括：提取抽象类、编排模板流程、定义抽象方法、执行抽奖策略、扣减中奖库存、包装返回结果等，并基于P3C标准完善本次开发涉及到的代码规范化处理。</p>
 <p>文档上面有一个tip, 建议实际去操作一下。</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240210192007.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240204221652.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
@@ -620,7 +651,14 @@
 </ul>
 <p>模板模式大概的用法仍然是使用抽象类定义一个基类，然后在这个公共类模板下去实现不同的抽奖过程。</p>
 <hr>
-<h4 id="2-5-简单工厂搭建发奖领域"><a href="#2-5-简单工厂搭建发奖领域" class="headerlink" title="2.5 简单工厂搭建发奖领域"></a>2.5 简单工厂搭建发奖领域</h4><p>前面的章节是讲述了抽奖领域中，通过模板模式和策略模式进行了对应领域功能的实现；</p>
+<h4 id="2-5-简单工厂搭建发奖领域"><a href="#2-5-简单工厂搭建发奖领域" class="headerlink" title="2.5 简单工厂搭建发奖领域"></a>2.5 简单工厂搭建发奖领域</h4><ul>
+<li>发奖操作（简单工厂方式）<ul>
+<li>定义了一个工厂类，然后进行初始化一些参数，传入到 map 中</li>
+<li>子类实现这个工厂配置类，在具体使用的时候调用该 map 的数据，减少 If… else 的使用。</li>
+</ul>
+</li>
+</ul>
+<p>前面的章节是讲述了抽奖领域中，通过模板模式和策略模式进行了对应领域功能的实现；</p>
 <p>后者进行了不同奖品抽奖策略的实现，前者通过建立公共类建立了抽奖这个流程定义并在此基础上进行实现；</p>
 <hr>
 <p>实现步骤：</p>
@@ -747,7 +785,7 @@
 <li>测试和验证: 通过单元测试（如ActivityProcessTest）验证流程编排的正确性，包括活动状态、时间、库存限制等业务规则的处理。</li>
 </ol>
 <p>流程编排的优点包括提高业务流程的透明度、减少重复代码、易于监控和调试以及支持复杂业务逻辑的灵活实现。通过引入MQ、Worker等技术，还可以实现异步处理和解耦，进一步提升系统的可扩展性和性能。</p>
-<h4 id="2-11-规则引擎量化人群参与活动"><a href="#2-11-规则引擎量化人群参与活动" class="headerlink" title="2.11 规则引擎量化人群参与活动"></a>2.11 规则引擎量化人群参与活动</h4><p>这块的功能主要是用于用户在参加活动前的一个操作：需要做一层规则引擎过滤。</p>
+<h4 id="2-11-规则引擎量化人群参与活动-🚩"><a href="#2-11-规则引擎量化人群参与活动-🚩" class="headerlink" title="2.11 规则引擎量化人群参与活动   🚩"></a>2.11 规则引擎量化人群参与活动   🚩</h4><p>这块的功能主要是用于用户在参加活动前的一个操作：需要做一层规则引擎过滤。</p>
 <p>具体如何实现：</p>
 <p>to be contined….</p>
 <h4 id="2-12-门面接口封装和对象转换"><a href="#2-12-门面接口封装和对象转换" class="headerlink" title="2.12 门面接口封装和对象转换"></a>2.12 门面接口封装和对象转换</h4><p>该内容的内容主要是对于抽奖活动的接口封装，对外提供抽奖服务(开发 lottery-interfaces 接口层)</p>
@@ -769,8 +807,8 @@
 <h4 id="2-14-使用-MQ-解耦抽奖发货流程"><a href="#2-14-使用-MQ-解耦抽奖发货流程" class="headerlink" title="2.14 使用 MQ 解耦抽奖发货流程"></a>2.14 使用 MQ 解耦抽奖发货流程</h4><p>发货流程：用户抽奖完成后，进行奖品的发货</p>
 <p>过程包括：消息的发送、库表中状态的更新、消息的接收消费、发奖状态的处理等。</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402211403848.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="2-15-引入-xxl-job-处理活动状态扫描"><a href="#2-15-引入-xxl-job-处理活动状态扫描" class="headerlink" title="2.15 引入 xxl job 处理活动状态扫描"></a>2.15 引入 xxl job 处理活动状态扫描</h4><p>后续这些内容需要项目跑起来才有点可能 to be contined…</p>
-<h4 id="2-16-扫描库表补偿发货单-MQ-消息"><a href="#2-16-扫描库表补偿发货单-MQ-消息" class="headerlink" title="2.16  扫描库表补偿发货单 MQ 消息"></a>2.16  扫描库表补偿发货单 MQ 消息</h4><h4 id="2-17-设计滑动库存分布式锁处理活动秒杀"><a href="#2-17-设计滑动库存分布式锁处理活动秒杀" class="headerlink" title="2.17 设计滑动库存分布式锁处理活动秒杀"></a>2.17 设计滑动库存分布式锁处理活动秒杀</h4><h3 id="记录-Records"><a href="#记录-Records" class="headerlink" title="记录 Records"></a>记录 Records</h3><p>一些问题（待整理）</p>
+<h4 id="2-15-引入-xxl-job-处理活动状态扫描-🚩"><a href="#2-15-引入-xxl-job-处理活动状态扫描-🚩" class="headerlink" title="2.15 引入 xxl job 处理活动状态扫描   🚩"></a>2.15 引入 xxl job 处理活动状态扫描   🚩</h4><p>后续这些内容需要项目跑起来才有点可能 to be contined…</p>
+<h4 id="2-16-扫描库表补偿发货单-MQ-消息-🚩"><a href="#2-16-扫描库表补偿发货单-MQ-消息-🚩" class="headerlink" title="2.16  扫描库表补偿发货单 MQ 消息   🚩"></a>2.16  扫描库表补偿发货单 MQ 消息   🚩</h4><h4 id="2-17-设计滑动库存分布式锁处理活动秒杀-🚩"><a href="#2-17-设计滑动库存分布式锁处理活动秒杀-🚩" class="headerlink" title="2.17 设计滑动库存分布式锁处理活动秒杀  🚩"></a>2.17 设计滑动库存分布式锁处理活动秒杀  🚩</h4><h3 id="记录-Records"><a href="#记录-Records" class="headerlink" title="记录 Records"></a>记录 Records</h3><p>一些问题（待整理）</p>
 <ul>
 <li><ol>
 <li>怎么看待 RPC 远程调用方式，和 HTTP 方式调用有什么区别。</li>

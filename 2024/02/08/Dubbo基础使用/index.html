@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.9k 字
+          3.9k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          49 分钟
+          33 分钟
         
       </span>
     
@@ -282,109 +282,55 @@
 <ul>
 <li><a target="_blank" rel="noopener" href="https://cn.dubbo.apache.org/zh-cn/overview/quickstart/java/brief/">https://cn.dubbo.apache.org/zh-cn/overview/quickstart/java/brief/</a></li>
 </ul>
-<h3 id="一、基本介绍"><a href="#一、基本介绍" class="headerlink" title="一、基本介绍"></a>一、基本介绍</h3><p>基本的一些介绍：</p>
+<h2 id="一、基本介绍"><a href="#一、基本介绍" class="headerlink" title="一、基本介绍"></a>一、基本介绍</h2><p>基本的一些介绍：</p>
 <p>Apache Dubbo 是一个高性能、轻量级的开源 Java RPC（Remote Procedure Call，远程过程调用）框架。</p>
 <p>它提供了三大核心能力： 面向接口的远程方法调用、智能容错和负载均衡以及服务自动注册和发现。</p>
-<p> 以下是 Dubbo 的基础使用方法，包括服务提供者（Provider）和服务消费者（Consumer）的配置。</p>
-<h4 id="基础使用示例"><a href="#基础使用示例" class="headerlink" title="基础使用示例"></a>基础使用示例</h4><blockquote>
-<ol>
-<li>添加 Dubbo 依赖</li>
-</ol>
-</blockquote>
-<p>首先，需要在项目的 <code>pom.xml</code> 文件中添加 Dubbo 和 Zookeeper 的依赖（Zookeeper 作为服务注册和发现的中间件）：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- Dubbo --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.dubbo<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>dubbo<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.7.8<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- Zookeeper client --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.dubbo<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>dubbo-dependencies-zookeeper<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.7.8<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">type</span>&gt;</span>pom<span class="hljs-tag">&lt;/<span class="hljs-name">type</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
-<blockquote>
-<ol start="2">
-<li>服务提供者（Provider）配置</li>
-</ol>
-</blockquote>
-<p>服务提供者需要暴露接口供消费者调用。这通常涉及到定义服务接口和实现该接口的类，然后配置 Dubbo 使其暴露服务。</p>
-<p><strong>定义服务接口</strong>：</p>
-<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-keyword">public</span> <span class="hljs-title class_"><span class="hljs-keyword">interface</span> <span class="hljs-title">GreetingService</span> </span>&#123;<br>    <span class="hljs-keyword">String</span> sayHello(<span class="hljs-keyword">String</span> name);<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>实现服务接口：</p>
-<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-keyword">public</span> <span class="hljs-title class_"><span class="hljs-keyword">class</span> <span class="hljs-title">GreetingServiceImpl</span> <span class="hljs-keyword"><span class="hljs-keyword">implements</span> <span class="hljs-type">GreetingService</span></span> </span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">String</span> sayHello(<span class="hljs-keyword">String</span> name) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello, &quot;</span> + name;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><strong>配置服务提供者</strong>：</p>
-<p>可以在 Spring 配置文件中配置 Dubbo 服务提供者，如下所示：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 提供者的应用信息配置 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dubbo:application</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;provider-test&quot;</span>/&gt;</span><br><br><span class="hljs-comment">&lt;!-- 使用 Zookeeper 注册中心暴露服务地址 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dubbo:registry</span> <span class="hljs-attr">address</span>=<span class="hljs-string">&quot;zookeeper://127.0.0.1:2181&quot;</span>/&gt;</span><br><br><span class="hljs-comment">&lt;!-- 配置协议 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dubbo:protocol</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;dubbo&quot;</span> <span class="hljs-attr">port</span>=<span class="hljs-string">&quot;20880&quot;</span>/&gt;</span><br><br><span class="hljs-comment">&lt;!-- 暴露服务 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dubbo:service</span> <span class="hljs-attr">interface</span>=<span class="hljs-string">&quot;GreetingService&quot;</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;greetingServiceImpl&quot;</span>/&gt;</span><br><br><span class="hljs-comment">&lt;!-- 定义服务实现 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;greetingServiceImpl&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;GreetingServiceImpl&quot;</span>/&gt;</span><br></code></pre></td></tr></table></figure>
-
-<blockquote>
-<ol start="3">
-<li>服务消费者（Consumer）配置</li>
-</ol>
-</blockquote>
-<p>服务消费者通过 Dubbo 调用远程服务。这涉及到引用远程服务接口并通过 Dubbo 框架进行调用。</p>
-<p><strong>配置服务消费者</strong>：</p>
-<p>同样，在 Spring 配置文件中配置 Dubbo 服务消费者，如下所示：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 消费者的应用信息配置 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dubbo:application</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;consumer-test&quot;</span>/&gt;</span><br><br><span class="hljs-comment">&lt;!-- 使用 Zookeeper 注册中心发现服务地址 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dubbo:registry</span> <span class="hljs-attr">address</span>=<span class="hljs-string">&quot;zookeeper://127.0.0.1:2181&quot;</span>/&gt;</span><br><br><span class="hljs-comment">&lt;!-- 引用远程服务 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dubbo:reference</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;greetingService&quot;</span> <span class="hljs-attr">interface</span>=<span class="hljs-string">&quot;GreetingService&quot;</span>/&gt;</span><br></code></pre></td></tr></table></figure>
-
-<blockquote>
-<ol start="4">
-<li>启动和调用</li>
-</ol>
-</blockquote>
-<p>服务提供者启动后，会向 Zookeeper 注册中心注册服务。服务消费者启动时，从 Zookeeper 获取服务提供者的地址，并通过 Dubbo 框架调用远程服务。</p>
-<p><strong>服务消费者调用服务示例</strong>：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Consumer</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">ApplicationContext</span> <span class="hljs-variable">context</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ClassPathXmlApplicationContext</span>(<span class="hljs-string">&quot;consumer.xml&quot;</span>);<br>        <span class="hljs-type">GreetingService</span> <span class="hljs-variable">greetingService</span> <span class="hljs-operator">=</span> (GreetingService)context.getBean(<span class="hljs-string">&quot;greetingService&quot;</span>);<br>        <span class="hljs-type">String</span> <span class="hljs-variable">hello</span> <span class="hljs-operator">=</span> greetingService.sayHello(<span class="hljs-string">&quot;Dubbo&quot;</span>);<br>        System.out.println(hello);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<blockquote>
-<p>注意事项</p>
-</blockquote>
+<p>通过 Dubbo 的方式调用接口服务的逻辑见如下，一般来说，服务提供方和服务消费方会向注册中心注册服务，然后服务消费方会通过 dubbo 的方式调用公有模块下的 接口方法，实现方法在服务提供方下。</p>
 <ul>
-<li>确保 Zookeeper 服务已启动并且配置正确。</li>
-<li>版本兼容性：注意 Dubbo 和 Zookeeper 客户端库的版本兼容性问题。</li>
-<li>Dubbo 配置可以通过 XML 文件、注解或者外部化配置（比如 Spring Boot 的 <code>application.properties</code> 或 <code>application.yml</code> 文件）进行。</li>
+<li>RPC 调用方式<ul>
+<li>RPC允许一个程序调用另一个位置（通常是远程服务器）上的函数或方法，就像调用本地方法一样，隐藏了网络通信的细节</li>
 </ul>
-<hr>
-<p>SpringBoot 项目使用示例：</p>
-<p>在 Spring Boot 项目中使用 Dubbo 进行远程服务调用涉及到几个步骤：定义服务接口、创建服务提供者（Provider）、创建服务消费者（Consumer）以及配置 Dubbo 和注册中心（通常使用 Zookeeper）。</p>
-<p>以下是一个具体的示例：</p>
-<blockquote>
-<ol>
-<li>添加依赖</li>
-</ol>
-</blockquote>
-<p>首先，确保在服务提供者和服务消费者的 <code>pom.xml</code> 文件中添加了必要的依赖。</p>
+</li>
+<li>Dubbo 组件<ul>
+<li>服务提供方<ul>
+<li>对外提供了一个提供Rpc 接口的服务模块 qwe</li>
+<li>在业务实现模块中进行接口实现，实现类添加 Dubbo 的注解</li>
+<li>引入注册中心，Dubbo会在配置路径下查找服务实现类，并自动注册到注册中心</li>
+</ul>
+</li>
+<li>服务调用方<ul>
+<li>第三方系统引入这个服务模块 qwe 依赖</li>
+<li>添加 dubbo 和 注册中心的依赖，进行服务调用</li>
+<li>根据 Dubbo 的约定俗成的方式调用接口</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p> 以下是 Dubbo 的基础使用方法，包括服务提供者（Provider）和服务消费者（Consumer）的配置。</p>
+<p>使用示例后续待整合给一个比较OK的示例  to be contined….</p>
+<h3 id="基础使用示例"><a href="#基础使用示例" class="headerlink" title="基础使用示例"></a>基础使用示例</h3><p>在 Spring Boot 项目中使用 Dubbo 进行远程服务调用涉及到几个步骤：定义服务接口、创建服务提供者（Provider）、创建服务消费者（Consumer）以及配置 Dubbo 和注册中心（通常使用 Zookeeper）。</p>
+<h4 id="服务提供"><a href="#服务提供" class="headerlink" title="服务提供"></a>服务提供</h4><h5 id="1-添加依赖"><a href="#1-添加依赖" class="headerlink" title="1. 添加依赖"></a>1. 添加依赖</h5><p>首先，确保在服务提供者和服务消费者的 <code>pom.xml</code> 文件中添加了必要的依赖。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- Spring Boot Starter --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- Dubbo Spring Boot Starter --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.dubbo<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>dubbo-spring-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.7.8<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- Zookeeper Starter --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.dubbo<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>dubbo-dependencies-zookeeper<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.7.8<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">type</span>&gt;</span>pom<span class="hljs-tag">&lt;/<span class="hljs-name">type</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
-<blockquote>
-<ol start="2">
-<li>定义服务接口</li>
-</ol>
-</blockquote>
-<p>在一个公共模块中定义服务接口，这样服务提供者和消费者都能访问到它。</p>
+<h5 id="2-定义服务接口"><a href="#2-定义服务接口" class="headerlink" title="2. 定义服务接口"></a>2. 定义服务接口</h5><p>在一个公共模块中定义服务接口，这样服务提供者和消费者都能访问到它。</p>
 <figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-keyword">public</span> <span class="hljs-title class_"><span class="hljs-keyword">interface</span> <span class="hljs-title">GreetingService</span> </span>&#123;<br>    <span class="hljs-keyword">String</span> sayHello(<span class="hljs-keyword">String</span> name);<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<blockquote>
-<ol start="3">
-<li>创建服务提供者</li>
-</ol>
-</blockquote>
-<p>服务提供者实现了服务接口，并使用 <code>@Service</code> 注解将其注册为 Dubbo 服务。</p>
+<p>提供公共模块的方式，可以是在系统A内容提供一个公共模块，然后将定义接口放置在该模块中；</p>
+<p>如果系统B 需要通过 RPC 方式调用该接口方法，需要引入该定义服务接口模块的依赖，然后再通过 dubbo 的方式调用 系统 A 的接口方法。</p>
+<h5 id="3-创建服务提供者"><a href="#3-创建服务提供者" class="headerlink" title="3. 创建服务提供者"></a>3. 创建服务提供者</h5><p>服务提供者实现了服务接口，并使用 <code>@Service</code> 注解将其注册为 Dubbo 服务。</p>
 <figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-keyword">import</span> org.apache.dubbo.config.annotation.DubboService;<br><span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Value;<br><br><span class="hljs-meta">@DubboService</span>(version = <span class="hljs-string">&quot;1.0.0&quot;</span>, interfaceClass = GreetingService.class)<br><span class="hljs-keyword">public</span> <span class="hljs-title class_"><span class="hljs-keyword">class</span> <span class="hljs-title">GreetingServiceImpl</span> <span class="hljs-keyword"><span class="hljs-keyword">implements</span> <span class="hljs-type">GreetingService</span></span> </span>&#123;<br>    <span class="hljs-meta">@Value</span>(<span class="hljs-string">&quot;$&#123;dubbo.application.name&#125;&quot;</span>)<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">String</span> serviceName;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">String</span> sayHello(<span class="hljs-keyword">String</span> name) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">String</span>.format(<span class="hljs-string">&quot;[%s]: Hello, %s&quot;</span>, serviceName, name);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>在 <code>application.properties</code> 中配置服务提供者的 Dubbo 和 Zookeeper 信息。</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-comment"># Dubbo application name</span><br><span class="hljs-attr">dubbo.application.name</span>=provider-service<br><span class="hljs-comment"># Registry center address</span><br><span class="hljs-attr">dubbo.registry.address</span>=zookeeper://localhost:<span class="hljs-number">2181</span><br><span class="hljs-comment"># Dubbo protocol</span><br><span class="hljs-attr">dubbo.protocol.name</span>=dubbo<br><span class="hljs-attr">dubbo.protocol.port</span>=<span class="hljs-number">20880</span><br></code></pre></td></tr></table></figure>
 
-<blockquote>
-<ol start="4">
-<li>创建服务消费者</li>
-</ol>
-</blockquote>
-<p>服务消费者使用 <code>@DubboReference</code> 注解来引用远程服务。</p>
+<h4 id="服务消费"><a href="#服务消费" class="headerlink" title="服务消费"></a>服务消费</h4><h5 id="4-创建服务消费者"><a href="#4-创建服务消费者" class="headerlink" title="4. 创建服务消费者"></a>4. 创建服务消费者</h5><p>服务消费者使用 <code>@DubboReference</code> 注解来引用远程服务。</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">import</span> org.apache.dubbo.config.<span class="hljs-keyword">annotation</span>.DubboReference;<br><span class="hljs-keyword">import</span> org.springframework.stereotype.Component;<br><br><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">GreetingServiceConsumer</span> &#123;<br>    <span class="hljs-meta">@DubboReference(version = <span class="hljs-string">&quot;1.0.0&quot;</span>)</span><br>    <span class="hljs-keyword">private</span> GreetingService greetingService;<br><br>    <span class="hljs-keyword">public</span> String sayHello(String name) &#123;<br>        <span class="hljs-keyword">return</span> greetingService.sayHello(name);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>在 <code>application.properties</code> 中配置服务消费者的 Dubbo 和 Zookeeper 信息。</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-comment"># Dubbo application name</span><br><span class="hljs-attr">dubbo.application.name</span>=consumer-service<br><span class="hljs-comment"># Registry center address</span><br><span class="hljs-attr">dubbo.registry.address</span>=zookeeper://localhost:<span class="hljs-number">2181</span><br></code></pre></td></tr></table></figure>
 
-<blockquote>
-<ol start="5">
-<li>测试服务调用</li>
-</ol>
-</blockquote>
-<p>最后，在服务消费者项目中，你可以创建一个 REST 控制器或命令行运行器来测试服务调用。</p>
+<h5 id="5-测试服务调用"><a href="#5-测试服务调用" class="headerlink" title="5. 测试服务调用"></a>5. 测试服务调用</h5><p>最后，在服务消费者项目中，你可以创建一个 REST 控制器或命令行运行器来测试服务调用。</p>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">import</span> org.<span class="hljs-property">springframework</span>.<span class="hljs-property">beans</span>.<span class="hljs-property">factory</span>.<span class="hljs-property">annotation</span>.<span class="hljs-property">Autowired</span>;<br><span class="hljs-keyword">import</span> org.<span class="hljs-property">springframework</span>.<span class="hljs-property">boot</span>.<span class="hljs-property">CommandLineRunner</span>;<br><span class="hljs-keyword">import</span> org.<span class="hljs-property">springframework</span>.<span class="hljs-property">boot</span>.<span class="hljs-property">SpringApplication</span>;<br><span class="hljs-keyword">import</span> org.<span class="hljs-property">springframework</span>.<span class="hljs-property">boot</span>.<span class="hljs-property">autoconfigure</span>.<span class="hljs-property">SpringBootApplication</span>;<br><br><span class="hljs-meta">@SpringBootApplication</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ConsumerApplication</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">CommandLineRunner</span> &#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-title class_">GreetingServiceConsumer</span> greetingServiceConsumer;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-built_in">void</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"><span class="hljs-built_in">String</span>[] args</span>) &#123;<br>        <span class="hljs-title class_">SpringApplication</span>.<span class="hljs-title function_">run</span>(<span class="hljs-title class_">ConsumerApplication</span>.<span class="hljs-property">class</span>, args);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">void</span> <span class="hljs-title function_">run</span>(<span class="hljs-title class_">String</span>... args) throws <span class="hljs-title class_">Exception</span> &#123;<br>        <span class="hljs-title class_">String</span> hello = greetingServiceConsumer.<span class="hljs-title function_">sayHello</span>(<span class="hljs-string">&quot;Dubbo&quot;</span>);<br>        <span class="hljs-title class_">System</span>.<span class="hljs-property">out</span>.<span class="hljs-title function_">println</span>(hello);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <blockquote>
@@ -396,7 +342,6 @@
 <li>使用 <code>@DubboService</code> 和 <code>@DubboReference</code> 注解时，确保版本信息一致，以便正确引用服务。</li>
 </ul>
 <hr>
-<p>to be contined….</p>
 
                 
               </div>
@@ -484,29 +429,6 @@
 
 
 
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2024/02/19/SpringBoot%E5%AD%A6%E4%B9%A0_%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9/" title="SpringBoot学习_基础内容">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">SpringBoot学习_基础内容</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2024/02/01/Java%E5%AD%A6%E4%B9%A0%E7%9A%84%E8%BD%BB%E6%9D%BE%E4%B9%8B%E6%97%85-%E4%BA%8C%E5%91%A8%E7%9B%AE/" title="Java学习的轻松之旅-二周目">
-                        <span class="hidden-mobile">Java学习的轻松之旅-二周目</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
               
             </div>
 
