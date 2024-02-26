@@ -238,7 +238,7 @@
         
         
         
-          130 分钟
+          131 分钟
         
       </span>
     
@@ -280,7 +280,8 @@
             
               <div class="markdown-body">
                 
-                <h3 id="1、基础概念"><a href="#1、基础概念" class="headerlink" title="1、基础概念"></a>1、基础概念</h3><p>HashMap 主要用来存放键值对，基于哈希表的 Map 接口实现，是常用的 Java 集合之一。</p>
+                <p>将 HashMap 的相关内容单独拿出来讲一下</p>
+<h3 id="1、基础概念"><a href="#1、基础概念" class="headerlink" title="1、基础概念"></a>1、基础概念</h3><p>HashMap 主要用来存放键值对，基于哈希表的 Map 接口实现，是常用的 Java 集合之一。</p>
 <p>HashMap是非线程安全的，效率较高。</p>
 <p>它可以存储 null 的 key 和 value，但 null 作为键只能有一个，null 作为值可以有多个</p>
 <p><strong>底层数据结构</strong>：</p>
@@ -292,17 +293,19 @@
 <blockquote>
 <p>HashMap的常用方法</p>
 </blockquote>
-<p>1、put(K key, V value)： 将键（key）&#x2F;值（value）映射存放到Map集合中。</p>
-<p>2、get(Object key)： 返回指定键所映射的值，没有该key对应的值则返回 null。</p>
-<p>3、size()： 返回Map集合中数据数量。</p>
-<p>4、clear()： 清空Map集合。</p>
-<p>5、isEmpty()： 判断Map集合中是否有数据，如果没有则返回true，否则返回false。</p>
-<p>6、remove(Object key)： 删除Map集合中键为key的数据并返回其所对应value值。</p>
-<p>7、values()： 返回Map集合中所有value组成的以Collection数据类型格式数据。</p>
-<p>8、containsKey(Object key)： 判断集合中是否包含指定键，包含返回 true，否则返回false。</p>
-<p>9、containsValue(Object value)： 判断集合中是否包含指定值，包含返回 true，否则返回false。</p>
-<p>10、keySet()： 返回Map集合中所有key组成的Set集合。</p>
-<p>11、entrySet()： 将Map集合每个key-value转换为一个Entry对象并返回由所有的Entry对象组成的Set集合。</p>
+<ul>
+<li>1、put(K key, V value)： 将键（key）&#x2F;值（value）映射存放到Map集合中。</li>
+<li>2、get(Object key)： 返回指定键所映射的值，没有该key对应的值则返回 null。</li>
+<li>3、size()： 返回Map集合中数据数量。</li>
+<li>4、clear()： 清空Map集合。</li>
+<li>5、isEmpty()： 判断Map集合中是否有数据，如果没有则返回true，否则返回false。</li>
+<li>6、remove(Object key)： 删除Map集合中键为key的数据并返回其所对应value值。</li>
+<li>7、values()： 返回Map集合中所有value组成的以Collection数据类型格式数据。</li>
+<li>8、containsKey(Object key)： 判断集合中是否包含指定键，包含返回 true，否则返回false。</li>
+<li>9、containsValue(Object value)： 判断集合中是否包含指定值，包含返回 true，否则返回false。</li>
+<li>10、keySet()： 返回Map集合中所有key组成的Set集合。</li>
+<li>11、entrySet()： 将Map集合每个key-value转换为一个Entry对象并返回由所有的Entry对象组成的Set集合。</li>
+</ul>
 <blockquote>
 <p>HashMap 常用方法测试</p>
 </blockquote>

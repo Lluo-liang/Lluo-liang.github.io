@@ -18,25 +18,22 @@
   <meta name="author" content="Luo QI">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Redis入门_进阶内容">
+    <meta name="description" content="Java集合_基础概念_补充内容02">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Redis入门_进阶内容">
-<meta property="og:url" content="https://varcel.luoqi.icu/2023/12/21/Redis%E5%85%A5%E9%97%A8_%E8%BF%9B%E9%98%B6%E5%86%85%E5%AE%B9/index.html">
+<meta property="og:title" content="Java集合_基础概念_补充内容02">
+<meta property="og:url" content="https://varcel.luoqi.icu/2023/11/14/Java%E9%9B%86%E5%90%88_%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5_%E8%A1%A5%E5%85%85%E5%86%85%E5%AE%B902/index.html">
 <meta property="og:site_name" content="轻松的洛亓">
-<meta property="og:description" content="Redis入门_进阶内容">
+<meta property="og:description" content="Java集合_基础概念_补充内容02">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240202075109.png">
-<meta property="article:published_time" content="2023-12-21T17:12:17.000Z">
-<meta property="article:modified_time" content="2023-12-21T17:12:17.000Z">
+<meta property="article:published_time" content="2023-11-14T12:01:00.000Z">
+<meta property="article:modified_time" content="2023-11-14T12:00:00.000Z">
 <meta property="article:author" content="Luo QI">
-<meta property="article:tag" content="NoSQL">
-<meta property="article:tag" content="redis">
+<meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240202075109.png">
   
   
   
-  <title>Redis入门_进阶内容 - 轻松的洛亓</title>
+  <title>Java集合_基础概念_补充内容02 - 轻松的洛亓</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -202,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Redis入门_进阶内容"></span>
+            <span id="subtitle" data-typed-text="Java集合_基础概念_补充内容02"></span>
           
         </div>
 
@@ -213,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-12-21 17:12" pubdate>
-          2023年12月21日 下午
+        <time datetime="2023-11-14 12:01" pubdate>
+          2023年11月14日 中午
         </time>
       </span>
     
@@ -225,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.6k 字
+          2.4k 字
         
       </span>
     
@@ -236,7 +233,7 @@
         
         
         
-          22 分钟
+          21 分钟
         
       </span>
     
@@ -273,197 +270,49 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Redis入门_进阶内容</h1>
+            <h1 id="seo-header">Java集合_基础概念_补充内容02</h1>
             
             
               <div class="markdown-body">
                 
-                <blockquote>
-<p>进阶内容学习</p>
-</blockquote>
-<ul>
-<li>Redis事务</li>
-<li>Redis性能优化</li>
-<li>Redis生产问题</li>
-<li>Redis集群</li>
-<li>Redis使用规范</li>
-</ul>
-<h3 id="1、Redis-事务"><a href="#1、Redis-事务" class="headerlink" title="1、Redis 事务"></a>1、Redis 事务</h3><p>to be contined….</p>
-<h3 id="2、Redis-性能优化"><a href="#2、Redis-性能优化" class="headerlink" title="2、Redis 性能优化"></a>2、Redis 性能优化</h3><h4 id="2-1-使用批量操作减少网络传输"><a href="#2-1-使用批量操作减少网络传输" class="headerlink" title="2.1  使用批量操作减少网络传输"></a>2.1  使用批量操作减少网络传输</h4><h4 id="2-2-大量-key-集中过期问题"><a href="#2-2-大量-key-集中过期问题" class="headerlink" title="2.2 大量 key 集中过期问题"></a>2.2 大量 key 集中过期问题</h4><h4 id="2-3-大-Key"><a href="#2-3-大-Key" class="headerlink" title="2.3 大 Key"></a>2.3 大 Key</h4><h4 id="2-4-热-Key"><a href="#2-4-热-Key" class="headerlink" title="2.4 热 Key"></a>2.4 热 Key</h4><h4 id="2-5-慢查询问题"><a href="#2-5-慢查询问题" class="headerlink" title="2.5  慢查询问题"></a>2.5  慢查询问题</h4><h4 id="2-6-Redis-内存碎片"><a href="#2-6-Redis-内存碎片" class="headerlink" title="2.6 Redis 内存碎片"></a>2.6 Redis 内存碎片</h4><blockquote>
-<p>什么是内存碎片</p>
-</blockquote>
-<p>内存碎片是不可用的空闲内存, </p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240202075109.png" srcset="/img/loading.gif" lazyload alt="image.png|500"></p>
-<blockquote>
-<p>Redis 为什么会有内存碎片</p>
-</blockquote>
-<p>常见的两个原因：</p>
-<ul>
-<li><ol>
-<li><strong>Redis 存储存储数据的时候向操作系统申请的内存空间可能会大于数据实际需要的存储空间。</strong></li>
-</ol>
-</li>
-<li><ol start="2">
-<li><strong>频繁修改 Redis 中的数据也会产生内存碎片。</strong></li>
-</ol>
-</li>
-</ul>
-<p>Redis 的内存碎片化是指随着 Redis 运行时间的增长和数据的频繁更新，内存分配和释放可能导致可用内存被分割成小块，从而降低了内存的利用效率。内存碎片化在 Redis 中是一个重要的问题，因为它可以影响性能并导致内存使用量不必要地增加。</p>
-<blockquote>
-<p>何时产生内存碎片</p>
-</blockquote>
-<ol>
-<li><p><strong>频繁的小对象分配和释放</strong>：</p>
-<ul>
-<li>当应用频繁地创建和删除小对象时，如频繁地设置和删除键值对。</li>
-<li>这种操作会导致内存中出现很多小的、不连续的空间，造成碎片。</li>
-</ul>
-</li>
-<li><p><strong>特定的数据类型操作</strong>：</p>
-<ul>
-<li>某些数据类型的操作，如对列表、集合和哈希的频繁修改，也可能导致内存碎片化。</li>
-</ul>
-</li>
-<li><p><strong>大量写入后的删除</strong>：</p>
-<ul>
-<li>当大量数据被写入 Redis 并且之后又被删除时，尤其是这些数据的大小不一时。</li>
-</ul>
-</li>
-</ol>
-<blockquote>
-<p>如何处理和减少内存碎片化</p>
-</blockquote>
-<ol>
-<li><p><strong>监控内存碎片率</strong>：</p>
-<ul>
-<li>使用 <code>INFO memory</code> 命令监控内存碎片率（<code>mem_fragmentation_ratio</code>）。如果碎片率高（例如大于 1.5），则可能需要采取措施。</li>
-</ul>
-</li>
-<li><p><strong>定期重启</strong>：</p>
-<ul>
-<li>定期重启 Redis 服务可以减少碎片化，但这可能会导致服务中断。</li>
-</ul>
-</li>
-<li><p><strong>内存碎片整理</strong>：</p>
-<ul>
-<li>在 Redis 4.0 及以上版本中，可以使用 <code>MEMORY PURGE</code> 命令（在某些版本中可用）来尝试减少内存碎片。</li>
-<li>使用 <code>redis-cli --intrinsic-latency</code> 命令检测内存碎片整理过程中的延迟。</li>
-</ul>
-</li>
-<li><p><strong>使用更大的对象</strong>：</p>
-<ul>
-<li>对于高频操作的数据，考虑将多个小对象合并成一个更大的对象。</li>
-</ul>
-</li>
-<li><p><strong>调整内存分配器配置</strong>：</p>
-<ul>
-<li>调整 Jemalloc 分配器的配置，可能有助于减少碎片化。</li>
-</ul>
-</li>
-<li><p><strong>应用层优化</strong>：</p>
-<ul>
-<li>在应用层优化数据访问模式，减少频繁的小对象写入和删除。</li>
-</ul>
-</li>
-<li><p><strong>数据结构选择</strong>：</p>
-<ul>
-<li>根据使用场景合理选择数据结构，有些数据结构可能更容易产生内存碎片。</li>
-</ul>
-</li>
-</ol>
-<blockquote>
-<p>实际业务场景下的应对策略</p>
-</blockquote>
-<p>在实际业务中，需要根据具体的使用场景和数据模式来确定最佳的处理内存碎片化的策略。通常，需要定期监控 Redis 的内存碎片率，并在碎片化达到一定程度时采取相应措施。例如，可以在业务低峰期进行 Redis 的重启或内存碎片整理，以减少对业务的影响。同时，优化数据访问模式和选择合适的数据结构，也可以在长期内有效减少内存碎片化的发生。</p>
-<h3 id="3、Redis-生产问题"><a href="#3、Redis-生产问题" class="headerlink" title="3、Redis 生产问题"></a>3、Redis 生产问题</h3><div style="background-color: #f2c867; color: #34495e; padding: 15px; border: 2px solid #bdc3c7; border-radius: 5px;">
-  <strong>Redis 生产问题：</strong>缓存穿透、缓存击穿、缓存雪崩、数据一致性、Redis 阻塞
-</div>
+                <h4 id="1、Set集合是如何保证对象不重复的？"><a href="#1、Set集合是如何保证对象不重复的？" class="headerlink" title="1、Set集合是如何保证对象不重复的？"></a>1、Set集合是如何保证对象不重复的？</h4><p>HashSet 的底层采用HashMap来存放数据,  他执行添加元素操作的时候是将元素作为 Map 的Key；</p>
+<p>HashMap保证key的不重复性，对于重复的key，HashMap会根据参数onlyIfAbsent的设置和原value是否为空两个条件来<strong>判断是否替换新value</strong>，</p>
+<p>但要注意的是，对于HashSet，这个value只是个空的Object类的对象，没有任何实际作用，HashSet中的元素实际上是存储在key上的。针对重复的key，<strong>HashMap只有对于value的处理，并不会替换key</strong>，因此在HashSet中加入相同元素不会覆盖。</p>
+<p>源码相关内容：</p>
+<p>HashSet 的添加方法</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs processing"><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-built_in">add</span>(E e) &#123;  <br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">map</span>.<span class="hljs-property">put</span>(e, PRESENT)==<span class="hljs-literal">null</span>;  <br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h4 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h4><p>缓存穿透是指查询不存在的数据。由于这些数据不在缓存中，每次查询都会穿过缓存，直接访问数据库。</p>
-<p>如果有大量此类查询，<strong>数据库可能会因此承受过大的压力</strong>。</p>
-<blockquote>
-<p>成因</p>
-</blockquote>
+<p>hashmap 的 put 方法</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs processing"><span class="hljs-keyword">public</span> V <span class="hljs-title function_">put</span>(K <span class="hljs-built_in">key</span>, V value) &#123;<br>      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">key</span> == <span class="hljs-literal">null</span>)<br>          <span class="hljs-keyword">return</span> <span class="hljs-title function_">putForNullKey</span>(value);<br>      <span class="hljs-type">int</span> hash = <span class="hljs-title function_">hash</span>(<span class="hljs-built_in">key</span>.<span class="hljs-property">hashCode</span>());<span class="hljs-comment">//----------1----------</span><br>      <span class="hljs-type">int</span> i = <span class="hljs-title function_">indexFor</span>(hash, table.<span class="hljs-property">length</span>);<span class="hljs-comment">//-----------2---------</span><br>      <span class="hljs-keyword">for</span> (Entry e = table[i]; e != <span class="hljs-literal">null</span>; e = e.<span class="hljs-property">next</span>) &#123;<span class="hljs-comment">//-----------3---------</span><br>          <span class="hljs-built_in">Object</span> k;<br>          <span class="hljs-keyword">if</span> (e.<span class="hljs-property">hash</span> == hash &amp;&amp; ((k = e.<span class="hljs-property">key</span>) == <span class="hljs-built_in">key</span> || <span class="hljs-built_in">key</span>.<span class="hljs-property">equals</span>(k))) &#123;<br>              V oldValue = e.<span class="hljs-property">value</span>;<br>              e.<span class="hljs-property">value</span> = value;<br>              e.<span class="hljs-property">recordAccess</span>(<span class="hljs-variable">this</span>);<br>              <span class="hljs-keyword">return</span> oldValue;<br>          &#125;<br>      &#125;<span class="hljs-comment">//------------------4--------------------</span><br>      modCount++;<br>      <span class="hljs-title function_">addEntry</span>(hash, <span class="hljs-built_in">key</span>, value, i);<br>      <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>  &#125;<br></code></pre></td></tr></table></figure>
+
+<p>当向HashMap中添加元素的时候，</p>
 <ul>
-<li>频繁查询不存在的数据（可能是由于错误的输入或恶意攻击）。</li>
+<li><strong>首先计算元素的hashcode值</strong>，然后根据1处的代码计算出Hashcode的值，</li>
+<li>再根据2处的代码计算出这个元素的存储位置，<ul>
+<li>如果<strong>这个位置为空，就将元素添加进去</strong>；</li>
+<li>如果不为空，则看3-4的代码，遍历索引为i的链上的元素，<strong>如果key重复，则替换并返回oldValue值。</strong></li>
 </ul>
-<blockquote>
-<p>解决方案</p>
-</blockquote>
-<ul>
-<li><strong>空对象缓存</strong>：即使某个值在数据库中不存在，也可以在缓存中存储一个特殊的空对象或空值，并设置较短的过期时间。</li>
-<li><strong>布隆过滤器</strong>：在查询之前使用布隆过滤器判断数据是否可能存在。布隆过滤器是一种空间效率高但可能有一定误判率的数据结构。</li>
-</ul>
-<p>布隆过滤器： <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/DeqJfw51tPJvdwAkq3iPdg">https://mp.weixin.qq.com/s/DeqJfw51tPJvdwAkq3iPdg</a></p>
-<h4 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h4><p>缓存击穿是指某个热点数据（即被频繁访问的数据）在缓存中失效的瞬间，大量请求同时涌向数据库。</p>
-<blockquote>
-<p>成因</p>
-</blockquote>
-<ul>
-<li>热点数据在缓存中突然过期，而此时正有大量并发请求这些数据。</li>
-</ul>
-<blockquote>
-<p>解决方案</p>
-</blockquote>
-<ul>
-<li><strong>设置热点数据永不过期</strong>：对于一些极其热门的数据，可以设置为永不过期。</li>
-<li><strong>互斥锁</strong>：在缓存失效的瞬间，使用互斥锁或分布式锁，确保只有一个请求去数据库查询数据并重新缓存。</li>
-</ul>
-<h4 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h4><p>缓存雪崩是指缓存中大量数据同时过期，导致所有的请求都直接访问数据库，可能会使数据库压力过大甚至崩溃。</p>
-<blockquote>
-<p>成因</p>
-</blockquote>
-<ul>
-<li>缓存设置了相同的过期时间，导致大量数据同时过期。</li>
-<li>缓存服务崩溃，所有数据丢失。</li>
-</ul>
-<blockquote>
-<p>解决方案</p>
-</blockquote>
-<ul>
-<li><strong>不同的过期时间</strong>：为缓存数据设置不同的过期时间，避免同时过期。</li>
-<li><strong>缓存数据预热</strong>：系统启动时预先加载热点数据到缓存中。</li>
-<li><strong>使用高可用的缓存架构</strong>：比如使用Redis集群，提高缓存系统的稳定性和容错能力。</li>
-</ul>
-<h4 id="如何保证缓存和数据库的数据一致性"><a href="#如何保证缓存和数据库的数据一致性" class="headerlink" title="如何保证缓存和数据库的数据一致性"></a>如何保证缓存和数据库的数据一致性</h4><p>阅读：</p>
-<ul>
-<li>相关文章推荐：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzIyOTYxNDI5OA==&mid=2247487312&idx=1&sn=fa19566f5729d6598155b5c676eee62d&chksm=e8beb8e5dfc931f3e35655da9da0b61c79f2843101c130cf38996446975014f958a6481aacf1&scene=178&cur_album_id=1699766580538032128#rd">缓存和数据库一致性问题，看这篇就够了 - 水滴与银弹</a>。</li>
-</ul>
-<p>不推荐更新数据库 + 更新缓存的方案：</p>
-<ul>
-<li>写到缓存中的值，并不是与数据库中的值一一对应的，很有可能是先查询数据库，再经过一系列「计算」得出一个值，才把这个值才写到缓存中</li>
-</ul>
-<blockquote>
-<p>缓存和数据库不一致</p>
-</blockquote>
-<p>一般是采用：Cache Aside Pattern（旁路缓存模式）: 遇到写请求的时候是先更新数据库，再删除 cache</p>
-<p>这种情况下发生数据不一致的情况比较小，</p>
-<p>在这种情况下，在数据库更新和缓存删除之间有读取请求，它也只会读到旧的数据，一旦缓存被删除，下一个读取请求将从数据库中获取最新的数据，并更新缓存，从而保持了一致性。</p>
-<p>需要避免缓存和数据库不一致需要考虑的点：避免第二步操作【删除 cache】失败</p>
-<p>解决方案：</p>
-<ol>
-<li>缓存失效时间变短（不推荐，治标不治本）<ol>
-<li>我们让缓存数据的过期时间变短，这样的话缓存就会从数据库中加载数据。另外，这种解决办法对于先操作缓存后操作数据库的场景不适用。</li>
-</ol>
 </li>
-<li>增加 cache 更新重试机制（常用）<ol>
-<li>如果 cache 服务当前不可用导致缓存删除失败的话，我们就隔一段时间进行重试，重试次数可以自己定。如果多次重试还是失败的话，我们可以把当前更新失败的 key 存入队列中，等缓存服务可用之后，再将缓存中对应的 key 删除即可。</li>
-</ol>
-</li>
-</ol>
-<p>第二种方式采用方案：</p>
-<ol>
-<li>引入消息队列来进行异步重试操作（将删除 cache 操作放在消费者这步操作） </li>
-<li>订阅数据库变更日志，再操作缓存</li>
-</ol>
-<hr>
-<h4 id="哪些情况可能导致-Redis-阻塞"><a href="#哪些情况可能导致-Redis-阻塞" class="headerlink" title="哪些情况可能导致 Redis 阻塞"></a>哪些情况可能导致 Redis 阻塞</h4><h3 id="4、Redis-集群"><a href="#4、Redis-集群" class="headerlink" title="4、Redis 集群"></a>4、Redis 集群</h3><p>看一下这篇文字： <a target="_blank" rel="noopener" href="https://www.yuque.com/snailclimb/mf2z3k/ks9olb19hc9wse5k">https://www.yuque.com/snailclimb/mf2z3k/ks9olb19hc9wse5k</a></p>
-<p>里面讲述了从 主从节点复制 →  哨兵机制 Sentinel  → Redis 集群Cluster （自动配置了哨兵模式，且建议至少一主一从节点，三个主节点以上的单数节点集群模式）</p>
-<h3 id="5、Reids-使用规范"><a href="#5、Reids-使用规范" class="headerlink" title="5、Reids 使用规范"></a>5、Reids 使用规范</h3><hr>
-<p>参考</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://javaguide.cn/database/redis/redis-questions-02.html">https://javaguide.cn/database/redis/redis-questions-02.html</a></li>
 </ul>
+<p><strong>总结</strong>：结果向HashSet中加入相同元素不会进行覆盖。因为HashSet底层使用HashMap实现，元素存在HashMap的key中。在HashMap中，多次put相同的key，只会覆盖value，而不存在key的情况。</p>
+<h4 id="2、使用for循环删除元素陷阱"><a href="#2、使用for循环删除元素陷阱" class="headerlink" title="2、使用for循环删除元素陷阱"></a>2、使用for循环删除元素陷阱</h4><p>先来看看下面这个程序：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> &#123;<br> <br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span>(<span class="hljs-params">String[] args</span>)</span> &#123;<br>		List&lt;String&gt; list = <span class="hljs-keyword">new</span> LinkedList&lt;String&gt;();<br>		list.<span class="hljs-keyword">add</span>(<span class="hljs-string">&quot;A&quot;</span>);<br>		list.<span class="hljs-keyword">add</span>(<span class="hljs-string">&quot;B&quot;</span>);<br>		list.<span class="hljs-keyword">add</span>(<span class="hljs-string">&quot;C&quot;</span>);<br>		<br>		<span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i=<span class="hljs-number">0</span>; i&lt;list.size(); i++)&#123;<br>			list.<span class="hljs-keyword">remove</span>(i);<br>		&#125;<br>		<br>		<span class="hljs-keyword">for</span>(String item:list)&#123;<br>			System.<span class="hljs-keyword">out</span>.println(item);<br>		&#125;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>可以先猜猜这个程序输出什么？</p>
+<p>按我们的思路，应该是输不出什么，<strong>但是执行它，输出的却是：B</strong>。</p>
+<p>分析下这个程序，当第一步remove完后，集合内还剩2个元素，此时i为1，而list.size()的值为2，从0开始的话，i为1时，正好指向第二个元素，也就是说当remove完A后，直接就跳到C，将B漏了。</p>
+<p>解决办法：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> &#123;<br> <br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span>(<span class="hljs-params">String[] args</span>)</span> &#123;<br>		List&lt;String&gt; list = <span class="hljs-keyword">new</span> LinkedList&lt;String&gt;();<br>		list.<span class="hljs-keyword">add</span>(<span class="hljs-string">&quot;A&quot;</span>);<br>		list.<span class="hljs-keyword">add</span>(<span class="hljs-string">&quot;B&quot;</span>);<br>		list.<span class="hljs-keyword">add</span>(<span class="hljs-string">&quot;C&quot;</span>);<br>		<br>		<span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i=<span class="hljs-number">0</span>; i&lt;list.size(); i++)&#123;<br>			list.<span class="hljs-keyword">remove</span>(i);<br>			i -= <span class="hljs-number">1</span>;<span class="hljs-comment">//每次删除完后，i减少1</span><br>		&#125;<br>		<br>		<span class="hljs-keyword">for</span>(String item:list)&#123;<br>			System.<span class="hljs-keyword">out</span>.println(item);<br>		&#125;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<h4 id="3、讲述一下-length、length-、size-的区别。"><a href="#3、讲述一下-length、length-、size-的区别。" class="headerlink" title="3、讲述一下 length、length()、size() 的区别。"></a>3、讲述一下 length、length()、size() 的区别。</h4><ul>
+<li>java 中的 <code>length</code>属性是针对数组说的,比如说你声明了一个数组,想知道这个数组的长度则用到了 length 这个属性.</li>
+<li>java 中的 <code>length()</code> 方法是针对字符串说的,如果想看这个字符串的长度则用到 <code>length()</code> 这个方法.</li>
+<li>java 中的 <code>size()</code> 方法是针对泛型集合说的,如果想看这个泛型有多少个元素,就调用此方法来查看!</li>
+</ul>
+<h4 id="4、在-HashMap-中，为什么不一下子把整个链表变为红黑树呢"><a href="#4、在-HashMap-中，为什么不一下子把整个链表变为红黑树呢" class="headerlink" title="4、在 HashMap 中，为什么不一下子把整个链表变为红黑树呢"></a>4、在 HashMap 中，为什么不一下子把整个链表变为红黑树呢</h4><p>为什么非要等到链表的长度大于等于8的时候，才转变成红黑树？</p>
+<p>（1）构造红黑树要比构造链表复杂，在链表的节点不多的时候，从整体的性能看来， 数组+链表+红黑树的结构可能不一定比数组+链表的结构性能高。就好比杀鸡焉用牛刀的意思。</p>
+<p>（2）HashMap频繁的扩容，会造成底部红黑树不断的进行拆分和重组，这是非常耗时的。因此，也就是链表长度比较长的时候转变成红黑树才会<strong>显著提高效率</strong>。</p>
 
                 
               </div>
@@ -482,12 +331,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="category-chain-item">中间件</a>
+  <a href="/categories/Java%E5%9F%BA%E7%A1%80/" class="category-chain-item">Java基础</a>
   
   
     <span>></span>
     
-  <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/Redis/" class="category-chain-item">Redis</a>
+  <a href="/categories/Java%E5%9F%BA%E7%A1%80/%E9%9B%86%E5%90%88/" class="category-chain-item">集合</a>
   
   
 
@@ -504,9 +353,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/NoSQL/" class="print-no-link">#NoSQL</a>
-      
-        <a href="/tags/redis/" class="print-no-link">#redis</a>
+        <a href="/tags/java/" class="print-no-link">#java</a>
       
     </div>
   
@@ -518,8 +365,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Redis入门_进阶内容</div>
-      <div>https://varcel.luoqi.icu/2023/12/21/Redis入门_进阶内容/</div>
+      <div>Java集合_基础概念_补充内容02</div>
+      <div>https://varcel.luoqi.icu/2023/11/14/Java集合_基础概念_补充内容02/</div>
     </div>
     <div class="license-meta">
       
@@ -531,7 +378,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年12月21日</div>
+          <div>2023年11月14日</div>
         </div>
       
       
@@ -563,9 +410,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/12/21/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B_ThreadPoolExecutor_2/" title="从Java构建线程的方式到线程池ThreadPoolExecutor源码剖析">
+                      <a href="/2023/11/14/Java%E9%9B%86%E5%90%88_ArrayList%E5%AD%A6%E4%B9%A0/" title="Java集合_ArrayList 学习">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">从Java构建线程的方式到线程池ThreadPoolExecutor源码剖析</span>
+                        <span class="hidden-mobile">Java集合_ArrayList 学习</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -573,8 +420,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/12/21/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97_RocketMQ_%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/" title="消息队列_RocketMQ_安装与使用">
-                        <span class="hidden-mobile">消息队列_RocketMQ_安装与使用</span>
+                      <a href="/2023/11/14/Java%E9%9B%86%E5%90%88_%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5_%E8%A1%A5%E5%85%85%E5%86%85%E5%AE%B901/" title="Java 集合_进阶内容">
+                        <span class="hidden-mobile">Java 集合_进阶内容</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
