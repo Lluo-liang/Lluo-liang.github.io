@@ -231,7 +231,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          13k 字
+          21k 字
         
       </span>
     
@@ -242,7 +242,7 @@
         
         
         
-          107 分钟
+          175 分钟
         
       </span>
     
@@ -284,7 +284,24 @@
             
               <div class="markdown-body">
                 
-                <h3 id="1、Reids-的一些基础概念"><a href="#1、Reids-的一些基础概念" class="headerlink" title="1、Reids 的一些基础概念"></a>1、Reids 的一些基础概念</h3><p>一般来说，我们在学习使用 Redis 的时候，我们会先首先知道的是：Redis 存储的方式是作为一个键值存储的，其中键是字符串，值可以是字符串、列表、集合等复杂数据类型。</p>
+                <p>待完善的一些内容</p>
+<ul>
+<li>常用的缓存读写策略</li>
+<li>Redis 的常用数据类型</li>
+<li>Zset 跳表</li>
+<li>分布式锁</li>
+<li>Redis 线程模型</li>
+<li>Redis 内存管理 </li>
+<li>数据过期策略</li>
+<li>数据淘汰策略</li>
+<li>Redis 性能优化</li>
+<li>Redis 集群</li>
+<li>Redis实现分布式锁如何合理的控制锁的有效时长</li>
+<li>redis集群脑裂</li>
+<li>你们用过Redis的事务吗？事务的命令有哪些</li>
+<li>Redis是单线程的，但是为什么还那么快？</li>
+</ul>
+<h3 id="1、Reids-的一些基础概念"><a href="#1、Reids-的一些基础概念" class="headerlink" title="1、Reids 的一些基础概念"></a>1、Reids 的一些基础概念</h3><p>一般来说，我们在学习使用 Redis 的时候，我们会先首先知道的是：Redis 存储的方式是作为一个键值存储的，其中键是字符串，值可以是字符串、列表、集合等复杂数据类型。</p>
 <p>从最基础的数据类型的使用开始，我们才开始慢慢了解这款 Redis 内存存储系统；</p>
 <p>由于 Redis 是基于内存存储，我们还会学习到 Redis 的持久化方案；了解到它的持久化特性之后，我们又开始对它的其他特性去掌握学习，包括事务（使用比较少）、发布&#x2F;订阅模式、Lua 脚本、Key 过期等。</p>
 <p>在使用的时候还会遇到很多问题，这些问题是怎么解决的呢，具体方案是什么，都是值得我们去了解和掌握的地方；</p>
@@ -433,7 +450,7 @@
 <li>Write Behind 则是只更新缓存，不直接更新 db，而是改为异步批量的方式来更新 db</li>
 </ul>
 <p>数据一致性风险很大，不过Write Behind Pattern 下 db 的写性能非常高，非常适合一些数据经常变化又对数据一致性要求没那么高的场景，比如浏览量、点赞量。</p>
-<h3 id="2、Redis-的常用数据类型"><a href="#2、Redis-的常用数据类型" class="headerlink" title="2、Redis 的常用数据类型"></a>2、Redis 的常用数据类型</h3><ul>
+<h3 id="2、Redis-的常用数据类型-🚩-💣"><a href="#2、Redis-的常用数据类型-🚩-💣" class="headerlink" title="2、Redis 的常用数据类型  🚩 💣"></a>2、Redis 的常用数据类型  🚩 💣</h3><ul>
 <li><strong>5种基础数据类型</strong>，分别是：String、List、Set、Zset、Hash。</li>
 </ul>
 <table>
@@ -510,23 +527,31 @@
 <p>这些高级数据类型支持更复杂的数据场景，如统计、地理位置服务等。</p>
 <h3 id="3、Redis-应用（使用场景）"><a href="#3、Redis-应用（使用场景）" class="headerlink" title="3、Redis 应用（使用场景）"></a>3、Redis 应用（使用场景）</h3><p>Redis 能做什么</p>
 <ul>
-<li>缓存</li>
-<li><strong>分布式锁</strong></li>
+<li>缓存系统</li>
+<li>分布式锁</li>
+<li>计数器&#x2F;排行榜</li>
+<li>分布式 session（保存 token）</li>
+<li>消息队列、延时队列</li>
 <li>限流</li>
-<li>消息队列</li>
-<li>延时队列</li>
-<li>分布式 session</li>
-<li>复杂业务场景 …..</li>
+<li>实时分析</li>
 </ul>
-<p>使用场景  to be contined….</p>
+<blockquote>
+<p>缓存系统</p>
+</blockquote>
 <ul>
-<li><strong>缓存系统</strong>：减少数据库压力，提高数据访问速度。</li>
-<li><strong>会话存储</strong>：如用户登录信息的存储。</li>
-<li><strong>消息队列</strong>：支持发布&#x2F;订阅模式，用于应用解耦、异步消息、消息通知等。</li>
-<li><strong>排行榜&#x2F;计数器</strong>：利用Redis的有序集合和原子操作实现。</li>
-<li><strong>实时分析</strong>：如实时监控、统计和分析数据。</li>
+<li>穿透、击穿、雪崩</li>
+<li>双写一致、持久化</li>
+<li>数据过期、淘汰策略</li>
 </ul>
-<h3 id="4-、Redis-持久化机制-🚩-💣"><a href="#4-、Redis-持久化机制-🚩-💣" class="headerlink" title="4 、Redis 持久化机制  🚩 💣"></a>4 、Redis 持久化机制  🚩 💣</h3><p>官方文档地址：<a target="_blank" rel="noopener" href="https://redis.io/topics/persistence">https://redis.io/topics/persistence</a> 。</p>
+<blockquote>
+<p>分布式锁</p>
+</blockquote>
+<ul>
+<li>setnx  redisson</li>
+</ul>
+<h4 id="分布式锁-🚩"><a href="#分布式锁-🚩" class="headerlink" title="分布式锁  🚩"></a>分布式锁  🚩</h4><p>见：[[Lottery微服务抽奖系统#2.17 设计滑动库存分布式锁处理活动秒杀 🚩]]</p>
+<p>核心：setnx  redisson</p>
+<h3 id="4-、Redis-持久化机制-🚩"><a href="#4-、Redis-持久化机制-🚩" class="headerlink" title="4 、Redis 持久化机制  🚩"></a>4 、Redis 持久化机制  🚩</h3><p>官方文档地址：<a target="_blank" rel="noopener" href="https://redis.io/topics/persistence">https://redis.io/topics/persistence</a> 。</p>
 <p>使用场景：使用缓存的时候，我们经常需要对内存中的数据进行持久化也就是将内存中的数据写入到硬盘中。大部分原因是为了之后重用数据（比如重启机器、机器故障之后恢复数据），或者是为了做数据同步（比如 Redis 集群的主从节点通过 RDB 文件同步数据）。</p>
 <blockquote>
 <p>持久化方式</p>
@@ -575,25 +600,66 @@
 <li><code>save</code> : 同步保存操作，会阻塞 Redis 主线程；</li>
 <li><code>bgsave</code> : fork 出一个子进程，子进程执行，不会阻塞 Redis 主线程，默认选项。</li>
 </ul>
-<p>这里说 Redis 主线程而不是主进程的主要是因为 Redis 启动之后主要是通过单线程的方式完成主要的工作。如果你想将其描述为 Redis 主进程，也没毛病 </p>
+<p>这里说 Redis 主线程而不是主进程的主要是因为 Redis 启动之后主要是通过单线程的方式完成主要的工作(如果你想将其描述为 Redis 主进程，也没毛病 )。</p>
 <hr>
 <h4 id="AOF"><a href="#AOF" class="headerlink" title="AOF"></a>AOF</h4><p>与快照持久化相比，AOF 持久化的实时性更好。</p>
 <p>开启 AOF 持久化后每执行一条会更改 Redis 中的数据的命令，Redis 就会将该命令写入到 AOF 缓冲区 <code>server.aof_buf</code> 中，然后再写入到 AOF 文件中（此时还在系统内核缓存区未同步到磁盘），最后再根据持久化方式（ <code>fsync</code>策略）的配置来决定何时将系统内核缓存区的数据同步到硬盘中的。</p>
 <p>只有同步到磁盘中才算持久化保存了，否则依然存在数据丢失的风险，比如说：系统内核缓存区的数据还未同步，磁盘机器就宕机了，那这部分数据就算丢失了。</p>
 <p>AOF 文件的保存位置和 RDB 文件的位置相同，都是通过 <code>dir</code> 参数设置的，默认的文件名是 <code>appendonly.aof</code></p>
-<blockquote>
-<p>开启 AOF 持久化操作</p>
-</blockquote>
-<p>默认情况下 Redis 没有开启 AOF（append only file）方式的持久化（Redis 6.0 之后已经默认是开启了），可以通过 <code>appendonly</code> 参数开启：</p>
+<h5 id="开启-AOF-持久化操作"><a href="#开启-AOF-持久化操作" class="headerlink" title="开启 AOF 持久化操作"></a>开启 AOF 持久化操作</h5><p>默认情况下 Redis 没有开启 AOF（append only file）方式的持久化（Redis 6.0 之后已经默认是开启了），可以通过 <code>appendonly</code> 参数开启：</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">appendonly</span> <span class="hljs-literal">yes</span><br></code></pre></td></tr></table></figure>
 
 
-
-<p>这里实际操作一下，看具体的一个实现效果  🚩</p>
-<p>待完善</p>
-<p>参考：<a target="_blank" rel="noopener" href="https://javaguide.cn/database/redis/redis-persistence.html#aof-%E6%8C%81%E4%B9%85%E5%8C%96">Redis持久化机制详解 | JavaGuide</a></p>
-<p>一起完善一下这部分内容</p>
+<h5 id="AOF持久化的实现过程"><a href="#AOF持久化的实现过程" class="headerlink" title="AOF持久化的实现过程"></a>AOF持久化的实现过程</h5><p>AOF（Append Only File）持久化是Redis提供的一种数据持久化机制，通过记录所有对数据库进行修改的命令来实现数据的恢复。AOF持久化的实现过程主要分为以下五个步骤，每一步都是确保数据安全性和恢复能力的关键环节。</p>
+<ul>
+<li><ol>
+<li>命令追加（Append）</li>
+</ol>
+<ul>
+<li>所有写命令（如<code>SET</code>、<code>DEL</code>等）都会被追加到AOF缓冲区中。这一步是实时的，保证了所有对数据的修改操作都能被捕获。</li>
+</ul>
+</li>
+<li><ol start="2">
+<li>文件写入（Write）</li>
+</ol>
+<ul>
+<li>AOF缓冲区中的数据会周期性地写入到AOF文件中。这个过程涉及到<code>write</code>系统调用，它把数据从用户空间复制到内核空间的缓冲区中，但此时数据还没有被同步到磁盘，只是存储在了系统的内核缓冲区中。</li>
+</ul>
+</li>
+<li><ol start="3">
+<li>文件同步（Fsync）</li>
+</ol>
+<ul>
+<li>根据配置的fsync策略（如每秒同步或每个写命令同步），Redis会定期调用<code>fsync</code>系统调用来强制将内核缓冲区中的数据同步到磁盘上。<code>fsync</code>操作会阻塞，直到所有的数据都安全写入磁盘后才返回，这一步确保了数据的持久性。</li>
+</ul>
+</li>
+<li><ol start="4">
+<li>文件重写（Rewrite）</li>
+</ol>
+<ul>
+<li>随着时间的推移，AOF文件会因为不断追加新命令而变得越来越大。Redis提供了AOF重写机制，可以在不改变数据模型的前提下，通过重新生成一份优化的AOF文件来减小文件大小。这一过程通过重写并压缩AOF文件来实现，移除了文件中冗余的命令。</li>
+</ul>
+</li>
+<li><ol start="5">
+<li>重启加载（Load）</li>
+</ol>
+<ul>
+<li>当Redis服务器重启时，它会重新加载AOF文件来恢复数据状态。这个过程通过逐一执行AOF文件中记录的命令来完成，从而恢复到最后一次同步时的数据状态。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>系统调用的作用</p>
+</blockquote>
+<ul>
+<li>**<code>write</code>**：将数据写入系统内核缓冲区后即返回，提高了写入效率，但存在数据丢失的风险。</li>
+<li>**<code>fsync</code>**：强制从内核缓冲区同步数据到磁盘，确保数据的持久化。虽然<code>fsync</code>会增加I&#x2F;O开销，但它保证了数据的安全性。</li>
+</ul>
+<p>AOF持久化通过精确记录修改数据库的每个操作，并利用系统调用确保这些操作能被安全地存储到磁盘上，从而实现数据的持久化和恢复。</p>
+<p>选择合适的fsync策略可以平衡性能和数据安全性，而AOF重写则是优化磁盘空间和提升性能的有效手段。</p>
+<hr>
 <h4 id="混合持久化"><a href="#混合持久化" class="headerlink" title="混合持久化"></a>混合持久化</h4><p>从Redis 4.0版本开始，引入了RDB和AOF的混合持久化模式，这种模式结合了两种持久化机制的优点：RDB的快速恢复能力和AOF的数据完整性保证。</p>
+<p><strong>这种方式兼顾了数据恢复的速度和数据安全性，但是也需要考虑其可能带来的额外磁盘和内存资源消耗。</strong></p>
 <blockquote>
 <p>工作原理</p>
 </blockquote>
@@ -627,7 +693,30 @@
 <li>混合持久化模式结合了RDB和AOF的优势，但也继承了它们的特点，包括RDB快照的间隔性和AOF日志的持续增长。因此，合理配置RDB快照和AOF重写的触发条件对于维护Redis的性能和数据安全至关重要。</li>
 </ul>
 <hr>
-<h3 id="5、Redis-线程模型-🚩"><a href="#5、Redis-线程模型-🚩" class="headerlink" title="5、Redis 线程模型   🚩"></a>5、Redis 线程模型   🚩</h3><h3 id="6、Redis-内存管理"><a href="#6、Redis-内存管理" class="headerlink" title="6、Redis 内存管理"></a>6、Redis 内存管理</h3><p>阅读：</p>
+<h3 id="5、Redis-线程模型-🚩💣"><a href="#5、Redis-线程模型-🚩💣" class="headerlink" title="5、Redis 线程模型   🚩💣"></a>5、Redis 线程模型   🚩💣</h3><p>Redis是一个使用C语言编写的高性能键值对存储系统。它的线程模型特别之处在于其单线程架构，</p>
+<p>不过，从Redis 4.0版本开始，引入了一些多线程特性来处理某些特定的任务，但核心数据读写操作仍然是单线程的。</p>
+<blockquote>
+<p>单线程架构</p>
+</blockquote>
+<p>在Redis的主要版本中，所有的数据读写操作都是由一个单独的线程来处理的。这意味着在任何给定时间点，只有一个操作能够访问数据集。这种设计有几个显著的优势：</p>
+<ul>
+<li><strong>简化数据结构</strong>：由于不存在并发操作数据的情况，Redis可以使用简单高效的数据结构来存储数据，而不需要担心加锁和同步的问题。</li>
+<li><strong>避免线程切换和锁的开销</strong>：线程切换和锁机制在多线程程序中会引入额外的开销。Redis通过使用单线程模型避免了这些开销，从而提高了性能。</li>
+<li><strong>简化编程模型</strong>：单线程模型使得Redis的编程和调试变得更加简单直接，因为开发者不需要考虑复杂的并发问题。</li>
+</ul>
+<blockquote>
+<p>I&#x2F;O多路复用</p>
+</blockquote>
+<p>Redis虽然在数据处理上采用单线程模型，但它使用I&#x2F;O多路复用技术来高效地处理成千上万的并发连接。</p>
+<p>I&#x2F;O多路复用允许单个线程同时监视多个网络连接上的I&#x2F;O事件，一旦某个连接上有数据可以读取或可以写入，相应的操作就会被执行。这使得Redis能够在不增加线程数量的情况下，实现高吞吐量和低延迟。</p>
+<blockquote>
+<p>Redis 4.0以后的多线程</p>
+</blockquote>
+<p>从Redis 4.0开始，引入了多线程来处理某些特定的任务，主要是网络I&#x2F;O和键过期删除等操作，以减轻主线程的负担。但需要注意的是，这些多线程并不处理数据的读写操作，核心数据操作依然是单线程执行的。这种设计旨在保持Redis操作的简单性和高性能，同时提高资源的利用率。</p>
+<blockquote>
+<p>Redis6.0  之后引入了多线程 ？</p>
+</blockquote>
+<h3 id="6、Redis-内存管理-🚩"><a href="#6、Redis-内存管理-🚩" class="headerlink" title="6、Redis 内存管理  🚩"></a>6、Redis 内存管理  🚩</h3><p>阅读：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1530553">https://cloud.tencent.com/developer/article/1530553</a></li>
 <li><a target="_blank" rel="noopener" href="https://javaguide.cn/database/redis/redis-memory-fragmentation.html">https://javaguide.cn/database/redis/redis-memory-fragmentation.html</a></li>
@@ -677,7 +766,7 @@
 <p>注意：<strong>Redis 中除了字符串类型有自己独有设置过期时间的命令 <code>setex</code> 外，其他方法都需要依靠 <code>expire</code> 命令来设置过期时间 。另外， <code>persist</code> 命令可以移除一个键的过期时间。</strong></p>
 </blockquote>
 <p>过期时间还可以用于某些业务场景：比如手机短信验证码的有效期保持在 1 分钟，token 登录的有效期在 1 天内。</p>
-<h4 id="如何判断键是否过期"><a href="#如何判断键是否过期" class="headerlink" title="如何判断键是否过期"></a>如何判断键是否过期</h4><h3 id="7、Redis-事务"><a href="#7、Redis-事务" class="headerlink" title="7、Redis 事务"></a>7、Redis 事务</h3><h4 id="什么是Redis-事务"><a href="#什么是Redis-事务" class="headerlink" title="什么是Redis 事务"></a>什么是Redis 事务</h4><p>不是很推荐使用Redis事务，跟我们常见的关系型数据库事务不同：</p>
+<h4 id="如何判断键是否过期"><a href="#如何判断键是否过期" class="headerlink" title="如何判断键是否过期"></a>如何判断键是否过期</h4><h4 id="数据过期策略-🚩💣"><a href="#数据过期策略-🚩💣" class="headerlink" title="数据过期策略  🚩💣"></a>数据过期策略  🚩💣</h4><h4 id="数据淘汰策略-🚩💣"><a href="#数据淘汰策略-🚩💣" class="headerlink" title="数据淘汰策略  🚩💣"></a>数据淘汰策略  🚩💣</h4><h3 id="7、Redis-事务"><a href="#7、Redis-事务" class="headerlink" title="7、Redis 事务"></a>7、Redis 事务</h3><h4 id="什么是Redis-事务"><a href="#什么是Redis-事务" class="headerlink" title="什么是Redis 事务"></a>什么是Redis 事务</h4><p>不是很推荐使用Redis事务，跟我们常见的关系型数据库事务不同：</p>
 <ul>
 <li>1、Redis 事务是不支持回滚（roll back）操作的，Redis 事务不满足原子性。</li>
 <li>2、Redis 事务的持久性是没办法保证的</li>
@@ -710,7 +799,61 @@
 <li><code>&lt;key&gt;</code>：脚本中用到的Redis键。</li>
 <li><code>&lt;arg&gt;</code>：传递给脚本的其他参数。</li>
 </ul>
-<h3 id="8、Redis-性能优化"><a href="#8、Redis-性能优化" class="headerlink" title="8、Redis 性能优化"></a>8、Redis 性能优化</h3><h4 id="2-1-使用批量操作减少网络传输"><a href="#2-1-使用批量操作减少网络传输" class="headerlink" title="2.1  使用批量操作减少网络传输"></a>2.1  使用批量操作减少网络传输</h4><h4 id="2-2-大量-key-集中过期问题"><a href="#2-2-大量-key-集中过期问题" class="headerlink" title="2.2 大量 key 集中过期问题"></a>2.2 大量 key 集中过期问题</h4><h4 id="2-3-大-Key"><a href="#2-3-大-Key" class="headerlink" title="2.3 大 Key"></a>2.3 大 Key</h4><h4 id="2-4-热-Key"><a href="#2-4-热-Key" class="headerlink" title="2.4 热 Key"></a>2.4 热 Key</h4><h4 id="2-5-慢查询问题"><a href="#2-5-慢查询问题" class="headerlink" title="2.5  慢查询问题"></a>2.5  慢查询问题</h4><h4 id="2-6-Redis-内存碎片"><a href="#2-6-Redis-内存碎片" class="headerlink" title="2.6 Redis 内存碎片"></a>2.6 Redis 内存碎片</h4><blockquote>
+<h3 id="8、Redis-性能优化-🚩💣"><a href="#8、Redis-性能优化-🚩💣" class="headerlink" title="8、Redis 性能优化  🚩💣"></a>8、Redis 性能优化  🚩💣</h3><h4 id="2-1-使用批量操作减少网络传输"><a href="#2-1-使用批量操作减少网络传输" class="headerlink" title="2.1  使用批量操作减少网络传输"></a>2.1  使用批量操作减少网络传输</h4><h4 id="2-2-大量-key-集中过期问题"><a href="#2-2-大量-key-集中过期问题" class="headerlink" title="2.2 大量 key 集中过期问题"></a>2.2 大量 key 集中过期问题</h4><h4 id="2-3-大-Key"><a href="#2-3-大-Key" class="headerlink" title="2.3 大 Key"></a>2.3 大 Key</h4><h4 id="2-4-热-Key"><a href="#2-4-热-Key" class="headerlink" title="2.4 热 Key"></a>2.4 热 Key</h4><h4 id="2-5-慢查询问题"><a href="#2-5-慢查询问题" class="headerlink" title="2.5  慢查询问题"></a>2.5  慢查询问题</h4><blockquote>
+<p>为什么会有慢查询问题</p>
+</blockquote>
+<p>Redis 中的大部分命令都是 O(1)时间复杂度，但也有少部分 O(n) 时间复杂度的命令和一些时间复杂度可能在 O(N) 以上的命令；</p>
+<p>由于这些命令执行时间复杂度较高，，有时候也会全表扫描，随着 n 的增大，执行耗时也会越长。</p>
+<p>由于这些命令时间复杂度是 O(n)，有时候也会全表扫描，随着 n 的增大，执行耗时也会越长。</p>
+<hr>
+<p>O(n) 时间复杂度的命令：</p>
+<ul>
+<li><code>KEYS *</code>：会返回所有符合规则的 key。</li>
+<li><code>HGETALL</code>：会返回一个 Hash 中所有的键值对。</li>
+<li><code>LRANGE</code>：会返回 List 中指定范围内的元素。</li>
+<li><code>SMEMBERS</code>：返回 Set 中的所有元素。</li>
+<li><code>SINTER</code>&#x2F;<code>SUNION</code>&#x2F;<code>SDIFF</code>：计算多个 Set 的交集&#x2F;并集&#x2F;差集。</li>
+<li>……</li>
+</ul>
+<p>时间复杂度可能在 O(N) 以上的命令：</p>
+<ul>
+<li><code>ZRANGE</code>&#x2F;<code>ZREVRANGE</code>：返回指定 Sorted Set 中指定排名范围内的所有元素。时间复杂度为 O(log(n)+m)，n 为所有元素的数量， m 为返回的元素数量，当 m 和 n 相当大时，O(n) 的时间复杂度更小。</li>
+<li><code>ZREMRANGEBYRANK</code>&#x2F;<code>ZREMRANGEBYSCORE</code>：移除 Sorted Set 中指定排名范围&#x2F;指定 score 范围内的所有元素。时间复杂度为 O(log(n)+m)，n 为所有元素的数量， m 被删除元素的数量，当 m 和 n 相当大时，O(n) 的时间复杂度更小。</li>
+<li>……</li>
+</ul>
+<hr>
+<blockquote>
+<p>开启慢查询日志</p>
+</blockquote>
+<p>Redis慢查询日志是一种用来记录执行时间超过指定阈值的命令的功能。</p>
+<p>查询日志通过两个配置参数控制：</p>
+<ol>
+<li><code>slowlog-log-slower-than</code>：设置执行时间超过多少微秒的命令会被记录到慢查询日志中。默认值是10000微秒（即10毫秒）。如果设置为0，则记录所有的命令；如果设置为负数，则不记录任何命令。</li>
+<li><code>slowlog-max-len</code>：设置慢查询日志的最大长度。当新的命令被记录而日志长度超过这个设置时，最旧的记录会被移除。</li>
+</ol>
+<p>这些参数可以在Redis配置文件中设置，也可以通过<code>CONFIG SET</code>命令动态设置。</p>
+<p>例如，动态设置记录执行时间超过20毫秒的命令，且慢查询日志最大长度为128：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros">CONFIG <span class="hljs-built_in">SET</span> slowlog-log-slower-than 20000<span class="hljs-built_in"></span><br><span class="hljs-built_in">CONFIG </span><span class="hljs-built_in">SET</span> slowlog-max-len 128<br></code></pre></td></tr></table></figure>
+
+<p>查询慢查询日志</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">SLOWLOG <span class="hljs-built_in">GET</span> 10<br></code></pre></td></tr></table></figure>
+
+<p><code>SLOWLOG GET</code> 命令默认返回最近 10 条的的慢查询命令，也自己可以指定返回的慢查询命令的数量 <code>SLOWLOG GET N</code></p>
+<p>每条慢查询日志包含以下信息：</p>
+<ul>
+<li>唯一的慢查询ID</li>
+<li>命令执行的时间戳</li>
+<li>命令的执行时长（微秒）</li>
+<li>命令及其参数</li>
+</ul>
+<blockquote>
+<p>重置慢查询日志</p>
+</blockquote>
+<p>使用<code>SLOWLOG RESET</code>命令可以清空当前的慢查询日志：</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">SLOWLOG RESET</span><br></code></pre></td></tr></table></figure>
+
+
+<h4 id="2-6-Redis-内存碎片"><a href="#2-6-Redis-内存碎片" class="headerlink" title="2.6 Redis 内存碎片"></a>2.6 Redis 内存碎片</h4><blockquote>
 <p>什么是内存碎片</p>
 </blockquote>
 <p>内存碎片是不可用的空闲内存, </p>
@@ -752,39 +895,32 @@
 <p>如何处理和减少内存碎片化</p>
 </blockquote>
 <ol>
-<li><p><strong>监控内存碎片率</strong>：</p>
-<ul>
+<li><strong>监控内存碎片率</strong>：<ul>
 <li>使用 <code>INFO memory</code> 命令监控内存碎片率（<code>mem_fragmentation_ratio</code>）。如果碎片率高（例如大于 1.5），则可能需要采取措施。</li>
 </ul>
 </li>
-<li><p><strong>定期重启</strong>：</p>
-<ul>
+<li><strong>定期重启</strong>：<ul>
 <li>定期重启 Redis 服务可以减少碎片化，但这可能会导致服务中断。</li>
 </ul>
 </li>
-<li><p><strong>内存碎片整理</strong>：</p>
-<ul>
+<li><strong>内存碎片整理</strong>：<ul>
 <li>在 Redis 4.0 及以上版本中，可以使用 <code>MEMORY PURGE</code> 命令（在某些版本中可用）来尝试减少内存碎片。</li>
 <li>使用 <code>redis-cli --intrinsic-latency</code> 命令检测内存碎片整理过程中的延迟。</li>
 </ul>
 </li>
-<li><p><strong>使用更大的对象</strong>：</p>
-<ul>
+<li><strong>使用更大的对象</strong>：<ul>
 <li>对于高频操作的数据，考虑将多个小对象合并成一个更大的对象。</li>
 </ul>
 </li>
-<li><p><strong>调整内存分配器配置</strong>：</p>
-<ul>
+<li><strong>调整内存分配器配置</strong>：<ul>
 <li>调整 Jemalloc 分配器的配置，可能有助于减少碎片化。</li>
 </ul>
 </li>
-<li><p><strong>应用层优化</strong>：</p>
-<ul>
+<li><strong>应用层优化</strong>：<ul>
 <li>在应用层优化数据访问模式，减少频繁的小对象写入和删除。</li>
 </ul>
 </li>
-<li><p><strong>数据结构选择</strong>：</p>
-<ul>
+<li><strong>数据结构选择</strong>：<ul>
 <li>根据使用场景合理选择数据结构，有些数据结构可能更容易产生内存碎片。</li>
 </ul>
 </li>
@@ -797,7 +933,8 @@
   <strong>Redis 生产问题：</strong>缓存穿透、缓存击穿、缓存雪崩、数据一致性、Redis 阻塞
 </div>
 
-<h4 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h4><p>缓存穿透是指查询不存在的数据。由于这些数据不在缓存中，每次查询都会穿过缓存，直接访问数据库。</p>
+<h4 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h4><p>缓存穿透是指当请求的数据既不在缓存中也不存在于数据库中时，导致请求直接到达数据库层的现象。</p>
+<p>这通常发生在请求非法或不存在的数据时（这类数据不会被缓存），每次查询都会穿过缓存层直接查询数据库。</p>
 <p>如果有大量此类查询，<strong>数据库可能会因此承受过大的压力</strong>。</p>
 <blockquote>
 <p>成因</p>
@@ -809,25 +946,132 @@
 <p>解决方案</p>
 </blockquote>
 <ul>
-<li><strong>空对象缓存</strong>：即使某个值在数据库中不存在，也可以在缓存中存储一个特殊的空对象或空值，并设置较短的过期时间。</li>
-<li><strong>布隆过滤器</strong>：在查询之前使用布隆过滤器判断数据是否可能存在。布隆过滤器是一种空间效率高但可能有一定误判率的数据结构。</li>
+<li><strong>空对象缓存</strong>（缓存空结果）<ul>
+<li>即使某个值在数据库中不存在，也可以在缓存中存储一个特殊的空对象或空值，并设置较短的过期时间。</li>
+<li>这样，相同的无效请求在这个过期时间内会直接得到缓存中的空结果，而不会再次查询数据库。</li>
+<li>缺点：可能会导致期间使用内存较高，缓存资源浪费</li>
 </ul>
-<p>布隆过滤器： <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/DeqJfw51tPJvdwAkq3iPdg">https://mp.weixin.qq.com/s/DeqJfw51tPJvdwAkq3iPdg</a></p>
-<h4 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h4><p>缓存击穿是指某个热点数据（即被频繁访问的数据）在缓存中失效的瞬间，大量请求同时涌向数据库。</p>
+</li>
+<li><strong>布隆过滤器</strong><ul>
+<li>在查询之前使用布隆过滤器判断数据是否可能存在。布隆过滤器是一种空间效率高但可能有一定误判率的数据结构。</li>
+</ul>
+</li>
+</ul>
+<h5 id="布隆过滤器"><a href="#布隆过滤器" class="headerlink" title="布隆过滤器"></a>布隆过滤器</h5><p>布隆过滤器可以参考的一个链接： <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/DeqJfw51tPJvdwAkq3iPdg">https://mp.weixin.qq.com/s/DeqJfw51tPJvdwAkq3iPdg</a></p>
+<hr>
+<p>布隆过滤器（Bloom Filter）</p>
+<p>布隆过滤器是一种空间效率高的概率型数据结构，用于判断一个元素是否在一个集合中。它可能会有一定的误判率（即认为元素存在于集合中，但实际上并不存在），但不会漏报（即如果它说元素不在集合中，那么元素绝对不在集合中）。</p>
+<p>通过布隆过滤器预先判断请求的数据是否可能存在，可以有效避免对不存在的数据进行查询。</p>
 <blockquote>
-<p>成因</p>
+<p>组成</p>
+</blockquote>
+<p>我们可以把它看作由二进制向量（或者说位数组）和一系列随机映射函数（哈希函数）两部分组成的数据结构</p>
+<blockquote>
+<p>工作原理</p>
+</blockquote>
+<p>布隆过滤器底层基于一个很长的二进制向量（位数组）和一系列随机映射函数（哈希函数）。</p>
+<p>具体工作流程如下：</p>
+<ol>
+<li><strong>初始化</strong>：开始时，布隆过滤器是一个包含m位的数组，所有位都设置为0。</li>
+<li><strong>添加元素</strong>：当向过滤器添加一个元素时，该元素会被k个哈希函数分别计算哈希值，每个哈希函数将产生一个数组范围内的位置。然后将这些位置的位都设置为1。</li>
+<li><strong>查询元素</strong>：要检查一个元素是否在集合中，只需对该元素使用相同的k个哈希函数得到k个位置，如果这些位置的位都是1，则认为元素可能在集合中（存在误判）。如果任何一个位是0，则元素一定不在集合中。</li>
+</ol>
+<blockquote>
+<p>具体使用示例；</p>
+</blockquote>
+<p>Redis v4.0 之后有了 Module（模块&#x2F;插件） 功能，Redis Modules 让 Redis 可以使用外部模块扩展其功能 。</p>
+<p>首先需要确保你的Redis实例已经安装了RedisBloom模块。安装后，使用该模块提供的命令来创建和管理布隆过滤器。</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs applescript"><span class="hljs-comment">#基本的RedisBloom布隆过滤器命令</span><br><span class="hljs-comment">#BF.ADD：向布隆过滤器添加元素: 向名为`myBloomFilter`的布隆过滤器中添加元素`item`。</span><br>BF.ADD myBloomFilter <span class="hljs-built_in">item</span><br><br><span class="hljs-comment">#BF.EXISTS：检查给定的元素是否可能存在于布隆过滤器中。</span><br><span class="hljs-comment">#如果命令返回1，表示`item`可能存在于过滤器中；如果返回0，则`item`绝对不在过滤器中。</span><br><span class="hljs-comment">#- BF.MADD：向布隆过滤器中添加多个元素。</span><br><span class="hljs-comment">#- BF.MEXISTS：检查多个元素是否可能存在于布隆过滤器中。</span><br>BF.EXISTS myBloomFilter <span class="hljs-built_in">item</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>布隆过滤器是什么时候加载的？</p>
+</blockquote>
+<p>一般是预加载，布隆过滤器的加载通常在系统启动或在维护窗口进行，因此对实时性的影响可以控制。</p>
+<p>一旦布隆过滤器建立，其查询效率是非常高的，对在线服务几乎没有影响。</p>
+<p>一般是在系统初始化时，对于数据库中已有的数据，会将其键（或标识）添加到布隆过滤器中，从而实现过滤掉不存在的数据。</p>
+<h4 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h4><p>缓存击穿是指缓存中某个热点key突然失效（过期），导致大量并发请求直接落到数据库上，造成数据库短时间内压力剧增的现象。</p>
+<p>与缓存穿透不同，缓存击穿是针对原本就存在于缓存中的热点数据。</p>
+<blockquote>
+<p>缓存击穿的问题</p>
 </blockquote>
 <ul>
 <li>热点数据在缓存中突然过期，而此时正有大量并发请求这些数据。</li>
+<li>核心在于热点key失效瞬间，所有对这个key的请求都会直接访问数据库，对数据库造成较大压力，甚至可能导致数据库瘫痪。</li>
 </ul>
 <blockquote>
 <p>解决方案</p>
 </blockquote>
 <ul>
-<li><strong>设置热点数据永不过期</strong>：对于一些极其热门的数据，可以设置为永不过期。</li>
-<li><strong>互斥锁</strong>：在缓存失效的瞬间，使用互斥锁或分布式锁，确保只有一个请求去数据库查询数据并重新缓存。</li>
+<li><strong>设置热点数据永不过期</strong><ul>
+<li>对于一些热点数据，可以设置其缓存永不过期，或者设置一个非常长的过期时间，从而避免缓存击穿问题。</li>
+<li>但这种方法需要定期手动或通过程序更新缓存，以保证数据的新鲜度</li>
 </ul>
-<h4 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h4><p>缓存雪崩是指缓存中大量数据同时过期，导致所有的请求都直接访问数据库，可能会使数据库压力过大甚至崩溃。</p>
+</li>
+<li><strong>互斥锁</strong><ul>
+<li>在缓存失效的瞬间，使用互斥锁或分布式锁，确保只有一个请求去数据库查询数据并重新缓存。</li>
+<li>其他请求等待缓存加载完成后再访问缓存</li>
+</ul>
+</li>
+<li>提前预热<ul>
+<li>在缓存即将过期前，后台异步程序提前更新缓存中的数据，这样可以确保热点数据在缓存中始终是可用的</li>
+</ul>
+</li>
+<li><strong>二级缓存策略</strong><ul>
+<li>为热点数据设置两级缓存，第一级缓存正常设置过期时间；第二级缓存设置较长的过期时间。当第一级缓存失效时，请求可以访问第二级缓存，同时异步更新第一级缓存和第二级缓存数据。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>互斥锁的使用</p>
+</blockquote>
+<p>当缓存失效时，不是所有请求都去数据库加载数据，而是使用某种互斥机制（如分布式锁）保证只有一个请求去数据库查询数据并加载到缓存中，其他请求等待缓存加载完成后再访问缓存。这种方式可以有效减少对数据库的访问压力。</p>
+<p>示例伪代码：</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs lasso"><span class="hljs-keyword">if</span> (<span class="hljs-keyword">cache</span>.get(key) == <span class="hljs-built_in">null</span>) &#123;<br>    <span class="hljs-keyword">if</span> (lock.tryLock()) &#123;<br>        <span class="hljs-comment">// 只有获得锁的请求去数据库查询并更新缓存</span><br>        <span class="hljs-built_in">data</span> = database.find(key);<br>        <span class="hljs-keyword">cache</span>.<span class="hljs-built_in">set</span>(key, <span class="hljs-built_in">data</span>);<br>        lock.unlock();<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-comment">// 其他请求等待一段时间后重试</span><br>        <span class="hljs-keyword">Thread</span>.sleep(<span class="hljs-number">100</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">cache</span>.get(key);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>使用互斥锁防止缓存击穿的具体步骤：</p>
+<ul>
+<li>1、检查缓存</li>
+<li>2、如果缓存不存在，进入下一步</li>
+<li>3、在访问数据库之前，尝试对这个特定的数据请求获取一个互斥锁。<ul>
+<li>如果<strong>获取锁成功</strong>，进入下一步；这意味着当前请求被选中为去数据库中查询数据并更新缓存的请求。</li>
+<li>如果<strong>获取锁失败</strong>，当前请求进入等待状态，直到锁被释放。然后回到步骤1重新检查缓存（因为此时缓存可能已经被更新）。</li>
+</ul>
+</li>
+<li>4、查询数据库</li>
+<li>5、更新缓存<ul>
+<li>将查询到的数据更新到缓存中，并设置一个合理的过期时间。这一步很关键，它保证了后续的请求可以直接从缓存中获取数据。</li>
+</ul>
+</li>
+<li>6、释放锁<ul>
+<li>完成数据库查询和缓存更新后，释放步骤2中获取的锁，允许其他等待的请求继续执行</li>
+</ul>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p>提前预热</p>
+</blockquote>
+<p>提前预热的操作其实并不止自动延长过期时间；还包括静态预热、自动预热（手动&#x2F;自动将热点数据提前放入缓存）；</p>
+<p>自动延迟的实现示例：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-comment"># 检查key的剩余过期时间</span><br><span class="hljs-attribute">TTL</span> hot_key<br><br><span class="hljs-comment"># 如果返回的剩余时间少于60秒，则延长过期时间</span><br><span class="hljs-attribute">EXPIRE</span> hot_key <span class="hljs-number">300</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p>二级缓存策略</p>
+</blockquote>
+<p>二级缓存结构设计通常涉及在现有的缓存系统（第一级缓存）之外，额外设置一个缓存层（第二级缓存），这个额外的缓存层可以是同一种缓存技术，也可以是不同的缓存技术，具体取决于需求和环境。</p>
+<p>缓存技术选择</p>
+<ul>
+<li><strong>第一级缓存</strong>：通常位于应用服务器内部，如内存中的对象缓存（例如，Java中的HashMap或Guava Cache）。第一级缓存的主要目的是提供高速访问，减少网络延迟。</li>
+<li><strong>第二级缓存</strong>：通常位于应用服务器外部，可以是分布式缓存系统（例如Redis或Memcached）。第二级缓存用于存储更多数据，提供相对较长的数据保存时间，保证数据的持久性和稳定性。</li>
+</ul>
+<p>两级缓存可以设置不同的过期策略：</p>
+<ul>
+<li>第一级缓存通常设置较短的过期时间，以保证数据的新鲜性。</li>
+<li>第二级缓存可以设置较长的过期时间，或根据需要不设置过期时间，作为一个稳定的数据备份。</li>
+</ul>
+<hr>
+<h4 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h4><p>缓存雪崩是指缓存中<strong>大量数据同时过期</strong>，导致所有的请求都直接访问数据库，可能会使数据库压力过大甚至崩溃。</p>
 <blockquote>
 <p>成因</p>
 </blockquote>
@@ -839,17 +1083,59 @@
 <p>解决方案</p>
 </blockquote>
 <ul>
-<li><strong>不同的过期时间</strong>：为缓存数据设置不同的过期时间，避免同时过期。</li>
+<li><strong>不同的过期时间</strong>：为缓存数据设置不同的过期时间，避免同时过期。（可以在设置缓存过期时间时加入随机值）</li>
 <li><strong>缓存数据预热</strong>：系统启动时预先加载热点数据到缓存中。</li>
+<li>限流降级：在系统入口处使用限流降级策略，避免在缓存失效时，突发流量直接打到数据库。</li>
+<li>使用多级缓存策略</li>
 <li><strong>使用高可用的缓存架构</strong>：比如使用Redis集群，提高缓存系统的稳定性和容错能力。</li>
 </ul>
-<h4 id="如何保证缓存和数据库的数据一致性"><a href="#如何保证缓存和数据库的数据一致性" class="headerlink" title="如何保证缓存和数据库的数据一致性"></a>如何保证缓存和数据库的数据一致性</h4><p>阅读：</p>
+<hr>
+<p>总结一下上面的三个常见的生产问题：缓存穿透、缓存击穿、缓存雪崩；</p>
 <ul>
-<li>相关文章推荐：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzIyOTYxNDI5OA==&mid=2247487312&idx=1&sn=fa19566f5729d6598155b5c676eee62d&chksm=e8beb8e5dfc931f3e35655da9da0b61c79f2843101c130cf38996446975014f958a6481aacf1&scene=178&cur_album_id=1699766580538032128#rd">缓存和数据库一致性问题，看这篇就够了 - 水滴与银弹</a>。</li>
+<li>1、缓存穿透指的不存在的数据进行访问缓存，并打到数据库中，解决方案一般有：空对象缓存、布隆过滤器</li>
+<li>2、缓存击穿和缓存雪崩有点像，都是缓存失效，但前者一般是热点数据，后者是大量数据同时过期；<ul>
+<li>热点数据建议做一下预热处理，在快要过期的时候进行处理一下；或者说常用的两种处理方案：<ul>
+<li>设置热点数据不过期，不过后续需要手动进行更新缓存或者程序更新</li>
+<li>设置互斥锁，保证同一时刻访问缓存的数据（缓存中不存在的数据），此时只有一个</li>
 </ul>
-<p>不推荐更新数据库 + 更新缓存的方案：</p>
+</li>
+<li>大量数据过期建议使用随机过期时间，同时可以设置一下限流，防止大量数据同时请求；也可以设置多级的一个缓存策略操作。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="数据一致性-🚩"><a href="#数据一致性-🚩" class="headerlink" title="数据一致性  🚩"></a>数据一致性  🚩</h4><blockquote>
+<p>如何保证缓存和数据库的数据一致性</p>
+</blockquote>
+<p>阅读：</p>
 <ul>
+<li>相关文章推荐：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzIyOTYxNDI5OA==&mid=2247487312&idx=1&sn=fa19566f5729d6598155b5c676eee62d&chksm=e8beb8e5dfc931f3e35655da9da0b61c79f2843101c130cf38996446975014f958a6481aacf1&scene=178&cur_album_id=1699766580538032128#rd">缓存和数据库一致性问题，看这篇就够了 </a>。</li>
+</ul>
+<p>简介相关内容：我们考虑引入 缓存 是打算提高读性能，引入缓存后，之前放入到数据库中的数据，现在需要放到数据中存取，我们需要怎么操作？ → </p>
+<ul>
+<li>全量数据刷到缓存中（最简单）<ul>
+<li>数据库的数据，全量刷入缓存（不设置失效时间）</li>
+<li>写请求只更新数据库，不更新缓存</li>
+<li>启动一个定时任务，<strong>定时</strong>把数据库的数据，更新到缓存中</li>
+</ul>
+</li>
+<li>缓存中只保留最近访问的「热数据」<ul>
+<li>写请求依旧只写数据库</li>
+<li>读请求先读缓存，如果缓存不存在，则从数据库读取，并重建缓存</li>
+<li>同时，写入缓存中的数据，都设置失效时间</li>
+</ul>
+</li>
+<li>更新数据库 + 更新缓存<ul>
+<li>不推荐更新数据库 + 更新缓存的方案</li>
 <li>写到缓存中的值，并不是与数据库中的值一一对应的，很有可能是先查询数据库，再经过一系列「计算」得出一个值，才把这个值才写到缓存中</li>
+</ul>
+</li>
+<li>旁路缓存模式: 遇到写请求的时候是先更新数据库，再删除 cache</li>
+</ul>
+<p>思考：</p>
+<ul>
+<li>一旦我们决定使用缓存，那必然要面临一致性问题。性能和一致性就像天平的两端，无法做到都满足要求。</li>
+<li>既然决定使用缓存，就必须容忍「一致性」问题，我们只能尽可能地去降低问题出现的概率。</li>
 </ul>
 <blockquote>
 <p>缓存和数据库不一致</p>
@@ -861,23 +1147,95 @@
 <p>解决方案：</p>
 <ol>
 <li>缓存失效时间变短（不推荐，治标不治本）<ol>
-<li>我们让缓存数据的过期时间变短，这样的话缓存就会从数据库中加载数据。另外，这种解决办法对于先操作缓存后操作数据库的场景不适用。</li>
+<li>我们让缓存数据的过期时间变短，这样的话缓存就会从数据库中加载数据。</li>
 </ol>
 </li>
 <li>增加 cache 更新重试机制（常用）<ol>
-<li>如果 cache 服务当前不可用导致缓存删除失败的话，我们就隔一段时间进行重试，重试次数可以自己定。如果多次重试还是失败的话，我们可以把当前更新失败的 key 存入队列中，等缓存服务可用之后，再将缓存中对应的 key 删除即可。</li>
+<li>如果 cache 服务当前不可用导致缓存删除失败的话，我们就隔一段时间进行重试，</li>
+<li>重试次数可以自己定。如果多次重试还是失败的话，我们可以把当前更新失败的 key 存入队列中，等缓存服务可用之后，再将缓存中对应的 key 删除即可。</li>
 </ol>
 </li>
 </ol>
+<blockquote>
 <p>第二种方式采用方案：</p>
+</blockquote>
 <ol>
 <li>引入消息队列来进行异步重试操作（将删除 cache 操作放在消费者这步操作） </li>
 <li>订阅数据库变更日志，再操作缓存</li>
 </ol>
 <hr>
-<h4 id="哪些情况可能导致-Redis-阻塞"><a href="#哪些情况可能导致-Redis-阻塞" class="headerlink" title="哪些情况可能导致 Redis 阻塞"></a>哪些情况可能导致 Redis 阻塞</h4><h3 id="10、Redis-集群-🚩"><a href="#10、Redis-集群-🚩" class="headerlink" title="10、Redis 集群  🚩"></a>10、Redis 集群  🚩</h3><p>看一下这篇文字： <a target="_blank" rel="noopener" href="https://www.yuque.com/snailclimb/mf2z3k/ks9olb19hc9wse5k">https://www.yuque.com/snailclimb/mf2z3k/ks9olb19hc9wse5k</a></p>
+<p>当缓存操作失败时，通过设置重试机制来确保缓存最终能够与数据库数据保持一致。具体步骤包括：</p>
+<p>A. <strong>直接重试</strong></p>
+<p>在缓存操作（如删除、更新）失败时，立即进行重试。可以设定一个最大重试次数，避免无限重试。</p>
+<p>B. <strong>延时重试</strong></p>
+<p>如果直接重试仍然失败，可以将失败的操作延时一段时间后再重试，延时重试可以通过定时任务或延时队列实现。</p>
+<p>C. <strong>失败队列</strong></p>
+<p>如果重试多次后仍然失败，将更新失败的key存入一个特定的队列中。等到缓存服务恢复正常后，再统一处理这些失败的操作。</p>
+<blockquote>
+<p>具体实施方案</p>
+</blockquote>
+<p>引入消息队列（异步重试）</p>
+<ul>
+<li><strong>消息队列保证可靠性</strong>：写到队列中的消息，成功消费之前不会丢失（重启项目也不担心）</li>
+<li><strong>消息队列保证消息成功投递</strong>：下游从队列拉取消息，成功消费后才会删除消息，否则还会继续投递消息给消费者（符合我们重试的场景）</li>
+</ul>
+<p>使用消息队列作为异步处理机制，<strong>将需要更新或删除的缓存操作</strong>作为消息发送到队列中，由消费者负责执行实际的缓存更新任务。这样即使缓存服务暂时不可用，也不会影响主业务流程，待缓存服务恢复后再通过消费消息来同步缓存。</p>
+<p>订阅数据库变更日志</p>
+<p>另一个高级的方案是直接订阅数据库的变更日志（如果数据库支持），如MySQL的binlog。通过解析变更日志，对相关缓存进行更新或删除操作。这种方法可以确保缓存数据的最终一致性，但实现复杂，对数据库和缓存系统的要求较高。</p>
+<hr>
+<h4 id="哪些情况可能导致-Redis-阻塞"><a href="#哪些情况可能导致-Redis-阻塞" class="headerlink" title="哪些情况可能导致 Redis 阻塞"></a>哪些情况可能导致 Redis 阻塞</h4><h3 id="10、Redis-集群-🚩💣"><a href="#10、Redis-集群-🚩💣" class="headerlink" title="10、Redis 集群  🚩💣"></a>10、Redis 集群  🚩💣</h3><p>看一下这篇文字： <a target="_blank" rel="noopener" href="https://www.yuque.com/snailclimb/mf2z3k/ks9olb19hc9wse5k">https://www.yuque.com/snailclimb/mf2z3k/ks9olb19hc9wse5k</a></p>
 <p>里面讲述了从 主从节点复制 →  哨兵机制 Sentinel  → Redis 集群Cluster （自动配置了哨兵模式，且建议至少一主一从节点，三个主节点以上的单数节点集群模式）</p>
-<h4 id="主从复制"><a href="#主从复制" class="headerlink" title="主从复制"></a>主从复制</h4><h4 id="哨兵模式（Sentinel）"><a href="#哨兵模式（Sentinel）" class="headerlink" title="哨兵模式（Sentinel）"></a>哨兵模式（Sentinel）</h4><h4 id="集群（Cluster）"><a href="#集群（Cluster）" class="headerlink" title="集群（Cluster）"></a>集群（Cluster）</h4><h3 id="11、Reids-使用规范"><a href="#11、Reids-使用规范" class="headerlink" title="11、Reids 使用规范"></a>11、Reids 使用规范</h3><hr>
+<h4 id="主从复制"><a href="#主从复制" class="headerlink" title="主从复制"></a>主从复制</h4><p>简单来说，主从复制就是将一台Redis主节点的数据复制到其他的Redis从节点中，尽最大可能保证Redis主节<br>点和从节点的数据是一致的。</p>
+<ul>
+<li>一个Redis服务器充当主节点（master），而一个或多个Redis服务器充当从节点（slave）</li>
+<li>从节点的数据会自动与主节点保持同步，这样就能在多个节点间分担读请求的压力，同时也提供了数据的冗余备份。</li>
+</ul>
+<p>主从复制是Redis高可用的基石，Redis Sentinel以及Redis Cluster都依赖于主从复制。</p>
+<p>主从复制这种方案不仅保障了Redis 服务的高可用，还实现了读写分离，提高了系统的并发量，尤其是读并发<br>量。</p>
+<blockquote>
+<p>主从复制下从节点会主动删除过期数据吗？</p>
+</blockquote>
+<p>我们知道，Rd引s中常用的过期数据的删除策胳有两个</p>
+<ul>
+<li>惰性删除：只会在取出key的时候才对数据进行过期检查。这样对CPU最友好，但是可能会造成太多过期key没有被删除。</li>
+<li>定期删除：每隔一段时间抽取一批key执行删除过期 key 操作。并且，Redis底层会通过限制删除操作执行的时长和频率来减少删除操作对CPU时间的影响。</li>
+</ul>
+<p>定期删除对内存更加友好，惰性删除对CPU更加友好。两者各有千秋，所以Rdis采用的是定期删除+惰性&#x2F;懒汉式删除。</p>
+<hr>
+<p>Redis实现定期删除和惰性删除的机制：</p>
+<p>定期删除（Periodic Deletion）</p>
+<ol>
+<li><strong>周期性操作</strong>：Redis服务器会周期性地执行定期删除操作。具体地，它默认每100ms随机抽查一些键，并检查这些键是否设置了过期时间。</li>
+<li><strong>随机抽样检查</strong>：在每次定期删除操作中，Redis并不是检查所有键，而是从当前数据库的键空间中随机抽取一定数量的键进行检查。这个数量可以通过配置<code>hz</code>参数和<code>active-expire-effort</code>参数来调整。</li>
+<li><strong>删除过期键</strong>：对于每个被抽查的键，Redis会检查其是否已经过期。如果已经过期，则将其从数据库中删除。</li>
+</ol>
+<p>这种方法可以有效地减少因过期键积累导致的内存浪费，但由于它是基于随机抽样的，不能保证所有过期键都会被及时删除。</p>
+<p>惰性删除（Lazy Deletion）</p>
+<ol>
+<li><strong>访问时检查</strong>：当客户端尝试访问任何键时，Redis首先会检查该键是否设置了过期时间，并判断该键是否已经过期。</li>
+<li><strong>即时删除</strong>：如果该键已经过期，Redis会立即将其删除，然后返回一个错误（例如，当尝试获取一个已经过期的键时，会返回<code>(nil)</code>表示键不存在）。</li>
+<li><strong>无额外开销</strong>：对于那些从未被访问的过期键，它们将不会占用额外的CPU资源进行检查。这意味着惰性删除几乎没有额外的性能开销。</li>
+</ol>
+<hr>
+<blockquote>
+<p>主从复制方式下的主从节点的数据同步方案</p>
+</blockquote>
+<p>有三种同步方案</p>
+<ul>
+<li>Redis 2.8 之前的 SYNC  方案</li>
+<li>Redis 2.8  PSYNC  方案</li>
+<li>Redis 4.0  PSYNC 2.0 方案</li>
+</ul>
+<blockquote>
+<p>工作原理：</p>
+</blockquote>
+<p>to be contined….</p>
+<ol>
+<li><strong>同步过程</strong>：当从节点启动并连接到主节点时，它会发送一个<code>SYNC</code>命令给主节点。主节点接收到这个命令后，会开始在后台保存快照（执行<code>bgsave</code>），同时收集所有接收到的写命令。快照完成后，主节点将快照文件和这期间收集的所有写命令发送给从节点。从节点首先加载快照文件来构建数据集，然后执行写命令来与主节点的数据状态保持一致。</li>
+<li><strong>命令传播</strong>：一旦初始同步完成，主节点会持续将所有接收到的写命令实时发送给从节点。这保证了主从节点间数据的实时一致性。</li>
+<li><strong>断线重连</strong>：如果从节点与主节点间的连接断开，当重新连接后，从节点会尝试自动重新同步数据。Redis 2.8版本后，支持部分重同步（PSYNC），这意味着在某些情况下，从节点只需要同步断开期间的数据变更，而不需要重新同步所有数据。</li>
+</ol>
+<h4 id="哨兵模式（Sentinel）"><a href="#哨兵模式（Sentinel）" class="headerlink" title="哨兵模式（Sentinel）"></a>哨兵模式（Sentinel）</h4><h4 id="集群（Cluster）"><a href="#集群（Cluster）" class="headerlink" title="集群（Cluster）"></a>集群（Cluster）</h4><h3 id="11、Reids-使用规范"><a href="#11、Reids-使用规范" class="headerlink" title="11、Reids 使用规范"></a>11、Reids 使用规范</h3><hr>
 <p>参考</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://javaguide.cn/database/redis/cache-basics.html">https://javaguide.cn/database/redis/cache-basics.html</a></li>
