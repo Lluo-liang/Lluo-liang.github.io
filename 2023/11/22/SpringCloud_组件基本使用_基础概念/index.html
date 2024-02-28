@@ -26,13 +26,14 @@
 <meta property="og:description" content="SpringCloud_组件基本使用_基础概念">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311221942122.png">
-<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311221957842.png">
-<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311221958787.png">
-<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311222220247.png">
-<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311222222672.png">
-<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311222223525.png">
-<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311222225655.png">
-<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311222226068.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402280922280.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402281656511.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402281419782.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402281439113.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402281528174.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402281533917.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402281535314.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402281639179.png">
 <meta property="article:published_time" content="2023-11-22T17:54:01.000Z">
 <meta property="article:modified_time" content="2023-11-22T17:54:01.000Z">
 <meta property="article:author" content="Luo QI">
@@ -233,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.3k 字
+          13k 字
         
       </span>
     
@@ -244,7 +245,7 @@
         
         
         
-          44 分钟
+          112 分钟
         
       </span>
     
@@ -286,7 +287,7 @@
             
               <div class="markdown-body">
                 
-                <h3 id="1、SpringCloud是什么"><a href="#1、SpringCloud是什么" class="headerlink" title="1、SpringCloud是什么"></a>1、SpringCloud是什么</h3><p>SpringCloud 提供了一整套的分布式系统解决方案，通过 Spring Boot 风格的封装，屏蔽掉了复杂的配置和实现原理，最终给开发者留出了一套简单易懂、容易部署的分布式系统开发工具包。</p>
+                <h3 id="一、基础概念"><a href="#一、基础概念" class="headerlink" title="一、基础概念"></a>一、基础概念</h3><h4 id="1、SpringCloud是什么"><a href="#1、SpringCloud是什么" class="headerlink" title="1、SpringCloud是什么"></a>1、SpringCloud是什么</h4><p>SpringCloud 提供了一整套的分布式系统解决方案，通过 Spring Boot 风格的封装，屏蔽掉了复杂的配置和实现原理，最终给开发者留出了一套简单易懂、容易部署的分布式系统开发工具包。</p>
 <p>SpringCloud 包含了：服务注册与发现、配置中心、服务网关、智能路由、负载均衡、断路器、监控跟踪、分布式消息队列等。</p>
 <p>Spring Cloud 包含很多子项目，国内主要是采用 Netflix 和 Alibaba 两个标准实现，前者由于不再维护，目前一般采用Spring Cloud Alibaba 这一套微服务解决方案。</p>
 <blockquote>
@@ -326,58 +327,421 @@
 <p>SpringCloud 版本介绍</p>
 </blockquote>
 <p>略</p>
-<h3 id="2、创建cloud聚合父工程"><a href="#2、创建cloud聚合父工程" class="headerlink" title="2、创建cloud聚合父工程"></a>2、创建cloud聚合父工程</h3><h4 id="初始化工程及配置"><a href="#初始化工程及配置" class="headerlink" title="初始化工程及配置"></a>初始化工程及配置</h4><ol>
-<li>New Project</li>
-</ol>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311221957842.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<ol start="2">
-<li>聚合总父工程名字</li>
-<li>Maven选版本</li>
-<li>开启自动导入</li>
-</ol>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311221958787.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<ol start="5">
-<li>字符编码</li>
-</ol>
-<p>Settings → Editor →  File Encodings</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311222220247.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<ol start="6">
-<li>注解生效激活</li>
-</ol>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311222222672.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<ol start="7">
-<li>java编译版本选8</li>
-</ol>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311222223525.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<ol start="8">
-<li>File Type过滤</li>
-</ol>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311222225655.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>这里File Type 配置</p>
-<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-comment">*.idea</span><br><span class="hljs-comment">*.iml</span><br></code></pre></td></tr></table></figure>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311222226068.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="父工程-pom-配置"><a href="#父工程-pom-配置" class="headerlink" title="父工程 pom 配置"></a>父工程 pom 配置</h4><p>父工程 Pom 文件参考配置</p>
-<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.luoqi.springcloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  </span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>cloud2023<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  </span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0-SNAPSHOT<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>  </span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">packaging</span>&gt;</span>pom<span class="hljs-tag">&lt;/<span class="hljs-name">packaging</span>&gt;</span>  </span><br><span class="language-xml">  </span><br><span class="language-xml"><span class="hljs-comment">&lt;!--统一管理jar包版本--&gt;</span>  </span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">properties</span>&gt;</span>  </span><br><span class="language-xml">  <span class="hljs-tag">&lt;<span class="hljs-name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="hljs-tag">&lt;/<span class="hljs-name">project.build.sourceEncoding</span>&gt;</span>  </span><br><span class="language-xml">  <span class="hljs-tag">&lt;<span class="hljs-name">maven.compiler.source</span>&gt;</span>1.8<span class="hljs-tag">&lt;/<span class="hljs-name">maven.compiler.source</span>&gt;</span>  </span><br><span class="language-xml">  <span class="hljs-tag">&lt;<span class="hljs-name">maven.compiler.target</span>&gt;</span>1.8<span class="hljs-tag">&lt;/<span class="hljs-name">maven.compiler.target</span>&gt;</span>  </span><br><span class="language-xml">  <span class="hljs-tag">&lt;<span class="hljs-name">junit.version</span>&gt;</span>4.12<span class="hljs-tag">&lt;/<span class="hljs-name">junit.version</span>&gt;</span>  </span><br><span class="language-xml">  <span class="hljs-tag">&lt;<span class="hljs-name">lombok.version</span>&gt;</span>1.18.10<span class="hljs-tag">&lt;/<span class="hljs-name">lombok.version</span>&gt;</span>  </span><br><span class="language-xml">  <span class="hljs-tag">&lt;<span class="hljs-name">log4j.version</span>&gt;</span>1.2.17<span class="hljs-tag">&lt;/<span class="hljs-name">log4j.version</span>&gt;</span>  </span><br><span class="language-xml">  <span class="hljs-tag">&lt;<span class="hljs-name">mysql.version</span>&gt;</span>8.0.18<span class="hljs-tag">&lt;/<span class="hljs-name">mysql.version</span>&gt;</span>  </span><br><span class="language-xml">  <span class="hljs-tag">&lt;<span class="hljs-name">druid.version</span>&gt;</span>1.1.20<span class="hljs-tag">&lt;/<span class="hljs-name">druid.version</span>&gt;</span>  </span><br><span class="language-xml">  <span class="hljs-tag">&lt;<span class="hljs-name">mybatis.spring.boot.version</span>&gt;</span>1.3.2<span class="hljs-tag">&lt;/<span class="hljs-name">mybatis.spring.boot.version</span>&gt;</span>  </span><br><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">properties</span>&gt;</span>  </span><br><span class="language-xml">  </span><br><span class="language-xml"><span class="hljs-comment">&lt;!--子模块继承之后，提供作用：锁定版本+子module不用写groupId和version--&gt;</span>  </span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencyManagement</span>&gt;</span>  </span><br><span class="language-xml">  <span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>  </span><br><span class="language-xml">    <span class="hljs-comment">&lt;!--spring boot 2.2.2--&gt;</span>  </span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>  </span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  </span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-dependencies<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  </span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2.2.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>  </span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">type</span>&gt;</span>pom<span class="hljs-tag">&lt;/<span class="hljs-name">type</span>&gt;</span>  </span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>import<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>  </span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>  </span><br><span class="language-xml">    <span class="hljs-comment">&lt;!--spring cloud Hoxton.SR1--&gt;</span>  </span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>  </span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  </span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-dependencies<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  </span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>Hoxton.SR1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>  </span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">type</span>&gt;</span>pom<span class="hljs-tag">&lt;/<span class="hljs-name">type</span>&gt;</span>  </span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>import<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>  </span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>  </span><br><span class="language-xml">    <span class="hljs-comment">&lt;!--spring cloud alibaba--&gt;</span>  </span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>  </span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.alibaba.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  </span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-alibaba-dependencies<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  </span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2.0.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>  </span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">type</span>&gt;</span>pom<span class="hljs-tag">&lt;/<span class="hljs-name">type</span>&gt;</span>  </span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>import<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>  </span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>  </span><br><span class="language-xml">    <span class="hljs-comment">&lt;!--mysql--&gt;</span>  </span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>  </span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>mysql<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  </span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mysql-connector-java<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  </span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>$</span><span class="hljs-template-variable">&#123;mysql.version&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>  </span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>runtime<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>  </span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>  </span><br><span class="language-xml">    <span class="hljs-comment">&lt;!-- druid--&gt;</span>  </span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>  </span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.alibaba<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  </span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>druid-spring-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  </span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>$</span><span class="hljs-template-variable">&#123;druid.version&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>  </span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>  </span><br><span class="language-xml">  </span><br><span class="language-xml">    <span class="hljs-comment">&lt;!--mybatis--&gt;</span>  </span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>  </span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.mybatis.spring.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  </span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mybatis-spring-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  </span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>$</span><span class="hljs-template-variable">&#123;mybatis.spring.boot.version&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>  </span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>  </span><br><span class="language-xml">    <span class="hljs-comment">&lt;!--junit--&gt;</span>  </span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>  </span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  </span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  </span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>$</span><span class="hljs-template-variable">&#123;junit.version&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>  </span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>  </span><br><span class="language-xml">    <span class="hljs-comment">&lt;!--log4j--&gt;</span>  </span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>  </span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>log4j<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  </span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>log4j<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  </span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>$</span><span class="hljs-template-variable">&#123;log4j.version&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>  </span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>  </span><br><span class="language-xml">  </span><br><span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span>  </span><br><span class="language-xml">  </span><br><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">dependencyManagement</span>&gt;</span>  </span><br><span class="language-xml">  </span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">build</span>&gt;</span>  </span><br><span class="language-xml">  <span class="hljs-tag">&lt;<span class="hljs-name">plugins</span>&gt;</span>  </span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">plugin</span>&gt;</span>  </span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  </span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  </span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2.2.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>  </span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span>  </span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">fork</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">fork</span>&gt;</span>  </span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">addResources</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">addResources</span>&gt;</span>  </span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span>  </span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">plugin</span>&gt;</span>  </span><br><span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">plugins</span>&gt;</span>  </span><br><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">build</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
-
-<h4 id="创建子模块"><a href="#创建子模块" class="headerlink" title="创建子模块"></a>创建子模块</h4><ul>
-<li><ol>
-<li>新建模块</li>
-</ol>
+<p>Eureka、Ribbon、Feign、Hystrix、Zuul、Archaius</p>
+<h4 id="2、SpringCloud-的常用组件"><a href="#2、SpringCloud-的常用组件" class="headerlink" title="2、SpringCloud 的常用组件"></a>2、SpringCloud 的常用组件</h4><p>回答这个问题，必须要回答出基本架构相关的一些组件。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402280922280.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>Spring Cloud Netflix 第一代</p>
+<ul>
+<li>Eureka   注册中心</li>
+<li>Ribbon   负载均衡</li>
+<li>Feign     远程调用</li>
+<li>Hystrix  服务熔断</li>
+<li>Zuul  网关</li>
+</ul>
+<p>Spring Cloud Alibaba 第二代</p>
+<ul>
+<li>Nacos   注册中心、配置中心</li>
+<li>Ribbon   负载均衡</li>
+<li>OpenFeign     远程调用</li>
+<li>Sentinel   服务保护</li>
+<li>Gateway  网关</li>
+</ul>
+<h4 id="3、微服务"><a href="#3、微服务" class="headerlink" title="3、微服务"></a>3、微服务</h4><p>可能会问一些关于微服务相关的概念和知识</p>
+<h4 id="4、常见概念"><a href="#4、常见概念" class="headerlink" title="4、常见概念"></a>4、常见概念</h4><h5 id="CAP"><a href="#CAP" class="headerlink" title="CAP"></a>CAP</h5><ul>
+<li>一致性</li>
+<li>可用性</li>
+<li>分区容错性</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402281656511.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li><strong>一致性（Consistency）</strong>：所有节点上的数据在同一时间是相同的。即在分布式系统中，每次读取操作都能得到最新的写入结果。一致性确保了系统的数据副本之间能够达成一致的状态。</li>
+<li><strong>可用性（Availability）</strong>：每个请求都能在有限的时间内收到一个明确的响应，无论响应是成功的还是失败的。可用性保证了系统能够持续响应客户端的请求。</li>
+<li><strong>分区容错性（Partition tolerance）</strong>：系统能够在任意网络分区发生时继续运行。分区容错性指的是，即使系统内部发生了网络分割，使得某些节点之间无法通信，系统仍然能够对外提供满足一致性或可用性的服务。</li>
+</ul>
+<p>实际应用：</p>
+<p>在实际的分布式系统设计中，CAP定理提供了一个理论框架来指导如何在一致性、可用性和分区容错性之间做出权衡。不同的系统可能会根据自身的业务需求和特点，选择适合自己的CAP平衡点：</p>
+<ul>
+<li><strong>CA系统</strong>：放弃分区容错性，通常适用于单一数据中心的传统数据库系统。</li>
+<li><strong>CP系统</strong>：放弃可用性，适用于对数据一致性要求极高的系统</li>
+<li><strong>AP系统</strong>：放弃一致性，适用于对可用性要求极高的系统</li>
+</ul>
+<p>在分布式环境中，系统节点之间肯定的需要有网络连接的，因此分区（P) 是必然存在的</p>
+<hr>
+<p>在现实的分布式系统中，网络分区是不可避免的，因此分区容忍性（P）是必须要满足的。这就意味着我们只能在一致性（C）和可用性（A）之间做出选择。</p>
+<ul>
+<li><strong>AP系统</strong>：在网络分区发生时，选择保证可用性，但牺牲了一致性。这意味着在某些节点上可能读取到的是过时的数据，因为系统为了保证响应的可用性，允许在没有获取到最新数据副本的情况下也能响应客户端的读写请求。</li>
+<li><strong>CP系统</strong>：在网络分区发生时，选择保证一致性，但可能牺牲可用性。这意味着如果数据不能在所有节点间同步，系统可能会拒绝处理读写请求，以保证不会返回错误或过时的数据。</li>
+</ul>
+<h5 id="BASE-🚩"><a href="#BASE-🚩" class="headerlink" title="BASE  🚩"></a>BASE  🚩</h5><p>BASE理论是对CAP理论的一种补充和延伸，主要面向大规模分布式系统，在牺牲强一致性的前提下，追求系统的可用性和性能。</p>
+<p>BASE是三个英文单词的缩写，分别代表：</p>
+<ul>
+<li><strong>基本可用（Basically Available）</strong>：系统允许分布式系统在出现故障的时候，保持核心可用，但是允许部分暂时不可用。这意味着在一些情况下（如网络分区、系统故障），系统仍然能提供基本的服务，即使这些服务可能是降级的。</li>
+<li><strong>软状态（Soft State）</strong>：系统的状态不需要实时一致，允许系统中的数据存在中间状态，并认为这种状态是正常的。与之相对的是传统数据库中数据的“硬状态”，必须保证数据在任何时刻都是一致的。软状态允许系统在不同节点间数据同步存在延迟。</li>
+<li><strong>最终一致性（Eventual Consistency）</strong>：系统保证在没有新的更新操作的情况下，数据最终会达到一致的状态。最终一致性强调的是，所有的更新操作最终将会传播到所有节点上，但并不保证更新操作的实时性和顺序性。</li>
+</ul>
+<p>BASE理论提供了一种面向可用性和性能的、对一致性要求相对宽松的设计和实现分布式系统的方法论，强调通过牺牲一致性来获得高可用性和高性能的可能性。</p>
+<blockquote>
+<p>示例：基于Base 理论实现分布式事务</p>
+</blockquote>
+<blockquote>
+<p>面试题：解释一下  CAP  和   BASE</p>
+</blockquote>
+<ul>
+<li>CAP定理（一致性.可用性、分区容错性）<ul>
+<li>1.分布式系统节点通过网格连接。一定会出现分区问题(P)</li>
+<li>2.当分区出现时，系统的一致性(C)和可用性(A)就无法同时满足</li>
+</ul>
 </li>
-<li><ol start="2">
-<li>pom文件对应依赖</li>
-</ol>
+<li>BASE理论<ul>
+<li>1,基本可用</li>
+<li>2.软状态</li>
+<li>3.最终一致</li>
+</ul>
 </li>
-<li><ol start="3">
-<li>yml 配置文件</li>
-</ol>
-</li>
-<li><ol start="4">
-<li>启动类以及其他业务类</li>
-</ol>
+<li>解决分布式事务的思想和模型：<ul>
+<li>1,最终一致思想：各分支事务分别执行并提交，如果有不一致的情况，再想办法恢复数据(AP)</li>
+<li>2.强一致思想：各分支事务执行完业务不要提交。等待被此结果，而后统一提交或回滚(CP)</li>
+</ul>
 </li>
 </ul>
+<p>这个理解有点问题，待后续回顾一下 to be contined….</p>
 <hr>
+<h3 id="二、Nacos"><a href="#二、Nacos" class="headerlink" title="二、Nacos"></a>二、Nacos</h3><h4 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h4><p>Nacos是一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。</p>
+<p>Nacos支持几乎所有主流类型的服务的“服务发现和服务健康监测”，同时提供动态配置服务，支持配置的动态更新，服务路由和管理等丰富的功能。（主要功能包括服务发现和配置管理）</p>
+<h4 id="服务发现-🚩"><a href="#服务发现-🚩" class="headerlink" title="服务发现  🚩"></a>服务发现  🚩</h4><ol>
+<li><strong>服务注册</strong>：服务实例在启动时，通过Nacos客户端向Nacos Server注册自己的服务信息（包括服务名、实例IP、端口等）。Nacos Server接收到注册信息后，将其存储在服务注册表中。</li>
+<li><strong>服务同步</strong>：在Nacos集群环境下，服务注册信息会在Nacos Server节点间进行同步，确保每个节点的服务注册表信息一致。</li>
+<li><strong>服务健康检查</strong>：Nacos Server定期对注册的服务实例进行健康检查，根据心跳机制或者其他健康检查机制来更新服务实例的健康状态。不健康的服务实例会被标记，以防止被调用。</li>
+<li><strong>服务发现</strong>：客户端应用通过Nacos客户端向Nacos Server查询目标服务的可用服务实例列表。Nacos Server返回健康的服务实例列表给客户端，客户端根据负载均衡策略选择一个服务实例进行调用。</li>
+</ol>
+<p>工作流程将的有点问题，包括服务发现的具体实际操作是怎么样的，细节也没有讲述到。 </p>
+<h4 id="配置管理"><a href="#配置管理" class="headerlink" title="配置管理"></a>配置管理</h4><ol>
+<li><strong>配置发布</strong>：应用或操作人员通过Nacos控制台、API或SDK向Nacos Server发布配置信息。Nacos Server将配置信息存储在配置存储中。</li>
+<li><strong>配置变更通知</strong>：当配置信息发生变更时，Nacos Server会通知所有订阅了该配置的客户端应用。</li>
+<li><strong>配置获取</strong>：客户端应用启动时，会通过Nacos客户端向Nacos Server查询所需的配置信息。Nacos Server从配置存储中检索配置信息并返回给客户端。</li>
+<li><strong>动态更新</strong>：客户端应用在收到配置变更通知后，会重新向Nacos Server请求最新的配置信息，并根据新的配置信息动态调整自己的行为，无需重启应用。</li>
+</ol>
+<h4 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h4><ul>
+<li><strong>数据一致性</strong>：Nacos采用Distro（一种AP型的数据一致性协议）和Raft协议来确保数据的一致性。Distro协议用于服务发现的数据同步，而Raft协议用于配置管理和元数据的数据一致性保证。</li>
+<li><strong>服务隔离</strong>：Nacos支持命名空间、分组等机制，可以实现不同环境或不同应用间的服务和配置隔离。</li>
+<li><strong>灵活的负载均衡</strong>：Nacos客户端支持多种负载均衡策略，并允许自定义策略。</li>
+</ul>
+<blockquote>
+<p>Nacos 和 Eureka 的区别有哪些？</p>
+</blockquote>
+<ul>
+<li>Nacos 和 Eureka 的共同点（注册中心）<ul>
+<li>1、都支持服务注册和服务拉取</li>
+<li>2、都支持服务提供者心跳方式做健康检测</li>
+</ul>
+</li>
+<li>Nacos与Eureka的区别（注册中心）<ul>
+<li>1、Nacos 支持服务端主动检测提供者状态：临时实例采用心跳模式，非临时实例采用主动检测模式</li>
+<li>2、临时实例心桃不正常会被剔除，非临时实例则不会被剔除</li>
+<li>3、Nacos 支持服务列表变更的消息推送模式，服务列表更新更及时</li>
+<li>4、Nacos集群默认采用AP方式，当集群中存在非临时实例时，采用CP模式；Eureka采用AP方式</li>
+</ul>
+</li>
+<li>Nacos还支持了配置中心，eureka则只有注册中心，也是选择使用nacos的一个重要原因</li>
+</ul>
+<h3 id="三、OpenFeign"><a href="#三、OpenFeign" class="headerlink" title="三、OpenFeign"></a>三、OpenFeign</h3><p>OpenFeign和Feign本质上指的是同一个技术，不过从历史发展和使用上下文中，它们有细微的区别。</p>
+<p><strong>Feign</strong> 最初是由Netflix开发的一个开源项目，它内部内置集成了Ribbon（客户端负载均衡）和Hystrix（断路器）等组件。</p>
+<p><strong>OpenFeign</strong> 是Spring Cloud在Feign的基础上进行了封装和扩展的项目，正式名称为Spring Cloud OpenFeign。它是Spring Cloud组件中的一部分，专门用于微服务架构中的服务间调用。</p>
+<p>比起 Feign ，额外提供了一些功能，比如 Spring MVC的注解、自动配置和健康检查等功能。</p>
+<ul>
+<li>1、两者都是基于相同的Feign技术，核心理念和基本用法相似，都是通过定义接口和注解来创建HTTP客户端。</li>
+<li>2、Feign是Netflix的一个开源项目，而OpenFeign是Spring Cloud项目的一部分，得到了Spring社区的支持和维护。</li>
+<li>3、OpenFeign在原有Feign的基础上进行了扩展，更好地集成了Spring Boot和Spring Cloud的特性，提供了更多的配置项和更方便的使用方式。</li>
+</ul>
+<p>如果问起负载均衡，一般还是问 Ribbon ，然后 ribbon 是内嵌到了 openfeign，同时还有熔断器的功能。</p>
+<h4 id="服务调用流程"><a href="#服务调用流程" class="headerlink" title="服务调用流程"></a>服务调用流程</h4><p>讲述一下大致的一个负载均衡的操作步骤：</p>
+<p>服务注册  →   服务发现   →  负载均衡   →    服务调用 </p>
+<ul>
+<li>在Nacos结合OpenFeign的微服务环境下，负载均衡是自动实现的。<ul>
+<li>Nacos作为服务发现和服务注册中心，OpenFeign作为声明式的HTTP客户端调用工具，它们共同工作，提供了一个简洁高效的服务调用流程。</li>
+</ul>
+</li>
+<li>1、服务注册<ul>
+<li><strong>服务提供者启动</strong>：每个微服务在启动时，会将自己的可用实例信息（包括服务名、IP地址、端口等）注册到Nacos服务注册中心。</li>
+<li><strong>服务同步</strong>：Nacos会将服务信息同步到所有的服务节点，确保每个节点的服务信息是最新的。</li>
+</ul>
+</li>
+<li>2、服务发现<ul>
+<li><strong>服务消费者启动</strong>：服务消费者（客户端应用）启动时，会通过Nacos客户端查询需要调用的服务的实例列表。</li>
+<li><strong>获取服务实例</strong>：Nacos返回所有健康的服务实例信息给服务消费者。</li>
+</ul>
+</li>
+<li>3、负载均衡<ul>
+<li><strong>客户端负载均衡</strong>：OpenFeign内部集成了Ribbon，Ribbon作为客户端负载均衡器，根据特定的策略（如轮询、随机等）从Nacos获取的服务实例列表中选择一个实例进行调用。</li>
+<li><strong>服务调用</strong>：选定服务实例后，OpenFeign会构造HTTP请求并发送到目标服务实例。</li>
+</ul>
+</li>
+<li>4、服务调用<ul>
+<li><strong>服务处理请求</strong>：服务提供者接收到请求后，执行相应的业务逻辑，然后返回处理结果给服务消费者。</li>
+<li><strong>返回响应</strong>：服务消费者接收到响应数据，完成一次服务调用流程。</li>
+</ul>
+</li>
+<li>5、故障处理<ul>
+<li><strong>断路器</strong>：如果服务调用失败（例如，超时或服务实例不可用），OpenFeign集成的Hystrix断路器可以提供备用方案，如返回一个默认值或调用备用服务，避免服务雪崩。</li>
+</ul>
+</li>
+</ul>
+<p>Ribbon默认的负载均衡策略是轮询，但可以根据需要更改策略。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402281419782.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h4><h5 id="常见负载均衡策略"><a href="#常见负载均衡策略" class="headerlink" title="常见负载均衡策略"></a>常见负载均衡策略</h5><p>Ribbon 常见的负载均衡策略：</p>
+<ul>
+<li><strong>Round Robin Rule（轮询规则）</strong><ul>
+<li>这是最简单也是最常用的负载均衡策略。它按顺序循环地选择服务实例，每次请求轮流分配给下一个服务实例。</li>
+<li><strong>使用场景</strong>：适用于所有服务实例处理能力相当的情况。</li>
+</ul>
+</li>
+<li><strong>Random Rule（随机规则）</strong><ul>
+<li>随机选择一个服务实例。每次请求都是随机从服务列表中选取一个服务实例进行调用。</li>
+<li><strong>使用场景</strong>：适用于服务实例众多，需要避免轮询带来的均匀性不足问题的场景。</li>
+</ul>
+</li>
+<li><strong>Response Time Weighted Rule</strong>（响应时间加权规则）<ul>
+<li>根据服务实例的平均响应时间来计算所有服务实例的权重，响应时间短的服务实例将有更高的权重，被更频繁地选择。</li>
+<li><strong>使用场景</strong>：适用于服务实例性能差异较大，希望优先调用响应时间短的服务实例的情况。</li>
+</ul>
+</li>
+<li>Retry Rule（重试规则）<ul>
+<li>在一个指定的时间内，如果选定的服务实例不成功，则会重新选择一个服务实例进行尝试，直到获取成功响应或达到最大重试次数。</li>
+<li><strong>使用场景</strong>：适用于对服务调用的可靠性要求较高的情况，可以增加调用成功的机会。</li>
+</ul>
+</li>
+<li>Best Available Rule（最低并发规则）<ul>
+<li>选择并发请求最小的服务实例。这个策略会考虑到服务实例的并发请求量，优先选择并发量最小的实例。</li>
+<li><strong>使用场景</strong>：适用于需要平衡服务实例负载，避免某些实例过载的场景。</li>
+</ul>
+</li>
+<li>Availability Filtering Rule（可用性过滤规则）<ul>
+<li>先过滤掉一直连接失败的被标记为circuit tripped的服务实例，然后选择一个并发量最小的实例。</li>
+<li><strong>使用场景</strong>：适用于需要剔除不稳定服务实例，确保服务调用的高可用性。</li>
+</ul>
+</li>
+<li><strong>Zone Avoidance Rule</strong>（区域权重规则）<ul>
+<li>综合区域的性能和服务实例的可用性来选择服务器。尽可能地选择一个较少负载且可用性较高的服务实例。</li>
+<li>适用于跨多个区域（如AWS区域）部署的服务，需要考虑区域性能和可用性的场景。</li>
+</ul>
+</li>
+</ul>
+<p>一般问到负载均衡常用的策略也可以从常见的几个策略谈一下：轮询、随机、响应时间权重、区域权重。</p>
+<p>具体的负载均衡策略配置是怎么操作的：</p>
+<p>在Spring Cloud应用中，具体配置Ribbon的负载均衡策略通常涉及到application.properties或application.yml配置文件的修改，或者通过编码的方式自定义配置。</p>
+<p>下面是两种常见的配置方法：</p>
+<blockquote>
+<p>通过配置文件配置</p>
+</blockquote>
+<p>在<code>application.yml</code>或<code>application.properties</code>中，可以为所有服务或特定服务设置负载均衡策略</p>
+<p>application.yml示例</p>
+<p>为所有服务设置轮询策略：</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs avrasm"><span class="hljs-symbol">ribbon:</span><br>  NFLoadBalancerRuleClassName: <span class="hljs-keyword">com</span>.netflix.loadbalancer.RoundRobinRule<br></code></pre></td></tr></table></figure>
+
+<p>为特定服务设置随机策略：</p>
+<figure class="highlight nestedtext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs nestedtext"><span class="hljs-attribute">user-service</span><span class="hljs-punctuation">:</span><br>  <span class="hljs-attribute">ribbon</span><span class="hljs-punctuation">:</span><br>    <span class="hljs-attribute">NFLoadBalancerRuleClassName</span><span class="hljs-punctuation">:</span> <span class="hljs-string">com.netflix.loadbalancer.RandomRule</span><br></code></pre></td></tr></table></figure>
+
+
+<p>你也可以通过编写Java配置类来自定义Ribbon的负载均衡策略，这种方法更加灵活，允许更复杂的配置。</p>
+<p>下面是一个为<code>user-service</code>服务自定义随机负载均衡策略的例子：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">import</span> com.netflix.loadbalancer.IRule;<br><span class="hljs-keyword">import</span> com.netflix.loadbalancer.RandomRule;<br><span class="hljs-keyword">import</span> org.springframework.context.<span class="hljs-keyword">annotation</span>.Bean;<br><span class="hljs-keyword">import</span> org.springframework.context.<span class="hljs-keyword">annotation</span>.Configuration;<br><br><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">RibbonConfiguration</span> &#123;<br><br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> IRule ribbonRule() &#123;<br>        <span class="hljs-comment">// 使用随机负载均衡策略</span><br>        <span class="hljs-keyword">return</span> new RandomRule();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>然后，你需要在<code>application.properties</code>或<code>application.yml</code>中指定这个配置类应用于哪个服务：</p>
+<p>application.yml</p>
+<figure class="highlight nestedtext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs nestedtext"><span class="hljs-attribute">user-service</span><span class="hljs-punctuation">:</span><br>  <span class="hljs-attribute">ribbon</span><span class="hljs-punctuation">:</span><br>    <span class="hljs-attribute">NFLoadBalancerClassName</span><span class="hljs-punctuation">:</span> <span class="hljs-string">com.example.demo.config.RibbonConfiguration</span><br></code></pre></td></tr></table></figure>
+
+<p>注意事项</p>
+<ul>
+<li>当通过编码方式自定义Ribbon配置时，确保不要将<code>@Configuration</code>配置类放在主应用程序上下文的<code>@ComponentScan</code>中，以避免该配置成为全局配置。推荐的做法是将Ribbon的配置类放在主应用类的包外，或者显式指定<code>@ComponentScan</code>的扫描路径排除这些配置。</li>
+<li>Spring Cloud中，Feign已默认集成了Ribbon，所以通过Feign调用服务时，也可以利用这些负载均衡策略。</li>
+</ul>
+<p>通过这些方法，可以灵活地为应用配置合适的负载均衡策略，优化服务调用的性能和可靠性。</p>
+<h5 id="自定义负载均衡策略"><a href="#自定义负载均衡策略" class="headerlink" title="自定义负载均衡策略"></a>自定义负载均衡策略</h5><p>在上文中实际已经讲述了自定义负载均衡策略的实现：</p>
+<ul>
+<li>1、创建类实现 IRule 接口，指定负载均衡策略（全局）</li>
+<li>2、在客户端的配置文件中，配置某一个服务指定的负载均衡策略（局部）</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402281439113.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<blockquote>
+<p>关于【创建类实现 IRule 接口，指定负载均衡策略】的进一步说明</p>
+</blockquote>
+<p>首先是这种方式和【在配置文件中为所有服务统一设置负载均衡策略】的区别：</p>
+<ul>
+<li>1、对于大多数标准使用场景，<strong>通过配置文件设置负载均衡策略</strong>更容易管理和调整。尤其是在微服务架构中，当服务数量较多时，能够快速统一调整策略。（后者的一个作用是简化配置）</li>
+<li>2、通过编码方式实现<code>IRule</code>接口，可以创建一个自定义的负载均衡策略，这种方法提供了极高的灵活性和控制力。你可以根据具体的业务需求编写负载均衡逻辑，实现一些标准策略（如轮询、随机）之外的特殊需求。（前者可以定制化一些策略，不过复杂性会高一些）</li>
+</ul>
+<blockquote>
+<p>针对【创建类实现 IRule 接口，指定负载均衡策略】是全局生效的进一步说明</p>
+</blockquote>
+<p>看了一种解释，是说：并不是都是全局，一般是全局，但是也可以针对特定服务。</p>
+<p>创建类实现<code>IRule</code>接口来指定负载均衡策略，然后在Spring配置中将这个自定义的规则应用到Ribbon客户端上，这种做法可以是全局的，也可以是针对特定服务的，具体取决于如何配置这个自定义规则。</p>
+<p>全局配置</p>
+<p>如果你创建了一个实现<code>IRule</code>接口的类来定义一个自定义的负载均衡策略，并且在Spring的主配置类（<code>@SpringBootApplication</code>所在的类）中通过<code>@Bean</code>注解注册了这个规则，那么它会被应用为全局的负载均衡策略。</p>
+<p>这意味着所有使用Ribbon客户端进行服务调用的地方都会使用这个自定义的负载均衡规则。</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-title class_"><span class="hljs-keyword">class</span> <span class="hljs-title">RibbonConfiguration</span> </span>&#123;<br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> IRule ribbonRule() &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-type">MyCustomRule</span>();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>特定服务配置</p>
+<p>如果你想要将自定义的负载均衡策略应用到特定的服务上，而不是全局应用，你可以通过创建一个Ribbon的配置类并使用<code>@RibbonClient</code>注解来指定这个配置类应用到哪个服务上。这个配置类不应该被主应用程序上下文的<code>@ComponentScan</code>所扫描，以避免它成为全局配置。通常，这意味着将这个配置类放在主应用程序类所在包的外面，或者在<code>@ComponentScan</code>注解中显式排除它。</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-title class_"><span class="hljs-keyword">class</span> <span class="hljs-title">UserRibbonConfiguration</span> </span>&#123;<br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> IRule ribbonRule() &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-type">MyCustomRuleForUserService</span>();<br>    &#125;<br>&#125;<br><br><span class="hljs-meta">@RibbonClient</span>(name = <span class="hljs-string">&quot;user-service&quot;</span>, configuration = UserRibbonConfiguration.class)<br><span class="hljs-keyword">public</span> <span class="hljs-title class_"><span class="hljs-keyword">class</span> <span class="hljs-title">ServiceConfig</span> </span>&#123;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>MyCustomRuleForUserService</code>只会应用到<code>user-service</code>服务上，而不会影响其他服务。</p>
+<p>区别</p>
+<ul>
+<li><strong>全局配置</strong>：通过在Spring主配置中注册自定义<code>IRule</code>实现，它会被应用到所有通过Ribbon调用的服务上。这种方式简单，但缺乏针对性。</li>
+<li><strong>特定服务配置</strong>：通过为特定服务创建独立的Ribbon配置类并使用<code>@RibbonClient</code>注解来指定，可以实现对不同服务使用不同的负载均衡策略。这种方式提供了更高的灵活性和针对性。</li>
+</ul>
+<hr>
+<h4 id="服务调用"><a href="#服务调用" class="headerlink" title="服务调用"></a>服务调用</h4><p>演示一下使用 openfegin 进行服务调用的操作：</p>
+<p>to be contined… </p>
+<p>这里演示一下 指定Fallback 相关示例（服务降级）</p>
+<hr>
+<h4 id="服务雪崩"><a href="#服务雪崩" class="headerlink" title="服务雪崩"></a>服务雪崩</h4><p>服务雪崩是分布式系统中一个常见的问题，指的是当某个（或某些）微服务不可用或响应时间过长时，会导致调用该服务的其他服务也跟着变慢或不可用，这种情况会像雪崩一样向整个系统蔓延，最终可能导致整个系统崩溃。</p>
+<ul>
+<li>服务雪崩：一个服务失败，号致整条线路的服务都失败的情形</li>
+<li>解决方案<ul>
+<li>服务降级：服务自我保护的一种方式，或者保护下游服务的一种方式，用于确保服务不会受请求突增影响变得不可用，确保服务不会崩溃，<strong>一般在实标开发中与 feign 接口整合，编写降级逻辑</strong></li>
+<li>服务熔断：默认关闭。需要手动打开，如果检测到10秒内请求的失败率超过50%，就触发熔断机别。之后<strong>每隔 5秒重新尝试请求</strong>微服务，如果微服务不能响应，继续走熔断机制，如果微服务可达，则关闭熔断机制，恢复正常请求</li>
+</ul>
+</li>
+</ul>
+<h3 id="四、限流操作"><a href="#四、限流操作" class="headerlink" title="四、限流操作"></a>四、限流操作</h3><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402281528174.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>限流的常见实现方式：</p>
+<ul>
+<li>1、Tomcat: 可以设置最大连接数<ul>
+<li>不过这种方式适合单体项目，分布式项目不太适合</li>
+</ul>
+</li>
+<li>2、Nginx，漏桶算法</li>
+<li>3、网关，令牌桶算法</li>
+<li>4、自定义拦截器</li>
+</ul>
+<p>先掌握了解一下第二种和第三种方式</p>
+<blockquote>
+<p>面试题：你们项目中有没有做过限流，怎么做的。</p>
+</blockquote>
+<ul>
+<li>1、先来介绍业务，什么情况下去做限流，需要说明QPS具体多少<ul>
+<li>我们当时有一个活动，到了假期就会抢购优惠券，QPS最高可以达到2000，平时10-50之间，为了应对突发流量，需要做限流</li>
+<li>常规限流，为了防止恶意攻击，保护系统正常运行，我们当时系统能够承受最大的QPS是多少（压测结果）</li>
+</ul>
+</li>
+<li>2、nginx限流<ul>
+<li>控制速率（突发流量），使用的漏桶算法来实现过滤，让请求以固定的速率处理请求，可以应对突发流量</li>
+<li>控制并发数，限制单个ip 的链接数和并发链接的总数</li>
+</ul>
+</li>
+<li>3、网关限流<ul>
+<li>在spring cloud gateway中支持局部过滤器RequestRateLimiter来做限流，使用的是令牌桶算法，可以根据或路径进行限流，可以设置每秒填充平均速率，和令牌桶总容量。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>限流常见的算法有哪些呢</p>
+</blockquote>
+<p>可以讲一下令牌桶算法和漏桶算法。</p>
+<h4 id="Nginx-限流"><a href="#Nginx-限流" class="headerlink" title="Nginx 限流"></a>Nginx 限流</h4><p>Nginx提供了内置的模块来支持限流，如<code>limit_req_module</code>和<code>limit_conn_module</code>，它们可以帮助你根据请求速率或并发连接数来限制流量。</p>
+<p>在实践中，通常会结合使用这两种方法来更全面地控制流量，确保服务既不会因为瞬时请求过多而崩溃，也不会因为过多并发连接而耗尽资源。</p>
+<p>使用Nginx进行限流只是应对流量过载的一种手段，还需要结合应用层的限流、服务降级、熔断等策略来综合保障系统的稳定性和可用性。</p>
+<blockquote>
+<p>控制速率  limit_req_module</p>
+</blockquote>
+<p>可以理解Nginx 进行控制请求速率限制是类似漏桶算法的一种实现（应用了漏桶算法的思想）；</p>
+<ol>
+<li><strong>桶容量</strong>：算法中的“桶”有一个固定的容量，这个容量可以理解为系统能够承受的最大流量或请求速率的上限。</li>
+<li><strong>入水速率</strong>：数据（或请求）以任意速率流入桶中。如果流入速率不定，那么这些数据会暂时存储在桶中，直到被处理。</li>
+<li><strong>出水速率</strong>：数据以固定的速率从桶中“漏出”（即被处理）。出水速率是预先设定的，与实际流入速率无关。</li>
+<li><strong>溢出处理</strong>：如果流入的数据量超过了桶的容量，即桶已满，那么超出的数据会被丢弃（或者触发其他的限流措施），这可以防止系统过载</li>
+</ol>
+<p>通过这种方式的限流，请求流量会以固定的速率从桶中“漏出”（即被处理）；如果流入的数据量超过了桶的容量，即桶已满，那么超出的数据会被丢弃。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402281533917.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>使用<code>limit_req_module</code>进行请求速率限制</p>
+<p><code>limit_req_module</code>模块允许你限制处理请求的速率，防止请求过多导致服务不可用。这个模块通常用于限制每个客户端的请求速率。</p>
+<ol>
+<li><strong>定义限流规则</strong>：首先，需要在Nginx配置中定义一个限流规则（<code>limit_req_zone</code>），指定限流的键（如客户端IP）、速率和存储区域大小。</li>
+</ol>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs routeros">http &#123;<br>    limit_req_zone <span class="hljs-variable">$binary_remote_addr</span> <span class="hljs-attribute">zone</span>=mylimit:10m <span class="hljs-attribute">rate</span>=1r/s;<br>    <span class="hljs-built_in">..</span>.<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这里定义了一个名为<code>mylimit</code>的区域，大小为10MB，限制每个IP地址每秒最多只能处理1个请求。</p>
+<p><strong>应用限流规则</strong>：然后，在需要限流的location或server上应用这个规则（<code>limit_req</code>）。</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs routeros">server &#123;<br>    location / &#123;<br>        limit_req <span class="hljs-attribute">zone</span>=mylimit <span class="hljs-attribute">burst</span>=5;<br>        <span class="hljs-built_in">..</span>.<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这里在<code>/</code>位置应用了<code>mylimit</code>规则，并设置了<code>burst</code>参数为5，意味着允许在短时间内超过限制的请求被缓存起来，直到达到5个请求的限制。</p>
+<blockquote>
+<p>控制并发连接数</p>
+</blockquote>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402281535314.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>使用<code>limit_conn_module</code>进行并发连接数限制</p>
+<p><code>limit_conn_module</code>模块允许你限制并发连接数，这适用于限制每个客户端可以同时建立的连接数。</p>
+<ol>
+<li><strong>定义连接数限制</strong>：同样，首先定义一个限制区域（<code>limit_conn_zone</code>）。</li>
+</ol>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs routeros">http &#123;<br>    limit_conn_zone <span class="hljs-variable">$binary_remote_addr</span> <span class="hljs-attribute">zone</span>=connlimit:10m;<br>    <span class="hljs-built_in">..</span>.<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这里定义了一个名为<code>connlimit</code>的区域，大小为10MB，用于存储并发连接数的状态。</p>
+<ol start="2">
+<li><strong>应用连接数限制</strong>：在需要限制的location或server上应用这个规则（<code>limit_conn</code>）。</li>
+</ol>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">server &#123;<br>    <span class="hljs-keyword">location</span> <span class="hljs-title">/ &#123;</span><br><span class="hljs-title">        limit_conn</span> connlimit <span class="hljs-number">10</span>;<br>        ...<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这里在<code>/</code>位置应用了<code>connlimit</code>规则，限制每个IP最多可以同时建立10个连接。</p>
+<hr>
+<h4 id="网关限流-🚩"><a href="#网关限流-🚩" class="headerlink" title="网关限流  🚩"></a>网关限流  🚩</h4><p>网关限流一般是使用 Spring Cloud Gateway 来实现网关层面的流量控制。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402281639179.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>具体使用待完善一下 to be contined…</p>
+<h3 id="五、服务监控"><a href="#五、服务监控" class="headerlink" title="五、服务监控"></a>五、服务监控</h3><p>为什么需要监控</p>
+<p>一般目的是为了：</p>
+<ul>
+<li>问题定位</li>
+<li>性能分析</li>
+<li>服务关系</li>
+<li>服务告警</li>
+</ul>
+<p>监控工具</p>
+<ul>
+<li>Springboot-admin</li>
+<li>prometheus+Grafana</li>
+<li>链路工具<ul>
+<li>zipkin</li>
+<li>skywalking</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>大概看一下这个用法：prometheus+Grafana</p>
+</blockquote>
+<p>如果实际问到，就回答自己回答有这个监控方式，以及如何使用的。</p>
+<p>Prometheus和Grafana是一对强大的监控和可视化工具组合，广泛用于监控微服务架构中的应用和基础设施的健康状况、性能指标等。这种组合的用法主要涉及到三个步骤：数据收集（Prometheus），数据存储（Prometheus），以及数据可视化（Grafana）。</p>
+<blockquote>
+<p>步骤1: 数据收集</p>
+</blockquote>
+<p>Prometheus通过拉模式（pull）或推模式（push，需要使用Pushgateway）从应用程序和基础设施中收集指标数据。通常，应用程序和服务会暴露一个HTTP端点（通常是<code>/metrics</code>），Prometheus定时从这些端点抓取（scrape）数据。</p>
+<p>为了让Prometheus能够收集数据，你需要在Prometheus的配置文件（通常是<code>prometheus.yml</code>）中定义抓取目标和频率。例如：</p>
+<figure class="highlight nestedtext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs nestedtext"><span class="hljs-attribute">scrape_configs</span><span class="hljs-punctuation">:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">job_name: &#x27;spring-application&#x27;</span><br>    <span class="hljs-attribute">scrape_interval</span><span class="hljs-punctuation">:</span> <span class="hljs-string">15s</span><br>    <span class="hljs-attribute">metrics_path</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&#x27;/actuator/prometheus&#x27;</span><br>    <span class="hljs-attribute">static_configs</span><span class="hljs-punctuation">:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">targets: [&#x27;localhost:8080&#x27;]</span><br></code></pre></td></tr></table></figure>
+
+<p>数据采集这里要求 SpringBoot 应用对外开发 <code>/metrics</code> 接口，实际操作通常是通过<strong>集成Spring Boot Actuator和Micrometer来实现的</strong>。  🚩</p>
+<p>Spring Boot Actuator提供了一系列内置的端点，包括<code>/metrics</code>，用于监控和管理应用。Micrometer则作为Spring Boot的维度化指标库，充当了应用和监控系统之间的桥梁。</p>
+<ul>
+<li>引入依赖：确保在Spring Boot项目的<code>pom.xml</code>文件中引入了Spring Boot Actuator和Micrometer Prometheus的依赖。</li>
+<li>配置应用：确保<code>application.properties</code>或<code>application.yml</code>配置文件中启用了<code>/metrics</code>端点。Spring Boot 2.x默认启用了大部分Actuator端点，包括<code>/metrics</code>。</li>
+<li>暴露&#x2F;metrics端点</li>
+<li>也可以自定义指标</li>
+</ul>
+<blockquote>
+<p>步骤2: 数据存储</p>
+</blockquote>
+<p>Prometheus会将收集到的数据存储在本地的时间序列数据库中。Prometheus的存储引擎专为时间序列数据优化，支持高效的数据存储、查询和管理。</p>
+<blockquote>
+<p>步骤3: 数据可视化</p>
+</blockquote>
+<p>Grafana是一个开源的数据可视化工具，支持从多种数据源（包括Prometheus）查询和展示数据。要使用Grafana展示Prometheus的数据，你需要：</p>
+<ol>
+<li><strong>安装并启动Grafana</strong>：下载并安装Grafana，然后启动Grafana服务。</li>
+<li><strong>配置数据源</strong>：登录Grafana的Web界面，添加一个新的数据源，选择Prometheus作为类型，并配置Prometheus服务器的URL。</li>
+<li><strong>创建仪表板</strong>：在Grafana中创建新的仪表板，可以添加多种类型的面板（如图表、表格、单值指标等）来展示Prometheus收集的指标数据。</li>
+<li><strong>查询和展示数据</strong>：在仪表板的面板中，使用PromQL（Prometheus查询语言）编写查询，从Prometheus中检索数据，并根据需求配置面板的显示方式。</li>
+</ol>
+<hr>
+<h3 id="六、生产问题-🚩"><a href="#六、生产问题-🚩" class="headerlink" title="六、生产问题  🚩"></a>六、生产问题  🚩</h3><h4 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a>分布式事务</h4><h4 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h4><h4 id="幂等性"><a href="#幂等性" class="headerlink" title="幂等性"></a>幂等性</h4><hr>
 <p>参考</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://gitee.com/lixiaogou/cloud2020">https://gitee.com/lixiaogou/cloud2020</a></li>
@@ -385,6 +749,7 @@
 <li><a target="_blank" rel="noopener" href="https://github.com/angenin/cloud2020">https://github.com/angenin/cloud2020</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV18E411x7eT">https://www.bilibili.com/video/BV18E411x7eT</a></li>
 <li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/110249846">https://zhuanlan.zhihu.com/p/110249846</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1yT411H7YK">https://www.bilibili.com/video/BV1yT411H7YK</a></li>
 </ul>
 <p>引用</p>
 <ul>
