@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.5k 字
+          334 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          38 分钟
+          3 分钟
         
       </span>
     
@@ -282,175 +282,7 @@
 <p>自测一下相关内容</p>
 <p>这里应该是接入一下自测题，题目解析不要放这里</p>
 <h3 id="Spring-🚩🍉"><a href="#Spring-🚩🍉" class="headerlink" title="Spring   🚩🍉"></a>Spring   🚩🍉</h3><h3 id="SpringBoot"><a href="#SpringBoot" class="headerlink" title="SpringBoot"></a>SpringBoot</h3><h3 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h3><h3 id="Mybatis"><a href="#Mybatis" class="headerlink" title="Mybatis"></a>Mybatis</h3><h4 id="1、讲一下-Mybatis-的执行流程"><a href="#1、讲一下-Mybatis-的执行流程" class="headerlink" title="1、讲一下 Mybatis 的执行流程"></a>1、讲一下 Mybatis 的执行流程</h4><h4 id="2、讲一下-Mybatis-延迟加载"><a href="#2、讲一下-Mybatis-延迟加载" class="headerlink" title="2、讲一下 Mybatis 延迟加载"></a>2、讲一下 Mybatis 延迟加载</h4><h4 id="3、讲一下-Mybatis-一级、二级缓存"><a href="#3、讲一下-Mybatis-一级、二级缓存" class="headerlink" title="3、讲一下 Mybatis 一级、二级缓存"></a>3、讲一下 Mybatis 一级、二级缓存</h4><h3 id="MySql"><a href="#MySql" class="headerlink" title="MySql"></a>MySql</h3><p>面试题题目，具体见：[[MySQL学习_基础内容01]]  需要整合一下</p>
-<h3 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h3><h3 id="MQ-🚩"><a href="#MQ-🚩" class="headerlink" title="MQ      🚩"></a>MQ      🚩</h3><h3 id="RabbitMQ-🚩"><a href="#RabbitMQ-🚩" class="headerlink" title="RabbitMQ   🚩"></a>RabbitMQ   🚩</h3><p>尽量还是单独放入到 RabbitMQ 基础内容中，要当作一个体系去了解，而不是碎片化，同时慢慢来，比较快。</p>
-<p>将 之前的笔记拆分一下，基础内容和具体使用分开一下。</p>
-<h4 id="1、"><a href="#1、" class="headerlink" title="1、"></a>1、</h4><blockquote>
-<p>RabbitMQ 是什么</p>
-</blockquote>
-<p>RabbitMQ是一个开源的、多协议的消息代理软件，它基于高级消息队列协议（AMQP）实现。</p>
-<p>由于其高性能、稳定性、灵活性和多语言客户端支持，RabbitMQ被广泛应用于从小型开发到大型企业级应用的各种系统中，用于解耦应用组件、消息异步处理、流量削峰等场景。</p>
-<p>RabbitMQ的组成部分：见 [[消息队列_RabbitMQ_基础使用#2、RabbitMQ的组成部分]]</p>
-<blockquote>
-<p>RabbitMQ 的核心概念</p>
-</blockquote>
-<ol>
-<li><strong>Broker</strong>：消息队列服务器实体，负责消息的接收、存储和转发。</li>
-<li><strong>Exchange</strong>：交换机，负责接收生产者发送的消息，并根据路由规则将消息路由到一个或多个队列。RabbitMQ支持多种类型的交换机，如直接（direct）、主题（topic）、扇出（fanout）和头（headers）交换机。</li>
-<li><strong>Queue</strong>：队列，存储消息直到它们被消费。</li>
-<li><strong>Binding</strong>：绑定，是Exchange和Queue之间的链接。它的作用是把Exchange路由到的消息绑定到Queue上。</li>
-<li><strong>Producer</strong>：消息生产者，负责创建和发送消息到Exchange。</li>
-<li><strong>Consumer</strong>：消息消费者，从队列接收并处理消息。</li>
-</ol>
-<p>正常一个消息发送的执行流程（生产 → 消费）</p>
-<ul>
-<li>生产者发送消息到交换机，交换机将消息路由到某个队列中（实际存储），消费者消费队列中的消息</li>
-</ul>
-<figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs brainfuck"><span class="hljs-comment">生产者</span> <span class="hljs-literal">--</span><span class="hljs-title">[</span><span class="hljs-comment">消息</span><span class="hljs-title">]</span><span class="hljs-literal">--</span>&gt; <span class="hljs-comment">交换机</span> <span class="hljs-literal">--</span><span class="hljs-title">[</span><span class="hljs-comment">路由</span><span class="hljs-title">]</span><span class="hljs-literal">--</span>&gt; <span class="hljs-comment">队列</span> <span class="hljs-literal">--</span><span class="hljs-title">[</span><span class="hljs-comment">消费</span><span class="hljs-title">]</span><span class="hljs-literal">--</span>&gt; <span class="hljs-comment">消费者</span><br>    <span class="hljs-comment">\                                         /</span><br>     <span class="hljs-comment">\</span><span class="hljs-literal">--</span><span class="hljs-title">[</span><span class="hljs-comment">通道 Channel</span><span class="hljs-title">]</span><span class="hljs-literal">-----------------------</span><span class="hljs-comment">/</span><br></code></pre></td></tr></table></figure>
-
-
-
-
-<h4 id="如何消息不丢失"><a href="#如何消息不丢失" class="headerlink" title="如何消息不丢失"></a>如何消息不丢失</h4><p>一般来说，在以下三种情况下都有可能发生消息丢失的情况</p>
-<ul>
-<li>1、消息未到达交换机</li>
-<li>2、消息未到达队列</li>
-<li>3、队列中消息丢失</li>
-<li>4、消费者未接收到消息</li>
-</ul>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402271502394.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>RabbitMQ提供了多种机制来确保消息在传递过程中不丢失，主要通过以下几个方面实现</p>
-<blockquote>
-<p>一、发布确认（Publisher Confirms）</p>
-</blockquote>
-<p>发布确认是RabbitMQ提供的一种轻量级、高效的保证消息不丢失的机制，相比事务机制有更好的性能。生产者可以在发送消息后异步接收一个来自RabbitMQ的确认，表明消息已被RabbitMQ正确接收。如果RabbitMQ没有确认消息，生产者可以选择重试发送消息。</p>
-<ul>
-<li>开启发布确认模式，首先需要将信道（Channel）设置为发布确认模式（<code>confirmSelect</code>）。</li>
-<li>发送消息后，通过监听信道上的确认回调来检查消息是否被成功接收。</li>
-</ul>
-<p>如果开启发布确认模式后，当生产者发送消息到交换机或者队列失败会返回不同的信息给生产者</p>
-<p>发送失败之后的处理方式：</p>
-<ul>
-<li>1、回调方法即时重发</li>
-<li>2、记录日志</li>
-<li>3、保存到数据库进行定时重发，重发后修改标识或者删除记录</li>
-</ul>
-<blockquote>
-<p>二、消息持久化</p>
-</blockquote>
-<p>为了防止消息中间件服务宕机造成的消息丢失，可以使用消息持久化避免。</p>
-<p>消息持久化是防止消息丢失的重要手段之一。在RabbitMQ中，可以将队列（Queue）和消息（Message）设置为持久化，以确保即使在RabbitMQ服务器重启的情况下，消息也不会丢失。</p>
-<ul>
-<li><strong>持久化队列</strong>：在创建队列时，将其声明为持久化（durable）。这样，队列的元数据和状态会被保存到磁盘上。</li>
-<li><strong>持久化消息</strong>：发送消息时，将消息的<code>delivery_mode</code>属性设置为<code>2</code>（表示持久化消息）。这样，消息会被写入到磁盘上，直到被完全消费。</li>
-</ul>
-<p>消息持久化：如果需要开启持久化，可以将交换机、队列、消息都进行持久化操作。</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402271510090.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<blockquote>
-<p>三、消费者确认（Consumer Acknowledgements）</p>
-</blockquote>
-<p>为了防止队列到消费者这一步中消息丢失，可以开启消费者确认机制，</p>
-<p>消费者确认（ACK）机制确保消息被消费者正确处理。在消费者成功处理消息后，它会发送一个ACK给RabbitMQ，RabbitMQ收到ACK后会从队列中删除该消息。</p>
-<p>如果消费者处理消息失败（例如，处理过程中发生异常），可以发送拒绝（<code>nack</code>）或未确认（<code>reject</code>），根据配置，RabbitMQ可以重新将消息放回队列中，等待重新消费。</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402271517763.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<blockquote>
-<p>四、总结</p>
-</blockquote>
-<p>如何保证消息不丢失</p>
-<ul>
-<li>开启生产者确认机制，确保生产者的消息能到达队列</li>
-<li>开启持久化功能，确保消息末消费前在队列中不会丢失</li>
-<li>开启消费者确认机制为auto,由spring确认消息处理成功后完成ack</li>
-<li>开启消费者失数重试机别（重试次数一般设置为3），多次重试失数后将消息投递到异常交换机，交由人工处理</li>
-</ul>
-<p>面试者回答参考：</p>
-<p>要求确保消息的高可用情景：实现Redis 的双写一致性采用了RabbitMQ 进行异步更新&#x2F;删除操作</p>
-<p>回答见下：👇</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402271528430.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<hr>
-<h5 id="消费者确认机制"><a href="#消费者确认机制" class="headerlink" title="消费者确认机制"></a>消费者确认机制</h5><p>这里再讲述一下消费者确认机制相关的内容：</p>
-<p>消费者确认机制（Consumer Acknowledgements）在RabbitMQ中是一种保证消息被正确处理的机制。当消息从队列传递给消费者后，消费者需要对处理的结果进行反馈。如果消息被成功处理，消费者会发送一个ACK（Acknowledgement）信号给RabbitMQ，告知消息已经被成功消费，随后RabbitMQ会从队列中删除该消息。如果消费失败，消费者可以选择不发送ACK，或者显式地发送NACK（negative acknowledgement）或拒绝（reject）信号，根据配置，RabbitMQ会相应地处理这些未被确认的消息。</p>
-<p><strong>所以说如果开启了这个机制，消息在未收到反馈消息前是会保留在队列中的</strong></p>
-<blockquote>
-<p>消费失败的处理</p>
-</blockquote>
-<p>当消费者消费失败，且没有返回ACK时，RabbitMQ会根据消息的配置来决定如何处理这条消息：</p>
-<ol>
-<li><strong>消息重新排队</strong>：如果消费者因为某些原因处理消息失败（例如异常退出或逻辑错误），并且没有发送ACK，那么RabbitMQ默认会将消息重新放回队列中，位置可能在队列头部或尾部，这取决于消息的<code>requeue</code>标志。如果设置为<code>true</code>，消息会被重新排队，等待其他消费者或再次被同一消费者消费。</li>
-<li><strong>死信队列（DLX）</strong>：在某些情况下，不希望无限制地重新尝试处理消息（可能会造成死循环）。可以通过配置死信队列来处理这些”无法处理”的消息。如果消息消费失败，并且达到了最大重试次数（这需要在应用逻辑中实现重试机制），可以选择将消息拒绝并重新排队到死信队列中。死信队列是一个普通的RabbitMQ队列，专门用来接收这些无法处理的消息，便于后续分析和处理。</li>
-</ol>
-<blockquote>
-<p>实现重试机制</p>
-</blockquote>
-<p>在实际应用中，通常需要在消费者侧实现消息消费的重试机制，这包括：</p>
-<ul>
-<li><strong>延迟重试</strong>：通过配置消息的延迟（例如，使用消息TTL和死信队列），在消息消费失败时将消息发送到一个延迟队列中，等待一段时间后再次尝试处理。</li>
-<li><strong>重试次数限制</strong>：在消息属性中记录重试次数，每次消费失败时更新这个计数器。当重试次数达到预设的阈值后，可以将消息发送到死信队列或进行其他处理，以避免无限重试。</li>
-</ul>
-<p>通过这样的机制，可以灵活地控制消息的重试策略和失败处理，确保消息可以被正确处理，同时避免因重试机制不当导致的问题，如消息顺序混乱、系统资源过度占用等。</p>
-<h4 id="消息重复消费"><a href="#消息重复消费" class="headerlink" title="消息重复消费"></a>消息重复消费</h4><p>出现消息重复消费的问题一般是在网络抖动或者消息者挂掉，由于开启了消费者确认机制，导致消息重发</p>
-<p>一般解决方式有两种：</p>
-<ul>
-<li>一种是每条消息设置一个唯一的标识 ID 从而避免重发消费</li>
-<li>也可以考虑幂等性设计问题，考虑使用分布式锁、数据库锁（悲观锁、乐观锁）等，但锁会对性能有影响，使用的时候需要考虑使用</li>
-</ul>
-<p>一般回答可以倾向回答第一种回答。</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402271532774.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>参考回答：</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402271535282.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="延迟队列-死信队列"><a href="#延迟队列-死信队列" class="headerlink" title="延迟队列&#x2F;死信队列"></a>延迟队列&#x2F;死信队列</h4><p>RabbitMQ 的延迟队列是通过死信交换机 + TTL （生存时间）来实现的；</p>
-<ul>
-<li>延迟队列：进入队列的消息会被延迟消费的队列</li>
-</ul>
-<p>延迟队列的使用场景较多，比如：超市订单、限时优惠、定时发布等</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402271543252.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h5 id="死信交换机"><a href="#死信交换机" class="headerlink" title="死信交换机"></a>死信交换机</h5><p>当一个队列中的消息满足下列情况之一时，可以成为死信（dead letter）</p>
-<ul>
-<li>1、消费者使用 basic.reject 或 basic.nack 声明消费失败，并且消费的 requeue 参数设置为 false</li>
-<li>2、消息是一个过期时间，超时无人消费</li>
-<li>3、要投递的队列消息堆积满了，最早的消息可能成为死信</li>
-</ul>
-<p>如果该队列配置了 dead-letter-exchange 属性，指定了一个交换机，那么队列中的死信就会投递到这个交换机中，而这个交换机称为  死信交换机 （Dead Letter Exchange，简称 DLX）。</p>
-<p>死信交换机（Dead Letter Exchange, DLX）是RabbitMQ中用于处理无法被正常消费的消息的一种机制。当消息在队列中无法被正常处理（例如，消息被拒绝、消息过期、队列达到最大长度）时，这些消息可以被发送到一个专门的交换机，即死信交换机，然后由死信交换机路由到一个或多个死信队列中，以便后续处理。</p>
-<blockquote>
-<p>死信交换机的使用场景</p>
-</blockquote>
-<ol>
-<li><strong>消息消费失败</strong>：消费者拒绝消息，并且不重新入队列。</li>
-<li><strong>消息过期</strong>：消息在队列中存活的时间超过了它的TTL（Time-To-Live）。</li>
-<li><strong>队列溢出</strong>：队列长度达到限制，新的消息无法被加入。</li>
-</ol>
-<blockquote>
-<p>配置死信交换机</p>
-</blockquote>
-<p>死信交换机的配置涉及几个步骤：</p>
-<ol>
-<li><strong>声明死信交换机</strong>：首先需要声明一个交换机作为死信交换机。</li>
-<li><strong>声明死信队列</strong>：声明一个或多个队列，用于接收来自死信交换机的消息。</li>
-<li><strong>绑定死信队列</strong>：将死信队列绑定到死信交换机上，并指定路由键。</li>
-<li><strong>配置源队列</strong>：在声明源队列时，通过<code>arguments</code>设置<code>x-dead-letter-exchange</code>属性，值为死信交换机的名称。可选地，还可以设置<code>x-dead-letter-routing-key</code>来指定发送到死信交换机的消息将使用的路由键。</li>
-</ol>
-<blockquote>
-<p>死信处理流程</p>
-</blockquote>
-<ol>
-<li>消息在源队列中因为某种原因变成死信（例如，消费失败、过期、队列溢出）。</li>
-<li>死信被自动发布到之前配置的死信交换机。</li>
-<li>死信交换机根据绑定规则将消息路由到一个或多个死信队列。</li>
-<li>死信队列中的消息可以被监控系统捕获，进行相应的错误处理或警告。</li>
-</ol>
-<blockquote>
-<p>使用死信交换机的优势</p>
-</blockquote>
-<ul>
-<li><strong>错误隔离</strong>：将处理失败的消息隔离到死信队列，避免影响正常消息的消费。</li>
-<li><strong>故障诊断</strong>：通过分析死信队列中的消息，可以帮助定位和诊断系统中的问题。</li>
-<li><strong>灵活的消息重试</strong>：可以通过死信队列实现消息的延时重试机制，例如，通过TTL和死信交换机组合实现延迟消息的重新投递。</li>
-</ul>
-<p>总之，死信交换机提供了一种有效的方式来处理RabbitMQ中无法正常消费的消息，使得系统能够更加健壮和可靠。</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402271554773.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>代码实现：</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402271554507.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="消息堆积"><a href="#消息堆积" class="headerlink" title="消息堆积"></a>消息堆积</h4><h3 id="RocketMQ-🚩"><a href="#RocketMQ-🚩" class="headerlink" title="RocketMQ   🚩"></a>RocketMQ   🚩</h3><h3 id="SpringCloud-🚩"><a href="#SpringCloud-🚩" class="headerlink" title="SpringCloud  🚩"></a>SpringCloud  🚩</h3><h4 id="1、分布式系统理论-CAP-和-Base"><a href="#1、分布式系统理论-CAP-和-Base" class="headerlink" title="1、分布式系统理论  CAP 和 Base"></a>1、分布式系统理论  CAP 和 Base</h4><h4 id="2、微服务架构下限流的做法有哪些，讲一下你在项目中的使用"><a href="#2、微服务架构下限流的做法有哪些，讲一下你在项目中的使用" class="headerlink" title="2、微服务架构下限流的做法有哪些，讲一下你在项目中的使用"></a>2、微服务架构下限流的做法有哪些，讲一下你在项目中的使用</h4><h4 id="3、分布式事务的解决方案有哪些"><a href="#3、分布式事务的解决方案有哪些" class="headerlink" title="3、分布式事务的解决方案有哪些"></a>3、分布式事务的解决方案有哪些</h4><h4 id="4、分布式服务的接口幂等性如何设计"><a href="#4、分布式服务的接口幂等性如何设计" class="headerlink" title="4、分布式服务的接口幂等性如何设计"></a>4、分布式服务的接口幂等性如何设计</h4><h4 id="5、讲一下你对于组件-Ribbon-的理解和具体使用"><a href="#5、讲一下你对于组件-Ribbon-的理解和具体使用" class="headerlink" title="5、讲一下你对于组件 Ribbon 的理解和具体使用"></a>5、讲一下你对于组件 Ribbon 的理解和具体使用</h4><h4 id="6、讲一下服务熔断和熔断降级一般怎么做的"><a href="#6、讲一下服务熔断和熔断降级一般怎么做的" class="headerlink" title="6、讲一下服务熔断和熔断降级一般怎么做的"></a>6、讲一下服务熔断和熔断降级一般怎么做的</h4><h4 id=""><a href="#" class="headerlink" title=""></a></h4>
+<h3 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h3><h3 id="MQ-🚩"><a href="#MQ-🚩" class="headerlink" title="MQ      🚩"></a>MQ      🚩</h3><h3 id="RabbitMQ-🚩"><a href="#RabbitMQ-🚩" class="headerlink" title="RabbitMQ   🚩"></a>RabbitMQ   🚩</h3><h3 id="RocketMQ-🚩"><a href="#RocketMQ-🚩" class="headerlink" title="RocketMQ   🚩"></a>RocketMQ   🚩</h3><h3 id="SpringCloud-🚩"><a href="#SpringCloud-🚩" class="headerlink" title="SpringCloud  🚩"></a>SpringCloud  🚩</h3><h4 id="1、分布式系统理论-CAP-和-Base"><a href="#1、分布式系统理论-CAP-和-Base" class="headerlink" title="1、分布式系统理论  CAP 和 Base"></a>1、分布式系统理论  CAP 和 Base</h4><h4 id="2、微服务架构下限流的做法有哪些，讲一下你在项目中的使用"><a href="#2、微服务架构下限流的做法有哪些，讲一下你在项目中的使用" class="headerlink" title="2、微服务架构下限流的做法有哪些，讲一下你在项目中的使用"></a>2、微服务架构下限流的做法有哪些，讲一下你在项目中的使用</h4><h4 id="3、分布式事务的解决方案有哪些"><a href="#3、分布式事务的解决方案有哪些" class="headerlink" title="3、分布式事务的解决方案有哪些"></a>3、分布式事务的解决方案有哪些</h4><h4 id="4、分布式服务的接口幂等性如何设计"><a href="#4、分布式服务的接口幂等性如何设计" class="headerlink" title="4、分布式服务的接口幂等性如何设计"></a>4、分布式服务的接口幂等性如何设计</h4><h4 id="5、讲一下你对于组件-Ribbon-的理解和具体使用"><a href="#5、讲一下你对于组件-Ribbon-的理解和具体使用" class="headerlink" title="5、讲一下你对于组件 Ribbon 的理解和具体使用"></a>5、讲一下你对于组件 Ribbon 的理解和具体使用</h4><h4 id="6、讲一下服务熔断和熔断降级一般怎么做的"><a href="#6、讲一下服务熔断和熔断降级一般怎么做的" class="headerlink" title="6、讲一下服务熔断和熔断降级一般怎么做的"></a>6、讲一下服务熔断和熔断降级一般怎么做的</h4><h4 id=""><a href="#" class="headerlink" title=""></a></h4>
                 
               </div>
             
