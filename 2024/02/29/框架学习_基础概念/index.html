@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          784 字
+          1.5k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          7 分钟
+          13 分钟
         
       </span>
     
@@ -340,9 +340,89 @@
 </blockquote>
 <p>什么是 Spring的循环依赖</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240229082243.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h5 id="三级缓存"><a href="#三级缓存" class="headerlink" title="三级缓存"></a>三级缓存</h5><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240229082359.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>to be contiend..</p>
-<h3 id="二、SpringMVC"><a href="#二、SpringMVC" class="headerlink" title="二、SpringMVC"></a>二、SpringMVC</h3><h4 id="执行流程"><a href="#执行流程" class="headerlink" title="执行流程"></a>执行流程</h4><h3 id="三、SpringBoot"><a href="#三、SpringBoot" class="headerlink" title="三、SpringBoot"></a>三、SpringBoot</h3><h4 id="自动配置原理"><a href="#自动配置原理" class="headerlink" title="自动配置原理"></a>自动配置原理</h4><h3 id="四、Mybatis"><a href="#四、Mybatis" class="headerlink" title="四、Mybatis"></a>四、Mybatis</h3><h4 id="执行流程-1"><a href="#执行流程-1" class="headerlink" title="执行流程"></a>执行流程</h4><h4 id="延迟加载"><a href="#延迟加载" class="headerlink" title="延迟加载"></a>延迟加载</h4><h4 id="一二级缓存"><a href="#一二级缓存" class="headerlink" title="一二级缓存"></a>一二级缓存</h4>
+<h5 id="三级缓存"><a href="#三级缓存" class="headerlink" title="三级缓存"></a>三级缓存</h5><p>Spring 解决循环依赖是通过三级缓存，对应的三级缓存如下：</p>
+<ul>
+<li>一级缓存<ul>
+<li>singletonObjects    单例池，已经初始化完成的 bean 对象</li>
+</ul>
+</li>
+<li>二级缓存<ul>
+<li>earlySingletonObjects   缓存早期的 bean 对象</li>
+</ul>
+</li>
+<li>三级缓存<ul>
+<li>singletionFactories   对象工厂</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240229082359.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>一级缓存作用：限制 bean 在 bean Factory 中只存在一份，即实现 singleton scope ，解决不了循环依赖。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290928903.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>二级缓存能解决一般对象的循环依赖问题，但是如果这个对象是一个代理对象，是不能解决的。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290931120.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>三级缓存能够解决初始化过程中的循环依赖问题</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290933565.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<blockquote>
+<p>构造方法中出现了循环依赖怎么解决？</p>
+</blockquote>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290935525.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>面试题回答：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290937881.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290938852.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="常用注解"><a href="#常用注解" class="headerlink" title="常用注解"></a>常用注解</h4><p>Spring框架常见注解(Spring、Springboot、Springmvc)</p>
+<h5 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h5><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290951343.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h5 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h5><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290956678.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h5 id="SpringBoot"><a href="#SpringBoot" class="headerlink" title="SpringBoot"></a>SpringBoot</h5><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290957400.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="二、SpringMVC"><a href="#二、SpringMVC" class="headerlink" title="二、SpringMVC"></a>二、SpringMVC</h3><h4 id="执行流程"><a href="#执行流程" class="headerlink" title="执行流程"></a>执行流程</h4><p>Springmvc的执行流程是这个框架最核心的内容</p>
+<ul>
+<li>1、视图阶段（老旧JSP等 ）</li>
+<li>2、前后端分离阶段（接口开发，异步）</li>
+</ul>
+<h5 id="视图阶段"><a href="#视图阶段" class="headerlink" title="视图阶段"></a>视图阶段</h5><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290943468.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h5 id="前后端分离"><a href="#前后端分离" class="headerlink" title="前后端分离"></a>前后端分离</h5><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290944546.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>面试题：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290945750.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>版本2：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290946621.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="三、SpringBoot"><a href="#三、SpringBoot" class="headerlink" title="三、SpringBoot"></a>三、SpringBoot</h3><h4 id="自动配置原理"><a href="#自动配置原理" class="headerlink" title="自动配置原理"></a>自动配置原理</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290947817.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290948762.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290949754.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290950693.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="四、Mybatis"><a href="#四、Mybatis" class="headerlink" title="四、Mybatis"></a>四、Mybatis</h3><h4 id="执行流程-1"><a href="#执行流程-1" class="headerlink" title="执行流程"></a>执行流程</h4><p>Mybatis 执行流程</p>
+<ul>
+<li>1、理解各个组件的关系</li>
+<li>2、Sql 的执行过程（参数映射、sql 解析、执行和结果处理）</li>
+</ul>
+<blockquote>
+<p>讲一下 mybatis 的配置文件的 xml 文件的作用有哪些？</p>
+</blockquote>
+<ul>
+<li>加载核心配置</li>
+<li>加载映射文件</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402291030799.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>执行流程</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402291131905.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>面试题</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402291132269.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="延迟加载"><a href="#延迟加载" class="headerlink" title="延迟加载"></a>延迟加载</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402291133046.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>1、设置局部的延迟加载</li>
+<li>2、设置全部的延迟加载</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402291137882.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402291138401.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="一二级缓存"><a href="#一二级缓存" class="headerlink" title="一二级缓存"></a>一二级缓存</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402291142061.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>二级缓存</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402291144414.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>注意事项：</p>
+<ul>
+<li>1、对于缓存数据更新机制，当某一个作用域（一级缓存Session&#x2F;,二级缓存Namespaces)的进行了新增、修改、删除操作后，默认该作用域下所有 select 中的缓存将被clear</li>
+<li>2,二级缓存需要缓存的数据实现 Serializable 接口</li>
+<li>3,只有会话提交或者关闭以后，一级缓存中的数据才会转移到二级缓存中</li>
+</ul>
+<p>面试题：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402291146216.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+
                 
               </div>
             
