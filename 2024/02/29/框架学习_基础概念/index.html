@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          2.8k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          13 分钟
+          24 分钟
         
       </span>
     
@@ -278,26 +278,43 @@
             
               <div class="markdown-body">
                 
-                <h3 id="一、Spring"><a href="#一、Spring" class="headerlink" title="一、Spring"></a>一、Spring</h3><h4 id="Bean线程安全"><a href="#Bean线程安全" class="headerlink" title="Bean线程安全"></a>Bean线程安全</h4><blockquote>
+                <p>想了一下，后续复习也可以，但需要先一轮复习一下。后续大概的复习方针可以会将一些关键词放到思维导图导图上面。然后自己根据关键词讲述一下相关的一个理解，如果讲述不出来，就再去复习一下相关的内容。争取自己的理解 level 到达一个水平。</p>
+<h3 id="一、Spring"><a href="#一、Spring" class="headerlink" title="一、Spring"></a>一、Spring</h3><h4 id="Bean线程安全"><a href="#Bean线程安全" class="headerlink" title="Bean线程安全"></a>Bean线程安全</h4><blockquote>
 <p>Spring 框架中的单例 Bean 是线程安全的吗</p>
 </blockquote>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240229001004.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>并不是线程安全的，Spring框架中的单例Bean本身对于线程安全性并没有提供保证。</p>
+<p>单例Bean意味着在Spring的应用上下文中，每个定义的Bean只有一个实例。但是，Bean的线程安全性取决于Bean的实现和使用方式。</p>
+<ul>
+<li><strong>状态无关的Bean</strong>：如果Bean是无状态的（即，它们不维护任何字段或状态信息），那么它们通常是线程安全的。例如，一个只有方法，没有成员变量的服务类，或者成员变量都是不可变的或线程安全的。</li>
+<li><strong>状态相关的Bean</strong>：如果Bean包含有状态（即，它们维护了修改的字段或状态信息），那么它们可能不是线程安全的。在并发访问下，如果多个线程同时修改这些状态，可能会导致数据不一致或其他并发问题。</li>
+</ul>
 <p>服务器中的代码片段</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240229001119.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>Spring Bean 并没有可变的状态（比如 Service 类和 Dao 类），所以在某种程度上说 Spring 的单例 bean 是线程安全的。</p>
+<p>但如果 Bean 中包含了修改的字段或者状态信息, 多线程环境下会存在线程安全问题。</p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs axapta">@Component<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CounterBean</span> &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-built_in">int</span> <span class="hljs-keyword">count</span> = <span class="hljs-number">0</span>;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> increment() &#123;<br>        <span class="hljs-keyword">count</span>++;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> getCount() &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">count</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>以上的<code>CounterBean</code>就是一个有状态的Bean，多线程环境下对<code>increment</code>方法的调用就会导致线程安全问题。</p>
 <p>面试题回答</p>
 <blockquote>
 <p>Spring 框架中的单例 Bean 是线程安全的吗</p>
 </blockquote>
 <ul>
 <li>不是线程安全的</li>
-<li>Spring框架中有一个@Scope注解，默认的值就是singleton,单例的.</li>
-<li>因为一般在spring的bean的中都是注入无状态的对象，没有线程安全问题，如果在bean中定义了可修改的成员变量。是要考线程安全问题的，可以使用多例或者加锁来解决</li>
+<li>Spring 的 Bean 默认是单例的，是否是线程安全有两种情况<ul>
+<li>在spring的bean的中都是注入无状态的对象，没有线程安全问题</li>
+<li>如果在bean中定义了可修改的成员变量，是要考线程安全问题的<ul>
+<li>可以使用多例或者加锁来解决</li>
 </ul>
-<p>参考回答：</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240229001238.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
 <h4 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h4><blockquote>
 <p>什么是 AOP，你们项目中有没有使用到 AOP </p>
 </blockquote>
+<p>回答这道题目，一般建议围绕首先自己对于 AOP的理解概念，然后结合实际场景题，包括自己项目中是如何使用到 AOP ，然后讲述自己对于它的理解。</p>
+<p>to be contined…..</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240229001352.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h5 id="日志记录"><a href="#日志记录" class="headerlink" title="日志记录"></a>日志记录</h5><p>记录操作日志思路</p>
 <ul>
@@ -310,7 +327,55 @@
 <p>面试题回答</p>
 </blockquote>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240229001857.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="事务失效"><a href="#事务失效" class="headerlink" title="事务失效"></a>事务失效</h4><p>异常捕获处理</p>
+<h4 id="事务失效"><a href="#事务失效" class="headerlink" title="事务失效"></a>事务失效</h4><p>事务管理通过声明式事务和编程式事务来提供对事务的支持。在某些场景下，Spring事务可能会失效，导致事务不按预期执行。</p>
+<p>这些场景主要包括：</p>
+<ul>
+<li><ol>
+<li>方法非公开（Non-public Method）</li>
+</ol>
+<ul>
+<li>Spring的声明式事务管理是通过动态代理实现的。</li>
+<li>如果一个类中被<code>@Transactional</code>标注的方法不是public的，那么Spring AOP将无法创建有效的代理对象，导致事务管理不生效。</li>
+</ul>
+</li>
+<li><ol start="2">
+<li>自调用（Self-invocation）</li>
+</ol>
+<ul>
+<li>当在同一个类中的一个方法直接调用另一个带有<code>@Transactional</code>注解的方法时，事务是不会被触发的。</li>
+<li>这是因为动态代理的限制，事务的应用需要通过代理对象来调用目标方法。自调用场景绕过了代理对象，直接在目标对象内部调用，因此事务不生效。</li>
+</ul>
+</li>
+<li><ol start="3">
+<li>异常处理不当</li>
+</ol>
+<ul>
+<li>Spring事务默认只对<code>RuntimeException</code>（运行时异常）和<code>Error</code>进行回滚，对于检查型异常（<code>Exception</code>的其他子类）不会回滚。</li>
+<li>如果需要对检查型异常进行回滚，需要在<code>@Transactional</code>注解的<code>rollbackFor</code>属性中显式声明。</li>
+</ul>
+</li>
+<li><ol start="4">
+<li>数据源未配置事务管理器</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>错误的事务传播行为配置</li>
+</ol>
+</li>
+<li><ol start="6">
+<li>事务方法被内联编译优化</li>
+</ol>
+</li>
+<li><ol start="7">
+<li>不恰当的隔离级别或超时设置</li>
+</ol>
+</li>
+</ul>
+<p>建议回答一下前三点。</p>
+<blockquote>
+<p>视频讲解部分内容：</p>
+</blockquote>
+<p>异常捕获处理</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240229002244.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>抛出检查异常<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240229002325.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>非 public 方法导致的事务失效</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240229002350.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
@@ -318,7 +383,7 @@
 <p>面试题</p>
 </blockquote>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240229002419.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="Bean的生命周期"><a href="#Bean的生命周期" class="headerlink" title="Bean的生命周期"></a>Bean的生命周期</h4><blockquote>
+<h4 id="Bean的生命周期-🚩"><a href="#Bean的生命周期-🚩" class="headerlink" title="Bean的生命周期  🚩"></a>Bean的生命周期  🚩</h4><blockquote>
 <p>Spring 容器是如何管理和创建 bean 实例</p>
 </blockquote>
 <blockquote>
@@ -335,7 +400,7 @@
 <p>面试题回答</p>
 </blockquote>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240229082037.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="循环依赖"><a href="#循环依赖" class="headerlink" title="循环依赖"></a>循环依赖</h4><blockquote>
+<h4 id="循环依赖-🚩"><a href="#循环依赖-🚩" class="headerlink" title="循环依赖   🚩"></a>循环依赖   🚩</h4><blockquote>
 <p>Spring 中的循环引用</p>
 </blockquote>
 <p>什么是 Spring的循环依赖</p>
@@ -384,11 +449,12 @@
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290945750.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>版本2：</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290946621.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h3 id="三、SpringBoot"><a href="#三、SpringBoot" class="headerlink" title="三、SpringBoot"></a>三、SpringBoot</h3><h4 id="自动配置原理"><a href="#自动配置原理" class="headerlink" title="自动配置原理"></a>自动配置原理</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290947817.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="三、SpringBoot"><a href="#三、SpringBoot" class="headerlink" title="三、SpringBoot"></a>三、SpringBoot</h3><h4 id="自动配置原理-🚩"><a href="#自动配置原理-🚩" class="headerlink" title="自动配置原理  🚩"></a>自动配置原理  🚩</h4><p>这道题目待复习一下</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290947817.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290948762.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290949754.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290950693.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h3 id="四、Mybatis"><a href="#四、Mybatis" class="headerlink" title="四、Mybatis"></a>四、Mybatis</h3><h4 id="执行流程-1"><a href="#执行流程-1" class="headerlink" title="执行流程"></a>执行流程</h4><p>Mybatis 执行流程</p>
+<h3 id="四、Mybatis"><a href="#四、Mybatis" class="headerlink" title="四、Mybatis"></a>四、Mybatis</h3><h4 id="执行流程-🚩"><a href="#执行流程-🚩" class="headerlink" title="执行流程  🚩"></a>执行流程  🚩</h4><p>Mybatis 执行流程</p>
 <ul>
 <li>1、理解各个组件的关系</li>
 <li>2、Sql 的执行过程（参数映射、sql 解析、执行和结果处理）</li>
@@ -405,14 +471,14 @@
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402291131905.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>面试题</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402291132269.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="延迟加载"><a href="#延迟加载" class="headerlink" title="延迟加载"></a>延迟加载</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402291133046.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="延迟加载-🚩"><a href="#延迟加载-🚩" class="headerlink" title="延迟加载   🚩"></a>延迟加载   🚩</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402291133046.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <ul>
 <li>1、设置局部的延迟加载</li>
 <li>2、设置全部的延迟加载</li>
 </ul>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402291137882.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402291138401.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="一二级缓存"><a href="#一二级缓存" class="headerlink" title="一二级缓存"></a>一二级缓存</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402291142061.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>二级缓存</p>
+<h4 id="一二级缓存-🚩"><a href="#一二级缓存-🚩" class="headerlink" title="一二级缓存  🚩"></a>一二级缓存  🚩</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402291142061.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>二级缓存</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402291144414.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>注意事项：</p>
 <ul>

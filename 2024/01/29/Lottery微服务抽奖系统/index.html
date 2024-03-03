@@ -236,7 +236,7 @@
         
         
         
-          405 分钟
+          409 分钟
         
       </span>
     
@@ -595,6 +595,13 @@
 <li><strong>复用性</strong>：<code>BaseAlgorithm</code>中封装了所有抽奖策略共用的逻辑和数据结构，避免了代码的重复。</li>
 <li><strong>维护性</strong>：每个抽奖策略的实现聚焦于自身的逻辑，易于理解和维护。</li>
 </ul>
+<h5 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h5><p>通过具体的接口 IDrawAlgorithm，然后去看一下对应的实现，大概就可以清楚知道策略模式</p>
+<ul>
+<li>1、定义了一个公共接口 A，里面定义了不同的策略接口（具体是实现会交给抽象类的子类）</li>
+<li>2、定义了一个抽象类，这个抽象类实现了公共接口 A，并提供一些公共参数和方法</li>
+<li>3、具体实现类继承抽象类，然后实现公共接口 A 中的某种策略。</li>
+</ul>
+<p>to be contined….</p>
 <h4 id="2-4-模板模式处理抽奖流程"><a href="#2-4-模板模式处理抽奖流程" class="headerlink" title="2.4 模板模式处理抽奖流程"></a>2.4 模板模式处理抽奖流程</h4><ul>
 <li>模板模式<ul>
 <li>抽象类基类</li>
@@ -655,6 +662,10 @@
 <li><strong>应用场景</strong>：在<code>DrawConfig</code>类中，通过<code>@Resource</code>注解注入了一系列的<code>IDrawAlgorithm</code>实现类，并在初始化方法中根据策略模式的注解将它们加入到一个管理策略的映射中。<code>AbstractDrawBase</code>类及其子类<code>DrawExecImpl</code>利用这些策略执行具体的抽奖逻辑。</li>
 <li><strong>作用</strong>：依赖注入使得代码更加模块化，降低了组件间的耦合度。通过注入配置，可以在不直接修改类内部代码的情况下更换或添加新的策略实现，提高了系统的灵活性和可维护性。</li>
 </ul>
+<h5 id="模板模式"><a href="#模板模式" class="headerlink" title="模板模式"></a>模板模式</h5><p>有空再重构一下 2.4 章节的内容</p>
+<p>模板模式的内容可以参考一下： <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/3u1gCJBYLna8qwV9dUgpmA">https://mp.weixin.qq.com/s/3u1gCJBYLna8qwV9dUgpmA</a></p>
+<p>模板模式的核心设计思路是通过在，抽象类中定义抽象方法的<strong>执行顺序</strong>，并将抽象方法设定为只有子类实现，但不设计<code>独立访问</code>的方法。简单说也就是把你安排的明明白白的。</p>
+<p>文章中讲述的内容是比较OK的，通过定义抽奖类，定义一个核心方法，这个核心方法里面写了执行的一些步骤（调用抽象类的其他方法），然后在具体的实现类中，进行继承重写其他的方法，这个核心方法是不用覆盖的，直接调用就可以（类似于模板，定义好了执行方法，实现交给具体的子类）</p>
 <h4 id="2-5-简单工厂搭建发奖领域-🐊"><a href="#2-5-简单工厂搭建发奖领域-🐊" class="headerlink" title="2.5 简单工厂搭建发奖领域   🐊"></a>2.5 简单工厂搭建发奖领域   🐊</h4><ul>
 <li>发奖操作（简单工厂方式）<ul>
 <li>定义了一个工厂类，然后进行初始化一些参数，传入到 map 中</li>
