@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.5k 字
+          8.7k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          80 分钟
+          73 分钟
         
       </span>
     
@@ -278,96 +278,52 @@
             
               <div class="markdown-body">
                 
-                <h3 id="面试自测题"><a href="#面试自测题" class="headerlink" title="面试自测题"></a>面试自测题</h3><ul>
-<li>基础内容<ul>
-<li>并发和并行有什么区别。</li>
-<li>什么是线程，线程和进程的区别是什么。</li>
-<li>为什么要使用多线程。</li>
-<li>什么是线程死锁，如何预防和避免线程死锁。</li>
-<li>并发编程的三个重要特性。</li>
+                <h3 id="一、线程的基础知识"><a href="#一、线程的基础知识" class="headerlink" title="一、线程的基础知识"></a>一、线程的基础知识</h3><ul>
+<li>1、线程和进程的区别？</li>
+<li>2、并行和并发的区别？</li>
+<li>3、讲一下线程创建的方式？Runable 和 Callable 的区别；strat 和 run 的区别。</li>
+<li>4、线程包括哪些状态，状态之间是如何变化的</li>
+<li>5、线程按顺序执行 join、notify 和 notifyall 的区别。</li>
+<li>6、Java 中 wait 和 sleep 的区别。</li>
+<li>7、如何停止一个正在运行的线程。</li>
 </ul>
-</li>
-<li>线程的基本使用<ul>
-<li>线程的生命周期和状态讲一下。</li>
-<li>如何优雅的终止一个线程</li>
-<li>讲一下线程中的乐观锁和悲观锁，并讲一下其对应的一种实现方案。（如何实现乐观锁和悲观锁）</li>
-<li>乐观锁和悲观锁的区别。</li>
-<li>如何实现乐观锁。</li>
-<li>乐观锁存在哪些问题。</li>
-</ul>
-</li>
-<li>内存模型<ul>
-<li>什么是 JMM, 为什么需要 JMM？</li>
-<li>JMM 是如何抽象线程 和 主内存之间的关系。</li>
-<li>Java 内存区域和 JMM 有何区别。</li>
-<li>happens-before 原则是什么，为什么需要 happens-before 原则。</li>
-</ul>
-</li>
-<li>volatile<ul>
-<li>什么是 Java 的内存模型，Java 中各个线程是怎么彼此看到对方的变量的？</li>
-<li>请谈谈 volatile 有什么特点，为什么它能保证变量对所有线程的可见性？</li>
-<li>既然 volatile 能够保证线程间的变量可见性，是不是就意味着基于 volatile变量的运算就是并发安全的？</li>
-<li>请对比下 volatile 对比 Synchronized 的异同。</li>
-<li>synchronized 和 volatile 的区别讲一下。讲一下 volatile 关键字。</li>
-</ul>
-</li>
-<li>synchronized<ul>
-<li>synchronized 关键字有什么作用，你平时怎么使用 synchronized 的。</li>
-<li>说一下偏向锁、轻量级锁、重量级锁（锁升级过程）。</li>
-<li>synchronized 关键字的底层原理讲一下。</li>
-<li>你刚才提到获取对象的锁，这个“锁”到底是什么？如何确定对象的锁？</li>
-<li>什么是可重入性，为什么说 Synchronized 是可重入锁？</li>
-<li>JVM 对 Java 的原生锁做了哪些优化？</li>
-<li>JDK1.6 之后的 synchronized 关键字底层做了哪些优化。synchronized 锁升级流程。</li>
-<li>为什么说 Synchronized 是非公平锁？</li>
-<li>什么是锁消除和锁粗化？</li>
-<li>为什么说 Synchronized 是一个悲观锁？乐观锁的实现原理又是什么？什么是 CAS，它有什么特性？</li>
-<li>乐观锁一定就是好的吗？</li>
-</ul>
-</li>
-<li>ReentrantLock<ul>
-<li>跟 Synchronized 相比，可重入锁 ReentrantLock 其实现原理有什么不同？</li>
-<li>synchronized 和 ReentrantLock 有什么区别。</li>
-<li>ReentrantLock 是如何实现可重入性的？</li>
-<li>除了 ReetrantLock，你还接触过 JUC 中的哪些并发工具？</li>
-<li>请谈谈 ReadWriteLock 和 StampedLock。</li>
-</ul>
-</li>
-<li>线程池<ul>
-<li>线程池有哪几种，线程池的重要参数有哪些？</li>
-<li>Java 中的线程池是如何实现的？创建线程池的几个核心构造参数？</li>
-<li>线程池中的线程是怎么创建的？是一开始就随着线程池的启动创建好的吗？</li>
-<li>既然提到可以通过配置不同参数创建出不同的线程池，那么 Java 中默认实现好的线程池又有哪些呢？请比较它们的异同</li>
-<li>如何在 Java 线程池中提交线程？</li>
-</ul>
-</li>
-<li>AQS<ul>
-<li>AQS 是什么，AQS 的原理是什么？那么请谈谈 AQS 框架是怎么回事儿？</li>
-<li>什么是ABA问题，怎么解决？</li>
-<li>CAS 了解吗，原理说一下。</li>
-<li>如何让 Java 的线程彼此同步？你了解过哪些同步器？请分别介绍下。</li>
-<li>Semaphore 有什么用，他的原理是什么？</li>
-<li>CountDownLatch，CyclicBarrier 了解吗。CyclicBarrier 和 CountDownLatch 看起来很相似，请对比下呢？</li>
-</ul>
-</li>
-<li>ThreadLocal<ul>
-<li>ThreadLocal 的底层原理讲一下，你在平时的项目中是如何使用 ThreadLocal 关键字的。</li>
-<li>很多人都说要慎用 ThreadLocal，谈谈你的理解，使用 ThreadLocal 需要注意些什么。</li>
-<li>请谈谈 ThreadLocal 是怎么解决并发安全的？</li>
-</ul>
-</li>
-</ul>
-<h3 id="面试解答篇"><a href="#面试解答篇" class="headerlink" title="面试解答篇"></a>面试解答篇</h3><ul>
-<li>基础内容<ul>
-<li>并发和并行有什么区别。<ul>
+<blockquote>
+<p>1、并发和并行有什么区别。</p>
+</blockquote>
+<ul>
 <li>并发是多个任务在同一时刻内同时进行；</li>
 <li>并行是多个任务在同一段时间段内同时进行。</li>
 </ul>
-</li>
-<li>什么是线程，线程和进程的区别是什么。<ul>
-<li>线程是程序执行的最小单位，它是进程的一部分，共享进程的资源。进程是操作系统分配资源和调度的基本单位，每个进程至少包含一个线程。<strong>区别</strong>：进程有独立的内存空间，而线程共享进程的内存空间；进程间通信（IPC）成本较高，上下文切换较慢，线程间通信和切换成本较低；线程是实现多任务的最小单位，进程是拥有资源的最小单位。</li>
-</ul>
-</li>
+<blockquote>
+<p>2、什么是线程，线程和进程的区别是什么。</p>
+</blockquote>
+<p>线程是程序执行的最小单位，它是进程的一部分，共享进程的资源。</p>
+<p>进程是操作系统分配资源和调度的基本单位，每个进程至少包含一个线程。</p>
+<p><strong>区别</strong>：进程有独立的内存空间，而线程共享进程的内存空间；进程间通信（IPC）成本较高，上下文切换较慢，线程间通信和切换成本较低；线程是实现多任务的最小单位，进程是拥有资源的最小单位。</p>
+<blockquote>
+<p>1、讲一下线程创建的方式？Runable 和 Callable 的区别；strat 和 run 的区别。</p>
+</blockquote>
+<blockquote>
+<p>2、线程包括哪些状态，状态之间是如何变化的</p>
+</blockquote>
+<blockquote>
+<p>3、Java 中 wait 和 sleep 的区别。</p>
+</blockquote>
+<blockquote>
+<p>4、如何停止一个正在运行的线程。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>3、为什么要使用多线程。</p>
+</blockquote>
+<p>使用多线程可以提高程序的执行效率和响应速度。多线程允许并发执行多个任务，可以充分利用多核CPU的计算能力，提高资源利用率。</p>
+<p>在I&#x2F;O密集型或者需要同时执行多个独立任务的应用场景中，多线程可以显著提高程序性能和用户体验。</p>
+<blockquote>
+<p>4、什么是线程死锁，如何预防和避免线程死锁。</p>
+</blockquote>
+<p>线程死锁是指两个或多个线程在执行过程中因争夺资源而造成的一种相互等待的现象，导致它们都无法继续执行。</p>
+<p><strong>预防和避免方法</strong>：1) 避免嵌套锁；2) 按顺序加锁；3) 使用超时尝试获取锁；4) 减少锁的使用范围和持有时间；5) 使用专门的算法，如银行家算法。</p>
+<h3 id="二、线程并发安全"><a href="#二、线程并发安全" class="headerlink" title="二、线程并发安全"></a>二、线程并发安全</h3><h3 id="三、线程池"><a href="#三、线程池" class="headerlink" title="三、线程池"></a>三、线程池</h3><h3 id="四、使用场景"><a href="#四、使用场景" class="headerlink" title="四、使用场景"></a>四、使用场景</h3><h3 id="二、线程的基本使用"><a href="#二、线程的基本使用" class="headerlink" title="二、线程的基本使用"></a>二、线程的基本使用</h3><ul>
 <li>为什么要使用多线程。<ul>
 <li>使用多线程可以提高程序的执行效率和响应速度。多线程允许并发执行多个任务，可以充分利用多核CPU的计算能力，提高资源利用率。在I&#x2F;O密集型或者需要同时执行多个独立任务的应用场景中，多线程可以显著提高程序性能和用户体验。</li>
 </ul>
@@ -378,8 +334,6 @@
 </li>
 <li>并发编程的三个重要特性。<ul>
 <li>并发编程的三个重要特性是：1) 原子性，保证操作的不可分割；2) 可见性，保证线程对变量的修改对其他线程是可见的；3) 有序性，保证程序执行的顺序按照代码的先后顺序执行。这些特性是实现线程安全的基础。</li>
-</ul>
-</li>
 </ul>
 </li>
 <li>线程的基本使用<ul>
@@ -410,6 +364,8 @@
 </li>
 </ul>
 </li>
+</ul>
+<h3 id="三、JMM"><a href="#三、JMM" class="headerlink" title="三、JMM"></a>三、JMM</h3><ul>
 <li>内存模型<ul>
 <li>什么是 JMM, 为什么需要 JMM？<ul>
 <li>Java内存模型（JMM）是一种规范，用来定义线程和主内存之间的交互规则。JMM解决了可见性、原子性、有序性问题，确保在多线程环境下的一致性和线程安全性。需要JMM是因为不同的硬件平台有不同的内存访问模式，JMM为Java程序在各平台之间提供一致的内存可见性保证。</li>
@@ -429,6 +385,8 @@
 </li>
 </ul>
 </li>
+</ul>
+<h3 id="四、volatile"><a href="#四、volatile" class="headerlink" title="四、volatile"></a>四、volatile</h3><ul>
 <li>volatile<ul>
 <li>什么是 Java 的内存模型，Java 中各个线程是怎么彼此看到对方的变量的？<ul>
 <li>Java内存模型（JMM）定义了线程和主内存之间的抽象关系及规则，确保线程对共享变量的操作在主内存中正确处理，保障可见性、原子性和有序性。线程间通过主内存交换变量，每个线程都有自己的工作内存，变量的更新需要同步回主内存中，其他线程才能看到最新值。</li>
@@ -460,6 +418,8 @@
 </li>
 </ul>
 </li>
+</ul>
+<h3 id="五、synchronized"><a href="#五、synchronized" class="headerlink" title="五、synchronized"></a>五、synchronized</h3><ul>
 <li>synchronized<ul>
 <li>synchronized 关键字有什么作用，你平时怎么使用 synchronized 的。<ul>
 <li>synchronized 关键字是 Java 中多线程锁的悲观锁的一种应用方式，</li>
@@ -512,6 +472,8 @@
 </li>
 </ul>
 </li>
+</ul>
+<h3 id="六、ReentrantLock"><a href="#六、ReentrantLock" class="headerlink" title="六、ReentrantLock"></a>六、ReentrantLock</h3><ul>
 <li>ReentrantLock<ul>
 <li>跟 Synchronized 相比，可重入锁 ReentrantLock 其实现原理有什么不同？<ul>
 <li><code>ReentrantLock</code> 提供了比 <code>synchronized</code> 更灵活的锁定机制。它基于 <code>AQS</code>（AbstractQueuedSynchronizer）框架实现，支持公平锁和非公平锁，提供了条件变量（Condition）支持，允许分离的等待&#x2F;通知，同时提供了尝试获取锁、可中断获取锁的能力。</li>
@@ -545,6 +507,8 @@
 </li>
 </ul>
 </li>
+</ul>
+<h3 id="七、线程池"><a href="#七、线程池" class="headerlink" title="七、线程池"></a>七、线程池</h3><ul>
 <li>线程池<ul>
 <li>线程池有哪几种，线程池的重要参数有哪些？<ul>
 <li>Java中常见的线程池类型包括：<code>FixedThreadPool</code>、<code>CachedThreadPool</code>、<code>SingleThreadExecutor</code>、<code>ScheduledThreadPoolExecutor</code>。线程池的重要参数有：核心线程数、最大线程数、空闲线程存活时间、任务队列、线程工厂、拒绝策略。</li>
@@ -568,15 +532,19 @@
 </li>
 </ul>
 </li>
+</ul>
+<h3 id="八、AQS"><a href="#八、AQS" class="headerlink" title="八、AQS"></a>八、AQS</h3><blockquote>
+<p>1、AQS 是什么，AQS 的原理是什么？</p>
+</blockquote>
+<p>AQS（AbstractQueuedSynchronizer）是Java并发包中的一个框架，用于构建锁或其他同步器。</p>
+<p>AQS使用一个int成员变量表示同步状态，通过内置的FIFO队列来完成资源获取线程的排队工作。同步器的实现依赖于继承AQS并实现其protected方法来管理同步状态。</p>
+<blockquote>
+<p>2、什么是ABA问题，怎么解决？</p>
+</blockquote>
+<p>ABA问题是在CAS操作中出现的，指一个位置的值原先是A，变成了B，然后又变回A，CAS操作无法感知中间的变化。</p>
+<p>解决ABA问题的一种方法是使用“版本号”，如Java的<code>AtomicStampedReference</code>，通过维护一种带有时间戳&#x2F;版本号的标记来判断值是否真正没有变过。</p>
+<ul>
 <li>AQS<ul>
-<li>AQS 是什么，AQS 的原理是什么？那么请谈谈 AQS 框架是怎么回事儿？<ul>
-<li>AQS（AbstractQueuedSynchronizer）是Java并发包中的一个框架，用于构建锁或其他同步器。AQS使用一个int成员变量表示同步状态，通过内置的FIFO队列来完成资源获取线程的排队工作。同步器的实现依赖于继承AQS并实现其protected方法来管理同步状态</li>
-</ul>
-</li>
-<li>什么是ABA问题，怎么解决？<ul>
-<li>ABA问题是在CAS操作中出现的，指一个位置的值原先是A，变成了B，然后又变回A，CAS操作无法感知中间的变化。解决ABA问题的一种方法是使用“版本号”，如Java的<code>AtomicStampedReference</code>，通过维护一种带有时间戳&#x2F;版本号的标记来判断值是否真正没有变过。</li>
-</ul>
-</li>
 <li>CAS 了解吗，原理说一下。<ul>
 <li>CAS（Compare-And-Swap）是一种无锁算法，它包括三个参数：内存位置、预期原值和新值。只有当内存位置的值与预期原值相匹配时，才会将内存位置的值更新为新值，这个操作是原子的。CAS是实现同步原语（如锁和原子变量）的基础。</li>
 </ul>
@@ -597,6 +565,8 @@
 </li>
 </ul>
 </li>
+</ul>
+<h3 id="九、ThreadLocal"><a href="#九、ThreadLocal" class="headerlink" title="九、ThreadLocal"></a>九、ThreadLocal</h3><ul>
 <li>ThreadLocal<ul>
 <li>ThreadLocal 的底层原理讲一下，你在平时的项目中是如何使用 ThreadLocal 关键字的。<ul>
 <li>ThreadLocal提供线程局部变量，每个线程都有该变量的独立副本。底层通过在Thread对象中维护一个ThreadLocal.ThreadLocalMap，Map的键是ThreadLocal对象，值是线程的变量副本。在项目中，经常用ThreadLocal来保存数据库连接、会话信息等线程相关的数据，确保数据隔离且线程安全。</li>
@@ -614,7 +584,8 @@
 </li>
 </ul>
 <hr>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<p>参考</p>
+<ul>
 <li><a target="_blank" rel="noopener" href="https://www.yuque.com/snailclimb/mf2z3k/cm70wa">https://www.yuque.com/snailclimb/mf2z3k/cm70wa</a></li>
 </ul>
 

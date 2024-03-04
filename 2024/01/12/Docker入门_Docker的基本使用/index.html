@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.8k 字
+          6.6k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          49 分钟
+          56 分钟
         
       </span>
     
@@ -427,8 +427,7 @@
 </li>
 </ol>
 <h4 id="其他常用命令"><a href="#其他常用命令" class="headerlink" title="其他常用命令"></a>其他常用命令</h4><ol>
-<li><p><strong>查看Docker版本</strong>:</p>
-<p> <code>docker version</code></p>
+<li><p><strong>查看Docker版本</strong>:<br> <code>docker version</code></p>
 </li>
 <li><p><strong>查看Docker系统信息</strong>:</p>
 <p> <code>docker info</code></p>
@@ -531,12 +530,28 @@
 <p>重启容器操作:</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-comment"># 重启容器</span><br><span class="hljs-attribute">docker</span> restart nginx<br></code></pre></td></tr></table></figure>
 
+
+<h3 id="7、Docker-部署微服务项目-💣"><a href="#7、Docker-部署微服务项目-💣" class="headerlink" title="7、Docker 部署微服务项目  💣"></a>7、Docker 部署微服务项目  💣</h3><p>主要讲述部署后端服务</p>
+<ul>
+<li>1、讲项目进行 maven 打包为 Jar 包</li>
+<li>2、编写 Dockerfile 用于构建镜像</li>
+<li>3、将 jar 包 以及 Dockerfile 上传到 服务器，尽量统一放到一个文件夹中，管理方便。每一个文件夹对应一个服务的 jar包以及 Dockerfile</li>
+<li>4、构建Docker镜像，运行Docker容器</li>
+</ul>
+<p>需要单独去实际跑一下这个项目，有空搞一下蘑菇项目的 docker 部署 to be contined….</p>
+<p>service_cms</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs dockerfile"><span class="hljs-comment"># 基础镜像</span><br><span class="hljs-keyword">FROM</span> openjdk:<span class="hljs-number">8</span><br><span class="hljs-comment"># 环境变量</span><br><span class="hljs-keyword">ENV</span> APP_HOME=/apps<br><span class="hljs-comment"># 创建容器默认进入的目录</span><br><span class="hljs-keyword">WORKDIR</span><span class="language-bash"> <span class="hljs-variable">$APP_HOME</span></span><br><span class="hljs-comment"># 复制jar包到容器中</span><br><span class="hljs-keyword">COPY</span><span class="language-bash"> ./service_cms-0.0.1-SNAPSHOT.jar ./service_cms.jar</span><br><span class="hljs-comment"># 暴露端口</span><br><span class="hljs-keyword">EXPOSE</span> <span class="hljs-number">8004</span><br><span class="hljs-comment"># 启动命令(启动Spring Boot应用)</span><br><span class="hljs-keyword">ENTRYPOINT</span><span class="language-bash"> [<span class="hljs-string">&quot;java&quot;</span>,<span class="hljs-string">&quot;-jar&quot;</span>,<span class="hljs-string">&quot;-Xms100m&quot;</span>,<span class="hljs-string">&quot;-Xmx100m&quot;</span>]</span><br><span class="hljs-keyword">CMD</span><span class="language-bash"> [<span class="hljs-string">&quot;service_cms.jar&quot;</span>]</span><br></code></pre></td></tr></table></figure>
+
+<p>service_edu</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs dockerfile"><span class="hljs-keyword">FROM</span> openjdk:<span class="hljs-number">8</span><br><span class="hljs-keyword">ENV</span> APP_HOME=/apps<br><span class="hljs-keyword">WORKDIR</span><span class="language-bash"> <span class="hljs-variable">$APP_HOME</span></span><br><span class="hljs-keyword">COPY</span><span class="language-bash"> ./service_edu-0.0.1-SNAPSHOT.jar ./service_edu.jar</span><br><span class="hljs-keyword">EXPOSE</span> <span class="hljs-number">8001</span><br><span class="hljs-keyword">ENTRYPOINT</span><span class="language-bash"> [<span class="hljs-string">&quot;java&quot;</span>,<span class="hljs-string">&quot;-jar&quot;</span>,<span class="hljs-string">&quot;-Xms100m&quot;</span>,<span class="hljs-string">&quot;-Xmx100m&quot;</span>]</span><br><span class="hljs-keyword">CMD</span><span class="language-bash"> [<span class="hljs-string">&quot;service_edu.jar&quot;</span>]</span><br></code></pre></td></tr></table></figure>
+
 <hr>
 <p>参考</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45868731/article/details/131743699">https://blog.csdn.net/qq_45868731/article/details/131743699</a></li>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/ninimino/article/details/113388745">https://blog.csdn.net/ninimino/article/details/113388745</a></li>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45821811/article/details/116211724">https://blog.csdn.net/weixin_45821811/article/details/116211724</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/aetawt/article/details/128999752">https://blog.csdn.net/aetawt/article/details/128999752</a></li>
 </ul>
 
                 

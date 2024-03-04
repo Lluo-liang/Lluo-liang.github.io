@@ -18,22 +18,24 @@
   <meta name="author" content="Luo QI">
   <meta name="keywords" content="">
   
-    <meta name="description" content="[[Java学习的轻松之旅]] 格式：   Java学习的轻松之旅   1、Java基础Java 基础 [[Java基础_基础内容01]] [[Java基础_基础内容02]] [[Java基础_基础内容03]]  IO [[Java基础_IO学习]]  Java 8 [[Java8新特性]]  Java 集合   🚩 [[Java集合_基础概念]]  [[Java集合_基础概念_补充内容01]]">
+    <meta name="description" content="Java并发编程_常见面试题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java学习的轻松之旅_Obsidian">
-<meta property="og:url" content="https://varcel.luoqi.icu/2023/11/14/Java%E5%AD%A6%E4%B9%A0%E7%9A%84%E8%BD%BB%E6%9D%BE%E4%B9%8B%E6%97%85_Obsidian/index.html">
+<meta property="og:title" content="Java并发编程_常见面试题">
+<meta property="og:url" content="https://varcel.luoqi.icu/2024/03/04/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B_%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
 <meta property="og:site_name" content="轻松的洛亓">
-<meta property="og:description" content="[[Java学习的轻松之旅]] 格式：   Java学习的轻松之旅   1、Java基础Java 基础 [[Java基础_基础内容01]] [[Java基础_基础内容02]] [[Java基础_基础内容03]]  IO [[Java基础_IO学习]]  Java 8 [[Java8新特性]]  Java 集合   🚩 [[Java集合_基础概念]]  [[Java集合_基础概念_补充内容01]]">
+<meta property="og:description" content="Java并发编程_常见面试题">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-11-14T12:00:00.000Z">
-<meta property="article:modified_time" content="2023-11-14T12:00:00.000Z">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/wallpaper1702453206266.jpg">
+<meta property="article:published_time" content="2024-03-04T18:34:16.000Z">
+<meta property="article:modified_time" content="2024-03-04T18:34:16.000Z">
 <meta property="article:author" content="Luo QI">
-<meta property="article:tag" content="index">
+<meta property="article:tag" content="面试题">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/wallpaper1702453206266.jpg">
   
   
   
-  <title>Java学习的轻松之旅_Obsidian - 轻松的洛亓</title>
+  <title>Java并发编程_常见面试题 - 轻松的洛亓</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +201,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Java学习的轻松之旅_Obsidian"></span>
+            <span id="subtitle" data-typed-text="Java并发编程_常见面试题"></span>
           
         </div>
 
@@ -210,8 +212,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-11-14 12:00" pubdate>
-          2023年11月14日 中午
+        <time datetime="2024-03-04 18:34" pubdate>
+          2024年3月4日 晚上
         </time>
       </span>
     
@@ -222,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k 字
+          2.7k 字
         
       </span>
     
@@ -233,7 +235,7 @@
         
         
         
-          14 分钟
+          23 分钟
         
       </span>
     
@@ -270,182 +272,155 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Java学习的轻松之旅_Obsidian</h1>
+            <h1 id="seo-header">Java并发编程_常见面试题</h1>
             
             
               <div class="markdown-body">
                 
-                <p>[[Java学习的轻松之旅]]</p>
-<p>格式： </p>
-<ul>
-<li><a href="/2023/11/15/Java%E5%AD%A6%E4%B9%A0%E7%9A%84%E8%BD%BB%E6%9D%BE%E4%B9%8B%E6%97%85/" title="Java学习的轻松之旅">Java学习的轻松之旅</a></li>
+                <h3 id="一、线程的基础知识"><a href="#一、线程的基础知识" class="headerlink" title="一、线程的基础知识"></a>一、线程的基础知识</h3><ul>
+<li>1、线程和进程的区别？</li>
+<li>2、并行和并发的区别？</li>
+<li>3、讲一下线程创建的方式？Runable 和 Callable 的区别；strat 和 run 的区别。</li>
+<li>4、线程包括哪些状态，状态之间是如何变化的</li>
+<li>5、线程按顺序执行 join、notify 和 notifyall 的区别。</li>
+<li>6、Java 中 wait 和 sleep 的区别。</li>
+<li>7、如何停止一个正在运行的线程。</li>
+<li>8、什么是线程死锁，如何预防和避免线程死锁。</li>
 </ul>
+<blockquote>
+<p>1、并发和并行有什么区别。</p>
+</blockquote>
+<p>目前我们使用的一般是多核CPU，在多核CPU的硬件条件下，并发指的是多个任务在</p>
+<p>并行指的是多个任务在同一段</p>
+<ul>
+<li>并发是多个任务在同一时刻内同时进行；</li>
+<li>并行是多个任务在同一段时间段内同时进行。</li>
+</ul>
+<blockquote>
+<p>2、什么是线程，线程和进程的区别是什么。</p>
+</blockquote>
+<p>线程是程序执行的最小单位，它是进程的一部分，共享进程的资源。</p>
+<p>进程是操作系统分配资源和调度的基本单位，每个进程至少包含一个线程。</p>
+<p><strong>区别</strong>：进程有独立的内存空间，而线程共享进程的内存空间；进程间通信（IPC）成本较高，上下文切换较慢，线程间通信和切换成本较低；线程是实现多任务的最小单位，进程是拥有资源的最小单位。</p>
+<blockquote>
+<p>1、讲一下线程创建的方式？Runable 和 Callable 的区别；strat 和 run 的区别。</p>
+</blockquote>
+<blockquote>
+<p>2、线程包括哪些状态，状态之间是如何变化的</p>
+</blockquote>
+<blockquote>
+<p>3、Java 中 wait 和 sleep 的区别。</p>
+</blockquote>
+<blockquote>
+<p>4、如何停止一个正在运行的线程。</p>
+</blockquote>
 <hr>
-<h3 id="1、Java基础"><a href="#1、Java基础" class="headerlink" title="1、Java基础"></a>1、Java基础</h3><h4 id="Java-基础"><a href="#Java-基础" class="headerlink" title="Java 基础"></a>Java 基础</h4><ul>
-<li>[[Java基础_基础内容01]]</li>
-<li>[[Java基础_基础内容02]]</li>
-<li>[[Java基础_基础内容03]]</li>
-</ul>
-<h4 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h4><ul>
-<li>[[Java基础_IO学习]]</li>
-</ul>
-<h4 id="Java-8"><a href="#Java-8" class="headerlink" title="Java 8"></a><strong>Java 8</strong></h4><ul>
-<li>[[Java8新特性]]</li>
-</ul>
-<h4 id="Java-集合-🚩"><a href="#Java-集合-🚩" class="headerlink" title="Java 集合   🚩"></a><strong>Java 集合</strong>   🚩</h4><ul>
-<li><p>[[Java集合_基础概念]]</p>
-</li>
-<li><p>[[Java集合_基础概念_补充内容01]]</p>
-</li>
-<li><p>[[Java集合_基础概念_补充内容02]]    🚩</p>
-</li>
-<li><p>[[Java集合_ArrayList学习]]</p>
-</li>
-<li><p>[[Java集合_HashMap学习]]</p>
-</li>
-</ul>
-<h4 id="Java多线程-🚩"><a href="#Java多线程-🚩" class="headerlink" title="Java多线程   🚩"></a><strong>Java多线程</strong>   🚩</h4><hr>
-<ul>
-<li>[[Java并发编程_常见面试题]]</li>
-</ul>
-<p>知识卷</p>
-<ul>
-<li><p>[[Java并发编程_基础概念]]</p>
-</li>
-<li><p>[[Java并发编程_进阶内容]]</p>
-</li>
-<li><p>[[Java并发编程_线程池]]</p>
-</li>
-<li><p>[[Java并发编程_ThreadLocal]]</p>
-</li>
-<li><p>[[Java并发编程_AQS]]</p>
-</li>
-</ul>
-<h3 id="2、JVM"><a href="#2、JVM" class="headerlink" title="2、JVM"></a>2、JVM</h3><ul>
-<li>[[JVM入门_基础概念]]</li>
-</ul>
-<h3 id="3、数据库"><a href="#3、数据库" class="headerlink" title="3、数据库"></a>3、数据库</h3><h4 id="数据库基础"><a href="#数据库基础" class="headerlink" title="数据库基础"></a>数据库基础</h4><ul>
-<li>[[数据库_基础知识]]</li>
-<li>[[数据库_SQL语法基础知识]]</li>
-<li>[[数据库_SQL常见面试题]]</li>
-</ul>
-<h4 id="MySQL-☆-🚩"><a href="#MySQL-☆-🚩" class="headerlink" title="MySQL ☆   🚩"></a>MySQL ☆   🚩</h4><hr>
-<ul>
-<li><p>[[MySQL学习_基础内容01]]</p>
-</li>
-<li><p>[[MySQL学习_数据库索引]]</p>
-</li>
-<li><p>[[MySQL学习_性能优化]]</p>
-</li>
-</ul>
-<h4 id="NOSQL"><a href="#NOSQL" class="headerlink" title="NOSQL"></a>NOSQL</h4><ul>
-<li>[[NoSQL_基础概念]]</li>
-</ul>
-<h3 id="4、常用框架"><a href="#4、常用框架" class="headerlink" title="4、常用框架"></a>4、常用框架</h3><ul>
-<li>[[框架学习_基础概念]]</li>
-</ul>
-<h4 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h4><ul>
-<li><p>[[Spring学习_基础内容]]</p>
-</li>
-<li><p>[[Spring学习_IOC]]</p>
-</li>
-<li><p>[[Spring学习_AOP]]</p>
-</li>
-<li><p>[[Spring学习_Spring_Bean的作用域]]</p>
-</li>
-<li><p>[[Spring学习_Spring_Bean的生命周期]]</p>
-</li>
-<li><p>[[Spring学习_官方文档学习]]</p>
-</li>
-</ul>
-<h4 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h4><ul>
-<li>[[Spring学习_SpringMVC]]</li>
-</ul>
-<h4 id="Mybatis"><a href="#Mybatis" class="headerlink" title="Mybatis"></a>Mybatis</h4><h4 id="MybatisPlus"><a href="#MybatisPlus" class="headerlink" title="MybatisPlus"></a>MybatisPlus</h4><ul>
-<li>[[框架学习_MyBatis-Plus使用]]</li>
-</ul>
-<h4 id="SpringSecurity"><a href="#SpringSecurity" class="headerlink" title="SpringSecurity"></a>SpringSecurity</h4><h4 id="SpringBoot-☆"><a href="#SpringBoot-☆" class="headerlink" title="SpringBoot ☆"></a>SpringBoot ☆</h4><ul>
-<li><p>[[SpringBoot学习_基础内容]]</p>
-</li>
-<li><p>[[SpringBoot学习_SpringBoot自动装配原理]]</p>
-</li>
-</ul>
-<h4 id="Dubbo"><a href="#Dubbo" class="headerlink" title="Dubbo"></a>Dubbo</h4><ul>
-<li>[[Dubbo基础使用]]</li>
-</ul>
-<h3 id="5、中间件"><a href="#5、中间件" class="headerlink" title="5、中间件"></a>5、中间件</h3><h4 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a><strong>Redis</strong></h4><ul>
-<li><p>[[Redis入门_基础概念]]</p>
-</li>
-<li><p>[[Redis入门_基础概念_补充内容01]]</p>
-</li>
-<li><p>[[Redis入门_Redis实战篇]]</p>
-</li>
-</ul>
-<h4 id="MQ"><a href="#MQ" class="headerlink" title="MQ"></a><strong>MQ</strong></h4><ul>
-<li>[[消息队列_基础概念]]   🚩</li>
-</ul>
-<h4 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h4><ul>
-<li><p>[[消息队列_RabbitMQ_基础概念]]</p>
-</li>
-<li><p>[[消息队列_RabbitMQ_基础使用]]</p>
-</li>
-<li><p>[[消息队列_RabbitMQ的安装]]</p>
-</li>
-</ul>
-<h4 id="RocketMQ"><a href="#RocketMQ" class="headerlink" title="RocketMQ"></a>RocketMQ</h4><ul>
-<li><p>[[消息队列_RocketMQ_基础使用]]   🚩</p>
-</li>
-<li><p>[[消息队列_RocketMQ_安装与使用]]</p>
-</li>
-</ul>
-<h4 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h4><ul>
-<li>[[消息队列_Kafka_基础使用]]</li>
-</ul>
-<h4 id="Elasticsearch"><a href="#Elasticsearch" class="headerlink" title="Elasticsearch"></a>Elasticsearch</h4><ul>
-<li>[[Elasticsearch_基础内容]]</li>
-</ul>
-<h4 id="MongoDB"><a href="#MongoDB" class="headerlink" title="MongoDB"></a>MongoDB</h4><ul>
-<li>[[MongoDB_基本操作]]</li>
-</ul>
-<h4 id="Netty"><a href="#Netty" class="headerlink" title="Netty"></a>Netty</h4><ul>
-<li>[[Netty基础使用]]</li>
-</ul>
-<h3 id="6、SpringCloud"><a href="#6、SpringCloud" class="headerlink" title="6、SpringCloud"></a>6、SpringCloud</h3><ul>
-<li><p>[[SpringCloud_组件基本使用_基础概念]]</p>
-</li>
-<li><p>[[SpringCloud_组件基本使用_基础使用]]</p>
-</li>
-<li><p>[[SpringCloud_组件基本使用_Eureka]]</p>
-</li>
-<li><p>[[SpringCloud_组件基本使用_Nacos]]</p>
-</li>
-<li><p>[[SpringCloud_组件基本使用_OpenFeign]]</p>
-</li>
-<li><p>[[SpringCloud_组件基本使用_Gateway]]</p>
-</li>
-<li><p>[[SpringCloud_组件基本使用_Seata]]</p>
-</li>
-<li><p>[[SpringCloud_组件基本使用_Stream]]</p>
-</li>
-<li><p>[[SpringCloud_组件基本使用_Sentinel]]</p>
-</li>
-<li><p>[[SpringCloud_组件基本使用_Sleuth+Zipkin]]</p>
-</li>
-</ul>
-<h3 id="7、Docker"><a href="#7、Docker" class="headerlink" title="7、Docker"></a>7、Docker</h3><ul>
-<li>[[Docker入门_基础概念]]</li>
-<li>[[Docker入门_Docker的基本使用]]</li>
-</ul>
+<blockquote>
+<p>4、什么是线程死锁，如何预防和避免线程死锁。</p>
+</blockquote>
+<p>线程死锁是指两个或多个线程在执行过程中因争夺资源而造成的一种相互等待的现象，导致它们都无法继续执行。</p>
+<p><strong>预防和避免方法</strong>：1) 避免嵌套锁；2) 按顺序加锁；3) 使用超时尝试获取锁；4) 减少锁的使用范围和持有时间；5) 使用专门的算法，如银行家算法。</p>
 <p>to be contined…</p>
+<h3 id="二、线程并发安全"><a href="#二、线程并发安全" class="headerlink" title="二、线程并发安全"></a>二、线程并发安全</h3><ul>
+<li>1、synchronized 关键字的底层原理。<ul>
+<li>基础回答</li>
+<li>进阶回答</li>
+</ul>
+</li>
+<li>2、谈谈 JMM (Java 内存模型)</li>
+<li>3、你谈谈对 CAS 的理解</li>
+<li>4、请谈谈你对 volatile 的理解（可见性，禁止指令重排序）</li>
+<li>5、什么是 AQS</li>
+<li>6、ReentantLock 的实现原理</li>
+<li>7、synchronized 和 Lock 有什么区别</li>
+<li>8、死锁产生的条件以及死锁排查方案</li>
+<li>9、聊一下 ConcurrentHashMap</li>
+<li>10、导致并发编程出现问题的根本原因是什么</li>
+</ul>
+<h4 id="synchronized"><a href="#synchronized" class="headerlink" title="synchronized"></a>synchronized</h4><blockquote>
+<p>synchronized 关键字的底层原理。</p>
+</blockquote>
+<p>synchronized 的基本定义和使用</p>
 <ul>
-<li>[[Kubernetes]]</li>
-<li>[[Portainer环境配置]]</li>
+<li>Synchronized 对象锁 采用互斥的方式让同一时刻至多只有一个线程能持有对象锁</li>
+<li>其他线程再想获取这个对象锁时就会阻塞时</li>
 </ul>
-<h3 id="8、设计模式"><a href="#8、设计模式" class="headerlink" title="8、设计模式"></a>8、设计模式</h3><ul>
-<li>[[编程_设计模式]]  💣</li>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304205505.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>底层实现原理会涉及到 Monitor 相关的内容</p>
+<p>在我们的测试类，进行反编译后可以看到会有 monitor 对锁相关的操作</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304205918.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>Monitor ：</p>
+<p>Monitor 被翻译为监视器，是由 jvm 提供，c ++ 语言实现</p>
+<p>Monitor 结构</p>
+<ul>
+<li>Owner：存储当前获取锁的线程的，只能有一个线程可以获取</li>
+<li>EntryList：关联没有抢到锁的线程，处于 Blocked 状态的线程</li>
+<li>WaitSet：关联调用了 wait 方法的线程，处于 Waiting 状态的线程</li>
 </ul>
-<h3 id="9、技术场景"><a href="#9、技术场景" class="headerlink" title="9、技术场景"></a>9、技术场景</h3><ul>
-<li>[[面试题_技术场景]]</li>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304210121.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>面试题回答：</p>
+<p>synchronized关键字的底层原理</p>
+<ul>
+<li>Synchronized【对象锁】采用互斥的方式让同一时刻至多只有一个线程能持有【对象锁】</li>
+<li>它的底层由 monitor 实现的，monitor 是 jvm 级别的对象（C++实现)，线程获得锁需要使用对象（锁）关联monitor</li>
+<li>在monitor内部有三个属性，分别是owner、entrylist、waitset<ul>
+<li>其中owner是关联的获得锁的线程，并且只能关联一个线程；</li>
+<li>entrylist 关联的是处于阻塞状态的线程；</li>
+<li>waitset关联的是处于Waiting状态的线程</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Monito 实现的锁属于重量级锁，你了解过锁升级吗 ？</p>
+</blockquote>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304212858.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>实现细节后面再补充一下 to be contined…</p>
+<p>参考： <a target="_blank" rel="noopener" href="https://www.bilibili.com/list/watchlater?oid=485022417&bvid=BV1yT411H7YK&spm_id_from=333.1245.top_right_bar_window_view_later.content.click&p=95">https://www.bilibili.com/list/watchlater?oid=485022417&amp;bvid=BV1yT411H7YK&amp;spm_id_from=333.1245.top_right_bar_window_view_later.content.click&amp;p=95</a></p>
+<p>Monito实现的锁<strong>属于重量级锁</strong>，里面涉及到了用户态和内核态的切换、进程的上下文切换，成本较高，性能比较低。</p>
+<p>在 JDK1.6 引入了两种新型锁机制：<strong>偏向锁和轻量级锁</strong>，它们的引入是为了解决在没有多线程竞争或基本没有竞争的场景下因使用传统锁机制带来的性能开销问题。</p>
+<p>对象的内存结构</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304211931.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>MardWord</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304212102.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>重量级锁：</p>
+<ul>
+<li>每个 Java 对象都可以关联一个 Monitor 对象，如果使用 synchronized 给对象上锁（重量级）之后，该对象头的 Mard Word 中就被设置指向 Monitor 对象的指针。</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304212150.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>在很多的情况下，在 Java 程序运行时，同步块中的代码都是不存在竞争的，不同的线程交替的执行同步块中的代码。这种情况下，用重量级锁是没必要的。因此 JVM引入了轻量级锁的概念。</p>
+<p>to be contined…</p>
+<h4 id="JMM"><a href="#JMM" class="headerlink" title="JMM"></a>JMM</h4><p>你谈谈JMM(Java内存模型)</p>
+<ul>
+<li>JMM(ava Memory Model)Java内存模型，定义了<strong>共享内存</strong>中<strong>多线程程序读写</strong>操作的行为规范，通过这些规则来规范对内存的读写操作从而保证指令的正确性</li>
+<li>JMM把内存分为两块，一块是私有线程的工作区域（工作内存），一块是所有线程的共享区域（主内存）</li>
+<li>线程跟线程之间是相互隔离，线程跟线程交互需要通过主内存</li>
+</ul>
+<h4 id="CAS"><a href="#CAS" class="headerlink" title="CAS"></a>CAS</h4><p>CAS 不管是在 AQS 框架中，还是在上面提到的 synchronized 都使用到了；</p>
+<p>其中的核心思想是  →  比较再交互</p>
+<p>如果工作区域的最初值和主内存的值比较不相等，则自旋等待。（自旋需要确认一下 🚩)</p>
+<p>CAS 方法是 unsafe 修饰的，调用是操作系统的接口。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304213848.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<blockquote>
+<p>乐观锁和悲观锁的区别</p>
+</blockquote>
+<p>乐观锁：乐观的看待并发修改问题，其他线程不会修改共享变量，如果改了，就自旋等待。</p>
+<p>悲观锁：悲观的认为别人的线程都不是好人，我获取这把锁后，你们都不能访问了。</p>
+<h4 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a>volatile</h4><p>如果代码中存在循环，JVM 会对 JIT 进行代码优化（给 stop 变量一个固定值）</p>
+<p>这种情况下可见性并没有保证，一种方案是修改 vm 参数（不建议），还有一种方案就是变量前面加 volatile 进行修饰。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304215050.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304215458.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>to be contined… 明天再看了</p>
+<h3 id="三、线程池"><a href="#三、线程池" class="headerlink" title="三、线程池"></a>三、线程池</h3><ul>
+<li>1、说一下线程池的核心参数（线程池的执行原理知道吗）</li>
+<li>2、线程池中有哪些常见的阻塞队列</li>
+<li>3、如何确认核心线程数</li>
+<li>4、线程池的种类有哪些</li>
+<li>5、为什么不建议使用 Executor 创建线程池</li>
+</ul>
+<h3 id="四、使用场景"><a href="#四、使用场景" class="headerlink" title="四、使用场景"></a>四、使用场景</h3><ul>
+<li>1、讲述一下你们项目中哪里用到了线程池（异步线程）</li>
+<li>2、如何控制某个方法允许并发访问线程的数量</li>
+<li>3、谈谈你对 ThreadLocal 的理解</li>
 </ul>
 
                 
@@ -455,11 +430,32 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/" class="category-chain-item">面试题</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
   
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/index/" class="print-no-link">#index</a>
+        <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" class="print-no-link">#面试题</a>
       
     </div>
   
@@ -471,8 +467,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Java学习的轻松之旅_Obsidian</div>
-      <div>https://varcel.luoqi.icu/2023/11/14/Java学习的轻松之旅_Obsidian/</div>
+      <div>Java并发编程_常见面试题</div>
+      <div>https://varcel.luoqi.icu/2024/03/04/Java并发编程_常见面试题/</div>
     </div>
     <div class="license-meta">
       
@@ -484,7 +480,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年11月14日</div>
+          <div>2024年3月4日</div>
         </div>
       
       

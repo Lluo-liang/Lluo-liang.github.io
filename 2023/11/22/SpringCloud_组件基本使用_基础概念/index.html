@@ -257,7 +257,7 @@
         
         
         
-          158 分钟
+          160 分钟
         
       </span>
     
@@ -299,7 +299,41 @@
             
               <div class="markdown-body">
                 
-                <h3 id="一、基础概念"><a href="#一、基础概念" class="headerlink" title="一、基础概念"></a>一、基础概念</h3><h4 id="1、SpringCloud是什么"><a href="#1、SpringCloud是什么" class="headerlink" title="1、SpringCloud是什么"></a>1、SpringCloud是什么</h4><p>SpringCloud 提供了一整套的分布式系统解决方案，通过 Spring Boot 风格的封装，屏蔽掉了复杂的配置和实现原理，最终给开发者留出了一套简单易懂、容易部署的分布式系统开发工具包。</p>
+                <ul>
+<li>SpringCloud<ul>
+<li>服务注册<ul>
+<li>nacos</li>
+<li>eureka</li>
+</ul>
+</li>
+<li>负载均衡<ul>
+<li>Ribbon 负载均衡策略</li>
+<li>自定义负载均衡</li>
+</ul>
+</li>
+<li>熔断、降级</li>
+<li>监控   skywalking</li>
+</ul>
+</li>
+<li>业务相关<ul>
+<li>限流<ul>
+<li>漏桶算法</li>
+<li>令牌桶算法</li>
+</ul>
+</li>
+<li>分布式事务 <ul>
+<li>分布式理论 CAP、BASE</li>
+<li>分布式事务解决方案</li>
+<li>seata</li>
+</ul>
+</li>
+<li>分布式服务接口幂等</li>
+<li>分布式任务调度   xxl-job</li>
+</ul>
+</li>
+<li>消息中间件</li>
+</ul>
+<h3 id="一、基础概念"><a href="#一、基础概念" class="headerlink" title="一、基础概念"></a>一、基础概念</h3><h4 id="1、SpringCloud是什么"><a href="#1、SpringCloud是什么" class="headerlink" title="1、SpringCloud是什么"></a>1、SpringCloud是什么</h4><p>SpringCloud 提供了一整套的分布式系统解决方案，通过 Spring Boot 风格的封装，屏蔽掉了复杂的配置和实现原理，最终给开发者留出了一套简单易懂、容易部署的分布式系统开发工具包。</p>
 <p>SpringCloud 包含了：服务注册与发现、配置中心、服务网关、智能路由、负载均衡、断路器、监控跟踪、分布式消息队列等。</p>
 <p>Spring Cloud 包含很多子项目，国内主要是采用 Netflix 和 Alibaba 两个标准实现，前者由于不再维护，目前一般采用Spring Cloud Alibaba 这一套微服务解决方案。</p>
 <blockquote>
