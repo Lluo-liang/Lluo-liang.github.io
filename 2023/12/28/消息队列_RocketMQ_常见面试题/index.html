@@ -18,24 +18,24 @@
   <meta name="author" content="Luo QI">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Java并发编程_常见面试题">
+    <meta name="description" content="消息队列_RocketMQ_基础使用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java并发编程_常见面试题">
-<meta property="og:url" content="https://varcel.luoqi.icu/2024/03/04/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B_%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
+<meta property="og:title" content="消息队列_RocketMQ_基础使用">
+<meta property="og:url" content="https://varcel.luoqi.icu/2023/12/28/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97_RocketMQ_%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
 <meta property="og:site_name" content="轻松的洛亓">
-<meta property="og:description" content="Java并发编程_常见面试题">
+<meta property="og:description" content="消息队列_RocketMQ_基础使用">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/wallpaper1702453206266.jpg">
-<meta property="article:published_time" content="2024-03-04T18:34:16.000Z">
-<meta property="article:modified_time" content="2024-03-04T18:34:16.000Z">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312041503318.jpg">
+<meta property="article:published_time" content="2023-12-28T16:49:09.000Z">
+<meta property="article:modified_time" content="2023-12-20T16:49:09.000Z">
 <meta property="article:author" content="Luo QI">
-<meta property="article:tag" content="面试题">
+<meta property="article:tag" content="MQ">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/wallpaper1702453206266.jpg">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312041503318.jpg">
   
   
   
-  <title>Java并发编程_常见面试题 - 轻松的洛亓</title>
+  <title>消息队列_RocketMQ_基础使用 - 轻松的洛亓</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -195,13 +195,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312281640418.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Java并发编程_常见面试题"></span>
+            <span id="subtitle" data-typed-text="消息队列_RocketMQ_基础使用"></span>
           
         </div>
 
@@ -212,8 +212,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-03-04 18:34" pubdate>
-          2024年3月4日 晚上
+        <time datetime="2023-12-28 16:49" pubdate>
+          2023年12月28日 下午
         </time>
       </span>
     
@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.7k 字
+          2.5k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          23 分钟
+          22 分钟
         
       </span>
     
@@ -272,162 +272,143 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Java并发编程_常见面试题</h1>
+            <h1 id="seo-header">消息队列_RocketMQ_基础使用</h1>
             
             
               <div class="markdown-body">
                 
-                <h3 id="一、线程的基础知识"><a href="#一、线程的基础知识" class="headerlink" title="一、线程的基础知识"></a>一、线程的基础知识</h3><ul>
-<li>1、线程和进程的区别？</li>
-<li>2、并行和并发的区别？</li>
-<li>3、讲一下线程创建的方式？Runable 和 Callable 的区别；strat 和 run 的区别。</li>
-<li>4、线程包括哪些状态，状态之间是如何变化的</li>
-<li>5、线程按顺序执行 join、notify 和 notifyall 的区别。</li>
-<li>6、Java 中 wait 和 sleep 的区别。</li>
-<li>7、如何停止一个正在运行的线程。</li>
-<li>8、什么是线程死锁，如何预防和避免线程死锁。</li>
-</ul>
-<blockquote>
-<p>1、并发和并行有什么区别。</p>
+                <blockquote>
+<p>大纲</p>
 </blockquote>
-<p>目前我们使用的一般是多核CPU，在多核CPU的硬件条件下，并发指的是多个任务在</p>
-<p>并行指的是多个任务在同一段</p>
 <ul>
-<li>并发是多个任务在同一时刻内同时进行；</li>
-<li>并行是多个任务在同一段时间段内同时进行。</li>
+<li>RocketMQ是什么</li>
+<li>队列模型和主题模型</li>
+<li>RocketMQ架构设计</li>
+<li>RocketMQ 的功能特性</li>
+<li>如何解决顺序消费和重复消费</li>
+<li>RocketMQ 如何实现分布式事务</li>
+<li>如何解决消息堆积问题？</li>
+<li>回溯消费</li>
+<li>RocketMQ 如何保证高性能读写</li>
+<li>RocketMQ 的刷盘机制</li>
+<li>RocketMQ 如何保证不丢失消息</li>
 </ul>
+<h3 id="12、常见面试题"><a href="#12、常见面试题" class="headerlink" title="12、常见面试题"></a>12、常见面试题</h3><ul>
+<li>1、讲一下 RocketMQ 的消息模型？</li>
+<li>2、讲一下 RocketMQ 的基本架构。</li>
+<li>3、消息的消费模式了解吗？</li>
+<li>4、如何保证消息的可用性&#x2F;可靠性&#x2F;不丢失呢</li>
+<li>5、消息重复问题如何处理。</li>
+<li>6、消息堆压问题如何解决</li>
+<li>7、顺序消息如何实现</li>
+<li>8、如何实现消息过滤</li>
+<li>9、RocketMQ 是如何实现延时消息的</li>
+<li>10、怎么实现消息的分布式事务的，半消息？</li>
+<li>11、死信队列了解吗</li>
+<li>12、如何保证RocketMQ的高可用？</li>
+<li>13、说一下RocketMQ的整体工作流程？</li>
+<li>14、消息刷盘怎么实现的呢？</li>
+</ul>
+<p>看一下这个视频： </p>
+<h4 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h4><h4 id="高可用如何保证"><a href="#高可用如何保证" class="headerlink" title="高可用如何保证"></a>高可用如何保证</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240307052103.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>1、主从，同步复制，异步刷盘，集群</li>
+</ul>
+<p>我们可以通过集群机构，其中 Broker 是主从，采用同步复制方式，同时采用异步刷盘。</p>
 <blockquote>
-<p>2、什么是线程，线程和进程的区别是什么。</p>
+<p>RocketMQ 的底层实现原理</p>
 </blockquote>
-<p>线程是程序执行的最小单位，它是进程的一部分，共享进程的资源。</p>
-<p>进程是操作系统分配资源和调度的基本单位，每个进程至少包含一个线程。</p>
-<p><strong>区别</strong>：进程有独立的内存空间，而线程共享进程的内存空间；进程间通信（IPC）成本较高，上下文切换较慢，线程间通信和切换成本较低；线程是实现多任务的最小单位，进程是拥有资源的最小单位。</p>
-<blockquote>
-<p>1、讲一下线程创建的方式？Runable 和 Callable 的区别；strat 和 run 的区别。</p>
-</blockquote>
-<blockquote>
-<p>2、线程包括哪些状态，状态之间是如何变化的</p>
-</blockquote>
-<blockquote>
-<p>3、Java 中 wait 和 sleep 的区别。</p>
-</blockquote>
-<blockquote>
-<p>4、如何停止一个正在运行的线程。</p>
-</blockquote>
+<p>RocketMQ由NameServer集群、Producer集群、Consumer集群、Broker集群组成，消息生产和消费的大致原理如下：</p>
+<ul>
+<li>1、Broker在启动的时候向所有的NameServeri注册，并保持长连接，每30s发送一次心跳</li>
+<li>2、Producer在发送消息的时候从NameServer获取Broker服务器地址，根据负载均衡算法选择一台服务器来发送消息</li>
+<li>3、Conusmeri消费消息的时候同样从NameServer获取Broker地址，然后主动拉取消息来消费</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240306223833.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="RocketMQ-的存储机制-💣"><a href="#RocketMQ-的存储机制-💣" class="headerlink" title="RocketMQ 的存储机制  💣"></a>RocketMQ 的存储机制  💣</h4><p>RocketMQ 会将所有的消息发送放到 CommitLog 的一个文件中，同时会有一个监听，将相关一个记录（包括主题，偏移量，大小等信息) 放到 ComsumerQueue 中（CommitLog 的逻辑索引）</p>
+<p>这个理解有点问题</p>
 <hr>
-<blockquote>
-<p>4、什么是线程死锁，如何预防和避免线程死锁。</p>
-</blockquote>
-<p>线程死锁是指两个或多个线程在执行过程中因争夺资源而造成的一种相互等待的现象，导致它们都无法继续执行。</p>
-<p><strong>预防和避免方法</strong>：1) 避免嵌套锁；2) 按顺序加锁；3) 使用超时尝试获取锁；4) 减少锁的使用范围和持有时间；5) 使用专门的算法，如银行家算法。</p>
-<p>to be contined…</p>
-<h3 id="二、线程并发安全"><a href="#二、线程并发安全" class="headerlink" title="二、线程并发安全"></a>二、线程并发安全</h3><ul>
-<li>1、synchronized 关键字的底层原理。<ul>
-<li>基础回答</li>
-<li>进阶回答</li>
-</ul>
-</li>
-<li>2、谈谈 JMM (Java 内存模型)</li>
-<li>3、你谈谈对 CAS 的理解</li>
-<li>4、请谈谈你对 volatile 的理解（可见性，禁止指令重排序）</li>
-<li>5、什么是 AQS</li>
-<li>6、ReentantLock 的实现原理</li>
-<li>7、synchronized 和 Lock 有什么区别</li>
-<li>8、死锁产生的条件以及死锁排查方案</li>
-<li>9、聊一下 ConcurrentHashMap</li>
-<li>10、导致并发编程出现问题的根本原因是什么</li>
-</ul>
-<h4 id="synchronized"><a href="#synchronized" class="headerlink" title="synchronized"></a>synchronized</h4><blockquote>
-<p>synchronized 关键字的底层原理。</p>
-</blockquote>
-<p>synchronized 的基本定义和使用</p>
+<p>消息存储结构：</p>
+<p>RocketMQ使用CommitLog文件来统一存储所有Broker上的消息。此外，为了支持快速的消息查询和消费，它还使用了ConsumeQueue和IndexFile。</p>
 <ul>
-<li>Synchronized 对象锁 采用互斥的方式让同一时刻至多只有一个线程能持有对象锁</li>
-<li>其他线程再想获取这个对象锁时就会阻塞时</li>
+<li><strong>CommitLog</strong>：这是一个大型的文件，所有发送到Broker的消息都会被追加到这个文件中。它不区分Topic或Queue，所有消息按照到达的顺序依次存储。</li>
+<li><strong>ConsumeQueue</strong>：为了提高消息消费的效率，RocketMQ为每个消息队列（Queue）创建了一个ConsumeQueue文件。ConsumeQueue是CommitLog的逻辑索引，包含了指向CommitLog中消息的指针，以及一些基本信息，如消息大小、消息位置等。</li>
+<li><strong>IndexFile</strong>：RocketMQ提供了一种索引机制，通过IndexFile来支持根据消息的Key或时间来查询消息。这使得根据消息属性进行高效查询成为可能。</li>
 </ul>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304205505.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>底层实现原理会涉及到 Monitor 相关的内容</p>
-<p>在我们的测试类，进行反编译后可以看到会有 monitor 对锁相关的操作</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304205918.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>Monitor ：</p>
-<p>Monitor 被翻译为监视器，是由 jvm 提供，c ++ 语言实现</p>
-<p>Monitor 结构</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240307052424.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <ul>
-<li>Owner：存储当前获取锁的线程的，只能有一个线程可以获取</li>
-<li>EntryList：关联没有抢到锁的线程，处于 Blocked 状态的线程</li>
-<li>WaitSet：关联调用了 wait 方法的线程，处于 Waiting 状态的线程</li>
+<li>1、生产者发送消息</li>
+<li>2、发送的消息会顺序记录到 Commit Log 中</li>
+<li>3、RocketMQ 会 通过 ReputMessageService ThreadLoop 进行监听，并将主题等信息（commit log offset、size、hashcode of tag ）通过哈希记录到 Comsume Queue 文件（默认是有 4 个文件）</li>
+<li>4、通过这种方式可以很好处理多主题的情况（只有一个写入文件 Commit Log）</li>
 </ul>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304210121.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>面试题回答：</p>
-<p>synchronized关键字的底层原理</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240307054839.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>这个解释也可以参考一下</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240307055349.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="高性能"><a href="#高性能" class="headerlink" title="高性能"></a>高性能</h4><p>高性能主要的几个点：</p>
 <ul>
-<li>Synchronized【对象锁】采用互斥的方式让同一时刻至多只有一个线程能持有【对象锁】</li>
-<li>它的底层由 monitor 实现的，monitor 是 jvm 级别的对象（C++实现)，线程获得锁需要使用对象（锁）关联monitor</li>
-<li>在monitor内部有三个属性，分别是owner、entrylist、waitset<ul>
-<li>其中owner是关联的获得锁的线程，并且只能关联一个线程；</li>
-<li>entrylist 关联的是处于阻塞状态的线程；</li>
-<li>waitset关联的是处于Waiting状态的线程</li>
+<li>1、Netty 高效的 NIO 框架</li>
+<li>2、RocketMQ 大量使用多线程、异步</li>
+<li>3、采用零拷贝技术优化（MMAP）  性能提高50%</li>
+<li>4、采用文件存储，顺序读写</li>
+<li>5、锁优化（CAS 机制，无锁化）</li>
+<li>6、存储设计：读写分离</li>
+</ul>
+<h4 id="顺序消息"><a href="#顺序消息" class="headerlink" title="顺序消息"></a>顺序消息</h4><ul>
+<li>全局顺序：全部事件的顺序处理</li>
+<li>分区顺序：单个事件的逻辑链顺序</li>
+</ul>
+<h4 id="消息堆积"><a href="#消息堆积" class="headerlink" title="消息堆积"></a>消息堆积</h4><p>参考： <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ua4y1N7P2/?p=21&spm_id_from=pageDriver&vd_source=6a019ecccfe7d8f62b9a3fe99c723bd0">https://www.bilibili.com/video/BV1ua4y1N7P2/?p=21&amp;spm_id_from=pageDriver&amp;vd_source=6a019ecccfe7d8f62b9a3fe99c723bd0</a></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240307135759.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>一般是采用增加消费者实例的方式</p>
+<p>个人理解：如果是应对生产快的，一方面是需要需要这个队列数量和消费者数量，然后应对堆积的情况，就要加一个中转的，把这个堆积的消息分散到多个Queu，然后多个Comsumer消费</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240307135814.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="延时队列"><a href="#延时队列" class="headerlink" title="延时队列"></a>延时队列</h4><p>RocketMQ 提供了能够延时发送的这种机制，会给定一个范围的时间，然后先暂存到 SCHEDULE_TOPIC_xxxx 的 Topic 中，时间到了再发送到需要发送的队列中。</p>
+<h4 id="Rocketmq中Broker的部署方式"><a href="#Rocketmq中Broker的部署方式" class="headerlink" title="Rocketmq中Broker的部署方式"></a>Rocketmq中Broker的部署方式</h4><ul>
+<li>单机 Broker</li>
+<li>多 Master </li>
+<li>多 Master 多 Slave （生产常见模式）【多主多从】</li>
+</ul>
+<h4 id="刷盘策略"><a href="#刷盘策略" class="headerlink" title="刷盘策略"></a>刷盘策略</h4><ul>
+<li>同步刷盘</li>
+<li>异步刷盘<ul>
+<li>一般会采用异步刷盘 + 同步复制的方式</li>
+<li>刷盘是指从内存到磁盘，占用的IO是比较大的，而同步复制是内存到内存，因此耗时会比较少</li>
 </ul>
 </li>
 </ul>
-<blockquote>
-<p>Monito 实现的锁属于重量级锁，你了解过锁升级吗 ？</p>
-</blockquote>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304212858.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>实现细节后面再补充一下 to be contined…</p>
-<p>参考： <a target="_blank" rel="noopener" href="https://www.bilibili.com/list/watchlater?oid=485022417&bvid=BV1yT411H7YK&spm_id_from=333.1245.top_right_bar_window_view_later.content.click&p=95">https://www.bilibili.com/list/watchlater?oid=485022417&amp;bvid=BV1yT411H7YK&amp;spm_id_from=333.1245.top_right_bar_window_view_later.content.click&amp;p=95</a></p>
-<p>Monito实现的锁<strong>属于重量级锁</strong>，里面涉及到了用户态和内核态的切换、进程的上下文切换，成本较高，性能比较低。</p>
-<p>在 JDK1.6 引入了两种新型锁机制：<strong>偏向锁和轻量级锁</strong>，它们的引入是为了解决在没有多线程竞争或基本没有竞争的场景下因使用传统锁机制带来的性能开销问题。</p>
-<p>对象的内存结构</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304211931.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>MardWord</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304212102.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>重量级锁：</p>
+<h4 id="路由注册"><a href="#路由注册" class="headerlink" title="路由注册"></a>路由注册</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240307140637.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="路由剔除"><a href="#路由剔除" class="headerlink" title="路由剔除"></a>路由剔除</h4><ul>
+<li>定时扫描判断该路由节点是否可用</li>
+</ul>
+<h4 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a>分布式事务</h4><h6 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h6><p>问这道题目一般是要回答一下RocketMQ 实现分布式事务的实现机制：事务消息加上事务反查机制。</p>
 <ul>
-<li>每个 Java 对象都可以关联一个 Monitor 对象，如果使用 synchronized 给对象上锁（重量级）之后，该对象头的 Mard Word 中就被设置指向 Monitor 对象的指针。</li>
+<li>1、系统 A 会发送一条消息到 MQ 确认通信没问题</li>
+<li>2、事务正常执行后会发送一条 commit 消息给 MQ，如果没发确认的话，RocketMQ 会通过事务回查机制确认事务是否正常执行</li>
+<li>3、判断正常执行完毕后，会发送确认消息给系统B。</li>
 </ul>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304212150.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>在很多的情况下，在 Java 程序运行时，同步块中的代码都是不存在竞争的，不同的线程交替的执行同步块中的代码。这种情况下，用重量级锁是没必要的。因此 JVM引入了轻量级锁的概念。</p>
-<p>to be contined…</p>
-<h4 id="JMM"><a href="#JMM" class="headerlink" title="JMM"></a>JMM</h4><p>你谈谈JMM(Java内存模型)</p>
+<p>建议复习分布式事务的时候也一起和其他实现方式一起复习下。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240307141544.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h5 id="事务回查机制"><a href="#事务回查机制" class="headerlink" title="事务回查机制"></a>事务回查机制</h5><p>一般会有一个定时机制，然后如果长时间没有收到二次确认，会进行事务回查</p>
 <ul>
-<li>JMM(ava Memory Model)Java内存模型，定义了<strong>共享内存</strong>中<strong>多线程程序读写</strong>操作的行为规范，通过这些规则来规范对内存的读写操作从而保证指令的正确性</li>
-<li>JMM把内存分为两块，一块是私有线程的工作区域（工作内存），一块是所有线程的共享区域（主内存）</li>
-<li>线程跟线程之间是相互隔离，线程跟线程交互需要通过主内存</li>
+<li>这个是生产者反而是消费者，收到这条消息后，通过本地实现的 checker 接口的 checkLocalTransaction 方法进行检查本地事务是否执行完成，并将结果告知 MQ 服务器。</li>
 </ul>
-<h4 id="CAS"><a href="#CAS" class="headerlink" title="CAS"></a>CAS</h4><p>CAS 不管是在 AQS 框架中，还是在上面提到的 synchronized 都使用到了；</p>
-<p>其中的核心思想是  →  比较再交互</p>
-<p>如果工作区域的最初值和主内存的值比较不相等，则自旋等待。（自旋需要确认一下 🚩)</p>
-<p>CAS 方法是 unsafe 修饰的，调用是操作系统的接口。</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304213848.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<blockquote>
-<p>乐观锁和悲观锁的区别</p>
-</blockquote>
-<p>乐观锁：乐观的看待并发修改问题，其他线程不会修改共享变量，如果改了，就自旋等待。</p>
-<p>悲观锁：悲观的认为别人的线程都不是好人，我获取这把锁后，你们都不能访问了。</p>
-<h4 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a>volatile</h4><p>如果代码中存在循环，JVM 会对 JIT 进行代码优化（给 stop 变量一个固定值）</p>
-<p>这种情况下可见性并没有保证，一种方案是修改 vm 参数（不建议），还有一种方案就是变量前面加 volatile 进行修饰。</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304215050.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304215458.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>to be contined… 明天再看了</p>
-<h3 id="三、线程池"><a href="#三、线程池" class="headerlink" title="三、线程池"></a>三、线程池</h3><ul>
-<li><p>1、说一下线程池的核心参数（线程池的执行原理知道吗）</p>
-</li>
-<li><p>2、线程池中有哪些常见的阻塞队列</p>
-</li>
-<li><p>3、如何确认核心线程数</p>
-</li>
-<li><p>4、线程池的种类有哪些</p>
-</li>
-<li><p>5、为什么不建议使用 Executor 创建线程池</p>
-<h3 id="四、使用场景"><a href="#四、使用场景" class="headerlink" title="四、使用场景"></a>四、使用场景</h3></li>
-<li><p>1、讲述一下你们项目中哪里用到了线程池（异步线程）</p>
-</li>
-<li><p>2、如何控制某个方法允许并发访问线程的数量</p>
-</li>
-<li><p>3、谈谈你对 ThreadLocal 的理解</p>
-</li>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240307155659.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="消息刷盘"><a href="#消息刷盘" class="headerlink" title="消息刷盘"></a>消息刷盘</h4><h4 id="如何设计一个消息队列"><a href="#如何设计一个消息队列" class="headerlink" title="如何设计一个消息队列"></a>如何设计一个消息队列</h4><ul>
+<li>1、MQ：存储怎么设计。<ul>
+<li>使用高可用–磁盘存储：顺序读写、零拷贝技术</li>
 </ul>
+</li>
+<li>2、可伸缩：分布式<ul>
+<li>参考：Kafka  Broker\topic\partition</li>
+</ul>
+</li>
+<li>3、消息丢失：搭建多主多从（节点的主从架构）、多副本、Raft 协议   一台主服务器宕机，选举机制</li>
+<li>4、消息重复设计</li>
+<li>5、网络框架：Netty （推荐，高效的NIO框架）</li>
+</ul>
+<hr>
+<p>参考</p>
 
                 
               </div>
@@ -446,8 +427,15 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/" class="category-chain-item">面试题</a>
+  <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="category-chain-item">中间件</a>
   
+  
+    <span>></span>
+    
+  <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/MQ/" class="category-chain-item">MQ</a>
+  
+  
+
   
 
       </span>
@@ -461,7 +449,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" class="print-no-link">#面试题</a>
+        <a href="/tags/MQ/" class="print-no-link">#MQ</a>
       
     </div>
   
@@ -473,8 +461,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Java并发编程_常见面试题</div>
-      <div>https://varcel.luoqi.icu/2024/03/04/Java并发编程_常见面试题/</div>
+      <div>消息队列_RocketMQ_基础使用</div>
+      <div>https://varcel.luoqi.icu/2023/12/28/消息队列_RocketMQ_常见面试题/</div>
     </div>
     <div class="license-meta">
       
@@ -486,7 +474,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年3月4日</div>
+          <div>2023年12月28日</div>
         </div>
       
       
@@ -513,6 +501,29 @@
 
 
 
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/12/28/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97_RabbitMQ_%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" title="消息队列_RabbitMQ_基础概念">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">消息队列_RabbitMQ_基础概念</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/12/26/Fluid%E4%B8%BB%E9%A2%98/" title="Fluid主题">
+                        <span class="hidden-mobile">Fluid主题</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
               
             </div>
 
