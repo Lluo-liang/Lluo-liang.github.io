@@ -26,6 +26,7 @@
 <meta property="og:description" content="Java多线程_基础概念">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202401191403753.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240308231739.png">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304152134.png">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311161130480.png">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311161129688.png">
@@ -296,32 +297,16 @@
 </ul>
 <p>线程</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202401191403753.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h3 id="1、基础概念"><a href="#1、基础概念" class="headerlink" title="1、基础概念"></a>1、基础概念</h3><p>进程和线程</p>
-<ul>
-<li>进程（Process）是系统进行资源分配和调度的基本单位，是操作系统结构的基础。</li>
-<li>线程（Thread）是操作系统能够进行运算调度的最小单位。</li>
-</ul>
-<blockquote>
-<p>面试题：线程和进程的区别？</p>
-</blockquote>
-<p>进程：</p>
-<p>程序由指令和数据组成，但这些指令要运行，数据要读写，就必须将指令加载至CPU,数据加载至内存。</p>
-<p>在指令运行过程中还需要用到磁盘、网络等设备。</p>
-<p>进程就是用来加载指令、管理内存、管理 IO 的。</p>
-<p>当一个程序被运行，从磁盘加载这个程序的代码至内存，这时就开启了一个进程。</p>
-<p>线程：</p>
-<p>一个线程就是一个指令流，将指令流中的一条条指令以一定的顺序交给CPU执行，一个进程之内可以分为一到多个线程。</p>
-<blockquote>
-<p>二者对比</p>
-</blockquote>
-<ul>
-<li>进程是正在运行程序的实例，进程中包含了线程，每个线程执行不同的任务</li>
-<li>不同的进程使用不同的内存空间，在当前进程下的所有线程可以共享内存空间</li>
-<li>线程更轻量，线程上下文切换成本一般上要比进程上下文切换低（上下文切换指的是从一个线程切换到另一个线程）</li>
-</ul>
+<h3 id="1、基础概念"><a href="#1、基础概念" class="headerlink" title="1、基础概念"></a>1、基础概念</h3><h4 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a>进程和线程</h4><h5 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h5><p>在计算机i中，程序由指令和数据组成，但这些指令要运行，数据要读写，就必须将指令加载至CPU,数据加载至内存。在指令运行过程中还需要用到磁盘、网络等设备。</p>
+<p>进程就是用来加载指令、管理内存、管理 IO 的。当一个程序被运行，从磁盘加载这个程序的代码至内存，这时就开启了一个进程。</p>
+<h5 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h5><p>一个线程就是一个指令流，将指令流中的一条条指令以一定的顺序交给CPU执行，一个进程之内可以分为一到多个线程。</p>
+<p>总结：</p>
+<p>线程是程序执行的最小单位，它是进程的一部分，共享进程的资源。</p>
+<p>进程是操作系统分配资源和调度的基本单位，每个进程至少包含一个线程。</p>
+<p><strong>区别</strong>：进程有独立的内存空间，而线程共享进程的内存空间；进程间通信（IPC）成本较高，上下文切换较慢，线程间通信和切换成本较低；线程是实现多任务的最小单位，进程是拥有资源的最小单位。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240308231739.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <hr>
-<p>并行和并发的区别</p>
-<ul>
+<h4 id="并行和并发"><a href="#并行和并发" class="headerlink" title="并行和并发"></a>并行和并发</h4><ul>
 <li>并行：两个及两个以上的作业在同一 <strong>时刻</strong> 执行。</li>
 <li>并发：两个及两个以上的作业在同一 <strong>时间段</strong> 内执行。</li>
 </ul>
@@ -341,15 +326,13 @@
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304152134.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>总结</p>
 <p>并行和并发有什么区别</p>
+<p>现在都是多核CPU,在多核CPU下</p>
 <ul>
-<li>现在都是多核CPU,在多核CPU下<ul>
 <li>并发是同一时间<strong>应对</strong>多件事情的能力，多个线程轮流使用一个或多个CPU</li>
 <li>并行是同一时间<strong>动手</strong>做多件事情的能力，4核CPU同时执行4个线程</li>
 </ul>
-</li>
-</ul>
 <hr>
-<p>同步和异步的区别</p>
+<h4 id="同步和异步"><a href="#同步和异步" class="headerlink" title="同步和异步"></a>同步和异步</h4><p>同步和异步的区别</p>
 <ul>
 <li><strong>同步</strong>：发出一个调用之后，在没有得到结果之前， 该调用就不可以返回，一直等待。</li>
 <li><strong>异步</strong>：调用在发出之后，<strong>不用等待返回结果</strong>，该调用直接返回。</li>

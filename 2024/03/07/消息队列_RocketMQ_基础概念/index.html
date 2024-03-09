@@ -236,7 +236,7 @@
         
         
         
-          150 分钟
+          149 分钟
         
       </span>
     
@@ -400,10 +400,21 @@
 <h4 id="路由剔除"><a href="#路由剔除" class="headerlink" title="路由剔除"></a>路由剔除</h4><ul>
 <li>定时扫描判断该路由节点是否可用</li>
 </ul>
-<h4 id="RocketMQ的整体工作流程"><a href="#RocketMQ的整体工作流程" class="headerlink" title="RocketMQ的整体工作流程"></a>RocketMQ的整体工作流程</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240308105913.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="RocketMQ的整体工作流程-🚩"><a href="#RocketMQ的整体工作流程-🚩" class="headerlink" title="RocketMQ的整体工作流程  🚩"></a>RocketMQ的整体工作流程  🚩</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240308105913.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>简单来说，RocketMQ是一个分布式消息队列，也就是<code>消息队列</code>+<code>分布式系统</code>。</p>
 <p>作为消息队列，它是<code>发</code>-<code>存</code>-<code>收</code>的一个模型，对应的就是Producer、Broker、Cosumer；作为分布式系统，它要有服务端、客户端、注册中心，对应的就是Broker、Producer&#x2F;Consumer、NameServer</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240308105905.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="RocketMQ-的负载均衡是如何实现的"><a href="#RocketMQ-的负载均衡是如何实现的" class="headerlink" title="RocketMQ 的负载均衡是如何实现的"></a>RocketMQ 的负载均衡是如何实现的</h4><p>RocketMQ实现了客户端负载均衡，包括生产者（Producer）和消费者（Consumer）两个方面。</p>
+<p>生产者</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240308201331.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>消费者</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240308201406.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>在集群模式下，消息队列被均匀地分配给同一个消费组内的所有消费者，确保在一个时间点，一个消息队列只被一个消费者消费。</li>
+<li>在广播模式下，所有消费者都会消费到所有的消息队列中的消息。</li>
+</ul>
+<h4 id="消息长轮询"><a href="#消息长轮询" class="headerlink" title="消息长轮询"></a>消息长轮询</h4><p>消息长轮询优化了消息拉取的过程</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240308200609.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h3 id="三、功能实现和常用概念"><a href="#三、功能实现和常用概念" class="headerlink" title="三、功能实现和常用概念"></a>三、功能实现和常用概念</h3><h4 id="Topic-和-Queue-的关系"><a href="#Topic-和-Queue-的关系" class="headerlink" title="Topic 和 Queue 的关系"></a>Topic 和 Queue 的关系</h4><blockquote>
 <p>Topic Data ↑  Queue Num ↑</p>
 </blockquote>
@@ -730,7 +741,13 @@
 <li><p>Filter Server 方式：最灵活，也是最复杂的一种方式，允许用户自定义函数进行过滤</p>
 </li>
 </ul>
-<h3 id="六、读写（内存、日志）"><a href="#六、读写（内存、日志）" class="headerlink" title="六、读写（内存、日志）"></a>六、读写（内存、日志）</h3><h4 id="Broker-如何保存数据（-消息持久化）-🚩"><a href="#Broker-如何保存数据（-消息持久化）-🚩" class="headerlink" title="Broker 如何保存数据（ 消息持久化） 🚩"></a>Broker 如何保存数据（ 消息持久化） 🚩</h4><p>RocketMQ主要的存储文件包括CommitLog文件、ConsumeQueue文件、Indexfile文件。</p>
+<h3 id="六、读写（内存、日志）"><a href="#六、读写（内存、日志）" class="headerlink" title="六、读写（内存、日志）"></a>六、读写（内存、日志）</h3><h4 id="Broker-如何保存数据（-消息持久化）-🚩"><a href="#Broker-如何保存数据（-消息持久化）-🚩" class="headerlink" title="Broker 如何保存数据（ 消息持久化） 🚩"></a>Broker 如何保存数据（ 消息持久化） 🚩</h4><ul>
+<li>CommitLog  消息存储文件</li>
+<li>ComsumerQueue 消费消息队列索引文件</li>
+<li>Indexfile      消息索引（快速检索消息）</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240308142459.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>RocketMQ主要的存储文件包括CommitLog文件、ConsumeQueue文件、Indexfile文件。</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240308110801.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>消息存储的整体设计</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240308110842.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
@@ -752,52 +769,45 @@
 <li><strong>功能</strong>：提供了通过key或时间区间查询消息的能力，但不涉及消息的主体内容。</li>
 </ul>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240308111226.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>存储机制的特点</p>
-<ul>
-<li><strong>高效写入</strong>：不分Topic地顺序写入CommitLog，增加了写入效率。</li>
-<li><strong>索引优化</strong>：使用ConsumeQueue作为索引文件，加快了基于Topic的消息检索和消费。</li>
-<li><strong>文件大小</strong>：CommitLog文件设计成固定大小主要是为了支持内存映射机制，提高文件操作的效率。</li>
-</ul>
-<p>读取流程</p>
-<ul>
-<li>生产者发送消息时指定Topic和QueueId，消息被顺序存储到CommitLog。</li>
-<li>相应的索引信息（偏移量、大小、tag hash）被存入对应Topic和QueueId的ConsumeQueue文件。</li>
-<li>消费者根据消费偏移量（ConsumeOffset）在ConsumeQueue中检索下一条消息的位置，然后根据CommitLog中的位置找到实际消息。</li>
-</ul>
-<p>RocketMQ的存储架构通过将所有消息顺序存储在一个共享的CommitLog文件并使用ConsumeQueue和IndexFile作为索引文件来实现高效的消息读写。</p>
-<p>这种设计在提高写入效率的同时，通过索引机制加快了消息的检索和消费速度。<br>与Kafka的每个Topic独立存储文件相比，RocketMQ的这种混合型存储结构更注重写入效率和灵活的读取操作。</p>
-<blockquote>
-<p><code>IndexFile</code> 和 <code>ConsumeQueue</code> 的区别</p>
+<h5 id="总结-🐉"><a href="#总结-🐉" class="headerlink" title="总结  🐉"></a>总结  🐉</h5><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240308141410.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>ReputMessageService 服务会将对应的 CommitLog 文件中的消息异步更新内容到 ComsumeQueue 和 IndexFile 中</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240308141719.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>RocketMQ 是默认开启 Broker 持久化机制的，消费者 Comsumer 的消费实际是根据 ComsumerQueue 来进行消费的。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240308142224.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="高性能读写-🚩"><a href="#高性能读写-🚩" class="headerlink" title="高性能读写  🚩"></a>高性能读写  🚩</h4><blockquote>
+<p>RocketMQ怎么对文件进行读写的</p>
 </blockquote>
-<p>在 RocketMQ 中，<code>IndexFile</code> 和 <code>ConsumeQueue</code> 都是消息存储结构的重要部分，但它们的用途和工作方式有所不同。</p>
-<p>理解这两者之间的区别有助于更好地把握 RocketMQ 的消息存储和检索机制。</p>
-<p>以下是对 <code>IndexFile</code> 和 <code>ConsumeQueue</code> 的主要区别的概述：</p>
-<blockquote>
-<p>ConsumeQueue</p>
-</blockquote>
+<p>RocketMQ对文件的读写巧妙地利用了操作系统的一些高效文件读写方式——<code>PageCache</code>、<code>顺序读写</code>、<code>零拷贝</code>。</p>
+<h5 id="PageCache、顺序读取"><a href="#PageCache、顺序读取" class="headerlink" title="PageCache、顺序读取"></a>PageCache、顺序读取</h5><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240308142836.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>顺序读写提高了 CommitLog 和 ComsumerQueue 的写入和读取速率</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240308182341.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>关于 PageCache 的理解，因为 CommitLog 是顺序写入的，而 PageCache 技术能够当第一次加载文件的时候会将数据放入到缓存中，通过直接对内存的读取加快对消息处理的性能。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240308183931.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h5 id="零拷贝-🚩"><a href="#零拷贝-🚩" class="headerlink" title="零拷贝  🚩"></a>零拷贝  🚩</h5><p>通过了零拷贝技术提高了⽂件传输速度，实现方式是 mmap</p>
 <ul>
-<li><strong>目的</strong>：<code>ConsumeQueue</code> 作为消费消息的索引，其主要目的是加快消息消费的效率。</li>
-<li><strong>内容</strong>：它保存了特定 Topic 下的队列消息在 <code>CommitLog</code> 中的起始物理偏移量、消息大小和消息 Tag 的 HashCode 值。</li>
-<li><strong>结构</strong>：<code>ConsumeQueue</code> 文件是定长设计，每个条目包含了消息在 <code>CommitLog</code> 的偏移量、长度和 Tag HashCode，使得消费者能够快速定位消息。</li>
-<li><strong>使用</strong>：消费者使用 <code>ConsumeQueue</code> 来快速查找待消费的消息，有效提升了消息消费的速度和效率。</li>
+<li>mmap 就是通过⽂件位置与进程地址空间建⽴映射关系，程序可 以直接访问⽂件内容</li>
+<li>这种机制在Java中是通过MappedByteBuffer实现的</li>
 </ul>
-<blockquote>
-<p>IndexFile</p>
-</blockquote>
-<ul>
-<li><strong>目的</strong>：<code>IndexFile</code> 的主要作用是提供一种基于 key 或时间区间来快速查询消息的方法。</li>
-<li><strong>内容</strong>：它创建了消息属性（如消息的唯一标识符或业务键）的索引，以及消息在 <code>CommitLog</code> 中的物理偏移量。</li>
-<li><strong>结构</strong>：<code>IndexFile</code> 不是针对特定 Topic 或队列的，而是为了提供跨所有消息的快速查找功能。</li>
-<li><strong>使用</strong>：当需要根据特定关键字或者时间区间查询消息时，<code>IndexFile</code> 能够快速定位这些消息。</li>
-</ul>
-<p>区别：</p>
-<ul>
-<li><strong>使用场景</strong>：<code>ConsumeQueue</code> 是为了优化消息消费过程而设计的，而 <code>IndexFile</code> 则是为了提供一种灵活的消息查询机制。</li>
-<li><strong>数据内容</strong>：<code>ConsumeQueue</code> 侧重于消息消费的快速定位，而 <code>IndexFile</code> 侧重于提供基于关键字和时间的快速检索。</li>
-<li><strong>结构设计</strong>：<code>ConsumeQueue</code> 是基于 Topic 的逻辑消费队列，每个条目指向 <code>CommitLog</code> 中的特定消息；而 <code>IndexFile</code> 是一个全局索引，允许根据不同的查询条件找到消息。</li>
-</ul>
-<h4 id="高性能读写-🚩"><a href="#高性能读写-🚩" class="headerlink" title="高性能读写  🚩"></a>高性能读写  🚩</h4><p>RocketMQ 内部主要是使用基于 mmap 实现的零拷贝，用来读写文件</p>
-<p>to be contined….</p>
+<hr>
+<p>传统方式：</p>
+<p>在操作系统中，使用传统的方式，数据需要经历几次拷贝，还要经历用户态&#x2F;内核态切换</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240308184631.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ol>
+<li>从磁盘复制数据到内核态内存；</li>
+<li>从内核态内存复制到用户态内存；</li>
+<li>然后从用户态内存复制到网络驱动的内核态内存；</li>
+<li>最后是从网络驱动的内核态内存复制到网卡中进行传输</li>
+</ol>
+<p>零拷贝方式：</p>
+<p>可以通过零拷贝的方式，<strong>减少用户态与内核态的上下文切换</strong>和<strong>内存拷贝的次数</strong>，用来提升I&#x2F;O的性能。零拷贝比较常见的实现方式是<strong>mmap</strong>，这种机制在Java中是通过MappedByteBuffer实现的。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240308190931.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>零拷贝的好处：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240308185040.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>看一下这个对比：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240308190654.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>扩展：</p>
+<p>RocketMQ主要通过MappedByteBuffer对文件进行读写操作。</p>
+<p>其中，利用了NIO中的FileChannel模型将磁盘上的物理文件直接映射到用户态的内存地址中（这种Mmap的方式减少了传统IO，将磁盘文件数据在操作系统内核地址空间的缓冲区，和用户应用程序地址空间的缓冲区之间来回进行拷贝的性能开销），将对文件的操作转化为直接对内存地址进行操作，从而极大地提高了文件的读写效率（正因为需要使用内存映射机制，故RocketMQ的文件存储都使用定长结构来存储，方便一次将整个文件映射至内存）</p>
 <h4 id="刷盘机制"><a href="#刷盘机制" class="headerlink" title="刷盘机制"></a>刷盘机制</h4><h5 id="同步刷盘和异步刷盘"><a href="#同步刷盘和异步刷盘" class="headerlink" title="同步刷盘和异步刷盘"></a>同步刷盘和异步刷盘</h5><p>在 RocketMQ 中，同步刷盘和异步刷盘是两种不同的消息持久化策略，它们各有优劣，并适用于不同的业务场景。</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312281520496.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>以下是对这两种策略的详细说明和比较：</p>
