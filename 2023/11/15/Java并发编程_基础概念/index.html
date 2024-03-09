@@ -311,21 +311,19 @@
 <li>并发：两个及两个以上的作业在同一 <strong>时间段</strong> 内执行。</li>
 </ul>
 <p>最关键的点是：是否是 <strong>同时</strong> 执行</p>
-<blockquote>
-<p>面试题：并行和并发有什么区别？</p>
-</blockquote>
-<p>单核CPU</p>
+<hr>
+<p>解释2：并行和并发有什么区别？</p>
+<p>在单核CPU的情况下：</p>
 <ul>
 <li>单核CPU下线程实际还是串行执行的</li>
 <li>操作系统中有一个组件叫做任务调度器，将cpu的时间片(windows下时间片最小约为15毫秒)分给不同的程序使用，只是由于cpu在线程间（时间片很短）的切换非常快，人类感觉是同时运行的。</li>
 <li>总结为一句话就是：微观串行，宏观并行</li>
 </ul>
 <p>一般会将这种线程轮流使用 CPU的做法 称为并发(concurrent）</p>
-<p>多核 CPU</p>
+<p>在多核 CPU 的情况下：</p>
 <p>每个核(core)都可以调度运行线程，这时候线程可以是并行的。</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304152134.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>总结</p>
-<p>并行和并发有什么区别</p>
 <p>现在都是多核CPU,在多核CPU下</p>
 <ul>
 <li>并发是同一时间<strong>应对</strong>多件事情的能力，多个线程轮流使用一个或多个CPU</li>

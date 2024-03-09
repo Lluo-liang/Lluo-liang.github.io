@@ -18,22 +18,24 @@
   <meta name="author" content="Luo QI">
   <meta name="keywords" content="">
   
-    <meta name="description" content="对于日常编程中遇到的一些非Java体系内容总结，有兴趣的话可以一起讨论交流">
+    <meta name="description" content="面试煎熬成蛋_Java并发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java学习的轻松之旅_Obsidian_02">
-<meta property="og:url" content="https://varcel.luoqi.icu/2024/01/30/Java%E5%AD%A6%E4%B9%A0%E7%9A%84%E8%BD%BB%E6%9D%BE%E4%B9%8B%E6%97%85_Obsidian_02/index.html">
+<meta property="og:title" content="面试煎熬成蛋_Java并发">
+<meta property="og:url" content="https://varcel.luoqi.icu/2024/03/09/%E9%9D%A2%E8%AF%95%E7%85%8E%E7%86%AC%E6%88%90%E8%9B%8B_Java%E5%B9%B6%E5%8F%91/index.html">
 <meta property="og:site_name" content="轻松的洛亓">
-<meta property="og:description" content="对于日常编程中遇到的一些非Java体系内容总结，有兴趣的话可以一起讨论交流">
+<meta property="og:description" content="面试煎熬成蛋_Java并发">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-01-30T10:31:06.000Z">
-<meta property="article:modified_time" content="2024-01-30T10:31:06.000Z">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312150024266.jpeg">
+<meta property="article:published_time" content="2024-03-09T15:11:53.000Z">
+<meta property="article:modified_time" content="2024-03-09T15:11:53.000Z">
 <meta property="article:author" content="Luo QI">
-<meta property="article:tag" content="index">
+<meta property="article:tag" content="面试题">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312150024266.jpeg">
   
   
   
-  <title>Java学习的轻松之旅_Obsidian_02 - 轻松的洛亓</title>
+  <title>面试煎熬成蛋_Java并发 - 轻松的洛亓</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +201,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Java学习的轻松之旅_Obsidian_02"></span>
+            <span id="subtitle" data-typed-text="面试煎熬成蛋_Java并发"></span>
           
         </div>
 
@@ -210,8 +212,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-01-30 10:31" pubdate>
-          2024年1月30日 上午
+        <time datetime="2024-03-09 15:11" pubdate>
+          2024年3月9日 下午
         </time>
       </span>
     
@@ -222,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          521 字
+          1.4k 字
         
       </span>
     
@@ -233,7 +235,7 @@
         
         
         
-          5 分钟
+          12 分钟
         
       </span>
     
@@ -270,58 +272,49 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Java学习的轻松之旅_Obsidian_02</h1>
+            <h1 id="seo-header">面试煎熬成蛋_Java并发</h1>
             
             
               <div class="markdown-body">
                 
-                <h3 id="8、前端学习"><a href="#8、前端学习" class="headerlink" title="8、前端学习"></a>8、前端学习</h3><h4 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h4><ul>
-<li>[[Vue学习_基础内容]]</li>
+                <p>这篇文章，一方面是线程的基础内容，一方面是锁机制，包括JMM、volatile、JUC、AQS 等；</p>
+<p>还有一方面是线程池相关的内容，会部分结合一下常见的面试题作为复习的一部分。</p>
+<p>对于线程相关的一些复习，主要参考是： <a target="_blank" rel="noopener" href="https://www.bilibili.com/list/watchlater">https://www.bilibili.com/list/watchlater</a></p>
+<p>下面是该面试视频关于Java 并发的一些笔记，并结合 Gpt4  和 谷歌搜索内容进行补充完善。</p>
+<h3 id="线程基础内容"><a href="#线程基础内容" class="headerlink" title="线程基础内容"></a>线程基础内容</h3><ul>
+<li>1、线程和进程的区别？</li>
+<li>2、并行和并发的区别？</li>
+<li>3、讲一下线程创建的方式？Runable 和 Callable 的区别；strat 和 run 的区别。</li>
+<li>4、线程包括哪些状态，状态之间是如何变化的</li>
+<li>5、线程按顺序执行 join、notify 和 notifyall 的区别。</li>
+<li>6、Java 中 wait 和 sleep 的区别。</li>
+<li>7、如何停止一个正在运行的线程。</li>
+<li>8、什么是线程死锁，如何预防和避免线程死锁。</li>
 </ul>
-<h4 id="Node"><a href="#Node" class="headerlink" title="Node"></a>Node</h4><ul>
-<li>[[node安装和下载]]</li>
+<h4 id="线程和进程的区别？"><a href="#线程和进程的区别？" class="headerlink" title="线程和进程的区别？"></a>线程和进程的区别？</h4><ul>
+<li>进程：资源分配和调度的最小单位，一个进程中可以包含一个或者多个线程</li>
+<li>线程：运算调度的最小单位，是进程的一部分，共享进程的资源，上下文切换成本较低。</li>
 </ul>
-<h4 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h4><ul>
-<li>[[Nginx_基础概念]]</li>
+<h4 id="并行和并发的区别？"><a href="#并行和并发的区别？" class="headerlink" title="并行和并发的区别？"></a>并行和并发的区别？</h4><ul>
+<li>并发：同一个时间段同时进行的操作</li>
+<li>并行：同一个时刻中同时进行的操作</li>
 </ul>
-<h3 id="9、技术选型"><a href="#9、技术选型" class="headerlink" title="9、技术选型"></a>9、技术选型</h3><ul>
-<li>[[业务场景和技术选型]]</li>
+<p>最关键的点是：是否是 <strong>同时</strong> 执行</p>
+<h4 id="同步和异步的区别"><a href="#同步和异步的区别" class="headerlink" title="同步和异步的区别"></a>同步和异步的区别</h4><ul>
+<li><strong>同步</strong>：发出一个调用之后，在没有得到结果之前， 该调用就不可以返回，一直等待。</li>
+<li><strong>异步</strong>：调用在发出之后，不用等待返回结果，该调用直接返回。</li>
 </ul>
-<h3 id="10、运维工具和项目构建"><a href="#10、运维工具和项目构建" class="headerlink" title="10、运维工具和项目构建"></a>10、运维工具和项目构建</h3><h4 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h4><ul>
-<li>[[Maven工具_基础使用]]</li>
+<h4 id="线程创建的方式？"><a href="#线程创建的方式？" class="headerlink" title="线程创建的方式？"></a>线程创建的方式？</h4><p>在Java中，有三种常见的线程创建方式：使用Thread类、实现Runnable接口和实现Callable接口。</p>
+<ul>
+<li><strong>继承<code>Thread</code>类</strong>：创建一个新的类继承<code>Thread</code>类，并重写<code>run()</code>方法。</li>
+<li><strong>实现<code>Runnable</code>接口</strong>：创建一个实现<code>Runnable</code>接口的类，然后将它实例化传递给<code>Thread</code>对象的构造函数。</li>
+<li><strong>实现<code>Callable</code>接口</strong>：创建一个实现<code>Callable</code>接口的类，使用<code>FutureTask</code>包装器来创建<code>Thread</code>对象。<code>Callable</code>可以返回结果和抛出被检查的异常。</li>
 </ul>
-<h4 id="Git-操作"><a href="#Git-操作" class="headerlink" title="Git 操作"></a>Git 操作</h4><ul>
-<li>[[Git入门_基本操作]]</li>
-<li>[[Git 配置 SSH 连接]]</li>
-</ul>
-<h4 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h4><ul>
-<li>[[linux系统下Java环境变量的配置]]</li>
-<li>[[centos7系统_常用操作]]</li>
-<li>[[centos7安装nacos操作]]</li>
-<li>[[vim常用操作]]</li>
-</ul>
-<h4 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h4><ul>
-<li>[[windows常用操作]]</li>
-</ul>
-<h3 id="11、数据库"><a href="#11、数据库" class="headerlink" title="11、数据库"></a>11、数据库</h3><h4 id="oracle-操作记录"><a href="#oracle-操作记录" class="headerlink" title="oracle 操作记录"></a>oracle 操作记录</h4><ul>
-<li>[[Oracle_常用操作使用记录]]</li>
-</ul>
-<h3 id="12、杂记"><a href="#12、杂记" class="headerlink" title="12、杂记"></a>12、杂记</h3><ul>
-<li>[[hexo完成github_action自动部署]]</li>
-<li>[[hexo完成自动部署Github后同时推送到Gitee]]</li>
-<li>[[hexo_实现在百度中搜索到自己的博客]]</li>
-<li>[[Vercel的开箱使用_同步Hexo静态博客]]</li>
-<li>[[Docsify使用教程]]</li>
-<li>[[旧电脑改造为个人服务器]]</li>
-<li>[[个人在线网盘_ZFile]]</li>
-<li>[[内网穿透工具Neutrino-Proxy]]</li>
-<li>[[第三方授权登录组件_JustAuth]]</li>
-</ul>
-<h3 id="13、项目工程报错处理"><a href="#13、项目工程报错处理" class="headerlink" title="13、项目工程报错处理"></a>13、项目工程报错处理</h3><ul>
-<li>[[前端依赖常见报错解决方案]]</li>
-<li>[[常见工程报错问题]]</li>
-</ul>
+<p>使用示例：</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-keyword">public</span> <span class="hljs-title class_"><span class="hljs-keyword">class</span> <span class="hljs-title">MyThread</span> <span class="hljs-keyword"><span class="hljs-keyword">extends</span> <span class="hljs-type">Thread</span></span> </span>&#123;<br>    <span class="hljs-keyword">public</span> void run() &#123;<br>        <span class="hljs-comment">// 任务代码</span><br>    &#125;<br>&#125;<br>MyThread t = <span class="hljs-keyword">new</span> <span class="hljs-type">MyThread</span>();<br>t.start(); <span class="hljs-comment">// 启动新线程</span><br><br><span class="hljs-keyword">public</span> <span class="hljs-title class_"><span class="hljs-keyword">class</span> <span class="hljs-title">MyRunnable</span> <span class="hljs-keyword"><span class="hljs-keyword">implements</span> <span class="hljs-type">Runnable</span></span> </span>&#123;<br>    <span class="hljs-keyword">public</span> void run() &#123;<br>        <span class="hljs-comment">// 任务代码</span><br>    &#125;<br>&#125;<br>Thread t = <span class="hljs-keyword">new</span> <span class="hljs-type">Thread</span>(<span class="hljs-keyword">new</span> <span class="hljs-type">MyRunnable</span>());<br>t.start(); <span class="hljs-comment">// 启动新线程</span><br><br><span class="hljs-keyword">public</span> <span class="hljs-title class_"><span class="hljs-keyword">class</span> <span class="hljs-title">MyCallable</span> <span class="hljs-keyword"><span class="hljs-keyword">implements</span> <span class="hljs-type">Callable</span></span>&lt;<span class="hljs-title">Integer</span>&gt; </span>&#123;<br>    <span class="hljs-keyword">public</span> Integer call() throws Exception &#123;<br>        <span class="hljs-comment">// 任务代码</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-number">123</span>;<br>    &#125;<br>&#125;<br>FutureTask&lt;Integer&gt; futureTask = <span class="hljs-keyword">new</span> <span class="hljs-type">FutureTask</span>&lt;&gt;(<span class="hljs-keyword">new</span> <span class="hljs-type">MyCallable</span>());<br>Thread t = <span class="hljs-keyword">new</span> <span class="hljs-type">Thread</span>(futureTask);<br>t.start(); <span class="hljs-comment">// 启动新线程</span><br></code></pre></td></tr></table></figure>
 
+<p>to be contined….</p>
+<h3 id="锁机制"><a href="#锁机制" class="headerlink" title="锁机制"></a>锁机制</h3><h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3>
                 
               </div>
             
@@ -333,7 +326,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/index/" class="print-no-link">#index</a>
+        <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" class="print-no-link">#面试题</a>
       
     </div>
   
@@ -345,8 +338,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Java学习的轻松之旅_Obsidian_02</div>
-      <div>https://varcel.luoqi.icu/2024/01/30/Java学习的轻松之旅_Obsidian_02/</div>
+      <div>面试煎熬成蛋_Java并发</div>
+      <div>https://varcel.luoqi.icu/2024/03/09/面试煎熬成蛋_Java并发/</div>
     </div>
     <div class="license-meta">
       
@@ -358,7 +351,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年1月30日</div>
+          <div>2024年3月9日</div>
         </div>
       
       
@@ -385,6 +378,23 @@
 
 
 
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/03/09/20240309%E7%9A%84%E6%80%9D%E8%80%83/" title="20240309的思考">
+                        <span class="hidden-mobile">20240309的思考</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
               
             </div>
 
