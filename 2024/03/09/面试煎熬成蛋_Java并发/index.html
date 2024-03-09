@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.4k 字
+          11k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          12 分钟
+          96 分钟
         
       </span>
     
@@ -313,14 +313,363 @@
 <p>使用示例：</p>
 <figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-keyword">public</span> <span class="hljs-title class_"><span class="hljs-keyword">class</span> <span class="hljs-title">MyThread</span> <span class="hljs-keyword"><span class="hljs-keyword">extends</span> <span class="hljs-type">Thread</span></span> </span>&#123;<br>    <span class="hljs-keyword">public</span> void run() &#123;<br>        <span class="hljs-comment">// 任务代码</span><br>    &#125;<br>&#125;<br>MyThread t = <span class="hljs-keyword">new</span> <span class="hljs-type">MyThread</span>();<br>t.start(); <span class="hljs-comment">// 启动新线程</span><br><br><span class="hljs-keyword">public</span> <span class="hljs-title class_"><span class="hljs-keyword">class</span> <span class="hljs-title">MyRunnable</span> <span class="hljs-keyword"><span class="hljs-keyword">implements</span> <span class="hljs-type">Runnable</span></span> </span>&#123;<br>    <span class="hljs-keyword">public</span> void run() &#123;<br>        <span class="hljs-comment">// 任务代码</span><br>    &#125;<br>&#125;<br>Thread t = <span class="hljs-keyword">new</span> <span class="hljs-type">Thread</span>(<span class="hljs-keyword">new</span> <span class="hljs-type">MyRunnable</span>());<br>t.start(); <span class="hljs-comment">// 启动新线程</span><br><br><span class="hljs-keyword">public</span> <span class="hljs-title class_"><span class="hljs-keyword">class</span> <span class="hljs-title">MyCallable</span> <span class="hljs-keyword"><span class="hljs-keyword">implements</span> <span class="hljs-type">Callable</span></span>&lt;<span class="hljs-title">Integer</span>&gt; </span>&#123;<br>    <span class="hljs-keyword">public</span> Integer call() throws Exception &#123;<br>        <span class="hljs-comment">// 任务代码</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-number">123</span>;<br>    &#125;<br>&#125;<br>FutureTask&lt;Integer&gt; futureTask = <span class="hljs-keyword">new</span> <span class="hljs-type">FutureTask</span>&lt;&gt;(<span class="hljs-keyword">new</span> <span class="hljs-type">MyCallable</span>());<br>Thread t = <span class="hljs-keyword">new</span> <span class="hljs-type">Thread</span>(futureTask);<br>t.start(); <span class="hljs-comment">// 启动新线程</span><br></code></pre></td></tr></table></figure>
 
-<p>to be contined….</p>
-<h3 id="锁机制"><a href="#锁机制" class="headerlink" title="锁机制"></a>锁机制</h3><h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3>
+
+<h4 id="Runable-和-Callable-的区别；strat-和-run-的区别。"><a href="#Runable-和-Callable-的区别；strat-和-run-的区别。" class="headerlink" title="Runable 和 Callable 的区别；strat 和 run 的区别。"></a>Runable 和 Callable 的区别；strat 和 run 的区别。</h4><p>使用 Runable 接口和实现 Callable 最大的区别是后者能返回一个结果，还有一个区别是 call() 方法可以抛出异常，而 Runable 接口下的 run() 方法不可以抛出异常。</p>
+<ul>
+<li>start 方法是启动一个新进程，新线程会执行相应对象的<code>run()</code>方法。</li>
+<li>run 方法只是一个普通的方法，如果调用 run 方法，也只是在当前线程下调用执行这个方法。</li>
+</ul>
+<h4 id="线程包括哪些状态，状态之间是如何变化的"><a href="#线程包括哪些状态，状态之间是如何变化的" class="headerlink" title="线程包括哪些状态，状态之间是如何变化的"></a>线程包括哪些状态，状态之间是如何变化的</h4><p>在我们的 Thread 类下，有一个枚举类，里面的状态有：新建(NEW)、可运行(RUNNABLE)、阻塞(BLOCKED)、等待(WAITING)、时间等待(TIMED_WALTING)、终止(TERMINATED)</p>
+<p>分析流程图</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304154734.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<blockquote>
+<p>.线程状态之间是如何变化的</p>
+</blockquote>
+<p>状态切换的一些情况：</p>
+<ul>
+<li>创建线程对象是新建状态</li>
+<li>调用了stat()方法转变为<strong>可执行状态</strong></li>
+<li>线程获取到了CPU的执行权，执行结束是<strong>终止状态</strong></li>
+<li>在可执行状态的过程中，如果没有获取 CPU 的执行权，可能会切换其他状态<ul>
+<li>如果没有获取锁(synchronized 或Iock)进入<strong>阻塞状态</strong>，获得锁再切换为可执行状态</li>
+<li>如果线程调用了wait()方法进入<strong>等待状态</strong>，其他线程调用notify()唤醒后可切换为可执行状态</li>
+<li>如果线程调用了sleep(50)方法，进入<strong>计时等待状态</strong>，到时间后可切换为可执行状态</li>
+</ul>
+</li>
+</ul>
+<h4 id="新建T1、T2、T3三个线程，如何保证它们按顺序执行？"><a href="#新建T1、T2、T3三个线程，如何保证它们按顺序执行？" class="headerlink" title="新建T1、T2、T3三个线程，如何保证它们按顺序执行？"></a>新建T1、T2、T3三个线程，如何保证它们按顺序执行？</h4><p>要保证三个线程T1、T2、T3按顺序执行，即先执行T1，T1执行完毕后执行T2，T2执行完毕后执行T3，可以使用多种方法来实现。</p>
+<p>这里讲一下常见的两种方法：</p>
+<p>方法1：使用<code>join()</code>方法</p>
+<p><code>join()</code>方法可以使当前线程等待另一个线程完成后再继续执行。</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs livescript">public <span class="hljs-keyword">class</span> <span class="hljs-title class_">ThreadOrder</span> &#123;<br>    public <span class="hljs-keyword">static</span> <span class="hljs-literal">void</span> main(<span class="hljs-built_in">String</span>[] args) &#123;<br>        Thread t1 = <span class="hljs-keyword">new</span> Thread<span class="hljs-function"><span class="hljs-params">(() -&gt; System.out.println(<span class="hljs-string">&quot;T1 is running&quot;</span>))</span>;</span><br><span class="hljs-function">        <span class="hljs-title">Thread</span> <span class="hljs-title">t2</span> = <span class="hljs-title">new</span> <span class="hljs-title">Thread</span><span class="hljs-params">(() -&gt; System.out.println(<span class="hljs-string">&quot;T2 is running&quot;</span>))</span>;</span><br><span class="hljs-function">        <span class="hljs-title">Thread</span> <span class="hljs-title">t3</span> = <span class="hljs-title">new</span> <span class="hljs-title">Thread</span><span class="hljs-params">(() -&gt; System.out.println(<span class="hljs-string">&quot;T3 is running&quot;</span>))</span>;</span><br><span class="hljs-function">        </span><br><span class="hljs-function">        <span class="hljs-title">try</span> &#123;</span><br><span class="hljs-function">            <span class="hljs-title">t1</span>.<span class="hljs-title">start</span><span class="hljs-params">()</span>;</span><br><span class="hljs-function">            <span class="hljs-title">t1</span>.<span class="hljs-title">join</span><span class="hljs-params">()</span>; // 等待<span class="hljs-title">t1</span>执行完毕</span><br><span class="hljs-function">            </span><br><span class="hljs-function">            <span class="hljs-title">t2</span>.<span class="hljs-title">start</span><span class="hljs-params">()</span>;</span><br><span class="hljs-function">            <span class="hljs-title">t2</span>.<span class="hljs-title">join</span><span class="hljs-params">()</span>; // 等待<span class="hljs-title">t2</span>执行完毕</span><br><span class="hljs-function">            </span><br><span class="hljs-function">            <span class="hljs-title">t3</span>.<span class="hljs-title">start</span><span class="hljs-params">()</span>;</span><br><span class="hljs-function">            <span class="hljs-title">t3</span>.<span class="hljs-title">join</span><span class="hljs-params">()</span>; // 等待<span class="hljs-title">t3</span>执行完毕</span><br><span class="hljs-function">        &#125; <span class="hljs-title">catch</span> <span class="hljs-params">(InterruptedException e)</span> &#123;</span><br><span class="hljs-function">            <span class="hljs-title">e</span>.<span class="hljs-title">printStackTrace</span><span class="hljs-params">()</span>;</span><br><span class="hljs-function">        &#125;</span><br><span class="hljs-function">    &#125;</span><br><span class="hljs-function">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>方法2：使用<code>wait()</code>和<code>notify()/notifyAll()</code>方法</p>
+<p>通过对象监视器的<code>wait()</code>和<code>notify()</code>方法来控制线程的执行顺序。这种方法相对复杂，需要确保<code>wait()</code>和<code>notify()</code>调用在同步块中。</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs livescript">public <span class="hljs-keyword">class</span> <span class="hljs-title class_">ThreadOrder</span> &#123;<br>    public <span class="hljs-keyword">static</span> <span class="hljs-literal">void</span> main(<span class="hljs-built_in">String</span>[] args) &#123;<br>        final <span class="hljs-built_in">Object</span> lock = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Object</span>();<br>        Thread t1 = <span class="hljs-keyword">new</span> Thread<span class="hljs-function"><span class="hljs-params">(() -&gt; &#123;</span></span><br><span class="hljs-params"><span class="hljs-function">            synchronized (lock) &#123;</span></span><br><span class="hljs-params"><span class="hljs-function">                System.out.println(<span class="hljs-string">&quot;T1 is running&quot;</span>);</span></span><br><span class="hljs-params"><span class="hljs-function">                lock.notify(); <span class="hljs-regexp">// 唤醒等待lock对象的一个线程</span></span></span><br><span class="hljs-regexp"><span class="hljs-params"><span class="hljs-function">            &#125;</span></span></span><br><span class="hljs-regexp"><span class="hljs-params"><span class="hljs-function">        &#125;);</span></span></span><br><span class="hljs-regexp"><span class="hljs-params"><span class="hljs-function">        </span></span></span><br><span class="hljs-regexp"><span class="hljs-params"><span class="hljs-function">        Thread t2 = new Thread(() -&gt; &#123;</span></span></span><br><span class="hljs-regexp"><span class="hljs-params"><span class="hljs-function">            synchronized (lock) &#123;</span></span></span><br><span class="hljs-regexp"><span class="hljs-params"><span class="hljs-function">                try &#123;</span></span></span><br><span class="hljs-regexp"><span class="hljs-params"><span class="hljs-function">                    lock.wait(); //</span> 使当前线程等待直到lock对象被唤醒</span></span><br><span class="hljs-params"><span class="hljs-function">                    System.out.println(<span class="hljs-string">&quot;T2 is running&quot;</span>);</span></span><br><span class="hljs-params"><span class="hljs-function">                    lock.notify(); <span class="hljs-regexp">// 唤醒等待lock对象的一个线程</span></span></span><br><span class="hljs-regexp"><span class="hljs-params"><span class="hljs-function">                &#125; catch (InterruptedException e) &#123;</span></span></span><br><span class="hljs-regexp"><span class="hljs-params"><span class="hljs-function">                    e.printStackTrace();</span></span></span><br><span class="hljs-regexp"><span class="hljs-params"><span class="hljs-function">                &#125;</span></span></span><br><span class="hljs-regexp"><span class="hljs-params"><span class="hljs-function">            &#125;</span></span></span><br><span class="hljs-regexp"><span class="hljs-params"><span class="hljs-function">        &#125;);</span></span></span><br><span class="hljs-regexp"><span class="hljs-params"><span class="hljs-function">        </span></span></span><br><span class="hljs-regexp"><span class="hljs-params"><span class="hljs-function">        Thread t3 = new Thread(() -&gt; &#123;</span></span></span><br><span class="hljs-regexp"><span class="hljs-params"><span class="hljs-function">            synchronized (lock) &#123;</span></span></span><br><span class="hljs-regexp"><span class="hljs-params"><span class="hljs-function">                try &#123;</span></span></span><br><span class="hljs-regexp"><span class="hljs-params"><span class="hljs-function">                    lock.wait(); //</span> 使当前线程等待直到lock对象被唤醒</span></span><br><span class="hljs-params"><span class="hljs-function">                    System.out.println(<span class="hljs-string">&quot;T3 is running&quot;</span>);</span></span><br><span class="hljs-params"><span class="hljs-function">                &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;</span></span><br><span class="hljs-params"><span class="hljs-function">                    e.printStackTrace();</span></span><br><span class="hljs-params"><span class="hljs-function">                &#125;</span></span><br><span class="hljs-params"><span class="hljs-function">            &#125;</span></span><br><span class="hljs-params"><span class="hljs-function">        &#125;)</span>;</span><br><span class="hljs-function"></span><br><span class="hljs-function">        <span class="hljs-title">try</span> &#123;</span><br><span class="hljs-function">            <span class="hljs-title">t2</span>.<span class="hljs-title">start</span><span class="hljs-params">()</span>;</span><br><span class="hljs-function">            <span class="hljs-title">t3</span>.<span class="hljs-title">start</span><span class="hljs-params">()</span>;</span><br><span class="hljs-function">            <span class="hljs-title">Thread</span>.<span class="hljs-title">sleep</span><span class="hljs-params">(<span class="hljs-number">100</span>)</span>; // 确保<span class="hljs-title">t2</span>和<span class="hljs-title">t3</span>启动并进入<span class="hljs-title">wait</span>状态</span><br><span class="hljs-function">            <span class="hljs-title">t1</span>.<span class="hljs-title">start</span><span class="hljs-params">()</span>;</span><br><span class="hljs-function">        &#125; <span class="hljs-title">catch</span> <span class="hljs-params">(InterruptedException e)</span> &#123;</span><br><span class="hljs-function">            <span class="hljs-title">e</span>.<span class="hljs-title">printStackTrace</span><span class="hljs-params">()</span>;</span><br><span class="hljs-function">        &#125;</span><br><span class="hljs-function">    &#125;</span><br><span class="hljs-function">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="notify-和-notifyall-的区别"><a href="#notify-和-notifyall-的区别" class="headerlink" title="notify 和 notifyall 的区别"></a>notify 和 notifyall 的区别</h4><ul>
+<li>notifyAll:唤醒所有wait的线程</li>
+<li>notify:只随机唤醒一个wait线程</li>
+</ul>
+<h4 id="Java-中-wait-和-sleep-的区别。"><a href="#Java-中-wait-和-sleep-的区别。" class="headerlink" title="Java 中 wait 和 sleep 的区别。"></a>Java 中 wait 和 sleep 的区别。</h4><ul>
+<li>共同点<ul>
+<li>wait(),wait(long)和sleep(long)的效果都是让当前线程暂时放弃CPU的使用权，进入阻塞状态</li>
+</ul>
+</li>
+<li>不同点<ul>
+<li>1.方法归属不同<ul>
+<li>sleep(long)是Thread的静态方法</li>
+<li>而wait(),wait(long)都是Object的成员方法，每个对象都有</li>
+</ul>
+</li>
+<li>2、醒来时机不同<ul>
+<li>执行sleep(long)和wait(long)的线程都会在等待相应毫秒后醒来</li>
+<li>wait(long)和wait0还可以被notify唤醒，wait()如果不唤醒就一直等下去</li>
+<li>它们都可以被打断唤醒</li>
+</ul>
+</li>
+<li>3.锁特性不同（重点）<ul>
+<li>wait方法的调用必须先获取wait对象的锁，而sleep则无此限制</li>
+<li>wait方法执行后会释放对象锁，允许其它线程获得该对象锁（我放弃cpu,但你们还可以用）</li>
+<li>而sleep如果在synchronized代码块中执行，并不会释放对象锁（我放弃cpu,你们也用不了）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><code class="hljs livescript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">WaitSleepExample</span> &#123;<br>    private <span class="hljs-keyword">static</span> final <span class="hljs-built_in">Object</span> LOCK = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Object</span>();<br><br>    public <span class="hljs-keyword">static</span> <span class="hljs-literal">void</span> main(<span class="hljs-built_in">String</span>[] args) &#123;<br>        <span class="hljs-regexp">// 创建一个线程执行等待操作</span><br><span class="hljs-regexp">        Thread waitThread = new Thread(() -&gt; &#123;</span><br><span class="hljs-regexp">            synchronized (LOCK) &#123; //</span> 必须在同步块内调用wait，这表示必须持有对象的锁<br>                <span class="hljs-keyword">try</span> &#123;<br>                    System.out.println(<span class="hljs-string">&quot;Wait Thread: Holding lock, now wait&quot;</span>);<br>                    LOCK.wait(); <span class="hljs-regexp">// 调用wait方法后，当前线程会释放LOCK对象上的锁，并进入等待状态</span><br><span class="hljs-regexp">                    System.out.println(&quot;Wait Thread: Exited wait&quot;);</span><br><span class="hljs-regexp">                &#125; catch (InterruptedException e) &#123;</span><br><span class="hljs-regexp">                    e.printStackTrace();</span><br><span class="hljs-regexp">                &#125;</span><br><span class="hljs-regexp">            &#125;</span><br><span class="hljs-regexp">        &#125;);</span><br><span class="hljs-regexp"></span><br><span class="hljs-regexp">        //</span> 创建一个线程执行睡眠操作<br>        Thread sleepThread = <span class="hljs-keyword">new</span> Thread<span class="hljs-function"><span class="hljs-params">(() -&gt; &#123;</span></span><br><span class="hljs-params"><span class="hljs-function">            synchronized (LOCK) &#123; <span class="hljs-regexp">// 进入同步块，持有LOCK对象的锁</span></span></span><br><span class="hljs-regexp"><span class="hljs-params"><span class="hljs-function">                try &#123;</span></span></span><br><span class="hljs-regexp"><span class="hljs-params"><span class="hljs-function">                    System.out.println(&quot;Sleep Thread: Holding lock, now sleep&quot;);</span></span></span><br><span class="hljs-regexp"><span class="hljs-params"><span class="hljs-function">                    Thread.sleep(1000); //</span> 调用sleep方法，但不会释放LOCK对象上的锁</span></span><br><span class="hljs-params"><span class="hljs-function">                    System.out.println(<span class="hljs-string">&quot;Sleep Thread: Exited sleep&quot;</span>);</span></span><br><span class="hljs-params"><span class="hljs-function">                &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;</span></span><br><span class="hljs-params"><span class="hljs-function">                    e.printStackTrace();</span></span><br><span class="hljs-params"><span class="hljs-function">                &#125;</span></span><br><span class="hljs-params"><span class="hljs-function">            &#125;</span></span><br><span class="hljs-params"><span class="hljs-function">        &#125;)</span>;</span><br><span class="hljs-function"></span><br><span class="hljs-function">        // 创建一个线程执行通知操作</span><br><span class="hljs-function">        <span class="hljs-title">Thread</span> <span class="hljs-title">notifyThread</span> = <span class="hljs-title">new</span> <span class="hljs-title">Thread</span><span class="hljs-params">(() -&gt; &#123;</span></span><br><span class="hljs-params"><span class="hljs-function">            synchronized (LOCK) &#123; <span class="hljs-regexp">// 进入同步块，持有LOCK对象的锁</span></span></span><br><span class="hljs-regexp"><span class="hljs-params"><span class="hljs-function">                //</span> 发送通知，告诉等待在LOCK对象上的线程可以继续执行</span></span><br><span class="hljs-params"><span class="hljs-function">                LOCK.notifyAll();</span></span><br><span class="hljs-params"><span class="hljs-function">                System.out.println(<span class="hljs-string">&quot;Notify Thread: Sent notification&quot;</span>);</span></span><br><span class="hljs-params"><span class="hljs-function">            &#125;</span></span><br><span class="hljs-params"><span class="hljs-function">        &#125;)</span>;</span><br><span class="hljs-function"></span><br><span class="hljs-function">        <span class="hljs-title">waitThread</span>.<span class="hljs-title">start</span><span class="hljs-params">()</span>; // 启动等待线程</span><br><span class="hljs-function">        <span class="hljs-title">try</span> &#123;</span><br><span class="hljs-function">            <span class="hljs-title">Thread</span>.<span class="hljs-title">sleep</span><span class="hljs-params">(<span class="hljs-number">500</span>)</span>; // 确保<span class="hljs-title">waitThread</span>先执行</span><br><span class="hljs-function">        &#125; <span class="hljs-title">catch</span> <span class="hljs-params">(InterruptedException e)</span> &#123;</span><br><span class="hljs-function">            <span class="hljs-title">e</span>.<span class="hljs-title">printStackTrace</span><span class="hljs-params">()</span>;</span><br><span class="hljs-function">        &#125;</span><br><span class="hljs-function">        <span class="hljs-title">sleepThread</span>.<span class="hljs-title">start</span><span class="hljs-params">()</span>; // 启动睡眠线程</span><br><span class="hljs-function">        <span class="hljs-title">try</span> &#123;</span><br><span class="hljs-function">            <span class="hljs-title">Thread</span>.<span class="hljs-title">sleep</span><span class="hljs-params">(<span class="hljs-number">500</span>)</span>; // 确保<span class="hljs-title">sleepThread</span>有机会执行</span><br><span class="hljs-function">        &#125; <span class="hljs-title">catch</span> <span class="hljs-params">(InterruptedException e)</span> &#123;</span><br><span class="hljs-function">            <span class="hljs-title">e</span>.<span class="hljs-title">printStackTrace</span><span class="hljs-params">()</span>;</span><br><span class="hljs-function">        &#125;</span><br><span class="hljs-function">        <span class="hljs-title">notifyThread</span>.<span class="hljs-title">start</span><span class="hljs-params">()</span>; // 启动通知线程</span><br><span class="hljs-function">    &#125;</span><br><span class="hljs-function">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>关于锁的不同处理</strong>：<ul>
+<li><strong><code>wait()</code>方法</strong>：调用<code>wait()</code>时，线程必须持有对象的锁（这是通过在<code>synchronized</code>块内调用<code>wait()</code>来保证的）。一旦<code>wait()</code>被调用，线程会释放这个对象上的锁，允许其他线程获取这个锁。当其他线程在这个对象上调用<code>notify()</code>或<code>notifyAll()</code>时，等待的线程才有机会重新获取锁并继续执行。</li>
+<li><strong><code>sleep()</code>方法</strong>：与<code>wait()</code>不同，调用<code>sleep()</code>时线程不会释放任何持有的锁。即使是在<code>synchronized</code>块内调用<code>sleep()</code>，当前线程仍然会保持对锁的持有，直到<code>sleep()</code>完成。这意味着，如果一个线程在持有某个对象锁的同时调用了<code>sleep()</code>，其他想要访问这个同步块的线程会被阻塞，直到睡眠线程醒来并退出同步块，释放锁。</li>
+</ul>
+</li>
+</ul>
+<p>→  使用 sleep 的时候同步块代码线程会被阻塞。</p>
+<h4 id="如何停止一个正在运行的线程。"><a href="#如何停止一个正在运行的线程。" class="headerlink" title="如何停止一个正在运行的线程。"></a>如何停止一个正在运行的线程。</h4><p>有三种方式可以停止线程</p>
+<ul>
+<li>使用退出标志，使线程正常退出，也就是当 run 方法完成后线程终止</li>
+<li>使用stop方法强行终止（不推荐，方法已作废）</li>
+<li>使用interrupt方法中断线程<ul>
+<li>打断阻塞的线程(sleep,wait,join) 的线程，线程会抛出 InterruptedException 异常</li>
+<li>打断正常的线程，可以根据打断状态来标记是否退出线程</li>
+</ul>
+</li>
+</ul>
+<h4 id="什么是线程死锁，如何预防和避免线程死锁。"><a href="#什么是线程死锁，如何预防和避免线程死锁。" class="headerlink" title="什么是线程死锁，如何预防和避免线程死锁。"></a>什么是线程死锁，如何预防和避免线程死锁。</h4><p>线程死锁：两个或多个线程在执行过程中因争夺资源而造成的一种相互等待的现象，导致它们都无法继续执行。</p>
+<p>死锁只有<strong>同时满足</strong>以下四个条件才会发生：</p>
+<ul>
+<li>互斥条件；</li>
+<li>持有并等待条件；</li>
+<li>不可剥夺条件；</li>
+<li>环路等待条件</li>
+</ul>
+<p><strong>预防和避免方法</strong>：最常用的方法就是使用资源有序分配法来破坏环路等待条件。</p>
+<p>使用超时尝试获取锁: 在尝试获取锁时使用超时机制，使得线程在等待超过一定时间后自动放弃，从而避免永久等待。</p>
+<p>参考: <a target="_blank" rel="noopener" href="https://www.xiaolincoding.com/os/4_process/deadlock.html">https://www.xiaolincoding.com/os/4_process/deadlock.html</a></p>
+<h3 id="锁机制"><a href="#锁机制" class="headerlink" title="锁机制"></a>锁机制</h3><ul>
+<li>1、synchronized 关键字的底层原理。<ul>
+<li>基础回答</li>
+<li>进阶回答</li>
+</ul>
+</li>
+<li>2、谈谈 JMM (Java 内存模型)</li>
+<li>3、你谈谈对 CAS 的理解</li>
+<li>4、请谈谈你对 volatile 的理解（可见性，禁止指令重排序）</li>
+<li>5、什么是 AQS</li>
+<li>6、ReentantLock 的实现原理</li>
+<li>7、synchronized 和 Lock 有什么区别</li>
+<li>8、死锁产生的条件以及死锁排查方案</li>
+<li>9、聊一下 ConcurrentHashMap</li>
+<li>10、导致并发编程出现问题的根本原因是什么</li>
+</ul>
+<h4 id="synchronized-关键字的底层原理"><a href="#synchronized-关键字的底层原理" class="headerlink" title="synchronized 关键字的底层原理"></a>synchronized 关键字的底层原理</h4><p>建议观看视频： <a target="_blank" rel="noopener" href="https://www.bilibili.com/list/watchlater?oid=485022417&bvid=BV1yT411H7YK&spm_id_from=333.1245.top_right_bar_window_view_later.content.click&p=95">https://www.bilibili.com/list/watchlater?oid=485022417&amp;bvid=BV1yT411H7YK&amp;spm_id_from=333.1245.top_right_bar_window_view_later.content.click&amp;p=95</a></p>
+<p>synchronized：对象锁</p>
+<p>作用：采用互斥的方式让同一时刻至多只有一个线程能持有对象锁，其他线程再想获取这个对象锁时就会阻塞时</p>
+<p>底层原理：</p>
+<p>Java对象头和<code>monitor</code>是<code>synchronized</code>实现同步的基础。通过 monitor 实现了对于对象的重量级锁操作，而Java 对象头是锁升级机制的关键。</p>
+<h4 id="讲一下-Monitor"><a href="#讲一下-Monitor" class="headerlink" title="讲一下 Monitor"></a>讲一下 Monitor</h4><p>在 互斥锁 synchronized 加锁的过程中，重量级锁的实现是通过 monitor 来实现的。（记住这一句）</p>
+<p>Monito实现的锁<strong>属于重量级锁</strong>，里面涉及到了用户态和内核态的切换、进程的上下文切换，成本较高，性能比较低。</p>
+<p>monitor 是 jvm 级别的对象（C++实现)，线程获得锁<strong>需要使用对象（锁）关联monitor</strong></p>
+<p>Monitor ：</p>
+<p>Monitor 被翻译为监视器，是由 jvm 提供，c ++ 语言实现</p>
+<p>Monitor 结构</p>
+<ul>
+<li>Owner：存储当前获取锁的线程的，只能有一个线程可以获取</li>
+<li>EntryList：关联没有抢到锁的线程，处于 Blocked 状态的线程</li>
+<li>WaitSet：关联调用了 wait 方法的线程，处于 Waiting 状态的线程</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304210121.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>synchronized 方法使用：</p>
+<p>在我们的测试类，进行反编译后可以看到会有 monitor 对锁相关的操作</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304205918.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="讲一下-Java-对象头，以及和-synchronized-的关联"><a href="#讲一下-Java-对象头，以及和-synchronized-的关联" class="headerlink" title="讲一下 Java 对象头，以及和 synchronized 的关联"></a>讲一下 Java 对象头，以及和 synchronized 的关联</h4><p>在 JDK1.6 引入了两种新型锁机制：<strong>偏向锁和轻量级锁</strong>，它们的引入是为了解决在没有多线程竞争或基本没有竞争的场景下因使用传统锁机制带来的性能开销问题。</p>
+<p>而偏向锁和轻量级锁的使用是跟 Java 对象头的结构设计有关。</p>
+<p>对象的内存结构</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304211931.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>MardWord</p>
+<p>在对象头中的 MarkWord 中，其结构设计：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304212102.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><strong>重量级锁</strong></p>
+<p>重量级锁（可以看到上面的 ptr_to_heavyweight_monitor ，重量级锁状态的时候会通过这个指向监视器  Monitor ）</p>
+<ul>
+<li>每个 Java 对象都可以关联一个 Monitor 对象，如果使用 synchronized 给对象上锁（重量级）之后，该对象头的 Mard Word 中就被设置指向 Monitor 对象的指针。</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304212150.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>在很多的情况下，在 Java 程序运行时，同步块中的代码都是不存在竞争的，不同的线程交替的执行同步块中的代码。这种情况下，用重量级锁是没必要的。因此 JVM引入了轻量级锁的概念。</p>
+<p><strong>轻量级锁</strong></p>
+<p>在轻量级锁状态下，锁记录会和 Object 的对象头中的 MarkWord 进行 CAS 交互</p>
+<p>每进来一个线程，都会进行一次 CAS 操作</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240309224654.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>轻量级锁</p>
+<p>加锁流程</p>
+<ul>
+<li>1.在线程栈中创建一个Lock Record，将其obj字段指向锁对象。</li>
+<li>2.通过CAS指令将Lock Record的地址存储在对象头的mark word中，如果对象处于无锁状态则修改成功，代表该线程获得了轻量级锁。</li>
+<li>3.如果是当前线程已经持有该锁了，代表这是一次锁重入。设置Lock Record第一部分为null,起到了一个重入计数器的作用。</li>
+<li>4.如果CAS修改失败，说明发生了竞争，需要膨胀为重量级锁。</li>
+</ul>
+<p>解锁过程</p>
+<ul>
+<li>1.遍历线程栈，找到所有obj字段等于当前锁对象的 Lock Record。</li>
+<li>2.如果 Lock Record 的 Mark Word 为 null ,代表这是一次重入，将obj设置为null后continue。</li>
+<li>3.如果Lock Record 的Mark Word不为 null,  则利用CAS指令将对象头的 mark word 恢复成为无锁状态。如果失败则膨胀为重量级锁。</li>
+</ul>
+<p><strong>偏向锁</strong></p>
+<p>轻量级锁在没有竞争时（就自己这个线程），每次重入仍然需要执行CAS操作。</p>
+<p>Java6中引入了偏向锁来做进一步优化：只有第一次使用CAS将线程ID设置到对象的Mark Word头，之后发现这个线程D是自己的就表示没有竞争，不用重新CAS。以后只要不发生竞争，这个对象就归该线程所有。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240309225727.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="锁升级"><a href="#锁升级" class="headerlink" title="锁升级"></a>锁升级</h4><p>Monito 实现的锁属于重量级锁，你了解过锁升级吗 ？</p>
+<p>Java中的synchronized有偏向锁、轻量级锁、重量级锁三种形式，分别对应了锁只被一个线程持有、不同线程交替持有锁、多线程竞争锁三种情况。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>重量级锁</td>
+<td>底层使用的 Monitor 实现，里面涉及到了用户态和内核态的切换、进程的上下文切换，成本较高，性能比较低。</td>
+</tr>
+<tr>
+<td>轻量级锁</td>
+<td>线程加锁的时间是错开的（也就是没有竞争），可以使用轻量级锁来优化。轻量级修改了对象头的锁标志，相对重量级锁性能提升很多。每次修改都是 CAS 操作，保证原子性</td>
+</tr>
+<tr>
+<td>偏向锁</td>
+<td>一段很长的时间内都只被一个线程使用锁，可以使用了偏向锁，在第一次获得锁时，会有一个 CAS 操作，之后该线程再获取锁，只需要判断 mark word中是否是自己的线程id即可，而不是开销相对较大的 CAS 命令</td>
+</tr>
+</tbody></table>
+<p>一旦锁发生了竞争，都会升级为重量级锁。</p>
+<p>后面待整理一下 to be contined….</p>
+<h4 id="synchronized锁概念前提（锁升级过程"><a href="#synchronized锁概念前提（锁升级过程" class="headerlink" title="synchronized锁概念前提（锁升级过程)"></a>synchronized锁概念前提（锁升级过程)</h4><p>锁升级过程</p>
+<ul>
+<li>偏向锁<ul>
+<li>偏向锁是为了减少⽆竞争情况下的解锁和重加锁操作⽽设计的 </li>
+<li>当⼀个线程⾸次访问同步代码块时，它会在对象头 (MarkWord)中记录下当前线程的ID，这样下次这个线程再访问 该同步代码块时，只需要检查对象头中的线程ID是否与当前线 程ID相同，如果相同则⽆需进⾏CAS操作获取锁，从⽽减少了 ⽤户态和内核态之间的切换，提⾼了性能</li>
+</ul>
+</li>
+<li>轻量级锁<ul>
+<li>当多个线程竞争同⼀个锁时，偏向锁会升级为轻量级锁，轻量 级锁不会使线程进⼊阻塞状态，⽽是通过⾃旋的⽅式等待锁释 放 </li>
+<li>⾃旋就是线程在⼀个循环中不断检查锁是否被释放 </li>
+<li>如果锁被释放了，线程就可以⽴即获取锁并执⾏同步代码块 </li>
+<li>由于⾃旋不会使线程进⼊阻塞状态，因此避免了从⽤户态切换 到内核态的开销</li>
+</ul>
+</li>
+<li>自适应自旋<ul>
+<li>在轻量级锁的基础上，JVM 还引⼊了⾃适应⾃旋技术，⾃适应 ⾃旋会根据之前线程⾃旋获取锁的成功率来动态调整⾃旋的次 数 </li>
+<li>如果⼀个线程之前⾃旋获取锁的成功率很⾼，那么 JVM 就会 增加它的⾃旋次数，反之则会减少⾃旋次数。这样可以避免不 必要的⾃旋，进⼀步提⾼性能</li>
+</ul>
+</li>
+<li>重量级锁<ul>
+<li>当线程竞争⾮常激烈时，轻量级锁可能会升级为重量级锁 </li>
+<li>重量级锁会使线程进⼊阻塞状态，并放⼊锁等待队列中 </li>
+<li>当⼀个线程释放锁时，它会从锁等待队列中唤醒⼀个阻塞的线 程来获取锁 </li>
+<li>由于线程进⼊阻塞状态需要切换到内核态，并涉及到线程调度 等操作，因此重量级锁的性能开销较⼤</li>
+</ul>
+</li>
+</ul>
+<h4 id="聊一下-synchronized"><a href="#聊一下-synchronized" class="headerlink" title="聊一下  synchronized"></a>聊一下  synchronized</h4><p>synchronized 是Java的内置锁，属于悲观锁，悲观锁就是每次读写的 时候都会加锁，想要⽤必须等待前⾯的线程解锁。</p>
+<ul>
+<li>在JDK 6之前是基于Monitor机制实现的，依赖于底层互斥原语 Mutex，属于重量级锁，性能较低 </li>
+<li>在JDK 6之后迫于JUC包的压⼒，对synchronzied进⾏了优化，引 ⼊了偏向锁、轻量级锁等机制，<ul>
+<li>synchronized为了避免直接从⽤ 户态切换到内核态park线程，所以在单⼀线程的情况下默认开启 偏向锁，</li>
+<li>在线程交替执⾏的时候会使⽤轻量级锁，偏向锁和轻量 级锁操作都是基于⽤户态的对象MarkWord，也就表示这两种情况 下加解锁不需要切换到内核态，性能⼏乎⽆损耗，</li>
+<li>如果竞争相对 激烈，轻量级锁优先采⽤⾃适应⾃旋来避免park，</li>
+<li>如果实在不 ⾏，才会启动重量级锁，park让Mutex互斥量来进⾏，如今性能基 本与JUC持平</li>
+</ul>
+</li>
+</ul>
+<p>synchronized的⽤法 </p>
+<ul>
+<li>对类对象加锁 <ul>
+<li>synchronized(A.class) </li>
+<li>synchronized static a()</li>
+</ul>
+</li>
+<li>对类实例对象加锁 <ul>
+<li>synchronized(this) </li>
+<li>synchronized(obj) </li>
+<li>synchornized a()</li>
+</ul>
+</li>
+</ul>
+<p>synchonirzd如何保证并发的三⼤特性的</p>
+<ul>
+<li>原⼦性 <ul>
+<li>原⼦性是通过加锁和释放锁保证的</li>
+</ul>
+</li>
+<li>有序性、可⻅性 <ul>
+<li>通过在加锁和解锁过程中使⽤内存屏障来确保共享变量的变化 对所有线程都是可⻅的以及防⽌指令重排序 <ul>
+<li>加锁 <ul>
+<li>load屏障 + acquire屏障</li>
+</ul>
+</li>
+<li>解锁 <ul>
+<li>store屏障 + release屏障</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>从字节码层⾯看synchronized </p>
+<ul>
+<li>同步代码块 <ul>
+<li>通过monitorenter和两个monitorexit实现的，对于第⼀个 monitorexit处理正常返回，第⼆个monitorexit处理异常情况 ⾃动释放锁，所以synchronized不像Lock那样需要⾃⼰释放 锁，不过也可以通过Unsafe类去⼿动控制synchronized，但是 不推荐 </li>
+<li>synchronized的可重⼊的实现 <ul>
+<li>synchronized会维护⼀个计数器，当monitorenter时计数器 +1，monitorexit时计数器 -1</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>同步⽅法 <ul>
+<li>通过 acc_synchronized 访问标志实现</li>
+</ul>
+</li>
+</ul>
+<h4 id="synchronized的锁变化"><a href="#synchronized的锁变化" class="headerlink" title="synchronized的锁变化"></a>synchronized的锁变化</h4><p>⾸先我们先判断有没有禁⽤偏向锁或者不满⾜延迟偏向条件，如果没 有禁⽤偏向锁以及满⾜延迟偏向条件，那么就开始延迟偏向4s，然后 创建锁对象，对于此时处于匿名偏向状态，当在同步代码块中时，会 通过CAS将当前线程ID设置到锁对象的MarkWord中去 </p>
+<ul>
+<li>当处于偏向锁时，调⽤hashCode⽅法会撤销为⽆锁状态，因为偏 向锁没有存放hashcode的位置，⽆锁状态可以存放 </li>
+<li>当处于偏向锁时，在同步代码块中调⽤notify⽅法会撤销为轻量级 锁 </li>
+<li>当处于偏向锁时，在同步代码块中调⽤hashCode⽅法以及wait⽅ 法会撤销为重量级锁 </li>
+<li>当处于偏向锁时，偏向锁可能会重偏向为匿名偏向状态 当我们禁⽤偏向锁或者不满⾜延迟偏向条件时，先创建锁状态此时为 ⽆锁状态 当发⽣轻微竞争时，⽆锁会升级为轻量级锁，CAS修改锁对象中 的MarkWord并且拷⻉⼀份MarkWord到栈中的锁记录⾥ 当处于轻量级锁时，如果发⽣激烈竞争会膨胀为重量级锁,创建 Monitor对象，CAS修改MarkWord 当处于⽆锁状态时,如果碰到激烈竞争，会创建Monitor对象，CAS 修改MarkWord 重量级锁可以解锁到⽆锁状态 轻量级锁也可以解锁到⽆锁状态</li>
+</ul>
+<h4 id="synchronized锁粗化、锁消除"><a href="#synchronized锁粗化、锁消除" class="headerlink" title="synchronized锁粗化、锁消除"></a>synchronized锁粗化、锁消除</h4><ul>
+<li>锁粗化 <ul>
+<li>⽐如锁对象出现在循环体中，反复加锁释放锁，即使没有出现线 程竞争也会导致性能下降，当JVM检测到这种操作，会将锁的范 围扩⼤到循环体外</li>
+</ul>
+</li>
+<li>锁消除 <ul>
+<li>⽐如在单线程情况加锁，不存在竞争，JVM会清除锁</li>
+</ul>
+</li>
+</ul>
+<h4 id="谈一下-JMM"><a href="#谈一下-JMM" class="headerlink" title="谈一下 JMM"></a>谈一下 JMM</h4><p>你谈谈JMM(Java内存模型)</p>
+<ul>
+<li>JMM(ava Memory Model)Java内存模型，定义了<strong>共享内存</strong>中<strong>多线程程序读写</strong>操作的行为规范，通过这些规则来规范对内存的读写操作从而保证指令的正确性</li>
+<li>JMM把内存分为两块，一块是私有线程的工作区域（工作内存），一块是所有线程的共享区域（主内存）</li>
+<li>线程跟线程之间是相互隔离，线程跟线程交互需要通过主内存</li>
+</ul>
+<h4 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a>volatile</h4><p>如果代码中存在循环，JVM 会对 JIT 进行代码优化（给 stop 变量一个固定值）</p>
+<p>这种情况下可见性并没有保证，一种方案是修改 vm 参数（不建议），还有一种方案就是变量前面加 volatile 进行修饰。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304215050.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304215458.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>to be contined… 明天再看了</p>
+<h4 id="CAS"><a href="#CAS" class="headerlink" title="CAS"></a>CAS</h4><p>CAS 不管是在 AQS 框架中，还是在上面提到的 synchronized 都使用到了；</p>
+<p>其中的核心思想是  →  比较再交互</p>
+<p>如果工作区域的最初值和主内存的值比较不相等，则自旋等待。（自旋需要确认一下 🚩)</p>
+<p>CAS 方法是 unsafe 修饰的，调用是操作系统的接口。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304213848.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<blockquote>
+<p>乐观锁和悲观锁的区别</p>
+</blockquote>
+<p>乐观锁：乐观的看待并发修改问题，其他线程不会修改共享变量，如果改了，就自旋等待。</p>
+<p>悲观锁：悲观的认为别人的线程都不是好人，我获取这把锁后，你们都不能访问了。</p>
+<h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3><ul>
+<li>1、说一下线程池的核心参数（线程池的执行原理知道吗）</li>
+<li>2、线程池中有哪些常见的阻塞队列</li>
+<li>3、如何确认核心线程数</li>
+<li>4、线程池的种类有哪些</li>
+<li>5、为什么不建议使用 Executor 创建线程池</li>
+</ul>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ul>
+<li>1、讲述一下你们项目中哪里用到了线程池（异步线程）</li>
+<li>2、如何控制某个方法允许并发访问线程的数量</li>
+<li>3、谈谈你对 ThreadLocal 的理解</li>
+</ul>
+
                 
               </div>
             
             <hr/>
             <div>
               <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%9D%A2%E8%AF%95%E7%85%8E%E7%86%AC%E6%88%90%E8%9B%8B/" class="category-chain-item">面试煎熬成蛋</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
   
   
     <div class="post-meta">
@@ -382,6 +731,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2024/03/09/%E9%9D%A2%E8%AF%95%E7%85%8E%E7%86%AC%E6%88%90%E8%9B%8B_%E6%A1%86%E6%9E%B6/" title="面试煎熬成蛋_框架">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">面试煎熬成蛋_框架</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
