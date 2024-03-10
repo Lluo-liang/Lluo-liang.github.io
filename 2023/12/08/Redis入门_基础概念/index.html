@@ -1235,7 +1235,7 @@
 <li><strong>命令传播</strong>：一旦初始同步完成，主节点会持续将所有接收到的写命令实时发送给从节点。这保证了主从节点间数据的实时一致性。</li>
 <li><strong>断线重连</strong>：如果从节点与主节点间的连接断开，当重新连接后，从节点会尝试自动重新同步数据。Redis 2.8版本后，支持部分重同步（PSYNC），这意味着在某些情况下，从节点只需要同步断开期间的数据变更，而不需要重新同步所有数据。</li>
 </ol>
-<h4 id="哨兵模式（Sentinel）"><a href="#哨兵模式（Sentinel）" class="headerlink" title="哨兵模式（Sentinel）"></a>哨兵模式（Sentinel）</h4><h4 id="集群（Cluster）"><a href="#集群（Cluster）" class="headerlink" title="集群（Cluster）"></a>集群（Cluster）</h4><h3 id="11、Reids-使用规范"><a href="#11、Reids-使用规范" class="headerlink" title="11、Reids 使用规范"></a>11、Reids 使用规范</h3><h3 id="12、"><a href="#12、" class="headerlink" title="12、"></a>12、</h3><hr>
+<h4 id="哨兵模式（Sentinel）"><a href="#哨兵模式（Sentinel）" class="headerlink" title="哨兵模式（Sentinel）"></a>哨兵模式（Sentinel）</h4><h4 id="集群（Cluster）"><a href="#集群（Cluster）" class="headerlink" title="集群（Cluster）"></a>集群（Cluster）</h4><h3 id="11、Reids-使用规范"><a href="#11、Reids-使用规范" class="headerlink" title="11、Reids 使用规范"></a>11、Reids 使用规范</h3><hr>
 <p>参考</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://javaguide.cn/database/redis/cache-basics.html">https://javaguide.cn/database/redis/cache-basics.html</a></li>

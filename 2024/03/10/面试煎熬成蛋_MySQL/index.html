@@ -18,24 +18,24 @@
   <meta name="author" content="Luo QI">
   <meta name="keywords" content="">
   
-    <meta name="description" content="面试题_技术场景">
+    <meta name="description" content="面试煎熬成蛋_MySQL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="面试题_技术场景">
-<meta property="og:url" content="https://varcel.luoqi.icu/2024/03/02/%E9%9D%A2%E8%AF%95%E9%A2%98_%E6%8A%80%E6%9C%AF%E5%9C%BA%E6%99%AF/index.html">
+<meta property="og:title" content="面试煎熬成蛋_MySQL">
+<meta property="og:url" content="https://varcel.luoqi.icu/2024/03/10/%E9%9D%A2%E8%AF%95%E7%85%8E%E7%86%AC%E6%88%90%E8%9B%8B_MySQL/index.html">
 <meta property="og:site_name" content="轻松的洛亓">
-<meta property="og:description" content="面试题_技术场景">
+<meta property="og:description" content="面试煎熬成蛋_MySQL">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/wallpaper1702453206266.jpg">
-<meta property="article:published_time" content="2024-03-02T23:53:33.000Z">
-<meta property="article:modified_time" content="2024-03-02T23:53:33.000Z">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312150024266.jpeg">
+<meta property="article:published_time" content="2024-03-10T19:49:19.000Z">
+<meta property="article:modified_time" content="2024-03-10T19:49:19.000Z">
 <meta property="article:author" content="Luo QI">
 <meta property="article:tag" content="面试题">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/wallpaper1702453206266.jpg">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312150024266.jpeg">
   
   
   
-  <title>面试题_技术场景 - 轻松的洛亓</title>
+  <title>面试煎熬成蛋_MySQL - 轻松的洛亓</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -201,7 +201,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="面试题_技术场景"></span>
+            <span id="subtitle" data-typed-text="面试煎熬成蛋_MySQL"></span>
           
         </div>
 
@@ -212,8 +212,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-03-02 23:53" pubdate>
-          2024年3月2日 晚上
+        <time datetime="2024-03-10 19:49" pubdate>
+          2024年3月10日 晚上
         </time>
       </span>
     
@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          273 字
+          1.5k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          3 分钟
+          13 分钟
         
       </span>
     
@@ -272,28 +272,143 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">面试题_技术场景</h1>
+            <h1 id="seo-header">面试煎熬成蛋_MySQL</h1>
             
             
               <div class="markdown-body">
                 
-                <p>常见技术场景</p>
-<ul>
-<li>1、讲一下单点登陆的实现</li>
-<li>2、权限认证是如何实现的</li>
-<li>3、上传数据的安全你们是如何控制的</li>
-<li>4、遇到了哪些比较棘手的问题，怎么解决的</li>
-<li>5、你们项目中日志是怎么采集的</li>
-<li>6、常见日志的命令</li>
-<li>7、生产问题怎么排查</li>
-<li>8、怎么快速定位系统的瓶颈</li>
+                <h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><h3 id="优化-索引"><a href="#优化-索引" class="headerlink" title="优化&#x2F;索引"></a>优化&#x2F;索引</h3><h4 id="在-MySQL-中，如何定位慢查询？"><a href="#在-MySQL-中，如何定位慢查询？" class="headerlink" title="在 MySQL 中，如何定位慢查询？"></a>在 MySQL 中，如何定位慢查询？</h4><ul>
+<li>聚合查询</li>
+<li>多表查询</li>
+<li>表数据量过大查询</li>
+<li>深度分页查询</li>
 </ul>
+<p>表象：页面加载过慢、接口压测响应时间过长（超过 1s ）</p>
+<p>方案一、开源工具</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305204256.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>方案二： MySQL 自带慢日志</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305204349.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>总结：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305204413.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>（生产阶段一般不开启慢日志查询）</p>
+<p>开源采用 EXPLAIN 或者 DESC 命令获取 MySQL 如何执行 SELECT 语句的信息</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305205010.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>参数使用</p>
+<ul>
+<li>possible_key</li>
+<li>key</li>
+<li>key_len</li>
+<li>Extra</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305204719.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>type</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305204847.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>总结</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305204938.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="什么是索引"><a href="#什么是索引" class="headerlink" title="什么是索引"></a>什么是索引</h4><p>提高访问效率，索引是某种数据结构组成</p>
+<p>索引(index)是帮助 MySQL 高效获取数据的数据结构 (有序) 。</p>
+<p>在数据之外，数据库系统还维护着满足特定查找算法的数据结构(B+树)，这些数据结构以某种方式引用（指向）数据，这样就可以在这些数据结构上实现高级查找算法，这种数据结构就是索引。</p>
+<h4 id="讲一下索引的底层结构"><a href="#讲一下索引的底层结构" class="headerlink" title="讲一下索引的底层结构"></a>讲一下索引的底层结构</h4><ul>
+<li>目前索引采用的底层结构是 B+ 树</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305211546.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="什么是聚簇索引，什么是非聚簇索引"><a href="#什么是聚簇索引，什么是非聚簇索引" class="headerlink" title="什么是聚簇索引，什么是非聚簇索引"></a>什么是聚簇索引，什么是非聚簇索引</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305212233.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305212341.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>讲一下回表查询</p>
+<p>回表查询：通过二级索引找到对应的主键值</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305212500.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<blockquote>
+<p>知道什么是覆盖索引吗</p>
+</blockquote>
+<p>对查询列有要求，一般是查询的字段和索引字段相同，不同走主键查询那步，直接从索引树上查询出了数据</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305212622.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>你看一下这个例子，主键索引中查询条件是主键的话，直接查询所有数据是话算是覆盖索引，然后如果是二级索引，查询 主键+ 索引 是算覆盖索引查询(索引树上直接查询)</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305212749.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>覆盖索引的基本介绍</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305213542.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="MySQL-超大分页怎么处理"><a href="#MySQL-超大分页怎么处理" class="headerlink" title="MySQL 超大分页怎么处理"></a>MySQL 超大分页怎么处理</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305213731.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>提供一种解决思路：通过覆盖索引 + 子查询 形式进行优化<br>、</p>
+<ul>
+<li>先通过覆盖索引查询出对应的ID，然后通过关联查询，查询出分页数据</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305214250.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>总结</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305214458.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="索引创建原则"><a href="#索引创建原则" class="headerlink" title="索引创建原则"></a>索引创建原则</h4><p>回答思路：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305214539.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>主要的一些原则：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305214712.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>索引创建原则有哪些？</p>
+<ul>
+<li><ol>
+<li>数据量较大，且查询比较频繁的表             <strong>重要</strong></li>
+</ol>
+</li>
+<li>2).常作为查询条件、排序、分组的字段         <strong>重要</strong></li>
+<li>3).字段内容区分度高</li>
+<li>4).内容较长，使用前缀索引</li>
+<li>5).尽量联合索引                                              <strong>重要</strong></li>
+<li>6).要控制索引的数量                                       <strong>重要</strong></li>
+<li>7).如果索引列不能存储NULL 值，请在创建表时使用NOT NULL 约束它</li>
+</ul>
+<h4 id="索引失效"><a href="#索引失效" class="headerlink" title="索引失效"></a>索引失效</h4><p>如何判断索引是否失效：通过 执行计划 explain</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305222045.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>索引失效的一些情况：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305222317.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>理解去记忆一下</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305222354.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="谈谈你对-SQL-优化的经验"><a href="#谈谈你对-SQL-优化的经验" class="headerlink" title="谈谈你对 SQL 优化的经验"></a>谈谈你对 SQL 优化的经验</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305222506.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>主从复制、读写分离</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305222712.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>总结：</p>
+<ul>
+<li>1、表的设计优化，数据类型的选择</li>
+<li>2、索引优化，索引创建原则、</li>
+<li>3、sql语句优化，避免索引失效，避免使用select * ….</li>
+<li>4、主从复制、读写分离，不让数据的写入，影响读操作</li>
+<li>5、分库分表</li>
+</ul>
+<h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><h4 id="事务的特性"><a href="#事务的特性" class="headerlink" title="事务的特性"></a>事务的特性</h4><p>事务：事务是一组操作的集合，它是一个不可分割的工作单位，事务会把所有的操作作为一个整体一起向系<br>统提交或撤销操作请求，即这些操作要么同时成功，要么同时失败。</p>
+<p>ACID是什么？可以详细说一下吗？</p>
+<ul>
+<li>原子性(Atomicity):事务是不可分割的最小操作单元，要么全部成功，要么全部失败。</li>
+<li>一致性(Consistency):事务完成时，必须使所有的数据都保持一致状态。</li>
+<li>隔离性(Isolation)：数据库系统提供的隔离机制，保证事务在不受外部并发操作影响的独立环境下运行。</li>
+<li>持久性(Durability)：事务一旦提交或回滚，它对数据库中的数据的改变就是永久的。</li>
+</ul>
+<p>讲述这种题目的适合最好结合一下实际案例来讲述一下，让面试官觉得你讲的和其他人有所不同</p>
+<p>示例：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305223200.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <hr>
-<p>参考</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/list/watchlater?oid=485022417&bvid=BV1yT411H7YK&spm_id_from=333.1245.top_right_bar_window_view_later.content.click&p=142">https://www.bilibili.com/list/watchlater?oid=485022417&amp;bvid=BV1yT411H7YK&amp;spm_id_from=333.1245.top_right_bar_window_view_later.content.click&amp;p=142</a></li>
+<h4 id="并发事务带来哪些问题？怎么解决这些问题呢？MySQL-的隔离级别是？"><a href="#并发事务带来哪些问题？怎么解决这些问题呢？MySQL-的隔离级别是？" class="headerlink" title="并发事务带来哪些问题？怎么解决这些问题呢？MySQL 的隔离级别是？"></a>并发事务带来哪些问题？怎么解决这些问题呢？MySQL 的隔离级别是？</h4><ul>
+<li>并发事务问题：脏读、不可重复读、幻读</li>
+<li>隔离级别：读未提交、读已提交、可重复读、串行化</li>
 </ul>
-
+<p>并发事务问题</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305223338.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>怎么解决并发事务的问题？</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305223402.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>注意：事务隔离级别越高，数据越安全，但是性能越低。</p>
+<p>总结：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305223512.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="解释一下-MVCC"><a href="#解释一下-MVCC" class="headerlink" title="解释一下 MVCC"></a>解释一下 MVCC</h4><h3 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h3><h4 id="undo-log-和-redo-log-的区别？"><a href="#undo-log-和-redo-log-的区别？" class="headerlink" title="undo log  和 redo log 的区别？"></a>undo log  和 redo log 的区别？</h4><p>先引入一个概念：即缓存池和数据页，数据页是磁盘中实际存储的数据，但一般数据加载的时候会先从内存中到磁盘，这个内存的区域叫做缓冲池。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305223637.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>服务宕机的时候，数据如何保证不丢失，是由于日志的存在。</p>
+<ul>
+<li>redo log：</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305231922.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>undo log</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305232004.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>总结：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305232037.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="高级功能"><a href="#高级功能" class="headerlink" title="高级功能"></a>高级功能</h3><h4 id="讲一下-主从同步原理"><a href="#讲一下-主从同步原理" class="headerlink" title="讲一下 主从同步原理"></a>讲一下 主从同步原理</h4><h4 id="讲一下-分库分表"><a href="#讲一下-分库分表" class="headerlink" title="讲一下 分库分表"></a>讲一下 分库分表</h4>
                 
               </div>
             
@@ -311,7 +426,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/" class="category-chain-item">面试题</a>
+  <a href="/categories/%E9%9D%A2%E8%AF%95%E7%85%8E%E7%86%AC%E6%88%90%E8%9B%8B/" class="category-chain-item">面试煎熬成蛋</a>
   
   
 
@@ -338,8 +453,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>面试题_技术场景</div>
-      <div>https://varcel.luoqi.icu/2024/03/02/面试题_技术场景/</div>
+      <div>面试煎熬成蛋_MySQL</div>
+      <div>https://varcel.luoqi.icu/2024/03/10/面试煎熬成蛋_MySQL/</div>
     </div>
     <div class="license-meta">
       
@@ -351,7 +466,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年3月2日</div>
+          <div>2024年3月10日</div>
         </div>
       
       
@@ -378,6 +493,29 @@
 
 
 
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/03/10/%E9%9D%A2%E8%AF%95%E7%85%8E%E7%86%AC%E6%88%90%E8%9B%8B_Redis/" title="面试煎熬成蛋_Redis">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">面试煎熬成蛋_Redis</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/03/10/%E9%9D%A2%E8%AF%95%E7%85%8E%E7%86%AC%E6%88%90%E8%9B%8B_JVM/" title="面试煎熬成蛋_JVM">
+                        <span class="hidden-mobile">面试煎熬成蛋_JVM</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
               
             </div>
 
