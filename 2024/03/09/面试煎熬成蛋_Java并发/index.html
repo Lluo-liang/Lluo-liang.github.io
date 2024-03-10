@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          11k 字
+          13k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          96 分钟
+          112 分钟
         
       </span>
     
@@ -426,7 +426,7 @@
 </ul>
 <h4 id="synchronized-关键字的底层原理"><a href="#synchronized-关键字的底层原理" class="headerlink" title="synchronized 关键字的底层原理"></a>synchronized 关键字的底层原理</h4><p>建议观看视频： <a target="_blank" rel="noopener" href="https://www.bilibili.com/list/watchlater?oid=485022417&bvid=BV1yT411H7YK&spm_id_from=333.1245.top_right_bar_window_view_later.content.click&p=95">https://www.bilibili.com/list/watchlater?oid=485022417&amp;bvid=BV1yT411H7YK&amp;spm_id_from=333.1245.top_right_bar_window_view_later.content.click&amp;p=95</a></p>
 <p>synchronized：对象锁</p>
-<p>作用：采用互斥的方式让同一时刻至多只有一个线程能持有对象锁，其他线程再想获取这个对象锁时就会阻塞时</p>
+<p>作用：采用互斥的方式让同一时刻至多只有一个线程能持有对象锁，其他线程再想获取这个对象锁时就会阻塞</p>
 <p>底层原理：</p>
 <p>Java对象头和<code>monitor</code>是<code>synchronized</code>实现同步的基础。通过 monitor 实现了对于对象的重量级锁操作，而Java 对象头是锁升级机制的关键。</p>
 <h4 id="讲一下-Monitor"><a href="#讲一下-Monitor" class="headerlink" title="讲一下 Monitor"></a>讲一下 Monitor</h4><p>在 互斥锁 synchronized 加锁的过程中，重量级锁的实现是通过 monitor 来实现的。（记住这一句）</p>
@@ -463,12 +463,26 @@
 <p>每进来一个线程，都会进行一次 CAS 操作</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240309224654.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>轻量级锁</p>
+<p>如果一个锁是轻量级竞争，即被锁定的代码块快速执行完毕且没有其他线程竞争该锁，那么可以避免重量级锁的开销，从而提高性能。（交叉执行）</p>
 <p>加锁流程</p>
 <ul>
-<li>1.在线程栈中创建一个Lock Record，将其obj字段指向锁对象。</li>
-<li>2.通过CAS指令将Lock Record的地址存储在对象头的mark word中，如果对象处于无锁状态则修改成功，代表该线程获得了轻量级锁。</li>
+<li>1.在线程栈中创建一个Lock Record，将其obj字段指向锁对象。<ul>
+<li><strong>锁标记</strong>：当代码进入同步块的时候，如果同步对象锁状态为无锁状态（即，该对象头的Mark Word未被锁定），JVM首先在当前线程的栈帧中创建一个名为锁记录（Lock Record）的空间。</li>
+</ul>
+</li>
+<li>2.通过CAS指令将Lock Record的地址存储在对象头的mark word中，如果对象处于无锁状态则修改成功，代表该线程获得了轻量级锁。<ul>
+<li><strong>尝试加锁</strong>：JVM会尝试使用CAS（Compare-And-Swap）操作将对象头的Mark Word更新为指向锁记录的指针。此时，锁记录也会指回对象头的Mark Word，这样就建立了一种双向关系。</li>
+</ul>
+</li>
 <li>3.如果是当前线程已经持有该锁了，代表这是一次锁重入。设置Lock Record第一部分为null,起到了一个重入计数器的作用。</li>
-<li>4.如果CAS修改失败，说明发生了竞争，需要膨胀为重量级锁。</li>
+<li>4.如果CAS修改失败，说明发生了竞争，需要膨胀为重量级锁。<ul>
+<li><strong>锁升级</strong>：如果这个CAS操作成功，当前线程就持有了这个对象的轻量级锁。如果CAS操作失败，表示有其他线程竞争这个锁。JVM会检查这个锁是否已经被当前线程持有：<ul>
+<li>如果是，线程可以直接进入同步块，实现了锁的重入。</li>
+<li>如果不是，表示存在锁竞争。JVM首先会尝试进行自旋等待（spin-waiting），以期待很快获取锁。如果自旋失败并且竞争持续存在，轻量级锁就会升级为重量级锁。</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <p>解锁过程</p>
 <ul>
@@ -478,7 +492,7 @@
 </ul>
 <p><strong>偏向锁</strong></p>
 <p>轻量级锁在没有竞争时（就自己这个线程），每次重入仍然需要执行CAS操作。</p>
-<p>Java6中引入了偏向锁来做进一步优化：只有第一次使用CAS将线程ID设置到对象的Mark Word头，之后发现这个线程D是自己的就表示没有竞争，不用重新CAS。以后只要不发生竞争，这个对象就归该线程所有。</p>
+<p>Java6中引入了偏向锁来做进一步优化：只有第一次使用CAS将线程ID设置到对象的Mark Word头，之后发现这个<strong>线程 ID是自己的就表示没有竞争</strong>，不用重新CAS。以后只要不发生竞争，这个对象就归该线程所有。</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240309225727.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="锁升级"><a href="#锁升级" class="headerlink" title="锁升级"></a>锁升级</h4><p>Monito 实现的锁属于重量级锁，你了解过锁升级吗 ？</p>
 <p>Java中的synchronized有偏向锁、轻量级锁、重量级锁三种形式，分别对应了锁只被一个线程持有、不同线程交替持有锁、多线程竞争锁三种情况。</p>
@@ -503,34 +517,6 @@
 </tr>
 </tbody></table>
 <p>一旦锁发生了竞争，都会升级为重量级锁。</p>
-<p>后面待整理一下 to be contined….</p>
-<h4 id="synchronized锁概念前提（锁升级过程"><a href="#synchronized锁概念前提（锁升级过程" class="headerlink" title="synchronized锁概念前提（锁升级过程)"></a>synchronized锁概念前提（锁升级过程)</h4><p>锁升级过程</p>
-<ul>
-<li>偏向锁<ul>
-<li>偏向锁是为了减少⽆竞争情况下的解锁和重加锁操作⽽设计的 </li>
-<li>当⼀个线程⾸次访问同步代码块时，它会在对象头 (MarkWord)中记录下当前线程的ID，这样下次这个线程再访问 该同步代码块时，只需要检查对象头中的线程ID是否与当前线 程ID相同，如果相同则⽆需进⾏CAS操作获取锁，从⽽减少了 ⽤户态和内核态之间的切换，提⾼了性能</li>
-</ul>
-</li>
-<li>轻量级锁<ul>
-<li>当多个线程竞争同⼀个锁时，偏向锁会升级为轻量级锁，轻量 级锁不会使线程进⼊阻塞状态，⽽是通过⾃旋的⽅式等待锁释 放 </li>
-<li>⾃旋就是线程在⼀个循环中不断检查锁是否被释放 </li>
-<li>如果锁被释放了，线程就可以⽴即获取锁并执⾏同步代码块 </li>
-<li>由于⾃旋不会使线程进⼊阻塞状态，因此避免了从⽤户态切换 到内核态的开销</li>
-</ul>
-</li>
-<li>自适应自旋<ul>
-<li>在轻量级锁的基础上，JVM 还引⼊了⾃适应⾃旋技术，⾃适应 ⾃旋会根据之前线程⾃旋获取锁的成功率来动态调整⾃旋的次 数 </li>
-<li>如果⼀个线程之前⾃旋获取锁的成功率很⾼，那么 JVM 就会 增加它的⾃旋次数，反之则会减少⾃旋次数。这样可以避免不 必要的⾃旋，进⼀步提⾼性能</li>
-</ul>
-</li>
-<li>重量级锁<ul>
-<li>当线程竞争⾮常激烈时，轻量级锁可能会升级为重量级锁 </li>
-<li>重量级锁会使线程进⼊阻塞状态，并放⼊锁等待队列中 </li>
-<li>当⼀个线程释放锁时，它会从锁等待队列中唤醒⼀个阻塞的线 程来获取锁 </li>
-<li>由于线程进⼊阻塞状态需要切换到内核态，并涉及到线程调度 等操作，因此重量级锁的性能开销较⼤</li>
-</ul>
-</li>
-</ul>
 <h4 id="聊一下-synchronized"><a href="#聊一下-synchronized" class="headerlink" title="聊一下  synchronized"></a>聊一下  synchronized</h4><p>synchronized 是Java的内置锁，属于悲观锁，悲观锁就是每次读写的 时候都会加锁，想要⽤必须等待前⾯的线程解锁。</p>
 <ul>
 <li>在JDK 6之前是基于Monitor机制实现的，依赖于底层互斥原语 Mutex，属于重量级锁，性能较低 </li>
@@ -563,7 +549,7 @@
 </ul>
 </li>
 <li>有序性、可⻅性 <ul>
-<li>通过在加锁和解锁过程中使⽤内存屏障来确保共享变量的变化 对所有线程都是可⻅的以及防⽌指令重排序 <ul>
+<li>通过在加锁和解锁过程中使⽤内存屏障来确保共享变量的变化    对所有线程都是可⻅的以及防⽌指令重排序 <ul>
 <li>加锁 <ul>
 <li>load屏障 + acquire屏障</li>
 </ul>
@@ -592,30 +578,105 @@
 </ul>
 </li>
 </ul>
-<h4 id="synchronized的锁变化"><a href="#synchronized的锁变化" class="headerlink" title="synchronized的锁变化"></a>synchronized的锁变化</h4><p>⾸先我们先判断有没有禁⽤偏向锁或者不满⾜延迟偏向条件，如果没 有禁⽤偏向锁以及满⾜延迟偏向条件，那么就开始延迟偏向4s，然后 创建锁对象，对于此时处于匿名偏向状态，当在同步代码块中时，会 通过CAS将当前线程ID设置到锁对象的MarkWord中去 </p>
+<hr>
+<p>解释一下上面的 synchronized的⽤法 </p>
+<blockquote>
+<p>类对象加锁</p>
+</blockquote>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">void</span> <span class="hljs-title function_">someMethod</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-title function_">synchronized</span>(<span class="hljs-params">MyClass.<span class="hljs-keyword">class</span></span>) &#123;<br>            <span class="hljs-comment">// 代码块，对MyClass类对象加锁</span><br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>通过静态方法</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> &#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-type">static</span> <span class="hljs-type">void</span> <span class="hljs-title">someStaticMethod</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-comment">// 静态方法体，对MyClass类对象加锁</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>对类实例对象加锁</p>
+</blockquote>
+<p>通过代码块（使用this）：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">void</span> <span class="hljs-title function_">instanceMethod1</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-title function_">synchronized</span>(<span class="hljs-params"><span class="hljs-variable language_">this</span></span>) &#123;<br>            <span class="hljs-comment">// 代码块，对当前实例对象this加锁</span><br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>通过代码块（使用特定对象）：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> &#123;<br>    <span class="hljs-keyword">private</span> final <span class="hljs-title class_">Object</span> lock = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>();<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">void</span> <span class="hljs-title function_">instanceMethod2</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-title function_">synchronized</span>(<span class="hljs-params">lock</span>) &#123;<br>            <span class="hljs-comment">// 代码块，对特定对象lock加锁</span><br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>通过实例方法</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> &#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-type">void</span> <span class="hljs-title">instanceMethod3</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-comment">// 实例方法体，对当前实例对象this加锁</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>使用建议：尽量避免将<code>synchronized</code>用在方法声明上，特别是在高度竞争的环境下，可以通过减小锁的粒度来提高效率，例如，使用同步代码块。</p>
+<hr>
+<p>对于内存屏障的解释：</p>
+<p>内存屏障（Memory Barrier）是一种同步机制，用于控制指令的执行顺序和确保内存操作的可见性。它是并发编程中解决CPU指令重排序和内存可见性问题的关键技术。内存屏障可以确保在屏障之前的所有操作在屏障之后的操作开始前完成。在多核处理器系统中，这对于维护数据的一致性和正确性至关重要。</p>
+<p>内存屏障主要有以下几种类型：</p>
 <ul>
+<li>Load屏障（Load Barrier）<ul>
+<li><strong>目的</strong>：确保Load屏障之前的所有读操作在屏障之后的读操作之前完成。</li>
+<li><strong>使用场景</strong>：主要用于确保对共享变量的修改对当前线程立即可见。它防止了后续的读操作被重排序到屏障之前。</li>
+</ul>
+</li>
+<li>Store屏障（Store Barrier）<ul>
+<li><strong>目的</strong>：确保Store屏障之前的所有写操作在屏障之后的写操作之前完成。</li>
+<li><strong>使用场景</strong>：用于确保对共享变量的修改对其他线程立即可见。它阻止了之前的写操作被重排序到屏障之后。</li>
+</ul>
+</li>
+<li>Acquire屏障（Acquire Barrier）<ul>
+<li><strong>目的</strong>：防止屏障之后的读写操作被重排序到屏障之前。</li>
+<li><strong>使用场景</strong>：通常与锁获取操作相关联。它确保获取锁之后的操作不会与之前的操作发生重排序。</li>
+</ul>
+</li>
+<li>Release屏障（Release Barrier）<ul>
+<li><strong>目的</strong>：防止屏障之前的读写操作被重排序到屏障之后。</li>
+<li><strong>使用场景</strong>：与锁释放操作相关联。它确保释放锁之前的操作不会与之后的操作发生重排序。</li>
+</ul>
+</li>
+</ul>
+<p>在<code>synchronized</code>中的应用</p>
+<p>当进入<code>synchronized</code>块时，会插入一个Acquire屏障，它确保进入<code>synchronized</code>块后的所有读写操作不会被重排序到屏障之前。这保证了进入同步块时，对共享变量的所有修改都对当前线程可见。</p>
+<p>当退出<code>synchronized</code>块时，会插入一个Release屏障，它确保退出<code>synchronized</code>块前的所有读写操作不会被重排序到屏障之后。这确保了退出同步块时，对共享变量的修改对其他线程立即可见。</p>
+<p>通过使用这些内存屏障，<code>synchronized</code>能够为Java程序提供原子性、有序性和可见性保证。原子性是通过加锁和释放锁来实现的，而有序性和可见性则是通过在加锁和解锁过程中使用内存屏障来确保的。</p>
+<hr>
+<h4 id="synchronized的锁变化"><a href="#synchronized的锁变化" class="headerlink" title="synchronized的锁变化"></a>synchronized的锁变化</h4><ul>
+<li>⾸先我们先判断有没有禁⽤偏向锁或者不满⾜延迟偏向条件，如果没 有禁⽤偏向锁以及满⾜延迟偏向条件，那么就开始延迟偏向4s，然后 创建锁对象，对于此时处于<strong>匿名偏向状态</strong>，当在同步代码块中时，会 通过CAS将当前线程ID设置到锁对象的MarkWord中去 <ul>
 <li>当处于偏向锁时，调⽤hashCode⽅法会撤销为⽆锁状态，因为偏 向锁没有存放hashcode的位置，⽆锁状态可以存放 </li>
 <li>当处于偏向锁时，在同步代码块中调⽤notify⽅法会撤销为轻量级 锁 </li>
 <li>当处于偏向锁时，在同步代码块中调⽤hashCode⽅法以及wait⽅ 法会撤销为重量级锁 </li>
-<li>当处于偏向锁时，偏向锁可能会重偏向为匿名偏向状态 当我们禁⽤偏向锁或者不满⾜延迟偏向条件时，先创建锁状态此时为 ⽆锁状态 当发⽣轻微竞争时，⽆锁会升级为轻量级锁，CAS修改锁对象中 的MarkWord并且拷⻉⼀份MarkWord到栈中的锁记录⾥ 当处于轻量级锁时，如果发⽣激烈竞争会膨胀为重量级锁,创建 Monitor对象，CAS修改MarkWord 当处于⽆锁状态时,如果碰到激烈竞争，会创建Monitor对象，CAS 修改MarkWord 重量级锁可以解锁到⽆锁状态 轻量级锁也可以解锁到⽆锁状态</li>
+<li>当处于偏向锁时，偏向锁可能会重偏向为匿名偏向状态</li>
+</ul>
+</li>
+<li>当我们禁⽤偏向锁或者不满⾜延迟偏向条件时，先创建锁状态此时为 ⽆锁状态 <ul>
+<li>当发⽣轻微竞争时，⽆锁会升级为轻量级锁，CAS修改锁对象中 的MarkWord并且拷⻉⼀份MarkWord到栈中的锁记录⾥ </li>
+<li>当处于轻量级锁时，如果发⽣激烈竞争会膨胀为重量级锁,创建 Monitor对象，CAS修改MarkWord 当处于⽆锁状态时,如果碰到激烈竞争，会创建Monitor对象，CAS 修改MarkWord </li>
+<li>重量级锁可以解锁到⽆锁状态 </li>
+<li>轻量级锁也可以解锁到⽆锁状态</li>
+</ul>
+</li>
 </ul>
 <h4 id="synchronized锁粗化、锁消除"><a href="#synchronized锁粗化、锁消除" class="headerlink" title="synchronized锁粗化、锁消除"></a>synchronized锁粗化、锁消除</h4><ul>
 <li>锁粗化 <ul>
-<li>⽐如锁对象出现在循环体中，反复加锁释放锁，即使没有出现线 程竞争也会导致性能下降，当JVM检测到这种操作，会将锁的范 围扩⼤到循环体外</li>
+<li>⽐如锁对象出现在循环体中，反复加锁释放锁，即使没有出现线 程竞争也会导致性能下降，当JVM检测到这种操作，会将锁的范 围扩⼤到循环体外 <ul>
+<li>锁粗化是指将多个连续的锁扩展（或合并）为一个范围更大的锁，以减少锁操作的开销。正常情况下，如果在一系列的操作中反复对同一个对象加锁和解锁，即使没有线程竞争，频繁的锁操作也会消耗大量资源。</li>
+<li>如果这个循环执行的次数非常多，那么加锁解锁的开销就会变得很大。在这种情况下，JVM会采取锁粗化策略，将整个循环块外围用一个较大范围的锁替代，从而减少锁的开销。</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>锁消除 <ul>
-<li>⽐如在单线程情况加锁，不存在竞争，JVM会清除锁</li>
+<li>⽐如在单线程情况加锁，不存在竞争，JVM会清除锁<ul>
+<li>锁消除是指JVM在JIT编译阶段通过运行时代码分析，去除那些不可能存在共享数据竞争的锁。这是一种优化技术，目的是减少不必要的锁操作，提高程序性能。</li>
 </ul>
 </li>
 </ul>
-<h4 id="谈一下-JMM"><a href="#谈一下-JMM" class="headerlink" title="谈一下 JMM"></a>谈一下 JMM</h4><p>你谈谈JMM(Java内存模型)</p>
+</li>
+</ul>
+<p>锁清除： 考虑以下代码：</p>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs oxygene"><span class="hljs-keyword">public</span> void <span class="hljs-keyword">method</span><span class="hljs-params">()</span> <span class="hljs-comment">&#123;</span><br><span class="hljs-comment">    Object lock = new Object();</span><br><span class="hljs-comment">    synchronized(lock) &#123;</span><br><span class="hljs-comment">        // 操作非共享资源</span><br><span class="hljs-comment">    &#125;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在这个示例中，<code>lock</code>是一个方法内的局部变量，它不可能被其他线程访问。</p>
+<p>因此，对这个对象的加锁实际上是不必要的。JVM的锁消除机制可以检测到这种情况，并完全去除这个锁，减少运行时的开销。</p>
+<h4 id="谈一下-JMM"><a href="#谈一下-JMM" class="headerlink" title="谈一下 JMM"></a>谈一下 JMM</h4><p>谈谈JMM(Java内存模型)</p>
 <ul>
 <li>JMM(ava Memory Model)Java内存模型，定义了<strong>共享内存</strong>中<strong>多线程程序读写</strong>操作的行为规范，通过这些规则来规范对内存的读写操作从而保证指令的正确性</li>
 <li>JMM把内存分为两块，一块是私有线程的工作区域（工作内存），一块是所有线程的共享区域（主内存）</li>
 <li>线程跟线程之间是相互隔离，线程跟线程交互需要通过主内存</li>
 </ul>
-<h4 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a>volatile</h4><p>如果代码中存在循环，JVM 会对 JIT 进行代码优化（给 stop 变量一个固定值）</p>
+<h4 id="谈一下-volatile"><a href="#谈一下-volatile" class="headerlink" title="谈一下 volatile"></a>谈一下 volatile</h4><p>如果代码中存在循环，JVM 会对 JIT 进行代码优化（给 stop 变量一个固定值）</p>
 <p>这种情况下可见性并没有保证，一种方案是修改 vm 参数（不建议），还有一种方案就是变量前面加 volatile 进行修饰。</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304215050.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304215458.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
@@ -625,10 +686,7 @@
 <p>如果工作区域的最初值和主内存的值比较不相等，则自旋等待。（自旋需要确认一下 🚩)</p>
 <p>CAS 方法是 unsafe 修饰的，调用是操作系统的接口。</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304213848.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<blockquote>
-<p>乐观锁和悲观锁的区别</p>
-</blockquote>
-<p>乐观锁：乐观的看待并发修改问题，其他线程不会修改共享变量，如果改了，就自旋等待。</p>
+<h4 id="乐观锁和悲观锁的区别"><a href="#乐观锁和悲观锁的区别" class="headerlink" title="乐观锁和悲观锁的区别"></a>乐观锁和悲观锁的区别</h4><p>乐观锁：乐观的看待并发修改问题，其他线程不会修改共享变量，如果改了，就自旋等待。</p>
 <p>悲观锁：悲观的认为别人的线程都不是好人，我获取这把锁后，你们都不能访问了。</p>
 <h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3><ul>
 <li>1、说一下线程池的核心参数（线程池的执行原理知道吗）</li>
