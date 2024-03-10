@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.1k 字
+          5.6k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          27 分钟
+          47 分钟
         
       </span>
     
@@ -277,7 +277,20 @@
             
               <div class="markdown-body">
                 
-                <h2 id="MQ"><a href="#MQ" class="headerlink" title="MQ"></a>MQ</h2><h2 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h2><h4 id="讲一下RabbitMQ的组成部分"><a href="#讲一下RabbitMQ的组成部分" class="headerlink" title="讲一下RabbitMQ的组成部分"></a>讲一下RabbitMQ的组成部分</h4><p>核心概念</p>
+                <h2 id="MQ"><a href="#MQ" class="headerlink" title="MQ"></a>MQ</h2><h4 id="如何设计一个消息队列"><a href="#如何设计一个消息队列" class="headerlink" title="如何设计一个消息队列"></a>如何设计一个消息队列</h4><ul>
+<li>1、MQ：存储怎么设计。<ul>
+<li>使用高可用–磁盘存储：顺序读写、零拷贝技术</li>
+</ul>
+</li>
+<li>2、可伸缩：分布式<ul>
+<li>参考：Kafka  Broker\topic\partition</li>
+</ul>
+</li>
+<li>3、消息丢失：搭建多主多从（节点的主从架构）、多副本、Raft 协议   一台主服务器宕机，选举机制</li>
+<li>4、消息重复设计</li>
+<li>5、网络框架：Netty （推荐，高效的NIO框架）</li>
+</ul>
+<h2 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h2><h4 id="讲一下RabbitMQ的组成部分"><a href="#讲一下RabbitMQ的组成部分" class="headerlink" title="讲一下RabbitMQ的组成部分"></a>讲一下RabbitMQ的组成部分</h4><p>核心概念</p>
 <ul>
 <li>Broker：消息队列服务进程。此进程包括两个部分：Exchange和Queue。<ul>
 <li>Exchange：消息队列交换机。<strong>按一定的规则将消息路由转发到某个队列</strong>。</li>
@@ -378,7 +391,112 @@
 <h4 id="RabbitMQ-的高可用机制有了解过吗"><a href="#RabbitMQ-的高可用机制有了解过吗" class="headerlink" title="RabbitMQ 的高可用机制有了解过吗"></a>RabbitMQ 的高可用机制有了解过吗</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240228061905.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>参考回答；</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240228061948.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h2 id="RocketMQ"><a href="#RocketMQ" class="headerlink" title="RocketMQ"></a>RocketMQ</h2><p>to be contined….</p>
+<p>后面整理一下</p>
+<h2 id="RocketMQ"><a href="#RocketMQ" class="headerlink" title="RocketMQ"></a>RocketMQ</h2><ul>
+<li>1、讲一下 RocketMQ 的消息模型？</li>
+<li>2、讲一下 RocketMQ 的基本架构。</li>
+<li>3、消息的消费模式了解吗？</li>
+<li>4、如何保证消息的可用性&#x2F;可靠性&#x2F;不丢失呢</li>
+<li>5、消息重复问题如何处理。</li>
+<li>6、消息堆压问题如何解决</li>
+<li>7、顺序消息如何实现</li>
+<li>8、如何实现消息过滤</li>
+<li>9、RocketMQ 是如何实现延时消息的</li>
+<li>10、怎么实现消息的分布式事务的，半消息？</li>
+<li>11、死信队列了解吗</li>
+<li>12、如何保证RocketMQ的高可用？</li>
+<li>13、说一下RocketMQ的整体工作流程？</li>
+<li>14、消息刷盘怎么实现的呢？</li>
+</ul>
+<h4 id="RocketMQ是什么"><a href="#RocketMQ是什么" class="headerlink" title="RocketMQ是什么"></a>RocketMQ是什么</h4><h4 id="高性能"><a href="#高性能" class="headerlink" title="高性能"></a>高性能</h4><p>高性能主要的几个点：</p>
+<ul>
+<li>1、Netty 高效的 NIO 框架</li>
+<li>2、RocketMQ 大量使用多线程、异步</li>
+<li>3、采用零拷贝技术优化（MMAP）  性能提高50%</li>
+<li>4、采用文件存储，顺序读写</li>
+<li>5、锁优化（CAS 机制，无锁化）</li>
+<li>6、存储设计：读写分离</li>
+</ul>
+<h4 id="高可用如何保证"><a href="#高可用如何保证" class="headerlink" title="高可用如何保证"></a>高可用如何保证</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240307052103.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>1、主从，同步复制，异步刷盘，集群</li>
+</ul>
+<p>我们可以通过集群机构，其中 Broker 是主从，采用同步复制方式，同时采用异步刷盘。</p>
+<blockquote>
+<p>RocketMQ 的底层实现原理</p>
+</blockquote>
+<p>RocketMQ由NameServer集群、Producer集群、Consumer集群、Broker集群组成，消息生产和消费的大致原理如下：</p>
+<ul>
+<li>1、Broker在启动的时候向所有的NameServeri注册，并保持长连接，每30s发送一次心跳</li>
+<li>2、Producer在发送消息的时候从NameServer获取Broker服务器地址，根据负载均衡算法选择一台服务器来发送消息</li>
+<li>3、Conusmeri消费消息的时候同样从NameServer获取Broker地址，然后主动拉取消息来消费</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240306223833.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="RocketMQ-的存储机制-💣"><a href="#RocketMQ-的存储机制-💣" class="headerlink" title="RocketMQ 的存储机制  💣"></a>RocketMQ 的存储机制  💣</h4><p>RocketMQ 会将所有的消息发送放到 CommitLog 的一个文件中，同时会有一个监听，将相关一个记录（包括主题，偏移量，大小等信息) 放到 ComsumerQueue 中（CommitLog 的逻辑索引）</p>
+<p>这个理解有点问题</p>
+<hr>
+<p>消息存储结构：</p>
+<p>RocketMQ使用CommitLog文件来统一存储所有Broker上的消息。此外，为了支持快速的消息查询和消费，它还使用了ConsumeQueue和IndexFile。</p>
+<ul>
+<li><strong>CommitLog</strong>：这是一个大型的文件，所有发送到Broker的消息都会被追加到这个文件中。它不区分Topic或Queue，所有消息按照到达的顺序依次存储。</li>
+<li><strong>ConsumeQueue</strong>：为了提高消息消费的效率，RocketMQ为每个消息队列（Queue）创建了一个ConsumeQueue文件。ConsumeQueue是CommitLog的逻辑索引，包含了指向CommitLog中消息的指针，以及一些基本信息，如消息大小、消息位置等。</li>
+<li><strong>IndexFile</strong>：RocketMQ提供了一种索引机制，通过IndexFile来支持根据消息的Key或时间来查询消息。这使得根据消息属性进行高效查询成为可能。</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240307052424.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>1、生产者发送消息</li>
+<li>2、发送的消息会顺序记录到 Commit Log 中</li>
+<li>3、RocketMQ 会 通过 ReputMessageService ThreadLoop 进行监听，并将主题等信息（commit log offset、size、hashcode of tag ）通过哈希记录到 Comsume Queue 文件（默认是有 4 个文件）</li>
+<li>4、通过这种方式可以很好处理多主题的情况（只有一个写入文件 Commit Log）</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240307054839.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>这个解释也可以参考一下</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240307055349.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="顺序消息"><a href="#顺序消息" class="headerlink" title="顺序消息"></a>顺序消息</h4><ul>
+<li>全局顺序：全部事件的顺序处理</li>
+<li>分区顺序：单个事件的逻辑链顺序</li>
+</ul>
+<h4 id="消息堆积"><a href="#消息堆积" class="headerlink" title="消息堆积"></a>消息堆积</h4><p>参考： <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ua4y1N7P2/?p=21&spm_id_from=pageDriver&vd_source=6a019ecccfe7d8f62b9a3fe99c723bd0">https://www.bilibili.com/video/BV1ua4y1N7P2/?p=21&amp;spm_id_from=pageDriver&amp;vd_source=6a019ecccfe7d8f62b9a3fe99c723bd0</a></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240307135759.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>一般是采用增加消费者实例的方式</p>
+<p>个人理解：如果是应对生产快的，一方面是需要需要这个队列数量和消费者数量，然后应对堆积的情况，就要加一个中转的，把这个堆积的消息分散到多个Queu，然后多个Comsumer消费</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240307135814.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="延时队列"><a href="#延时队列" class="headerlink" title="延时队列"></a>延时队列</h4><p>RocketMQ 提供了能够延时发送的这种机制，会给定一个范围的时间，然后先暂存到 SCHEDULE_TOPIC_xxxx 的 Topic 中，时间到了再发送到需要发送的队列中。</p>
+<h4 id="Rocketmq中Broker的部署方式"><a href="#Rocketmq中Broker的部署方式" class="headerlink" title="Rocketmq中Broker的部署方式"></a>Rocketmq中Broker的部署方式</h4><ul>
+<li>单机 Broker</li>
+<li>多 Master </li>
+<li>多 Master 多 Slave （生产常见模式）【多主多从】</li>
+</ul>
+<h4 id="讲一下-消息刷盘"><a href="#讲一下-消息刷盘" class="headerlink" title="讲一下 消息刷盘"></a>讲一下 消息刷盘</h4><ul>
+<li>同步刷盘</li>
+<li>异步刷盘<ul>
+<li>一般会采用异步刷盘 + 同步复制的方式</li>
+<li>刷盘是指从内存到磁盘，占用的IO是比较大的，而同步复制是内存到内存，因此耗时会比较少</li>
+</ul>
+</li>
+</ul>
+<h4 id="路由注册"><a href="#路由注册" class="headerlink" title="路由注册"></a>路由注册</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240307140637.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="路由剔除"><a href="#路由剔除" class="headerlink" title="路由剔除"></a>路由剔除</h4><ul>
+<li>定时扫描判断该路由节点是否可用</li>
+</ul>
+<h4 id="讲一下使用-RocketMQ-如何实现分布式事务"><a href="#讲一下使用-RocketMQ-如何实现分布式事务" class="headerlink" title="讲一下使用 RocketMQ 如何实现分布式事务"></a>讲一下使用 RocketMQ 如何实现分布式事务</h4><h6 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h6><p>问这道题目一般是要回答一下RocketMQ 实现分布式事务的实现机制：事务消息加上事务反查机制。</p>
+<ul>
+<li>1、系统 A 会发送一条消息到 MQ 确认通信没问题</li>
+<li>2、事务正常执行后会发送一条 commit 消息给 MQ，如果没发确认的话，RocketMQ 会通过事务回查机制确认事务是否正常执行</li>
+<li>3、判断正常执行完毕后，会发送确认消息给系统B。</li>
+</ul>
+<p>建议复习分布式事务的时候也一起和其他实现方式一起复习下。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240307141544.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h5 id="事务回查机制"><a href="#事务回查机制" class="headerlink" title="事务回查机制"></a>事务回查机制</h5><p>一般会有一个定时机制，然后如果长时间没有收到二次确认，会进行事务回查</p>
+<ul>
+<li>这个是生产者反而是消费者，收到这条消息后，通过本地实现的 checker 接口的 checkLocalTransaction 方法进行检查本地事务是否执行完成，并将结果告知 MQ 服务器。</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240307155659.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="高可用如何保证-1"><a href="#高可用如何保证-1" class="headerlink" title="高可用如何保证"></a>高可用如何保证</h4><p>我们可以通过集群机构，其中 Broker 是主从，采用同步复制方式，同时采用异步刷盘。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240307052103.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>1、主从，同步复制，异步刷盘，集群</li>
+</ul>
 
                 
               </div>
