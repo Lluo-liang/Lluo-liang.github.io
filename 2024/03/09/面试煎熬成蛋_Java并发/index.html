@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          13k 字
+          14k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          112 分钟
+          114 分钟
         
       </span>
     
@@ -676,7 +676,9 @@
 <li>JMM把内存分为两块，一块是私有线程的工作区域（工作内存），一块是所有线程的共享区域（主内存）</li>
 <li>线程跟线程之间是相互隔离，线程跟线程交互需要通过主内存</li>
 </ul>
-<h4 id="谈一下-volatile"><a href="#谈一下-volatile" class="headerlink" title="谈一下 volatile"></a>谈一下 volatile</h4><p>如果代码中存在循环，JVM 会对 JIT 进行代码优化（给 stop 变量一个固定值）</p>
+<h4 id="谈一下-volatile"><a href="#谈一下-volatile" class="headerlink" title="谈一下 volatile"></a>谈一下 volatile</h4><p>待看一下  to be contined…</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240311225430.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>如果代码中存在循环，JVM 会对 JIT 进行代码优化（给 stop 变量一个固定值）</p>
 <p>这种情况下可见性并没有保证，一种方案是修改 vm 参数（不建议），还有一种方案就是变量前面加 volatile 进行修饰。</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304215050.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304215458.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
@@ -688,14 +690,16 @@
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304213848.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="乐观锁和悲观锁的区别"><a href="#乐观锁和悲观锁的区别" class="headerlink" title="乐观锁和悲观锁的区别"></a>乐观锁和悲观锁的区别</h4><p>乐观锁：乐观的看待并发修改问题，其他线程不会修改共享变量，如果改了，就自旋等待。</p>
 <p>悲观锁：悲观的认为别人的线程都不是好人，我获取这把锁后，你们都不能访问了。</p>
-<h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3><ul>
+<h4 id="你有用过-Java-里面的锁吗"><a href="#你有用过-Java-里面的锁吗" class="headerlink" title="你有用过 Java 里面的锁吗"></a>你有用过 Java 里面的锁吗</h4><p>synchronized 和 ReentantLock 的用法讲一下</p>
+<h4 id="实现层面：synchronized-和-ReentantLock-有什么区别"><a href="#实现层面：synchronized-和-ReentantLock-有什么区别" class="headerlink" title="实现层面：synchronized 和  ReentantLock 有什么区别"></a>实现层面：synchronized 和  ReentantLock 有什么区别</h4><h4 id="synchronized-修饰普通方法和修饰静态方法有什么区别"><a href="#synchronized-修饰普通方法和修饰静态方法有什么区别" class="headerlink" title="synchronized 修饰普通方法和修饰静态方法有什么区别"></a>synchronized 修饰普通方法和修饰静态方法有什么区别</h4><h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3><ul>
 <li>1、说一下线程池的核心参数（线程池的执行原理知道吗）</li>
 <li>2、线程池中有哪些常见的阻塞队列</li>
 <li>3、如何确认核心线程数</li>
 <li>4、线程池的种类有哪些</li>
 <li>5、为什么不建议使用 Executor 创建线程池</li>
 </ul>
-<h4 id="线程池的核心参数"><a href="#线程池的核心参数" class="headerlink" title="线程池的核心参数"></a>线程池的核心参数</h4><h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ul>
+<h4 id="线程池的核心参数"><a href="#线程池的核心参数" class="headerlink" title="线程池的核心参数"></a>线程池的核心参数</h4><h4 id="核心线程数可以为零吗"><a href="#核心线程数可以为零吗" class="headerlink" title="核心线程数可以为零吗"></a>核心线程数可以为零吗</h4><h4 id="怎么判断这个线程是可以被回收的"><a href="#怎么判断这个线程是可以被回收的" class="headerlink" title="怎么判断这个线程是可以被回收的"></a>怎么判断这个线程是可以被回收的</h4><h4 id="线程池的状态有哪些"><a href="#线程池的状态有哪些" class="headerlink" title="线程池的状态有哪些"></a>线程池的状态有哪些</h4><h4 id="Shutdown-和-shutdownnow-的区别，是通过什么方式关闭"><a href="#Shutdown-和-shutdownnow-的区别，是通过什么方式关闭" class="headerlink" title="Shutdown 和 shutdownnow 的区别，是通过什么方式关闭"></a>Shutdown 和 shutdownnow 的区别，是通过什么方式关闭</h4><h4 id="怎么将一个正在运行的线程关闭，什么样的线程是可以被中断的"><a href="#怎么将一个正在运行的线程关闭，什么样的线程是可以被中断的" class="headerlink" title="怎么将一个正在运行的线程关闭，什么样的线程是可以被中断的"></a>怎么将一个正在运行的线程关闭，什么样的线程是可以被中断的</h4><h4 id="线程中线程池的使用"><a href="#线程中线程池的使用" class="headerlink" title="线程中线程池的使用"></a>线程中线程池的使用</h4><p>直接使用<code>@Autowired</code>注入一个<code>ThreadPoolTaskExecutor</code>实例通常意味着你要使用Spring的默认配置</p>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ul>
 <li>1、讲述一下你们项目中哪里用到了线程池（异步线程）</li>
 <li>2、如何控制某个方法允许并发访问线程的数量</li>
 <li>3、谈谈你对 ThreadLocal 的理解</li>

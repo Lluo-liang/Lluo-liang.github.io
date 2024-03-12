@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.6k 字
+          8k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          47 分钟
+          67 分钟
         
       </span>
     
@@ -277,7 +277,13 @@
             
               <div class="markdown-body">
                 
-                <h2 id="MQ"><a href="#MQ" class="headerlink" title="MQ"></a>MQ</h2><h4 id="如何设计一个消息队列"><a href="#如何设计一个消息队列" class="headerlink" title="如何设计一个消息队列"></a>如何设计一个消息队列</h4><ul>
+                <h2 id="MQ"><a href="#MQ" class="headerlink" title="MQ"></a>MQ</h2><h4 id="为什么使用消息队列"><a href="#为什么使用消息队列" class="headerlink" title="为什么使用消息队列"></a>为什么使用消息队列</h4><p>MQ 使用的场景有很多，核心的场景是：解耦、异步、削峰；</p>
+<h4 id="技术选型？"><a href="#技术选型？" class="headerlink" title="技术选型？"></a>技术选型？</h4><ul>
+<li>Kafka：直接说不太了解</li>
+<li>RocketMQ：高性能，低延迟，主要还是围绕可靠性和持久性，说当时考虑到消息保证不丢失，选用了 RocketMQ </li>
+<li>RabbitMQ：并发量也不低，社区很活跃</li>
+</ul>
+<h4 id="如何设计一个消息队列"><a href="#如何设计一个消息队列" class="headerlink" title="如何设计一个消息队列"></a>如何设计一个消息队列</h4><ul>
 <li>1、MQ：存储怎么设计。<ul>
 <li>使用高可用–磁盘存储：顺序读写、零拷贝技术</li>
 </ul>
@@ -290,7 +296,17 @@
 <li>4、消息重复设计</li>
 <li>5、网络框架：Netty （推荐，高效的NIO框架）</li>
 </ul>
-<h2 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h2><h4 id="讲一下RabbitMQ的组成部分"><a href="#讲一下RabbitMQ的组成部分" class="headerlink" title="讲一下RabbitMQ的组成部分"></a>讲一下RabbitMQ的组成部分</h4><p>核心概念</p>
+<h2 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h2><ul>
+<li>1、RabbitMQ如何保证消息可靠性传输</li>
+<li>2、RabbitMQ如何保证消息不丢失</li>
+<li>3、RabbitMQ如何处理消息堆积</li>
+<li>4、RabbitMQ如何保证消息有序</li>
+<li>5、RabbitMQ如何避免消息重复消费</li>
+<li>6、RabbitMQ的死信队列和延迟队列</li>
+<li>7、RabbitMQ的⼯作队列模式</li>
+<li>8、RabbitMQ的高可用</li>
+</ul>
+<h4 id="讲一下RabbitMQ的组成部分"><a href="#讲一下RabbitMQ的组成部分" class="headerlink" title="讲一下RabbitMQ的组成部分"></a>讲一下RabbitMQ的组成部分</h4><p>核心概念</p>
 <ul>
 <li>Broker：消息队列服务进程。此进程包括两个部分：Exchange和Queue。<ul>
 <li>Exchange：消息队列交换机。<strong>按一定的规则将消息路由转发到某个队列</strong>。</li>
@@ -300,70 +316,136 @@
 <li>Producer：消息生产者。生产方客户端将消息同交换机路由发送到队列中。</li>
 <li>Consumer：消息消费者。消费队列中存储的消息。</li>
 </ul>
-<h4 id="什么是死信交换机"><a href="#什么是死信交换机" class="headerlink" title="什么是死信交换机"></a>什么是死信交换机</h4><blockquote>
-<p>什么是死信交换机</p>
-</blockquote>
-<p>死信交换机（Dead-Letter Exchange, DLX）是RabbitMQ中用于处理无法正常投递的消息的一种机制。</p>
-<p>当消息在队列中变成死信（Dead Letter）后，可以被自动重新路由到另一个交换机，这个交换机就是所谓的死信交换机。</p>
-<blockquote>
-<p>消息变成死信的情况</p>
-</blockquote>
-<p>消息变成死信的情况通常包括：</p>
-<ol>
+<h4 id="说一下-RabbitMQ-的工作流程"><a href="#说一下-RabbitMQ-的工作流程" class="headerlink" title="说一下 RabbitMQ 的工作流程"></a>说一下 RabbitMQ 的工作流程</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240311230336.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>建立连接</li>
+<li>生产者<ul>
+<li>声明交换机类型、名称、是否持久化等</li>
+<li>发送消息</li>
+</ul>
+</li>
+<li>交换机<ul>
+<li>交换机接收消息，进行消息路由</li>
+</ul>
+</li>
+<li>消费者<ul>
+<li>订阅消息（监听队列）</li>
+<li>接收消息，业务处理</li>
+</ul>
+</li>
+</ul>
+<h4 id="讲一下-RabbitMQ-中常用的交换机类型"><a href="#讲一下-RabbitMQ-中常用的交换机类型" class="headerlink" title="讲一下 RabbitMQ 中常用的交换机类型"></a>讲一下 RabbitMQ 中常用的交换机类型</h4><p>（交换机 →  队列）</p>
+<ul>
+<li>Direct Exchange<ul>
+<li><code>binding key</code> 与消息的 <code>routing key</code> 完全匹配队列</li>
+</ul>
+</li>
+<li>Topic Exchange<ul>
+<li>模糊匹配</li>
+</ul>
+</li>
+<li>Fanout Exchange<ul>
+<li>广播（忽略 <code>routing key</code> ）</li>
+</ul>
+</li>
+<li>Headers Exchange<ul>
+<li>不依赖 <code>routing key</code>，头部属性匹配</li>
+</ul>
+</li>
+</ul>
+<h4 id="RabbitMQ的死信队列和延迟队列"><a href="#RabbitMQ的死信队列和延迟队列" class="headerlink" title="RabbitMQ的死信队列和延迟队列"></a>RabbitMQ的死信队列和延迟队列</h4><ul>
+<li>死信交换机<ul>
+<li>死信交换机（Dead-Letter Exchange, DLX）是RabbitMQ中用于处理无法正常投递的消息的一种机制。</li>
+<li>当消息在队列中变成死信（Dead Letter）后，可以被自动重新路由到另一个交换机，这个交换机就是所谓的死信交换机。</li>
+<li>消息变成死信的情况通常包括：<ul>
+<li><ol>
 <li>消息被拒绝（Basic.Reject&#x2F;Basic.Nack）并且设置了requeue参数为false，不重新入队。</li>
+</ol>
+</li>
+<li><ol start="2">
 <li>消息TTL过期（消息设置了生存时间，超过这个时间还未被消费），超时无人消费</li>
+</ol>
+</li>
+<li><ol start="3">
 <li>队列达到最大长度（队列满了，无法再添加更多消息到队列中），最早的消息可能成为死信</li>
 </ol>
-<blockquote>
-<p>配置死信交换机</p>
-</blockquote>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240228055150.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>使用死信交换机需要进行以下配置：</p>
-<ul>
-<li><strong>声明死信交换机</strong>：首先需要声明一个交换机作为死信交换机，可以是任何类型（Direct, Topic, Fanout等）。</li>
-<li><strong>声明队列并指定死信交换机</strong>：在声明队列时，通过arguments参数设置<code>x-dead-letter-exchange</code>属性为死信交换机的名称。可选地，还可以设置<code>x-dead-letter-routing-key</code>来指定发送到死信交换机的消息将使用的路由键。</li>
-<li><strong>绑定死信队列</strong>：如果需要，可以创建一个或多个专门的队列作为死信队列，并将其绑定到死信交换机上。这样，成为死信的消息就会被路由到这些队列中。</li>
+</li>
 </ul>
-<blockquote>
-<p>使用场景</p>
-</blockquote>
-<ul>
-<li><strong>错误处理</strong>：死信交换机和死信队列常用于错误处理。当消息因为某种原因无法被正常消费时，将其路由到死信队列，后续可以对这些消息进行分析和处理。</li>
-<li><strong>延迟消息</strong>：通过设置消息的TTL和死信交换机，可以实现延迟消息的功能。消息首先被发送到一个普通队列中，在过期后变成死信，然后被发送到死信交换机，并最终路由到最终的队列中被消费。</li>
-<li><strong>消息重试</strong>：在处理消息时，如果因为临时的问题导致消息处理失败，可以将消息发送到死信交换机，再通过特定的逻辑将消息重新投递到原队列或另一个队列进行重试。</li>
+</li>
 </ul>
-<p>简单示例（在Spring AMQP中配置一个死信交换机和队列）：</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-meta">@Bean</span><br><span class="hljs-keyword">public</span> <span class="hljs-title class_">Queue</span> <span class="hljs-title function_">myQueue</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title class_">QueueBuilder</span>.<span class="hljs-title function_">durable</span>(<span class="hljs-string">&quot;myQueue&quot;</span>) <span class="hljs-comment">//指定队列名称，并持久化</span><br>		    .<span class="hljs-title function_">ttl</span>(<span class="hljs-number">10000</span>)  <span class="hljs-comment">//设置队列的超时时间，10秒</span><br>		    <span class="hljs-comment">// 设置死信交换机的名称，当消息变成死信后将被路由到此交换机</span><br>            .<span class="hljs-title function_">withArgument</span>(<span class="hljs-string">&quot;x-dead-letter-exchange&quot;</span>, <span class="hljs-string">&quot;myDlxExchange&quot;</span>) <br>            <span class="hljs-comment">// 设置死信交换机的路由键，指定消息从死信交换机路由到死信队列时使用的路由键</span><br>            .<span class="hljs-title function_">withArgument</span>(<span class="hljs-string">&quot;x-dead-letter-routing-key&quot;</span>, <span class="hljs-string">&quot;dlx.routing.key&quot;</span>)<br>            .<span class="hljs-title function_">build</span>();<br>&#125;<br><br>------<br><br><span class="hljs-comment">// 声明死信交换机</span><br><span class="hljs-meta">@Bean</span><br><span class="hljs-keyword">public</span> <span class="hljs-title class_">DirectExchange</span> <span class="hljs-title function_">myDlxExchange</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DirectExchange</span>(<span class="hljs-string">&quot;myDlxExchange&quot;</span>);<br>&#125;<br><br><span class="hljs-comment">// 声明死信队列</span><br><span class="hljs-meta">@Bean</span><br><span class="hljs-keyword">public</span> <span class="hljs-title class_">Queue</span> <span class="hljs-title function_">myDlxQueue</span>(<span class="hljs-params"></span>) &#123;<br>	<span class="hljs-comment">// 使用QueueBuilder构建一个持久化的队列&quot;myDlxQueue&quot;，这个队列用于接收死信消息</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-title class_">QueueBuilder</span>.<span class="hljs-title function_">durable</span>(<span class="hljs-string">&quot;myDlxQueue&quot;</span>).<span class="hljs-title function_">build</span>();<br>&#125;<br><br><span class="hljs-comment">// 将死信队列绑定到死信交换机</span><br><span class="hljs-meta">@Bean</span><br><span class="hljs-keyword">public</span> <span class="hljs-title class_">Binding</span> <span class="hljs-title function_">myDlxBinding</span>(<span class="hljs-params"></span>) &#123;<br>	<span class="hljs-comment">// 使用 BindingBuilder 将死信队列&quot;myDlxQueue&quot;绑定到死信交换机&quot;myDlxExchange&quot; </span><br>	<span class="hljs-comment">// 绑定键为&quot;dlx.routing.key&quot;，表示只有路由键匹配此值的消息才会被路由到&quot;myDlxQueue&quot;队列</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-title class_">BindingBuilder</span>.<span class="hljs-title function_">bind</span>(<span class="hljs-title function_">myDlxQueue</span>()).<span class="hljs-title function_">to</span>(<span class="hljs-title function_">myDlxExchange</span>()).<span class="hljs-title function_">with</span>(<span class="hljs-string">&quot;dlx.routing.key&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>这个配置声明了一个队列<code>myQueue</code>和一个死信交换机<code>myDlxExchange</code>，以及一个死信队列<code>myDlxQueue</code>。当<code>myQueue</code>中的消息变成死信后，它们会被路由到<code>myDlxQueue</code>中。</p>
-<p>总之，死信交换机提供了一种有效的方式来处理RabbitMQ中无法正常消费的消息，使得系统能够更加健壮和可靠。</p>
-<h4 id="延迟队列-🚩-💣"><a href="#延迟队列-🚩-💣" class="headerlink" title="延迟队列  🚩 💣"></a>延迟队列  🚩 💣</h4><p>RabbitMQ 的延迟队列是通过死信交换机 + TTL （生存时间）来实现的；</p>
-<ul>
-<li>延迟队列：进入队列的消息会被延迟消费的队列</li>
+</li>
+<li>延迟队列<ul>
+<li>RabbitMQ本身并不直接支持延迟队列，但可以通过以下几种方式间接实现：<ul>
+<li>一种方式是：RabbitMQ 的延迟队列通过死信交换机 + TTL （生存时间）来实现的；</li>
+<li>还有一种方式是使用 RabbitMQ 的延迟队列相关的一个插件，叫做：DelayExchange，通过这种方式的话只需要在声明交互机的时候，指定这个就是死信交换机，然后在发送消息的时候直接指定超时时间就行。</li>
 </ul>
-<p>延迟队列的使用场景较多，比如：超市订单、限时优惠、定时发布等</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402271543252.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+</li>
+</ul>
+</li>
+</ul>
 <hr>
-<p>在 RabbitMQ 中，延迟队列的使用是有一个插件：叫做：DelayExchange</p>
-<p>地址在官方插件社区</p>
-<p>插件下载地址： <a target="_blank" rel="noopener" href="https://github.com/rabbitmq/rabbitmq-delayed-message-exchange">https://github.com/rabbitmq/rabbitmq-delayed-message-exchange</a></p>
-<p>使用示例：</p>
+<p>延迟队列插件使用</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240228060325.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="RabbitMQ-中延迟队列有了解过吗？"><a href="#RabbitMQ-中延迟队列有了解过吗？" class="headerlink" title="RabbitMQ 中延迟队列有了解过吗？"></a>RabbitMQ 中延迟队列有了解过吗？</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240228060447.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>参考回答：</p>
-<p>主要还是围绕了死信队列的产生 + TTL 机制</p>
-<p>怎么实现的和具体使用场景感觉需要看一个示例，后面看了 to be contined….</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240228060500.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="怎么保证高可用-🍎"><a href="#怎么保证高可用-🍎" class="headerlink" title="怎么保证高可用 🍎"></a>怎么保证高可用 🍎</h4><p>一般会使用集群模式，在 RabbitMQ 中，分为了普通集群模式、镜像集群模式、仲裁队列模式</p>
+<p>普通集群模式（标准集群）</p>
+<ul>
+<li>1、在集群的各个节点共享部分数据</li>
+<li>2、当访问集群某个节点，如果队列不在该节点，会从数据所在节点传递到当前节点并返回</li>
+<li>3、队列所在节点宕机，队列中的消息就会丢失<ul>
+<li>这种模式并不能包括高可用</li>
+<li>实际上还是为了提高吞吐量的</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240311190046.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>镜像集群：</p>
+<ul>
+<li>本质上是主从模式<ul>
+<li>交换机、队列、队列中的消息会在各个 mq 的镜像节点之间同步备份。</li>
+<li>创建队列的节点被称为该队列的<strong>主节点</strong>，备份到的其它节点叫做该队列的镜像节点。</li>
+<li>一个队列的主节点可能是另一个队列的镜像节点</li>
+<li>所有操作都是主节点完成，然后同步给镜像节点</li>
+<li>主宕机后，镜像节点会替代成新的主</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240311190304.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>仲裁队列</p>
+<ul>
+<li>和镜像模式不同的是，他添加了一个主从基于 Raft 协议的方式，使得消息同步变为了强一致性。</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240311190500.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<hr>
+<p>参考模拟问答：</p>
+<blockquote>
+<p>面试官：RabbitMQ的高可用机制有了解过嘛</p>
+</blockquote>
+<p>候选人：嗯，熟悉的；我们当时项目在生产环境下，使用的集群，当时搭建是镜像模式集群，使用了3台机器。<br>镜像队列结构是一主多从，所有操作是主节点完成，然后同步给镜像节点，如果主节点宕机后，镜像节点会替代成新的主节点，不过在主从同步完成前，主节点就己经宕机，可能出现数据丢失。</p>
+<blockquote>
+<p>面试官：那出现丢数据怎么解决呢？</p>
+</blockquote>
+<p>候选人：我们可以采用仲裁队列，与镜像队列一样，都是主从模式，支持主从数据同步，主从同步基于 Raft 协<br>议，强一致。并且使用起来也非常简单，不需要额外的配置，在声明队列的时候只要指定这个是仲裁队列即可</p>
 <h3 id="生产问题"><a href="#生产问题" class="headerlink" title="生产问题"></a>生产问题</h3><h4 id="如何保证消息不丢失"><a href="#如何保证消息不丢失" class="headerlink" title="如何保证消息不丢失"></a>如何保证消息不丢失</h4><ul>
+<li>发送消息过程中不丢失：消息 →  队列；队列本身，队列 →  消费者<ul>
 <li>开启生产者确认机制，确保生产者的消息能到达队列</li>
 <li>开启持久化功能，确保消息末消费前在队列中不会丢失</li>
 <li>开启消费者确认机制为auto,由spring确认消息处理成功后完成ack</li>
 <li>开启消费者失数重试机别（重试次数一般设置为3），多次重试失数后将消息投递到异常交换机，交由人工处理</li>
 </ul>
-<p>面试者回答参考：</p>
-<p>要求确保消息的高可用情景：实现Redis 的双写一致性采用了RabbitMQ 进行异步更新&#x2F;删除操作</p>
-<p>回答见下：👇</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402271528430.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+</li>
+</ul>
+<hr>
+<p>参考模拟问答：</p>
+<blockquote>
+<p>面试官：RabbitMQ-如何保证消息不丢失</p>
+</blockquote>
+<p>候选人：我们当时 MySQL 和 Redis 的数据双写一致性是采用的 RabbitMQ 实现同步，这里面是要求了消息的高可用性，因此需要保证消息不进行丢失。</p>
+<p>当时主要是从三个层面考虑：</p>
+<ul>
+<li>第一个是开启生产者确认机制，确保生产者的酒息能列达队列，如果报错可以先记录列日志中，再去修复数据</li>
+<li>第二个是开启持久化功能，确保消息未消费前在队列中不会丢失，其中的交换机、队列、和消息都要做持久化</li>
+<li>第三个是开启消费者确认机制为auto, 由 spring 确认消息处理成功后完成 ack；当然也需要设置一定的重试次数，我们当时是设置了 3 次，如果重试 3 次还没有收到消息，就将失败后的消息投递到异常交换机，交给人工处理。</li>
+</ul>
 <h4 id="消息重复消费问题怎么解决"><a href="#消息重复消费问题怎么解决" class="headerlink" title="消息重复消费问题怎么解决"></a>消息重复消费问题怎么解决</h4><p>出现消息重复消费的问题一般是在网络抖动或者消息者挂掉，由于开启了消费者确认机制，导致消息重发</p>
 <p>一般解决方式有两种：</p>
 <ul>
@@ -372,9 +454,19 @@
 </ul>
 <p>一般回答可以倾向回答第一种回答。</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402271532774.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>参考回答：</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402271535282.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="RabbitQM-如果有100万消息堆积在MQ，如何解决（消息堆积怎么解决）"><a href="#RabbitQM-如果有100万消息堆积在MQ，如何解决（消息堆积怎么解决）" class="headerlink" title="RabbitQM 如果有100万消息堆积在MQ，如何解决（消息堆积怎么解决）"></a>RabbitQM 如果有100万消息堆积在MQ，如何解决（消息堆积怎么解决）</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240228060721.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<hr>
+<p>参考模拟问答：</p>
+<blockquote>
+<p>面试官，RabbitMQ 消息的重复消费问题你们是如何解决的</p>
+</blockquote>
+<p>候选人：这个我还真遇到过。是这样的，我们当时消费者是设置了自诗确认机制，当业务还没来得及给 MQ 确认的时候。服务岩机了。导数服务重启之后，又进行了一次消费消息。这样就重复消贵了。</p>
+<p>因为我们当时处理的支付（订单|业务唯一标识），它有一个业务的唯一标识。我们再处理消息时，先到数据库查询一下，这个数据是否在，如是不存在，说明设有处理过，这个时候就可以正常处理这个消息了，如果己经存在这个数据了，则说明消息重复消费了，我们就不需要再消费了。</p>
+<blockquote>
+<p>面试官：你还知道其他的解决方案吗</p>
+</blockquote>
+<p>候选人：我想一下，其实这个其是典型的幂等的问题，比知，redis 分布式锁、数据库的锁都是可以的。</p>
+<h4 id="消息堆积问题怎么解决"><a href="#消息堆积问题怎么解决" class="headerlink" title="消息堆积问题怎么解决"></a>消息堆积问题怎么解决</h4><p>RabbitMQ 如果有100万消息堆积在MQ，如何解决？</p>
+<p>当生产者发送消息的速度超过了消费者处理消息的速度，就会导致队列中的消息堆积，直到队列存储消息达到上限。之后发送的消息就会成为死信，可能会被丢弃，这就是消息堆积问题。</p>
 <p>解决消息堆积有三种种思路：</p>
 <ul>
 <li>增加更多消费者，提高消费速度</li>
@@ -382,16 +474,31 @@
 <li>扩大队列容积，提高堆积上限，采用惰性队列<ul>
 <li>在声明队列的时候可以设置属性x-queue-mode为lazy,即为惰性队列</li>
 <li>基于磁盘存储，消息上限高</li>
-<li>性能比较稳定，但基于磁盘存储，受限于磁盘 IO,时效性会降低<br>·<br>参考回答：</li>
+<li>性能比较稳定，但基于磁盘存储，受限于磁盘 IO,时效性会降低</li>
 </ul>
 </li>
 </ul>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240228061038.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>这里需要待优化整合一下 to be contined….</p>
-<h4 id="RabbitMQ-的高可用机制有了解过吗"><a href="#RabbitMQ-的高可用机制有了解过吗" class="headerlink" title="RabbitMQ 的高可用机制有了解过吗"></a>RabbitMQ 的高可用机制有了解过吗</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240228061905.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>参考回答；</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240228061948.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>后面整理一下</p>
+<p>惰性队列：惰性队列通过改变消息存储的策略，将消息尽可能地存储在磁盘上，而不是保留在内存中，从而减轻对内存的压力。</p>
+<hr>
+<p>参考模拟问答：</p>
+<blockquote>
+<p>面试官：如果有100万消息堆积在MQ,如何解决？</p>
+</blockquote>
+<p>候选人：</p>
+<ul>
+<li>我在实际的开发中，没遇到过这种情况，不过，如果发生了堆积的问题，解决方案也所有很多的</li>
+<li>第一：提高消费者的消费能力，可以使用多线程消费任务</li>
+<li>第二：增加更多消费者，提高消费速度；使用工作队列模式设置多个消费者消费消费同一个队列中的消息</li>
+<li>第三：扩大队列容积，提高堆积上限<ul>
+<li>可以使用RabbitMO惰性队列，情性队列的好处主要是<ul>
+<li>①接收到消息后直接存入磁盘而非内存</li>
+<li>②消费者要消费消息时才会从磁盘中读取并加载到内存</li>
+<li>③支持数百万条的消息存储</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h2 id="RocketMQ"><a href="#RocketMQ" class="headerlink" title="RocketMQ"></a>RocketMQ</h2><ul>
 <li>1、讲一下 RocketMQ 的消息模型？</li>
 <li>2、讲一下 RocketMQ 的基本架构。</li>
@@ -408,7 +515,171 @@
 <li>13、说一下RocketMQ的整体工作流程？</li>
 <li>14、消息刷盘怎么实现的呢？</li>
 </ul>
-<h4 id="RocketMQ是什么"><a href="#RocketMQ是什么" class="headerlink" title="RocketMQ是什么"></a>RocketMQ是什么</h4><h4 id="高性能"><a href="#高性能" class="headerlink" title="高性能"></a>高性能</h4><p>高性能主要的几个点：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240311232709.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="RocketMQ-的-主要组件"><a href="#RocketMQ-的-主要组件" class="headerlink" title="RocketMQ 的 主要组件"></a>RocketMQ 的 主要组件</h4><p>基础组件有：NameServer 注册中心、Broker 消息队列服务器、Producer、Consumer</p>
+<ul>
+<li>NameServer<ul>
+<li>主要是⽤于服务注册以及Broker路由</li>
+</ul>
+</li>
+<li>Broker<ul>
+<li>实际处理消息存储、转发的服务</li>
+</ul>
+</li>
+<li>Producer<ul>
+<li>发送消息到Broker端</li>
+</ul>
+</li>
+<li>Consumer<ul>
+<li>接收Broker端推送的消息或主动从Broker端拉取消息</li>
+</ul>
+</li>
+<li>Topic<ul>
+<li>RocketMQ根据主题进⾏消息分类，⽣产端发送消息时需要指 定主题</li>
+</ul>
+</li>
+<li>MessageQueue<ul>
+<li>相当于Topic的分区，⼀个Topic默认4个MessageQueue</li>
+</ul>
+</li>
+</ul>
+<h4 id="Rocketmq中Broker的部署方式"><a href="#Rocketmq中Broker的部署方式" class="headerlink" title="Rocketmq中Broker的部署方式"></a>Rocketmq中Broker的部署方式</h4><ul>
+<li>单机 Broker</li>
+<li>多 Master </li>
+<li>多 Master 多 Slave （生产常见模式）【多主多从】</li>
+</ul>
+<h4 id="RocketMQ-的工作流程"><a href="#RocketMQ-的工作流程" class="headerlink" title="RocketMQ 的工作流程"></a>RocketMQ 的工作流程</h4><p>RocketMQ由NameServer集群、Producer集群、Consumer集群、Broker集群组成，消息生产和消费的大致原理如下：</p>
+<ul>
+<li>1、Broker在启动的时候向所有的NameServeri注册，并保持长连接，每30s发送一次心跳</li>
+<li>2、Producer在发送消息的时候从NameServer获取Broker服务器地址，根据负载均衡算法选择一台服务器来发送消息</li>
+<li>3、Conusmeri消费消息的时候同样从NameServer获取Broker地址，然后主动拉取消息来消费</li>
+</ul>
+<h4 id="路由注册"><a href="#路由注册" class="headerlink" title="路由注册"></a>路由注册</h4><ul>
+<li>NameServer每隔1Os扫描brokerLiveTable,检查上次心跳时间与当前时间的时差，如果超过120s,认为broker不可以用，移除路由表中broker相关所有信息</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240307140637.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="路由剔除"><a href="#路由剔除" class="headerlink" title="路由剔除"></a>路由剔除</h4><ul>
+<li>定时扫描判断该路由节点是否可用</li>
+</ul>
+<h4 id="RocketMQ为什么要放弃Zookeeper"><a href="#RocketMQ为什么要放弃Zookeeper" class="headerlink" title="RocketMQ为什么要放弃Zookeeper"></a>RocketMQ为什么要放弃Zookeeper</h4><p>RocketMQ主要是保障最终⼀致性，它只需要⼀个轻量级的元数据服 务就⾏了，⽽Zookeeper是强⼀致性的解决⽅案，并且少使⽤⼀个中 间件可以减少维护成本</p>
+<p>还有一方面RocketMQ 是设计是让注册中心尽量轻量化，使得消息发送弱依赖注册中心。</p>
+<h4 id="讲一下-RocketMQ-的消息模型？"><a href="#讲一下-RocketMQ-的消息模型？" class="headerlink" title="讲一下 RocketMQ 的消息模型？"></a>讲一下 RocketMQ 的消息模型？</h4><p>消息队列有两种模型：<strong>队列模型</strong>和<strong>发布&#x2F;订阅模型</strong>。RocketMQ 是后者。</p>
+<h4 id="讲一下-RocketMQ-消息的常用类型"><a href="#讲一下-RocketMQ-消息的常用类型" class="headerlink" title="讲一下 RocketMQ 消息的常用类型"></a>讲一下 RocketMQ 消息的常用类型</h4><ul>
+<li>顺序消息<ul>
+<li>顺序消息只能保证局部消息有序，不能保证全局有序，<ul>
+<li>实现全局 有序 可以 ⽣产端将⼀批消息有序发往MessageQueue，消费端通 过锁队列的⽅式，每次只拿⼀个MessageQueue⾥的消息</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>广播消息<ul>
+<li>⼴播消息并没有特定的消费者，因为这涉及到消费者的集群消费 模式，默认是集群模式<ul>
+<li>集群模式<ul>
+<li>⼀个消息只会被⼀个消费组中的⼀个消费者处理⼀次<ul>
+<li>Broker端会给每个消费者组维护⼀个统⼀的offset来保 证同⼀个消费组内只会被消费⼀次</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>广播模式<ul>
+<li>⼀个消息会被推送给所有消费者消费，不再关⼼消费组<ul>
+<li>Broker端只管推消息，消费端⾃⼰维护offset</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>延迟消息<ul>
+<li>默认提供了18个延迟级别，延迟消息的难点其实是性能，需要不 断进⾏定时轮询，全部扫描所有消息是不可能的</li>
+</ul>
+</li>
+<li>批量消息<ul>
+<li>只能对同⼀topic下的消息进⾏批量发送，不⽀持延迟消息，以及 批量消息的⼤⼩不超过1MB，超过了需要⾃⾏拆分</li>
+</ul>
+</li>
+<li>过滤消息<ul>
+<li>消费端可以通过⼀定规则匹配topic下需要的消息，⽀持简单过滤 以及SQL过滤 </li>
+<li>消息过滤在消费者端和Broker端都可以做，消费者端进⾏过滤可 以保障消息过滤的可控性，⽽Broker端过滤可以减少不必要数据 的⽹络IO(只把消费者端需要的消息发送出去就⾏)</li>
+</ul>
+</li>
+<li>事务消息<ul>
+<li>通过事务消息可以确保上下游的数据⼀致性</li>
+<li>实现思路<ul>
+<li>⽣产者端将消息发往MQ服务，MQ服务将消息持久化后，向⽣ 产端反馈已收到，此时消息为半消息(半事务消息状态)</li>
+<li>⽣产端执⾏完本地事务后，会将执⾏结果向MQ服务进⾏⼆次 确认，判断是否提交或回滚<ul>
+<li>如果提交，MQ服务将半消息标记为可投递，然后转发给消 费端 </li>
+<li>如果回滚，MQ服务会将半消息删除</li>
+</ul>
+</li>
+<li>如果MQ服务没有收到⼆次确认，会对⽣产端进⾏消息回查， 查看事务执⾏结果继续进⾏⼆次确认</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="顺序消息"><a href="#顺序消息" class="headerlink" title="顺序消息"></a>顺序消息</h4><ul>
+<li>全局顺序：全部事件的顺序处理</li>
+<li>分区顺序：单个事件的逻辑链顺序</li>
+</ul>
+<h4 id="延迟消息-延时队列）"><a href="#延迟消息-延时队列）" class="headerlink" title="延迟消息(延时队列）"></a>延迟消息(延时队列）</h4><p>RocketMQ 提供了能够延时发送的这种机制，会给定一个范围的时间，然后先暂存到 SCHEDULE_TOPIC_xxxx 的 Topic 中，时间到了再发送到需要发送的队列中。</p>
+<h4 id="讲一下使用-RocketMQ-如何实现分布式事务"><a href="#讲一下使用-RocketMQ-如何实现分布式事务" class="headerlink" title="讲一下使用 RocketMQ 如何实现分布式事务"></a>讲一下使用 RocketMQ 如何实现分布式事务</h4><p>实现步骤</p>
+<p>问这道题目一般是要回答一下RocketMQ 实现分布式事务的实现机制：事务消息加上事务反查机制。</p>
+<ul>
+<li>1、系统 A 会发送一条消息到 MQ 确认通信没问题</li>
+<li>2、事务正常执行后会发送一条 commit 消息给 MQ，如果没发确认的话，RocketMQ 会通过事务回查机制确认事务是否正常执行</li>
+<li>3、判断正常执行完毕后，会发送确认消息给系统B。</li>
+</ul>
+<p>建议复习分布式事务的时候也一起和其他实现方式一起复习下。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240307141544.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><strong>事务回查机制</strong></p>
+<p>一般会有一个定时机制，然后如果长时间没有收到二次确认，会进行事务回查</p>
+<ul>
+<li>这个是生产者反而是消费者，收到这条消息后，通过本地实现的 checker 接口的 checkLocalTransaction 方法进行检查本地事务是否执行完成，并将结果告知 MQ 服务器。</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240307155659.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="RocketMQ⽣产端的发送模式"><a href="#RocketMQ⽣产端的发送模式" class="headerlink" title="RocketMQ⽣产端的发送模式"></a>RocketMQ⽣产端的发送模式</h4><ul>
+<li>RocketMQ生产端有3种发送模式<ul>
+<li>同步发送<ul>
+<li>必须等到Broker反馈之后才能继续发，安全性最高但发消息最慢</li>
+</ul>
+</li>
+<li>单向发送<ul>
+<li>不管消息是否发成功都能继续发，所以吞吐量最高，但是安全性低，容易丢消息</li>
+</ul>
+</li>
+<li>异步发送<ul>
+<li>发送消息的同时回注册一个回调去处理响应，安全性低，容易丢消息</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="RocketMQ消费端的消费模式"><a href="#RocketMQ消费端的消费模式" class="headerlink" title="RocketMQ消费端的消费模式"></a>RocketMQ消费端的消费模式</h4><ul>
+<li>RocketMQ消费模式⽀持 推模式 和 拉模式<ul>
+<li>推模式模式简单易⽤，有较好的实时性，但Broker压⼒较⼤ </li>
+<li>拉模式对于消费端可以更好的把控，Broker压⼒较⼩，需要⼿动 指定offset</li>
+</ul>
+</li>
+</ul>
+<h3 id="高可用"><a href="#高可用" class="headerlink" title="高可用"></a>高可用</h3><h4 id="怎么保证高可用-🍎-1"><a href="#怎么保证高可用-🍎-1" class="headerlink" title="怎么保证高可用 🍎"></a>怎么保证高可用 🍎</h4><ul>
+<li>1、主从，同步复制，异步刷盘，集群</li>
+</ul>
+<p>我们可以通过集群机构，其中 Broker 是主从，采用同步复制方式，同时采用异步刷盘。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240307052103.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="RocketMQ的主从复制原理"><a href="#RocketMQ的主从复制原理" class="headerlink" title="RocketMQ的主从复制原理"></a>RocketMQ的主从复制原理</h4><ul>
+<li>同步复制 <ul>
+<li>master和slave的数据都写⼊成功之后才进⾏反馈，如果master故 障，slave仍有数据备份，⽅便数据恢复，但是可能因为数据写⼊ 延迟降低了吞吐量</li>
+</ul>
+</li>
+<li>异步复制<ul>
+<li>保证master写⼊成功就进⾏反馈，再通过异步同步数据到slave， 如果master出现故障会导致slave⽆法同步数据导致数据丢失</li>
+</ul>
+</li>
+</ul>
+<h3 id="存储，读写"><a href="#存储，读写" class="headerlink" title="存储，读写"></a>存储，读写</h3><h4 id="高性能"><a href="#高性能" class="headerlink" title="高性能"></a>高性能</h4><p>高性能主要的几个点：</p>
 <ul>
 <li>1、Netty 高效的 NIO 框架</li>
 <li>2、RocketMQ 大量使用多线程、异步</li>
@@ -417,21 +688,6 @@
 <li>5、锁优化（CAS 机制，无锁化）</li>
 <li>6、存储设计：读写分离</li>
 </ul>
-<h4 id="高可用如何保证"><a href="#高可用如何保证" class="headerlink" title="高可用如何保证"></a>高可用如何保证</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240307052103.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<ul>
-<li>1、主从，同步复制，异步刷盘，集群</li>
-</ul>
-<p>我们可以通过集群机构，其中 Broker 是主从，采用同步复制方式，同时采用异步刷盘。</p>
-<blockquote>
-<p>RocketMQ 的底层实现原理</p>
-</blockquote>
-<p>RocketMQ由NameServer集群、Producer集群、Consumer集群、Broker集群组成，消息生产和消费的大致原理如下：</p>
-<ul>
-<li>1、Broker在启动的时候向所有的NameServeri注册，并保持长连接，每30s发送一次心跳</li>
-<li>2、Producer在发送消息的时候从NameServer获取Broker服务器地址，根据负载均衡算法选择一台服务器来发送消息</li>
-<li>3、Conusmeri消费消息的时候同样从NameServer获取Broker地址，然后主动拉取消息来消费</li>
-</ul>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240306223833.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="RocketMQ-的存储机制-💣"><a href="#RocketMQ-的存储机制-💣" class="headerlink" title="RocketMQ 的存储机制  💣"></a>RocketMQ 的存储机制  💣</h4><p>RocketMQ 会将所有的消息发送放到 CommitLog 的一个文件中，同时会有一个监听，将相关一个记录（包括主题，偏移量，大小等信息) 放到 ComsumerQueue 中（CommitLog 的逻辑索引）</p>
 <p>这个理解有点问题</p>
 <hr>
@@ -452,22 +708,7 @@
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240307054839.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>这个解释也可以参考一下</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240307055349.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="顺序消息"><a href="#顺序消息" class="headerlink" title="顺序消息"></a>顺序消息</h4><ul>
-<li>全局顺序：全部事件的顺序处理</li>
-<li>分区顺序：单个事件的逻辑链顺序</li>
-</ul>
-<h4 id="消息堆积"><a href="#消息堆积" class="headerlink" title="消息堆积"></a>消息堆积</h4><p>参考： <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ua4y1N7P2/?p=21&spm_id_from=pageDriver&vd_source=6a019ecccfe7d8f62b9a3fe99c723bd0">https://www.bilibili.com/video/BV1ua4y1N7P2/?p=21&amp;spm_id_from=pageDriver&amp;vd_source=6a019ecccfe7d8f62b9a3fe99c723bd0</a></p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240307135759.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>一般是采用增加消费者实例的方式</p>
-<p>个人理解：如果是应对生产快的，一方面是需要需要这个队列数量和消费者数量，然后应对堆积的情况，就要加一个中转的，把这个堆积的消息分散到多个Queu，然后多个Comsumer消费</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240307135814.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="延时队列"><a href="#延时队列" class="headerlink" title="延时队列"></a>延时队列</h4><p>RocketMQ 提供了能够延时发送的这种机制，会给定一个范围的时间，然后先暂存到 SCHEDULE_TOPIC_xxxx 的 Topic 中，时间到了再发送到需要发送的队列中。</p>
-<h4 id="Rocketmq中Broker的部署方式"><a href="#Rocketmq中Broker的部署方式" class="headerlink" title="Rocketmq中Broker的部署方式"></a>Rocketmq中Broker的部署方式</h4><ul>
-<li>单机 Broker</li>
-<li>多 Master </li>
-<li>多 Master 多 Slave （生产常见模式）【多主多从】</li>
-</ul>
-<h4 id="讲一下-消息刷盘"><a href="#讲一下-消息刷盘" class="headerlink" title="讲一下 消息刷盘"></a>讲一下 消息刷盘</h4><ul>
+<h4 id="RocketMQ的过期⽂件删除机制"><a href="#RocketMQ的过期⽂件删除机制" class="headerlink" title="RocketMQ的过期⽂件删除机制"></a>RocketMQ的过期⽂件删除机制</h4><h4 id="讲一下消息刷盘"><a href="#讲一下消息刷盘" class="headerlink" title="讲一下消息刷盘"></a>讲一下消息刷盘</h4><ul>
 <li>同步刷盘</li>
 <li>异步刷盘<ul>
 <li>一般会采用异步刷盘 + 同步复制的方式</li>
@@ -475,29 +716,22 @@
 </ul>
 </li>
 </ul>
-<h4 id="路由注册"><a href="#路由注册" class="headerlink" title="路由注册"></a>路由注册</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240307140637.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="路由剔除"><a href="#路由剔除" class="headerlink" title="路由剔除"></a>路由剔除</h4><ul>
-<li>定时扫描判断该路由节点是否可用</li>
-</ul>
-<h4 id="讲一下使用-RocketMQ-如何实现分布式事务"><a href="#讲一下使用-RocketMQ-如何实现分布式事务" class="headerlink" title="讲一下使用 RocketMQ 如何实现分布式事务"></a>讲一下使用 RocketMQ 如何实现分布式事务</h4><h6 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h6><p>问这道题目一般是要回答一下RocketMQ 实现分布式事务的实现机制：事务消息加上事务反查机制。</p>
+<h4 id="零拷贝"><a href="#零拷贝" class="headerlink" title="零拷贝"></a>零拷贝</h4><h3 id="生产问题-1"><a href="#生产问题-1" class="headerlink" title="生产问题"></a>生产问题</h3><h4 id="消息重复消费问题怎么解决-1"><a href="#消息重复消费问题怎么解决-1" class="headerlink" title="消息重复消费问题怎么解决"></a>消息重复消费问题怎么解决</h4><h4 id="怎么保证消息的可靠性传输"><a href="#怎么保证消息的可靠性传输" class="headerlink" title="怎么保证消息的可靠性传输"></a>怎么保证消息的可靠性传输</h4><p>消息队列如何保证消息可靠传输</p>
 <ul>
-<li>1、系统 A 会发送一条消息到 MQ 确认通信没问题</li>
-<li>2、事务正常执行后会发送一条 commit 消息给 MQ，如果没发确认的话，RocketMQ 会通过事务回查机制确认事务是否正常执行</li>
-<li>3、判断正常执行完毕后，会发送确认消息给系统B。</li>
+<li>消息可靠传输代表了两层意思，既不能多也不能少。</li>
+<li>1,为了保证消息不多，也就是消息不能重复，也就是生产者不能重复生产消息，或者消费者不能重复消费消息</li>
+<li>2,首先要确保消息不多发，这个不常出现，也比较难控制，因为如果出现了多发，很大的原因是生产者自己的原因，如果要避免出现问题，就需要在消费端做控制</li>
+<li>3.,要避免不重复消费，最保险的机制就是消费者实现幂等性，保证就算重复消费，也不会有问题，通过幂等性，也能解决生产者重复发送消息的问题</li>
+<li>4,消息不能少，意思就是消息不能丢失，生产者发送的消息，消费者一定要能消费到，对于这个问题，就要考虑两个方面</li>
+<li>5,生产者发送消息时，要确认brokert确实收到并持久化了这条消息，比如RabbitMQ的confirmi机制，Kafka的ack机制都可以保证生产者能正确的将消息发送给broker</li>
+<li>6.broke 要等待消费者真正确认消费到了消息时才删除掉消息，这里通常就是消费端ack机制，消费者接收到一条消息后，如果确认没问题了，就可以给broker发送一个ack,broker接收到ack后才会删除消息</li>
 </ul>
-<p>建议复习分布式事务的时候也一起和其他实现方式一起复习下。</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240307141544.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h5 id="事务回查机制"><a href="#事务回查机制" class="headerlink" title="事务回查机制"></a>事务回查机制</h5><p>一般会有一个定时机制，然后如果长时间没有收到二次确认，会进行事务回查</p>
-<ul>
-<li>这个是生产者反而是消费者，收到这条消息后，通过本地实现的 checker 接口的 checkLocalTransaction 方法进行检查本地事务是否执行完成，并将结果告知 MQ 服务器。</li>
-</ul>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240307155659.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="高可用如何保证-1"><a href="#高可用如何保证-1" class="headerlink" title="高可用如何保证"></a>高可用如何保证</h4><p>我们可以通过集群机构，其中 Broker 是主从，采用同步复制方式，同时采用异步刷盘。</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240307052103.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<ul>
-<li>1、主从，同步复制，异步刷盘，集群</li>
-</ul>
-
+<h4 id="消息堆积问题怎么解决-1"><a href="#消息堆积问题怎么解决-1" class="headerlink" title="消息堆积问题怎么解决"></a>消息堆积问题怎么解决</h4><p>参考： <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ua4y1N7P2/?p=21&spm_id_from=pageDriver&vd_source=6a019ecccfe7d8f62b9a3fe99c723bd0">https://www.bilibili.com/video/BV1ua4y1N7P2/?p=21&amp;spm_id_from=pageDriver&amp;vd_source=6a019ecccfe7d8f62b9a3fe99c723bd0</a></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240307135759.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>一般是采用增加消费者实例的方式</p>
+<p>个人理解：如果是应对生产快的，一方面是需要需要这个队列数量和消费者数量，然后应对堆积的情况，就要加一个中转的，把这个堆积的消息分散到多个Queu，然后多个Comsumer消费</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240307135814.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="NameServer挂了如何保证消息不丢失"><a href="#NameServer挂了如何保证消息不丢失" class="headerlink" title="NameServer挂了如何保证消息不丢失"></a>NameServer挂了如何保证消息不丢失</h4>
                 
               </div>
             

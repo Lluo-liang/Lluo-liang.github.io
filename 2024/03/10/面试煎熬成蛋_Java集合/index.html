@@ -387,7 +387,8 @@
 <p>第十一次添加元素</p>
 <p>此时会进行一次扩容，扩容容量为默认容量的 1.5 倍，数据进行数组拷贝到一个新的数组中。</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240301154017.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h3 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h3><h4 id="HashMapl的put方法的具体流程"><a href="#HashMapl的put方法的具体流程" class="headerlink" title="HashMapl的put方法的具体流程"></a>HashMapl的put方法的具体流程</h4><ul>
+<h3 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h3><h4 id="讲一下-HashMap-🚩"><a href="#讲一下-HashMap-🚩" class="headerlink" title="讲一下 HashMap 🚩"></a>讲一下 HashMap 🚩</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240311195612.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="HashMapl的put方法的具体流程"><a href="#HashMapl的put方法的具体流程" class="headerlink" title="HashMapl的put方法的具体流程"></a>HashMapl的put方法的具体流程</h4><ul>
 <li>1.判断键值对数组table是否为空或为null,否则执行resize0进行扩容（初始化）</li>
 <li>2.根据键值key计算hash值得到数组索引</li>
 <li>3.判断table[i]&#x3D;&#x3D; null,条件成立，直接新建节点添加</li>
