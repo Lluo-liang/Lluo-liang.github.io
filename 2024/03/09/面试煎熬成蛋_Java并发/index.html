@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          14k 字
+          15k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          114 分钟
+          129 分钟
         
       </span>
     
@@ -424,6 +424,7 @@
 <li>9、聊一下 ConcurrentHashMap</li>
 <li>10、导致并发编程出现问题的根本原因是什么</li>
 </ul>
+<h4 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240312224915.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="synchronized-关键字的底层原理"><a href="#synchronized-关键字的底层原理" class="headerlink" title="synchronized 关键字的底层原理"></a>synchronized 关键字的底层原理</h4><p>建议观看视频： <a target="_blank" rel="noopener" href="https://www.bilibili.com/list/watchlater?oid=485022417&bvid=BV1yT411H7YK&spm_id_from=333.1245.top_right_bar_window_view_later.content.click&p=95">https://www.bilibili.com/list/watchlater?oid=485022417&amp;bvid=BV1yT411H7YK&amp;spm_id_from=333.1245.top_right_bar_window_view_later.content.click&amp;p=95</a></p>
 <p>synchronized：对象锁</p>
 <p>作用：采用互斥的方式让同一时刻至多只有一个线程能持有对象锁，其他线程再想获取这个对象锁时就会阻塞</p>
@@ -648,7 +649,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="synchronized锁粗化、锁消除"><a href="#synchronized锁粗化、锁消除" class="headerlink" title="synchronized锁粗化、锁消除"></a>synchronized锁粗化、锁消除</h4><ul>
+<h4 id="synchronized-锁粗化、锁消除"><a href="#synchronized-锁粗化、锁消除" class="headerlink" title="synchronized 锁粗化、锁消除"></a>synchronized 锁粗化、锁消除</h4><ul>
 <li>锁粗化 <ul>
 <li>⽐如锁对象出现在循环体中，反复加锁释放锁，即使没有出现线 程竞争也会导致性能下降，当JVM检测到这种操作，会将锁的范 围扩⼤到循环体外 <ul>
 <li>锁粗化是指将多个连续的锁扩展（或合并）为一个范围更大的锁，以减少锁操作的开销。正常情况下，如果在一系列的操作中反复对同一个对象加锁和解锁，即使没有线程竞争，频繁的锁操作也会消耗大量资源。</li>
@@ -676,14 +677,41 @@
 <li>JMM把内存分为两块，一块是私有线程的工作区域（工作内存），一块是所有线程的共享区域（主内存）</li>
 <li>线程跟线程之间是相互隔离，线程跟线程交互需要通过主内存</li>
 </ul>
-<h4 id="谈一下-volatile"><a href="#谈一下-volatile" class="headerlink" title="谈一下 volatile"></a>谈一下 volatile</h4><p>待看一下  to be contined…</p>
+<h4 id="谈一下-volatile"><a href="#谈一下-volatile" class="headerlink" title="谈一下 volatile"></a>谈一下 volatile</h4><p>volatile 的两个作用：</p>
+<ul>
+<li><p>可见性</p>
+<ul>
+<li>用volatile修饰共享变量，能够防止编译器等优化发生，让一个线程对共享变量的修改对另一个线程可见<ul>
+<li>JIT(即时编译器)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>禁止指令重排序</p>
+<ul>
+<li>用volatile修饰共享变量会在读、写共享变量时加入不同的屏障，阻止其他读写操作越过屏障，从而达到阻止重排序的效果<ul>
+<li>写变量让volatile修饰的变量的在代码最后位置</li>
+<li>读变量让volatile修饰的变量的在代码最开始位置</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>1、了解一下在 Java 代码多线程的情况下会出现指令重排序的情况</p>
+</li>
+<li><p>2、通过 volatile 修饰变量能够进行阻止指令重排序的操作</p>
+</li>
+</ul>
+<p>重排序的情况</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240312210622.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>volatile使用技巧：</p>
+<ul>
+<li>写变量让volatile修饰的变量的在代码最后位置</li>
+<li>读变量让volatile修饰的变量的在代码最开始位置</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240312205100.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240311225430.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>如果代码中存在循环，JVM 会对 JIT 进行代码优化（给 stop 变量一个固定值）</p>
-<p>这种情况下可见性并没有保证，一种方案是修改 vm 参数（不建议），还有一种方案就是变量前面加 volatile 进行修饰。</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304215050.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304215458.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>to be contined… 明天再看了</p>
-<h4 id="CAS"><a href="#CAS" class="headerlink" title="CAS"></a>CAS</h4><p>CAS 不管是在 AQS 框架中，还是在上面提到的 synchronized 都使用到了；</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240312210901.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="CAS-🚩"><a href="#CAS-🚩" class="headerlink" title="CAS  🚩"></a>CAS  🚩</h4><p>CAS 不管是在 AQS 框架中，还是在上面提到的 synchronized 都使用到了；</p>
 <p>其中的核心思想是  →  比较再交互</p>
 <p>如果工作区域的最初值和主内存的值比较不相等，则自旋等待。（自旋需要确认一下 🚩)</p>
 <p>CAS 方法是 unsafe 修饰的，调用是操作系统的接口。</p>
@@ -691,14 +719,139 @@
 <h4 id="乐观锁和悲观锁的区别"><a href="#乐观锁和悲观锁的区别" class="headerlink" title="乐观锁和悲观锁的区别"></a>乐观锁和悲观锁的区别</h4><p>乐观锁：乐观的看待并发修改问题，其他线程不会修改共享变量，如果改了，就自旋等待。</p>
 <p>悲观锁：悲观的认为别人的线程都不是好人，我获取这把锁后，你们都不能访问了。</p>
 <h4 id="你有用过-Java-里面的锁吗"><a href="#你有用过-Java-里面的锁吗" class="headerlink" title="你有用过 Java 里面的锁吗"></a>你有用过 Java 里面的锁吗</h4><p>synchronized 和 ReentantLock 的用法讲一下</p>
-<h4 id="实现层面：synchronized-和-ReentantLock-有什么区别"><a href="#实现层面：synchronized-和-ReentantLock-有什么区别" class="headerlink" title="实现层面：synchronized 和  ReentantLock 有什么区别"></a>实现层面：synchronized 和  ReentantLock 有什么区别</h4><h4 id="synchronized-修饰普通方法和修饰静态方法有什么区别"><a href="#synchronized-修饰普通方法和修饰静态方法有什么区别" class="headerlink" title="synchronized 修饰普通方法和修饰静态方法有什么区别"></a>synchronized 修饰普通方法和修饰静态方法有什么区别</h4><h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3><ul>
+<h4 id="实现层面：synchronized-和-ReentantLock-有什么区别"><a href="#实现层面：synchronized-和-ReentantLock-有什么区别" class="headerlink" title="实现层面：synchronized 和  ReentantLock 有什么区别"></a>实现层面：synchronized 和  ReentantLock 有什么区别</h4><h4 id="synchronized-修饰普通方法和修饰静态方法有什么区别"><a href="#synchronized-修饰普通方法和修饰静态方法有什么区别" class="headerlink" title="synchronized 修饰普通方法和修饰静态方法有什么区别"></a>synchronized 修饰普通方法和修饰静态方法有什么区别</h4><h4 id="AQS"><a href="#AQS" class="headerlink" title="AQS"></a>AQS</h4><ul>
+<li>AQS<ul>
+<li>悲观锁，手动开启和关闭，锁和一些同步组件的基础框架</li>
+</ul>
+</li>
+<li>基本工作机制<ul>
+<li>维护了一个 int 同步状态变量 state （默认是 0 无锁）和 一个 FIFO 先进先出的双向队列</li>
+<li>如果某个线程成功获取了同步状态（或锁），则该线程可以执行相应的临界区代码。如果获取同步状态失败，该线程将会被加入到一个队列中，并在适当的时候被重新唤醒（比如，当前持有锁的线程释放锁之后）。</li>
+</ul>
+</li>
+<li>原子性<ul>
+<li>通过 cas 操作对于 state 状态的修改</li>
+</ul>
+</li>
+<li>公平锁和非公平锁（两种实现方式）<ul>
+<li>非公平锁<ul>
+<li>新的线程与队列中的线程共同来抢资源，是非公平锁</li>
+</ul>
+</li>
+<li>公平锁<ul>
+<li>新的线程到队列中等待，只让队列中的head线程获取锁，是公平锁</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>全称是AbstractQueuedSynchronizer,即抽象队列同步器。</p>
+<p>它是构建锁或者其他同步组件的基础框架</p>
+<p>AQS与Synchronizedl的区别</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240312211303.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240312211442.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240312211640.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240312211722.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="ReentrantLock"><a href="#ReentrantLock" class="headerlink" title="ReentrantLock"></a>ReentrantLock</h4><ul>
+<li>默认情况下，<code>ReentrantLock</code>是<strong>非公平锁</strong></li>
+<li>实现原理<ul>
+<li>ReentrantLock主要利用 CAS+AQS 队列来实现。</li>
+<li>它支持公平锁和非公平锁，两者的实现类以构造方法接受一个可选的公平参数（默认非公平锁），当设置为 true 时，表示公平锁，否则为非公平锁。</li>
+<li>公平锁的效率往往没有非公平锁的效率高，在许多线程访问的情况下，公平锁表现出较低的吞吐量。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240312213944.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240312214108.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>总结</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240312214151.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="synchronized-与-Lock-有什么区别"><a href="#synchronized-与-Lock-有什么区别" class="headerlink" title="synchronized 与 Lock 有什么区别"></a>synchronized 与 Lock 有什么区别</h4><p>synchronized和Lock有什么区别？</p>
+<ul>
+<li>语法层面<ul>
+<li>synchronized是关键字，源码在jvm中，用c++语言实现</li>
+<li>Lock是接口，源码由jdk提供，用java语言实现</li>
+<li>使用synchronized时，退出同步代码块锁会自动释放，而使用Lock时，需要手动调用unlock方法释放锁</li>
+</ul>
+</li>
+<li>功能层面<ul>
+<li>二者均属于悲观锁、都具备基本的互斥、同步、锁重入功能</li>
+<li>Lock提供了许多synchronized不具备的功能，例如公平锁、可打断、可超时、多条件变量</li>
+<li>Lock有适合不同场景的实现，如ReentrantLock,ReentrantReadWriteLock(读写锁）</li>
+</ul>
+</li>
+<li>性能层面<ul>
+<li>在没有竞争时，synchronized做了很多优化，如偏向锁、轻量级锁，性能不赖</li>
+<li>在竞争激烈时，L0ck的实现通常会提供更好的性能</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240312214318.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="死锁产生的条件是什么"><a href="#死锁产生的条件是什么" class="headerlink" title="死锁产生的条件是什么"></a>死锁产生的条件是什么</h4><ul>
+<li>死锁：线程互相等待对方的锁释放</li>
+<li>诊断：<ul>
+<li>1、可视化工具 jconsole、VisualVM</li>
+<li>2、JDK 自带的：jps 和 jstack</li>
+</ul>
+</li>
+</ul>
+<p>死锁：一个线程需要同时获取多把锁，这时就容易发生死锁</p>
+<p>此时程序并没有结束，这种现象就是死锁现象.线程t1 持有A的锁等待获取B锁，线程t2持有B的锁等待获取A 的锁。</p>
+<p>如何进行死锁诊断？</p>
+<ul>
+<li>当程序出现了死锁现象，我们可以使用jdk自带的工具： jps和jstack<ul>
+<li>jps:输出 JVM中运行的进程状态信息</li>
+<li>jstack：查看java进程内线程的堆栈信息</li>
+</ul>
+</li>
+</ul>
+<p>2.如何进行死锁诊断？</p>
+<p>当程序出现了死锁现象，我们可以使用 jdk 自带的工具：jps和jstack</p>
+<ul>
+<li><p>jps:输出 JVM 中运行的进程状态信息</p>
+</li>
+<li><p>jstack:查看java进程内线程的堆栈信息，查看日志，检查是否有死锁;  如果有死锁现象，需要查看具体代码分析后，可修复</p>
+</li>
+<li><p>可视化工具 jconsole、VisGalVM也可以检查死锁问题</p>
+</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240312214711.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240312214741.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="导致并发程序出现问题的根本原因是什么"><a href="#导致并发程序出现问题的根本原因是什么" class="headerlink" title="导致并发程序出现问题的根本原因是什么"></a>导致并发程序出现问题的根本原因是什么</h4><p>Java并发编程三大特性</p>
+<ul>
+<li>原子性<ul>
+<li>一个线程在 CPU 中操作不可暂停，也不可中断，要不执行完成，要不不执行</li>
+<li>一般操作（加锁）<ul>
+<li>synchronized：同步加锁</li>
+<li>JUC里面的lock：加锁</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>可见性<ul>
+<li>内存可见性：让一个线程对共享变量的修改对另一个线程可见</li>
+<li>解决方式<ul>
+<li>synchronized</li>
+<li>volatile (一般使用)</li>
+<li>LOCK</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>有序性<ul>
+<li>指令重排：处理器为了提高程序运行效率，可能会对输入代码进行优化，它不保证程序中各个语句的执行先后顺序同代码中的顺序一致，但是它会保证程序最终执行结果和代码顺序执行的结果是一致的</li>
+<li>解决方案：volatile</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240312233851.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3><ul>
 <li>1、说一下线程池的核心参数（线程池的执行原理知道吗）</li>
 <li>2、线程池中有哪些常见的阻塞队列</li>
 <li>3、如何确认核心线程数</li>
 <li>4、线程池的种类有哪些</li>
 <li>5、为什么不建议使用 Executor 创建线程池</li>
 </ul>
-<h4 id="线程池的核心参数"><a href="#线程池的核心参数" class="headerlink" title="线程池的核心参数"></a>线程池的核心参数</h4><h4 id="核心线程数可以为零吗"><a href="#核心线程数可以为零吗" class="headerlink" title="核心线程数可以为零吗"></a>核心线程数可以为零吗</h4><h4 id="怎么判断这个线程是可以被回收的"><a href="#怎么判断这个线程是可以被回收的" class="headerlink" title="怎么判断这个线程是可以被回收的"></a>怎么判断这个线程是可以被回收的</h4><h4 id="线程池的状态有哪些"><a href="#线程池的状态有哪些" class="headerlink" title="线程池的状态有哪些"></a>线程池的状态有哪些</h4><h4 id="Shutdown-和-shutdownnow-的区别，是通过什么方式关闭"><a href="#Shutdown-和-shutdownnow-的区别，是通过什么方式关闭" class="headerlink" title="Shutdown 和 shutdownnow 的区别，是通过什么方式关闭"></a>Shutdown 和 shutdownnow 的区别，是通过什么方式关闭</h4><h4 id="怎么将一个正在运行的线程关闭，什么样的线程是可以被中断的"><a href="#怎么将一个正在运行的线程关闭，什么样的线程是可以被中断的" class="headerlink" title="怎么将一个正在运行的线程关闭，什么样的线程是可以被中断的"></a>怎么将一个正在运行的线程关闭，什么样的线程是可以被中断的</h4><h4 id="线程中线程池的使用"><a href="#线程中线程池的使用" class="headerlink" title="线程中线程池的使用"></a>线程中线程池的使用</h4><p>直接使用<code>@Autowired</code>注入一个<code>ThreadPoolTaskExecutor</code>实例通常意味着你要使用Spring的默认配置</p>
+<h4 id="线程池的核心参数"><a href="#线程池的核心参数" class="headerlink" title="线程池的核心参数"></a>线程池的核心参数</h4><h4 id="线程池的执行原理知道嘛"><a href="#线程池的执行原理知道嘛" class="headerlink" title="线程池的执行原理知道嘛"></a>线程池的执行原理知道嘛</h4><h4 id="核心线程数可以为零吗"><a href="#核心线程数可以为零吗" class="headerlink" title="核心线程数可以为零吗"></a>核心线程数可以为零吗</h4><h4 id="怎么判断这个线程是可以被回收的"><a href="#怎么判断这个线程是可以被回收的" class="headerlink" title="怎么判断这个线程是可以被回收的"></a>怎么判断这个线程是可以被回收的</h4><h4 id="线程池的状态有哪些"><a href="#线程池的状态有哪些" class="headerlink" title="线程池的状态有哪些"></a>线程池的状态有哪些</h4><h4 id="Shutdown-和-shutdownnow-的区别，是通过什么方式关闭"><a href="#Shutdown-和-shutdownnow-的区别，是通过什么方式关闭" class="headerlink" title="Shutdown 和 shutdownnow 的区别，是通过什么方式关闭"></a>Shutdown 和 shutdownnow 的区别，是通过什么方式关闭</h4><h4 id="怎么将一个正在运行的线程关闭，什么样的线程是可以被中断的"><a href="#怎么将一个正在运行的线程关闭，什么样的线程是可以被中断的" class="headerlink" title="怎么将一个正在运行的线程关闭，什么样的线程是可以被中断的"></a>怎么将一个正在运行的线程关闭，什么样的线程是可以被中断的</h4><h4 id="线程中线程池的使用"><a href="#线程中线程池的使用" class="headerlink" title="线程中线程池的使用"></a>线程中线程池的使用</h4><p>直接使用<code>@Autowired</code>注入一个<code>ThreadPoolTaskExecutor</code>实例通常意味着你要使用Spring的默认配置</p>
 <h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ul>
 <li>1、讲述一下你们项目中哪里用到了线程池（异步线程）</li>
 <li>2、如何控制某个方法允许并发访问线程的数量</li>

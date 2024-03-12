@@ -1069,6 +1069,13 @@
   </url>
   
   <url>
+    <loc>https://varcel.luoqi.icu/tags/jvm/</loc>
+    <lastmod>2024-03-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://varcel.luoqi.icu/tags/JavaFx/</loc>
     <lastmod>2024-03-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -1077,13 +1084,6 @@
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/index/</loc>
-    <lastmod>2024-03-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://varcel.luoqi.icu/tags/jvm/</loc>
     <lastmod>2024-03-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1428,6 +1428,13 @@
   </url>
   
   <url>
+    <loc>https://varcel.luoqi.icu/categories/Java%E5%9F%BA%E7%A1%80/JVM/</loc>
+    <lastmod>2024-03-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://varcel.luoqi.icu/categories/Java%E5%9F%BA%E7%A1%80/JDK8/</loc>
     <lastmod>2024-03-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -1435,14 +1442,14 @@
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/categories/Java%E5%9F%BA%E7%A1%80/Base/</loc>
+    <loc>https://varcel.luoqi.icu/categories/Java%E5%9F%BA%E7%A1%80/%E9%9B%86%E5%90%88/</loc>
     <lastmod>2024-03-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/categories/Java%E5%9F%BA%E7%A1%80/%E9%9B%86%E5%90%88/</loc>
+    <loc>https://varcel.luoqi.icu/categories/Java%E5%9F%BA%E7%A1%80/Base/</loc>
     <lastmod>2024-03-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1457,13 +1464,6 @@
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/project/</loc>
-    <lastmod>2024-03-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://varcel.luoqi.icu/categories/Java%E5%9F%BA%E7%A1%80/JVM/</loc>
     <lastmod>2024-03-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

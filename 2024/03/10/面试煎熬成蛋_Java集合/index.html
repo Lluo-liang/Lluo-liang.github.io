@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.6k 字
+          4.3k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          31 分钟
+          36 分钟
         
       </span>
     
@@ -429,6 +429,42 @@
 <li>3、最后(capacity-1)&amp;hash得到索引</li>
 </ul>
 <h4 id="HashMap-的寻址算法和数组长度为什么是2-的-n-次幂"><a href="#HashMap-的寻址算法和数组长度为什么是2-的-n-次幂" class="headerlink" title="HashMap 的寻址算法和数组长度为什么是2 的 n 次幂"></a>HashMap 的寻址算法和数组长度为什么是2 的 n 次幂</h4><p>to be contined…</p>
+<h4 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h4><p>ConcurrentHashMap是一种线程安全的高效Map集合</p>
+<ul>
+<li>ConcurrentHashMap<ul>
+<li>底层数据结构<ul>
+<li>1.7：底层采用分段的数组 + 链表实现</li>
+<li>1.8：采用的数据结构跟 HashMap 1.8 的结构一样，数组 + 链表&#x2F;红黑二叉树</li>
+</ul>
+</li>
+<li>加锁的方式<ul>
+<li>1.7：采用 Segment 分段锁，底层使用的是 ReentrantLock</li>
+<li>1.8：采用 CAS 添加新节点，采用 synchronized 锁定链表或红黑二叉树的首节点，相对 Segment 分段锁粒度更细，性能更好</li>
+</ul>
+</li>
+<li>新增元素（1.8）<ul>
+<li>hash(key)  → 在该数组节点下通过 CAS 操作新增元素操作</li>
+<li>采用 synchronized 锁定链表或红黑二叉树的首节点</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>JDK 1.7</p>
+<p>组成：一个 Segment 数组（不可扩容，默认值 16），每一个数组节点对应一个 HashEntry 数组（数组 + 链表）</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240312215201.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>添加元素：计算 key 的 hash 值 定位到 Segment 数组的下标，此时通过 ReentrantLock 获取到锁进行该下标下 HashEntry 数组新增操作</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240312215223.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>JDK1.8 ConcurrentHashMap</p>
+<p>在JDK1.8中，放弃了Segment 臃肿的设计，数据结构跟HashMapl的数据结构是一样的：数组（动态扩容）+ 链表 +红黑树</p>
+<p>采用 CAS+Synchronized 来保证并发安全进行实现</p>
+<ul>
+<li>CAS 控制数组节点的添加</li>
+<li>synchronized 只锁定当前链表或红黑二叉树的首节点，只要 hash 不冲突，就不会产生并发的问题，效率得到提升。</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240312215346.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>新增元素的操作：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240312232104.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3>
                 
               </div>

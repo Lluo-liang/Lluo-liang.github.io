@@ -119,9 +119,9 @@ https://varcel.luoqi.icu/tags/web/
 https://varcel.luoqi.icu/tags/dubbo/
 https://varcel.luoqi.icu/tags/elasticsearch/
 https://varcel.luoqi.icu/tags/git/
+https://varcel.luoqi.icu/tags/jvm/
 https://varcel.luoqi.icu/tags/JavaFx/
 https://varcel.luoqi.icu/tags/index/
-https://varcel.luoqi.icu/tags/jvm/
 https://varcel.luoqi.icu/tags/thread/
 https://varcel.luoqi.icu/tags/%E9%9B%86%E5%90%88/
 https://varcel.luoqi.icu/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/
@@ -170,12 +170,12 @@ https://varcel.luoqi.icu/categories/Java%E5%9F%BA%E7%A1%80/
 https://varcel.luoqi.icu/categories/UI/
 https://varcel.luoqi.icu/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/Elasticsearch/
 https://varcel.luoqi.icu/categories/Java%E5%9F%BA%E7%A1%80/Thread/
+https://varcel.luoqi.icu/categories/Java%E5%9F%BA%E7%A1%80/JVM/
 https://varcel.luoqi.icu/categories/Java%E5%9F%BA%E7%A1%80/JDK8/
-https://varcel.luoqi.icu/categories/Java%E5%9F%BA%E7%A1%80/Base/
 https://varcel.luoqi.icu/categories/Java%E5%9F%BA%E7%A1%80/%E9%9B%86%E5%90%88/
+https://varcel.luoqi.icu/categories/Java%E5%9F%BA%E7%A1%80/Base/
 https://varcel.luoqi.icu/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/
 https://varcel.luoqi.icu/categories/project/
-https://varcel.luoqi.icu/categories/Java%E5%9F%BA%E7%A1%80/JVM/
 https://varcel.luoqi.icu/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/
 https://varcel.luoqi.icu/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/Redis/
 https://varcel.luoqi.icu/categories/%E6%A1%86%E6%9E%B6/
