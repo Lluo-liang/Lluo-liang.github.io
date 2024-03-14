@@ -18,16 +18,16 @@
   <meta name="author" content="Luo QI">
   <meta name="keywords" content="">
   
-    <meta name="description" content="面试煎熬成蛋_项目场景题">
+    <meta name="description" content="面试煎熬成蛋_面试速刷版">
 <meta property="og:type" content="article">
-<meta property="og:title" content="面试煎熬成蛋_项目场景题">
-<meta property="og:url" content="https://varcel.luoqi.icu/2024/03/10/%E9%9D%A2%E8%AF%95%E7%85%8E%E7%86%AC%E6%88%90%E8%9B%8B_%E9%A1%B9%E7%9B%AE%E5%9C%BA%E6%99%AF%E9%A2%98/index.html">
+<meta property="og:title" content="面试煎熬成蛋_面试速刷版">
+<meta property="og:url" content="https://varcel.luoqi.icu/2024/03/14/%E9%9D%A2%E8%AF%95%E7%85%8E%E7%86%AC%E6%88%90%E8%9B%8B_%E9%9D%A2%E8%AF%95%E9%80%9F%E5%88%B7%E7%89%88/index.html">
 <meta property="og:site_name" content="轻松的洛亓">
-<meta property="og:description" content="面试煎熬成蛋_项目场景题">
+<meta property="og:description" content="面试煎熬成蛋_面试速刷版">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312150024266.jpeg">
-<meta property="article:published_time" content="2024-03-10T20:35:44.000Z">
-<meta property="article:modified_time" content="2024-03-02T23:53:33.000Z">
+<meta property="article:published_time" content="2024-03-14T11:03:35.000Z">
+<meta property="article:modified_time" content="2024-03-14T11:03:35.000Z">
 <meta property="article:author" content="Luo QI">
 <meta property="article:tag" content="面试题">
 <meta name="twitter:card" content="summary_large_image">
@@ -35,7 +35,7 @@
   
   
   
-  <title>面试煎熬成蛋_项目场景题 - 轻松的洛亓</title>
+  <title>面试煎熬成蛋_面试速刷版 - 轻松的洛亓</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -201,7 +201,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="面试煎熬成蛋_项目场景题"></span>
+            <span id="subtitle" data-typed-text="面试煎熬成蛋_面试速刷版"></span>
           
         </div>
 
@@ -212,8 +212,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-03-10 20:35" pubdate>
-          2024年3月10日 晚上
+        <time datetime="2024-03-14 11:03" pubdate>
+          2024年3月14日 上午
         </time>
       </span>
     
@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.4k 字
+          24 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          28 分钟
+          1 分钟
         
       </span>
     
@@ -272,169 +272,16 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">面试煎熬成蛋_项目场景题</h1>
+            <h1 id="seo-header">面试煎熬成蛋_面试速刷版</h1>
             
             
               <div class="markdown-body">
                 
-                <h4 id="讲一下单点登陆的实现"><a href="#讲一下单点登陆的实现" class="headerlink" title="讲一下单点登陆的实现"></a>讲一下单点登陆的实现</h4><p>单点登录的英文名叫做：Single Sign On(简称SSO),只需要登录一次，就可以访问所有信任的应用系统</p>
-<p>在单个 tomcat 中，session 是共享的，但是在多个 tomcat 服务中，session 是不共享的；</p>
-<p>在这种情况下，常用的解决方案有：JWT (常见)、OAuth2、CAS （框架）</p>
-<p>一般使用的是 JWT 的方式：</p>
-<p>登陆流程分析：</p>
-<ul>
-<li>用户登陆<ul>
-<li>用户向认证服务器发送登录请求，通常包括用户名和密码。</li>
-<li>认证服务器验证用户的身份。如果认证成功，服务器会使用一个密钥生成一个包含用户信息（如用户ID、角色等）和其他声明的JWT。然后，将这个JWT返回给用户。</li>
-</ul>
-</li>
-<li>访问资源<ul>
-<li>用户带着JWT访问应用中的受保护资源。JWT通常在HTTP请求的 Authorization 头中以Bearer token的形式发送。</li>
-<li>应用服务器接收到请求后，会提取JWT并验证它的有效性。验证包括检查签名是否有效、令牌是否过期等。</li>
-<li>如果JWT验证成功，服务器就会根据令牌中的声明处理请求，比如返回用户请求的数据。</li>
-</ul>
-</li>
-<li>使用JWT进行单点登录<ul>
-<li>在单点登录系统中，一旦用户在一个应用中登录并获取了JWT，他们就可以使用同一个令牌访问系统中的其他应用，而无需重新登录。（一般是网关进行验证，通过后访问具体服务）</li>
-<li>当用户尝试访问另一个应用时，他们的浏览器会发送包含同一个JWT的请求。</li>
-<li>第二个应用也会验证JWT的有效性。如果验证通过，用户就可以访问第二个应用的受保护资源，实现了单点登录。</li>
-</ul>
-</li>
-<li>JWT 的刷新<ul>
-<li>为了安全起见，JWT通常会设置较短的过期时间。认证服务器可能会提供一个刷新令牌（Refresh Token）机制，允许用户在JWT过期后，无需重新登录就能获取一个新的JWT。</li>
-<li>一般访问令牌和刷新令牌都会存放在客户端的内存中（一种常见的做法是将刷新令牌存储在HttpOnly的Cookie中。HttpOnly Cookie由于无法通过JavaScript访问）</li>
-<li>在发送请求到服务器时，客户端会从存储中获取访问令牌，并将其放入HTTP请求的Authorization头中，通常采用<code>Bearer &lt;token&gt;</code>的格式。</li>
-</ul>
-</li>
-</ul>
-<h4 id="讲一下-Jwt-的组成，使用-jwt-的优势有哪些"><a href="#讲一下-Jwt-的组成，使用-jwt-的优势有哪些" class="headerlink" title="讲一下 Jwt 的组成，使用 jwt 的优势有哪些"></a>讲一下 Jwt 的组成，使用 jwt 的优势有哪些</h4><h4 id="登陆注销是怎么使用的，为什么不适用-sesson-而使用-jwt"><a href="#登陆注销是怎么使用的，为什么不适用-sesson-而使用-jwt" class="headerlink" title="登陆注销是怎么使用的，为什么不适用 sesson 而使用 jwt"></a>登陆注销是怎么使用的，为什么不适用 sesson 而使用 jwt</h4><h4 id="你们项目中权限认证是如何实现的"><a href="#你们项目中权限认证是如何实现的" class="headerlink" title="你们项目中权限认证是如何实现的"></a>你们项目中权限认证是如何实现的</h4><p>最常见的就是 RBAC 模型来指导实现权限</p>
-<p>RBAC(Role-Based Access Control)：基于角色的访问控制，一般是有3个基础部分组成：用户、角色、权限。</p>
-<p>具体实现</p>
-<ul>
-<li>5张表（用户表、角色表、权限表、用户角色中间表、角色权限中间表）</li>
-<li>7张表（用户表、角色表、权限表、菜单表、用户角色中间表、角色权限中间表、权限菜单中间表）</li>
-</ul>
-<p>常用的权限控制框架：Spring security</p>
-<h4 id="上传数据的安全你们是如何控制的"><a href="#上传数据的安全你们是如何控制的" class="headerlink" title="上传数据的安全你们是如何控制的"></a>上传数据的安全你们是如何控制的</h4><p>使用非对称加密（或对称加密），给前端一个公钥让他把数据加密后传到后台，后台负责解密后处理数据</p>
-<ul>
-<li>文件很大建议使用对称加密，不过不能保存敏感信息</li>
-<li>文件较小，要求安全性高，建议采用非对称加密</li>
-</ul>
-<p>考虑数据传输的话，可以从很多方面考虑，主要是你当初考虑的点，当时遇到了什么问题，然后通过什么方式去解决的。</p>
-<ul>
-<li>1、考虑权限认证</li>
-<li>2、考虑文件类型限制，考虑大小限制</li>
-<li>3、内容检查（不建议说，不太了解）</li>
-<li>4、使用安全连接 <strong>HTTPS</strong> </li>
-<li>5、上面说的数据加密，可以谈一下关于对称加密和非对称加密的一些用法，当时技术选型是怎么做的，为什么选择了使用这一种加密算法（提前准备一下）</li>
-</ul>
-<h4 id="遇到了哪些比较棘手的问题，怎么解决的"><a href="#遇到了哪些比较棘手的问题，怎么解决的" class="headerlink" title="遇到了哪些比较棘手的问题，怎么解决的"></a>遇到了哪些比较棘手的问题，怎么解决的</h4><p>！！ <strong>提前准备</strong></p>
-<p>需要提前准备，重要度偏高，一般情况下问起项目的时候会问你有没有什么印象深刻的地方，你需要说一下：</p>
-<ul>
-<li>1、当时的业务背景，遇到了什么问题（技术问题）；</li>
-<li>2、过程，在遇到这个问题你的解决思路和解决方案说一下（解决问题的过程）；</li>
-<li>3、最终落地方案。（形成一个完整链路，并清晰表达出来）</li>
-</ul>
-<p>建议准备的一些点：</p>
-<ul>
-<li>1、设计模式<ul>
-<li>一般是工厂、策略、责任链… 等</li>
-<li>阐述回答建议：先说一下改动和改动之后的一个比对，在没有使用到设计模式之前，会出现什么问题（比如需求经常变更，代码冗余程度较高，维护程度困难等）；通过实际调研，对代码进行了优化，后续的一个效果。</li>
-</ul>
-</li>
-<li>2、线上 Bug<ul>
-<li>在线上出现了：CPU 飙高、内存泄漏、线程死锁… 等</li>
-<li>可能情况是：<ul>
-<li>测试环境没问题，生产上线后出的问题，且问题不好在测试环境复现</li>
-<li>生产上线初期没问题，上线一两个月后出现这种问题</li>
-</ul>
-</li>
-<li>这种情况需要线上调试和排查（通过这种问题反馈你的实际处理经验和复盘，当时是如何操作的）</li>
-</ul>
-</li>
-<li>3、调优<ul>
-<li>慢接口、慢SQL、缓冲方案 … 等</li>
-<li>可以将你的实际操作，包括如何排查出这个接口的处理速度慢，从多少秒调优到了多少 ms 这种程度。</li>
-</ul>
-</li>
-<li>4、组件封装（不建议，一般是高级工程师操作）</li>
-</ul>
-<h4 id="你们项目中日志是怎么采集的"><a href="#你们项目中日志是怎么采集的" class="headerlink" title="你们项目中日志是怎么采集的"></a>你们项目中日志是怎么采集的</h4><p>为什么要采集日志：日志是定位系统问题的重要手段，可以根据日志信息快速定位系统中的问题</p>
-<p>一般日志的采集方案有：</p>
-<ul>
-<li>ELK：即Elasticsearch、Logstash 和 Kibana三个软件的首字母（不建议回答这种，看你项目实际使用情况）</li>
-<li>常规采集：按天保存到一个日志文件</li>
-</ul>
-<h4 id="常见日志的命令"><a href="#常见日志的命令" class="headerlink" title="常见日志的命令"></a>常见日志的命令</h4><p>一般我们会在日志配置文件中，比如 logback 配置中定义每天产生日志存放到一个文件中</p>
-<p>在 Linux 系统中，我们查看日志文件的一些常用命令：</p>
-<ul>
-<li>实时监控日志的变化<ul>
-<li>实时监控某一个日志文件的变化：<code>tail -f xx.log</code></li>
-<li>实时监控日志最后100行日志：<code>tail -n 100 -f xx.log</code><ul>
-<li><ul>
-<li><code>-n 100</code>：首先显示<code>xx.log</code>文件的最后100行内容。</li>
-</ul>
-</li>
-<li><code>-f</code>：之后，随着<code>xx.log</code>文件的增长，新添加的内容会被实时显示。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>按照行号套询<ul>
-<li>查询日志尾部最后100行日志：<code>tail -n 100 xx.log</code></li>
-<li>查询日志头部开始100行日志：<code>head -n 100 xx.log</code></li>
-<li>查询某一个日志行号区间：<ul>
-<li>查询100行至200行的日志 <code>cat -n xx.log|tail -n +100|head -n 100</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>按照关键字找日志的信息<ul>
-<li>查询日志文件中包含debug的日志行号： <code>cat -n xx.log|grep &quot;debug&quot; </code></li>
-</ul>
-</li>
-<li>按照日期查询<ul>
-<li><code>sed -n &#39;/2023-05-18 14:22:31.070/,/2023-05-18 14:27:14.158/p&#39; xx.log</code></li>
-</ul>
-</li>
-<li>日志太多，处理方式<ul>
-<li>分页查询日志信息：<code>cat -n xx.log|grep &quot;debug&quot; |more</code></li>
-<li>筛选过滤以后，输出到一个文件：<code>cat -n xx.log|grep &quot;debug&quot; &gt; debg.txt </code></li>
-</ul>
-</li>
-</ul>
-<h4 id="生产问题怎么排查"><a href="#生产问题怎么排查" class="headerlink" title="生产问题怎么排查"></a>生产问题怎么排查</h4><p>已经上线的bug排查的思路：</p>
-<ul>
-<li>1,先分析日志，通常在业务中都会有日志的记录，或者查看系统日志，或者查看日志文件，然后定位问题</li>
-<li>2, 远程debug(通常公司的正式环境（生产环境）是不允许远程debugl的。一般远程debug都是公司的测试环境，方便调试代码)</li>
-</ul>
-<p>使用 IDEA 远程 Debug 服务器的 Jar 包方法可以看一下相关教程（需要本地代码和服务器打包Jar代码保持一致）</p>
-<p>可以大概说一下先日志排查，然后再进行测试环境远程 Debug 调试看出现的问题。</p>
-<h4 id="怎么快速定位系统的瓶颈"><a href="#怎么快速定位系统的瓶颈" class="headerlink" title="怎么快速定位系统的瓶颈"></a>怎么快速定位系统的瓶颈</h4><ul>
-<li>压测（性能测试），项目上线之前测评系统的压力<ul>
-<li>压测目的：给出系统当前的性能状况；定位系统性能瓶颈或潜在性能瓶颈</li>
-<li>指标：响应时间、QPS、并发数、吞吐量、CPU利用率、内存使用率、磁盘 IO、错误率</li>
-<li>压测工具：LoadRunner、Apache Jmeter…</li>
-<li>后端工程师：根据压测的结果进行解决或调优（接口慢、代码报错、并发达不到要求）</li>
-</ul>
-</li>
-<li>监控工具、链路追踪工具，项目上线之后监控<ul>
-<li>监控工具：Prometheus+Grafana</li>
-<li>链路追踪工具：skywalking、Zipkin</li>
-</ul>
-</li>
-<li>线上诊断工具Arthas (阿尔萨斯)，项目上线之后监控、排查<ul>
-<li>官网：<a target="_blank" rel="noopener" href="https://arthas.aliyun.com/">https://arthas.aliyun.com/</a></li>
-<li>不建议说，不太了解的话。</li>
-</ul>
-</li>
-</ul>
-<p>一般还是建议从如何监控线上，排查出对应的问题，然后如何解决的去回答。</p>
-<h4 id="库存扣减问题"><a href="#库存扣减问题" class="headerlink" title="库存扣减问题"></a>库存扣减问题</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240312113836.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="一张已经百万级别数据量的表，需要改一下字段结构或者索引，有什么合适的方式"><a href="#一张已经百万级别数据量的表，需要改一下字段结构或者索引，有什么合适的方式" class="headerlink" title="一张已经百万级别数据量的表，需要改一下字段结构或者索引，有什么合适的方式"></a>一张已经百万级别数据量的表，需要改一下字段结构或者索引，有什么合适的方式</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/83bc15e34876f8d3dcd228080354026.png" srcset="/img/loading.gif" lazyload alt="83bc15e34876f8d3dcd228080354026.png"></p>
-<h3 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h3><p>参考看一下： <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40851232/article/details/134402593?spm=1001.2014.3001.5502">https://blog.csdn.net/qq_40851232/article/details/134402593?spm=1001.2014.3001.5502</a></p>
-<p>[[面试_性能优化]]</p>
-
+                <h3 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h3><h4 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240311195612.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h3><h4 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240312224915.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313111136.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h3><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313172759.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h3>
                 
               </div>
             
@@ -452,7 +299,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/" class="category-chain-item">面试题</a>
+  <a href="/categories/%E9%9D%A2%E8%AF%95%E7%85%8E%E7%86%AC%E6%88%90%E8%9B%8B/" class="category-chain-item">面试煎熬成蛋</a>
   
   
 
@@ -479,8 +326,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>面试煎熬成蛋_项目场景题</div>
-      <div>https://varcel.luoqi.icu/2024/03/10/面试煎熬成蛋_项目场景题/</div>
+      <div>面试煎熬成蛋_面试速刷版</div>
+      <div>https://varcel.luoqi.icu/2024/03/14/面试煎熬成蛋_面试速刷版/</div>
     </div>
     <div class="license-meta">
       
@@ -492,7 +339,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年3月10日</div>
+          <div>2024年3月14日</div>
         </div>
       
       
@@ -524,18 +371,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/03/14/%E9%9D%A2%E8%AF%95%E7%85%8E%E7%86%AC%E6%88%90%E8%9B%8B_%E9%9D%A2%E8%AF%95%E9%80%9F%E5%88%B7%E7%89%88/" title="面试煎熬成蛋_面试速刷版">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">面试煎熬成蛋_面试速刷版</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/03/10/%E9%9D%A2%E8%AF%95%E7%85%8E%E7%86%AC%E6%88%90%E8%9B%8B_%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="面试煎熬成蛋_设计模式">
-                        <span class="hidden-mobile">面试煎熬成蛋_设计模式</span>
+                      <a href="/2024/03/10/%E9%9D%A2%E8%AF%95%E7%85%8E%E7%86%AC%E6%88%90%E8%9B%8B_%E9%A1%B9%E7%9B%AE%E5%9C%BA%E6%99%AF%E9%A2%98/" title="面试煎熬成蛋_项目场景题">
+                        <span class="hidden-mobile">面试煎熬成蛋_项目场景题</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

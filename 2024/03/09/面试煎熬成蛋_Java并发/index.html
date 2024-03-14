@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          15k 字
+          17k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          129 分钟
+          140 分钟
         
       </span>
     
@@ -844,19 +844,121 @@
 </li>
 </ul>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240312233851.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3><ul>
+<h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313111136.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
 <li>1、说一下线程池的核心参数（线程池的执行原理知道吗）</li>
 <li>2、线程池中有哪些常见的阻塞队列</li>
 <li>3、如何确认核心线程数</li>
 <li>4、线程池的种类有哪些</li>
 <li>5、为什么不建议使用 Executor 创建线程池</li>
 </ul>
-<h4 id="线程池的核心参数"><a href="#线程池的核心参数" class="headerlink" title="线程池的核心参数"></a>线程池的核心参数</h4><h4 id="线程池的执行原理知道嘛"><a href="#线程池的执行原理知道嘛" class="headerlink" title="线程池的执行原理知道嘛"></a>线程池的执行原理知道嘛</h4><h4 id="核心线程数可以为零吗"><a href="#核心线程数可以为零吗" class="headerlink" title="核心线程数可以为零吗"></a>核心线程数可以为零吗</h4><h4 id="怎么判断这个线程是可以被回收的"><a href="#怎么判断这个线程是可以被回收的" class="headerlink" title="怎么判断这个线程是可以被回收的"></a>怎么判断这个线程是可以被回收的</h4><h4 id="线程池的状态有哪些"><a href="#线程池的状态有哪些" class="headerlink" title="线程池的状态有哪些"></a>线程池的状态有哪些</h4><h4 id="Shutdown-和-shutdownnow-的区别，是通过什么方式关闭"><a href="#Shutdown-和-shutdownnow-的区别，是通过什么方式关闭" class="headerlink" title="Shutdown 和 shutdownnow 的区别，是通过什么方式关闭"></a>Shutdown 和 shutdownnow 的区别，是通过什么方式关闭</h4><h4 id="怎么将一个正在运行的线程关闭，什么样的线程是可以被中断的"><a href="#怎么将一个正在运行的线程关闭，什么样的线程是可以被中断的" class="headerlink" title="怎么将一个正在运行的线程关闭，什么样的线程是可以被中断的"></a>怎么将一个正在运行的线程关闭，什么样的线程是可以被中断的</h4><h4 id="线程中线程池的使用"><a href="#线程中线程池的使用" class="headerlink" title="线程中线程池的使用"></a>线程中线程池的使用</h4><p>直接使用<code>@Autowired</code>注入一个<code>ThreadPoolTaskExecutor</code>实例通常意味着你要使用Spring的默认配置</p>
+<p>为什么要使用线程池</p>
+<ul>
+<li><p>1、每次创建线程需要占用一定的内存空间</p>
+</li>
+<li><p>2、线程的执行需要 CPU 的执行权，CPU 的运算能力是有限的</p>
+</li>
+<li><h2 id="线程池的核心参数（执行原理）"><a href="#线程池的核心参数（执行原理）" class="headerlink" title="线程池的核心参数（执行原理）"></a>线程池的核心参数（执行原理）</h2></li>
+</ul>
+<h4 id="线程池的核心参数"><a href="#线程池的核心参数" class="headerlink" title="线程池的核心参数"></a>线程池的核心参数</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313085232.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>核心参数<ul>
+<li>核心线程数目</li>
+<li>最大线程数目</li>
+<li>生存时间</li>
+<li>时间单位</li>
+<li>阻塞队列</li>
+<li>线程工厂</li>
+<li>拒绝策略</li>
+</ul>
+</li>
+<li><h2 id="执行原理"><a href="#执行原理" class="headerlink" title="执行原理"></a>执行原理</h2></li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313085019.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="线程池的执行原理知道嘛"><a href="#线程池的执行原理知道嘛" class="headerlink" title="线程池的执行原理知道嘛"></a>线程池的执行原理知道嘛</h4><ul>
+<li>执行原理<ul>
+<li>当向线程池提交一个任务</li>
+<li>判断一下核心线程是否已满<ul>
+<li>是：判断阻塞队列是否已满</li>
+<li>否：</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313085343.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="线程池中有哪些常见的阻塞队列"><a href="#线程池中有哪些常见的阻塞队列" class="headerlink" title="线程池中有哪些常见的阻塞队列"></a>线程池中有哪些常见的阻塞队列</h4><p>workQueue-当没有空闲核心线程时，新来任务会加入到此队列排队，队列满会创建救急线程执行任务</p>
+<ul>
+<li>1.ArrayBlockingQueue:基于数组结构的有界阻塞队列，FIFO。</li>
+<li>2.LinkedBlockingQueue:基于链表结构的有界阻塞队列，FIFO。</li>
+<li>3.DelayedWorkQueue：是一个优先级队列，它可以保证每次出队的任务都是当前队列中执行时间最靠前的</li>
+<li>4.SynchronousQueue:不存储元素的阻塞队列，每个插入操作都必须等待一个移出操作。</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313105753.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="如何确认核心线程数"><a href="#如何确认核心线程数" class="headerlink" title="如何确认核心线程数"></a>如何确认核心线程数</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313110121.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313110201.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="线程池的种类有哪些"><a href="#线程池的种类有哪些" class="headerlink" title="线程池的种类有哪些"></a>线程池的种类有哪些</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313110448.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="核心线程数可以为零吗"><a href="#核心线程数可以为零吗" class="headerlink" title="核心线程数可以为零吗"></a>核心线程数可以为零吗</h4><h4 id="怎么判断这个线程是可以被回收的"><a href="#怎么判断这个线程是可以被回收的" class="headerlink" title="怎么判断这个线程是可以被回收的"></a>怎么判断这个线程是可以被回收的</h4><h4 id="线程池的状态有哪些"><a href="#线程池的状态有哪些" class="headerlink" title="线程池的状态有哪些"></a>线程池的状态有哪些</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313112723.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="Shutdown-和-shutdownnow-的区别，是通过什么方式关闭"><a href="#Shutdown-和-shutdownnow-的区别，是通过什么方式关闭" class="headerlink" title="Shutdown 和 shutdownnow 的区别，是通过什么方式关闭"></a>Shutdown 和 shutdownnow 的区别，是通过什么方式关闭</h4><h4 id="怎么将一个正在运行的线程关闭，什么样的线程是可以被中断的"><a href="#怎么将一个正在运行的线程关闭，什么样的线程是可以被中断的" class="headerlink" title="怎么将一个正在运行的线程关闭，什么样的线程是可以被中断的"></a>怎么将一个正在运行的线程关闭，什么样的线程是可以被中断的</h4><h4 id="项目中线程池的使用"><a href="#项目中线程池的使用" class="headerlink" title="项目中线程池的使用"></a>项目中线程池的使用</h4><p>直接使用<code>@Autowired</code>注入一个<code>ThreadPoolTaskExecutor</code>实例通常意味着你要使用Spring的默认配置</p>
+<ul>
+<li>1、一般会注入一个线程池的配置类的 @Bean</li>
+<li></li>
+</ul>
 <h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ul>
 <li>1、讲述一下你们项目中哪里用到了线程池（异步线程）</li>
 <li>2、如何控制某个方法允许并发访问线程的数量</li>
 <li>3、谈谈你对 ThreadLocal 的理解</li>
 </ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313141718.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="线程池使用场景"><a href="#线程池使用场景" class="headerlink" title="线程池使用场景"></a>线程池使用场景</h4><ul>
+<li>CountDownLatch</li>
+<li>Future</li>
+</ul>
+<h5 id="es-数据批量导入"><a href="#es-数据批量导入" class="headerlink" title="es 数据批量导入"></a>es 数据批量导入</h5><p>CountDownLatch 的使用： <a target="_blank" rel="noopener" href="https://www.bilibili.com/list/watchlater?bvid=BV1yT411H7YK&oid=485022417&p=111">https://www.bilibili.com/list/watchlater?bvid=BV1yT411H7YK&amp;oid=485022417&amp;p=111</a></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313113337.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313111009.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313113212.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313113337.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>CountDownLatch 的部分代码使用示例</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313113911.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h5 id="Future-（报表汇总也可以用到）"><a href="#Future-（报表汇总也可以用到）" class="headerlink" title="Future （报表汇总也可以用到）"></a>Future （报表汇总也可以用到）</h5><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313114227.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>这里是一种做法是这些流程实际是可以并行的，然后通过 Futrue 获取返回结果，后面再拼接到一起。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313114805.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313114913.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>给一个 Future 和 线程池的使用示例</p>
+<h5 id="异步线程"><a href="#异步线程" class="headerlink" title="异步线程"></a>异步线程</h5><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313135702.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="如何控制某个方法允许并发访问线程的数量"><a href="#如何控制某个方法允许并发访问线程的数量" class="headerlink" title="如何控制某个方法允许并发访问线程的数量"></a>如何控制某个方法允许并发访问线程的数量</h4><ul>
+<li>Semaphore</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313140027.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313140102.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h4><ul>
+<li>ThreadLocal：独立变量副本，避免线程共享可能导致的并发问题</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313140213.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>ThreadLocal 一般是用作独立变量副本（线程的变量副本），避免线程共享变量可能导致的并发问题。</p>
+<p>建议先看一下这篇文章： <a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1636025">https://cloud.tencent.com/developer/article/1636025</a></p>
+<p>ThreadLocal包含了四个方法:</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs processing"><span class="hljs-keyword">void</span> <span class="hljs-built_in">set</span>(<span class="hljs-built_in">Object</span> value)设置当前线程的线程局部变量的值。<br><span class="hljs-keyword">public</span> <span class="hljs-built_in">Object</span> <span class="hljs-built_in">get</span>()该方法返回当前线程所对应的线程局部变量。<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">remove</span>()将当前线程局部变量的值删除，其目的是为了减少内存使用，加快内存回收。<br><span class="hljs-keyword">protected</span> <span class="hljs-built_in">Object</span> <span class="hljs-title function_">initialValue</span>()返回该线程局部变量的初始值，该方法是一个<span class="hljs-keyword">protected</span>的方法，目的是为了让子类覆盖而设计的。<br></code></pre></td></tr></table></figure>
+
+<p>使用到 ThreadLocal 的三个常用场景：</p>
+<ul>
+<li><ol>
+<li>代替参数的显示传递</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>全局存储用户信息</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>解决线程安全问题（比如数据库连接的Connection)</li>
+</ol>
+</li>
+</ul>
+<p>慎用的场景：线程池中线程调用使用ThreadLocal、异步程序；同时注意的是使用完ThreadLocal ，最好手动调用 remove() 方法。</p>
+<hr>
+<p>关于 ThreadLocal 的数据结构，方法源码，扩容机制等可以看一下这篇文章： <a target="_blank" rel="noopener" href="https://javaguide.cn/java/concurrent/threadlocal.html">https://javaguide.cn/java/concurrent/threadlocal.html</a></p>
 
                 
               </div>

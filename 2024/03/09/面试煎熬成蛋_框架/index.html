@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.7k 字
+          3k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          23 分钟
+          25 分钟
         
       </span>
     
@@ -458,6 +458,13 @@
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290947817.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290948762.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290949754.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>2,其中@EnableAutoConfiguration是实现自动化配置的核心注解。</p>
+<ul>
+<li>该注解通过@Importi注解导入对应的配置选择器。</li>
+<li>内部就是读取了该项目和该项目引用的ar包的的classpath路径下META-NF&#x2F;spring.factories文件中的所配置的类的全类名。</li>
+<li>在这些配置类中所定义的Bean会根据条件注解所指定的条件来决定是否需要将其导入到Spring容器中。</li>
+<li>3,条件判断会有像 @ConditionalOnClassi这样的注解，判断是否有对应的class文件，如果有则加载该类，把这个配置类的所有的 Bean放入 spring容器中使用.</li>
+</ul>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290950693.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h3 id="Mybatis"><a href="#Mybatis" class="headerlink" title="Mybatis"></a>Mybatis</h3><h4 id="执行流程-🚩"><a href="#执行流程-🚩" class="headerlink" title="执行流程  🚩"></a>执行流程  🚩</h4><p>Mybatis 执行流程</p>
 <ul>
