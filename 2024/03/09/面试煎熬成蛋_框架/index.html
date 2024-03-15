@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3k 字
+          3.3k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          25 分钟
+          28 分钟
         
       </span>
     
@@ -399,40 +399,22 @@
 <p>面试题回答</p>
 </blockquote>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240229082037.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="循环依赖-🚩"><a href="#循环依赖-🚩" class="headerlink" title="循环依赖   🚩"></a>循环依赖   🚩</h4><blockquote>
-<p>Spring 中的循环引用</p>
-</blockquote>
-<p>什么是 Spring的循环依赖</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240229082243.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h5 id="三级缓存"><a href="#三级缓存" class="headerlink" title="三级缓存"></a>三级缓存</h5><p>Spring 解决循环依赖是通过三级缓存，对应的三级缓存如下：</p>
-<ul>
-<li>一级缓存<ul>
-<li>singletonObjects    单例池，已经初始化完成的 bean 对象</li>
-</ul>
-</li>
-<li>二级缓存<ul>
-<li>earlySingletonObjects   缓存早期的 bean 对象</li>
-</ul>
-</li>
-<li>三级缓存<ul>
-<li>singletionFactories   对象工厂</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240229082359.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>一级缓存作用：限制 bean 在 bean Factory 中只存在一份，即实现 singleton scope ，解决不了循环依赖。</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290928903.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>二级缓存能解决一般对象的循环依赖问题，但是如果这个对象是一个代理对象，是不能解决的。</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290931120.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>三级缓存能够解决初始化过程中的循环依赖问题</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290933565.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<blockquote>
-<p>构造方法中出现了循环依赖怎么解决？</p>
-</blockquote>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290935525.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>面试题回答：</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290937881.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290938852.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="循环依赖-🚩"><a href="#循环依赖-🚩" class="headerlink" title="循环依赖   🚩"></a>循环依赖   🚩</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240315154746.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240315153729.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>看一下相关的解析：</p>
+<p>关于三级缓存解决循环引用的描述，基本思路是对的，但描述过程中的一些细节需要更准确地表达：</p>
+<ol>
+<li><strong>开始实例化对象A</strong>：当Spring容器开始创建Bean A时，如果发现A依赖于B，它会暂停A的创建过程，并开始创建B。</li>
+<li><strong>放入三级缓存</strong>：在这个过程中，Spring容器实际上会将创建A的部分完成的实例（也就是说，这个实例已经分配了内存，但它的依赖还没有完全解决）的工厂放入三级缓存中。这个工厂负责生成A的引用，以便在需要时可以提前暴露出来。</li>
+<li><strong>创建对象B</strong>：在创建B的过程中，如果B需要依赖于A，Spring容器会尝试从缓存中获取A的实例。此时，它会从三级缓存中获取A的工厂，使用这个工厂创建A的早期引用，并将这个引用提升到二级缓存中。</li>
+<li><strong>完成对象B的创建</strong>：有了A的引用后，Spring容器可以继续B的创建过程，并解决其对A的依赖。</li>
+<li><strong>完成对象A的创建</strong>：一旦B被成功创建并设置到A中，Spring容器回到A的创建过程中，完成A的创建并解决其他可能的依赖。</li>
+</ol>
+<p>通过三级缓存机制，Spring能够处理循环依赖的情况，允许A和B互相引用而不导致死锁或Bean创建失败。</p>
+<p>不过，需要注意的是，Spring的这种三级缓存机制只能解决单例作用域Bean的循环依赖问题，并且主要解决的是Setter注入或字段注入造成的循环依赖。对于构造器注入导致的循环依赖，Spring是无法解决的。</p>
+<p>👇</p>
+<p>构造方法出现了循环依赖的话，可以使用 @Lazy 进行懒加载</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240315153845.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="常用注解"><a href="#常用注解" class="headerlink" title="常用注解"></a>常用注解</h4><p>Spring框架常见注解(Spring、Springboot、Springmvc)</p>
 <h5 id="Spring-1"><a href="#Spring-1" class="headerlink" title="Spring"></a>Spring</h5><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290951343.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h5 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h5><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290956678.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
