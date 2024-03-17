@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          284 字
+          945 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          3 分钟
+          8 分钟
         
       </span>
     
@@ -281,14 +281,64 @@
 <ul>
 <li>对于业务链路能够比较清晰的表达出来（讲清楚自己做过的项目支撑的业务特点）</li>
 </ul>
-<h4 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h4><h4 id="介绍项目经历"><a href="#介绍项目经历" class="headerlink" title="介绍项目经历"></a>介绍项目经历</h4><p>我上一家公司做的是医药、光伏和整车制造这方面的业务，然后我是在整车制造业务下面的一个项目组部门；</p>
+<h4 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h4><h4 id="介绍项目经历"><a href="#介绍项目经历" class="headerlink" title="介绍项目经历"></a>介绍项目经历</h4><ul>
+<li>1、介绍自己大学毕业后做了多少年的编程工程，主要方向是哪里，对什么感兴趣，平时会经常看文档等</li>
+<li>2、介绍自己的最近工作（偏重点，介绍技术栈和基础使用，包括部署等）</li>
+</ul>
+<p>我上一家公司做的是医药、光伏和整车制造这方面的业务，然后我是在整车制造业务下面的一个项目组部门；</p>
 <p>最开始的时候我这边是负责一个已经在运行的项目，主要负责是维护和相关的变更；我主要负责的是生产模块。</p>
 <p>我上一个项目做的也是 MES 相关的内容，做的是一个多工厂的基于微服务架构的项目；</p>
-<p>我最近的这份工作做的</p>
-<p>后端人员大概 5 个人，</p>
-<h4 id="技术难点和业务难点"><a href="#技术难点和业务难点" class="headerlink" title="技术难点和业务难点"></a>技术难点和业务难点</h4><p>MySQL </p>
+<ul>
+<li>1、介绍一下相关的技术点</li>
+<li>2、介绍</li>
+</ul>
+<h4 id="技术难点和业务难点"><a href="#技术难点和业务难点" class="headerlink" title="技术难点和业务难点"></a>技术难点和业务难点</h4><ul>
+<li>1、准备一下打印方面的内容</li>
+<li>2、准备一下设计模式关于具体的使用</li>
+<li>简历项目的个人职责相关的准备一下</li>
+</ul>
 <h4 id="是否使用到了多线程，以及如何使用的"><a href="#是否使用到了多线程，以及如何使用的" class="headerlink" title="是否使用到了多线程，以及如何使用的"></a>是否使用到了多线程，以及如何使用的</h4><h4 id="关于Redis-在项目中的部分使用"><a href="#关于Redis-在项目中的部分使用" class="headerlink" title="关于Redis 在项目中的部分使用"></a>关于Redis 在项目中的部分使用</h4><h4 id="项目中日志的记录"><a href="#项目中日志的记录" class="headerlink" title="项目中日志的记录"></a>项目中日志的记录</h4><p>、<br>模块名 + 类 + 方法   + 操作人 + 操作时间 + 操作记录</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240311220448.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="Excel-的导入操作"><a href="#Excel-的导入操作" class="headerlink" title="Excel 的导入操作"></a>Excel 的导入操作</h4><p>优化了计划排产模块的计划导入操作，使用了异步编程技术显著提高了车辆计划导入速度</p>
+<p>导入细节:</p>
+<ul>
+<li>数据导入：导入使用的模板由系统提供，格式是 xlsx (支持 65535+行数据) ，用户按照表头在对应列写入相应的数据。</li>
+<li>数据校验：数据校验有两种：<ul>
+<li>字段长度、字段正则表达式校验等，内存内校验不存在外部数据交互。对性能影响较小。</li>
+<li>数据重复性校验(需要查询数据库，十分影响性能)。</li>
+</ul>
+</li>
+<li>数据插入：测试环境数据库使用 MySQL 5.7，未分库分表，连接池使用 Druid</li>
+</ul>
+<p>迭代记录：</p>
+<ul>
+<li><ol>
+<li>POI + 逐行查询校对 + 逐行插入</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>EasyPOI + 缓存数据库查询操作 + 批量插入</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>EasyExcel + 缓存数据库查询操作 + 批量插入</li>
+</ol>
+</li>
+</ul>
+<p>提升Excel导入速度的方法：</p>
+<ul>
+<li>使用更快的 Excel 读取框架(推荐使用阿里 EasyExcel)。</li>
+<li>对于需要与数据库交互的校验、按照业务逻辑适当的使用缓存。用空间换时间。</li>
+<li>使用 values(),(),() 拼接长 SQL 一次插入多行数据。</li>
+<li>使用多线程插入数据，利用掉网络IO等待时间(推荐使用并行流，简单易用)。</li>
+<li>避免在循环中打印无用的日志。</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240315161309.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>参考：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.51cto.com/u_16213378/9188543">https://blog.51cto.com/u_16213378/9188543</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/IamHzc/p/17008074.html">https://www.cnblogs.com/IamHzc/p/17008074.html</a></li>
+</ul>
 
                 
               </div>

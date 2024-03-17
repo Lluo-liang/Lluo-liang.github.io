@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          8.2k 字
+          9.9k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          69 分钟
+          83 分钟
         
       </span>
     
@@ -456,17 +456,53 @@
 </li>
 </ul>
 <h3 id="内存、读写"><a href="#内存、读写" class="headerlink" title="内存、读写"></a>内存、读写</h3><h4 id="讲一下-Redis-持久化-🚩"><a href="#讲一下-Redis-持久化-🚩" class="headerlink" title="讲一下 Redis 持久化  🚩"></a>讲一下 Redis 持久化  🚩</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240312171845.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="Redis-为什么这么快"><a href="#Redis-为什么这么快" class="headerlink" title="Redis 为什么这么快"></a>Redis 为什么这么快</h4><p>Redis快的原因 </p>
-<ul>
-<li>基于内存的读写操作，没有磁盘IO的性能开销 </li>
-<li>采⽤单线程去处理⽹络IO请求以及指令的执⾏，避免多线程的竞 争以及上下⽂切换的开销 </li>
-<li>采⽤IO多路复⽤ epoll 机制，让单线程去处理多个请求，当有操作 时会⽴刻通知去处理 </li>
-<li>对于每种数据类型都进⾏了优化，⽐如使⽤ziplist来节省空间以 及skiplist来提升查找效率</li>
+<h4 id="Redis-为什么这么快-🚩"><a href="#Redis-为什么这么快-🚩" class="headerlink" title="Redis 为什么这么快  🚩"></a>Redis 为什么这么快  🚩</h4><ul>
+<li>1、主要还是基于内存操作</li>
+<li>2、是单线程的，避免了不必要的上下文切换可竞争条件，多线程需要考虑线程安全问题</li>
+<li>3、使用 IO 多路复用模型，非阻塞 IO</li>
+<li>4、Redis 的每种数据结构进行了优化处理</li>
 </ul>
-<h4 id="Redis-为什么要引入多线程"><a href="#Redis-为什么要引入多线程" class="headerlink" title="Redis 为什么要引入多线程"></a>Redis 为什么要引入多线程</h4><ul>
+<h4 id="什么是-IO-多路复用"><a href="#什么是-IO-多路复用" class="headerlink" title="什么是 IO 多路复用"></a>什么是 IO 多路复用</h4><p>Rdis是纯内存操作，执行速度非常快，它的性能瓶颈是网络延迟而不是执行速度，</p>
+<p>I&#x2F;O多路复用模型主要就是实现了高效的网络请求</p>
+<ul>
+<li>用户空间和内核空间</li>
+<li>常见的  IO 模型<ul>
+<li>阻塞IO(Blocking IO)</li>
+<li>非阻塞IO(Nonblocking IO)</li>
+<li>IO多路复用(IO Multiplexing)</li>
+</ul>
+</li>
+<li>Redis网络模型</li>
+</ul>
+<p>阻塞IO 是常见 的IO 操作模型，但是它实际的效率并不是很高；用户态在内核读取数据和从内核拷贝到用户缓冲区的两个阶段都需要等待阻塞运行。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317144125.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>非阻塞IO，在内核态读取这一阶段，用户阶段并不会持续阻塞等待，而是自旋询问是否数据准备就绪，如果未就绪，就循环尝试读取。</p>
+<p>阶段二仍然会被阻塞，但由于忙等机制实际效率并没有提高很多。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317144427.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>IO 多路复用</p>
+<p>监听了多个 socker，并且其中只要有一个 socket 就绪，就可以进行系统调用 recvfrom</p>
+<p>和前者最大的区别是：非阻塞 iO 或者 阻塞 IO  需要等待它目前在读取的 socket 数据准备就绪才可以下一步操作（而实际上可能它后面的 socket 是已经准备就绪了）</p>
+<p>通过这个监听机制，可以有效提高效率</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317145015.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>常见 的 IO  多路复用模式有： select、poll、epoll；</p>
+<p>然后前两个的机制：select 和 poll 会有一个监听，然后只是监听里面有没有就绪的，如果有，遍历逐个来判断；<br>而 epoll 机制能够精确定位到具体是哪一个，而不用遍历。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317145752.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>Reids 网络模型：IO多路复用 + 事件派发机制</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317150021.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="Redis-为什么要引入多线程"><a href="#Redis-为什么要引入多线程" class="headerlink" title="Redis 为什么要引入多线程"></a>Redis 为什么要引入多线程</h4><p>影响效率最大的是 网络 IO</p>
+<p>Redis 多线程 在命令回复处理器和 接受参数数据，转换Redis 命令 （网络IO 方面的内容）进行了优化（加入了多线程）</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317150227.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
 <li>Redis引⼊多线程主要想发挥多核处理器的能⼒，处理在⼤数据量下 ⽹络IO读写速度慢的问题，但是指令的执⾏依旧采⽤的是单线程</li>
 </ul>
-<h4 id="什么是-IO-多路复用"><a href="#什么是-IO-多路复用" class="headerlink" title="什么是 IO 多路复用"></a>什么是 IO 多路复用</h4><h4 id="讲一下-Redis-的-Reactor-模型"><a href="#讲一下-Redis-的-Reactor-模型" class="headerlink" title="讲一下 Redis 的 Reactor 模型"></a>讲一下 Redis 的 Reactor 模型</h4><h4 id="过期键的删除策略"><a href="#过期键的删除策略" class="headerlink" title="过期键的删除策略"></a>过期键的删除策略</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240312184918.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317150349.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>面试官：Redis是单线程的，但是为什么还那么快？</p>
+<p>候选人：</p>
+<p>嗯，这个有几个原因吧~~~<br>1、完全基于内存的，C语言编写<br>2、采用单线程，避免不必要的上下文切换可竞争条件<br>3、使用多路1&#x2F;0复用模型，非阻塞I0</p>
+<p>例如：bgsave和bgrewriteaof都是在后台执行操作，不影响主线程的正常使用，不会产生阻塞</p>
+<p>面试官：能解释一下1&#x2F;O多路复用模型？</p>
+<p>候选人：嗯~，I&#x2F;O多路复用是指利用单个线程来同时监听多个Socket,并在某个Socketi可读、可写时<br>得到通知，从而避免无效的等待，充分利用CPU资源。目前的1&#x2F;O多路复用都是采用的epo模式实现，<br>它会在通知用户进程Socket就绪的同时，把己就绪的Socket写入用户空间，不需要挨个遍历Socket来判<br>断是否就绪，提升了性能。<br>其中Redis的网络模型就是使用I&#x2F;O多路复用结合事件的处理器来应对多个Socketi请求，比如，提供了连<br>接应答处理器、命令回复处理器，命令请求处理器：<br>在Redis6.0之后，为了提升更好的性能，在命令回复处理器使用了多线程来处理回复事件，在命令请求<br>处理器中，将命令的转换使用了多线程，增加命令转换速度，在命令执行的时候，依然是单线程</p>
+<h4 id="讲一下-Redis-的-Reactor-模型"><a href="#讲一下-Redis-的-Reactor-模型" class="headerlink" title="讲一下 Redis 的 Reactor 模型"></a>讲一下 Redis 的 Reactor 模型</h4><h4 id="过期键的删除策略"><a href="#过期键的删除策略" class="headerlink" title="过期键的删除策略"></a>过期键的删除策略</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240312184918.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>假如redis的 key 过期之后，会立即删除吗？  set name heima 10</p>
 <ul>
 <li>Redis 对数据设置数据的有效时间，数据过期以后，就需要将数据从内存中删除掉。</li>
@@ -532,7 +568,46 @@
 <li>3.LFU:最少频率使用。会统计每个key的访问频率，值越小淘汰优先级越高</li>
 </ul>
 <p>平时开发过程中用的比较多的就是allkeys-lru(结合自己的业务场景)</p>
-<h3 id="高可用"><a href="#高可用" class="headerlink" title="高可用"></a>高可用</h3><h4 id="Redis-怎么实现高可用的"><a href="#Redis-怎么实现高可用的" class="headerlink" title="Redis 怎么实现高可用的"></a>Redis 怎么实现高可用的</h4><h4 id="Redisi主从复制（同步）原理"><a href="#Redisi主从复制（同步）原理" class="headerlink" title="Redisi主从复制（同步）原理"></a>Redisi主从复制（同步）原理</h4><h4 id="讲一下-哨兵选主过程"><a href="#讲一下-哨兵选主过程" class="headerlink" title="讲一下 哨兵选主过程"></a>讲一下 哨兵选主过程</h4><h4 id="讲一下Redis-Cluster主从选举过程"><a href="#讲一下Redis-Cluster主从选举过程" class="headerlink" title="讲一下Redis Cluster主从选举过程"></a>讲一下Redis Cluster主从选举过程</h4><h4 id="讲一下-主从选举的脑裂问题"><a href="#讲一下-主从选举的脑裂问题" class="headerlink" title="讲一下 主从选举的脑裂问题"></a>讲一下 主从选举的脑裂问题</h4><h3 id="生产问题"><a href="#生产问题" class="headerlink" title="生产问题"></a>生产问题</h3><h4 id="怎么保存缓存和数据库数据一致（数据一致性怎么保证）"><a href="#怎么保存缓存和数据库数据一致（数据一致性怎么保证）" class="headerlink" title="怎么保存缓存和数据库数据一致（数据一致性怎么保证）"></a>怎么保存缓存和数据库数据一致（数据一致性怎么保证）</h4><p>简介相关内容：我们考虑引入 缓存 是打算提高读性能，引入缓存后，之前放入到数据库中的数据，现在需要放到数据中存取，我们需要怎么操作？ → </p>
+<h3 id="高可用"><a href="#高可用" class="headerlink" title="高可用"></a>高可用</h3><h4 id="Redis-怎么实现高可用的"><a href="#Redis-怎么实现高可用的" class="headerlink" title="Redis 怎么实现高可用的"></a>Redis 怎么实现高可用的</h4><h4 id="Redisi主从复制（同步）原理"><a href="#Redisi主从复制（同步）原理" class="headerlink" title="Redisi主从复制（同步）原理"></a>Redisi主从复制（同步）原理</h4><ul>
+<li>通过 RDB 日志文件和偏移量操作</li>
+</ul>
+<p>全量同步操作</p>
+<ul>
+<li>1、从节点发起同步请求</li>
+<li>2、主节点判断是否是第一次同步，如果是第一次，进行全量同步，如果不是，判断 数据集 replid 是否一致<ul>
+<li>是，第一次，会返回 master 的数据版本信息 replid、offset</li>
+</ul>
+</li>
+<li>3、从节点会保存版本信息</li>
+<li>4、主节点会生成 RDB 文件进行发送操作</li>
+<li>5、从节点会清空本地数据，加载 RDB 文件</li>
+<li>6、从节点加载过程会主节点会生成一个 repl_baklog 的文件（中间执行操作），并发送到从节点</li>
+<li>7、从节点再进行加载进行同步</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317151632.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>增量同步操作</p>
+<ul>
+<li>从 reol_baklog 获取数据发送到从节点</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317152226.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>参考</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317152304.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="讲一下-哨兵选主过程"><a href="#讲一下-哨兵选主过程" class="headerlink" title="讲一下 哨兵选主过程"></a>讲一下 哨兵选主过程</h4><p>哨兵：高可用，提供监控范围和自动故障恢复与通知</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317152413.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>选取操作</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317152506.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>哨兵模式中会遇到一个问题：脑裂问题</p>
+<h4 id="讲一下-主从选举的脑裂问题"><a href="#讲一下-主从选举的脑裂问题" class="headerlink" title="讲一下 主从选举的脑裂问题"></a>讲一下 主从选举的脑裂问题</h4><p>集群脑裂是由于主节点和从节点和sentinel处于不同的网络分区，使得sentinel没有能够心跳感知到主节点，所以通过选举的方式提升了一个从节点为主，这样就存在了两个master,就像大脑分裂了一样，这样会导致客户端还在老的主节点那里写入数据，新节点无法同步数据，当网络恢复后，sentinel会将老的主节点降为从节点，这时再从新master 同步数据，就会导致数据丢失</p>
+<p>解决：我们可以修改rds的配置，可以设置最少的从节点数量以及缩短主从数据同步的延迟时间，达不到要求就拒绝请求就可以避免大量的数据丢失。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317152818.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>参考</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317152938.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="分片集群"><a href="#分片集群" class="headerlink" title="分片集群"></a>分片集群</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317153141.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>参考</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317153308.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="讲一下Redis-Cluster主从选举过程"><a href="#讲一下Redis-Cluster主从选举过程" class="headerlink" title="讲一下Redis Cluster主从选举过程"></a>讲一下Redis Cluster主从选举过程</h4><h3 id="生产问题"><a href="#生产问题" class="headerlink" title="生产问题"></a>生产问题</h3><h4 id="怎么保存缓存和数据库数据一致（数据一致性怎么保证）"><a href="#怎么保存缓存和数据库数据一致（数据一致性怎么保证）" class="headerlink" title="怎么保存缓存和数据库数据一致（数据一致性怎么保证）"></a>怎么保存缓存和数据库数据一致（数据一致性怎么保证）</h4><p>简介相关内容：我们考虑引入 缓存 是打算提高读性能，引入缓存后，之前放入到数据库中的数据，现在需要放到数据中存取，我们需要怎么操作？ → </p>
 <ul>
 <li>全量数据刷到缓存中（最简单）<ul>
 <li>数据库的数据，全量刷入缓存（不设置失效时间）</li>
