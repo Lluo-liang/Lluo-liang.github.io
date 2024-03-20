@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2k 字
+          2.2k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          17 分钟
+          19 分钟
         
       </span>
     
@@ -375,7 +375,26 @@
 <li>5、分库分表</li>
 </ul>
 <h4 id="最左匹配原则"><a href="#最左匹配原则" class="headerlink" title="最左匹配原则"></a>最左匹配原则</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313161701.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>‘</p>
-<h4 id="索引下推"><a href="#索引下推" class="headerlink" title="索引下推"></a>索引下推</h4><h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313164140.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="索引下推"><a href="#索引下推" class="headerlink" title="索引下推"></a>索引下推</h4><h3 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h3><ul>
+<li>悲观锁</li>
+<li>乐观锁   </li>
+<li>表锁</li>
+<li>行锁（Innodb 存储引擎）</li>
+</ul>
+<p>悲观锁实现</p>
+<p>可以通过SQL语句显式地对选定的行进行锁定，直到当前事务结束。</p>
+<ul>
+<li><strong>SELECT … FOR UPDATE</strong>: 对读取的行加上排他锁（X锁）。其他事务将不能读取或修改这些行。</li>
+<li><strong>SELECT … LOCK IN SHARE MODE</strong>: 对读取的行加上共享锁（S锁）。其他事务可以读取但不能修改这些行。</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/6b0487b3cd1209dc0a3ee87a09fe6f9.png" srcset="/img/loading.gif" lazyload alt="6b0487b3cd1209dc0a3ee87a09fe6f9.png"></p>
+<ul>
+<li><p>update 没加索引会锁全表？</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://xiaolincoding.com/mysql/lock/update_index.html">https://xiaolincoding.com/mysql/lock/update_index.html</a></p>
+</li>
+</ul>
+<h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313164140.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="事务的特性"><a href="#事务的特性" class="headerlink" title="事务的特性"></a>事务的特性</h4><p>事务：事务是一组操作的集合，它是一个不可分割的工作单位，事务会把所有的操作作为一个整体一起向系<br>统提交或撤销操作请求，即这些操作要么同时成功，要么同时失败。</p>
 <p>ACID是什么？可以详细说一下吗？</p>
 <ul>

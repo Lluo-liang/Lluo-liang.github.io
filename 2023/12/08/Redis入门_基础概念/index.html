@@ -498,16 +498,16 @@
 <li><strong>描述</strong>：字符串是Redis最基本的类型，可以存储任何形式的字符串（包括二进制数据），最大可以支持512MB。</li>
 <li><strong>底层实现</strong>：简单动态字符串（Simple Dynamic Strings, SDS），它可以更有效地增长和缩小，避免了C字符串的缓冲区溢出问题。</li>
 </ul>
-<h4 id="列表-Lists"><a href="#列表-Lists" class="headerlink" title="列表(Lists)"></a>列表(Lists)</h4><ul>
-<li><strong>描述</strong>：列表用于存储一个有序的字符串集合，类似于Java的LinkedList，支持在两端推入或弹出元素。</li>
-<li><strong>底层实现</strong>：Redis列表使用双向链表（linked list）实现，也会根据实际使用场景在压缩列表（ziplist）和双向链表之间动态转换。小列表使用ziplist，可以节省空间，当列表元素较多或元素大小较大时，转换为linked list。</li>
-</ul>
-<p>Redis列表是简单的字符串列表，按插入顺序排序。它可以用作队列，支持在列表的头部或尾部添加元素。</p>
 <h4 id="集合-Sets"><a href="#集合-Sets" class="headerlink" title="集合(Sets)"></a>集合(Sets)</h4><ul>
 <li><strong>描述</strong>：集合是字符串的无序集合，且集合中的每个元素都是唯一的。</li>
 <li><strong>底层实现</strong>：当元素数量较少且都是整数时，使用整数集合（intset）实现；否则，使用哈希表实现，以支持更大的集合和复杂元素。</li>
 </ul>
 <p>Redis的集合是字符串类型的无序集合。它可以自动去重，非常适合存储不重复的数据集。</p>
+<h4 id="列表-Lists"><a href="#列表-Lists" class="headerlink" title="列表(Lists)"></a>列表(Lists)</h4><ul>
+<li><strong>描述</strong>：列表用于存储一个有序的字符串集合，类似于Java的LinkedList，支持在两端推入或弹出元素。</li>
+<li><strong>底层实现</strong>：Redis列表使用双向链表（linked list）实现，也会根据实际使用场景在压缩列表（ziplist）和双向链表之间动态转换。小列表使用ziplist，可以节省空间，当列表元素较多或元素大小较大时，转换为linked list。</li>
+</ul>
+<p>Redis列表是简单的字符串列表，按插入顺序排序。它可以用作队列，支持在列表的头部或尾部添加元素。</p>
 <h4 id="有序集合（Sorted-Sets）"><a href="#有序集合（Sorted-Sets）" class="headerlink" title="有序集合（Sorted Sets）"></a>有序集合（Sorted Sets）</h4><ul>
 <li><strong>描述</strong>：有序集合与集合类似，但每个元素都会关联一个双精度的分数，Redis会根据分数对元素进行排序。</li>
 <li><strong>底层实现</strong>：跳表（skiplist）和哈希表的结合。跳表用于按分数排序和范围查询，而哈希表则用于快速访问元素。</li>

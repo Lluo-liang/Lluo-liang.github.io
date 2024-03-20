@@ -516,6 +516,11 @@
 <li>14、消息刷盘怎么实现的呢？</li>
 </ul>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240311232709.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="Rocketmq中Broker的部署方式"><a href="#Rocketmq中Broker的部署方式" class="headerlink" title="Rocketmq中Broker的部署方式"></a>Rocketmq中Broker的部署方式</h4><ul>
+<li>单机 Broker</li>
+<li>多 Master </li>
+<li>多 Master 多 Slave （生产常见模式）【多主多从】</li>
+</ul>
 <h4 id="RocketMQ-的-主要组件"><a href="#RocketMQ-的-主要组件" class="headerlink" title="RocketMQ 的 主要组件"></a>RocketMQ 的 主要组件</h4><p>基础组件有：NameServer 注册中心、Broker 消息队列服务器、Producer、Consumer</p>
 <ul>
 <li>NameServer<ul>
@@ -542,11 +547,6 @@
 <li>相当于Topic的分区，⼀个Topic默认4个MessageQueue</li>
 </ul>
 </li>
-</ul>
-<h4 id="Rocketmq中Broker的部署方式"><a href="#Rocketmq中Broker的部署方式" class="headerlink" title="Rocketmq中Broker的部署方式"></a>Rocketmq中Broker的部署方式</h4><ul>
-<li>单机 Broker</li>
-<li>多 Master </li>
-<li>多 Master 多 Slave （生产常见模式）【多主多从】</li>
 </ul>
 <h4 id="RocketMQ-的工作流程"><a href="#RocketMQ-的工作流程" class="headerlink" title="RocketMQ 的工作流程"></a>RocketMQ 的工作流程</h4><p>RocketMQ由NameServer集群、Producer集群、Consumer集群、Broker集群组成，消息生产和消费的大致原理如下：</p>
 <ul>

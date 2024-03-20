@@ -448,7 +448,11 @@
 <li>3,条件判断会有像 @ConditionalOnClassi这样的注解，判断是否有对应的class文件，如果有则加载该类，把这个配置类的所有的 Bean放入 spring容器中使用.</li>
 </ul>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290950693.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h3 id="Mybatis"><a href="#Mybatis" class="headerlink" title="Mybatis"></a>Mybatis</h3><h4 id="执行流程-🚩"><a href="#执行流程-🚩" class="headerlink" title="执行流程  🚩"></a>执行流程  🚩</h4><p>Mybatis 执行流程</p>
+<h3 id="Mybatis"><a href="#Mybatis" class="headerlink" title="Mybatis"></a>Mybatis</h3><h4 id="执行流程-🚩"><a href="#执行流程-🚩" class="headerlink" title="执行流程  🚩"></a>执行流程  🚩</h4><ul>
+<li><h2 id="执行流程-1"><a href="#执行流程-1" class="headerlink" title="执行流程"></a>执行流程</h2></li>
+</ul>
+<hr>
+<p>Mybatis 执行流程</p>
 <ul>
 <li>1、理解各个组件的关系</li>
 <li>2、Sql 的执行过程（参数映射、sql 解析、执行和结果处理）</li>
@@ -465,12 +469,15 @@
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402291131905.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>面试题</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402291132269.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="延迟加载-🚩"><a href="#延迟加载-🚩" class="headerlink" title="延迟加载   🚩"></a>延迟加载   🚩</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402291133046.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="延迟加载-🚩"><a href="#延迟加载-🚩" class="headerlink" title="延迟加载   🚩"></a>延迟加载   🚩</h4><p>延迟加载操作：需要配置文件中开启（关联对象集合的延迟加载）</p>
+<p>实现原理：动态代理，CGLIB</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402291133046.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <ul>
 <li>1、设置局部的延迟加载</li>
 <li>2、设置全部的延迟加载</li>
 </ul>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402291137882.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>主要看一下这个：</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402291138401.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="一二级缓存-🚩"><a href="#一二级缓存-🚩" class="headerlink" title="一二级缓存  🚩"></a>一二级缓存  🚩</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402291142061.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>二级缓存</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402291144414.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>

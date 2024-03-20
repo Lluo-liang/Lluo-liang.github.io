@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.9k 字
+          10k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          83 分钟
+          84 分钟
         
       </span>
     
@@ -607,7 +607,14 @@
 <h4 id="分片集群"><a href="#分片集群" class="headerlink" title="分片集群"></a>分片集群</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317153141.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>参考</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317153308.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="讲一下Redis-Cluster主从选举过程"><a href="#讲一下Redis-Cluster主从选举过程" class="headerlink" title="讲一下Redis Cluster主从选举过程"></a>讲一下Redis Cluster主从选举过程</h4><h3 id="生产问题"><a href="#生产问题" class="headerlink" title="生产问题"></a>生产问题</h3><h4 id="怎么保存缓存和数据库数据一致（数据一致性怎么保证）"><a href="#怎么保存缓存和数据库数据一致（数据一致性怎么保证）" class="headerlink" title="怎么保存缓存和数据库数据一致（数据一致性怎么保证）"></a>怎么保存缓存和数据库数据一致（数据一致性怎么保证）</h4><p>简介相关内容：我们考虑引入 缓存 是打算提高读性能，引入缓存后，之前放入到数据库中的数据，现在需要放到数据中存取，我们需要怎么操作？ → </p>
+<h4 id="讲一下Redis-Cluster主从选举过程"><a href="#讲一下Redis-Cluster主从选举过程" class="headerlink" title="讲一下Redis Cluster主从选举过程"></a>讲一下Redis Cluster主从选举过程</h4><h3 id="生产问题"><a href="#生产问题" class="headerlink" title="生产问题"></a>生产问题</h3><h4 id="怎么保存缓存和数据库数据一致（数据一致性怎么保证）-💣-后面完善下"><a href="#怎么保存缓存和数据库数据一致（数据一致性怎么保证）-💣-后面完善下" class="headerlink" title="怎么保存缓存和数据库数据一致（数据一致性怎么保证）  💣  后面完善下"></a>怎么保存缓存和数据库数据一致（数据一致性怎么保证）  💣  后面完善下</h4><p>延迟双删 + 定时刷新</p>
+<p>策略</p>
+<ul>
+<li>1、数据库中数据中全量刷写到缓存中，不设置失效时间 + 定时任务</li>
+<li>2、保留热数据</li>
+</ul>
+<p>旁路缓存模式 + 保证删除操作非异常执行（MQ异步 + 订阅日志机制）</p>
+<p>简介相关内容：我们考虑引入 缓存 是打算提高读性能，引入缓存后，之前放入到数据库中的数据，现在需要放到数据中存取，我们需要怎么操作？ → </p>
 <ul>
 <li>全量数据刷到缓存中（最简单）<ul>
 <li>数据库的数据，全量刷入缓存（不设置失效时间）</li>
@@ -678,7 +685,9 @@
 <p>使用消息队列作为异步处理机制，<strong>将需要更新或删除的缓存操作</strong>作为消息发送到队列中，由消费者负责执行实际的缓存更新任务。这样即使缓存服务暂时不可用，也不会影响主业务流程，待缓存服务恢复后再通过消费消息来同步缓存。</p>
 <p>订阅数据库变更日志</p>
 <p>另一个高级的方案是直接订阅数据库的变更日志（如果数据库支持），如MySQL的binlog。通过解析变更日志，对相关缓存进行更新或删除操作。这种方法可以确保缓存数据的最终一致性，但实现复杂，对数据库和缓存系统的要求较高。</p>
-<h4 id="讲一下延迟双删"><a href="#讲一下延迟双删" class="headerlink" title="讲一下延迟双删"></a>讲一下延迟双删</h4><h4 id="缓存雪崩、缓存击穿、缓存穿透"><a href="#缓存雪崩、缓存击穿、缓存穿透" class="headerlink" title="缓存雪崩、缓存击穿、缓存穿透"></a>缓存雪崩、缓存击穿、缓存穿透</h4><ul>
+<h4 id="数据双写不一致"><a href="#数据双写不一致" class="headerlink" title="数据双写不一致"></a>数据双写不一致</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317223928.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="讲一下延迟双删"><a href="#讲一下延迟双删" class="headerlink" title="讲一下延迟双删"></a>讲一下延迟双删</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317223544.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="缓存雪崩、缓存击穿、缓存穿透"><a href="#缓存雪崩、缓存击穿、缓存穿透" class="headerlink" title="缓存雪崩、缓存击穿、缓存穿透"></a>缓存雪崩、缓存击穿、缓存穿透</h4><ul>
 <li>缓存穿透<ul>
 <li>缓存穿透是指当请求的数据既不在缓存中也不存在于数据库中时，导致请求直接到达数据库层的现象。</li>
 <li>成因：频繁查询不存在的数据（可能是由于错误的输入或恶意攻击）</li>
