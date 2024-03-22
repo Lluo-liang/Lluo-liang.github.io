@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.9k 字
+          6.7k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          25 分钟
+          56 分钟
         
       </span>
     
@@ -329,14 +329,82 @@
 <h4 id="switch-case-支持哪几种数据类型"><a href="#switch-case-支持哪几种数据类型" class="headerlink" title="switch case 支持哪几种数据类型"></a>switch case 支持哪几种数据类型</h4><ul>
 <li><strong>整数类型</strong>、枚举类型、字符串</li>
 </ul>
-<h4 id="String、StringBuffer、StringBuilder-的区别"><a href="#String、StringBuffer、StringBuilder-的区别" class="headerlink" title="String、StringBuffer、StringBuilder 的区别"></a>String、StringBuffer、StringBuilder 的区别</h4><ul>
-<li>String:  不可变，线程安全</li>
-<li>StringBuffer：可变字符串，线程安全</li>
-<li>StringBuilder：可变字符串，线程不安全</li>
+<h4 id="什么是值传递和引⽤传递"><a href="#什么是值传递和引⽤传递" class="headerlink" title="什么是值传递和引⽤传递"></a>什么是值传递和引⽤传递</h4><ul>
+<li>值传递是对基本数据类型⽽⾔，<strong>只进⾏值的拷⻉</strong>，不会影响原变量</li>
+<li>引⽤传递是对对象⽽⾔，不是传递对象的值，<strong>⽽是传递对象的地址</strong>， 如果副本改变会影响到原对象</li>
 </ul>
+<h4 id="final、finally、finalize的区别"><a href="#final、finally、finalize的区别" class="headerlink" title="final、finally、finalize的区别"></a>final、finally、finalize的区别</h4><ul>
+<li>final修饰的类不能被继承、属性是常量⽽且必须初始化、修饰的⽅法 不能被重写</li>
+<li>finally⽤于异常处理，finally代码块中的内容⼀定会执⾏</li>
+<li>finalize是Object类的⼀个⽅法，当我们调⽤system.gc()时会调⽤，也 可以使⽤它在GC时⾃救⼀次<ul>
+<li>重写finalize⽅法的对象会被加⼊到⼀个 unfinalized 链表中，⾸次 GC时不会回收该对象，调⽤完finalize后，然后从unfinalized链表 剔除，此时对象可以进⾏⾃救，将⾃⼰重新加⼊到引⽤链上，下 ⼀次GC时会进⾏回收</li>
+</ul>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p>关于对 finialize 的解释：</p>
+</blockquote>
+<p>Java中<code>finalize()</code>方法的工作原理以及 finalize 方法 与垃圾回收（GC）过程的关系</p>
+<ul>
+<li><code>finalize()</code>方法是<code>java.lang.Object</code>类的一个方法，Java允许子类重写这个方法，以实现资源的清理工作，比如关闭文件句柄或者释放网络资源等。</li>
+<li>不过，需要注意的是，从Java 9开始，<code>finalize()</code>方法已被标记为废弃（deprecated），因为它的使用是不推荐的，主要因为它的不确定性、低效率和可能导致的内存泄露问题。</li>
+</ul>
+<p>以下是<code>finalize()</code>方法工作机制的详细解释：</p>
+<ol>
+<li><strong>重写<code>finalize()</code>方法的对象被加入到一个<code>unfinalized</code>链表中</strong>：当一个对象重写了<code>finalize()</code>方法，且该对象变成了垃圾（即没有任何强引用指向它），JVM就会将这个对象加入到一个专门的列表（称为<code>unfinalized</code>链表）中。这意味着，尽管这个对象已经没有被任何强引用指向，但因为重写了<code>finalize()</code>方法，它在第一次垃圾回收时不会立即被清理。</li>
+<li><strong>首次GC时不会回收该对象</strong>：当垃圾回收器运行时，它会检测到<code>unfinalized</code>链表中的对象。对于这些对象，垃圾回收器不会直接回收它们，而是先调用它们的<code>finalize()</code>方法，目的是给这些对象一个清理资源的机会。</li>
+<li><strong>调用完<code>finalize()</code>后，从<code>unfinalized</code>链表剔除</strong>：一旦对象的<code>finalize()</code>方法被调用，不论这个方法内部做了什么（即使是空操作），该对象会被从<code>unfinalized</code>链表中移除。此时，如果对象没有在其<code>finalize()</code>方法中重新被引用（即所谓的“自救”），它就会在下一次垃圾回收时被清理。</li>
+<li><strong>对象可以进行自救</strong>：在<code>finalize()</code>方法执行期间，对象有机会将自己“自救”，即在方法内部使自己重新被引用（比如，将自己赋值给某个类变量或者对象的静态变量）。这样做可以阻止对象被垃圾回收器在当前回收周期内清理。</li>
+<li><strong>下一次GC时会进行回收</strong>：如果对象在执行<code>finalize()</code>方法后没有进行自救，或者已经是第二次触发垃圾回收（即已经调用过<code>finalize()</code>方法），则在下一次垃圾回收时，这个对象将被彻底回收。</li>
+</ol>
+<p>需要强调的是，虽然<code>finalize()</code>方法提供了一种机制让对象在被回收前有机会清理资源，但由于它的不确定性和执行成本，以及可能导致的问题（如对象自救导致的内存泄露），在实际编程中应避免使用。</p>
+<p>Java提供了其他资源管理机制，如<code>try-with-resources</code>语句和<code>AutoCloseable</code>接口，这些机制应该被优先考虑用于资源的清理。</p>
+<p>一个简单的自救示例：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">SelfRescueDemo</span> &#123;<br><br>    <span class="hljs-comment">// 用于保存对象的引用，以实现&quot;自救&quot;</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> SelfRescueDemo rescueInstance = <span class="hljs-literal">null</span>;<br><br>    @Override<br>    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">finalize</span>() throws Throwable</span> &#123;<br>        super.finalize();<br>        System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;finalize method executed!&quot;</span>);<br>        <span class="hljs-comment">// 自救操作：将this赋值给rescueInstance</span><br>        SelfRescueDemo.rescueInstance = <span class="hljs-keyword">this</span>;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span>(<span class="hljs-params">String[] args</span>) throws InterruptedException</span> &#123;<br>        rescueInstance = <span class="hljs-keyword">new</span> SelfRescueDemo();<br><br>        <span class="hljs-comment">// 第一次尝试自救</span><br>        rescueInstance = <span class="hljs-literal">null</span>; <span class="hljs-comment">// 取消引用</span><br>        System.gc(); <span class="hljs-comment">// 提示JVM进行垃圾回收</span><br>        Thread.sleep(<span class="hljs-number">500</span>); <span class="hljs-comment">// 留出时间给垃圾回收器执行</span><br><br>        <span class="hljs-keyword">if</span> (rescueInstance != <span class="hljs-literal">null</span>) &#123;<br>            System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;First rescue successful!&quot;</span>);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;First rescue failed.&quot;</span>);<br>        &#125;<br><br>        <span class="hljs-comment">// 第二次尝试自救</span><br>        rescueInstance = <span class="hljs-literal">null</span>; <span class="hljs-comment">// 再次取消引用</span><br>        System.gc(); <span class="hljs-comment">// 再次提示JVM进行垃圾回收</span><br>        Thread.sleep(<span class="hljs-number">500</span>); <span class="hljs-comment">// 再次留出时间给垃圾回收器执行</span><br><br>        <span class="hljs-keyword">if</span> (rescueInstance != <span class="hljs-literal">null</span>) &#123;<br>            System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;Second rescue successful!&quot;</span>);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;Second rescue failed. Object has been collected.&quot;</span>);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在这个示例中，<code>SelfRescueDemo</code>类重写了<code>finalize()</code>方法，并在其中实现了自救逻辑。当<code>rescueInstance</code>对象第一次变为垃圾时，垃圾回收器会调用它的<code>finalize()</code>方法，在这个方法中，对象把自己的引用赋给了静态变量<code>rescueInstance</code>，从而达到了自救的目的。在第一轮垃圾回收后，我们可以看到打印出了”finalize method executed!”和”First rescue successful!”，说明对象成功自救。</p>
+<p>然而，值得注意的是，任何对象的<code>finalize()</code>方法只会被系统自动调用一次。如果对象在完成首次自救后再次变成无引用状态，垃圾回收器在下一次回收时不会再次调用它的<code>finalize()</code>方法，这次对象将被直接回收。因此，在第二次设置<code>rescueInstance</code>为<code>null</code>并触发垃圾回收后，会打印出”Second rescue failed. Object has been collected.”，表示对象没有被再次自救，已经被回收。</p>
+<p>这个示例展示了对象自救的概念和局限性。然而，在实际开发中，依赖<code>finalize()</code>方法进行资源清理或自救是不推荐的做法，因为它的执行时间是不确定的，而且可能导致资源释放不及时或者其他问题。使用Java提供的其他资源管理机制，如<code>try-with-resources</code>语句，是一种更好的做法。</p>
+<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><h4 id="String为什么是不可变的"><a href="#String为什么是不可变的" class="headerlink" title="String为什么是不可变的"></a>String为什么是不可变的</h4><ul>
+<li>String内部维护的是private final char&#x2F;byte数组，<strong>不可变线程安全</strong></li>
+<li>好处<ul>
+<li>防⽌被恶意篡改</li>
+<li>作为HashMap的key可以保证不可变性</li>
+<li>可以实现字符串常量池，在Java中，创建字符串对象的⽅式<ul>
+<li>通过字符串常量进⾏创建<ul>
+<li>在字符串常量池判断是否存在，如果存在就返回，不存 在就在字符串常量池创建后返回</li>
+</ul>
+</li>
+<li>通过new字符串对象进⾏创建<ul>
+<li>在字符串常量池中判断是否存在，<strong>如果不存在就创建</strong>， 再判断堆中是否存在，如果不存在就创建，然后返回该 对象，总之要<strong>保证字符串常量池和堆中都有该对象</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>可以讲一下为什么是不可变的，然后讲一下这样做有什么好处。</p>
+<h4 id="String、StringBuffer、StringBuilder-的区别"><a href="#String、StringBuffer、StringBuilder-的区别" class="headerlink" title="String、StringBuffer、StringBuilder 的区别"></a>String、StringBuffer、StringBuilder 的区别</h4><ul>
+<li>String:  不可变，线程安全<ul>
+<li>内部维护的是private final char&#x2F;byte数组（不可变）</li>
+</ul>
+</li>
+<li>StringBuilder：可变字符串，线程不安全；可以使⽤append进⾏拼接字符串</li>
+<li>StringBuffer：可变字符串，线程安全；通过synchronized来保证线程安全，操作和 StringBuilder⼀样<ul>
+<li>synchronized对于出现在循环中会进⾏<strong>锁粗化</strong>，会将锁的范围扩 展到整个操作，从⽽避免频繁进⾏锁操作造成性能开销</li>
+</ul>
+</li>
+</ul>
+<p>String →  StringBuffer  → Synchronized →  锁粗化</p>
 <h4 id="StringBuffer、StringBuilder-默认容量大小。"><a href="#StringBuffer、StringBuilder-默认容量大小。" class="headerlink" title="StringBuffer、StringBuilder 默认容量大小。"></a>StringBuffer、StringBuilder 默认容量大小。</h4><p>两个的默认容量大小都是 16 字符。</p>
 <h4 id="String-字符串如何实现编码转换。"><a href="#String-字符串如何实现编码转换。" class="headerlink" title="String 字符串如何实现编码转换。"></a>String 字符串如何实现编码转换。</h4><p>一般是两个步骤：1. 将字符串转换为 byte 字节数组；2. 然后再将字节数组转换为字符串</p>
-<h3 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h3><h4 id="封装、继承和多态"><a href="#封装、继承和多态" class="headerlink" title="封装、继承和多态"></a>封装、继承和多态</h4><ul>
+<h3 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h3><h4 id="面向对象和面向过程的区别"><a href="#面向对象和面向过程的区别" class="headerlink" title="面向对象和面向过程的区别"></a>面向对象和面向过程的区别</h4><ul>
+<li>⾯向过程可以理解为按步骤处理问题 </li>
+<li>⾯向对象可以理解为将具体事务存在的属性、⾏为抽象出来，然后去 进⾏实现</li>
+</ul>
+<h4 id="封装、继承和多态"><a href="#封装、继承和多态" class="headerlink" title="封装、继承和多态"></a>封装、继承和多态</h4><ul>
 <li><strong>封装</strong>：隐藏对象的细节和复杂性，同时提供公共的访问方法。封装通过访问控制保护了对象的状态。</li>
 <li><strong>继承</strong>：允许新的类继承现有类的属性和方法。支持代码复用，并建立了类之间的层次关系。</li>
 <li><strong>多态</strong>：允许使用统一的接口来表示不同的基础形态。同一个操作可应用于不同的对象，对象在运行时确定执行哪个方法。</li>
@@ -346,13 +414,10 @@
 <li>isBlank 方法会检查字符串是否为 null 以及是否是空字符串; isBlank(“ “)  →  true</li>
 </ul>
 <h4 id="Object-有哪些常用方法"><a href="#Object-有哪些常用方法" class="headerlink" title="Object 有哪些常用方法"></a>Object 有哪些常用方法</h4><ul>
-<li>equals、hashCode、toString、clone、finalize、wait、notify、notigetClass</li>
+<li>equals、hashCode、toString、clone、finalize、wait、notify、notifyall</li>
+<li>getClass()</li>
 </ul>
-<h4 id="equals-和-hashCode-的区别和联系。"><a href="#equals-和-hashCode-的区别和联系。" class="headerlink" title="equals 和 hashCode 的区别和联系。"></a>equals 和 hashCode 的区别和联系。</h4><ul>
-<li>equals 一般用于比较两个对象的内容或状态是否相等，他默认的用法和 &#x3D;&#x3D; 相同，如果是引用类型，会比较对象的引用地址；多数类会重写该方法，从而比较对象的内容而不是内存地址。</li>
-<li>hashCode() 的作用是获取哈希码，即该对象在哈希表中的索引位置。哈希值在一些集合如HashMap、HashSet等非常关键</li>
-<li>一般是建议重写 equals() 时必须重写 hashCode() 方法，如果没有重写哈希函数的话，两个键获取哈希表位置索引可能会不对，导致数据访问上的问题</li>
-</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240320153706.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="equals方法和-操作符的区别"><a href="#equals方法和-操作符的区别" class="headerlink" title="equals方法和&#x3D;&#x3D; 操作符的区别"></a>equals方法和&#x3D;&#x3D; 操作符的区别</h4><ul>
 <li>&#x3D;&#x3D; 操作符：<ul>
 <li>基本数据类型：比较的是值是否相等。</li>
@@ -365,8 +430,20 @@
 </ul>
 </li>
 </ul>
+<h4 id="equals-和-hashCode-的区别和联系。"><a href="#equals-和-hashCode-的区别和联系。" class="headerlink" title="equals 和 hashCode 的区别和联系。"></a>equals 和 hashCode 的区别和联系。</h4><ul>
+<li>equals 一般用于比较两个对象的内容或状态是否相等，他默认的用法和 &#x3D;&#x3D; 相同，如果是引用类型，会比较对象的引用地址；多数类会重写该方法，从而比较对象的内容而不是内存地址。</li>
+<li>hashCode() 的作用是获取哈希码，即该对象在哈希表中的索引位置。哈希值在一些集合如HashMap、HashSet等非常关键</li>
+<li>一般是建议重写 equals() 时必须重写 hashCode() 方法，如果没有重写哈希函数的话，两个键获取哈希表位置索引可能会不对，导致数据访问上的问题</li>
+</ul>
+<h4 id="两个对象的hashcode相同，equals⼀定相同吗"><a href="#两个对象的hashcode相同，equals⼀定相同吗" class="headerlink" title="两个对象的hashcode相同，equals⼀定相同吗"></a>两个对象的hashcode相同，equals⼀定相同吗</h4><ul>
+<li>⼀般推荐重写equals⽅法的同时也要重写hashcode⽅法 <ul>
+<li>两个对象的hashcode相同，equals可能相同 </li>
+<li>两个对象equals相同，hashcode⼀定相同</li>
+</ul>
+</li>
+</ul>
 <h4 id="重载和重写的区别"><a href="#重载和重写的区别" class="headerlink" title="重载和重写的区别"></a>重载和重写的区别</h4><ul>
-<li>重写：子类重写父类的方法，返回类型、参数列表、方法名称相同</li>
+<li>重写：<strong>子类重写父类的方法</strong>，返回类型、参数列表、方法名称相同</li>
 <li>重载：同一个类下，多个同名方法，参数列表不同; 方法返回值和访问修饰符可以不同</li>
 </ul>
 <h3 id="类"><a href="#类" class="headerlink" title="类"></a>类</h3><h4 id="讲一下内部类，匿名内部类怎么使用的"><a href="#讲一下内部类，匿名内部类怎么使用的" class="headerlink" title="讲一下内部类，匿名内部类怎么使用的"></a>讲一下内部类，匿名内部类怎么使用的</h4><ul>
@@ -374,8 +451,14 @@
 <li>匿名内部类的使用：继承一个父类或实现一个接口，实现其方法，然后调用这个方法；一般使用的常见场景有Thread类的匿名内部类实现和Runable 接口的匿名内部类实现。</li>
 </ul>
 <h4 id="讲一下深拷贝、浅拷贝和引用拷贝"><a href="#讲一下深拷贝、浅拷贝和引用拷贝" class="headerlink" title="讲一下深拷贝、浅拷贝和引用拷贝"></a>讲一下深拷贝、浅拷贝和引用拷贝</h4><ul>
-<li>浅拷贝：只复制对象的基本类型字段和引用类型字段的引用，不复制引用对象本身。</li>
-<li>深拷贝：复制对象的所有字段，包括基本类型和引用类型字段，引用类型的对象也会被复制。</li>
+<li>浅拷贝：只复制对象的基本类型字段和引用类型字段的引用，不复制引用对象本身。<ul>
+<li>副本对象和原对象都指向同⼀块内存空间，副本对象的改 变会影响到原对象</li>
+</ul>
+</li>
+<li>深拷贝：复制对象的所有字段，包括基本类型和引用类型字段，引用类型的对象也会被复制。<ul>
+<li>副本对象和原对象不指向通⼀块内存空间，会重新开辟⼀ 块内存空间给副本对象进⾏指向</li>
+</ul>
+</li>
 <li>引用拷贝：只复制对象的引用，不复制对象本身。</li>
 </ul>
 <h4 id="接口和抽象类的区别"><a href="#接口和抽象类的区别" class="headerlink" title="接口和抽象类的区别"></a>接口和抽象类的区别</h4><ul>
