@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.3k 字
+          4.2k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          28 分钟
+          35 分钟
         
       </span>
     
@@ -313,8 +313,13 @@
 <p>什么是 AOP，你们项目中有没有使用到 AOP </p>
 </blockquote>
 <p>回答这道题目，一般建议围绕首先自己对于 AOP的理解概念，然后结合实际场景题，包括自己项目中是如何使用到 AOP ，然后讲述自己对于它的理解。</p>
-<p>to be contined…..</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240229001352.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>AOP称为面向切面编程，用于将那些与业务无关，但却对多个对象产生影响的公共行为和逻辑，抽取并封装为一个<br>可重用的模块，这个模块被命名为“切面”(Aspect),减少系统中的重复代码，降低了模块间的调合度，同时提高了系统的可维护性，</p>
+<p>常见的AOP 使用场景是：</p>
+<ul>
+<li>记录操作日志</li>
+<li>缓存处理</li>
+<li>Spring中内置的事务处理</li>
+</ul>
 <h5 id="日志记录"><a href="#日志记录" class="headerlink" title="日志记录"></a>日志记录</h5><p>记录操作日志思路</p>
 <ul>
 <li>获取请求的用户名、请求方式、访问地址、模块名称、登陆IP、操作时间，记录到数据库的日志表中。</li>
@@ -416,9 +421,34 @@
 <p>构造方法出现了循环依赖的话，可以使用 @Lazy 进行懒加载</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240315153845.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="常用注解"><a href="#常用注解" class="headerlink" title="常用注解"></a>常用注解</h4><p>Spring框架常见注解(Spring、Springboot、Springmvc)</p>
-<h5 id="Spring-1"><a href="#Spring-1" class="headerlink" title="Spring"></a>Spring</h5><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290951343.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h5 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h5><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290956678.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h5 id="SpringBoot"><a href="#SpringBoot" class="headerlink" title="SpringBoot"></a>SpringBoot</h5><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290957400.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h5 id="Spring-1"><a href="#Spring-1" class="headerlink" title="Spring"></a>Spring</h5><ul>
+<li>@Componetn、@Controller、@Service、@Repository</li>
+<li>@Autowired</li>
+<li>@Qualifier</li>
+<li>@Scope</li>
+<li>@Configuration</li>
+<li>@ComponentScan</li>
+<li>@Bean</li>
+<li>@Import</li>
+<li>@Aspect、@Before、@After、@Around、@Pointcut</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290951343.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h5 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h5><ul>
+<li>@RequestMapping</li>
+<li>@RequestBody</li>
+<li>@RequestParam</li>
+<li>@PathViriable</li>
+<li>@ResponseBody</li>
+<li>@RequestHeader</li>
+<li>@RestController</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290956678.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h5 id="SpringBoot"><a href="#SpringBoot" class="headerlink" title="SpringBoot"></a>SpringBoot</h5><ul>
+<li>@SpringBootConfiguration</li>
+<li>@EnableAutoConfiguration</li>
+<li>@CompnentScan</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290957400.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h3 id="SpringMVC-1"><a href="#SpringMVC-1" class="headerlink" title="SpringMVC"></a>SpringMVC</h3><h4 id="执行流程"><a href="#执行流程" class="headerlink" title="执行流程"></a>执行流程</h4><p>Springmvc的执行流程是这个框架最核心的内容</p>
 <ul>
 <li>1、视图阶段（老旧JSP等 ）</li>
@@ -433,8 +463,20 @@
 </blockquote>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290944546.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>面试题：</p>
+<ul>
+<li>1、浏览器发起请求，前端控制器进行处理（调用处理器映射器）；</li>
+<li>2、前端控制器通过处理器映射器会找到具体的处理器 Handler，生成处理器对象以及处理器拦截器（如果有），一起返回给 DispatcherServlet。</li>
+<li>3、前端控制器调用处理器适配器，适配器调用对应的 处理器 进行处理用户请求</li>
+<li>4、处理完成后返回 ModelAndView 对象，经过视图解析器处理返回视图，进行渲染后填充前端，进行响应</li>
+</ul>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290945750.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>版本2：</p>
+<ul>
+<li>1、浏览器发起请求，前端控制器进行处理（调用处理器映射器）；</li>
+<li>2、前端控制器通过处理器映射器会找到具体的处理器 Handler，生成处理器对象以及处理器拦截器（如果有），一起返回给 DispatcherServlet。</li>
+<li>3、前端控制器调用处理器适配器，适配器调用对应的 处理器 进行处理用户请求</li>
+<li>4、一般此时 Controller 方法上会添加 @ResponseBody 注解，会进行将返回结构转换为 Json 并响应前端</li>
+</ul>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290946621.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h3 id="SpringBoot-1"><a href="#SpringBoot-1" class="headerlink" title="SpringBoot"></a>SpringBoot</h3><h4 id="自动配置原理-🚩"><a href="#自动配置原理-🚩" class="headerlink" title="自动配置原理  🚩"></a>自动配置原理  🚩</h4><p>这道题目待复习一下</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290947817.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
@@ -448,10 +490,7 @@
 <li>3,条件判断会有像 @ConditionalOnClassi这样的注解，判断是否有对应的class文件，如果有则加载该类，把这个配置类的所有的 Bean放入 spring容器中使用.</li>
 </ul>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402290950693.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h3 id="Mybatis"><a href="#Mybatis" class="headerlink" title="Mybatis"></a>Mybatis</h3><h4 id="执行流程-🚩"><a href="#执行流程-🚩" class="headerlink" title="执行流程  🚩"></a>执行流程  🚩</h4><ul>
-<li><h2 id="执行流程-1"><a href="#执行流程-1" class="headerlink" title="执行流程"></a>执行流程</h2></li>
-</ul>
-<hr>
+<h3 id="Mybatis"><a href="#Mybatis" class="headerlink" title="Mybatis"></a>Mybatis</h3><h4 id="执行流程-🚩"><a href="#执行流程-🚩" class="headerlink" title="执行流程  🚩"></a>执行流程  🚩</h4><hr>
 <p>Mybatis 执行流程</p>
 <ul>
 <li>1、理解各个组件的关系</li>

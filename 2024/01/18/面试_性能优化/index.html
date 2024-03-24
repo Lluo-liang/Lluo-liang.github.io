@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.3k 字
+          1.7k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          12 分钟
+          15 分钟
         
       </span>
     
@@ -280,6 +280,7 @@
                 
                 <p>参考： <a target="_blank" rel="noopener" href="https://wx.zsxq.com/dweb2/index/topic_detail/212244125425151">https://wx.zsxq.com/dweb2/index/topic_detail/212244125425151</a></p>
 <p>4个常见的性能优化方向： 多线程、JVM、数据库&#x2F;缓存、数据结构优化</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240324215139.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h3 id="业务优化："><a href="#业务优化：" class="headerlink" title="业务优化："></a>业务优化：</h3><p>Excel 导入优化：[[Excel 大批量导入导出操作优化]]</p>
 <h3 id="1、多线程"><a href="#1、多线程" class="headerlink" title="1、多线程"></a>1、多线程</h3><h4 id="异步方式"><a href="#异步方式" class="headerlink" title="异步方式"></a>异步方式</h4><p>在 SpringBoot 中使用异步方法优化 Service 逻辑提高接口响应速度?</p>
 <p>参考： <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43441509/article/details/119855613">https://blog.csdn.net/weixin_43441509/article/details/119855613</a></p>
@@ -288,6 +289,13 @@
 <p>问答：两者在设计理念、使用场景和特性上有所不同；如果是涉及多个服务间的通信，建议使用MQ，而在单个应用内部需要异步处理，使用<code>@Async</code>可能更简单方便；同时MQ在可靠性、解耦、异步通信等方面更有优势。</p>
 <p>建议学习项目： <a target="_blank" rel="noopener" href="https://gitee.com/jd-platform-opensource/asyncTool">https://gitee.com/jd-platform-opensource/asyncTool</a></p>
 <p>（京东零售开源的一个并行框架，里面大量使用到了 CompletableFuture ，可以学习其精华来运用在自己的项目上）</p>
+<hr>
+<p>20240324 </p>
+<p>关于文章 <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43441509/article/details/119855613">https://blog.csdn.net/weixin_43441509/article/details/119855613</a> 中有讲述到接口优化其响应速度的话，可以使用异步的方式去进行调用一些方法；同时一些用法需要注意一下，异步本质上还是一种代理，因此只能在 Controller 层面上调用 service 方法才有效；</p>
+<p>同时一般来说，SpringBoot为我们默认提供了线程池(SimpleAsyncTaskExecutor)来执行我们的异步方法, 我们在项目中一般会自定义自己的线程池。</p>
+<p>在注解 <code>@Async(&quot;customExecutor&quot;)</code>  上可以指定我们注入的 Bean 线程池；</p>
+<p>同时如果需要返回结果，可以使用 Future 类及其子类去承接返回结果；</p>
+<p>还有一点需要注意的是：强一致性业务不适用异步方法，使用消息中间件可能会更适合</p>
 <h4 id="CompletableFuture-原理与实践"><a href="#CompletableFuture-原理与实践" class="headerlink" title="CompletableFuture 原理与实践"></a>CompletableFuture 原理与实践</h4><p>参考： <a target="_blank" rel="noopener" href="https://juejin.cn/post/7168261825165787149#heading-7">https://juejin.cn/post/7168261825165787149#heading-7</a></p>
 <p>建议先看这篇文章，介绍了一下异步任务编排 CompletableFuture 操作 </p>
 <p>里面通过代码讲述了 同步串行、异步串行、并行任务、多任务结果合并计算以及其他的使用示例。</p>
@@ -394,6 +402,29 @@
 
 
 
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/01/21/Portainer%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" title="Portainer环境配置">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Portainer环境配置</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/01/16/OpenAi%E7%94%9F%E6%88%90%E5%BC%8F%E6%9C%8D%E5%8A%A1%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%BA%94%E7%94%A8%E4%BD%93%E7%B3%BB%E6%9E%84%E5%BB%BA_Day01/" title="OpenAi生成式服务微服务应用体系构建_Day01">
+                        <span class="hidden-mobile">OpenAi生成式服务微服务应用体系构建_Day01</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
               
             </div>
 
