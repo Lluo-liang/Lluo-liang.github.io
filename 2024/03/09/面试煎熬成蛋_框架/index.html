@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.2k 字
+          4.5k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          35 分钟
+          38 分钟
         
       </span>
     
@@ -528,6 +528,22 @@
 </ul>
 <p>面试题：</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402291146216.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li><p>缓存  </p>
+<ul>
+<li>一级缓存（本地缓存）  <ul>
+<li>一级缓存是 SqlSession 级别的，也就是说，只有在同一个 SqlSession 中的操作才能共享这个缓存。默认情况下，一级缓存是开启的</li>
+</ul>
+</li>
+<li>二级缓存（全局缓存）  <ul>
+<li>二级缓存是跨 SqlSession 的，它是基于 namespace 级别的，即同一个 namespace 的不同 SqlSession 可以共享该缓存  </li>
+<li>需要显式开启。可以在 MyBatis 配置文件中全局开启，也可以在 mapper 映射文件中单独配置使用二级缓存          </li>
+<li>当一个 SqlSession 查询完数据并提交或关闭时，数据会从一级缓存转移到二级缓存中。当另一个 SqlSession 执行查询时，会先查看二级缓存，如果缓存中有数据，则直接使用缓存数据；如果没有，才会访问数据库，并将查询结果放入二级缓存</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
                 
               </div>
