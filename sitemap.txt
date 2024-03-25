@@ -197,12 +197,12 @@ https://varcel.luoqi.icu/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/NoSQL/
 https://varcel.luoqi.icu/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/Oracle/
 https://varcel.luoqi.icu/categories/%E6%A1%86%E6%9E%B6/SpringBoot/
 https://varcel.luoqi.icu/categories/%E6%A1%86%E6%9E%B6/Spring/
-https://varcel.luoqi.icu/categories/%E6%A1%86%E6%9E%B6/MyBatis/
-https://varcel.luoqi.icu/categories/Game/
-https://varcel.luoqi.icu/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/MQ/
 https://varcel.luoqi.icu/categories/web/Vue/
 https://varcel.luoqi.icu/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Linux/
 https://varcel.luoqi.icu/categories/web/Node/
 https://varcel.luoqi.icu/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/
+https://varcel.luoqi.icu/categories/%E6%A1%86%E6%9E%B6/MyBatis/
+https://varcel.luoqi.icu/categories/Game/
+https://varcel.luoqi.icu/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/MQ/
 https://varcel.luoqi.icu/categories/CodeProgram/
 https://varcel.luoqi.icu/categories/%E9%9D%A2%E8%AF%95%E7%85%8E%E7%86%AC%E6%88%90%E8%9B%8B/
