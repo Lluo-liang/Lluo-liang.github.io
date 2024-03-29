@@ -673,7 +673,7 @@
 <ol start="2">
 <li>Minor GC（小垃圾回收）</li>
 </ol>
-<p>当新生代的Eden区域填满时，JVM会进行一次Minor GC。这次GC会检查Eden区以及两个Survivor区（通常称为From和To，或者S0和S1）：</p>
+<p>当新生代的Eden区域填满时，JVM会进行一次 Minor GC。这次GC会检查Eden区以及两个Survivor区（通常称为From和To，或者S0和S1）：</p>
 <ul>
 <li><strong>存活对象的复制</strong>：存活的对象会被复制到当前的Survivor区（例如，从Eden复制到S1）。</li>
 <li><strong>年龄计数</strong>：每当对象在Minor GC后存活，它的年龄就会增加。当对象在新生代中存活足够长的时间（超过特定的年龄阈值，通常由参数<code>-XX:MaxTenuringThreshold</code>设定）后，它就会被认为足够成熟，可以晋升到老年代。</li>

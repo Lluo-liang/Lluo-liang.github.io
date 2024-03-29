@@ -285,7 +285,7 @@
 <blockquote>
 <p>AT模型</p>
 </blockquote>
-<p>默认使用的是AT模式</p>
+<p>默认使用的是 AT模式</p>
 <ol>
 <li>在业务表所在的数据库中创建一个名为undo_log的表，用于记录回滚SQL，即与执行SQL相反的SQL（例如，执行insert则对应delete）。</li>
 <li>当业务表执行操作时，Seata会解析执行的SQL，生成回滚SQL并存储到undo_log表中。</li>
@@ -296,7 +296,7 @@
 <li>同时开启本地事务，通过事务ID和分支ID查询undo_log表，执行回滚SQL，并将执行结果报告给Seata服务端。</li>
 <li>如果没有错误发生，Seata服务端会在对应分支上发起请求，异步批量删除undo_log表中的记录。</li>
 </ol>
-<p>总体来说，Seata服务端记录了所有本地事务，同时在每个库中记录了undo log。</p>
+<p>总体来说，Seata服务端记录了所有本地事务，同时在每个库中记录了 undo log。</p>
 <p>当发生错误时，通过事务ID和分支ID找到同一组的所有本地事务，利用记录的undo log统一回退数据。</p>
 <h3 id="3、使用-Seata-的基本步骤"><a href="#3、使用-Seata-的基本步骤" class="headerlink" title="3、使用 Seata 的基本步骤"></a>3、使用 Seata 的基本步骤</h3><p>seata分为服务端（TC）和客户端（TM,RM）,</p>
 <p>客户端通过引入jar包来使用。服务端需要我们单独安装。</p>

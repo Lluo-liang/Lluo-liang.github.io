@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          199 字
+          3.4k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          2 分钟
+          29 分钟
         
       </span>
     
@@ -279,39 +279,181 @@
                 
                 <h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><h4 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202401181322703.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240325175815.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h3 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h3><h4 id="成员关系"><a href="#成员关系" class="headerlink" title="成员关系"></a>成员关系</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311141122413.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><strong>NIO</strong></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240325234405.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h3><ul>
+<li>概念前提<ul>
+<li>ArrayList的数组默认⻓度10，1.5倍数组扩容，扩容通过开辟新数 组进⾏转移⽼数组元素</li>
+<li>HashMap、ConcurrentHashMap的数组默认⻓度16，2倍数组扩 容，扩容通过开辟新数组进⾏转移⽼数组元素</li>
+</ul>
+</li>
+<li>核⼼思想<ul>
+<li>读写分离<ul>
+<li>CopyOnWriteArrayList底层实现、处理快速失败</li>
+</ul>
+</li>
+<li>分散热点<ul>
+<li>ConcurrentHashMap底层addCount计算</li>
+</ul>
+</li>
+<li>索引优化<ul>
+<li>HashMap&#x2F;ConcurrentHashMap 从数组-&gt;链表-&gt;红⿊树</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>考察重点<ul>
+<li>集合底层实现以及设计思想</li>
+</ul>
+</li>
+<li>注意点<ul>
+<li>对于存放⼤量元素到ArrayList 或 HashMap中时，建议提前初始化 好容量避免扩容导致性能损耗</li>
+</ul>
+</li>
+</ul>
+<h4 id="成员关系"><a href="#成员关系" class="headerlink" title="成员关系"></a>成员关系</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311141122413.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240311195612.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h3 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h3><h4 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240312224915.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313111136.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h3 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h3><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313172759.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h4><p>ConcurrentHashMap是一种线程安全的高效Map集合</p>
+<ul>
+<li>ConcurrentHashMap<ul>
+<li>底层数据结构<ul>
+<li>1.7：底层采用分段的数组 + 链表实现</li>
+<li>1.8：采用的数据结构跟 HashMap 1.8 的结构一样，数组 + 链表&#x2F;红黑二叉树</li>
+</ul>
+</li>
+<li>加锁的方式<ul>
+<li>1.7：采用 Segment 分段锁，底层使用的是 ReentrantLock</li>
+<li>1.8：采用 CAS 添加新节点，采用 synchronized 锁定链表或红黑二叉树的首节点，相对 Segment 分段锁粒度更细，性能更好</li>
+</ul>
+</li>
+<li>新增元素（1.8）<ul>
+<li>hash(key)  → 在该数组节点下通过 CAS 操作新增元素操作</li>
+<li>采用 synchronized 锁定链表或红黑二叉树的首节点</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h3><h4 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h4><p>volatile 保证</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240326205410.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240312224915.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>改一下：原子性一般是线程通过对资源加锁的方式来实现的，这里可以引入 synchronized 和 ReetrantLock 的相关内容</li>
+</ul>
+<h4 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h4><ul>
+<li>使用场景<ul>
+<li>1、异步</li>
+<li>2、记录日志</li>
+<li>3、定时任务</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313111136.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="MySQL-🚩"><a href="#MySQL-🚩" class="headerlink" title="MySQL  🚩"></a>MySQL  🚩</h3><h4 id="查询优化"><a href="#查询优化" class="headerlink" title="查询优化"></a>查询优化</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313172759.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="分库分表"><a href="#分库分表" class="headerlink" title="分库分表"></a>分库分表</h4><p>MyCAT</p>
+<p>读写分离、分库分表</p>
 <h3 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h3><h4 id="JVM-组成"><a href="#JVM-组成" class="headerlink" title="JVM 组成"></a>JVM 组成</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240315210151.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240315211702.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>需要再补充一下 相关内容</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240315203635.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h3 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h3><h4 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240315154902.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="框架-🚩"><a href="#框架-🚩" class="headerlink" title="框架  🚩"></a>框架  🚩</h3><h4 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240315154902.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>循环依赖问题</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240315154746.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>常用注解补充一下</p>
 <h4 id="SpringBoot"><a href="#SpringBoot" class="headerlink" title="SpringBoot"></a>SpringBoot</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240314214559.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240325173045.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="Mybaits"><a href="#Mybaits" class="headerlink" title="Mybaits"></a>Mybaits</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240325175422.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h3 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h3><h4 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317105734.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="Redis-🚩"><a href="#Redis-🚩" class="headerlink" title="Redis   🚩"></a>Redis   🚩</h3><h4 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317105734.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317105756.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>部分</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317154657.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h3 id="MQ"><a href="#MQ" class="headerlink" title="MQ"></a>MQ</h3><p>见：[[面试煎熬成蛋_MQ]]</p>
+<h4 id="过期策略、数据结构"><a href="#过期策略、数据结构" class="headerlink" title="过期策略、数据结构"></a>过期策略、数据结构</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317154657.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="数据一致性"><a href="#数据一致性" class="headerlink" title="数据一致性"></a>数据一致性</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240329000510.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="高性能读写"><a href="#高性能读写" class="headerlink" title="高性能读写"></a>高性能读写</h4><p>IO多路复用 + 事件派发机制</p>
+<h4 id="高可用"><a href="#高可用" class="headerlink" title="高可用"></a>高可用</h4><p>主从 →  哨兵  →  集群</p>
+<h4 id="跳表"><a href="#跳表" class="headerlink" title="跳表"></a>跳表</h4><p>跳表为复合型的数据结构，可以被视为一个多层的链表，它允许快速查询、插入、删除和更新操作，其平均时间和空间复杂度都是O(logN)，在大多数情况下可以替代平衡树（如红黑树）。</p>
+<p>在Redis中，跳表主要用于实现有序集合（ZSet）数据类型。有序集合是一种存储不重复元素的集合，但每个元素关联一个浮点数分数，集合中的元素按照分数有序排列。跳表能够高效地支持按分数范围查询和按照排名查询元素，这使得它非常适合实现Redis的有序集合操作。</p>
+<h3 id="MQ-🚩"><a href="#MQ-🚩" class="headerlink" title="MQ  🚩"></a>MQ  🚩</h3><p>见：[[面试煎熬成蛋_MQ]]</p>
 <a href="/2024/03/10/%E9%9D%A2%E8%AF%95%E7%85%8E%E7%86%AC%E6%88%90%E8%9B%8B_MQ/" title="面试煎熬成蛋_MQ">面试煎熬成蛋_MQ</a>
 
 
+<h4 id="RibbitMQ"><a href="#RibbitMQ" class="headerlink" title="RibbitMQ"></a>RibbitMQ</h4><blockquote>
+<p>说一下 RabbitMQ 的工作流程</p>
+</blockquote>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240311230336.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="RocketMQ"><a href="#RocketMQ" class="headerlink" title="RocketMQ"></a>RocketMQ</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240325002449.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h4><h5 id="为什么选用-Kafka，和-RocketMQ-有什么区别"><a href="#为什么选用-Kafka，和-RocketMQ-有什么区别" class="headerlink" title="为什么选用 Kafka，和 RocketMQ 有什么区别"></a>为什么选用 Kafka，和 RocketMQ 有什么区别</h5><p>选择Kafka还是RocketMQ，取决于具体的业务需求。</p>
+<p>Kafka非常适合需要高吞吐量、大规模消息处理、日志收集和流数据处理的场景。RocketMQ在需要事务消息、定时&#x2F;延时消息或更细致的消息服务质量控制的场景下更有优势。</p>
 <h3 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h3><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317102553.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h3 id="SpringCloud"><a href="#SpringCloud" class="headerlink" title="SpringCloud"></a>SpringCloud</h3><h4 id="服务高可用"><a href="#服务高可用" class="headerlink" title="服务高可用"></a>服务高可用</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240322182806.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="SpringCloud-🚩"><a href="#SpringCloud-🚩" class="headerlink" title="SpringCloud   🚩"></a>SpringCloud   🚩</h3><h4 id="服务高可用"><a href="#服务高可用" class="headerlink" title="服务高可用"></a>服务高可用</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240322182806.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="相关组件"><a href="#相关组件" class="headerlink" title="相关组件"></a>相关组件</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240325083057.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a>分布式事务</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240325172412.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h3 id="场景题"><a href="#场景题" class="headerlink" title="场景题"></a>场景题</h3><h4 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/31a84718a5ffd47cc8e2f691ad3bd9e.png" srcset="/img/loading.gif" lazyload alt="31a84718a5ffd47cc8e2f691ad3bd9e.png"></p>
+<h4 id="K8s"><a href="#K8s" class="headerlink" title="K8s"></a>K8s</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240322095336.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="Jenkins"><a href="#Jenkins" class="headerlink" title="Jenkins"></a>Jenkins</h4><p>卷肯思</p>
+<p>Jenkins 是一个开源的自动化服务器，主要用于持续集成（Continuous Integration, CI）和持续部署（Continuous Deployment, CD）的自动化过程。由于其强大的插件生态系统，Jenkins 可以轻松地与各种开发、测试和部署工具集成，从而构建一个高度灵活和可定制的自动化流水线。</p>
+<h3 id="Dubbo"><a href="#Dubbo" class="headerlink" title="Dubbo"></a>Dubbo</h3><h4 id="为什么要使用-RPC"><a href="#为什么要使用-RPC" class="headerlink" title="为什么要使用 RPC"></a>为什么要使用 RPC</h4><p>RPC通信协议通常比HTTP更加轻量，能够减少网络传输的开销。</p>
+<h3 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h3><h4 id="TCP-和-UDP-的区别"><a href="#TCP-和-UDP-的区别" class="headerlink" title="TCP 和 UDP 的区别"></a>TCP 和 UDP 的区别</h4><ul>
+<li>TCP：面向连接，三次握手，面向字节流的</li>
+<li>UDP：无连接，面向报文</li>
+</ul>
+<h4 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h4><ul>
+<li>第一次握手：SYN；一般是客户端发送确认消息给服务端</li>
+<li>第二次握手：SYN-ACK；服务端响应这个确认</li>
+<li>第三次握手：ACK；客户端进行响应服务器，表示进行开始连接</li>
+</ul>
+<h3 id="场景题"><a href="#场景题" class="headerlink" title="场景题"></a>场景题</h3><h4 id="MVC-与-DDD"><a href="#MVC-与-DDD" class="headerlink" title="MVC  与 DDD"></a>MVC  与 DDD</h4><p>MVC</p>
+<ul>
+<li><strong>模型（Model）</strong>：代表应用程序的数据结构，通常包含数据的处理逻辑。</li>
+<li><strong>视图（View）</strong>：展示数据（即模型）的用户界面，不包含业务逻辑。</li>
+<li><strong>控制器（Controller）</strong>：接收用户的输入并调用模型和视图来完成用户的请求</li>
+</ul>
+<p>DDD</p>
+<ul>
+<li>基于领域模型（Domain Model）</li>
+<li>实体（Entity）、值对象（Value Object）、聚合（Aggregate）、领域事件（Domain Event）、领域服务（Domain Service）等</li>
+</ul>
+<h4 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/31a84718a5ffd47cc8e2f691ad3bd9e.png" srcset="/img/loading.gif" lazyload alt="31a84718a5ffd47cc8e2f691ad3bd9e.png"></p>
 <h4 id="授权认证"><a href="#授权认证" class="headerlink" title="授权认证"></a>授权认证</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240324235306.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="加密算法"><a href="#加密算法" class="headerlink" title="加密算法"></a>加密算法</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240324235131.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="打印操作"><a href="#打印操作" class="headerlink" title="打印操作"></a>打印操作</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240322182948.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="打印操作"><a href="#打印操作" class="headerlink" title="打印操作"></a>打印操作</h4><p>这个操作还能从设计模式聊到关于接口优化这里，</p>
+<ul>
+<li>1、首先谈一下关于自己对于设计模式的认知，首先你先说一下概念，然后说一下具体使用（将对方当作不了这方面的人，然后你给他普及一下这方面的内容）</li>
+<li>2、谈接口优化，先从大的方面去出发，一方面是结构；一方面是接口业务（异步），一方面是SQL，还有一方面是架构（这里引入了 Redis 、异步、多线程、线程池、设计模式、接口优化），建议都讲一下。准备一下相关语言。<ul>
+<li>接口优化<ul>
+<li>1、业务异步</li>
+<li>2、SQL优化</li>
+<li>3、DB：分库分表</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240322182948.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h4><p>自我介绍一定要尽可能结合对方的一个需求，然后真实去讲解你做过的一些东西，尽可能保持热情和对面试官的尊重，表现自己对于工作的热爱和喜欢，以及自己在上一个工作中是做了什么工作内容，然后给对方陈述一遍（需要提前准备和练习）</p>
+<p>介绍 3 分钟左右的时间，将你最优秀的一面体现出来。</p>
+<ul>
+<li>面试官，你好，我叫 WJF；2020年软件工程专业毕业；毕业之后，我一直做的 Java 方向的一个工作；至今为止是已经工作3年多的一个时间。</li>
+<li>我最近的一份工作是在广州的一个公司，该公司做的是汽车制造、物流、供应链相关的业务，我所在的团队主要是负责整车制造 MES 的其中一个项目组。</li>
+<li>我个人还参与到一些项目的开发，最开始的时候，我是加入到生产执行的MES的一些维护变更工作，在这个项目中，我对于整体一些业务链从了解到熟悉，在此之后，我参与到开发了无纸化系统，这个系统主要做的是一些像质量录入、生产执行的操作；同时还有一些报表工作我这边也参与到了其中，技术栈使用的是 SpringBoot 的那一套，在此期间，我主要负责和产品经理需求沟通并进行 部 分 后 端 接 口 开 发工作 ， 开 发 了 车 间 的 装 配 关 键 件 绑 定 、 车 辆 指 示 、 不 良 录 入 等 功 能。</li>
+<li>我最近的项目是做一个多工厂MES系统管理系统，这个项目主 要 覆 盖 了 汽 车 制 造 工 艺 中 的 计 划 、 生 产 、 打 印 、 法 规、返修等 模 块 ， 我们这个项目主要针对的汽车订单从订单接口下发处理到我们系统之后，进行一个计划排产，经过排序、VIN 生成、展开、发布等操作，将关键信息下发下游物流等系统；到达链路上的一个闭环。我个人主要是负责的是法规和打印模块。</li>
+<li>这个项目主要采用是 SpringCloud 微服务 Alibaba 这一套，使用了像  Nacos、OpenFeign、Gateway、RocketMQ、Redis 这些常用组件；同时项目是通过 容器 的方式进行部署的。</li>
+<li>我看贵公司这个岗位的一个招聘是要求是常见的组件和框架使用以及对 Java语言 熟悉，我个人认知技术匹配度是较高的，希望有机会能够加入到贵公司一起工作，同时我个人对于 IOT 是比较感兴趣的，希望能和您一起共事。我的介绍完毕，请问，面试官，你有什么想问的吗。</li>
+</ul>
+<p>明天上午稍微准备下</p>
+<ul>
+<li>微信公众号</li>
+<li>AI (Chatgpt、ChatGLM、星火大模型)</li>
+</ul>
+<h4 id="数据同步"><a href="#数据同步" class="headerlink" title="数据同步"></a>数据同步</h4><p>可以讲一下关于某个接口数据进行同步的一个操作</p>
+<ul>
+<li>通过 ID  或者时间戳</li>
+</ul>
+<h4 id="系统监控"><a href="#系统监控" class="headerlink" title="系统监控"></a>系统监控</h4><p>SpringBoot Actuator + Prometheus + Grafana</p>
+<h3 id="软实力"><a href="#软实力" class="headerlink" title="软实力"></a>软实力</h3><h4 id="上手学习新技术"><a href="#上手学习新技术" class="headerlink" title="上手学习新技术"></a>上手学习新技术</h4><p>我在上手学习新技术的时候主要氛围3个步骤；</p>
+<ol>
+<li>索引相关技术资料，形成知识文档。归档为；视频、文字、官网、案例、教程、环境等方面</li>
+<li>基于归档的资料先对整个知识体系进行全貌的了解，这个时候官网资料、视频介绍会比较重要</li>
+<li>按照我要完成的题目或解决的问题，找到对应的案例进行测试验证。这一步我了解过也叫技术调研。如果说我的学习需要是成体系的，那么会大量的完成一些案例，而不是对某个点进行简单的处理。</li>
+<li>场景使用，当我对资料、文档、案例、流程等掌握清楚后，则开始进行场景验证使用，同时基于我使用的一些内容和产生的问题到解决的方案，做相关的笔记记录，形成资料文档，方便查阅。</li>
+</ol>
 
                 
               </div>

@@ -242,7 +242,7 @@
         
         
         
-          175 分钟
+          178 分钟
         
       </span>
     
@@ -364,6 +364,47 @@
 </div>
 
 
+<ul>
+<li>常用的缓存读写策略<ul>
+<li>Cache Aside Pattern（旁路缓存模式）<ul>
+<li>读<ul>
+<li>从 cache 中读取数据，读取到就直接返回</li>
+<li>cache 中读取不到的话，就从 db 中读取数据返回</li>
+<li>再把数据放到 cache 中。</li>
+</ul>
+</li>
+<li>写<ul>
+<li>先更新 db</li>
+<li>然后直接删除 cache</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Read&#x2F;Write Through Pattern（读写穿透）<ul>
+<li>读<ul>
+<li>从 cache 中读取数据，读取到就直接返回 。</li>
+<li>读取不到的话，先从 db 加载，写入到 cache 后返回响应。</li>
+</ul>
+</li>
+<li>写<ul>
+<li>先查 cache，cache 中不存在，直接更新 db。</li>
+<li>cache 中存在，则先更新 cache，然后 cache 服务自己更新 db（<strong>同步更新 cache 和 db</strong>）。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Write Behind Pattern（异步缓存写入）<ul>
+<li>读</li>
+<li>写<ul>
+<li>**Read&#x2F;Write Through 是同步更新 cache 和 db，</li>
+<li>Write Behind 则是只更新缓存，不直接更新 db，而是改为异步批量的方式来更新 db</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <p><strong>三种模式各有优劣，不存在最佳模式，根据具体的业务场景选择适合自己的缓存读写模式。</strong></p>
 <h5 id="Cache-Aside-Pattern（旁路缓存模式）"><a href="#Cache-Aside-Pattern（旁路缓存模式）" class="headerlink" title="Cache Aside Pattern（旁路缓存模式）"></a>Cache Aside Pattern（旁路缓存模式）</h5><p>适合读比较多的情况</p>
 <p>写：</p>
@@ -450,7 +491,7 @@
 <li>Write Behind 则是只更新缓存，不直接更新 db，而是改为异步批量的方式来更新 db</li>
 </ul>
 <p>数据一致性风险很大，不过Write Behind Pattern 下 db 的写性能非常高，非常适合一些数据经常变化又对数据一致性要求没那么高的场景，比如浏览量、点赞量。</p>
-<h3 id="2、Redis-的常用数据类型-🚩-💣"><a href="#2、Redis-的常用数据类型-🚩-💣" class="headerlink" title="2、Redis 的常用数据类型  🚩 💣"></a>2、Redis 的常用数据类型  🚩 💣</h3><ul>
+<h3 id="2、Redis-的常用数据类型"><a href="#2、Redis-的常用数据类型" class="headerlink" title="2、Redis 的常用数据类型"></a>2、Redis 的常用数据类型</h3><ul>
 <li><strong>5种基础数据类型</strong>，分别是：String、List、Set、Zset、Hash。</li>
 </ul>
 <table>

@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k 字
+          2.6k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          10 分钟
+          23 分钟
         
       </span>
     
@@ -362,6 +362,50 @@
 </ul>
 </li>
 </ol>
+<h3 id="3、常用的-shell-命令"><a href="#3、常用的-shell-命令" class="headerlink" title="3、常用的 shell 命令"></a>3、常用的 shell 命令</h3><h4 id="文件和目录操作"><a href="#文件和目录操作" class="headerlink" title="文件和目录操作"></a>文件和目录操作</h4><ul>
+<li><code>ls</code>：列出目录内容。常用选项包括<code>-l</code>（长格式列出）、<code>-a</code>（包括隐藏文件）。</li>
+<li><code>cd &lt;directory&gt;</code>：切换当前目录到指定目录。</li>
+<li><code>pwd</code>：显示当前工作目录的路径。</li>
+<li><code>mkdir &lt;directory&gt;</code>：创建新目录。</li>
+<li><code>rmdir &lt;directory&gt;</code>：删除空目录。</li>
+<li><code>rm &lt;file&gt;</code>：删除文件或目录。使用<code>-r</code>选项递归删除目录。</li>
+<li><code>cp &lt;source&gt; &lt;destination&gt;</code>：复制文件或目录。使用<code>-r</code>选项复制目录。</li>
+<li><code>mv &lt;source&gt; &lt;destination&gt;</code>：移动文件或目录，或重命名文件或目录。</li>
+</ul>
+<h4 id="文本文件操作"><a href="#文本文件操作" class="headerlink" title="文本文件操作"></a>文本文件操作</h4><ul>
+<li><code>cat &lt;file&gt;</code>：查看文件内容。</li>
+<li><code>more &lt;file&gt;</code>、<code>less &lt;file&gt;</code>：分页查看文件内容。</li>
+<li><code>grep &lt;pattern&gt; &lt;file&gt;</code>：在文件中搜索与模式匹配的行。常与管道<code>|</code>配合使用。</li>
+<li><code>sed &lt;script&gt; &lt;file&gt;</code>：对文件执行流编辑。</li>
+<li><code>awk &lt;program&gt; &lt;file&gt;</code>：强大的文本处理工具，用于模式扫描和处理。</li>
+</ul>
+<h4 id="系统信息和管理"><a href="#系统信息和管理" class="headerlink" title="系统信息和管理"></a>系统信息和管理</h4><ul>
+<li><code>top</code>：显示系统运行的进程和资源占用，动态更新。</li>
+<li><code>ps &lt;options&gt;</code>：报告当前系统的进程状态。常用<code>ps aux</code>查看所有运行中的进程。</li>
+<li><code>kill &lt;PID&gt;</code>：终止指定PID（进程ID）的进程。</li>
+<li><code>df &lt;options&gt;</code>：显示磁盘空间使用情况。<code>-h</code>选项以易读的方式显示。</li>
+<li><code>du &lt;options&gt; &lt;directory/file&gt;</code>：显示目录或文件的磁盘使用情况。<code>-h</code>选项以易读的方式显示。</li>
+<li><code>free</code>：显示内存使用情况。</li>
+</ul>
+<h4 id="网络相关"><a href="#网络相关" class="headerlink" title="网络相关"></a>网络相关</h4><ul>
+<li><code>ping &lt;host&gt;</code>：测试到主机的网络连通性。</li>
+<li><code>ifconfig</code>：显示或配置网络接口（在一些系统中可能需要使用<code>ip addr show</code>）。</li>
+<li><code>netstat &lt;options&gt;</code>：显示网络连接、路由表、接口统计等网络信息。</li>
+<li><code>curl &lt;URL&gt;</code>：命令行下的文件传输工具，支持HTTP、HTTPS等多种协议。</li>
+<li><code>wget &lt;URL&gt;</code>：命令行下的网络下载工具，支持HTTP、HTTPS和FTP。</li>
+</ul>
+<h4 id="权限和用户管理"><a href="#权限和用户管理" class="headerlink" title="权限和用户管理"></a>权限和用户管理</h4><ul>
+<li><code>chmod &lt;mode&gt; &lt;file/directory&gt;</code>：改变文件或目录的权限。</li>
+<li><code>chown &lt;user&gt;:&lt;group&gt; &lt;file/directory&gt;</code>：改变文件或目录的所有者和所属组。</li>
+<li><code>su &lt;user&gt;</code>：切换当前用户身份到另一个用户。</li>
+<li><code>sudo &lt;command&gt;</code>：以超级用户身份执行命令。</li>
+</ul>
+<h4 id="压缩与解压"><a href="#压缩与解压" class="headerlink" title="压缩与解压"></a>压缩与解压</h4><ul>
+<li><code>tar &lt;options&gt; &lt;filename.tar&gt; &lt;directory or files&gt;</code>：打包和解包<code>.tar</code>文件。常用选项有<code>-c</code>（创建归档）、<code>-x</code>（解压）、<code>-z</code>（gzip压缩）、<code>-v</code>（显示过程）、<code>-f</code>（指定文件名）。</li>
+<li><code>gzip &lt;file&gt;</code>、<code>gunzip &lt;file.gz&gt;</code>：压缩和解压<code>.gz</code>文件。</li>
+<li><code>zip &lt;archive.zip&gt; &lt;files&gt;</code>、<code>unzip &lt;archive.zip&gt;</code>：压缩和解压<code>.zip</code>文件。</li>
+</ul>
+<p>这些命令只是Shell命令的一小部分，但它们是日常使用中最基本和最常见的。熟练掌握这些命令，可以大大提高在Linux或Unix环境下的工作效率。</p>
 
                 
               </div>

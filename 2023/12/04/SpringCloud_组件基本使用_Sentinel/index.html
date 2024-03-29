@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          305 字
+          2.5k 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          3 分钟
+          22 分钟
         
       </span>
     
@@ -285,7 +285,51 @@
 <li>熔断规则</li>
 <li>系统规则</li>
 </ul>
-<p>to be contined….</p>
+<p>基本学习和使用： <a target="_blank" rel="noopener" href="https://blog.csdn.net/Adda_Chen/article/details/126694546">https://blog.csdn.net/Adda_Chen/article/details/126694546</a></p>
+<p>Sentinel 可以简单的分为 Sentinel 核心库和 Dashboard控制台。核心库不依赖 Dashboard，但是结合 Dashboard 可以取得最好的效果。</p>
+<p>我们说的资源，可以是任何东西，服务，服务里的方法，甚至是一段代码。使用 Sentinel 来进行资源保护，主要分为几个步骤:</p>
+<ul>
+<li>定义资源</li>
+<li>定义规则</li>
+<li>检验规则是否生效</li>
+</ul>
+<p>等实际使用再看一下具体使用示例</p>
+<hr>
+<p>Sentinel 是阿里巴巴开源的一款面向分布式服务架构的高可用性保障组件，主要用于流量控制（限流）、熔断降级、系统负载保护等，以保障微服务或分布式系统的稳定性和可靠性。Sentinel 以流量为切入点，从多个维度监控、记录和处理服务调用情况，支持丰富的流量控制策略，如QPS限流、线程数限流、熔断降级等。</p>
+<p>核心特性</p>
+<ul>
+<li><strong>丰富的流量控制策略</strong>：支持基于QPS的限流、基于响应时间的熔断降级、系统负载保护等策略。</li>
+<li><strong>实时监控</strong>：提供实时的监控数据展示，帮助快速定位流量控制效果和系统状态。</li>
+<li><strong>规则动态推送</strong>：支持动态规则配置，无需重启应用即可实时生效。</li>
+<li><strong>广泛的框架整合</strong>：提供了对Spring Cloud、Dubbo、gRPC等多种微服务框架的适配，方便在各种微服务架构下使用。</li>
+</ul>
+<p>使用示例：</p>
+<p>以在Spring Cloud项目中使用Sentinel为例，首先需要添加Sentinel的Starter依赖到项目的<code>pom.xml</code>文件中：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-sentinel<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>版本号<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>定义规则</p>
+</blockquote>
+<p>Sentinel 支持通过硬编码、文件配置、控制台配置等多种方式定义规则。以下是一个简单的流量控制规则示例，通过硬编码的方式定义：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> com.alibaba.csp.sentinel.Entry;<br><span class="hljs-keyword">import</span> com.alibaba.csp.sentinel.SphU;<br><span class="hljs-keyword">import</span> com.alibaba.csp.sentinel.slots.block.BlockException;<br><span class="hljs-keyword">import</span> com.alibaba.csp.sentinel.slots.block.RuleConstant;<br><span class="hljs-keyword">import</span> com.alibaba.csp.sentinel.slots.block.flow.FlowRule;<br><span class="hljs-keyword">import</span> com.alibaba.csp.sentinel.slots.block.flow.FlowRuleManager;<br><br><span class="hljs-keyword">import</span> java.util.ArrayList;<br><span class="hljs-keyword">import</span> java.util.List;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SentinelDemo</span> &#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-comment">// 配置规则</span><br>        initFlowRules();<br>        <br>        <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) &#123;<br>            <span class="hljs-keyword">try</span> (<span class="hljs-type">Entry</span> <span class="hljs-variable">entry</span> <span class="hljs-operator">=</span> SphU.entry(<span class="hljs-string">&quot;HelloWorld&quot;</span>)) &#123;<br>                <span class="hljs-comment">// 被保护的逻辑</span><br>                System.out.println(<span class="hljs-string">&quot;hello world&quot;</span>);<br>            &#125; <span class="hljs-keyword">catch</span> (BlockException ex) &#123;<br>                <span class="hljs-comment">// 处理被流量控制后的逻辑</span><br>                System.out.println(<span class="hljs-string">&quot;blocked!&quot;</span>);<br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">initFlowRules</span><span class="hljs-params">()</span> &#123;<br>        List&lt;FlowRule&gt; rules = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>        <span class="hljs-type">FlowRule</span> <span class="hljs-variable">rule</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FlowRule</span>();<br>        rule.setResource(<span class="hljs-string">&quot;HelloWorld&quot;</span>);<br>        rule.setGrade(RuleConstant.FLOW_GRADE_QPS);<br>        <span class="hljs-comment">// Set limit QPS to 20.</span><br>        rule.setCount(<span class="hljs-number">20</span>);<br>        rules.add(rule);<br>        FlowRuleManager.loadRules(rules);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在这个例子中，定义了一个简单的流量控制规则，对名为<code>HelloWorld</code>的资源进行限流，限制其QPS（每秒查询率）不超过20。</p>
+<p>启动和测试</p>
+<ul>
+<li>将上述代码添加到Spring Boot项目中。</li>
+<li>启动Spring Boot应用。</li>
+<li>进行压力测试，可以使用JMeter或其他工具模拟高并发请求。</li>
+<li>观察控制台输出，验证限流效果。</li>
+</ul>
+<blockquote>
+<p>使用Sentinel控制台</p>
+</blockquote>
+<p>Sentinel还提供了一个控制台（Sentinel Dashboard），通过它可以更加方便地管理规则和监控应用状态。使用控制台，可以动态修改限流规则、查看实时监控数据等。</p>
+<ul>
+<li>下载并启动Sentinel控制台。</li>
+<li>在应用中配置控制台地址。</li>
+<li>访问控制台，添加或修改规则，查看监控数据。</li>
+</ul>
 <hr>
 <p>参考</p>
 <ul>
