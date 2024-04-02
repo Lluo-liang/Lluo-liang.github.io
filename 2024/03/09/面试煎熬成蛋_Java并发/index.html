@@ -235,7 +235,7 @@
         
         
         
-          140 分钟
+          141 分钟
         
       </span>
     
@@ -334,6 +334,34 @@
 <li>如果没有获取锁(synchronized 或Iock)进入<strong>阻塞状态</strong>，获得锁再切换为可执行状态</li>
 <li>如果线程调用了wait()方法进入<strong>等待状态</strong>，其他线程调用notify()唤醒后可切换为可执行状态</li>
 <li>如果线程调用了sleep(50)方法，进入<strong>计时等待状态</strong>，到时间后可切换为可执行状态</li>
+</ul>
+</li>
+</ul>
+<h4 id="你觉得阻塞线程和等待线程的区别"><a href="#你觉得阻塞线程和等待线程的区别" class="headerlink" title="你觉得阻塞线程和等待线程的区别"></a>你觉得阻塞线程和等待线程的区别</h4><p>再讲一下关于线程状态相关的内容</p>
+<ul>
+<li>新建</li>
+<li>就绪<ul>
+<li>start()  从 新建变为就绪</li>
+</ul>
+</li>
+<li>运行<ul>
+<li>线程获取到了CPU执行权</li>
+</ul>
+</li>
+<li>计时等待<ul>
+<li>wait(50)    到时间后会进入到就绪</li>
+</ul>
+</li>
+<li>等待<ul>
+<li>wait()   需要唤醒操作</li>
+</ul>
+</li>
+<li>阻塞<ul>
+<li>如果没有获取锁(synchronized 或Iock)进入<strong>阻塞状态</strong>，获得锁再切换为可执行状态</li>
+</ul>
+</li>
+<li>死亡<ul>
+<li>线程死亡</li>
 </ul>
 </li>
 </ul>

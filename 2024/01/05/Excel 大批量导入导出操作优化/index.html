@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          785 字
+          1.2k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          7 分钟
+          10 分钟
         
       </span>
     
@@ -277,7 +277,7 @@
             
               <div class="markdown-body">
                 
-                <p>Excel的存储格式</p>
+                <h3 id="1、Java-中的-Excel"><a href="#1、Java-中的-Excel" class="headerlink" title="1、Java 中的 Excel"></a>1、Java 中的 Excel</h3><p>Excel的存储格式</p>
 <ul>
 <li>XLS<ul>
 <li>XLS一个Sheet最多也只能有 65535 行数据</li>
@@ -332,11 +332,64 @@
 <li>使用多线程插入数据，利用掉网络IO等待时间(推荐使用并行流，简单易用)。</li>
 <li>避免在循环中打印无用的日志。</li>
 </ul>
+<h3 id="2、EasyExcel"><a href="#2、EasyExcel" class="headerlink" title="2、EasyExcel"></a>2、EasyExcel</h3><p>地址： <a target="_blank" rel="noopener" href="https://github.com/alibaba/easyexcel">https://github.com/alibaba/easyexcel</a></p>
+<p>使用之前，这里是使用的 若依 分离版进行二次改造；</p>
+<p>参考视频：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV13m4y1p7GJ">https://www.bilibili.com/video/BV13m4y1p7GJ</a></p>
+<ul>
+<li>百万数据导入<ul>
+<li>方案一<ul>
+<li>单线程逐行解析</li>
+<li>单线程单条数据插入</li>
+</ul>
+</li>
+<li>方案二<ul>
+<li>单线程逐行解析</li>
+<li>单线程批量插入</li>
+</ul>
+</li>
+<li>方案三<ul>
+<li>多线程解析 — 每个 Sheet 对应一个线程</li>
+<li>单线程批量插入</li>
+</ul>
+</li>
+<li>方案四<ul>
+<li>多线程解析–每个Sheet 对应一个线程</li>
+<li>多线程批量插入</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>百万数据导出<ul>
+<li>方案一<ul>
+<li>查全表</li>
+<li>写入一个 Sheet</li>
+</ul>
+</li>
+<li>方案二<ul>
+<li>查全部</li>
+<li>写入一个 Sheet</li>
+</ul>
+</li>
+<li>方案三<ul>
+<li>分页查询</li>
+<li>每页数据写入每个 Sheet</li>
+</ul>
+</li>
+<li>方案四<ul>
+<li>多线程分页查询</li>
+<li>每页数据写入每个 Sheet</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>参考方案： <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/5Ytgq_B8nvgFpU3FNeiyOQ">https://mp.weixin.qq.com/s/5Ytgq_B8nvgFpU3FNeiyOQ</a></p>
 <p>参考：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://albenw.github.io/posts/d093ca4e/">https://albenw.github.io/posts/d093ca4e/</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.51cto.com/article/717718.html">https://www.51cto.com/article/717718.html</a></li>
 </ul>
+<hr>
 
                 
               </div>
