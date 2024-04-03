@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.8k 字
+          8k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          82 分钟
+          67 分钟
         
       </span>
     
@@ -731,89 +731,7 @@
 <p>一般是采用增加消费者实例的方式</p>
 <p>个人理解：如果是应对生产快的，一方面是需要需要这个队列数量和消费者数量，然后应对堆积的情况，就要加一个中转的，把这个堆积的消息分散到多个Queu，然后多个Comsumer消费</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240307135814.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="NameServer挂了如何保证消息不丢失"><a href="#NameServer挂了如何保证消息不丢失" class="headerlink" title="NameServer挂了如何保证消息不丢失"></a>NameServer挂了如何保证消息不丢失</h4><h3 id="Kafak"><a href="#Kafak" class="headerlink" title="Kafak"></a>Kafak</h3><h4 id="Kafka的主要组件"><a href="#Kafka的主要组件" class="headerlink" title="Kafka的主要组件"></a>Kafka的主要组件</h4><h4 id="Kafka为什么这么快"><a href="#Kafka为什么这么快" class="headerlink" title="Kafka为什么这么快"></a>Kafka为什么这么快</h4><h4 id="Kafka主备之间采⽤的是同步复制还是异步复制"><a href="#Kafka主备之间采⽤的是同步复制还是异步复制" class="headerlink" title="Kafka主备之间采⽤的是同步复制还是异步复制"></a>Kafka主备之间采⽤的是同步复制还是异步复制</h4><h4 id="Kafka的Broker持久化机制"><a href="#Kafka的Broker持久化机制" class="headerlink" title="Kafka的Broker持久化机制"></a>Kafka的Broker持久化机制</h4><h4 id="如何保证消息不丢失-1"><a href="#如何保证消息不丢失-1" class="headerlink" title="如何保证消息不丢失"></a>如何保证消息不丢失</h4><p>使用Kafka在消息的收发过程都会出现消息丢失，Kafka分别给出了解决方案</p>
-<ul>
-<li>生产者发送消息到 Brocker 丢失</li>
-<li>消息在Brockert中存储丢失</li>
-<li>消费者从Brocker接收消息丢失</li>
-</ul>
-<h4 id="Kafka⽣产端的发送模式"><a href="#Kafka⽣产端的发送模式" class="headerlink" title="Kafka⽣产端的发送模式"></a>Kafka⽣产端的发送模式</h4><h4 id="Kafka消费端的消费模式"><a href="#Kafka消费端的消费模式" class="headerlink" title="Kafka消费端的消费模式"></a>Kafka消费端的消费模式</h4><h4 id="Kafka的消费乱序"><a href="#Kafka的消费乱序" class="headerlink" title="Kafka的消费乱序"></a>Kafka的消费乱序</h4><h4 id="Kafka副本Leader选举机制"><a href="#Kafka副本Leader选举机制" class="headerlink" title="Kafka副本Leader选举机制"></a>Kafka副本Leader选举机制</h4><h4 id="Kafka消费者的重平衡-Rebalance-机制"><a href="#Kafka消费者的重平衡-Rebalance-机制" class="headerlink" title="Kafka消费者的重平衡(Rebalance)机制"></a>Kafka消费者的重平衡(Rebalance)机制</h4><h4 id="分区故障恢复机制"><a href="#分区故障恢复机制" class="headerlink" title="分区故障恢复机制"></a>分区故障恢复机制</h4><h4 id="Kafka的消息幂等性3种语义的实现"><a href="#Kafka的消息幂等性3种语义的实现" class="headerlink" title="Kafka的消息幂等性3种语义的实现"></a>Kafka的消息幂等性3种语义的实现</h4><h4 id="Kafka如何保证消息不丢失"><a href="#Kafka如何保证消息不丢失" class="headerlink" title="Kafka如何保证消息不丢失"></a>Kafka如何保证消息不丢失</h4><h4 id="Kafka如何保证消息有序"><a href="#Kafka如何保证消息有序" class="headerlink" title="Kafka如何保证消息有序"></a>Kafka如何保证消息有序</h4><ul>
-<li>⾸先要保证分区消息的有序<ul>
-<li>⽣产端将同⼀类型的消息发到同⼀个分区，也就是保证业务消息 有序 </li>
-<li>⼀个topic配置⼀个分区，通过牺牲吞吐量来保证有序</li>
-</ul>
-</li>
-<li>在保证分区消息有序之后，再保证消费端消费有序<ul>
-<li>由于Kafka消费端拉取消息时并⾏拉取多个分区的，⽆法实现串⾏ 消费，所以想要保证全局有序，消费组⾥只能配置⼀个消费者， 也就是⼀个topic、⼀个分区、⼀个消费者，但是这种牺牲了 Kafka的性能</li>
-<li>⼀般情况下，可以将收集到的消息根据不同的业务存放到对应的 内存队列中，然后进⾏排序后再使⽤</li>
-<li>如果⾮要使⽤顺序消息，可以使⽤RocketMQ，基于RocketMQ采 ⽤锁队列的⽅式，可以直接实现全局有序<ul>
-<li>⼀个topic只能有⼀个MessageQueue被消费(默认4个)</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="Kafka如何处理消息堆积"><a href="#Kafka如何处理消息堆积" class="headerlink" title="Kafka如何处理消息堆积"></a>Kafka如何处理消息堆积</h4><ul>
-<li>Kafka是允许⼀定消息的堆积 <ul>
-<li>如果消费端处理的速度过慢导致积压<ul>
-<li>可以增加topic的分区数，同时也要增加同⽐例的消费者去消 费 </li>
-<li>如果想要保证分区之间数据分布均衡，可以新开⼀个topic并 且配置更多的分区，后续的消息都发往这个新开的topic，然 后再消费</li>
-</ul>
-</li>
-<li>如果是消费端处理异常导致消费堆积，此时影响到了程序正常运 ⾏<ul>
-<li>可以采⽤降级⽅案，新开⼀个消费者将topic的消息转发到其 他队列(类似于死信队列)，然后再去分析以及处理</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="谈谈对Kafka零拷⻉的理解"><a href="#谈谈对Kafka零拷⻉的理解" class="headerlink" title="谈谈对Kafka零拷⻉的理解"></a>谈谈对Kafka零拷⻉的理解</h4><ul>
-<li>零拷⻉ 就是通过避免来回拷⻉提升⽂件传输速度，也就是减少⽤户 态与内核态的拷⻉次数 </li>
-<li>Kafka在⽣产端发送消息到Broker端的过程中采⽤mmap，在Broker发 送消息给消费端采⽤sendfile<ul>
-<li>mmap 就是通过⽂件位置与进程地址空间建⽴映射关系，程序可 以直接访问⽂件内容 </li>
-<li>sendfile 就是直接向内核态发送sendfile指令来进⾏⽹络传输</li>
-</ul>
-</li>
-<li>相对于RocketMQ采⽤的都是mmap，主要是因为它⽀持处理消息的 顺序以及消息过滤，因为 sendfile 只处理内核态，⽆法进⼊⽤户态进 ⾏数据的处理</li>
-</ul>
-<h4 id="Kafka的延迟消息"><a href="#Kafka的延迟消息" class="headerlink" title="Kafka的延迟消息"></a>Kafka的延迟消息</h4><ul>
-<li>Kafka延迟消息的实现⽅式 <ul>
-<li>可以按照不同的延迟时间段定义好topic，将消息发往指定的topic 中，通过定时任务轮询这些topic，如果时间到了就消息转发到具 体业务的topic中</li>
-</ul>
-</li>
-<li>Kafka对于时间粒度较⼩时会导致服务压⼒增加，并且发送的延迟消 息会有⼀定的延迟性</li>
-</ul>
-<h4 id="Kafka⽣产端发多条消息，⼀半成功⼀半失败怎么办"><a href="#Kafka⽣产端发多条消息，⼀半成功⼀半失败怎么办" class="headerlink" title="Kafka⽣产端发多条消息，⼀半成功⼀半失败怎么办"></a>Kafka⽣产端发多条消息，⼀半成功⼀半失败怎么办</h4><ul>
-<li>重试机制<ul>
-<li>可以在发送失败后进⾏重试，直到消息发送成功或达到最⼤重试 次数 </li>
-<li>可以设置⼀个重试次数的上限，如果超过了这个次数仍然发送失 败，可以将失败的消息记录下来，以便后续处理</li>
-</ul>
-</li>
-<li>异步处理<ul>
-<li>可以将发送消息的过程异步化，即不等待消息发送的结果⽴即返 回，⽽是将消息放⼊⼀个消息队列中，由后台的线程或者其他进 程来负责发送 </li>
-<li>这样可以提⾼发送消息的吞吐量，并且可以通过监控异步发送的 结果来处理发送失败的消息</li>
-</ul>
-</li>
-<li>分批发送<ul>
-<li>以将要发送的消息分成多个批次进⾏发送，每次发送⼀部分消息 </li>
-<li>如果某个批次中的消息发送失败，可以只重试该批次中的失败消 息，⽽不需要重新发送整个批次</li>
-</ul>
-</li>
-<li>错误处理<ul>
-<li>对于发送失败的消息，可以将其记录下来，并进⾏错误处理 </li>
-<li>可以将失败的消息保存到数据库或者⽂件中，以便后续进⾏补发 或者⼈⼯处理</li>
-</ul>
-</li>
-<li>使⽤Kafka的⽣产端事务机制</li>
-</ul>
-<h4 id="Kafka-的事务"><a href="#Kafka-的事务" class="headerlink" title="Kafka 的事务"></a>Kafka 的事务</h4><ul>
-<li>Kafka的事务主要是<strong>保障⼀次发送多条消息的事务⼀致性</strong>，要么同时 成功，要么同时失败，并不是分布式事务 </li>
-<li>Kafka事务的原⼦性是通过2PC两阶段提交来实现的 <ul>
-<li>在第⼀阶段，⽣产者将消息发送到 Broker，并等待确认消息已写 ⼊磁盘 </li>
-<li>在第⼆阶段，⽣产者提交事务，Broker将消息标记为已提交，如 果有错误发⽣，⽣产者可以回滚事务，Broker将消息标记为未提 交，只有当所有参与者都提交事务后，Broker才会将消息永久保 存</li>
-</ul>
-</li>
-</ul>
+<h4 id="NameServer挂了如何保证消息不丢失"><a href="#NameServer挂了如何保证消息不丢失" class="headerlink" title="NameServer挂了如何保证消息不丢失"></a>NameServer挂了如何保证消息不丢失</h4><h3 id="Kafak"><a href="#Kafak" class="headerlink" title="Kafak"></a>Kafak</h3><p>Kakak  后面业务学习使用到再看。</p>
 
                 
               </div>

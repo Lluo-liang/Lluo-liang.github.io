@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.2k 字
+          5.6k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          44 分钟
+          47 分钟
         
       </span>
     
@@ -464,11 +464,41 @@
 </ul>
 <h4 id="HashMap的-jdk1-7和-jdk1-8有什么区别"><a href="#HashMap的-jdk1-7和-jdk1-8有什么区别" class="headerlink" title="HashMap的 jdk1.7和 jdk1.8有什么区别"></a>HashMap的 jdk1.7和 jdk1.8有什么区别</h4><ul>
 <li>JDK1.8之前采用的拉链法，数组+链表<ul>
-<li>HashMap在JDK 7采⽤的是 数组 + 链表 的⽅式，由于HashMap的key 是基于hash值计算后放到对应的数组槽位的，可能会出现hash碰 撞，所以在每个槽位采⽤链表头插法进⾏存放元素，如果容量不⾜会 先扩容</li>
+<li>HashMap在JDK 7采⽤的是 数组 + 链表 的⽅式，</li>
+<li>由于HashMap的key 是基于hash值计算后放到对应的数组槽位的，可能会出现hash碰 撞，所以在每个槽位采⽤链表头插法进⾏存放元素，如果容量不⾜会 先扩容</li>
 </ul>
 </li>
 <li>JDK1.8之后采用数组+链表+红黑树，链表长度大于8且数组长度大于64则会从链表转化为红黑树<ul>
 <li>HashMap在JDK 8采⽤的是 数组 + 链表&#x2F;红⿊树 的⽅式，基于JDK 7的 基础上为了解决链表过⻓导致查询效率降低以及头插法导致循环链表 从⽽死循环造成CPU满载的问题，所以JDK 8采⽤了尾插法</li>
+</ul>
+</li>
+</ul>
+<p>头插法和尾插法</p>
+<ul>
+<li>1.7  头插法<ul>
+<li>在 Java 1.7 及之前的版本中，当一个新的元素被加入到 HashMap 中，且发生哈希冲突时，HashMap 会采用头插法将这个新元素插入到链表的头部。头插法的主要特点是新加入的元素总是被放在链表的最前面。</li>
+<li><strong>优点</strong>：<ul>
+<li>简单快速：在链表的头部插入元素是一个时间复杂度为 O(1) 的操作。</li>
+</ul>
+</li>
+<li><strong>缺点</strong>：<ul>
+<li>在多线程环境下，头插法可能会引起循环链表，导致 <code>get</code> 方法形成死循环。</li>
+<li>由于每次插入都会改变链表的顺序，这可能会导致长时间的性能下降</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>1.8  尾插法<ul>
+<li>Java 1.8 对 HashMap 进行了优化，改用了尾插法来处理哈希冲突下的链表插入。尾插法意味着新元素总是被添加到链表的尾部。</li>
+<li><strong>优点</strong>：<ul>
+<li>在多线程环境下更安全：尽管 HashMap 本身不是线程安全的，但尾插法相比于头插法，在并发修改时减少了循环链表出现的风险。</li>
+<li>维持了元素的插入顺序，这对于一些特定的场景可能是有益的。</li>
+</ul>
+</li>
+<li><strong>缺点</strong>：<ul>
+<li>插入操作可能会稍微慢一些，因为需要遍历到链表的末尾。</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -477,8 +507,7 @@
 <li>2、再进行调用 hash()方法 进行二次哈希，hashcode值右移16位再异或运算，让哈希分布更为均匀</li>
 <li>3、最后(capacity-1)&amp;hash得到索引</li>
 </ul>
-<h4 id="HashMap-的寻址算法和数组长度为什么是2-的-n-次幂"><a href="#HashMap-的寻址算法和数组长度为什么是2-的-n-次幂" class="headerlink" title="HashMap 的寻址算法和数组长度为什么是2 的 n 次幂"></a>HashMap 的寻址算法和数组长度为什么是2 的 n 次幂</h4><p>to be contined…</p>
-<h4 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h4><p>ConcurrentHashMap是一种线程安全的高效Map集合</p>
+<h4 id="HashMap-的寻址算法和数组长度为什么是2-的-n-次幂"><a href="#HashMap-的寻址算法和数组长度为什么是2-的-n-次幂" class="headerlink" title="HashMap 的寻址算法和数组长度为什么是2 的 n 次幂"></a>HashMap 的寻址算法和数组长度为什么是2 的 n 次幂</h4><h4 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h4><p>ConcurrentHashMap是一种线程安全的高效Map集合</p>
 <ul>
 <li>ConcurrentHashMap<ul>
 <li>底层数据结构<ul>

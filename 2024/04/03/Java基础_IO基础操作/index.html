@@ -18,23 +18,24 @@
   <meta name="author" content="Luo QI">
   <meta name="keywords" content="">
   
-    <meta name="description" content="模拟卷">
+    <meta name="description" content="主要是围绕IO下实现类的一些常用方法进行记录和说明">
 <meta property="og:type" content="article">
-<meta property="og:title" content="模拟卷">
-<meta property="og:url" content="https://varcel.luoqi.icu/2024/01/30/%E6%A8%A1%E6%8B%9F%E5%8D%B7/index.html">
+<meta property="og:title" content="Java基础_IO基础操作">
+<meta property="og:url" content="https://varcel.luoqi.icu/2024/04/03/Java%E5%9F%BA%E7%A1%80_IO%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/index.html">
 <meta property="og:site_name" content="轻松的洛亓">
-<meta property="og:description" content="模拟卷">
+<meta property="og:description" content="主要是围绕IO下实现类的一些常用方法进行记录和说明">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/wallpaper1702453206266.jpg">
-<meta property="article:published_time" content="2024-01-30T08:51:52.000Z">
-<meta property="article:modified_time" content="2024-01-30T08:51:52.000Z">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312150024266.jpeg">
+<meta property="article:published_time" content="2024-04-03T15:59:29.000Z">
+<meta property="article:modified_time" content="2024-04-03T15:59:29.000Z">
 <meta property="article:author" content="Luo QI">
+<meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/wallpaper1702453206266.jpg">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202312150024266.jpeg">
   
   
   
-  <title>模拟卷 - 轻松的洛亓</title>
+  <title>Java基础_IO基础操作 - 轻松的洛亓</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +201,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="模拟卷"></span>
+            <span id="subtitle" data-typed-text="Java基础_IO基础操作"></span>
           
         </div>
 
@@ -211,8 +212,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-01-30 08:51" pubdate>
-          2024年1月30日 早上
+        <time datetime="2024-04-03 15:59" pubdate>
+          2024年4月3日 下午
         </time>
       </span>
     
@@ -223,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k 字
+          493 字
         
       </span>
     
@@ -234,7 +235,7 @@
         
         
         
-          16 分钟
+          5 分钟
         
       </span>
     
@@ -271,80 +272,21 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">模拟卷</h1>
+            <h1 id="seo-header">Java基础_IO基础操作</h1>
             
             
               <div class="markdown-body">
                 
-                <p>代办事项</p>
-<ul>
-<li><input disabled="" type="checkbox"> 学习一下 EasyExcel 的批量导入导出功能，并完善一下相关内容（就使用若依的分离版）<ul>
-<li><input disabled="" type="checkbox"> 效率挺低的，晚上继续。</li>
-</ul>
-</li>
-<li><input disabled="" type="checkbox"> 抖音课程的一个项目学习</li>
-<li><input disabled="" type="checkbox"> 学习一下最近的这个的项目 Sass_移动办公，学习一下工作流和多租户的用法<ul>
-<li><input disabled="" type="checkbox"> 后面学习</li>
-</ul>
-</li>
-<li><input disabled="" type="checkbox"> 学习一下 Netty 和 Kafka ；Kafka 可以放后面了解，等具体的业务使用去掌握，Netty 可以了解下，使用场景还是较多的。先暂时性放弃</li>
-<li><input disabled="" type="checkbox"> 4月中旬记得补税</li>
-</ul>
-<p>今日计划</p>
-<ul>
-<li>1、学习抖音上面的一个项目（中午再看一下是否需要学习）；已经买了，后面去学习一下</li>
-<li>2、结合蘑菇博客、若依、大营销系统、AI 做一些二开的内容</li>
-<li>3、花费 2 个小时左右复习一下八股相关的内容，并整理好自己的文章，没事看看自己写的东西（在网页上）</li>
-<li>4、复习一些源码之类的（放以后）</li>
-<li>5、EasyExcel 的批量导入功能</li>
-</ul>
-<p>学习建议</p>
-<ul>
-<li>1、尽可能去图书馆</li>
-<li>3、尽可能以输出为准，最后通过输出进行复盘</li>
-<li>4、博客是作为一个辅助性的产品，最好是某段时间对于某个标签、某个分类、某个知识链串联的时候，去进行文档整理，在此之前，可以去做一些实际性的输出。</li>
-</ul>
-<p>说一下最近的打算</p>
-<ul>
-<li>1、博客输出做起来，发布掘金；先写文章和进行输出；形成一个正向反馈；</li>
-<li>2、多做一些编程的内容，自己的编程基础太差了，尽可能从细节、范围方面去考虑实现。</li>
-<li>3、每天做一些任务，并尽可能有所成长，看好长期路线，尽可能将自己的不擅长的地方查漏补缺，B 站上面学习的内容其实还是有很多的；</li>
-<li>4、对于之前的项目进行复习，包括 蘑菇博客、知识星球的内容、若依框架也作为自己的一个学习内容；重新整理一下自己的知识库内容；然后抖音的那个项目自己也学习一下吧，主要是项目面试题方面的内容，自己太薄弱了。</li>
-<li>5、做一个自己的项目，做一个酒店相关的项目（尝试）</li>
-<li>6、完善自己的知识库内容，有挺多其实自己也不会的；八股继续学习，搞深度一些；线程复习一下</li>
-<li>7、有空学习源码并复习一下</li>
-<li>8、放弃了上半年软考的话，就好好准备自己的编程相关内容</li>
-<li>9、及时反馈和及时执行</li>
-</ul>
-<p>1, websocket 的 http 长连接<br>2，springsecurity 的使用<br>3，exsyexcel + 批量插入 + 异步记录日志；导出操作进行转义操作<br>4，Quartz 定时任务框架<br>4，RocketMQ 的高级使用并结合场景优化<br>5，邮件发送和企微发送看一下是否有优化的，看一下人家高级应用<br>6，智慧生产执行-系统管理模块：模块下的二级模块分别有字典管理、模板管理、API信息、操作日志。</p>
-<hr>
-<p>还是要以电脑端为主，否则自己会陷入虚无主义且自我挣扎中，尽可能除了玩游戏不要接触其他内容（否则空虚感会蔓延）</p>
-<p>简历还是需要有模板好一些</p>
-<p>物联网通信一般是根据 MQTT 某种协议进行连接，个人感觉通过数据库获取设备数据也是某种操作（看实际场景）</p>
-<p>做一个临时任务安排</p>
-<ul>
-<li><input disabled="" type="checkbox"> C 盘清理工具有空搞一下。</li>
-<li><input disabled="" type="checkbox"> Canal 的使用学习一下</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://gitcode.net/KnowledgePlanet/Lottery/-/wikis/%E7%AC%AC-5-%E9%83%A8%E5%88%86-%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/%E7%AC%AC08%E8%8A%82%EF%BC%9A%E9%83%A8%E7%BD%B2%E7%8E%AF%E5%A2%83%20canal">https://gitcode.net/KnowledgePlanet/Lottery/-/wikis/%E7%AC%AC-5-%E9%83%A8%E5%88%86-%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/%E7%AC%AC08%E8%8A%82%EF%BC%9A%E9%83%A8%E7%BD%B2%E7%8E%AF%E5%A2%83%20canal</a></p>
-<p>线下问题和难题排查，准备一下： <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_izrmpuk43owr.html">https://articles.zsxq.com/id_izrmpuk43owr.html</a></p>
-<p>性格和表达方面尽可能还是改一下</p>
-<p>后续的一些打算：</p>
-<ul>
-<li>1、保持继续投递，然后靠运气看是否有面试</li>
-<li>5、保持软考考试报名和考研考试，然后找一份双休的，自研的工作，薪水目前降低到 13K 左右（后期跳槽，不指望现在，持续学习动力才是自己应该追求的恒动力，考研后尽量去一家跟 AI 相关的公司做一些相关的工作）</li>
-<li>6、享受生活，并尊重所有人，改变一些基本的想法和看法。好好加油，尽人事，知天命。</li>
-<li>7、将录制视频上传视频到 B 站这一步的事情可以做起来。</li>
-<li>尽可能去完善一下知识库的内容，加入一些自己的理解去写单独的博客而不是完全的笔记（希望自己后面能做到这一步）；多去实践去提高自己的编码能力，多一些耐心和恒心。</li>
-<li>必须要接受一些事情的是，跳槽不能太频繁，因此尽量还是在择业方面多注意一下。</li>
-<li>仍然建议是买房到珠海，然后提高自己的水平，去追求去做一些事情和保持自己的耐心，还有，改变自己的表现。</li>
-</ul>
-<p>软考报名入口： <a target="_blank" rel="noopener" href="https://bm.ruankao.org.cn/sign/welcome">https://bm.ruankao.org.cn/sign/welcome</a>   已经可以了（下半年再准备）</p>
-<p>单体项目也是有一些优势点的，尽可能将其中挖掘出来，并表现出自己的代码理解和使用程度。</p>
-<p>收藏：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.yuque.com/quzuopeng/xuzcyr">https://www.yuque.com/quzuopeng/xuzcyr</a></li>
-</ul>
+                <h3 id="File"><a href="#File" class="headerlink" title="File"></a>File</h3><p>在 Java 中，<code>File</code> 类是 <code>java.io</code> 包的一部分，用于表示文件和目录路径名的抽象表示形式。它可以用来创建、删除、获取和设置文件或目录的属性。</p>
+<p><code>File</code> 类不可以用于文件内容的读写；如果需要读写文件内容，应使用 <code>FileInputStream</code>、<code>FileOutputStream</code>、<code>FileReader</code>、<code>FileWriter</code> 等其他流类。</p>
+<p>File 这个类一般是用于对于文件或者目录的创建删除的常用操作。</p>
+<h4 id="创建文件操作"><a href="#创建文件操作" class="headerlink" title="创建文件操作"></a>创建文件操作</h4><p>创建一个 <code>File</code> 实例不会在硬盘上创建一个文件，它只是一个抽象表示。要创建或访问文件，可以如下操作：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gradle"><span class="hljs-keyword">File</span> <span class="hljs-keyword">file</span> = <span class="hljs-keyword">new</span> <span class="hljs-keyword">File</span>(<span class="hljs-string">&quot;path/to/file.txt&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>这里的路径可以是相对路径或绝对路径。相对路径相对于当前工作目录。</p>
+<p>如果要看当前工作空间目录是哪个，可以通过 下述操作查看。</p>
+<figure class="highlight wren"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs wren"><span class="hljs-comment">// 获取当前工作目录  </span><br><span class="hljs-title class_">String</span> <span class="hljs-variable">workingDir</span> <span class="hljs-operator">=</span> <span class="hljs-title class_">System</span>.<span class="hljs-property">getProperty</span>(<span class="hljs-string">&quot;user.dir&quot;</span>);  <br><span class="hljs-comment">// 打印当前工作目录  </span><br><span class="hljs-title class_">System</span>.<span class="hljs-property">out</span>.<span class="hljs-property">println</span>(<span class="hljs-string">&quot;当前工作目录: &quot;</span> <span class="hljs-operator">+</span> <span class="hljs-variable">workingDir</span>);<br></code></pre></td></tr></table></figure>
+
 
                 
               </div>
@@ -363,8 +305,15 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Diary/" class="category-chain-item">Diary</a>
+  <a href="/categories/Java%E5%9F%BA%E7%A1%80/" class="category-chain-item">Java基础</a>
   
+  
+    <span>></span>
+    
+  <a href="/categories/Java%E5%9F%BA%E7%A1%80/Base/" class="category-chain-item">Base</a>
+  
+  
+
   
 
       </span>
@@ -375,6 +324,13 @@
     </div>
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/java/" class="print-no-link">#java</a>
+      
+    </div>
+  
 </div>
 
 
@@ -383,8 +339,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>模拟卷</div>
-      <div>https://varcel.luoqi.icu/2024/01/30/模拟卷/</div>
+      <div>Java基础_IO基础操作</div>
+      <div>https://varcel.luoqi.icu/2024/04/03/Java基础_IO基础操作/</div>
     </div>
     <div class="license-meta">
       
@@ -396,7 +352,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年1月30日</div>
+          <div>2024年4月3日</div>
         </div>
       
       
@@ -423,6 +379,29 @@
 
 
 
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/04/03/IDEA%E4%B8%AD%E7%9A%84%E5%B8%B8%E8%A7%81%E4%BD%BF%E7%94%A8/" title="IDEA中的常见使用">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">IDEA中的常见使用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/04/03/%E9%9D%A2%E8%AF%95%E7%85%8E%E7%86%AC%E6%88%90%E8%9B%8B_%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" title="面试煎熬成蛋_性能优化">
+                        <span class="hidden-mobile">面试煎熬成蛋_性能优化</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
               
             </div>
 

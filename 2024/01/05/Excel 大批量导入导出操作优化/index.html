@@ -18,18 +18,19 @@
   <meta name="author" content="Luo QI">
   <meta name="keywords" content="">
   
-    <meta name="description" content="摘要">
+    <meta name="description" content="这一篇的主要内容是介绍 Java 对于 Excel 文件的一些基本操作，同时通过实际示例去进行大批量数据导入导出的操作（纯后端）；主要会用到 EasyExcel 和一些常用的操作技术。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Excel 大批量导入导出操作优化">
 <meta property="og:url" content="https://varcel.luoqi.icu/2024/01/05/Excel%20%E5%A4%A7%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E6%93%8D%E4%BD%9C%E4%BC%98%E5%8C%96/index.html">
 <meta property="og:site_name" content="轻松的洛亓">
-<meta property="og:description" content="摘要">
+<meta property="og:description" content="这一篇的主要内容是介绍 Java 对于 Excel 文件的一些基本操作，同时通过实际示例去进行大批量数据导入导出的操作（纯后端）；主要会用到 EasyExcel 和一些常用的操作技术。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/wallpaper1702453206266.jpg">
 <meta property="article:published_time" content="2024-01-05T11:27:26.000Z">
 <meta property="article:modified_time" content="2024-01-05T11:27:26.000Z">
 <meta property="article:author" content="Luo QI">
 <meta property="article:tag" content="java">
+<meta property="article:tag" content="coding">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/wallpaper1702453206266.jpg">
   
@@ -224,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k 字
+          5.1k 字
         
       </span>
     
@@ -235,7 +236,7 @@
         
         
         
-          10 分钟
+          43 分钟
         
       </span>
     
@@ -277,7 +278,21 @@
             
               <div class="markdown-body">
                 
-                <h3 id="1、Java-中的-Excel"><a href="#1、Java-中的-Excel" class="headerlink" title="1、Java 中的 Excel"></a>1、Java 中的 Excel</h3><p>Excel的存储格式</p>
+                <h3 id="1、Java-中的流行库"><a href="#1、Java-中的流行库" class="headerlink" title="1、Java 中的流行库"></a>1、Java 中的流行库</h3><p>Java 对 Excel 的常用操作通常涉及读取、创建、编辑和保存 Excel 文件。</p>
+<p>这些操作主要通过 Apache POI 和 jExcelAPI 这两个流行的库来实现。Apache POI 支持老式的 Excel XLS 格式和较新的 XLSX 格式，而 jExcelAPI 主要用于处理 XLS 文件。</p>
+<p>以下是一些常见的操作示例：</p>
+<h4 id="Apache-POI"><a href="#Apache-POI" class="headerlink" title="Apache POI"></a>Apache POI</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 基本依赖，仅操作 xls 格式只需引入此依赖 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.poi<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>poi<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.14<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-comment">&lt;!-- 使用 xlsx 格式需要额外引入此依赖 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.poi<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>poi-ooxml<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.14<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>演示代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ruoyi.luoqi.excel;<br><br><span class="hljs-keyword">import</span> org.apache.poi.ss.usermodel.Cell;<br><span class="hljs-keyword">import</span> org.apache.poi.ss.usermodel.Row;<br><span class="hljs-keyword">import</span> org.apache.poi.xssf.usermodel.XSSFSheet;<br><span class="hljs-keyword">import</span> org.apache.poi.xssf.usermodel.XSSFWorkbook;<br><br><span class="hljs-keyword">import</span> java.io.*;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> luoqi</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@File</span> ApachePOITestOperation.java</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@Desc</span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@Create</span> 2024/4/3 15:18</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@ChangeList</span> --------------------------------------------------------------------</span><br><span class="hljs-comment"> * Date                          Editor                     ChangeReason</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ApachePOITestOperation</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span>&#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            writeExcel();<br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>            e.printStackTrace();<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">readExcel</span><span class="hljs-params">()</span>  <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-type">FileInputStream</span> <span class="hljs-variable">file</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileInputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;path/to/excel.xlsx&quot;</span>));<br>        <span class="hljs-type">XSSFWorkbook</span> <span class="hljs-variable">workbook</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">XSSFWorkbook</span>(file);<br>        <span class="hljs-comment">//读取工作表</span><br>        <span class="hljs-type">XSSFSheet</span> <span class="hljs-variable">sheet</span> <span class="hljs-operator">=</span> workbook.getSheetAt(<span class="hljs-number">0</span>);<br>        <span class="hljs-comment">//遍历行与单元格</span><br>        <span class="hljs-keyword">for</span> (Row row : sheet) &#123;<br>            <span class="hljs-keyword">for</span> (Cell cell : row) &#123;<br>                <span class="hljs-keyword">switch</span> (cell.getCellType()) &#123;<br>                    <span class="hljs-keyword">case</span> STRING: System.out.print(cell.getStringCellValue() + <span class="hljs-string">&quot; &quot;</span>);<br>                        <span class="hljs-keyword">break</span>;<br>                    <span class="hljs-keyword">case</span> NUMERIC: System.out.print(cell.getNumericCellValue() + <span class="hljs-string">&quot; &quot;</span>);<br>                        <span class="hljs-keyword">break</span>;<br>                    <span class="hljs-keyword">case</span> BOOLEAN: System.out.print(cell.getBooleanCellValue() + <span class="hljs-string">&quot; &quot;</span>);<br>                        <span class="hljs-keyword">break</span>;<br>                    <span class="hljs-keyword">default</span>:<br>                &#125;<br>            &#125;<br>            System.out.println();<br>        &#125;<br>    &#125;<br><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">writeExcel</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-comment">//创建 Excel 文件</span><br>        <span class="hljs-type">XSSFWorkbook</span> <span class="hljs-variable">workbook</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">XSSFWorkbook</span>();<br>        <span class="hljs-type">XSSFSheet</span> <span class="hljs-variable">sheet</span> <span class="hljs-operator">=</span> workbook.createSheet(<span class="hljs-string">&quot;Name of the Sheet&quot;</span>);<br>        <span class="hljs-comment">//创建行和单元格</span><br>        <span class="hljs-type">Row</span> <span class="hljs-variable">row</span> <span class="hljs-operator">=</span> sheet.createRow(<span class="hljs-number">0</span>);<br>        <span class="hljs-type">Cell</span> <span class="hljs-variable">cell</span> <span class="hljs-operator">=</span> row.createCell(<span class="hljs-number">0</span>);<br>        cell.setCellValue(<span class="hljs-string">&quot;Cell Value&quot;</span>);<br>        <span class="hljs-comment">//保存 Excel 操作</span><br>        <span class="hljs-type">FileOutputStream</span> <span class="hljs-variable">out</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;path/to/excel2.xlsx&quot;</span>));<br>        workbook.write(out);<br>        out.close();<br>        workbook.close();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="jExcelAPI"><a href="#jExcelAPI" class="headerlink" title="jExcelAPI"></a>jExcelAPI</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>net.sourceforge.jexcelapi<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jxl<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.6.12<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+<p>演示代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ruoyi.luoqi.excel;<br><span class="hljs-keyword">import</span> jxl.Cell;<br><span class="hljs-keyword">import</span> jxl.Sheet;<br><span class="hljs-keyword">import</span> jxl.Workbook;<br><span class="hljs-keyword">import</span> jxl.read.biff.BiffException;<br><span class="hljs-keyword">import</span> jxl.write.Label;<br><span class="hljs-keyword">import</span> jxl.write.WritableSheet;<br><span class="hljs-keyword">import</span> jxl.write.WritableWorkbook;<br><span class="hljs-keyword">import</span> jxl.write.WriteException;<br><br><span class="hljs-keyword">import</span> java.io.File;<br><span class="hljs-keyword">import</span> java.io.IOException;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> luoqi</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@File</span> jExcelAPITestOpeartion.java</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@Desc</span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@Create</span> 2024/4/3 15:56</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@ChangeList</span> --------------------------------------------------------------------</span><br><span class="hljs-comment"> * Date                          Editor                     ChangeReason</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">JExcelAPITestOpeartion</span> &#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-type">JExcelAPITestOpeartion</span> <span class="hljs-variable">jExcelAPITestOpeartion</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">JExcelAPITestOpeartion</span>();<br>            jExcelAPITestOpeartion.readExcel();<br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>            e.printStackTrace();<br>        &#125; <span class="hljs-keyword">catch</span> (BiffException e) &#123;<br>            e.printStackTrace();<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span>  <span class="hljs-keyword">void</span> <span class="hljs-title function_">readExcel</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException, BiffException &#123;<br>        <span class="hljs-comment">//读取Excel 操作</span><br>        <span class="hljs-type">Workbook</span> <span class="hljs-variable">workbook</span> <span class="hljs-operator">=</span> Workbook.getWorkbook(<span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;path/to/excel.xls&quot;</span>));<br>        <span class="hljs-comment">//读取工作表</span><br>        <span class="hljs-type">Sheet</span> <span class="hljs-variable">sheet</span> <span class="hljs-operator">=</span> workbook.getSheet(<span class="hljs-number">0</span>);<br>        <span class="hljs-comment">//读取内容</span><br>        <span class="hljs-type">Cell</span> <span class="hljs-variable">cell</span> <span class="hljs-operator">=</span> sheet.getCell(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);<br>        <span class="hljs-type">String</span> <span class="hljs-variable">content</span> <span class="hljs-operator">=</span> cell.getContents();<br>        System.out.println(content);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">writeExcel</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException, WriteException &#123;<br>        <span class="hljs-type">WritableWorkbook</span> <span class="hljs-variable">workbook</span> <span class="hljs-operator">=</span> Workbook.createWorkbook(<span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;path/to/excel.xls&quot;</span>));<br>        <span class="hljs-type">WritableSheet</span> <span class="hljs-variable">sheet</span> <span class="hljs-operator">=</span> workbook.createSheet(<span class="hljs-string">&quot;Sheet Name&quot;</span>, <span class="hljs-number">0</span>);<br>        <span class="hljs-type">Label</span> <span class="hljs-variable">label</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Label</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-string">&quot;Content&quot;</span>);<br>        sheet.addCell(label);<br>        workbook.write();<br>        workbook.close();<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="2、Excel的存储格式"><a href="#2、Excel的存储格式" class="headerlink" title="2、Excel的存储格式"></a>2、Excel的存储格式</h3><p>Excel的存储格式</p>
 <ul>
 <li>XLS<ul>
 <li>XLS一个Sheet最多也只能有 65535 行数据</li>
@@ -408,8 +423,15 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%B7%A5%E5%85%B7/" class="category-chain-item">工具</a>
+  <a href="/categories/%E9%A1%B9%E7%9B%AE/" class="category-chain-item">项目</a>
   
+  
+    <span>></span>
+    
+  <a href="/categories/%E9%A1%B9%E7%9B%AE/%E7%BC%96%E7%A8%8B/" class="category-chain-item">编程</a>
+  
+  
+
   
 
       </span>
@@ -424,6 +446,8 @@
       <i class="iconfont icon-tags"></i>
       
         <a href="/tags/java/" class="print-no-link">#java</a>
+      
+        <a href="/tags/coding/" class="print-no-link">#coding</a>
       
     </div>
   
@@ -475,6 +499,29 @@
 
 
 
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/01/07/Java%E5%9F%BA%E7%A1%80_%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B901/" title="Java基础_基础内容01">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Java基础_基础内容01</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/12/30/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97_Kafka_%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/" title="消息队列_Kafka_基础使用">
+                        <span class="hidden-mobile">消息队列_Kafka_基础使用</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
               
             </div>
 
