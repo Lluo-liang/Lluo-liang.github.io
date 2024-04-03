@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.5k 字
+          4.9k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          38 分钟
+          41 分钟
         
       </span>
     
@@ -366,8 +366,36 @@
 <ul>
 <li>合适的列，索引会占用空间，<strong>使用最左前缀法则</strong>，考虑索引类型，看一下是否索引命中（避免索引失效）</li>
 </ul>
-<h4 id="索引失效"><a href="#索引失效" class="headerlink" title="索引失效"></a>索引失效</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240402102720.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="优化SQL"><a href="#优化SQL" class="headerlink" title="优化SQL"></a>优化SQL</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240402102740.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="索引失效"><a href="#索引失效" class="headerlink" title="索引失效"></a>索引失效</h4><ul>
+<li>索引失效的十大经典场景<ul>
+<li>隐式的类型转换，索引失效</li>
+<li>查询条件包含 or，可能导致索引失效</li>
+<li>like 通配符可能导致索引失效</li>
+<li>查询条件不满足联合索引的最左匹配原则</li>
+<li>在索引列上使用 mysql 的内置函数</li>
+<li>对索引进行列运算（如，+、-、*、<code>/</code> )</li>
+<li>索引字段上使用(!&#x3D; 或者 &lt;&gt;)，索引可能失效</li>
+<li>索引字段使用 is null，is not null，索引可能失效</li>
+<li>左右连接，关联的字段编码格式不一样</li>
+<li>优化器选错了索引</li>
+</ul>
+</li>
+</ul>
+<h4 id="优化SQL"><a href="#优化SQL" class="headerlink" title="优化SQL"></a>优化SQL</h4><p>SQL  优化</p>
+<ul>
+<li>select 具体字段而不是 select *</li>
+<li>多用 limit</li>
+<li>尽量用 union all 替换 union</li>
+<li>优化 group by</li>
+<li>优化 order by</li>
+<li>小表驱动大表</li>
+<li>字段类型使用合理</li>
+<li>优化 limit 分页</li>
+<li>exist &amp; in 的合理利用</li>
+<li>join 关联的表不宜过多</li>
+<li>delete + in 子查询不走索引</li>
+<li>in 元素不要过多</li>
+</ul>
 <h4 id="分库分表"><a href="#分库分表" class="headerlink" title="分库分表"></a>分库分表</h4><p>MyCAT</p>
 <p>读写分离、分库分表</p>
 <h3 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h3><h4 id="JVM-组成"><a href="#JVM-组成" class="headerlink" title="JVM 组成"></a>JVM 组成</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240315210151.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
@@ -524,6 +552,10 @@
 <h2 id="简历项目内容"><a href="#简历项目内容" class="headerlink" title="简历项目内容"></a>简历项目内容</h2><h4 id="使用账号密码访问流程（JWT-方式）"><a href="#使用账号密码访问流程（JWT-方式）" class="headerlink" title="使用账号密码访问流程（JWT 方式）"></a>使用账号密码访问流程（JWT 方式）</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240330222111.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="使用-websocket-进行前后端-http-长连接操作"><a href="#使用-websocket-进行前后端-http-长连接操作" class="headerlink" title="使用 websocket 进行前后端 http 长连接操作"></a>使用 websocket 进行前后端 http 长连接操作</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240401220539.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="socket-监听，实时推送站点车辆信息到前端界面"><a href="#socket-监听，实时推送站点车辆信息到前端界面" class="headerlink" title="socket 监听，实时推送站点车辆信息到前端界面"></a>socket 监听，实时推送站点车辆信息到前端界面</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240330230550.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h2 id="编程内容"><a href="#编程内容" class="headerlink" title="编程内容"></a>编程内容</h2><h4 id="字符串分割（不使用分割函数）"><a href="#字符串分割（不使用分割函数）" class="headerlink" title="字符串分割（不使用分割函数）"></a>字符串分割（不使用分割函数）</h4><p>一个字符串，通过分割符进行分割操作，得到分割后的字符数组：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/f0f7236e98a628e969b8574df536bf2.png" srcset="/img/loading.gif" lazyload alt="f0f7236e98a628e969b8574df536bf2.png"></p>
+<h4 id="交替打印操作"><a href="#交替打印操作" class="headerlink" title="交替打印操作"></a>交替打印操作</h4><p>两个线程，实现对于从 0 到 200 的交互打印：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/637467f52b3dc854fb1698cbd29e4c5.png" srcset="/img/loading.gif" lazyload alt="637467f52b3dc854fb1698cbd29e4c5.png"></p>
 
                 
               </div>
