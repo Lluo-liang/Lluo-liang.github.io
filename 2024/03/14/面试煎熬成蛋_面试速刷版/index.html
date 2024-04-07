@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          7.4k 字
+          9.6k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          63 分钟
+          81 分钟
         
       </span>
     
@@ -278,9 +278,119 @@
               <div class="markdown-body">
                 
                 <h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><h4 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202401181322703.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><strong>Unchecked Exception</strong> 即 <strong>不受检查异常</strong> ，Java 代码在编译过程中 ，我们即使不处理不受检查异常也可以正常通过编译。</p>
+<p><strong>Checked Exception</strong> 即 受检查异常 ，Java 代码在编译过程中，如果受检查异常没有被 <code>catch</code>或者<code>throws</code> 关键字处理的话，就没办法通过编译。</p>
+<p>不受检查异常</p>
+<ul>
+<li><code>NullPointerException</code>(空指针错误)</li>
+<li><code>IllegalArgumentException</code>(参数错误比如方法入参类型错误)</li>
+<li><code>NumberFormatException</code>（字符串转换为数字格式错误，<code>IllegalArgumentException</code>的子类）</li>
+<li><code>ArrayIndexOutOfBoundsException</code>（数组越界错误）</li>
+<li><code>ClassCastException</code>（类型转换错误）</li>
+<li><code>ArithmeticException</code>（算术错误）</li>
+<li><code>SecurityException</code> （安全错误比如权限不够）</li>
+<li><code>UnsupportedOperationException</code>(不支持的操作错误比如重复创建同一用户)</li>
+<li>……</li>
+</ul>
+<p>当我们在尝试使用 null 引用的时候，会发生 NPE</p>
+<ul>
+<li>避免空指针异常<ul>
+<li><ol>
+<li>在使用之前先检查一下是否为 null</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>调用方法的时候进行参数检查</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>在设计方法或者API 的时候，尽量不要返回 null 值，而且返回一个空集合或者默认值；</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>初始化使用字段，保证不为 null</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>使用 Optional</li>
+</ol>
+</li>
+<li><ol start="6">
+<li>使用断言（开发和测试环境）</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<p>方法上</p>
+<ul>
+<li>throws    方法声明上进行抛出异常</li>
+<li>throw      方法体中进行抛出异常</li>
+</ul>
+<h4 id="String"><a href="#String" class="headerlink" title="String"></a>String</h4><ul>
+<li>String:  不可变，线程安全<ul>
+<li>内部维护的是private final char&#x2F;byte数组（不可变）</li>
+</ul>
+</li>
+<li>StringBuilder：可变字符串，线程不安全；可以使⽤append进⾏拼接字符串</li>
+<li>StringBuffer：可变字符串，线程安全；通过synchronized来保证线程安全，操作和 StringBuilder⼀样<ul>
+<li>synchronized 对于出现在循环中会进⾏<strong>锁粗化</strong>，会将锁的范围扩 展到整个操作，从⽽避免频繁进⾏锁操作造成性能开销</li>
+</ul>
+</li>
+</ul>
+<p>String →  StringBuffer  → Synchronized →  锁粗化</p>
+<p>两个的默认容量大小都是 16 字符。</p>
+<p>final 修饰类代表不可进行继承，修饰方法代表不可重写覆盖，但是当 final 修饰引用类型的时候，引用不可变，但内容并不能保证不可变</p>
+<p>比如：</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs abnf">final List&lt;Integer&gt; list <span class="hljs-operator">=</span> new ArrayList&lt;&gt;()<span class="hljs-comment">;</span><br>list.add(<span class="hljs-number">1</span>)<span class="hljs-comment">; // 这是允许的</span><br>// list <span class="hljs-operator">=</span> new ArrayList&lt;&gt;()<span class="hljs-comment">; // 编译错误，不能改变 final 引用的对象</span><br></code></pre></td></tr></table></figure>
+
+<p>关于 final 修饰 string</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cmake">final <span class="hljs-keyword">String</span> s = <span class="hljs-string">&quot;Hello&quot;</span>;<br>// s = <span class="hljs-string">&quot;World&quot;</span>; // 编译错误，因为s是final，不能再指向另一个<span class="hljs-keyword">String</span>对象。<br><br>// 以下操作不涉及改变s指向的<span class="hljs-keyword">String</span>对象，而是尝试修改<span class="hljs-keyword">String</span>对象的内容，这在Java中是不可能的。<br><span class="hljs-keyword">String</span> s2 = s.replace(<span class="hljs-string">&quot;H&quot;</span>, <span class="hljs-string">&quot;W&quot;</span>); // 创建了一个新的<span class="hljs-keyword">String</span>对象，并不改变原始的s指向的对象。<br></code></pre></td></tr></table></figure>
+
+<p>在这个例子中，尽管<code>replace</code>方法看似是在修改<code>String</code>，但实际上它是创建了一个新的<code>String</code>对象，并将其返回。原始的<code>String</code>对象（即<code>s</code>指向的对象）并未发生改变。</p>
+<p>(跟字符串常量池有关)</p>
+<p>String 为什么是不可变的</p>
+<p>String内部维护的是private final char&#x2F;byte数组，</p>
+<ul>
+<li>不可变线程安全 <ul>
+<li>好处 <ul>
+<li>防⽌被恶意篡改 </li>
+<li>作为HashMap的key可以保证不可变性 </li>
+<li>可以实现字符串常量池，在Java中，创建字符串对象的⽅式 <ul>
+<li>通过字符串常量进⾏创建 <ul>
+<li>在字符串常量池判断是否存在，如果存在就返回，不存 在就在字符串常量池创建后返回</li>
+</ul>
+</li>
+<li>通过new字符串对象进⾏创建 <ul>
+<li>在字符串常量池中判断是否存在，如果不存在就创建， 再判断堆中是否存在，如果不存在就创建，然后返回该 对象，总之要保证字符串常量池和堆中都有该对象</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h4 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240325175815.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p><strong>NIO</strong></p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240325234405.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li><p>NIO：内核读取数据会从 BIO 的阻塞等待不一样，而是变为自旋等待，等待就绪后，进行从内核数据拷贝到用户缓存区（仍然会阻塞），不同的是第一步的操作；</p>
+</li>
+<li><p>在这种操作基础下，NIO 会有一种多路复用的操作，这种操作一般是通过 epoll、select、poll 的三种方式，其中后两者都是通过自旋等待的方式去进行监听处理，而 epoll 能精确定位到哪一个；</p>
+</li>
+<li><p>Redis 中的快速读中，就采用了这种 IO 多路复用 + 事件派发机制的方式来进行处理的。</p>
+</li>
+<li><p>对于 Netty 的理解，封装了 NIO 的一些操作，使得相关的操作更加方便。</p>
+</li>
+<li><p>Dubbo 的话，主要是用于 Rpc 服务之间的调用，他可以通过使用基于NIO的通信框架（如Netty），Dubbo 能够高效地处理成千上万的并发连接，减少因线程切换带来的开销，提高系统整体的吞吐量。</p>
+</li>
+<li><p>输入流：从文件读取数据，外设数据传输数据到内存</p>
+</li>
+<li><p>输出流：向文件写入数据</p>
+</li>
+</ul>
 <h3 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h3><ul>
 <li>概念前提<ul>
 <li>ArrayList的数组默认⻓度10，1.5倍数组扩容，扩容通过开辟新数 组进⾏转移⽼数组元素</li>
@@ -313,6 +423,11 @@
 </ul>
 <h4 id="成员关系"><a href="#成员关系" class="headerlink" title="成员关系"></a>成员关系</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311141122413.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240311195612.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>头插</li>
+<li>尾插</li>
+<li>扩容</li>
+</ul>
 <h4 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h4><p>ConcurrentHashMap 是一种线程安全的高效Map集合</p>
 <ul>
 <li>ConcurrentHashMap<ul>
@@ -338,10 +453,16 @@
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240326205410.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240312224915.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <ul>
-<li>改一下：原子性一般是线程通过对资源加锁的方式来实现的，这里可以引入 synchronized 和 ReetrantLock 的相关内容</li>
+<li><p>改一下：原子性一般是线程通过对资源加锁的方式来实现的，这里可以引入 synchronized 和 ReetrantLock 的相关内容</p>
+</li>
+<li><p>再复习一下 synchronized 的重量级锁</p>
+</li>
 </ul>
 <h4 id="线程状态"><a href="#线程状态" class="headerlink" title="线程状态"></a>线程状态</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240304154734.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>阻塞：没有获取到资源（没有获取到锁）</p>
+<ul>
+<li>线程状态</li>
+</ul>
 <h4 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h4><ul>
 <li>使用场景<ul>
 <li>1、异步</li>
@@ -366,6 +487,11 @@
 <ul>
 <li>合适的列，索引会占用空间，<strong>使用最左前缀法则</strong>，考虑索引类型，看一下是否索引命中（避免索引失效）</li>
 </ul>
+<p>添加索引（多列）</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-function"><span class="hljs-title">ALTER</span></span> <span class="hljs-keyword">TABLE</span> table_name <span class="hljs-comment">ADD INDEX index_name (column1, column2, ...)</span>;<br><br>单列、多列、唯一<br></code></pre></td></tr></table></figure>
+
+
+
 <h4 id="索引失效"><a href="#索引失效" class="headerlink" title="索引失效"></a>索引失效</h4><ul>
 <li>索引失效的十大经典场景<ul>
 <li>隐式的类型转换，索引失效</li>
@@ -403,11 +529,14 @@
 <p>需要再补充一下 相关内容</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240315203635.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h3 id="框架-🚩"><a href="#框架-🚩" class="headerlink" title="框架  🚩"></a>框架  🚩</h3><h4 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240315154902.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>生命周期</li>
+</ul>
 <p>循环依赖问题</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240315154746.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>常用注解补充一下</p>
 <h4 id="SpringBoot"><a href="#SpringBoot" class="headerlink" title="SpringBoot"></a>SpringBoot</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240314214559.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240325173045.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h5 id="starter"><a href="#starter" class="headerlink" title="starter"></a>starter</h5><h4 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240325173045.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="Mybaits"><a href="#Mybaits" class="headerlink" title="Mybaits"></a>Mybaits</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240325175422.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h3 id="Redis-🚩"><a href="#Redis-🚩" class="headerlink" title="Redis   🚩"></a>Redis   🚩</h3><h4 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317105734.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317105756.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
