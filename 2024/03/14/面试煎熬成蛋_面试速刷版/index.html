@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.9k 字
+          7.4k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          41 分钟
+          63 分钟
         
       </span>
     
@@ -411,6 +411,31 @@
 <h4 id="Mybaits"><a href="#Mybaits" class="headerlink" title="Mybaits"></a>Mybaits</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240325175422.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h3 id="Redis-🚩"><a href="#Redis-🚩" class="headerlink" title="Redis   🚩"></a>Redis   🚩</h3><h4 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317105734.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317105756.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>参考： <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV186421F7xM">https://www.bilibili.com/video/BV186421F7xM</a></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240407093400.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>说一下大概的一个链路，回答的时候可以往这个方向回答</p>
+<ul>
+<li>1、在分布式系统下，对于共享资源的访问可以使用分布式锁，这里一般会考虑引入组件 redis ，然后使用 redis 中的 setnx 命令，这个命令的作用是 如果不存在则进行添加，如果存在则添加失败  setnx name value</li>
+<li>2、一般这种情况下就可以实现一个简易的分布式锁，但是呢，有可能出现 redis 宕机的情况，这种情况下，为了防止这个 键值 一直存在 redis 中（锁），一般会进行添加一个有效时间，从而避免锁一直未释放的操作 setnx name value ex100；同时，这里如果是在过期时间内进行释放锁，会进行 删除操作，这里一般建议使用 Lua 命令进行操作（防止误删到其他的锁）</li>
+<li>3、上面还可能出现一种情况，就是在过期时间后自动释放了锁，业务流程却未执行完，为了避免这种情况，建议引入 redission</li>
+</ul>
+<p>Redission</p>
+<ul>
+<li>看门狗<ul>
+<li>当使用 Redisson 的锁机制（如 <code>RLock</code>）锁定某个资源时，如果没有显式地设置锁的租期（lease time），Redisson 会启用“看门狗”机制。这个机制的核心是自动续租，确保在持有锁的服务实例正常运行时，锁不会因为超时而被自动释放<ul>
+<li><strong>默认租期设置</strong>：默认情况下，锁的租期设置为 30 秒。这意味着，如果在这段时间内没有操作完成，锁就会自动释放，防止死锁。</li>
+<li><strong>自动续租</strong>：“看门狗”机制会在锁快到期时（默认情况下是租期的 1&#x2F;3，即10秒后），自动发送一个命令给 Redis，将锁的租期重新延长到 30 秒。这个过程会一直持续，直到锁被显式释放。</li>
+<li><strong>故障转移</strong>：如果持有锁的服务实例因为某些原因宕机或无法与 Redis 通信，锁将不会被续租，最终会在默认的租期结束后自动释放。这样，其他服务实例可以获取锁，继续处理任务，保证了系统的高可用性和一致性。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-keyword">import</span> org.redisson.Redisson;<br><span class="hljs-keyword">import</span> org.redisson.api.RLock;<br><span class="hljs-keyword">import</span> org.redisson.api.RedissonClient;<br><span class="hljs-keyword">import</span> org.redisson.config.Config;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">InventoryService</span> &#123;<br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-type">static</span> RedissonClient <span class="hljs-title">createClient</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-comment">// 配置 Redisson 客户端</span><br>        Config config = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Config</span>();<br>        config.<span class="hljs-built_in">useSingleServer</span>().<span class="hljs-built_in">setAddress</span>(<span class="hljs-string">&quot;redis://127.0.0.1:6379&quot;</span>);<br>        <span class="hljs-comment">// 创建 Redisson 客户端实例</span><br>        <span class="hljs-keyword">return</span> Redisson.<span class="hljs-built_in">create</span>(config);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title">decreaseInventory</span><span class="hljs-params">(<span class="hljs-type">String</span> productId, <span class="hljs-type">int</span> amount)</span> </span>&#123;<br>        RedissonClient client = <span class="hljs-built_in">createClient</span>();<br>        <span class="hljs-comment">// 获取针对给定产品的锁对象</span><br>        RLock lock = client.<span class="hljs-built_in">getLock</span>(<span class="hljs-string">&quot;productLock:&quot;</span> + productId);<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">// 尝试获取锁，启用看门狗机制自动续租</span><br>            lock.<span class="hljs-built_in">lock</span>();<br>            <span class="hljs-comment">// 以下是被保护的资源访问代码</span><br>            <span class="hljs-comment">// 模拟读取库存、减少库存数量并更新的过程</span><br>            System.out.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;库存减少处理逻辑...&quot;</span>);<br>            <span class="hljs-comment">// 模拟处理耗时</span><br>            Thread.<span class="hljs-built_in">sleep</span>(<span class="hljs-number">1000</span>);<br>        &#125; <span class="hljs-built_in">catch</span> (InterruptedException e) &#123;<br>            e.<span class="hljs-built_in">printStackTrace</span>();<br>        &#125; finally &#123;<br>            <span class="hljs-comment">// 释放锁</span><br>            lock.<span class="hljs-built_in">unlock</span>();<br>            <span class="hljs-comment">// 关闭 Redisson 客户端</span><br>            client.<span class="hljs-built_in">shutdown</span>();<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-type">static</span> <span class="hljs-type">void</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">String</span>[] args)</span> </span>&#123;<br>        InventoryService service = <span class="hljs-keyword">new</span> <span class="hljs-built_in">InventoryService</span>();<br>        <span class="hljs-comment">// 模拟减少产品库存的操作</span><br>        service.<span class="hljs-built_in">decreaseInventory</span>(<span class="hljs-string">&quot;product123&quot;</span>, <span class="hljs-number">1</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240407094353.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="过期策略、数据结构"><a href="#过期策略、数据结构" class="headerlink" title="过期策略、数据结构"></a>过期策略、数据结构</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317154657.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="数据一致性"><a href="#数据一致性" class="headerlink" title="数据一致性"></a>数据一致性</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240329000510.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <ul>
@@ -481,7 +506,7 @@
 <h4 id="Jenkins"><a href="#Jenkins" class="headerlink" title="Jenkins"></a>Jenkins</h4><p>卷肯思</p>
 <p>Jenkins 是一个开源的自动化服务器，主要用于持续集成（Continuous Integration, CI）和持续部署（Continuous Deployment, CD）的自动化过程。由于其强大的插件生态系统，Jenkins 可以轻松地与各种开发、测试和部署工具集成，从而构建一个高度灵活和可定制的自动化流水线。</p>
 <h3 id="Dubbo"><a href="#Dubbo" class="headerlink" title="Dubbo"></a>Dubbo</h3><h4 id="为什么要使用-RPC"><a href="#为什么要使用-RPC" class="headerlink" title="为什么要使用 RPC"></a>为什么要使用 RPC</h4><p>RPC通信协议通常比HTTP更加轻量，能够减少网络传输的开销。</p>
-<h3 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h3><h4 id="TCP-和-UDP-的区别"><a href="#TCP-和-UDP-的区别" class="headerlink" title="TCP 和 UDP 的区别"></a>TCP 和 UDP 的区别</h4><ul>
+<h3 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h3><h3 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h3><h4 id="TCP-和-UDP-的区别"><a href="#TCP-和-UDP-的区别" class="headerlink" title="TCP 和 UDP 的区别"></a>TCP 和 UDP 的区别</h4><ul>
 <li>TCP：面向连接，三次握手，面向字节流的</li>
 <li>UDP：无连接，面向报文</li>
 </ul>
@@ -538,6 +563,7 @@
 <li>通过 ID  或者时间戳</li>
 </ul>
 <h4 id="系统监控"><a href="#系统监控" class="headerlink" title="系统监控"></a>系统监控</h4><p>SpringBoot Actuator + Prometheus + Grafana</p>
+<p>也可以说一下自己实际项目中的解决方案：InfluxDB + grafana 的方式，这里会引入一下时序数据库的内容。</p>
 <h4 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h4><p>常用命令</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">ls</span><br><span class="hljs-built_in">cp</span><br><span class="hljs-built_in">mv</span><br><span class="hljs-built_in">cat</span><br>grep<br>top<br>ping<br>su<br></code></pre></td></tr></table></figure>
 
@@ -552,6 +578,39 @@
 <h2 id="简历项目内容"><a href="#简历项目内容" class="headerlink" title="简历项目内容"></a>简历项目内容</h2><h4 id="使用账号密码访问流程（JWT-方式）"><a href="#使用账号密码访问流程（JWT-方式）" class="headerlink" title="使用账号密码访问流程（JWT 方式）"></a>使用账号密码访问流程（JWT 方式）</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240330222111.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="使用-websocket-进行前后端-http-长连接操作"><a href="#使用-websocket-进行前后端-http-长连接操作" class="headerlink" title="使用 websocket 进行前后端 http 长连接操作"></a>使用 websocket 进行前后端 http 长连接操作</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240401220539.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="socket-监听，实时推送站点车辆信息到前端界面"><a href="#socket-监听，实时推送站点车辆信息到前端界面" class="headerlink" title="socket 监听，实时推送站点车辆信息到前端界面"></a>socket 监听，实时推送站点车辆信息到前端界面</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240330230550.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>这里可以延申说一下，就是还有解决方案，可以通过 nio 的多路复用的一种实现方式去解决。</p>
+<h4 id="模板文件（word）"><a href="#模板文件（word）" class="headerlink" title="模板文件（word）"></a>模板文件（word）</h4><p>一般生成模板文件，在 mes 生产是通过 ireport 模板的方式来进行的，</p>
+<p>看了一下 word 的方式，也是类似，需要有一个 word 模板文件，然后进行填充内容，生成 文件操作。</p>
+<p>一种方式也可以是引入 spring-boot-starter-freemarker 依赖进行操作（模板引擎）；</p>
+<p>预览的话，可以转换为图片或者 pdf 文件，然后在前端进行预览操作。</p>
+<h4 id="模板文件-ireport"><a href="#模板文件-ireport" class="headerlink" title="模板文件(ireport)"></a>模板文件(ireport)</h4><p>说一下大概的业务就行</p>
+<h4 id="模板文件-pdf"><a href="#模板文件-pdf" class="headerlink" title="模板文件(pdf)"></a>模板文件(pdf)</h4><ul>
+<li>可以说直接通过原项目的工具类进行生成对应的操作</li>
+<li>预览操作<ul>
+<li>1、使用浏览器内置的阅读器 ：使用<code>&lt;iframe&gt;</code>标签</li>
+<li>2、使用PDF.js</li>
+<li>3、使用 第三方服务</li>
+</ul>
+</li>
+</ul>
+<h4 id="Excel-导入导出优化"><a href="#Excel-导入导出优化" class="headerlink" title="Excel 导入导出优化"></a>Excel 导入导出优化</h4><p>导入优化</p>
+<ul>
+<li>使用更快的 Excel 读取框架(推荐使用阿里 EasyExcel)。</li>
+<li>对于需要<strong>与数据库交互的校验</strong>、按照业务逻辑适当的使用缓存。用空间换时间。</li>
+<li>使用 values( ),( ),( ) 拼接长 SQL 一次插入多行数据。</li>
+<li>使用多线程插入数据，利用掉网络IO等待时间(推荐使用并行流，简单易用)。</li>
+<li>避免在循环中打印无用的日志。</li>
+</ul>
+<p>导出优化</p>
+<ul>
+<li>1、依然是使用 esayexcel 的开源框架，内部进行了很大的一个优化，比起 Poi 的方式来说；</li>
+<li>2、基本处理方式<ul>
+<li>一个SHEET一次查询导出</li>
+<li>数据量适中（100W以内）：一个SHEET分批查询导出</li>
+<li>数据里很大（几百万都行）：多个SHEET分批查询导出</li>
+</ul>
+</li>
+</ul>
 <h2 id="编程内容"><a href="#编程内容" class="headerlink" title="编程内容"></a>编程内容</h2><h4 id="字符串分割（不使用分割函数）"><a href="#字符串分割（不使用分割函数）" class="headerlink" title="字符串分割（不使用分割函数）"></a>字符串分割（不使用分割函数）</h4><p>一个字符串，通过分割符进行分割操作，得到分割后的字符数组：</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/f0f7236e98a628e969b8574df536bf2.png" srcset="/img/loading.gif" lazyload alt="f0f7236e98a628e969b8574df536bf2.png"></p>
 <h4 id="交替打印操作"><a href="#交替打印操作" class="headerlink" title="交替打印操作"></a>交替打印操作</h4><p>两个线程，实现对于从 0 到 200 的交互打印：</p>

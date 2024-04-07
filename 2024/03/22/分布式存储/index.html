@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          459 字
+          1.4k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          4 分钟
+          13 分钟
         
       </span>
     
@@ -287,6 +287,35 @@
 <p>建议具体使用一下</p>
 <p>一般是在我们项目中引入依赖，然后进行配置（客户端配置），通过设置访问密钥和私钥后，进行连接，可以进行上传文件操作，Minio 会提供一些公共 API  方法，我们一般会封装一个工具类，然后去使用他。</p>
 <p>服务器的一种创建方式是通过dokcer 去拉取，然后创建容器启动，管理控制台后进行相关的配置。</p>
+<hr>
+<h4 id="服务器端配置"><a href="#服务器端配置" class="headerlink" title="服务器端配置"></a>服务器端配置</h4><p>拉取镜像</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker pull minio/minio<br></code></pre></td></tr></table></figure>
+
+<p>创建一下挂载目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#创建存储，配置文件目录</span><br><span class="hljs-built_in">mkdir</span> -p /home/minio/&#123;data,config&#125;<br><span class="hljs-comment">#赋予目录权限</span><br><span class="hljs-built_in">chmod</span> 777 /home/minio/&#123;data,config&#125;<br></code></pre></td></tr></table></figure>
+
+<p>启动容器</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">docker run -p 9000<span class="hljs-function">:9000</span> -p 9090<span class="hljs-function">:9090</span> <span class="hljs-params">--name</span> minio -d <span class="hljs-params">--restart=always</span> -e <span class="hljs-string">&quot;MINIO_ROOT_USER=minio&quot;</span> -e <span class="hljs-string">&quot;MINIO_ROOT_PASSWORD=minio123&quot;</span> -v <span class="hljs-string">/home/minio/data</span>:<span class="hljs-string">/data</span> -v <span class="hljs-string">/home/minio/config</span>:<span class="hljs-string">/root/.minio</span> minio/minio server <span class="hljs-string">/data</span> <span class="hljs-params">--console-address</span> <span class="hljs-string">&quot;:9090&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>解析：</p>
+<ul>
+<li>-p:宿主端口：容器端口</li>
+<li>–name：容器名称</li>
+<li>–restart&#x3D;always:设置docker启动时，容器跟随自启</li>
+<li>-e “MINIO_ACCESS_KEY&#x3D;admin”:设置minio的用户名</li>
+<li>-e “MINIO_SECRET_KEY&#x3D;minio123”：设置minio的密码</li>
+<li>-v &#x2F;home&#x2F;minio&#x2F;data:&#x2F;data：挂载容器的存储目录到宿主</li>
+<li>-v &#x2F;home&#x2F;minio&#x2F;config:&#x2F;root&#x2F;.minio：挂载容器配置文件到宿主</li>
+<li>&#x2F;data –console-address “:9090”：固定 9090 端口访问minio的web控制台</li>
+</ul>
+<hr>
+<p>通过 IP + 9090 端口，看是否能正常访问。</p>
+<p>官方文档地址： <a target="_blank" rel="noopener" href="https://www.minio.org.cn/docs/minio/container/index.html">https://www.minio.org.cn/docs/minio/container/index.html</a></p>
+<p>创建 minio 服务后，建议创建用户  →  创建用户组  →   创建公钥和私钥</p>
+<p>这里找一个 minio 的 demo 项目看一下，主要还是总结一下相关流程，并知道如何通过 minio 进行文件上传下载操作。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/bm4578/SpringBoot/tree/main/SpringBoot-minio">https://github.com/bm4578/SpringBoot/tree/main/SpringBoot-minio</a></p>
+<p>（比较基础）</p>
+<p>示例操作：</p>
 <h3 id="2、FastDFS"><a href="#2、FastDFS" class="headerlink" title="2、FastDFS"></a>2、FastDFS</h3><p>FastDFS是一个开源的轻量级分布式文件系统，它对文件进行管理，功能包括：文件存储、文件同步、文件访问（文件上传、文件下载）等，解决了大容量存储和负载均衡的问题。</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1466135">https://cloud.tencent.com/developer/article/1466135</a></li>
