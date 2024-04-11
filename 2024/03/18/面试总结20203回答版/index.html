@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.3k 字
+          2.9k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          20 分钟
+          24 分钟
         
       </span>
     
@@ -355,7 +355,43 @@
 <li>1、项目上没用什么好问的（改简历）</li>
 <li>2、项目经历太薄弱了点，没什么东西，比大部分校招生的项目经历介绍还要差一些</li>
 </ul>
-<h4 id="jvm-docker的使用"><a href="#jvm-docker的使用" class="headerlink" title="jvm docker的使用"></a>jvm docker的使用</h4><h4 id="问了一下nio"><a href="#问了一下nio" class="headerlink" title="问了一下nio"></a>问了一下nio</h4><h4 id="问了一下mq的使用"><a href="#问了一下mq的使用" class="headerlink" title="问了一下mq的使用"></a>问了一下mq的使用</h4><h4 id="问了一下valatile"><a href="#问了一下valatile" class="headerlink" title="问了一下valatile"></a>问了一下valatile</h4><h4 id="问了一下设计模式"><a href="#问了一下设计模式" class="headerlink" title="问了一下设计模式"></a>问了一下设计模式</h4>
+<h4 id="jvm-docker的使用"><a href="#jvm-docker的使用" class="headerlink" title="jvm docker的使用"></a>jvm docker的使用</h4><h4 id="问了一下nio"><a href="#问了一下nio" class="headerlink" title="问了一下nio"></a>问了一下nio</h4><h4 id="问了一下mq的使用"><a href="#问了一下mq的使用" class="headerlink" title="问了一下mq的使用"></a>问了一下mq的使用</h4><h4 id="问了一下valatile"><a href="#问了一下valatile" class="headerlink" title="问了一下valatile"></a>问了一下valatile</h4><h4 id="问了一下设计模式"><a href="#问了一下设计模式" class="headerlink" title="问了一下设计模式"></a>问了一下设计模式</h4><h3 id="20240407"><a href="#20240407" class="headerlink" title="20240407"></a>20240407</h3><h4 id="说一下-HashMap-的底层实现"><a href="#说一下-HashMap-的底层实现" class="headerlink" title="说一下 HashMap 的底层实现"></a>说一下 HashMap 的底层实现</h4><ul>
+<li>1.7 头插法会导致循环链表问题<ul>
+<li>由于每次插入都会改变链表的顺序，这可能会导致长时间的性能下降</li>
+</ul>
+</li>
+<li>1.8 改为了尾插法，在并发修改时减少了循环链表出现的风险</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240311195612.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="说一下-mysql-的慢查询分析，以及索引优化注意的地方"><a href="#说一下-mysql-的慢查询分析，以及索引优化注意的地方" class="headerlink" title="说一下 mysql 的慢查询分析，以及索引优化注意的地方"></a>说一下 mysql 的慢查询分析，以及索引优化注意的地方</h4><ul>
+<li>看是否索引失效</li>
+<li>看是否索引命中</li>
+<li>看是否索引合理</li>
+</ul>
+<h4 id="说一下什么时候会索引失效"><a href="#说一下什么时候会索引失效" class="headerlink" title="说一下什么时候会索引失效"></a>说一下什么时候会索引失效</h4><ul>
+<li>like ‘’<ul>
+<li>使用<code>LIKE</code>操作符进行模糊匹配，且匹配模式以通配符（如<code>%</code>或<code>_</code>）开头时，</li>
+</ul>
+</li>
+<li>or<ul>
+<li>当使用<code>OR</code>连接多个条件时，如果所有条件列都被索引，那么索引有可能被使用；但如果其中一列没有被索引，那么即使其他列有索引，索引也可能不被使用</li>
+</ul>
+</li>
+<li>索引字段使用 is null，is not null，索引可能失效</li>
+<li>表达式进行计算</li>
+</ul>
+<h4 id="说一下-mysql-的隔离级别"><a href="#说一下-mysql-的隔离级别" class="headerlink" title="说一下 mysql 的隔离级别"></a>说一下 mysql 的隔离级别</h4><ul>
+<li>重复读未提交     脏读</li>
+<li>重复读已提交     可重复读</li>
+<li>可重复读            幻读</li>
+<li>串行化</li>
+</ul>
+<h4 id="说一下你在创建数据库的表有什么注意的地方，以及你们项目组的字段规范说一下"><a href="#说一下你在创建数据库的表有什么注意的地方，以及你们项目组的字段规范说一下" class="headerlink" title="说一下你在创建数据库的表有什么注意的地方，以及你们项目组的字段规范说一下"></a>说一下你在创建数据库的表有什么注意的地方，以及你们项目组的字段规范说一下</h4><ul>
+<li>创建，常见的字段, 创建人，创建时间，更新人，更新时间，uda 额外字段</li>
+<li>字段类型和字段长度要合理设置，比如说 vin  要设置到  char 17；varchar </li>
+<li>is 开头不太好</li>
+</ul>
+<h4 id="说一下死锁你们怎么处理的"><a href="#说一下死锁你们怎么处理的" class="headerlink" title="说一下死锁你们怎么处理的"></a>说一下死锁你们怎么处理的</h4><h4 id="装饰器设计模式和组合模式的区别你讲一下，怎么用的"><a href="#装饰器设计模式和组合模式的区别你讲一下，怎么用的" class="headerlink" title="装饰器设计模式和组合模式的区别你讲一下，怎么用的"></a>装饰器设计模式和组合模式的区别你讲一下，怎么用的</h4><h4 id="比如说我有一堆无序的元素，我想要让他放入到一个先进先出的集合中，你会怎么做"><a href="#比如说我有一堆无序的元素，我想要让他放入到一个先进先出的集合中，你会怎么做" class="headerlink" title="比如说我有一堆无序的元素，我想要让他放入到一个先进先出的集合中，你会怎么做"></a>比如说我有一堆无序的元素，我想要让他放入到一个先进先出的集合中，你会怎么做</h4><h4 id="说一下-mysql-中的关键字优先级"><a href="#说一下-mysql-中的关键字优先级" class="headerlink" title="说一下 mysql 中的关键字优先级"></a>说一下 mysql 中的关键字优先级</h4><h4 id="说一下-spring-的传播事务"><a href="#说一下-spring-的传播事务" class="headerlink" title="说一下 spring 的传播事务"></a>说一下 spring 的传播事务</h4>
                 
               </div>
             

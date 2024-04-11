@@ -226,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.1k 字
+          3.5k 字
         
       </span>
     
@@ -237,7 +237,7 @@
         
         
         
-          18 分钟
+          29 分钟
         
       </span>
     
@@ -361,7 +361,41 @@
 <p>灰度发布的关键目的是减少由于新版本引入的风险。通过先对一小部分用户进行发布，可以在不干扰所有用户的情况下测试新版本在生产环境中的表现。</p>
 <p>这个灰度发布可以通过 k8s 的部署策略去做到</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240322102017.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-
+<h3 id="实际使用"><a href="#实际使用" class="headerlink" title="实际使用"></a>实际使用</h3><p><a target="_blank" rel="noopener" href="https://www.kancloud.cn/zatko/kubernetes_k8s/2290695">https://www.kancloud.cn/zatko/kubernetes_k8s/2290695</a></p>
+<h3 id="部署使用"><a href="#部署使用" class="headerlink" title="部署使用"></a>部署使用</h3><h4 id="网络连通"><a href="#网络连通" class="headerlink" title="网络连通"></a>网络连通</h4><p>这里使用一下虚拟机完成以下相关功能</p>
+<p>虚拟机 开三个机器，master 双核4G,两个node双核8G</p>
+<p>这里使用的虚拟机是 Virtual Box</p>
+<p>建议设置以下   热键  →  虚拟电脑  →  主机组合键  → 设置为  Ctrl + Alt</p>
+<p>密码设置 root&#x2F;root</p>
+<p>创建用户 luoqi&#x2F;123456</p>
+<p>需要后面看一下，目前是虚拟机不能获取到 ip 地址，且执行 sudo 命令不起效果</p>
+<p>不用管之前的操作方式，选择新增虚拟机的操作，然后在网络与主机名初始配置这里选择打开</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240411153119.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>正常来说，按照这种初始化配置是可以进行在虚拟机中 Ping 通外网的</p>
+<p>进行网络配置：选择网卡2，进行选择“仅主机(Host-Only) 网络”</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240411153802.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>再次启动虚拟机后，进入到 终端，输入 <code>ip addr</code></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240411155412.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>然后就可以使用 shell 工具进行连接操作。</p>
+<p>按照同样的方式创建两个从节点👇</p>
+<p>复制操作（选择复制一下主节点），复制主节点虚拟机到两个子节点。</p>
+<h4 id="部署操作"><a href="#部署操作" class="headerlink" title="部署操作"></a>部署操作</h4><p>参考这套： <a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1674040">https://cloud.tencent.com/developer/article/1674040</a></p>
+<p>视频参考： <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1LC4y1g7wz">https://www.bilibili.com/video/BV1LC4y1g7wz</a></p>
+<p>后面实际完善和完成以下 to be contined……</p>
+<p>在开始之前，部署 Kubernetes 集群机器需要满足以下几个条件 ：</p>
+<ul>
+<li>集群中所有机器之间网络互通</li>
+<li>可以访问外网，需要拉取镜像</li>
+<li>禁止swap分区</li>
+</ul>
+<blockquote>
+<p>准备环境</p>
+</blockquote>
+<p>【环境角色】</p>
+<p>master：192.168.56.101</p>
+<p>node1：192.168.56.102</p>
+<p>node2：192.168.56.103</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs shell">关闭防火墙：<br><span class="hljs-meta prompt_">$ </span><span class="language-bash">systemctl stop firewalld</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">systemctl <span class="hljs-built_in">disable</span> firewalld</span><br><br>关闭selinux：<br><span class="hljs-meta prompt_">$ </span><span class="language-bash">sed -i <span class="hljs-string">&#x27;s/enforcing/disabled/&#x27;</span> /etc/selinux/config  <span class="hljs-comment"># 永久</span></span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">setenforce 0  <span class="hljs-comment"># 临时</span></span><br><br>关闭swap：<br><span class="hljs-meta prompt_">$ </span><span class="language-bash">swapoff -a  <span class="hljs-comment"># 临时</span></span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">vim /etc/fstab  <span class="hljs-comment"># 永久</span></span><br><br>设置主机名：<br><span class="hljs-meta prompt_">$ </span><span class="language-bash">hostnamectl set-hostname &lt;hostname&gt;</span><br><br>在master添加hosts：<br><span class="hljs-meta prompt_">$ </span><span class="language-bash"><span class="hljs-built_in">cat</span> &gt;&gt; /etc/hosts &lt;&lt; <span class="hljs-string">EOF</span></span><br>192.168.32.128 k8s-master<br>192.168.32.129 k8s-node1<br>192.168.32.130 k8s-node2<br>EOF<br><br>将桥接的IPv4流量传递到iptables的链：<br><span class="hljs-meta prompt_">$ </span><span class="language-bash"><span class="hljs-string">cat &gt; /etc/sysctl.d/k8s.conf &lt;&lt; EOF</span></span><br>net.bridge.bridge-nf-call-ip6tables = 1<br>net.bridge.bridge-nf-call-iptables = 1<br>EOF<br><span class="hljs-meta prompt_">$ </span><span class="language-bash">sysctl --system  <span class="hljs-comment"># 生效</span></span><br><br>时间同步：<br><span class="hljs-meta prompt_">$ </span><span class="language-bash">yum install ntpdate -y</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">ntpdate time.windows.com</span><br></code></pre></td></tr></table></figure>
                 
               </div>
             
