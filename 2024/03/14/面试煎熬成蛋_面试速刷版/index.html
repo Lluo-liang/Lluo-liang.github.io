@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          17k 字
+          18k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          146 分钟
+          148 分钟
         
       </span>
     
@@ -791,7 +791,17 @@
 
 
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240407094353.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="过期策略、数据结构"><a href="#过期策略、数据结构" class="headerlink" title="过期策略、数据结构"></a>过期策略、数据结构</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317154657.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="过期策略、数据结构-🚩"><a href="#过期策略、数据结构-🚩" class="headerlink" title="过期策略、数据结构  🚩"></a>过期策略、数据结构  🚩</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317154657.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>重复提交<ul>
+<li>setnx    IP+ 方法名 + 唯一码；SETNX 不做任何操作</li>
+</ul>
+</li>
+<li>限制访问次数<ul>
+<li><strong>INCR 和 EXPIRE 命令</strong>：INCR 用于原子性地递增键的整数值。结合 EXPIRE，可以在一定时间窗口内对操作次数进行计数和限制。</li>
+</ul>
+</li>
+</ul>
 <h4 id="数据一致性"><a href="#数据一致性" class="headerlink" title="数据一致性"></a>数据一致性</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240329000510.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <ul>
 <li>旁路缓存模式</li>
@@ -856,7 +866,10 @@
 <h4 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h4><h5 id="为什么选用-Kafka，和-RocketMQ-有什么区别"><a href="#为什么选用-Kafka，和-RocketMQ-有什么区别" class="headerlink" title="为什么选用 Kafka，和 RocketMQ 有什么区别"></a>为什么选用 Kafka，和 RocketMQ 有什么区别</h5><p>选择Kafka还是RocketMQ，取决于具体的业务需求。</p>
 <p>Kafka非常适合需要高吞吐量、大规模消息处理、日志收集和流数据处理的场景。RocketMQ在需要事务消息、定时&#x2F;延时消息或更细致的消息服务质量控制的场景下更有优势。</p>
 <h3 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h3><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317102553.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="观察者"><a href="#观察者" class="headerlink" title="观察者"></a>观察者</h4><h4 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h4><h3 id="SpringCloud-🚩"><a href="#SpringCloud-🚩" class="headerlink" title="SpringCloud   🚩"></a>SpringCloud   🚩</h3><h4 id="Nacos-工作流程"><a href="#Nacos-工作流程" class="headerlink" title="Nacos 工作流程"></a>Nacos 工作流程</h4><ul>
+<h4 id="观察者"><a href="#观察者" class="headerlink" title="观察者"></a>观察者</h4><p>观察者模式允许对象在状态发生变化时通知其他依赖对象</p>
+<h4 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h4><p>装饰器模式是指动态地给一个对象增加一些额外的功能，同时又不改变其结构。</p>
+<p>重在功能的加强</p>
+<h3 id="SpringCloud-🚩"><a href="#SpringCloud-🚩" class="headerlink" title="SpringCloud   🚩"></a>SpringCloud   🚩</h3><h4 id="Nacos-工作流程"><a href="#Nacos-工作流程" class="headerlink" title="Nacos 工作流程"></a>Nacos 工作流程</h4><ul>
 <li>服务发现<ul>
 <li>服务注册，服务发现，健康检查，服务注销</li>
 </ul>
@@ -1010,6 +1023,9 @@
 <figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><code class="hljs 1c">servicex                 <span class="hljs-comment">// 项目名</span><br>    <span class="hljs-string">|- admin-ui          // 管理服务前端代码(一般将UI和SERVICE放到一个工程中，便于管理)</span><br>    <span class="hljs-string">|- servicex-auth     // 模块1</span><br>    <span class="hljs-string">|- servicex-common   // 模块2</span><br>    <span class="hljs-string">|- servicex-gateway  // 模块3</span><br>    <span class="hljs-string">|- servicex-system   // 模块4</span><br>        <span class="hljs-string">|- src</span><br>            <span class="hljs-string">|- main                  // 业务逻辑</span><br>                <span class="hljs-string">|- assembly          // 基于maven assembly插件的服务化打包方案</span><br>                    <span class="hljs-string">|- bin           // 模块脚本(启动、停止、重启)</span><br>                    <span class="hljs-string">|- sbin          // 管理员角色使用的脚本(环境检查、系统检测等等)</span><br>                    <span class="hljs-string">|- assembly.xml  // 配置文件</span><br>                <span class="hljs-string">|- java              // 源码</span><br>                    <span class="hljs-string">|- com</span><br>                        <span class="hljs-string">|- hadoopx</span><br>                            <span class="hljs-string">|- servicex</span><br>                                <span class="hljs-string">|- system</span><br>                                    <span class="hljs-string">|- annotation     // 注解</span><br>                                    <span class="hljs-string">|- aspect         // 面向切面编程</span><br>                                    <span class="hljs-string">|- config         // 配置文件POJO</span><br>                                    <span class="hljs-string">|- filter         // 过滤器</span><br>                                    <span class="hljs-string">|- constant       // 存放常量</span><br>                                    <span class="hljs-string">|- utils          // 工具</span><br>                                    <span class="hljs-string">|- exception      // 异常</span><br>                                    <span class="hljs-string">|- controller     // 控制层(将请求通过URL匹配，分配到不同的接收器/方法进行处理，然后返回结果)</span><br>                                    <span class="hljs-string">|- service        // 服务层接口</span><br>                                        <span class="hljs-string">|- impl       // 服务层实现</span><br>                                    <span class="hljs-string">|- mapper/repository // 数据访问层，与数据库交互为service提供接口</span><br>                                    <span class="hljs-string">|- entity/domain     // 实体对象</span><br>                                        <span class="hljs-string">|- dto // 持久层需要的实体对象(用于服务层与持久层之间的数据传输对象)</span><br>                                        <span class="hljs-string">|- vo // 视图层需要的实体对象(用于服务层与视图层之间的数据传输对象)</span><br>                                    <span class="hljs-string">|- *Application.java  // 入口启动类</span><br>                <span class="hljs-string">|- resources         // 资源</span><br>                    <span class="hljs-string">|- static        // 静态资源(html、css、js、图片等)</span><br>                    <span class="hljs-string">|- templates     // 视图模板(jsp、thymeleaf等)</span><br>                    <span class="hljs-string">|- mapper        // 存放数据访问层对应的XML配置</span><br>                        <span class="hljs-string">|- *Mapper.xml</span><br>                        <span class="hljs-string">|- ...</span><br>                    <span class="hljs-string">|- application.yml        // 公共配置</span><br>                    <span class="hljs-string">|- application-dev.yml    // 开发环境配置</span><br>                    <span class="hljs-string">|- application-prod.yml   // 生产环境配置</span><br>                    <span class="hljs-string">|- banner.txt    </span><br>                    <span class="hljs-string">|- logback.xml            // 日志配置</span><br>            <span class="hljs-string">|- test                  // 测试源码</span><br>               <span class="hljs-string">|- java               </span><br>                    <span class="hljs-string">|- com</span><br>                        <span class="hljs-string">|- hadoopx</span><br>                            <span class="hljs-string">|- servicex</span><br>                                <span class="hljs-string">|- system</span><br>                                    <span class="hljs-string">|- 根据具体情况按源码目录结构存放编写的测试用例</span><br>        <span class="hljs-string">|- target     // 编译打包输出目录(自动生成，不需要创建)</span><br>        <span class="hljs-string">|- pom.xml    // 该模块的POM文件</span><br>    <span class="hljs-string">|- sql            // 项目需要的SQL脚本</span><br>    <span class="hljs-string">|- doc            // 精简版的开发、运维手册</span><br>    <span class="hljs-string">|- .gitignore     // 哪些文件不用传到版本管控工具中</span><br>    <span class="hljs-string">|- pom.xml        // 工程总POM文件</span><br>    <span class="hljs-string">|- README.md      // 注意事项</span><br>External Libraries    <span class="hljs-comment">// 相关JAR包依赖</span><br></code></pre></td></tr></table></figure>
 
 <h2 id="简历项目内容"><a href="#简历项目内容" class="headerlink" title="简历项目内容"></a>简历项目内容</h2><h4 id="使用账号密码访问流程（JWT-方式）"><a href="#使用账号密码访问流程（JWT-方式）" class="headerlink" title="使用账号密码访问流程（JWT 方式）"></a>使用账号密码访问流程（JWT 方式）</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240330222111.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>SpringSecurity：matches 方法（提取盐操作，生成哈希值，比较哈希值）</li>
+</ul>
 <h4 id="使用-websocket-进行前后端-http-长连接操作"><a href="#使用-websocket-进行前后端-http-长连接操作" class="headerlink" title="使用 websocket 进行前后端 http 长连接操作"></a>使用 websocket 进行前后端 http 长连接操作</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240401220539.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="socket-监听，实时推送站点车辆信息到前端界面"><a href="#socket-监听，实时推送站点车辆信息到前端界面" class="headerlink" title="socket 监听，实时推送站点车辆信息到前端界面"></a>socket 监听，实时推送站点车辆信息到前端界面</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240330230550.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>这里可以延申说一下，就是还有解决方案，可以通过 nio 的多路复用的一种实现方式去解决。</p>
