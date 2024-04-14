@@ -226,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.5k 字
+          11k 字
         
       </span>
     
@@ -237,7 +237,7 @@
         
         
         
-          29 分钟
+          89 分钟
         
       </span>
     
@@ -361,8 +361,11 @@
 <p>灰度发布的关键目的是减少由于新版本引入的风险。通过先对一小部分用户进行发布，可以在不干扰所有用户的情况下测试新版本在生产环境中的表现。</p>
 <p>这个灰度发布可以通过 k8s 的部署策略去做到</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240322102017.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h3 id="实际使用"><a href="#实际使用" class="headerlink" title="实际使用"></a>实际使用</h3><p><a target="_blank" rel="noopener" href="https://www.kancloud.cn/zatko/kubernetes_k8s/2290695">https://www.kancloud.cn/zatko/kubernetes_k8s/2290695</a></p>
-<h3 id="部署使用"><a href="#部署使用" class="headerlink" title="部署使用"></a>部署使用</h3><h4 id="网络连通"><a href="#网络连通" class="headerlink" title="网络连通"></a>网络连通</h4><p>这里使用一下虚拟机完成以下相关功能</p>
+<blockquote>
+<p>推荐参考</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.kancloud.cn/zatko/kubernetes_k8s/2290695">https://www.kancloud.cn/zatko/kubernetes_k8s/2290695</a></p>
+<h3 id="部署使用-🚩"><a href="#部署使用-🚩" class="headerlink" title="部署使用  🚩"></a>部署使用  🚩</h3><h4 id="网络连通"><a href="#网络连通" class="headerlink" title="网络连通"></a>网络连通</h4><p>这里使用一下虚拟机完成以下相关功能</p>
 <p>虚拟机 开三个机器，master 双核4G,两个node双核8G</p>
 <p>这里使用的虚拟机是 Virtual Box</p>
 <p>建议设置以下   热键  →  虚拟电脑  →  主机组合键  → 设置为  Ctrl + Alt</p>
@@ -379,23 +382,188 @@
 <p>然后就可以使用 shell 工具进行连接操作。</p>
 <p>按照同样的方式创建两个从节点👇</p>
 <p>复制操作（选择复制一下主节点），复制主节点虚拟机到两个子节点。</p>
-<h4 id="部署操作"><a href="#部署操作" class="headerlink" title="部署操作"></a>部署操作</h4><p>参考这套： <a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1674040">https://cloud.tencent.com/developer/article/1674040</a></p>
-<p>视频参考： <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1LC4y1g7wz">https://www.bilibili.com/video/BV1LC4y1g7wz</a></p>
-<p>后面实际完善和完成以下 to be contined……</p>
-<p>在开始之前，部署 Kubernetes 集群机器需要满足以下几个条件 ：</p>
+<h4 id="部署操作"><a href="#部署操作" class="headerlink" title="部署操作"></a>部署操作</h4><p>这里选用了 kubeadm 工具去进行集群环境下的部署。</p>
+<p>部署 Kubernetes 集群通常包括设置一个或多个 master 节点和多个 worker 节点。</p>
+<blockquote>
+<p>系统要求</p>
+</blockquote>
 <ul>
+<li>一定数量的机器（物理机或虚拟机），至少 2GB RAM，2 CPUs。</li>
+<li>系统支持的操作系统（如 Ubuntu, CentOS）。</li>
+<li>禁用 Swap。</li>
 <li>集群中所有机器之间网络互通</li>
 <li>可以访问外网，需要拉取镜像</li>
-<li>禁止swap分区</li>
 </ul>
-<blockquote>
-<p>准备环境</p>
-</blockquote>
-<p>【环境角色】</p>
+<p>大概的一些步骤</p>
+<ul>
+<li>1、环境准备</li>
+<li>2、安装 kubeadm, kubelet 和 kubectl （工具安装）</li>
+<li>3、初始化集群</li>
+<li>4、设置 kubectl，配置当前用户使用 kubectl 连接到 Kubernetes 集群</li>
+<li>5、选择并部署一个 Pod 网络到集群中，加入工作节点，进行验证操作。</li>
+</ul>
+<hr>
+<p>参考这套： <a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1674040">https://cloud.tencent.com/developer/article/1674040</a></p>
+<p>视频参考： <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1LC4y1g7wz">https://www.bilibili.com/video/BV1LC4y1g7wz</a></p>
+<h5 id="准备环境"><a href="#准备环境" class="headerlink" title="准备环境"></a>准备环境</h5><p>【环境角色】</p>
 <p>master：192.168.56.101</p>
 <p>node1：192.168.56.102</p>
 <p>node2：192.168.56.103</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs shell">关闭防火墙：<br><span class="hljs-meta prompt_">$ </span><span class="language-bash">systemctl stop firewalld</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">systemctl <span class="hljs-built_in">disable</span> firewalld</span><br><br>关闭selinux：<br><span class="hljs-meta prompt_">$ </span><span class="language-bash">sed -i <span class="hljs-string">&#x27;s/enforcing/disabled/&#x27;</span> /etc/selinux/config  <span class="hljs-comment"># 永久</span></span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">setenforce 0  <span class="hljs-comment"># 临时</span></span><br><br>关闭swap：<br><span class="hljs-meta prompt_">$ </span><span class="language-bash">swapoff -a  <span class="hljs-comment"># 临时</span></span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">vim /etc/fstab  <span class="hljs-comment"># 永久</span></span><br><br>设置主机名：<br><span class="hljs-meta prompt_">$ </span><span class="language-bash">hostnamectl set-hostname &lt;hostname&gt;</span><br><br>在master添加hosts：<br><span class="hljs-meta prompt_">$ </span><span class="language-bash"><span class="hljs-built_in">cat</span> &gt;&gt; /etc/hosts &lt;&lt; <span class="hljs-string">EOF</span></span><br>192.168.32.128 k8s-master<br>192.168.32.129 k8s-node1<br>192.168.32.130 k8s-node2<br>EOF<br><br>将桥接的IPv4流量传递到iptables的链：<br><span class="hljs-meta prompt_">$ </span><span class="language-bash"><span class="hljs-string">cat &gt; /etc/sysctl.d/k8s.conf &lt;&lt; EOF</span></span><br>net.bridge.bridge-nf-call-ip6tables = 1<br>net.bridge.bridge-nf-call-iptables = 1<br>EOF<br><span class="hljs-meta prompt_">$ </span><span class="language-bash">sysctl --system  <span class="hljs-comment"># 生效</span></span><br><br>时间同步：<br><span class="hljs-meta prompt_">$ </span><span class="language-bash">yum install ntpdate -y</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">ntpdate time.windows.com</span><br></code></pre></td></tr></table></figure>
+<p>三个节点都选择无界面启动（虚拟机）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs shell">关闭防火墙：<br><span class="hljs-meta prompt_">$ </span><span class="language-bash">systemctl stop firewalld</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">systemctl <span class="hljs-built_in">disable</span> firewalld</span><br><br>关闭selinux：<br><span class="hljs-meta prompt_">$ </span><span class="language-bash">sed -i <span class="hljs-string">&#x27;s/enforcing/disabled/&#x27;</span> /etc/selinux/config  <span class="hljs-comment"># 永久</span></span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">这里设置永久的话，是需要重启后才能失效，设置临时是为了保证这一次不重启也先临时关闭下 selinux</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">setenforce 0  <span class="hljs-comment"># 临时</span></span><br><br>关闭swap：<br><span class="hljs-meta prompt_">$ </span><span class="language-bash">swapoff -a  <span class="hljs-comment"># 临时</span></span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">vim /etc/fstab  <span class="hljs-comment"># 永久</span></span><br><br>设置主机名：<br><span class="hljs-meta prompt_">$ </span><span class="language-bash">hostnamectl set-hostname &lt;hostname&gt;</span><br><br>在master添加hosts：<br><span class="hljs-meta prompt_">#</span><span class="language-bash">建议在所有节点上操作</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash"><span class="hljs-built_in">cat</span> &gt;&gt; /etc/hosts &lt;&lt; <span class="hljs-string">EOF</span></span><br>192.168.56.101 k8s-master<br>192.168.56.102 k8s-node1<br>192.168.56.103 k8s-node2<br>EOF<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">#</span><span class="language-bash"><span class="hljs-string">每个节点都进行操作，创建或覆盖一个名为 `k8s.conf` 的文件在 `/etc/sysctl.d/` 目录下</span></span><br><span class="hljs-meta prompt_">#</span><span class="language-bash"><span class="hljs-string">确保经过 Linux 网桥的 IPv4 和 IPv6 流量都被传递到 `iptables`（和 `ip6tables`）的链中进行处理</span></span><br><span class="hljs-meta prompt_">#</span><span class="language-bash"><span class="hljs-string">将桥接的IPv4流量传递到iptables的链：</span></span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash"><span class="hljs-string">cat &gt; /etc/sysctl.d/k8s.conf &lt;&lt; EOF</span></span><br>net.bridge.bridge-nf-call-ip6tables = 1<br>net.bridge.bridge-nf-call-iptables = 1<br>EOF<br><span class="hljs-meta prompt_">$ </span><span class="language-bash">sysctl --system  <span class="hljs-comment"># 生效</span></span><br><br>时间同步：<br><span class="hljs-meta prompt_">$ </span><span class="language-bash">yum install ntpdate -y</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">ntpdate time.windows.com</span><br></code></pre></td></tr></table></figure>
+
+<p>操作说明</p>
+<ul>
+<li>关闭防火墙：Kubernetes 需要在集群的各个节点之间进行网络通信，防火墙可能会阻止或限制这些通信。关闭防火墙可以简化网络配置和故障排除过程，避免通信被不必要地阻断。</li>
+<li>关闭 SELinux：SELinux（Security-Enhanced Linux）可以增强系统的安全性，但它也可能与 Kubernetes 的一些组件不兼容，特别是涉及到文件系统权限和网络访问。禁用 SELinux 可以减少权限问题，特别是在 Pod 之间共享数据时。</li>
+<li>关闭swap：Kubernetes 官方推荐在运行 kubelet 的机器上禁用 swap 空间。这是因为 Kubernetes 的调度器将考虑节点的内存使用情况来安排 Pod，启用 swap 空间会使内存管理变得复杂，可能会导致调度和资源限制的问题。</li>
+<li>设置主机名：为每个节点设置一个独一无二的主机名有助于节点间的识别和管理。在管理和维护集群时，能够通过主机名快速识别具体节点。</li>
+<li>在 master 添加 hosts：这个操作是为了简化节点间的网络通信，尤其是在 DNS 服务不稳定或不可用的情况下。通过在 <code>/etc/hosts</code> 文件中静态定义 IP 地址和主机名的映射，可以保证即使在 DNS 解析问题发生时，节点间的通信也不会受到影响。</li>
+<li>将桥接的 IPv4 流量传递到 iptables 的链：这些设置确保所有从 Linux bridges 传递的流量都会被 iptables 的规则所处理。这对于网络插件（如 Calico 或 Flannel）来确保 Pod 网络的正常工作至关重要。</li>
+<li>时间同步：所有节点的时间同步是非常重要的，特别是在分布式系统中，时间偏差可能导致日志、事件处理和其他时间敏感的操作出现问题。使用 <code>ntpdate</code> 确保节点时间的一致性，有助于维护集群的稳定性和可靠性。</li>
+</ul>
+<hr>
+<p>使用 <code>vim</code> 打开 <code>/etc/fstab</code> 文件后，你会看到类似下面的内容</p>
+<p>在对应的 含有 swap 的行，添加 # 进行注释，保存退出</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240414140244.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>设置主机名</p>
+<figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs dsconfig"><span class="hljs-string">hostnamectl</span> <span class="hljs-built_in">set-hostname</span> <span class="hljs-string">k8s-master</span><br><br><span class="hljs-string">hostnamectl</span> <span class="hljs-built_in">set-hostname</span> <span class="hljs-string">k8s-node1</span><br><br><span class="hljs-string">hostnamectl</span> <span class="hljs-built_in">set-hostname</span> <span class="hljs-string">k8s-node2</span><br></code></pre></td></tr></table></figure>
+
+
+<h5 id="工具安装"><a href="#工具安装" class="headerlink" title="工具安装"></a>工具安装</h5><p>安装 docker</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs vim">$ wget https://mirrors.aliyun.<span class="hljs-keyword">com</span>/docker-<span class="hljs-keyword">ce</span>/linux/centos/docker-<span class="hljs-keyword">ce</span>.repo -O /etc/yum.repos.d/docker-<span class="hljs-keyword">ce</span>.repo<br>$ yum -<span class="hljs-keyword">y</span> install docker-<span class="hljs-keyword">ce</span>-<span class="hljs-number">18.06</span>.<span class="hljs-number">1</span>.<span class="hljs-keyword">ce</span>-<span class="hljs-number">3</span>.el7<br>$ systemctl enable docker &amp;&amp; systemctl start docker<br>$ docker --<span class="hljs-keyword">version</span><br>Docker <span class="hljs-keyword">version</span> <span class="hljs-number">18.06</span>.<span class="hljs-number">1</span>-<span class="hljs-keyword">ce</span>, build e68fc7a<br></code></pre></td></tr></table></figure>
+
+<p>配置镜像仓库地址</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ <span class="hljs-built_in">cat</span> &gt; /etc/docker/daemon.json &lt;&lt; <span class="hljs-string">EOF</span><br><span class="hljs-string">&#123;</span><br><span class="hljs-string">  &quot;registry-mirrors&quot;: [&quot;https://7iwp6tq0.mirror.aliyuncs.com&quot;]</span><br><span class="hljs-string">&#125;</span><br><span class="hljs-string">EOF</span><br></code></pre></td></tr></table></figure>
+
+<p>添加 k8s YUM 源</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs awk">$ cat &gt; <span class="hljs-regexp">/etc/yum</span>.repos.d/kubernetes.repo &lt;&lt; EOF<br>[kubernetes]<br>name=Kubernetes<br>baseurl=https:<span class="hljs-regexp">//mi</span>rrors.aliyun.com<span class="hljs-regexp">/kubernetes/yum</span><span class="hljs-regexp">/repos/</span>kubernetes-el7-x86_64<br>enabled=<span class="hljs-number">1</span><br>gpgcheck=<span class="hljs-number">0</span><br>repo_gpgcheck=<span class="hljs-number">0</span><br>gpgkey=https:<span class="hljs-regexp">//mi</span>rrors.aliyun.com<span class="hljs-regexp">/kubernetes/yum</span><span class="hljs-regexp">/doc/yum</span>-key.gpg https:<span class="hljs-regexp">//mi</span>rrors.aliyun.com<span class="hljs-regexp">/kubernetes/yum</span><span class="hljs-regexp">/doc/</span>rpm-package-key.gpg<br>EOF<br></code></pre></td></tr></table></figure>
+
+<p>安装kubeadm，kubelet和kubectl</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">yum</span> install -y kubelet-<span class="hljs-number">1</span>.<span class="hljs-number">18</span>.<span class="hljs-number">0</span> kubeadm-<span class="hljs-number">1</span>.<span class="hljs-number">18</span>.<span class="hljs-number">0</span> kubectl-<span class="hljs-number">1</span>.<span class="hljs-number">18</span>.<span class="hljs-number">0</span><br><span class="hljs-attribute">systemctl</span> enable kubelet<br></code></pre></td></tr></table></figure>
+
+<p>TIPS：K8S集群还未拉起，故这里的kubelet是无法启动的，等master初始化时会自动拉起</p>
+<h5 id="部署-K8S-master"><a href="#部署-K8S-master" class="headerlink" title="部署 K8S master"></a>部署 K8S master</h5><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs routeros">kubeadm init \<br>  <span class="hljs-attribute">--apiserver-advertise-address</span>=192.168.56.101 \<br>  --image-repository registry.aliyuncs.com/google_containers \<br>  --kubernetes-version v1.18.0 \<br>  <span class="hljs-attribute">--service-cidr</span>=10.92.0.0/12 \<br>  <span class="hljs-attribute">--pod-network-cidr</span>=10.220.0.0/16 \<br>  <span class="hljs-attribute">--ignore-preflight-errors</span>=all<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>apiserver-advertise-address 是主节点 IP  地址</li>
+<li><code>service-cidr</code> ：用于 Kubernetes 服务的虚拟 IP 地址（ClusterIP）。当你创建一个服务时，Kubernetes 会自动从这个范围分配一个 IP 地址给服</li>
+<li><code>pod-network-cidr</code>：这个 CIDR 范围用于分配给集群中的 Pods 的 IP 地址。每个 Pod 都会从这个范围内获取一个 IP 地址。</li>
+</ul>
+<p>后面两个地址：这里目前使用的是文档给定的两个地址，具体如何配置的，后面有空再看一下</p>
+<hr>
+<p>部署完成后会获取到 node加入集群的命令以及token</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240414143912.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs llvm">kubeadm join <span class="hljs-number">192.168</span>.<span class="hljs-number">56.101</span>:<span class="hljs-number">6443</span> --token gdhwj<span class="hljs-number">6</span>.hmqvv<span class="hljs-number">0</span>wodnh<span class="hljs-number">6</span>suwd \<br>    --discovery-token-ca-cert-hash sha<span class="hljs-number">256</span>:<span class="hljs-number">3e37</span>e<span class="hljs-number">9</span><span class="hljs-keyword">c</span><span class="hljs-number">89</span>dbe<span class="hljs-number">37</span>bd<span class="hljs-number">0</span>d<span class="hljs-number">3</span>d<span class="hljs-number">639</span>f<span class="hljs-number">8002545</span>ebca<span class="hljs-number">2</span><span class="hljs-keyword">c</span><span class="hljs-number">083</span>a<span class="hljs-number">8</span>d<span class="hljs-number">9097</span><span class="hljs-keyword">c</span><span class="hljs-number">1725</span>f<span class="hljs-number">1</span>d<span class="hljs-number">7</span>af<span class="hljs-number">6</span>a<span class="hljs-number">1</span>ede<br></code></pre></td></tr></table></figure>
+
+<hr>
+<p>使用kubectl命令【如需node节点使用此命令，可使用scp命令分别拷贝config文件至对应目录】</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#创建一个名为 `.kube` 的目录。该目录用于存放 `kubectl` 的配置文件</span><br><span class="hljs-built_in">mkdir</span> -p <span class="hljs-variable">$HOME</span>/.kube<br><br><span class="hljs-comment">#将 Kubernetes 集群的管理员配置文件 `admin.conf` 复制到 `.kube` 目录，并重命名为 `config`。这个配置文件包含了集群的连接信息，包括 API 服务器的地址、认证信息等</span><br>sudo <span class="hljs-built_in">cp</span> -i /etc/kubernetes/admin.conf <span class="hljs-variable">$HOME</span>/.kube/config<br><br><span class="hljs-comment">#授权</span><br>sudo <span class="hljs-built_in">chown</span> $(<span class="hljs-built_in">id</span> -u):$(<span class="hljs-built_in">id</span> -g) <span class="hljs-variable">$HOME</span>/.kube/config<br><br><span class="hljs-comment">#列出 Kubernetes 集群中的所有节点</span><br>$ kubectl get nodes<br></code></pre></td></tr></table></figure>
+
+<h5 id="加入-K8S-node"><a href="#加入-K8S-node" class="headerlink" title="加入 K8S node"></a>加入 K8S node</h5><p>在node节点中分别执行，master init后产生的加入命令：</p>
+<p>TIPS：这里加入node后会看到node状态为NotReady，是因为没有安装CNI，kubelet无法通过网络给apiserver上报node状态，安装CNI后即可恢复</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240414144528.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h5 id="部署网络插件【CNI】"><a href="#部署网络插件【CNI】" class="headerlink" title="部署网络插件【CNI】"></a>部署网络插件【CNI】</h5><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">wget https:<span class="hljs-regexp">//</span>docs.projectcalico.org<span class="hljs-regexp">/manifests/</span>calico.yaml<br></code></pre></td></tr></table></figure>
+
+<p>下载完成后，修改calico.yaml【定义Pod网络（CALICO_IPV4POOL_CIDR），与前面pod CIDR配置一样即可】</p>
+<p><strong>这里的操作是在主节点下操作</strong>，下载完后，直接在当前目录进行编辑即可，</p>
+<p>需要进行放开注释，并编辑值</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240414145415.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>应用该配置</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-comment"># kubectl apply -f calico.yaml</span><br><span class="hljs-comment"># kubectl get pods -n kube-system</span><br></code></pre></td></tr></table></figure>
+
+<p>这里 <code>kubectl apply -f calico.yaml</code>  会报错：</p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs subunit"><span class="hljs-keyword">error: </span>unable to recognize &quot;calico.yaml&quot;: no matches for kind &quot;PodDisruptionBudget&quot; in version &quot;policy/v1&quot;<br></code></pre></td></tr></table></figure>
+
+<p>看了一下大家的问题，是因为版本问题导致（这篇文章的时间是 2020 年）</p>
+<p>看一下这个版本对应： <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32596527/article/details/127692734">https://blog.csdn.net/qq_32596527/article/details/127692734</a></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240414150322.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>这里的 k8s 版本是 1.18，对应的 calico 版本为  3.18</p>
+<p>解决方案： <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_46237746/article/details/125453966">https://blog.csdn.net/qq_46237746/article/details/125453966</a></p>
+<p>重新下载文件</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">wget https:<span class="hljs-regexp">//</span>docs.projectcalico.org<span class="hljs-regexp">/v3.18/m</span>anifests/calico.yaml<br></code></pre></td></tr></table></figure>
+
+<p>重新执行</p>
+<p>应用该配置</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-comment"># kubectl apply -f calico.yaml</span><br><span class="hljs-comment"># kubectl get pods -n kube-system</span><br></code></pre></td></tr></table></figure>
+
+<p>应用后可以看到CNI POD正在初始化中，静待拉起~</p>
+<p>calico running 状态后，查看节点已全部 Ready【需要点时间】</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240414152107.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>到此部署成功。</p>
+<h3 id="使用-Kubernetes-部署-MySQL-服务"><a href="#使用-Kubernetes-部署-MySQL-服务" class="headerlink" title="使用 Kubernetes 部署 MySQL 服务"></a>使用 Kubernetes 部署 MySQL 服务</h3><p>通过第二节的内容，其实我们也可以看到，k8s 主要还是通过 yaml 文件，通过工具去进行执行相关指令，并进行运行部署容器；</p>
+<p>其中 k8s 主要可以做一些比较高级的工作，但总体来说，对于使用者来说，我们做的工作就是：1、部署 k8s ；2、编写 yaml 文件，将服务放到 k8s 中进行容器编排服务管理</p>
+<p>我们所要关心的，第一点不是负责管理和如何高效处理这个系统的工具或者接口，而是从 POD 开始。</p>
+<p><strong>Pod</strong>：Pod是Kubernetes中的基本部署单元，它是一个或一组容器的集合，共享存储和网络，运行在同一节点上。</p>
+<blockquote>
+<p>Docker Compose 和 Kubernates 的简易区别：</p>
+</blockquote>
+<ul>
+<li>Docker Compose 主要用于开发和测试，或者小型生产环境。</li>
+<li>Kubernetes 用于大规模的生产环境。</li>
+</ul>
+<p>服务搭建</p>
+<p>参考： <a target="_blank" rel="noopener" href="https://www.kancloud.cn/zatko/kubernetes_k8s/2290695">https://www.kancloud.cn/zatko/kubernetes_k8s/2290695</a></p>
+<p>master 节点上操作</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-comment">#拉取镜像</span><br><span class="hljs-attribute">docker</span> pull mysql:<span class="hljs-number">5</span>.<span class="hljs-number">7</span><br></code></pre></td></tr></table></figure>
+
+
+<p>创建文件</p>
+<p>在<code>/root/docker/mysql</code>目录下创建 mysql-rc.yaml 文件</p>
+<p>mysql-rc.yaml</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">apiVersion:</span> <span class="hljs-string">v1</span> <span class="hljs-comment"># 这是稳定长期使用的 API 版本，具体资源对象的版本可以参考“推荐阅读”</span><br><span class="hljs-attr">kind:</span> <span class="hljs-string">ReplicationController</span> <span class="hljs-comment"># 副本控制器 RC</span><br><span class="hljs-attr">metadata:</span> <span class="hljs-comment"># 元数据</span><br>  <span class="hljs-attr">name:</span> <span class="hljs-string">mysql-dev-57</span> <span class="hljs-comment"># 定义这个 rc 的名称为 mysql，它具有全局唯一性,5.7 版本，开发环境</span><br><span class="hljs-attr">spec:</span> <span class="hljs-comment"># 规范</span><br>  <span class="hljs-attr">replicas:</span> <span class="hljs-number">1</span> <span class="hljs-comment"># pod 副本的期待数量，这里为 1，表示当环境中没有符合条件要求的 pod 数量时需要创建一个，如果符合要求的 pod 数量大于一个就要删除多余的 pod，始终要保持环境中只有一个 pod 符合要求。</span><br>  <span class="hljs-attr">selector:</span> <span class="hljs-comment"># 标签选择器</span><br>    <span class="hljs-attr">app:</span> <span class="hljs-string">mysql</span> <span class="hljs-comment"># 符合要求的 pod 都必须要有这个标签 app:mysql</span><br>  <span class="hljs-attr">template:</span> <span class="hljs-comment"># 创建 pod 副本的模板</span><br>    <span class="hljs-attr">metadata:</span> <span class="hljs-comment"># 创建的 pod 副本拥有的元数据</span><br>      <span class="hljs-attr">labels:</span> <span class="hljs-comment"># 创建的 pod 副本的标签</span><br>        <span class="hljs-attr">app:</span> <span class="hljs-string">mysql</span> <span class="hljs-comment"># 对应 RC 的标签选择器，保证创建的 pod 副本符合 RC 的选择器范围</span><br>    <span class="hljs-attr">spec:</span> <span class="hljs-comment"># 定义 pod 副本中运行的容器的详细信息</span><br>      <span class="hljs-attr">containers:</span> <span class="hljs-comment"># 容器信息</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">mysql</span> <span class="hljs-comment"># 容器的名字</span><br>          <span class="hljs-attr">image:</span> <span class="hljs-string">mysql:5.7</span> <span class="hljs-comment"># 容器中运行的镜像</span><br>          <span class="hljs-attr">ports:</span> <span class="hljs-comment"># 容器对外暴露的端口</span><br>            <span class="hljs-bullet">-</span> <span class="hljs-attr">containerPort:</span> <span class="hljs-number">3306</span> <span class="hljs-comment"># 容器的端口 3306</span><br>          <span class="hljs-attr">env:</span> <span class="hljs-comment"># 容器中的环境变量</span><br>            <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">MYSQL_ROOT_PASSWORD</span> <span class="hljs-comment"># 设置环境变量 MYSQL_ROOT_PASSWORD=&quot;123456&quot;</span><br>              <span class="hljs-attr">value:</span> <span class="hljs-string">&#x27;123456&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p>创建服务</p>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gauss">kubectl <span class="hljs-keyword">create</span> -f mysql-rc.yaml<br></code></pre></td></tr></table></figure>
+
+<p>创建好资源后，查看已经创建的 ReplicationController 资源对象，在命令中可以将其简写为 rc：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">kubectl <span class="hljs-built_in">get</span> rc<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240414155512.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>在输出中，<code>DESIRED</code>表示这个名为 mysql-dev-57  的 rc 需要创建一个 pod 副本，<code>CURRENT</code>表示当前已经创建好的 pod 副本数量，<code>READY</code>表示 pod 副本已经成功运行，<code>AGE</code>表示存活时间（生命周期）。</p>
+<p>然后查看环境中的 pod，在终端执行如下命令：（等待一段时间后再看，创建需要点时间）</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">kubectl <span class="hljs-built_in">get</span> pods<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240414155752.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>可以看到使用 rc 创建的 pod 副本的名字为：mysql-dev-57-pqjgm，这个名字是由两部分组成的，前面部分的 mysql-dev-57 和创建它的 rc 名字相同，后面的 pqjgm 是随机生成的字符串可以用来区分由同一个 rc 创建的不同的 pod，READY 为 1&#x2F;1 表示已经创建好，STATUS 为 Running 表示这个 pod 正处于运行状态。</p>
+<p>当然，我们还可以查看 mysql-dev-57-pqjgm  pod 的具体构建过程，如果以后运行不成功，也可以通过 Events 来查看具体是哪里出了问题：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">kubectl</span> describe pod mysql-dev-<span class="hljs-number">57</span>-pqjgm<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240414160049.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>在创建成功运行着 MySQL 的 pod 之后，还需要创建一个与之外应的 Service，这样才能让其它的 pod 可以访问 MySQL 应用提供的服务。</p>
+<p>Service 被创建之后，Kubernetes 会给它分配一个虚拟的 Cluster IP，并且在 Service 的整个生命周期中，这个 Cluster IP 都不会改变，这样的好处就是，pod 可能会随时发生变化（由于某些意外情况被销毁然后重建），但是我们的 Service 始终是确定不变的，</p>
+<p>在 Kubernetes 集群内部通过服务名和暴露出来的端口就可以稳定的访问某一个服务而不需要管隐藏在服务背后的 pod 的变化。</p>
+<p>在<code>/root/docker/mysql</code>目录下新建 <code>mysql-svc.yaml</code> 文件，并向其中写入如下内容：</p>
+<p>mysql-svc.yaml</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">apiVersion:</span> <span class="hljs-string">v1</span> <span class="hljs-comment"># API 版本号，使用稳定版：v1</span><br><span class="hljs-attr">kind:</span> <span class="hljs-string">Service</span> <span class="hljs-comment"># 资源对象类型</span><br><span class="hljs-attr">metadata:</span> <span class="hljs-comment"># 元数据</span><br>  <span class="hljs-attr">name:</span> <span class="hljs-string">mysql-dev-57</span> <span class="hljs-comment"># Service 的名称为：mysql，这个名称具有全局唯一性</span><br><span class="hljs-attr">spec:</span> <span class="hljs-comment"># 规范</span><br>  <span class="hljs-attr">ports:</span> <span class="hljs-comment"># 对外暴露出的端口</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-attr">port:</span> <span class="hljs-number">3306</span> <span class="hljs-comment"># 这里指定为 3306 端口</span><br>  <span class="hljs-attr">selector:</span> <span class="hljs-comment"># 标签选择器</span><br>    <span class="hljs-attr">app:</span> <span class="hljs-string">mysql</span> <span class="hljs-comment"># 服务对应的 pod 是具有 app=mysql 标签的这些</span><br></code></pre></td></tr></table></figure>
+
+<p>新建服务的 yaml 文件之后执行创建</p>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gauss">kubectl <span class="hljs-keyword">create</span> -f mysql-svc.yaml<br></code></pre></td></tr></table></figure>
+
+<p>来查看一下创建好的服务，在终端执行如下命令，其中 svc 是 services 的简写</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">kubectl <span class="hljs-built_in">get</span> svc<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240414160817.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>这里列出了 kubernetes 集群目前全部的服务，第一个名为 kubernetes 的服务是集群启动以后默认创建的服务，</p>
+<p>第二个名为 mysql-dev-57 的服务是我们刚刚创建的，集群自动为它分配了一个 ClusterIP 为 10.90.169.4，它的 3306 端口也是前面在 yaml 文件中已经定义好了的。</p>
+<p>还可以执行如下命令查看 mysql 服务更加详细的信息：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">kubectl</span> describe svc mysql-dev-<span class="hljs-number">57</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240414161113.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>这里有点小坑（应该也不算，实际生产中，的确外部有时候会不允许直接访问）</p>
+<p>这里是 svc 需要设置一下 EXTERNAL-IP</p>
+<p>改一下  mysql-svc.yaml</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">apiVersion:</span> <span class="hljs-string">v1</span> <span class="hljs-comment"># API 版本号，使用稳定版：v1</span><br><span class="hljs-attr">kind:</span> <span class="hljs-string">Service</span> <span class="hljs-comment"># 资源对象类型</span><br><span class="hljs-attr">metadata:</span> <span class="hljs-comment"># 元数据</span><br>  <span class="hljs-attr">name:</span> <span class="hljs-string">mysql-dev-57</span> <span class="hljs-comment"># Service 的名称为：mysql，这个名称具有全局唯一性</span><br><span class="hljs-attr">spec:</span> <span class="hljs-comment"># 规范</span><br>  <span class="hljs-attr">ports:</span> <span class="hljs-comment"># 对外暴露出的端口</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-attr">port:</span> <span class="hljs-number">3306</span> <span class="hljs-comment"># 这里指定为 3306 端口</span><br>      <span class="hljs-attr">targetPort:</span> <span class="hljs-number">3306</span><br>  <span class="hljs-attr">selector:</span> <span class="hljs-comment"># 标签选择器</span><br>    <span class="hljs-attr">app:</span> <span class="hljs-string">mysql</span> <span class="hljs-comment"># 服务对应的 pod 是具有 app=mysql 标签的这些</span><br>  <span class="hljs-attr">externalIPs:</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-number">192.168</span><span class="hljs-number">.56</span><span class="hljs-number">.101</span><br></code></pre></td></tr></table></figure>
+
+<p>执行命令</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs coq">kubectl <span class="hljs-built_in">apply</span> -f mysql-svc.yaml<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><code>kubectl apply</code> 命令会比较已经存在的资源配置和新的配置文件，然后计算出需要更新的差异，并应用这些差异来更新资源。这种方式非常适合持续集成和持续部署（CI&#x2F;CD）流程。</li>
+</ul>
+<p>至此，这里的外部服务连接也是 OK的。</p>
+<hr>
+
                 
               </div>
             
