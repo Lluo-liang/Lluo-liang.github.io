@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          149 字
+          470 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          2 分钟
+          4 分钟
         
       </span>
     
@@ -276,7 +276,7 @@
             
               <div class="markdown-body">
                 
-                <blockquote>
+                <h4 id="查看线程"><a href="#查看线程" class="headerlink" title="查看线程"></a>查看线程</h4><blockquote>
 <p>windows_查看端口被占用情况、结束进程</p>
 </blockquote>
 <p>查看指定端口占用情况（端口引号有没有都可以，此处以5040为例）</p>
@@ -287,6 +287,20 @@
 
 <p>结束进程</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">taskkill /f /t /im 进程名<br></code></pre></td></tr></table></figure>
+
+
+<h4 id="telnet"><a href="#telnet" class="headerlink" title="telnet"></a>telnet</h4><p>首先，确保您的 Windows 机器上安装了 Telnet 客户端。如果未安装，可以通过以下步骤来安装：</p>
+<ol>
+<li>打开“控制面板”。</li>
+<li>选择“程序”或“程序和功能”。</li>
+<li>点击“启用或关闭Windows功能”。</li>
+<li>在弹出的窗口中，找到“Telnet 客户端”，勾选它，然后点击“确定”完成安装。</li>
+</ol>
+<p>安装后，您可以使用以下命令来检查某个端口（例如 TCP 端口 9876）是否可以从您的计算机访问特定的 IP 地址（例如 192.168.56.105）：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">telnet</span> <span class="hljs-number">192.168.56.105</span> <span class="hljs-number">9876</span><br></code></pre></td></tr></table></figure>
+
+<p>如果连接成功，Telnet 通常会显示一个空白屏幕或相应的欢迎消息。如果连接失败，Telnet 会返回一个错误消息，比如说“无法打开到主机的连接。 在端口 9876: 连接失败。”</p>
+
                 
               </div>
             

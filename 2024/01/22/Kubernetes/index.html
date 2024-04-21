@@ -237,7 +237,7 @@
         
         
         
-          89 分钟
+          94 分钟
         
       </span>
     
@@ -370,7 +370,7 @@
 <p>这里使用的虚拟机是 Virtual Box</p>
 <p>建议设置以下   热键  →  虚拟电脑  →  主机组合键  → 设置为  Ctrl + Alt</p>
 <p>密码设置 root&#x2F;root</p>
-<p>创建用户 luoqi&#x2F;123456</p>
+<p>创建用户 luoqi&#x2F;123456 🕷</p>
 <p>需要后面看一下，目前是虚拟机不能获取到 ip 地址，且执行 sudo 命令不起效果</p>
 <p>不用管之前的操作方式，选择新增虚拟机的操作，然后在网络与主机名初始配置这里选择打开</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240411153119.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
@@ -563,7 +563,58 @@
 </ul>
 <p>至此，这里的外部服务连接也是 OK的。</p>
 <hr>
+<h3 id="关停-k8s-操作"><a href="#关停-k8s-操作" class="headerlink" title="关停 k8s 操作"></a>关停 k8s 操作</h3><p>参考： <a target="_blank" rel="noopener" href="https://blog.51cto.com/u_14568336/9719914">https://blog.51cto.com/u_14568336/9719914</a></p>
+<p>未实际操作，这里记录一下</p>
+<p>停止K8S集群流程</p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>清空Kubernetes资源</td>
+</tr>
+<tr>
+<td>2</td>
+<td>删除Pod</td>
+</tr>
+<tr>
+<td>3</td>
+<td>删除Service</td>
+</tr>
+<tr>
+<td>4</td>
+<td>关闭Kubelet服务</td>
+</tr>
+<tr>
+<td>5</td>
+<td>删除Master节点</td>
+</tr>
+<tr>
+<td>6</td>
+<td>停止K8S集群</td>
+</tr>
+</tbody></table>
+<p>首先，我们需要清空Kubernetes中的所有资源，包括Deployment、StatefulSet、Service等等。这可以通过kubectl命令来实现。</p>
+<figure class="highlight gml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs gml">kubectl <span class="hljs-keyword">delete</span> deployment --<span class="hljs-literal">all</span><br>kubectl <span class="hljs-keyword">delete</span> statefulset --<span class="hljs-literal">all</span><br>kubectl <span class="hljs-keyword">delete</span> service --<span class="hljs-literal">all</span><br></code></pre></td></tr></table></figure>
 
+<p>接着，我们需要删除当前所有的Pod。同样可以使用kubectl命令来删除。</p>
+<figure class="highlight gml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gml">kubectl <span class="hljs-keyword">delete</span> pods --<span class="hljs-literal">all</span><br></code></pre></td></tr></table></figure>
+
+<p>删除Service资源，同样使用kubectl命令。</p>
+<figure class="highlight gml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gml">kubectl <span class="hljs-keyword">delete</span> service --<span class="hljs-literal">all</span><br></code></pre></td></tr></table></figure>
+
+<p>关闭Kubelet服务，可以通过systemctl命令来停止。</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">sudo systemctl stop kubelet<br></code></pre></td></tr></table></figure>
+
+<p>将Master节点从集群中移出，执行命令前请确保备份数据。</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">kubeadm reset</span><br></code></pre></td></tr></table></figure>
+
+<p>最后，停止整个Kubernetes集群。</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">sudo kubeadm reset</span><br></code></pre></td></tr></table></figure>
                 
               </div>
             

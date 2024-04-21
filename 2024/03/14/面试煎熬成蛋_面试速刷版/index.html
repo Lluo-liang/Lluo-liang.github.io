@@ -235,7 +235,7 @@
         
         
         
-          149 分钟
+          150 分钟
         
       </span>
     
@@ -736,6 +736,7 @@
 <li>在同一个类内部调用事务方法</li>
 <li>错误的事务传播行为配置</li>
 </ul>
+<h5 id="关于-Spring-中-事务注解中抛出异常"><a href="#关于-Spring-中-事务注解中抛出异常" class="headerlink" title="关于 Spring 中 事务注解中抛出异常"></a>关于 Spring 中 事务注解中抛出异常</h5><p>@Transactional 注解中，抛出的异常需要是 RuntimeException 及其子类；一般情况下，我们会进行抛出自定义异常（该异常继承 RuntimeException）</p>
 <h4 id="SpringBoot"><a href="#SpringBoot" class="headerlink" title="SpringBoot"></a>SpringBoot</h4><ul>
 <li>SpringBootApplication<ul>
 <li>SpringBootConfiguration</li>
@@ -796,6 +797,10 @@
 
 
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240407094353.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h5 id="线程结构"><a href="#线程结构" class="headerlink" title="线程结构"></a>线程结构</h5><ul>
+<li>1、Redis 是 Hash</li>
+<li>分布式锁：lua 脚本</li>
+</ul>
 <h4 id="过期策略、数据结构-🚩"><a href="#过期策略、数据结构-🚩" class="headerlink" title="过期策略、数据结构  🚩"></a>过期策略、数据结构  🚩</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317154657.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <ul>
 <li>重复提交<ul>
@@ -859,7 +864,7 @@
 </li>
 </ol>
 <p>不建议使用，建议使用 Lua 命令。</p>
-<h4 id="线程模型"><a href="#线程模型" class="headerlink" title="线程模型"></a>线程模型</h4><h3 id="MQ-🚩"><a href="#MQ-🚩" class="headerlink" title="MQ  🚩"></a>MQ  🚩</h3><p>见：[[面试煎熬成蛋_MQ]]</p>
+<h4 id="线程模型"><a href="#线程模型" class="headerlink" title="线程模型"></a>线程模型</h4><h4 id="配置项"><a href="#配置项" class="headerlink" title="配置项"></a>配置项</h4><h4 id="大-key"><a href="#大-key" class="headerlink" title="大 key"></a>大 key</h4><h3 id="MQ-🚩"><a href="#MQ-🚩" class="headerlink" title="MQ  🚩"></a>MQ  🚩</h3><p>见：[[面试煎熬成蛋_MQ]]</p>
 <a href="/2024/03/10/%E9%9D%A2%E8%AF%95%E7%85%8E%E7%86%AC%E6%88%90%E8%9B%8B_MQ/" title="面试煎熬成蛋_MQ">面试煎熬成蛋_MQ</a>
 
 
@@ -903,7 +908,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a>分布式事务</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240325172412.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="分布式事务-🚩"><a href="#分布式事务-🚩" class="headerlink" title="分布式事务   🚩"></a>分布式事务   🚩</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240325172412.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <ul>
 <li>2PC（两阶段提交）</li>
 <li>三阶段提交（3PC）</li>
@@ -912,7 +917,7 @@
 <li>TCC（Try-Confirm-Cancel）</li>
 </ul>
 </li>
-<li>本地消息表（操作记录，消息处理）</li>
+<li>本地消息表（操作记录，消息处理）🚩 （这个建议记一下）</li>
 <li>消息队列【 事务消息（half 半消息机制）】</li>
 </ul>
 <p>Seata事务管理中有三个重要的角色：</p>
@@ -921,6 +926,8 @@
 <li>TM(Transaction Manager)-事务管理器：定义全局事务的范围、开始全局事务、提交或回滚全局事务。</li>
 <li>RM(Resource Manager)-资源管理器：管理分支事务处理的资源，与TC交谈以注册分支事务和报告分支事务的状态，并驱动分支事务提交或回滚。</li>
 </ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240420212620.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<hr>
 <p>RocketMQ</p>
 <p>依赖半消息，实现的分布式消息事务，通过 二次确认以及消息回查机制实现。</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240308102444.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
