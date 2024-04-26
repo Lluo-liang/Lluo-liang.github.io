@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          7.5k 字
+          7.8k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          63 分钟
+          66 分钟
         
       </span>
     
@@ -276,7 +276,22 @@
             
               <div class="markdown-body">
                 
-                <p>问题：</p>
+                <p>复习版本</p>
+<ul>
+<li>分布式事务：两个微服务以上的接口调用</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/af6127b9bebe7a65a3c0e4ce90a0877.png" srcset="/img/loading.gif" lazyload alt="af6127b9bebe7a65a3c0e4ce90a0877.png"></p>
+<p>问题</p>
+<ul>
+<li>1、ES 常见的问题会问哪些，需要准备哪些东西</li>
+<li>2、记录表和日志表有什么区别，记录表的划分有什么细节吗</li>
+<li>3、客诉是24小时都有值班吗，定时任务一直在跑进行分配，还是有工作日历</li>
+<li>4、团队人员配置，服务器内存配置等</li>
+<li>5、项目介绍和印象深刻难点这里有套路或者提前准备内容文稿吗</li>
+<li>6、ES 相关问题需要准备哪些内容</li>
+<li>7、Full GC 的优化场景，怎么处理的</li>
+</ul>
+<p>问题：</p>
 <ul>
 <li>1、记录表和日志表有什么区别，记录表的划分有什么细节吗</li>
 <li>2、这个记录表是只是客诉服务在用吗</li>
@@ -286,6 +301,12 @@
 <li>6、团队人员配置，服务器内存配置等</li>
 <li>7、项目介绍和印象深刻难点这里有套路或者提前准备内容文稿吗</li>
 <li>8、为什么要重开</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240423093149.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>自我介绍</p>
+<ul>
+<li>面试官你好，我叫xxx，学历专业介绍</li>
+<li><h2 id="工作经历介绍"><a href="#工作经历介绍" class="headerlink" title="工作经历介绍"></a>工作经历介绍</h2></li>
 </ul>
 <h4 id="简历内容"><a href="#简历内容" class="headerlink" title="简历内容"></a>简历内容</h4><p>工作内容</p>
 <ul>
@@ -398,8 +419,14 @@
 </li>
 <li><p>CountDownLatch +  </p>
 </li>
-<li><h2 id="数据表设计-id-parents"><a href="#数据表设计-id-parents" class="headerlink" title="数据表设计  - id parents "></a>数据表设计<br>  - id parents </h2></li>
+<li><p>数据表设计</p>
+<ul>
+<li>id parents</li>
 </ul>
+</li>
+</ul>
+<p>CountDownLatch  </p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/%E6%89%93%E5%BC%80%E5%AE%A2%E8%AF%89%E5%8D%95%E8%AF%A6%E6%83%85%E6%8E%A5%E5%8F%A3.jpg" srcset="/img/loading.gif" lazyload alt="打开客诉单详情接口.jpg"></p>
 <h5 id="03-Redis-使用"><a href="#03-Redis-使用" class="headerlink" title="03 Redis 使用"></a>03 Redis 使用</h5><p>编写 redis 分布式锁，解决页面重复提交、分单定时任务重复执行以及并发修改申请单状态问题</p>
 <ul>
 <li><p>Redis 分布式锁的底层方式可以讲一下</p>
@@ -503,11 +530,24 @@
 </ul>
 <p>记录表没有拆分，远程调用，记录日志</p>
 <p>其他拆分，进行了分库操作</p>
+<ul>
+<li>上线问题<ul>
+<li>梳理逻辑（代码逻辑），本地调用改为远程调用</li>
+<li>新老业务逻辑</li>
+<li>设计模式（职责划分）</li>
+</ul>
+</li>
+<li>记录表<ul>
+<li>大表数据量大：多个线程：死锁</li>
+<li>索引层数搞</li>
+</ul>
+</li>
+</ul>
 <h5 id="07-线上问题"><a href="#07-线上问题" class="headerlink" title="07 线上问题"></a>07 线上问题</h5><ul>
 <li>场景问题：广告问题，没有显示，排查到是Redis 的问题，然后发现是内存爆了、</li>
 <li>创单接口高峰期频繁出现full gc问题（涉及八股）</li>
 </ul>
-<p>独立定位线上redis内存溢出问题以及创单接口高峰期频繁出现full gc问题和VM内存oom问题并解决。</p>
+<p>独立定位线上redis内存溢出问题 以及创单接口高峰期频繁出现full gc问题和VM内存oom问题并解决。</p>
 <ul>
 <li>JVM 内存 OOM 问题定位</li>
 </ul>
@@ -842,6 +882,7 @@
 <li>解决方案：通过业务唯一性 ID 保证操作幂等性。</li>
 </ul>
 <h4 id="分布式ID"><a href="#分布式ID" class="headerlink" title="分布式ID"></a>分布式ID</h4><ul>
+<li>业务场景：拆分 ID </li>
 <li>美图 leaf<ul>
 <li>前缀 + 数字13 位数字代号</li>
 <li>客诉单<ul>

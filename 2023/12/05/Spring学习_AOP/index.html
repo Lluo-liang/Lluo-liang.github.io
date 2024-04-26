@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          967 字
+          2.1k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          9 分钟
+          18 分钟
         
       </span>
     
@@ -328,7 +328,40 @@
 <li><strong>CGLIB代理</strong>：适用于没有实现接口的对象。它通过底层的字节码技术生成被代理对象的子类，并在子类中注入横切逻辑。</li>
 </ol>
 <hr>
-<p>to be contined…..</p>
+<h4 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h4><p>介绍一下相关的功能</p>
+<p>在 Java AOP （面向切面编程）中，动态代理是一种实现机制，它在运行时创建一个实现了一组接口的代理对象。这个代理对象可以在原有对象方法调用前后执行额外的操作（如日志记录、事务管理等），而无需修改原有对象的代码。这种机制主要通过两种方式实现：基于接口的 JDK 动态代理和基于类的代理（例如使用 CGLIB 或 ByteBuddy）。</p>
+<blockquote>
+<p>JDK 动态代理</p>
+</blockquote>
+<p>JDK 动态代理使用 <code>java.lang.reflect.Proxy</code> 类和 <code>java.lang.reflect.InvocationHandler</code> 接口实现。这种代理方式要求目标对象必须实现一个或多个接口。</p>
+<p><strong>工作原理</strong></p>
+<ol>
+<li><strong>接口实现</strong>：动态代理类必须实现目标类的一个或多个接口。</li>
+<li><strong>创建代理实例</strong>：通过 <code>Proxy.newProxyInstance</code> 方法创建代理实例。这个方法需要：<ul>
+<li>类加载器（用于定义代理类）</li>
+<li>一组接口（代理类将实现的接口）</li>
+<li><code>InvocationHandler</code> 实现（所有方法调用都会转发到这个调用处理器）</li>
+</ul>
+</li>
+<li><strong>方法调用</strong>：当代理实例的方法被调用时，调用会被转发到 <code>InvocationHandler</code> 的 <code>invoke</code> 方法。在 <code>invoke</code> 方法中，可以在调用目标方法之前或之后执行其他操作。</li>
+</ol>
+<p>通过 <code>point.getTarget()</code> 获取目标实例</p>
+<p>在 AOP 框架中，当方法执行被拦截（如通过切点指定的方法），AOP 框架创建一个 <code>JoinPoint</code> 实例，该实例封装了有关当前方法调用的信息。<code>JoinPoint</code> 提供了 <code>getTarget()</code> 方法，该方法返回被代理的目标对象（原始对象），即使当前执行的是代理方法。因此，即使我们操作的是代理实例，我们也可以通过 <code>getTarget()</code> 访问到原始的目标类实例。</p>
+<blockquote>
+<p>CGLIB 动态代理</p>
+</blockquote>
+<p>CGLIB（Code Generation Library）是另一种动态代理方式，它不需要接口。CGLIB 通过继承目标类并在运行时生成子类来实现代理。</p>
+<p>工作原理</p>
+<ol>
+<li><strong>子类生成</strong>：CGLIB 在运行时生成目标类的子类，并覆盖其方法以提供增强的功能。</li>
+<li><strong>方法调用</strong>：当调用代理实例的方法时，实际上是调用由 CGLIB 生成的子类中的方法。在这些方法中，可以在调用实际的目标方法前后插入自定义的行为。</li>
+</ol>
+<p>使用场景与选择</p>
+<ul>
+<li><strong>JDK 动态代理</strong>适用于目标对象实现了接口的情况。由于只需代理接口方法，这种方式不会代理类的属性，通常性能较好。</li>
+<li><strong>CGLIB 动态代理</strong>适用于目标对象没有实现任何接口的情况。它通过生成子类来实现代理，更为强大但通常比 JDK 动态代理略慢。</li>
+</ul>
+<p>总的来说，AOP 通过动态代理技术提供了一个非常强大的机制，允许开发者在不修改原始代码的情况下，增加额外的功能。通过 <code>point.getTarget()</code> 获取到的是代理调用中的原始对象，确保了即使在代理环境中，也能正确地处理业务逻辑。</p>
 <hr>
 <p>参考</p>
 <ul>

@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          18k 字
+          23k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          150 分钟
+          195 分钟
         
       </span>
     
@@ -277,7 +277,58 @@
             
               <div class="markdown-body">
                 
-                <h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><h4 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202401181322703.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+                <p>待看一下</p>
+<ul>
+<li><p>1、AOP 的事务实现：编程式事务和声明式事务</p>
+</li>
+<li><p>2、AOP 的动态代理的实现代码（JDK、CGLIB)</p>
+</li>
+<li><p>3、Bean的生命周期</p>
+</li>
+<li><p>4、认证授权的整体流程</p>
+</li>
+<li><p>5、nacos 是不是去中心化的</p>
+</li>
+<li><p>6、mysql 行转列</p>
+</li>
+<li><p>Gateway 的版本，你们怎么使用的</p>
+</li>
+<li><p>Nacos 是否是去中心化的，服务挂了，是否还能进行服务调用</p>
+</li>
+<li><p>MySQL SQL：行转列   CASE WHEN</p>
+</li>
+<li><p>Redsi 的读写策略：为什么要采用旁路缓存</p>
+</li>
+<li><p>认证授权：讲一下你们项目的认证授权，你们用的是什么加密算法</p>
+</li>
+<li><p>微服务怎么拆分的。</p>
+</li>
+<li><p>令牌桶是做什么的?和synchronizied的</p>
+</li>
+<li><p>技术选型讲了一下。</p>
+</li>
+<li><p>RocketMQ的幂等问题。</p>
+</li>
+<li><p>synchronizied锁的底层以及升级过程，CAS算法的原理，ABA问题如何解决。</p>
+</li>
+<li><p>mysql，事务，隔离等级</p>
+</li>
+<li><p>mysql索引</p>
+</li>
+<li><p>分库分表，怎么设计的?如何在线分库分表?不知道</p>
+</li>
+<li><p>反射具体怎么操作的</p>
+</li>
+<li><p>Nacos 的</p>
+</li>
+<li><p>冒泡</p>
+</li>
+<li><p>快速</p>
+</li>
+<li><p>单例</p>
+</li>
+</ul>
+<h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><h4 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202401181322703.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p><strong>Unchecked Exception</strong> 即 <strong>不受检查异常</strong> ，Java 代码在编译过程中 ，我们即使不处理不受检查异常也可以正常通过编译。</p>
 <p><strong>Checked Exception</strong> 即 受检查异常 ，Java 代码在编译过程中，如果受检查异常没有被 <code>catch</code>或者<code>throws</code> 关键字处理的话，就没办法通过编译。</p>
 <p>不受检查异常</p>
@@ -401,6 +452,20 @@
 <li>Stream</li>
 <li>Optional</li>
 </ul>
+<h4 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h4><ul>
+<li>反射技术的使用<ul>
+<li><code>Class</code>类 代表类的实体，在运行的Java应用程序中表示类和接口</li>
+<li><code>Field</code>类 代表类的成员变量（成员变量也称为类的属性）</li>
+<li><code>Method</code>类 代表类的方法</li>
+<li><code>Constructor</code>类 代表类的构造方法<ul>
+<li>1.<code>getField</code>、<code>getMethod</code>和<code>getCostructor</code>方法可以获得指定名字的域、方法和构造器</li>
+<li>2.<code>getFields</code>、<code>getMethods</code>和<code>getCostructors</code>方法可以获得类提供的public域、方法和构造器数组，其中包括超类的共有成员</li>
+<li>3.<code>getDeclatedFields</code>、<code>getDeclatedMethods</code>和<code>getDeclaredConstructors</code>方法可以获得类中声明的全部域、方法和构造器，其中包括私有和受保护的成员，但不包括超类的成员。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h3 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h3><ul>
 <li>概念前提<ul>
 <li>ArrayList的数组默认⻓度10，1.5倍数组扩容，扩容通过开辟新数 组进⾏转移⽼数组元素</li>
@@ -487,7 +552,8 @@
 <li>一般是两种排序方式：一种是自然排序（实现 Comparable 接口，重写 compareTo 方法）：还有一种是自定义比较器（Comparator）</li>
 </ul>
 <p>[[Java集合_基础概念#四、Set]]</p>
-<h3 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h3><h4 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h4><p>volatile 保证</p>
+<p>TreeSet ：<code>TreeSet</code> 是通过 <code>TreeMap</code> 来实现的（内部结构）</p>
+<h4 id="CopyOnWriteArrayList"><a href="#CopyOnWriteArrayList" class="headerlink" title="CopyOnWriteArrayList"></a>CopyOnWriteArrayList</h4><h3 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h3><h4 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h4><p>volatile 保证</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240326205410.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240312224915.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <ul>
@@ -502,10 +568,19 @@
 <li>线程状态</li>
 </ul>
 <h4 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h4><ul>
-<li>使用场景<ul>
+<li><p>使用场景</p>
+<ul>
 <li>1、异步</li>
 <li>2、记录日志</li>
 <li>3、定时任务</li>
+</ul>
+</li>
+<li><p>线程池的核心线程数可以设置为 0 （通过非核心线程去处理任务）</p>
+</li>
+<li><p>阻塞队列</p>
+<ul>
+<li>Array  单个锁</li>
+<li>Linked  两个锁，加锁</li>
 </ul>
 </li>
 </ul>
@@ -545,6 +620,22 @@
 <li>IO密集型： 设置多一些（会有网络阻塞等，等待线程可能会多）</li>
 <li>CPU计算性：可以设置小一点（任务可以迅速完成，不需要太大的等待队列）</li>
 </ul>
+<hr>
+<p><strong>理解有一个问题改一下（线程池的执行流程）</strong></p>
+<ul>
+<li>1、提交任务</li>
+<li>2、核心线程处理任务</li>
+<li>3、核心线程忙碌，放入新任务到阻塞队列</li>
+<li>4、阻塞队列满了之后，再来一个任务，线程池会创建一个非核心线程去处理新的任务。当非核心线程完成它们的任务后，如果阻塞队列中还有待处理的任务，这些非核心线程也会从阻塞队列中取任务来执行。</li>
+<li>5、如果 核心线程数 + 非核心线程数 &gt; 最大线程数，才会进行触发拒绝策略</li>
+</ul>
+<p>拒绝策略方式</p>
+<ul>
+<li>1.AbortPolicy:直接抛出异常，默认策略：</li>
+<li>2.CallerRunsPolicy:用调用者所在的线程来执行任务；</li>
+<li>3.DiscardOldestPolicy:丢弃阻塞队列中靠最前的任务，并执行当前任务：</li>
+<li>4.DiscardPolicy:直接丢弃任务：</li>
+</ul>
 <h4 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h4><p>线程死锁：通过 JVM 排查工具去排查到具体原因，然后定位现象</p>
 <p>MySQL：一般有监控信息，可以看到，看到后进行处理，通过现象分析死锁原因，然后去进行事务或者SQL的优化</p>
 <h4 id="synchronized"><a href="#synchronized" class="headerlink" title="synchronized"></a>synchronized</h4><h5 id="使用-synchronized-修饰类和方法的区别"><a href="#使用-synchronized-修饰类和方法的区别" class="headerlink" title="使用 synchronized 修饰类和方法的区别"></a>使用 synchronized 修饰类和方法的区别</h5><ul>
@@ -571,9 +662,81 @@
 <h4 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h4><p>线程副本</p>
 <p>数据库连接管理：通过在<code>ThreadLocal</code>对象中为每个线程存储一个数据库连接，可以保证每个线程独立管理自己的数据库连接。</p>
 <p><code>ThreadLocal</code>可以用来确保每个线程都有自己的数据库连接，这样就可以避免由于多个线程共享同一个数据库连接实例而引起的线程安全问题。</p>
+<ul>
+<li>ThreadLocal：独立变量副本，避免线程共享可能导致的并发问题</li>
+<li><h2 id="内部：ThreadLocalMap-以-ThreadLocal-自己作为-key，资源对象作为-value-，放入当前线程的-ThreadLocalMap-集合中（弱引用）"><a href="#内部：ThreadLocalMap-以-ThreadLocal-自己作为-key，资源对象作为-value-，放入当前线程的-ThreadLocalMap-集合中（弱引用）" class="headerlink" title="内部：ThreadLocalMap  - 以 ThreadLocal 自己作为 key，资源对象作为 value ，放入当前线程的 ThreadLocalMap 集合中（弱引用）"></a>内部：ThreadLocalMap<br>  - 以 ThreadLocal 自己作为 key，资源对象作为 value ，放入当前线程的 ThreadLocalMap 集合中（弱引用）</h2></li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313140213.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>使用到 ThreadLocal 的三个常用场景：</p>
+<ul>
+<li><ol>
+<li>代替参数的显示传递</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>全局存储用户信息</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>解决线程安全问题（比如数据库连接的Connection)</li>
+</ol>
+</li>
+</ul>
+<p>慎用的场景：线程池中线程调用使用ThreadLocal、异步程序；同时注意的是使用完ThreadLocal ，最好手动调用 remove() 方法。</p>
 <h4 id="CompletableFuture"><a href="#CompletableFuture" class="headerlink" title="CompletableFuture"></a>CompletableFuture</h4><p>同步变为多个异步任务执行，最后汇总。</p>
 <p>根据CompletableFuture依赖数量，可以分为：零依赖、一元依赖、二元依赖和多元依赖。</p>
 <p>(等待 N 个 其他任务完成，启动异步任务)</p>
+<h4 id="CountDownLatch"><a href="#CountDownLatch" class="headerlink" title="CountDownLatch"></a>CountDownLatch</h4><ul>
+<li>CountDownLatch(闭锁&#x2F;倒计时锁)用来进行线程同步协作，等待所有线程完成倒计时（一个或者多个线程，等待其他多个线程完成某件事情之后才能执行)<ul>
+<li>其中构造参数用来初始化等待计数值</li>
+<li>await() 用来等待计数归零</li>
+<li>countDown()用来让计数减一</li>
+</ul>
+</li>
+</ul>
+<h3 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h3><h4 id="JVM-组成"><a href="#JVM-组成" class="headerlink" title="JVM 组成"></a>JVM 组成</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240315210151.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240315211702.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>需要再补充一下 相关内容</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240315203635.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="参数调整"><a href="#参数调整" class="headerlink" title="参数调整"></a>参数调整</h4><p>JVM 调优的参数可以在那里设置参数值</p>
+<ul>
+<li>war 包部署在 tomcat 中设置<ul>
+<li>修改 TOMCAT_HOME&#x2F;bin&#x2F;catalina.sh 文件</li>
+</ul>
+</li>
+<li>jar 包部署在启动参数设置<ul>
+<li>java -Xms512m -Xmx1024m -jar xxxx.jar</li>
+</ul>
+</li>
+</ul>
+<p>排查思路</p>
+<p>分析 dump 文件</p>
+<ul>
+<li>1、打开 VisualVM</li>
+<li>2、选择：文件 →  装入  →  （选择文件） →  打开</li>
+<li>3、概要  →  堆转储</li>
+<li>4、通过查看堆信息的情况，可以大概定位内存谥出是哪行代码出了问题</li>
+</ul>
+<p>实际</p>
+<ul>
+<li>40%  →  80%</li>
+</ul>
+<h4 id="分代收集"><a href="#分代收集" class="headerlink" title="分代收集"></a>分代收集</h4><p>工作机制</p>
+<ul>
+<li>1、新创建的对象，都会先分配到eden区</li>
+<li>2、当伊甸园内存不足，标记伊甸园与 from(现阶段没有) 的存活对象</li>
+<li>3、将存活对象采用复制算法复制到to中，复制完毕后，伊甸园和 from内存都得到释放</li>
+<li>4、经过一段时间后伊甸园的内存又出现不足，标记eden区域to区存活的对象，将存活的对象复制到from区</li>
+<li>5、当幸存区对象熬过几次回收（最多15次)，晋升到老年代（幸存区内存不足或大对象会导致提前晋升）</li>
+</ul>
+<h4 id="堆栈"><a href="#堆栈" class="headerlink" title="堆栈"></a>堆栈</h4><blockquote>
+<p>说一个栈溢出的例子</p>
+</blockquote>
+<p>方法无线递归</p>
+<blockquote>
+<p>说几个堆溢出的例子</p>
+</blockquote>
+<p>循环创建对象，或者一次性从数据库出</p>
 <h3 id="MySQL-🚩"><a href="#MySQL-🚩" class="headerlink" title="MySQL  🚩"></a>MySQL  🚩</h3><h4 id="查询优化"><a href="#查询优化" class="headerlink" title="查询优化"></a>查询优化</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313172759.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h4><p>针对索引单独复习下</p>
 <ul>
@@ -588,12 +751,13 @@
 <p>添加索引需要考虑的点</p>
 <ul>
 <li>合适的列，索引会占用空间，<strong>使用最左前缀法则</strong>，考虑索引类型，看一下是否索引命中（避免索引失效）</li>
+<li>看一下这个列的查询频率</li>
+<li><strong>索引类型</strong>：根据字段的数据类型和用途，可以选择不同类型的索引，如B树索引适用于一般情况，全文索引适用于文本搜索，哈希索引适用于精确匹配搜索等</li>
 </ul>
 <p>添加索引（多列）</p>
 <figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-function"><span class="hljs-title">ALTER</span></span> <span class="hljs-keyword">TABLE</span> table_name <span class="hljs-comment">ADD INDEX index_name (column1, column2, ...)</span>;<br><br>单列、多列、唯一<br></code></pre></td></tr></table></figure>
 
-
-
+<hr>
 <h4 id="索引失效"><a href="#索引失效" class="headerlink" title="索引失效"></a>索引失效</h4><ul>
 <li>索引失效的十大经典场景<ul>
 <li>隐式的类型转换，索引失效</li>
@@ -609,6 +773,7 @@
 </ul>
 </li>
 </ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240421164724.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="优化SQL"><a href="#优化SQL" class="headerlink" title="优化SQL"></a>优化SQL</h4><p>SQL  优化</p>
 <ul>
 <li>select 具体字段而不是 select *</li>
@@ -626,6 +791,7 @@
 </ul>
 <h4 id="分库分表"><a href="#分库分表" class="headerlink" title="分库分表"></a>分库分表</h4><p>MyCAT</p>
 <p>读写分离、分库分表</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/7b404549804a2c8446fbf945f33f816.png" srcset="/img/loading.gif" lazyload alt="7b404549804a2c8446fbf945f33f816.png"></p>
 <h4 id="表规范"><a href="#表规范" class="headerlink" title="表规范"></a>表规范</h4><ul>
 <li>下划线分隔</li>
 <li>见名识意</li>
@@ -664,6 +830,9 @@
 <p>再真正执行查询前，会有一个拦截器，把注解的value，也就是数据源的key，存储到一个 ThreadLocal 里，用栈存储。</p>
 <p>获取数据库连接的时候，直接拿栈顶的数据集配置，这样就正好是我们配置的。</p>
 <p>最后记得清空ThreadLocal，防止内存泄漏。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/teach/p/17474800.html">https://www.cnblogs.com/teach/p/17474800.html</a></li>
+</ul>
 <h4 id="MySQL调优操作"><a href="#MySQL调优操作" class="headerlink" title="MySQL调优操作"></a>MySQL调优操作</h4><p>[[MySQL调优操作]]</p>
 <ul>
 <li>最左前缀原则</li>
@@ -683,37 +852,37 @@
 <li><p>排他锁：写锁<code>SELECT ... FOR UPDATE</code></p>
 </li>
 </ul>
-<h3 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h3><h4 id="JVM-组成"><a href="#JVM-组成" class="headerlink" title="JVM 组成"></a>JVM 组成</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240315210151.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240315211702.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>需要再补充一下 相关内容</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240315203635.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="参数调整"><a href="#参数调整" class="headerlink" title="参数调整"></a>参数调整</h4><p>JVM 调优的参数可以在那里设置参数值</p>
-<ul>
-<li>war 包部署在 tomcat 中设置<ul>
-<li>修改 TOMCAT_HOME&#x2F;bin&#x2F;catalina.sh 文件</li>
+<h4 id="避免死锁"><a href="#避免死锁" class="headerlink" title="避免死锁"></a>避免死锁</h4><ul>
+<li>死锁例子：先查，再更新（间隙锁的原因）</li>
 </ul>
-</li>
-<li>jar 包部署在启动参数设置<ul>
-<li>java -Xms512m -Xmx1024m -jar xxxx.jar</li>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240421162911.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="隔离级别"><a href="#隔离级别" class="headerlink" title="隔离级别"></a>隔离级别</h4><ul>
+<li>MySQL的默认隔离级别：可重复读（REPEATABLE READ）</li>
+<li>与 SQL 标准不同的地方在于 InnoDB 存储引擎在 REPEATABLE-READ（可重 读） 事务隔离级别下使用的是Next-Key Lock 锁算法，因此可以避免幻读的产生</li>
 </ul>
-</li>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/5b38ce58a0e002b1499ebbefd5f2803.png" srcset="/img/loading.gif" lazyload alt="5b38ce58a0e002b1499ebbefd5f2803.png"></p>
+<h4 id="多数据源"><a href="#多数据源" class="headerlink" title="多数据源"></a>多数据源</h4><h4 id="数据迁移和备份"><a href="#数据迁移和备份" class="headerlink" title="数据迁移和备份"></a>数据迁移和备份</h4><p>简单说一说drop、delete与truncate的区别</p>
+<h4 id="日志文件"><a href="#日志文件" class="headerlink" title="日志文件"></a>日志文件</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240421161923.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="SQL-怎么执行的"><a href="#SQL-怎么执行的" class="headerlink" title="SQL 怎么执行的"></a>SQL 怎么执行的</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240421163109.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="深度分页"><a href="#深度分页" class="headerlink" title="深度分页"></a>深度分页</h4><p>去重，Limit：加一个记录点</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/5ba7c965ac21d9cd42d03ef755ec084.png" srcset="/img/loading.gif" lazyload alt="5ba7c965ac21d9cd42d03ef755ec084.png"><br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/0e360f1e0cc2dd5bc220fb7885acf9b.png" srcset="/img/loading.gif" lazyload alt="0e360f1e0cc2dd5bc220fb7885acf9b.png"></p>
+<h4 id="自适应哈希索引"><a href="#自适应哈希索引" class="headerlink" title="自适应哈希索引"></a>自适应哈希索引</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240421171002.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>哈希索引缺点</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/16ff114ebef9498f4376881d9158007.png" srcset="/img/loading.gif" lazyload alt="16ff114ebef9498f4376881d9158007.png"></p>
+<h4 id="数据库连接"><a href="#数据库连接" class="headerlink" title="数据库连接"></a>数据库连接</h4><blockquote>
+<p>什么场景下数据库的连接会打满?</p>
+</blockquote>
+<p>高并发场景下，新的连接建立不起来</p>
+<p>其中还包括 <strong>连接泄露</strong>，长时间占用连接（资源管理未关闭）</p>
+<blockquote>
+<p>慢sql会导致数据库连接打满吗?</p>
+</blockquote>
+<p>可能会</p>
+<p>有可能会造成一些情况，比如：<strong>时间占用连接</strong>、<strong>阻塞其他查询</strong>等。</p>
+<h4 id="filesort"><a href="#filesort" class="headerlink" title="filesort"></a>filesort</h4><ul>
+<li>order by ：索引使用不当</li>
 </ul>
-<p>排查思路</p>
-<p>分析 dump 文件</p>
-<ul>
-<li>1、打开 VisualVM</li>
-<li>2、选择：文件 →  装入  →  （选择文件） →  打开</li>
-<li>3、概要  →  堆转储</li>
-<li>4、通过查看堆信息的情况，可以大概定位内存谥出是哪行代码出了问题</li>
-</ul>
-<h4 id="分代收集"><a href="#分代收集" class="headerlink" title="分代收集"></a>分代收集</h4><p>工作机制</p>
-<ul>
-<li>1、新创建的对象，都会先分配到eden区</li>
-<li>2、当伊甸园内存不足，标记伊甸园与 from(现阶段没有) 的存活对象</li>
-<li>3、将存活对象采用复制算法复制到to中，复制完毕后，伊甸园和 from内存都得到释放</li>
-<li>4、经过一段时间后伊甸园的内存又出现不足，标记eden区域to区存活的对象，将存活的对象复制到from区</li>
-<li>5、当幸存区对象熬过几次回收（最多15次)，晋升到老年代（幸存区内存不足或大对象会导致提前晋升）</li>
-</ul>
+<h4 id="千万级数据量表如何快速添加索引-字段"><a href="#千万级数据量表如何快速添加索引-字段" class="headerlink" title="千万级数据量表如何快速添加索引&#x2F;字段"></a>千万级数据量表如何快速添加索引&#x2F;字段</h4><p>参考： <a target="_blank" rel="noopener" href="https://www.cnblogs.com/cgy-home/p/17275794.html">https://www.cnblogs.com/cgy-home/p/17275794.html</a></p>
 <h3 id="框架-🚩"><a href="#框架-🚩" class="headerlink" title="框架  🚩"></a>框架  🚩</h3><h4 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240315154902.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <ul>
 <li>生命周期</li>
@@ -737,6 +906,44 @@
 <li>错误的事务传播行为配置</li>
 </ul>
 <h5 id="关于-Spring-中-事务注解中抛出异常"><a href="#关于-Spring-中-事务注解中抛出异常" class="headerlink" title="关于 Spring 中 事务注解中抛出异常"></a>关于 Spring 中 事务注解中抛出异常</h5><p>@Transactional 注解中，抛出的异常需要是 RuntimeException 及其子类；一般情况下，我们会进行抛出自定义异常（该异常继承 RuntimeException）</p>
+<h5 id="Scheduled"><a href="#Scheduled" class="headerlink" title="@Scheduled"></a>@Scheduled</h5><p>@Scheduled是 SpringFramework 提供的一种基于注解的定时任务调度方式，它允许您在方法级别轻松定义定时任务。</p>
+<p>@Scheduled  注解本身并不限定为单线程，任务的实际执行方式取决于底层调度器(如 ThreadPoolTaskScheduler)的配置和并发策略。在合理配置线程池的情况下，多个@Scheduled 任务可以并发执行。</p>
+<p>SchedulingConfigurer默认是创建了单例线程池</p>
+<p>SpringBoot使用@scheduled定时执行任务的时候是在<strong>一个单线程</strong>中，如果有多个任务，其中一个任务执行时间过长，则有可能会导致其他后续任务被阻塞直到该任务执行完成。也就是会造成一些任务无法定时执行的错觉。</p>
+<h5 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h5><p>AOP（Aspect-Oriented Programming，面向切面编程）能够将那些与业务无关，却为业务模块所共同调用的逻辑或责任（例如事务处理、日志管理、权限控制等）封装起来，便于减少系统的重复代码，降低模块间的耦合度，并有利于未来的可扩展性和可维护性。</p>
+<p>Spring AOP是基于动态代理的，如果要代理的对象实现了某个接口，那么Spring AOP就会使用JDK动态代理去创建代理对象；而对于没有实现接口的对象，就无法使用JDK动态代理，转而使用CGlib动态代理生成一个被代理对象的子类来作为代理</p>
+<blockquote>
+<p>在Spring AOP 中，关注点和横切关注的区别是什么？</p>
+</blockquote>
+<p>关注点是应用中一个模块的行为，一个关注点可能会被定义成一个我们想实现的一个功能。 横切关注点是一个关注点，此关注点是整个应用都会使用的功能，并影响整个应用，比如日志，安全和数据传输，几乎应用的每个模块都需要的功能。因此这些都属于横切关注点。</p>
+<p>那什么是连接点呢？</p>
+<p>连接点代表一个应用程序的某个位置，在这个位置我们可以插入一个AOP切面，它实际上是个应用程序执行Spring   AOP的位置</p>
+<p>切入点是什么？</p>
+<p>切入点是一个或一组连接点，通知将在这些位置执行。可以通过表达式或匹配的方式指明切入点</p>
+<blockquote>
+<p>什么是通知呢？有哪些类型呢？</p>
+</blockquote>
+<p>通知是个在方法执行前或执行后要做的动作，实际上是程序执行时要通过SpringAOP框架触发的代码段。</p>
+<p>Spring切面可以应用五种类型的通知：</p>
+<ul>
+<li><p>before：前置通知，在一个方法执行前被调用。</p>
+</li>
+<li><p>after: 在方法执行之后调用的通知，无论方法执行是否成功。</p>
+</li>
+<li><p>after-returning: 仅当方法成功完成后执行的通知。</p>
+</li>
+<li><p>after-throwing: 在方法抛出异常退出时执行的通知。</p>
+</li>
+<li><p>around: 在方法执行之前和之后调用的通知。</p>
+</li>
+<li><p>动态代理方式</p>
+<ul>
+<li>JDK 动态代理</li>
+<li>CGLIB 动态代理</li>
+</ul>
+</li>
+</ul>
+<p>JDK 动态代理使用 <code>java.lang.reflect.Proxy</code> 类和 <code>java.lang.reflect.InvocationHandler</code> 接口实现。这种代理方式要求目标对象必须实现一个或多个接口。</p>
 <h4 id="SpringBoot"><a href="#SpringBoot" class="headerlink" title="SpringBoot"></a>SpringBoot</h4><ul>
 <li>SpringBootApplication<ul>
 <li>SpringBootConfiguration</li>
@@ -763,11 +970,79 @@
 <p><code>@RequestMapping</code></p>
 <p><code>@RequestMapping</code>注解用于将HTTP请求映射到特定的处理方法或类上。它可以声明在类或方法上。当声明在类上时，它表示该类中的所有方法都可以处理那个基础URL路径的请求。而当声明在方法上时，则指定该方法可以处理哪种类型的请求。</p>
 <p>Post 新增，put 更新，delete 删除；</p>
+<h5 id="404-200-401"><a href="#404-200-401" class="headerlink" title="404,200,401"></a>404,200,401</h5><p>在Web开发中，理解HTTP状态码和请求方法的区别，以及Spring MVC中过滤器与拦截器的不同用途，是非常重要的。下面逐一解释这些概念。</p>
+<p>HTTP 状态码</p>
+<ol>
+<li><strong>200 OK</strong> - 请求成功，服务器返回所请求的资源。</li>
+<li><strong>302 Found</strong> - 临时重定向，请求的资源暂时移动到由Location头指定的URL。</li>
+<li><strong>400 Bad Request</strong> - 客户端请求有语法错误，服务器无法理解。</li>
+<li><strong>401 Unauthorized</strong> - 请求未经授权，这通常是因为认证信息未提供或不正确。</li>
+<li><strong>404 Not Found</strong> - 服务器找不到请求的资源。</li>
+<li><strong>500 Internal Server Error</strong> - 服务器内部错误，无法完成请求。</li>
+</ol>
+<p>HTTP 请求方法</p>
+<ul>
+<li><strong>GET</strong> - 请求指定的页面信息，并返回实体主体。</li>
+<li><strong>POST</strong> - 向指定资源提交数据进行处理请求（例如提交表单或上传文件）。数据包含在请求体中。POST请求可能会导致新的资源的创建和&#x2F;或已有资源的修改。</li>
+</ul>
+<p>过滤器与拦截器</p>
+<p>在Spring MVC中，过滤器和拦截器虽然都能实现请求的预处理和后处理，但它们的用途和执行时机有所不同。</p>
+<p>过滤器 (Filter)</p>
+<ul>
+<li><strong>作用范围</strong>：作用于整个Web应用，几乎所有的请求都会经过过滤器。它是基于Java Servlet API的，不仅限于Spring MVC应用。</li>
+<li><strong>主要用途</strong>：过滤器主要用于处理通用的请求和响应转换，如日志记录、安全控制、字符集转换等。</li>
+<li><strong>执行时机</strong>：在Servlet之前执行，可以对几乎所有请求进行预处理。同时，它们也可以修改请求和响应（添加头信息、转换数据格式等）。</li>
+</ul>
+<p>拦截器 (Interceptor)</p>
+<ul>
+<li><strong>作用范围</strong>：仅作用于Spring MVC的上下文中，主要用于处理由DispatcherServlet映射的控制器请求。</li>
+<li><strong>主要用途</strong>：拦截器主要用于处理特定的应用逻辑和控制流程，如性能监测、授权验证、事务管理等。</li>
+<li><strong>执行时机</strong>：在Controller方法调用之前和之后执行，提供了更细粒度的控制，包括对控制器执行前后的处理和渲染视图之前的处理。</li>
+</ul>
 <h4 id="Mybaits"><a href="#Mybaits" class="headerlink" title="Mybaits"></a>Mybaits</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240325175422.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h5 id="JDBC-的执行流程"><a href="#JDBC-的执行流程" class="headerlink" title="JDBC 的执行流程"></a>JDBC 的执行流程</h5><ul>
+<li><ol>
+<li>加载数据库驱动</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>建立连接</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>创建Statement或PreparedStatement</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>执行SQL语句</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>处理结果</li>
+</ol>
+</li>
+<li><ol start="6">
+<li>关闭连接</li>
+</ol>
+</li>
+</ul>
 <h3 id="Redis-🚩"><a href="#Redis-🚩" class="headerlink" title="Redis   🚩"></a>Redis   🚩</h3><h4 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317105734.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h4><ul>
-<li>分布式锁这里还是结合业务去讲解以下，就说一下常见的组件有 redission 和  lock4j 等，当时项目组使用的 是 lock4j （服从性）  lock  unlock</li>
-<li>业务场景：多个任务进行关键件绑定或者车辆订单更新，需要对于唯一键进行加锁操作（VIN）</li>
+<h4 id="分布式锁-🚩"><a href="#分布式锁-🚩" class="headerlink" title="分布式锁  🚩"></a>分布式锁  🚩</h4><ul>
+<li><p>redisson 的 lock 操作</p>
+<ul>
+<li><strong>可重入</strong>：利用hash结构记录线程id和重入次数。</li>
+<li><a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/1304453">https://developer.aliyun.com/article/1304453</a></li>
+</ul>
+</li>
+<li><p>key值设定：</p>
+<ul>
+<li>使用前缀+IP+方法名(HttpServletRequest)+唯一码(IP 的哈希值)</li>
+</ul>
+</li>
+<li><p>分布式锁这里还是结合业务去讲解以下，就说一下常见的组件有 redission 和  lock4j 等，当时项目组使用的 是 lock4j （服从性）  lock  unlock</p>
+</li>
+<li><p>业务场景：多个任务进行关键件绑定或者车辆订单更新，需要对于唯一键进行加锁操作（VIN）</p>
+</li>
 </ul>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LockServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">LockService</span> &#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-title class_">LockTemplate</span> lockTemplate;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">void</span> <span class="hljs-title function_">lock</span>(<span class="hljs-params"><span class="hljs-built_in">String</span> resourceKey</span>) &#123;<br><br>        <span class="hljs-title class_">LockInfo</span> lock = lockTemplate.<span class="hljs-title function_">lock</span>(resourceKey, 10000L, 2000L, <span class="hljs-title class_">CustomRedissonLockExecutor</span>.<span class="hljs-property">class</span>);<br>        <span class="hljs-keyword">if</span> (lock == <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-comment">// 获取不到锁</span><br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FrameworkException</span>(<span class="hljs-string">&quot;业务处理中，请稍后再试...&quot;</span>);<br>        &#125;<br>        <span class="hljs-comment">// 获取锁成功，处理业务</span><br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-title function_">doBusiness</span>();<br>        &#125; <span class="hljs-keyword">catch</span> (<span class="hljs-title class_">Exception</span> e) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(e);<br>        &#125; <span class="hljs-keyword">finally</span> &#123;<br>            lockTemplate.<span class="hljs-title function_">releaseLock</span>(lock);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-built_in">void</span> <span class="hljs-title function_">doBusiness</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-comment">// TODO 业务执行逻辑</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -801,6 +1076,14 @@
 <li>1、Redis 是 Hash</li>
 <li>分布式锁：lua 脚本</li>
 </ul>
+<p>Redission 的可重入锁基于 Redis 的 <code>hash</code> 数据类型。这种锁允许同一个线程多次获得同一把锁而不会发生死锁。锁的每一个重入都会记录下来。</p>
+<ul>
+<li><strong>数据结构</strong>：Redission 使用一个 <code>hash</code> 存储锁信息。主要的键是锁的名称，值包括：<ul>
+<li>锁的持有者（通常是一个包含线程和客户端标识的唯一标识符）</li>
+<li>锁的重入次数</li>
+</ul>
+</li>
+</ul>
 <h4 id="过期策略、数据结构-🚩"><a href="#过期策略、数据结构-🚩" class="headerlink" title="过期策略、数据结构  🚩"></a>过期策略、数据结构  🚩</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317154657.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <ul>
 <li>重复提交<ul>
@@ -812,6 +1095,37 @@
 </ul>
 </li>
 </ul>
+<h4 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h4><ul>
+<li>String：动态字符串</li>
+<li>List：双向链表</li>
+<li>Set：无序的哈希表</li>
+<li>ZSet：哈希表 + 跳跃表（Skip list）<ul>
+<li>zset底层的存储结构包括ziplist或skiplist，在同时满足以下两个条件的时候使用ziplist，其他时候使用skiplist，两个条件如下：<ul>
+<li>有序集合保存的元素数量小于128个</li>
+<li>有序集合保存的所有元素的长度小于64字节</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Hash：小型哈希表<ul>
+<li>对于存储较小的哈希表，Redis 会使用一种称为 “ziplist”（压缩列表）的特殊编码格式</li>
+<li>当哈希表较大时则使用标准的哈希表。</li>
+</ul>
+</li>
+</ul>
+<p>视频： <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1kh411x7Jc">https://www.bilibili.com/video/BV1kh411x7Jc</a></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240424145813.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>压缩列表本质上就是一个数组，在一个数组的基础上添加了 列表长度、尾部偏移量、列表元素个数、列表结束标识</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240424150304.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>跳表结构：可以理解为多级索引，在普通一级索引，是一个一个元素，可以在这个基础上，建立二级索引，比如区间是3，</li>
+<li>为什么ZSet 使用跳表而不使用红黑树：跳表结构下，他的范围查询更为高效。</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240424150629.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="跳表"><a href="#跳表" class="headerlink" title="跳表"></a>跳表</h4><p>跳表为复合型的数据结构，可以被视为一个<strong>多层的链表</strong>，它允许快速查询、插入、删除和更新操作，其平均时间和空间复杂度都是O(logN)，在大多数情况下可以替代平衡树（如红黑树）。</p>
+<p>在Redis中，跳表主要用于实现有序集合（ZSet）数据类型。有序集合是一种存储不重复元素的集合，但每个元素关联一个浮点数分数，集合中的元素按照分数有序排列。跳表能够高效地支持按分数范围查询和按照排名查询元素，这使得它非常适合实现Redis的有序集合操作。</p>
 <h4 id="数据一致性"><a href="#数据一致性" class="headerlink" title="数据一致性"></a>数据一致性</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240329000510.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <ul>
 <li>旁路缓存模式</li>
@@ -820,8 +1134,6 @@
 </ul>
 <h4 id="高性能读写"><a href="#高性能读写" class="headerlink" title="高性能读写"></a>高性能读写</h4><p>IO多路复用 + 事件派发机制</p>
 <h4 id="高可用"><a href="#高可用" class="headerlink" title="高可用"></a>高可用</h4><p>主从 →  哨兵  →  集群</p>
-<h4 id="跳表"><a href="#跳表" class="headerlink" title="跳表"></a>跳表</h4><p>跳表为复合型的数据结构，可以被视为一个<strong>多层的链表</strong>，它允许快速查询、插入、删除和更新操作，其平均时间和空间复杂度都是O(logN)，在大多数情况下可以替代平衡树（如红黑树）。</p>
-<p>在Redis中，跳表主要用于实现有序集合（ZSet）数据类型。有序集合是一种存储不重复元素的集合，但每个元素关联一个浮点数分数，集合中的元素按照分数有序排列。跳表能够高效地支持按分数范围查询和按照排名查询元素，这使得它非常适合实现Redis的有序集合操作。</p>
 <h4 id="内存淘汰策略有哪些"><a href="#内存淘汰策略有哪些" class="headerlink" title="内存淘汰策略有哪些"></a>内存淘汰策略有哪些</h4><p>数据的淘汰策略：当Redis中的内存不够用时，此时在向Redisr中添加新的key,那么Redis 就会按照某一种规则将内存中的数据删除掉，这种数据的删除规则被称之为内存的淘汰策略。</p>
 <ul>
 <li>默认策略noeviction，当内存不⾜以容纳新写⼊数据时，新写⼊操作 会报错</li>
@@ -864,7 +1176,11 @@
 </li>
 </ol>
 <p>不建议使用，建议使用 Lua 命令。</p>
-<h4 id="线程模型"><a href="#线程模型" class="headerlink" title="线程模型"></a>线程模型</h4><h4 id="配置项"><a href="#配置项" class="headerlink" title="配置项"></a>配置项</h4><h4 id="大-key"><a href="#大-key" class="headerlink" title="大 key"></a>大 key</h4><h3 id="MQ-🚩"><a href="#MQ-🚩" class="headerlink" title="MQ  🚩"></a>MQ  🚩</h3><p>见：[[面试煎熬成蛋_MQ]]</p>
+<h4 id="线程模型"><a href="#线程模型" class="headerlink" title="线程模型"></a>线程模型</h4><h4 id="配置项"><a href="#配置项" class="headerlink" title="配置项"></a>配置项</h4><p>- </p>
+<h4 id="大-key"><a href="#大-key" class="headerlink" title="大 key"></a>大 key</h4><ul>
+<li>后面解决问题</li>
+</ul>
+<h3 id="MQ-🚩"><a href="#MQ-🚩" class="headerlink" title="MQ  🚩"></a>MQ  🚩</h3><p>见：[[面试煎熬成蛋_MQ]]</p>
 <a href="/2024/03/10/%E9%9D%A2%E8%AF%95%E7%85%8E%E7%86%AC%E6%88%90%E8%9B%8B_MQ/" title="面试煎熬成蛋_MQ">面试煎熬成蛋_MQ</a>
 
 
@@ -882,10 +1198,13 @@
 <h3 id="SpringCloud-🚩"><a href="#SpringCloud-🚩" class="headerlink" title="SpringCloud   🚩"></a>SpringCloud   🚩</h3><h4 id="Nacos-工作流程"><a href="#Nacos-工作流程" class="headerlink" title="Nacos 工作流程"></a>Nacos 工作流程</h4><ul>
 <li>服务发现<ul>
 <li>服务注册，服务发现，健康检查，服务注销</li>
+<li>服务发现是先获取本地缓存，如果没有本地缓存，就请求<code>Nacos Server</code>服务端获取数据，如果<code>Nacos Server</code>挂了，也不会影响服务的调用。</li>
 </ul>
 </li>
 <li>配置管理</li>
 </ul>
+<p>服务发现：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240423182313.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="服务高可用"><a href="#服务高可用" class="headerlink" title="服务高可用"></a>服务高可用</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240322182806.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="相关组件"><a href="#相关组件" class="headerlink" title="相关组件"></a>相关组件</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240325083057.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="Gateway"><a href="#Gateway" class="headerlink" title="Gateway"></a>Gateway</h4><h5 id="gateway-的功能"><a href="#gateway-的功能" class="headerlink" title="gateway 的功能"></a>gateway 的功能</h5><ul>
@@ -905,10 +1224,25 @@
 </li>
 </ul>
 </li>
+<li>限流<ul>
+<li>网关，令牌桶算法</li>
 </ul>
 </li>
 </ul>
-<h4 id="分布式事务-🚩"><a href="#分布式事务-🚩" class="headerlink" title="分布式事务   🚩"></a>分布式事务   🚩</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240325172412.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+</li>
+</ul>
+<p>如果是 Nginx，则是：Nginx，漏桶算法</p>
+<h5 id="Gateway-的版本区分"><a href="#Gateway-的版本区分" class="headerlink" title="Gateway 的版本区分"></a>Gateway 的版本区分</h5><blockquote>
+<p>版本差异</p>
+</blockquote>
+<ul>
+<li><strong>2.0.x 版本</strong>：引入了基于WebFlux的反应式编程模型，不再使用传统的Servlet API。提供了基本的路由、过滤功能。</li>
+<li><strong>2.1.x 版本</strong>：增加了对WebSocket的支持，改进了路由断言和过滤器的功能。</li>
+<li><strong>2.2.x 版本</strong>：引入了更多的路由断言和过滤器，增强了安全性和可管理性。</li>
+<li><strong>3.0.x 版本</strong>：更新了底层的Spring Boot和Spring Framework的版本，支持最新的功能，例如更好的错误处理和性能优化。</li>
+</ul>
+<p>一般说我们常见的是2.2 版本就行</p>
+<h4 id="分布式事务-🚩"><a href="#分布式事务-🚩" class="headerlink" title="分布式事务   🚩"></a>分布式事务   🚩</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240425195950.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <ul>
 <li>2PC（两阶段提交）</li>
 <li>三阶段提交（3PC）</li>
@@ -917,8 +1251,7 @@
 <li>TCC（Try-Confirm-Cancel）</li>
 </ul>
 </li>
-<li>本地消息表（操作记录，消息处理）🚩 （这个建议记一下）</li>
-<li>消息队列【 事务消息（half 半消息机制）】</li>
+<li>消息队列【 事务消息（half 半消息机制）】 本地消息表（操作记录，消息处理）🚩</li>
 </ul>
 <p>Seata事务管理中有三个重要的角色：</p>
 <ul>
@@ -934,8 +1267,7 @@
 <h4 id="K8s"><a href="#K8s" class="headerlink" title="K8s"></a>K8s</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240322095336.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="Jenkins"><a href="#Jenkins" class="headerlink" title="Jenkins"></a>Jenkins</h4><p>卷肯思</p>
 <p>Jenkins 是一个开源的自动化服务器，主要用于持续集成（Continuous Integration, CI）和持续部署（Continuous Deployment, CD）的自动化过程。由于其强大的插件生态系统，Jenkins 可以轻松地与各种开发、测试和部署工具集成，从而构建一个高度灵活和可定制的自动化流水线。</p>
-<h3 id="Dubbo"><a href="#Dubbo" class="headerlink" title="Dubbo"></a>Dubbo</h3><h4 id="为什么要使用-RPC"><a href="#为什么要使用-RPC" class="headerlink" title="为什么要使用 RPC"></a>为什么要使用 RPC</h4><p>RPC通信协议通常比HTTP更加轻量，能够减少网络传输的开销。</p>
-<h3 id="Netty"><a href="#Netty" class="headerlink" title="Netty"></a>Netty</h3><p><a target="_blank" rel="noopener" href="https://www.yuque.com/snailclimb/mf2z3k/wlr1b0">https://www.yuque.com/snailclimb/mf2z3k/wlr1b0</a></p>
+<h3 id="ES"><a href="#ES" class="headerlink" title="ES"></a>ES</h3><h3 id="Netty"><a href="#Netty" class="headerlink" title="Netty"></a>Netty</h3><p><a target="_blank" rel="noopener" href="https://www.yuque.com/snailclimb/mf2z3k/wlr1b0">https://www.yuque.com/snailclimb/mf2z3k/wlr1b0</a></p>
 <h3 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h3><h4 id="Docket"><a href="#Docket" class="headerlink" title="Docket"></a>Docket</h4><h5 id="常见命令"><a href="#常见命令" class="headerlink" title="常见命令"></a>常见命令</h5><ul>
 <li>docker ps</li>
 <li>docker ps -a</li>
@@ -953,6 +1285,7 @@
 <figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs aspectj"><span class="hljs-keyword">import</span> com.xxl.job.core.<span class="hljs-keyword">handler</span>.annotation.XxlJob;<br><span class="hljs-keyword">import</span> org.springframework.stereotype.Component;<br><br><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DemoJob</span> </span>&#123;<br><br>    <span class="hljs-meta">@XxlJob</span>(<span class="hljs-string">&quot;demoJobHandler&quot;</span>)<br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">execute</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>        <span class="hljs-comment">// 任务逻辑</span><br>        System.out.println(<span class="hljs-string">&quot;XXL-JOB, Hello World.&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>任务执行失败处理：设置故障转移 + 失败重试，查看日志分析   →   邮件告警</p>
+<h4 id="zookeeper"><a href="#zookeeper" class="headerlink" title="zookeeper"></a>zookeeper</h4><h4 id="Dubbo"><a href="#Dubbo" class="headerlink" title="Dubbo"></a>Dubbo</h4><h5 id="为什么要使用-RPC"><a href="#为什么要使用-RPC" class="headerlink" title="为什么要使用 RPC"></a>为什么要使用 RPC</h5><p>RPC通信协议通常比HTTP更加轻量，能够减少网络传输的开销。</p>
 <h3 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h3><h4 id="TCP-和-UDP-的区别"><a href="#TCP-和-UDP-的区别" class="headerlink" title="TCP 和 UDP 的区别"></a>TCP 和 UDP 的区别</h4><ul>
 <li>TCP：面向连接，三次握手，面向字节流的</li>
 <li>UDP：无连接，面向报文</li>
@@ -1018,6 +1351,14 @@
 <h4 id="接口幂等"><a href="#接口幂等" class="headerlink" title="接口幂等"></a>接口幂等</h4><ul>
 <li>前端：按钮变灰</li>
 <li>后端：乐观锁、悲观锁、分布式锁，业务逻辑结合处理</li>
+</ul>
+<h4 id="接口安全"><a href="#接口安全" class="headerlink" title="接口安全"></a>接口安全</h4><p>SpringBoot微服务的https配置方法</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240423223132.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>如果需要对文本或者数据安全保障，进行加密传输<ul>
+<li>MD5</li>
+</ul>
+</li>
 </ul>
 <h3 id="软实力"><a href="#软实力" class="headerlink" title="软实力"></a>软实力</h3><h4 id="上手学习新技术"><a href="#上手学习新技术" class="headerlink" title="上手学习新技术"></a>上手学习新技术</h4><p>我在上手学习新技术的时候主要氛围3个步骤；</p>
 <ol>
