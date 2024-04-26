@@ -1509,7 +1509,7 @@
 
   
   <url>
-    <loc>https://varcel.luoqi.icu/categories/Diary/</loc>
+    <loc>https://varcel.luoqi.icu/categories/%E9%9A%8F%E8%AE%B0/</loc>
     <lastmod>2024-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1523,7 +1523,7 @@
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/categories/Exam/</loc>
+    <loc>https://varcel.luoqi.icu/categories/%E8%80%83%E8%AF%95/</loc>
     <lastmod>2024-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1551,7 +1551,7 @@
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/categories/StatusPage/</loc>
+    <loc>https://varcel.luoqi.icu/categories/%E9%9D%99%E6%80%81%E9%A1%B5/</loc>
     <lastmod>2024-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1628,14 +1628,14 @@
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
+    <loc>https://varcel.luoqi.icu/categories/Java/</loc>
     <lastmod>2024-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/categories/project/</loc>
+    <loc>https://varcel.luoqi.icu/categories/%E9%A1%B9%E7%9B%AE/Lottery/</loc>
     <lastmod>2024-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1670,7 +1670,7 @@
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/categories/Soft/</loc>
+    <loc>https://varcel.luoqi.icu/categories/Java/%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
     <lastmod>2024-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1726,6 +1726,13 @@
   </url>
   
   <url>
+    <loc>https://varcel.luoqi.icu/categories/%E9%A1%B9%E7%9B%AE/%E5%A4%A7%E8%90%A5%E9%94%80%E5%B9%B3%E5%8F%B0/</loc>
+    <lastmod>2024-04-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://varcel.luoqi.icu/categories/%E6%A1%86%E6%9E%B6/SpringBoot/</loc>
     <lastmod>2024-04-26</lastmod>
     <changefreq>weekly</changefreq>
@@ -1740,14 +1747,14 @@
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/categories/%E6%A1%86%E6%9E%B6/Spring/</loc>
+    <loc>https://varcel.luoqi.icu/categories/%E6%A1%86%E6%9E%B6/SpringSecurity/</loc>
     <lastmod>2024-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/categories/Game/</loc>
+    <loc>https://varcel.luoqi.icu/categories/%E6%A1%86%E6%9E%B6/Spring/</loc>
     <lastmod>2024-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1775,7 +1782,35 @@
   </url>
   
   <url>
+    <loc>https://varcel.luoqi.icu/categories/CodeProgram/</loc>
+    <lastmod>2024-04-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://varcel.luoqi.icu/categories/%E5%B7%A5%E7%A8%8B/</loc>
+    <lastmod>2024-04-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://varcel.luoqi.icu/categories/web/Node/</loc>
+    <lastmod>2024-04-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://varcel.luoqi.icu/categories/%E9%9D%A2%E8%AF%95%E7%85%8E%E7%86%AC%E6%88%90%E8%9B%8B/</loc>
+    <lastmod>2024-04-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://varcel.luoqi.icu/categories/Java/%E9%9D%A2%E8%AF%95%E7%85%8E%E7%86%AC%E6%88%90%E8%9B%8B/</loc>
     <lastmod>2024-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1789,14 +1824,7 @@
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/categories/CodeProgram/</loc>
-    <lastmod>2024-04-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://varcel.luoqi.icu/categories/%E9%9D%A2%E8%AF%95%E7%85%8E%E7%86%AC%E6%88%90%E8%9B%8B/</loc>
+    <loc>https://varcel.luoqi.icu/categories/%E5%B7%A5%E7%A8%8B/%E5%87%BD%E6%95%B0%E8%AE%A1%E7%AE%97FC/</loc>
     <lastmod>2024-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
