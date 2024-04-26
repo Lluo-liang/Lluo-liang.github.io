@@ -1,0 +1,832 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/Xbox%20L.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Luo QI">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="对于分布式事务的理解和学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分布式事务">
+<meta property="og:url" content="https://varcel.luoqi.icu/2024/04/25/SpringCloud_%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/index.html">
+<meta property="og:site_name" content="轻松的洛亓">
+<meta property="og:description" content="对于分布式事务的理解和学习">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240425155013.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240426182642.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240426182814.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240426183259.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240426091449.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240426194656.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240426194815.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240426201234.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240426202340.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240426202545.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240426202627.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240426203157.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240426203253.png">
+<meta property="article:published_time" content="2024-04-25T15:40:00.000Z">
+<meta property="article:modified_time" content="2024-04-25T15:40:00.000Z">
+<meta property="article:author" content="Luo QI">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="springcloud">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240425155013.png">
+  
+  
+  
+  <title>分布式事务 - 轻松的洛亓</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"varcel.luoqi.icu","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  <meta name="baidu-site-verification" content="codeva-Oq0KOjHuD3" />
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>轻松的洛亓</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="分布式事务"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-04-25 15:40" pubdate>
+          2024年4月25日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          9.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          83 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">分布式事务</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>视频地址： <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Q4411y7ip">https://www.bilibili.com/video/BV1Q4411y7ip</a></p>
+<p>参考文档： <a target="_blank" rel="noopener" href="https://blog.csdn.net/hancoder/article/details/120213532">https://blog.csdn.net/hancoder/article/details/120213532</a></p>
+<p>建议看一下旗下的视频课件文档</p>
+<h3 id="一、基础概念"><a href="#一、基础概念" class="headerlink" title="一、基础概念"></a>一、基础概念</h3><h4 id="CAP-理论"><a href="#CAP-理论" class="headerlink" title="CAP  理论"></a>CAP  理论</h4><p>CAP理论是分布式计算中的一个重要理论，由Eric Brewer提出。CAP指的是Consistency（一致性）、Availability（可用性）、Partition tolerance（分区容错性）。理论声称，一个分布式系统不可能同时满足这三个要求，最多只能同时满足其中两项：</p>
+<ol>
+<li><strong>一致性（C）</strong>：所有节点在同一时间具有相同的数据。</li>
+<li><strong>可用性（A）</strong>：保证每个请求都能得到一个响应，无论响应是成功还是失败。</li>
+<li><strong>分区容忍性（P）</strong>：系统中任意信息的丢失或失败都不会影响系统的继续运作。</li>
+</ol>
+<p>在实际应用中，分区容忍性是必须要保证的，因为网络分区在实际环境中是常见的（在分布式环境中，系统节点之间肯定的需要有网络连接的，因此分区（P) 是必然存在的）。因此，大多数分布式系统设计的抉择通常是在一致性和可用性之间做权衡。</p>
+<h4 id="BASE-理论"><a href="#BASE-理论" class="headerlink" title="BASE 理论"></a>BASE 理论</h4><p>相对于CAP的严格要求，BASE理论提供了一种较为宽松的事务一致性模型。BASE是Basically Available（基本可用）、Soft state（软状态）、Eventually consistent（最终一致性）的缩写：</p>
+<ol>
+<li><strong>基本可用（Basically Available）</strong>：分布式系统在出现故障的时候，允许损失部分可用性——例如，响应时间可能会延长。</li>
+<li><strong>软状态（Soft state）</strong>：系统的状态不需要时刻一致，允许在不同节点间存在中间状态，而这种状态会随着时间的推移而逐渐一致。</li>
+<li><strong>最终一致性（Eventually consistent）</strong>：系统保证在一定时间范围内，数据最终将是一致的。</li>
+</ol>
+<p>BASE：牺牲强一致性，保证可用性，确保最终一致性。</p>
+<p>BASE理论是对CAP中AP的一个扩展，通过牺牲强一致性来获得可用性，当出现故障允许部分不可用但要保证核心功能可用，允许数据在一段时间内是不一致的，但<code>最终一致性</code>。满足BASE理论的事务，我们称之为“<strong>柔性事务</strong>”。</p>
+<h4 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a>分布式事务</h4><p>数据库事务回顾：事务的特性是：ACID；</p>
+<ul>
+<li>原子性(Atomicity):事务是不可分割的最小操作单元，要么全部成功，要么全部失败。</li>
+<li>一致性(Consistency):事务完成时，必须使所有的数据都保持一致状态。</li>
+<li>隔离性(Isolation)：数据库系统提供的隔离机制，保证事务在不受外部并发操作影响的独立环境下运行。</li>
+<li>持久性(Durability)：事务一旦提交或回滚，它对数据库中的数据的改变就是永久的。</li>
+</ul>
+<hr>
+<p>我们需要理解的是，什么情况下会出现分布式事务问题：</p>
+<blockquote>
+<p>分布式事务产生的场景</p>
+</blockquote>
+<ul>
+<li>1、典型的场景：微服务架构<ul>
+<li>微服务之间通过远程调用完成事务操作<ul>
+<li><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240425155013.png" srcset="/img/loading.gif" lazyload alt="image.png"></li>
+</ul>
+</li>
+<li>跨 JVM 进程产生分布式事务问题</li>
+</ul>
+</li>
+<li>2、单体系统访问多个数据库实例<ul>
+<li>跨数据库实例产生分布式事务</li>
+</ul>
+</li>
+<li>3、多服务访问同一个数据库实例<ul>
+<li>跨 JVM 进程</li>
+<li>两个微服务持有了不同的数据库链接进行数据库操作，此时产生分布式事务。</li>
+</ul>
+</li>
+</ul>
+<h3 id="二、分布式事务解决方案"><a href="#二、分布式事务解决方案" class="headerlink" title="二、分布式事务解决方案"></a>二、分布式事务解决方案</h3><p>在Java中处理分布式事务时，常见的方法有以下几种：</p>
+<ol>
+<li><strong>两阶段提交（2PC）</strong>：是XA事务的一个实现，它分为“准备阶段”和“提交阶段”，确保所有参与者都同意提交事务。这种方式强调的是一致性，但牺牲了系统的可用性。</li>
+<li><strong>补偿事务（TCC，Try-Confirm-Cancel）</strong>：这种方式首先执行试操作，如果所有参与者都成功，则进行确认操作，否则执行取消操作。它适合于业务逻辑较为复杂的系统。</li>
+<li><strong>最终一致性框架</strong>：如 Apache Kafka 和 RocketMQ 等消息中间件，通过异步消息确保最终一致性。这类方法强调的是可用性和分区容忍性。</li>
+<li><strong>分布式事务中间件</strong>：例如 Seata ，它通过创建分布式事务协调者来管理各个微服务之间的事务，实现分布式事务的一致性。</li>
+</ol>
+<h4 id="2PC-两阶段提交"><a href="#2PC-两阶段提交" class="headerlink" title="2PC 两阶段提交"></a>2PC 两阶段提交</h4><ul>
+<li>两阶段：准备阶段  Prepare phase、提交阶段  comomit phase</li>
+</ul>
+<p>数据库支持的<code>2pc</code>【二阶段提交】，又叫做 <code>XA Transactions</code> </p>
+<p>2PC（Two-phase commit protocol），中文叫二阶段提交。 <strong>二阶段提交是一种强一致性设计</strong>，2PC 引入一个事务协调者的角色来协调管理各参与者（也可称之为各本地资源）的提交和回滚，二阶段分别指的是准备（投票）和提交两个阶段。</p>
+<p>XA：强一致性，比较适⽤于执⾏时间确定的短事务，整体性能比较差。</p>
+<p>在计算机中部分关系数据库如Oracle、MySQL支持两阶段提交协议：</p>
+<ul>
+<li><ol>
+<li>准备阶段（Prepare phase）：事务管理器给每个参与者发送Prepare消息，每个数据库参与者在本地执行事务，并写本地的Undo&#x2F;Redo日志，此时事务没有提交。</li>
+</ol>
+<ul>
+<li>（Undo日志是记录修改前的数据，用于数据库回滚，Redo日志是记录修改后的数据，用于提交事务后写入数据文件）</li>
+</ul>
+</li>
+<li><ol start="2">
+<li>提交阶段（commit phase）：如果事务管理器收到了参与者的执行失败或者超时消息时，直接给每个参与者发送回滚(Rollback)消息；否则，发送提交(Commit)消息；参与者根据事务管理器的指令执行提交或者回滚操作，并释放事务处理过程中使用的锁资源。注意:必须在最后阶段释放锁资源。</li>
+</ol>
+</li>
+</ul>
+<p>如果任一资源管理器在第一阶段返回准备失败，那么事务管理器会要求所有资源管理器在第二阶段执行回滚操作。通过事务管理器的两阶段协调，最终所有资源管理器要么全部提交，要么全部回滚，最终状态都是一致的</p>
+<h4 id="TCC"><a href="#TCC" class="headerlink" title="TCC"></a>TCC</h4><h4 id="Seata"><a href="#Seata" class="headerlink" title="Seata"></a>Seata</h4><h4 id="MQ"><a href="#MQ" class="headerlink" title="MQ"></a>MQ</h4><h3 id="三、Seata-的使用示例"><a href="#三、Seata-的使用示例" class="headerlink" title="三、Seata 的使用示例"></a>三、Seata 的使用示例</h3><h4 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h4><p>文档： <a target="_blank" rel="noopener" href="https://seata.apache.org/zh-cn/blog/seata-quick-start/">https://seata.apache.org/zh-cn/blog/seata-quick-start/</a></p>
+<p>Seata 是<strong>阿里</strong>开源的一款开源的<strong>分布式事务</strong>解决方案，致力于提供高性能和简单易用的分布式事务服务</p>
+<p>事务模式</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240426182642.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>Seata 的角色</p>
+<ul>
+<li><strong>TC</strong> (Transaction Coordinator) - 事务协调者：维护全局和分支事务的状态，驱动<strong>全局事务</strong>提交或回滚。</li>
+<li><strong>TM</strong> (Transaction Manager) - 事务管理器：定义<strong>全局事务</strong>的范围，开始全局事务、提交或回滚全局事务。</li>
+<li><strong>RM</strong> ( Resource Manager ) - 资源管理器：管理<strong>分支事务</strong>处理的资源( Resource )，与 TC 交谈以注册分支事务和报告分支事务的状态，并驱动<strong>分支事务</strong>提交或回滚。</li>
+</ul>
+<p>其中，TC 为单独部署的 <strong>Server</strong> 服务端，TM 和 RM 为嵌入到应用中的 <strong>Client</strong> 客户端</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240426182814.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>分布式事务的生命周期</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240426183259.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>TM 请求 TC 开启一个全局事务。TC 会生成一个 <strong>XID</strong> 作为该全局事务的编号。<ul>
+<li><strong>XID</strong>，会在微服务的调用链路中传播，保证将多个微服务的子事务关联在一起。</li>
+</ul>
+</li>
+<li>RM 请求 TC 将本地事务注册为全局事务的分支事务，通过全局事务的 <strong>XID</strong> 进行关联。</li>
+<li>TM 请求 TC 告诉 <strong>XID</strong> 对应的全局事务是进行提交还是回滚。</li>
+<li>TC 驱动 RM 们将 <strong>XID</strong> 对应的自己的本地事务进行提交还是回滚。</li>
+</ul>
+<hr>
+<h4 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h4><p>虚拟机安装一下  MySQL 5.7 、Nacos 1.3.2 版本</p>
+<h5 id="部署单机-TC-Server"><a href="#部署单机-TC-Server" class="headerlink" title="部署单机 TC Server"></a>部署单机 TC Server</h5><p> TC 需要进行全局事务和分支事务的记录，所以需要对应的<strong>存储</strong>。目前，TC 有两种存储模式( <code>store.mode</code> )：</p>
+<ul>
+<li>file 模式：适合<strong>单机</strong>模式，全局事务会话信息在<strong>内存</strong>中读写，并持久化本地文件 <code>root.data</code>，性能较高。</li>
+<li>db 模式：适合<strong>集群</strong>模式，全局事务会话信息通过 <strong>db</strong> 共享，相对性能差点。</li>
+</ul>
+<p>这个不用管，写的有点问题 👆</p>
+<blockquote>
+<p>Seata 服务</p>
+</blockquote>
+<p>根据项目的介绍文档，这里下载 1.3 版本的 seata 的服务</p>
+<p>这里先不用 docker 的方式，有点理解问题，先使用一下 windows 下的 zip 方式</p>
+<p>参考： <a target="_blank" rel="noopener" href="https://github.com/WinterChenS/spring-cloud-hoxton-study/blob/main/doc/SpringCloud%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B(%E5%85%AB)%E4%B9%8B%E6%95%B4%E5%90%88seata%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1.md">https://github.com/WinterChenS/spring-cloud-hoxton-study/blob/main/doc/SpringCloud%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B(%E5%85%AB)%E4%B9%8B%E6%95%B4%E5%90%88seata%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1.md</a></p>
+<p>下载地址： <a target="_blank" rel="noopener" href="https://github.com/apache/incubator-seata/releases?page=2">https://github.com/apache/incubator-seata/releases?page=2</a></p>
+<p>window下载zip，linux&#x2F;mac下载tar.gz</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240426091449.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>看到一个很不错的项目，这里使用一下它：<a target="_blank" rel="noopener" href="https://github.com/YunaiV/SpringBoot-Labs">https://github.com/YunaiV/SpringBoot-Labs</a> 的 <a target="_blank" rel="noopener" href="https://github.com/YunaiV/SpringBoot-Labs/tree/master/labx-17">labx-17</a> 目录</p>
+<p>seata + openfeign</p>
+<p>改一下这个 pom 文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--    &lt;parent&gt;--&gt;</span>  <br><span class="hljs-comment">&lt;!--        &lt;artifactId&gt;labx-17&lt;/artifactId&gt;--&gt;</span>  <br><span class="hljs-comment">&lt;!--        &lt;groupId&gt;cn.iocoder.springboot.labs&lt;/groupId&gt;--&gt;</span>  <br><span class="hljs-comment">&lt;!--        &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;--&gt;</span>  <br><span class="hljs-comment">&lt;!--    &lt;/parent&gt;--&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>cn.iocoder.springboot.labs<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>labx-17-sc-seata-at-feign-demo<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">packaging</span>&gt;</span>pom<span class="hljs-tag">&lt;/<span class="hljs-name">packaging</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0-SNAPSHOT<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">modelVersion</span>&gt;</span>4.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">modelVersion</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>执行 data.sql 文件</p>
+<p>部署过程看一下这个视频，挺详细的： <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1wW4y147k3">https://www.bilibili.com/video/BV1wW4y147k3</a></p>
+<p>改一下这两个文件的配置内容</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240426194656.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>file.conf</p>
+<p>修改配置为通过 db 的方式，改一下 mysql 相关的配置文件内容</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240426194815.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>对应数据库中，执行以下脚本文件： <a target="_blank" rel="noopener" href="https://github.com/apache/incubator-seata/blob/1.3.0/script/server/db/mysql.sql">https://github.com/apache/incubator-seata/blob/1.3.0/script/server/db/mysql.sql</a></p>
+<p>先创建一下数据库</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240426201234.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey">-- -------------------------------- The script used when storeMode is &#x27;db&#x27; --------------------------------<br>-- the table to store GlobalSession data<br>CREATE TABLE IF <span class="hljs-literal">NOT</span> EXISTS `global_table`<br>(<br>    `xid`                       VARCHAR(<span class="hljs-number">128</span>) <span class="hljs-literal">NOT</span> NULL,<br>    `transaction_id`            BIGINT,<br>    `status`                    TINYINT      <span class="hljs-literal">NOT</span> NULL,<br>    `application_id`            VARCHAR(<span class="hljs-number">32</span>),<br>    `transaction_service_group` VARCHAR(<span class="hljs-number">32</span>),<br>    `transaction_name`          VARCHAR(<span class="hljs-number">128</span>),<br>    `timeout`                   INT,<br>    `begin_time`                BIGINT,<br>    `application_data`          VARCHAR(<span class="hljs-number">2000</span>),<br>    `gmt_create`                DATETIME,<br>    `gmt_modified`              DATETIME,<br>    PRIMARY KEY (`xid`),<br>    KEY `idx_gmt_modified_status` (`gmt_modified`, `status`),<br>    KEY `idx_transaction_id` (`transaction_id`)<br>) ENGINE = InnoDB<br>  DEFAULT CHARSET = utf8<span class="hljs-comment">;</span><br><br>-- the table to store BranchSession data<br>CREATE TABLE IF <span class="hljs-literal">NOT</span> EXISTS `branch_table`<br>(<br>    `branch_id`         BIGINT       <span class="hljs-literal">NOT</span> NULL,<br>    `xid`               VARCHAR(<span class="hljs-number">128</span>) <span class="hljs-literal">NOT</span> NULL,<br>    `transaction_id`    BIGINT,<br>    `resource_group_id` VARCHAR(<span class="hljs-number">32</span>),<br>    `resource_id`       VARCHAR(<span class="hljs-number">256</span>),<br>    `branch_type`       VARCHAR(<span class="hljs-number">8</span>),<br>    `status`            TINYINT,<br>    `client_id`         VARCHAR(<span class="hljs-number">64</span>),<br>    `application_data`  VARCHAR(<span class="hljs-number">2000</span>),<br>    `gmt_create`        DATETIME(<span class="hljs-number">6</span>),<br>    `gmt_modified`      DATETIME(<span class="hljs-number">6</span>),<br>    PRIMARY KEY (`branch_id`),<br>    KEY `idx_xid` (`xid`)<br>) ENGINE = InnoDB<br>  DEFAULT CHARSET = utf8<span class="hljs-comment">;</span><br><br>-- the table to store lock data<br>CREATE TABLE IF <span class="hljs-literal">NOT</span> EXISTS `lock_table`<br>(<br>    `row_key`        VARCHAR(<span class="hljs-number">128</span>) <span class="hljs-literal">NOT</span> NULL,<br>    `xid`            VARCHAR(<span class="hljs-number">96</span>),<br>    `transaction_id` BIGINT,<br>    `branch_id`      BIGINT       <span class="hljs-literal">NOT</span> NULL,<br>    `resource_id`    VARCHAR(<span class="hljs-number">256</span>),<br>    `table_name`     VARCHAR(<span class="hljs-number">32</span>),<br>    `pk`             VARCHAR(<span class="hljs-number">36</span>),<br>    `gmt_create`     DATETIME,<br>    `gmt_modified`   DATETIME,<br>    PRIMARY KEY (`row_key`),<br>    KEY `idx_branch_id` (`branch_id`)<br>) ENGINE = InnoDB<br>  DEFAULT CHARSET = utf8<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
+
+<p>registry.conf</p>
+<p>改一下配置中心和注册中心的配置内容</p>
+<figure class="highlight puppet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs puppet"><span class="hljs-keyword">registry</span> &#123;<br>  <span class="hljs-comment"># file 、nacos 、eureka、redis、zk、consul、etcd3、sofa</span><br>  <span class="hljs-built_in">type</span> = <span class="hljs-string">&quot;nacos&quot;</span><br><br>  nacos &#123;<br>    application = <span class="hljs-string">&quot;seata-server&quot;</span><br>    serverAddr = <span class="hljs-string">&quot;192.168.56.105:8848&quot;</span><br>    <span class="hljs-literal">group</span> = <span class="hljs-string">&quot;SEATA_GROUP&quot;</span><br>	<span class="hljs-comment">#不写默认是 public</span><br>    namespace = <span class="hljs-string">&quot;&quot;</span>  <br>    cluster = <span class="hljs-string">&quot;default&quot;</span><br>    username = <span class="hljs-string">&quot;nacos&quot;</span><br>    <span class="hljs-literal">password</span> = <span class="hljs-string">&quot;nacos&quot;</span><br>  &#125;<br>  ...<br><span class="hljs-keyword">config</span> &#123;<br>  <span class="hljs-comment"># file、nacos 、apollo、zk、consul、etcd3</span><br>  <span class="hljs-built_in">type</span> = <span class="hljs-string">&quot;nacos&quot;</span><br><br>  nacos &#123;<br>    serverAddr = <span class="hljs-string">&quot;192.168.56.105:8848&quot;</span><br>    namespace = <span class="hljs-string">&quot;&quot;</span><br>    <span class="hljs-literal">group</span> = <span class="hljs-string">&quot;SEATA_GROUP&quot;</span><br>    username = <span class="hljs-string">&quot;nacos&quot;</span><br>    <span class="hljs-literal">password</span> = <span class="hljs-string">&quot;nacos&quot;</span><br>    dataId = <span class="hljs-string">&quot;seataServer.properties&quot;</span> <br>  &#125;<br>  ...<br></code></pre></td></tr></table></figure>
+
+<p>在 nacos 中添加配置文件</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240426202340.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>配置内容： <a target="_blank" rel="noopener" href="https://github.com/apache/incubator-seata/blob/1.3.0/script/config-center/config.txt">https://github.com/apache/incubator-seata/blob/1.3.0/script/config-center/config.txt</a></p>
+<p>微改了一下，后面有需要再进行改动</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">transport.type</span>=TCP<br><span class="hljs-attr">transport.server</span>=NIO<br><span class="hljs-attr">transport.heartbeat</span>=<span class="hljs-literal">true</span><br><span class="hljs-attr">transport.enableClientBatchSendRequest</span>=<span class="hljs-literal">false</span><br><span class="hljs-attr">transport.threadFactory.bossThreadPrefix</span>=NettyBoss<br><span class="hljs-attr">transport.threadFactory.workerThreadPrefix</span>=NettyServerNIOWorker<br><span class="hljs-attr">transport.threadFactory.serverExecutorThreadPrefix</span>=NettyServerBizHandler<br><span class="hljs-attr">transport.threadFactory.shareBossWorker</span>=<span class="hljs-literal">false</span><br><span class="hljs-attr">transport.threadFactory.clientSelectorThreadPrefix</span>=NettyClientSelector<br><span class="hljs-attr">transport.threadFactory.clientSelectorThreadSize</span>=<span class="hljs-number">1</span><br><span class="hljs-attr">transport.threadFactory.clientWorkerThreadPrefix</span>=NettyClientWorkerThread<br><span class="hljs-attr">transport.threadFactory.bossThreadSize</span>=<span class="hljs-number">1</span><br><span class="hljs-attr">transport.threadFactory.workerThreadSize</span>=default<br><span class="hljs-attr">transport.shutdown.wait</span>=<span class="hljs-number">3</span><br><span class="hljs-attr">service.vgroupMapping.my_test_tx_group</span>=default<br><span class="hljs-comment"># 端口 8091 通常用于 Seata 服务的默认通信端口</span><br><span class="hljs-attr">service.default.grouplist</span>=<span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span>:<span class="hljs-number">8091</span><br><span class="hljs-attr">service.enableDegrade</span>=<span class="hljs-literal">false</span><br><span class="hljs-attr">service.disableGlobalTransaction</span>=<span class="hljs-literal">false</span><br><span class="hljs-attr">client.rm.asyncCommitBufferLimit</span>=<span class="hljs-number">10000</span><br><span class="hljs-attr">client.rm.lock.retryInterval</span>=<span class="hljs-number">10</span><br><span class="hljs-attr">client.rm.lock.retryTimes</span>=<span class="hljs-number">30</span><br><span class="hljs-attr">client.rm.lock.retryPolicyBranchRollbackOnConflict</span>=<span class="hljs-literal">true</span><br><span class="hljs-attr">client.rm.reportRetryCount</span>=<span class="hljs-number">5</span><br><span class="hljs-attr">client.rm.tableMetaCheckEnable</span>=<span class="hljs-literal">false</span><br><span class="hljs-attr">client.rm.sqlParserType</span>=druid<br><span class="hljs-attr">client.rm.reportSuccessEnable</span>=<span class="hljs-literal">false</span><br><span class="hljs-attr">client.rm.sagaBranchRegisterEnable</span>=<span class="hljs-literal">false</span><br><span class="hljs-attr">client.tm.commitRetryCount</span>=<span class="hljs-number">5</span><br><span class="hljs-attr">client.tm.rollbackRetryCount</span>=<span class="hljs-number">5</span><br><span class="hljs-attr">client.tm.degradeCheck</span>=<span class="hljs-literal">false</span><br><span class="hljs-attr">client.tm.degradeCheckAllowTimes</span>=<span class="hljs-number">10</span><br><span class="hljs-attr">client.tm.degradeCheckPeriod</span>=<span class="hljs-number">2000</span><br><span class="hljs-attr">store.mode</span>=file<br><span class="hljs-attr">store.file.dir</span>=file_store/data<br><span class="hljs-attr">store.file.maxBranchSessionSize</span>=<span class="hljs-number">16384</span><br><span class="hljs-attr">store.file.maxGlobalSessionSize</span>=<span class="hljs-number">512</span><br><span class="hljs-attr">store.file.fileWriteBufferCacheSize</span>=<span class="hljs-number">16384</span><br><span class="hljs-attr">store.file.flushDiskMode</span>=async<br><span class="hljs-attr">store.file.sessionReloadReadSize</span>=<span class="hljs-number">100</span><br><span class="hljs-attr">store.db.datasource</span>=druid<br><span class="hljs-attr">store.db.dbType</span>=mysql<br><span class="hljs-attr">store.db.driverClassName</span>=com.mysql.jdbc.Driver<br><span class="hljs-attr">store.db.url</span>=jdbc:mysql://<span class="hljs-number">192.168</span>.<span class="hljs-number">56.105</span>:<span class="hljs-number">3306</span>/seata?useUnicode=<span class="hljs-literal">true</span><br><span class="hljs-attr">store.db.user</span>=username<br><span class="hljs-attr">store.db.password</span>=password<br><span class="hljs-attr">store.db.minConn</span>=<span class="hljs-number">5</span><br><span class="hljs-attr">store.db.maxConn</span>=<span class="hljs-number">30</span><br><span class="hljs-attr">store.db.globalTable</span>=global_table<br><span class="hljs-attr">store.db.branchTable</span>=branch_table<br><span class="hljs-attr">store.db.queryLimit</span>=<span class="hljs-number">100</span><br><span class="hljs-attr">store.db.lockTable</span>=lock_table<br><span class="hljs-attr">store.db.maxWait</span>=<span class="hljs-number">5000</span><br><span class="hljs-attr">store.redis.host</span>=<span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br><span class="hljs-attr">store.redis.port</span>=<span class="hljs-number">6379</span><br><span class="hljs-attr">store.redis.maxConn</span>=<span class="hljs-number">10</span><br><span class="hljs-attr">store.redis.minConn</span>=<span class="hljs-number">1</span><br><span class="hljs-attr">store.redis.database</span>=<span class="hljs-number">0</span><br><span class="hljs-attr">store.redis.password</span>=null<br><span class="hljs-attr">store.redis.queryLimit</span>=<span class="hljs-number">100</span><br><span class="hljs-attr">server.recovery.committingRetryPeriod</span>=<span class="hljs-number">1000</span><br><span class="hljs-attr">server.recovery.asynCommittingRetryPeriod</span>=<span class="hljs-number">1000</span><br><span class="hljs-attr">server.recovery.rollbackingRetryPeriod</span>=<span class="hljs-number">1000</span><br><span class="hljs-attr">server.recovery.timeoutRetryPeriod</span>=<span class="hljs-number">1000</span><br><span class="hljs-attr">server.maxCommitRetryTimeout</span>=-<span class="hljs-number">1</span><br><span class="hljs-attr">server.maxRollbackRetryTimeout</span>=-<span class="hljs-number">1</span><br><span class="hljs-attr">server.rollbackRetryTimeoutUnlockEnable</span>=<span class="hljs-literal">false</span><br><span class="hljs-attr">client.undo.dataValidation</span>=<span class="hljs-literal">true</span><br><span class="hljs-attr">client.undo.logSerialization</span>=jackson<br><span class="hljs-attr">client.undo.onlyCareUpdateColumns</span>=<span class="hljs-literal">true</span><br><span class="hljs-attr">server.undo.logSaveDays</span>=<span class="hljs-number">7</span><br><span class="hljs-attr">server.undo.logDeletePeriod</span>=<span class="hljs-number">86400000</span><br><span class="hljs-attr">client.undo.logTable</span>=undo_log<br><span class="hljs-attr">client.log.exceptionRate</span>=<span class="hljs-number">100</span><br><span class="hljs-attr">transport.serialization</span>=seata<br><span class="hljs-attr">transport.compressor</span>=none<br><span class="hljs-attr">metrics.enabled</span>=<span class="hljs-literal">false</span><br><span class="hljs-attr">metrics.registryType</span>=compact<br><span class="hljs-attr">metrics.exporterList</span>=prometheus<br><span class="hljs-attr">metrics.exporterPrometheusPort</span>=<span class="hljs-number">9898</span><br></code></pre></td></tr></table></figure>
+
+<p>启动操作</p>
+<p>直接点击 seata-server.bat 文件进行启动操作</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240426202545.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>查看服务实例，发现是已经在服务列表了</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240426202627.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<hr>
+<h5 id="部署集群-TC-Server"><a href="#部署集群-TC-Server" class="headerlink" title="部署集群 TC  Server"></a>部署集群 TC  Server</h5><p>这里使用 docker 的方式进行部署</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">docker</span> pull seataio/seata-server:<span class="hljs-number">1</span>.<span class="hljs-number">3</span>.<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+
+<p>部署参考： <a target="_blank" rel="noopener" href="https://seata.apache.org/zh-cn/docs/ops/deploy-by-docker/">https://seata.apache.org/zh-cn/docs/ops/deploy-by-docker/</a></p>
+<p>启动命令</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">docker</span> run --name seata-server -p <span class="hljs-number">8091</span>:<span class="hljs-number">8091</span> -p <span class="hljs-number">7091</span>:<span class="hljs-number">7091</span> seataio/seata-server:<span class="hljs-number">1</span>.<span class="hljs-number">3</span>.<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><code>-p 8091:8091</code> 将容器内的 8091 端口映射到宿主机的 8091 端口，通常用于服务端的通信。</li>
+<li><code>-p 7091:7091</code> 将容器内的 7091 端口映射到宿主机的 7091 端口，这个端口一般用于管理端或其他特定的服务通信。</li>
+</ul>
+<p>在参与全局事务的数据库中加入undo_log这张表</p>
+<p>这里后面再看一下  to be contined….</p>
+<h4 id="业务场景"><a href="#业务场景" class="headerlink" title="业务场景"></a>业务场景</h4><p>继续项目：<a target="_blank" rel="noopener" href="https://github.com/YunaiV/SpringBoot-Labs">https://github.com/YunaiV/SpringBoot-Labs</a> 的 <a target="_blank" rel="noopener" href="https://github.com/YunaiV/SpringBoot-Labs/tree/master/labx-17">labx-17</a> </p>
+<p>文档： <a target="_blank" rel="noopener" href="https://www.iocoder.cn/Spring-Cloud-Alibaba/Seata/?self">https://www.iocoder.cn/Spring-Cloud-Alibaba/Seata/?self</a></p>
+<p>业务逻辑</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240426203157.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>项目模块</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240426203253.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>order 下单操作</li>
+<li>product 商品服务（扣除库存）</li>
+<li>account 账户服务（扣除余额）</li>
+</ul>
+<h4 id="工程代码"><a href="#工程代码" class="headerlink" title="工程代码"></a>工程代码</h4>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="category-chain-item">微服务</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/java/" class="print-no-link">#java</a>
+      
+        <a href="/tags/springcloud/" class="print-no-link">#springcloud</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>分布式事务</div>
+      <div>https://varcel.luoqi.icu/2024/04/25/SpringCloud_分布式事务/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Luo QI</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年4月25日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/04/24/Java%E5%9F%BA%E7%A1%80_%E5%8F%8D%E5%B0%84/" title="Java基础_反射">
+                        <span class="hidden-mobile">Java基础_反射</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
