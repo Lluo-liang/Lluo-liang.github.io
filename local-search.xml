@@ -431,8 +431,6 @@
     
     <categories>
       
-      <category>Java</category>
-      
       <category>面试煎熬成蛋</category>
       
     </categories>
@@ -659,8 +657,6 @@
     
     
     <categories>
-      
-      <category>Java</category>
       
       <category>面试煎熬成蛋</category>
       
@@ -1058,7 +1054,9 @@
     
     <categories>
       
-      <category>UI</category>
+      <category>Java</category>
+      
+      <category>JavaFx</category>
       
     </categories>
     
@@ -1193,7 +1191,7 @@
     
     <categories>
       
-      <category>web</category>
+      <category>前端</category>
       
       <category>Node</category>
       
@@ -1222,7 +1220,7 @@
     
     <categories>
       
-      <category>工程</category>
+      <category>部署</category>
       
       <category>函数计算FC</category>
       
@@ -2424,7 +2422,9 @@
     
     <categories>
       
-      <category>Records</category>
+      <category>操作系统</category>
+      
+      <category>Linux</category>
       
     </categories>
     
@@ -2617,7 +2617,7 @@
     
     <categories>
       
-      <category>Records</category>
+      <category>随记</category>
       
     </categories>
     
@@ -2696,7 +2696,7 @@
     
     <categories>
       
-      <category>web</category>
+      <category>前端</category>
       
       <category>Vue</category>
       
@@ -2883,7 +2883,9 @@
     
     <categories>
       
-      <category>CodeProgram</category>
+      <category>项目</category>
+      
+      <category>程序</category>
       
     </categories>
     
