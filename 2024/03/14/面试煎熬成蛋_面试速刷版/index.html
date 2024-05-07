@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          23k 字
+          24k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          195 分钟
+          196 分钟
         
       </span>
     
@@ -1375,6 +1375,50 @@
 <p>代码结构示例</p>
 <figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><code class="hljs 1c">servicex                 <span class="hljs-comment">// 项目名</span><br>    <span class="hljs-string">|- admin-ui          // 管理服务前端代码(一般将UI和SERVICE放到一个工程中，便于管理)</span><br>    <span class="hljs-string">|- servicex-auth     // 模块1</span><br>    <span class="hljs-string">|- servicex-common   // 模块2</span><br>    <span class="hljs-string">|- servicex-gateway  // 模块3</span><br>    <span class="hljs-string">|- servicex-system   // 模块4</span><br>        <span class="hljs-string">|- src</span><br>            <span class="hljs-string">|- main                  // 业务逻辑</span><br>                <span class="hljs-string">|- assembly          // 基于maven assembly插件的服务化打包方案</span><br>                    <span class="hljs-string">|- bin           // 模块脚本(启动、停止、重启)</span><br>                    <span class="hljs-string">|- sbin          // 管理员角色使用的脚本(环境检查、系统检测等等)</span><br>                    <span class="hljs-string">|- assembly.xml  // 配置文件</span><br>                <span class="hljs-string">|- java              // 源码</span><br>                    <span class="hljs-string">|- com</span><br>                        <span class="hljs-string">|- hadoopx</span><br>                            <span class="hljs-string">|- servicex</span><br>                                <span class="hljs-string">|- system</span><br>                                    <span class="hljs-string">|- annotation     // 注解</span><br>                                    <span class="hljs-string">|- aspect         // 面向切面编程</span><br>                                    <span class="hljs-string">|- config         // 配置文件POJO</span><br>                                    <span class="hljs-string">|- filter         // 过滤器</span><br>                                    <span class="hljs-string">|- constant       // 存放常量</span><br>                                    <span class="hljs-string">|- utils          // 工具</span><br>                                    <span class="hljs-string">|- exception      // 异常</span><br>                                    <span class="hljs-string">|- controller     // 控制层(将请求通过URL匹配，分配到不同的接收器/方法进行处理，然后返回结果)</span><br>                                    <span class="hljs-string">|- service        // 服务层接口</span><br>                                        <span class="hljs-string">|- impl       // 服务层实现</span><br>                                    <span class="hljs-string">|- mapper/repository // 数据访问层，与数据库交互为service提供接口</span><br>                                    <span class="hljs-string">|- entity/domain     // 实体对象</span><br>                                        <span class="hljs-string">|- dto // 持久层需要的实体对象(用于服务层与持久层之间的数据传输对象)</span><br>                                        <span class="hljs-string">|- vo // 视图层需要的实体对象(用于服务层与视图层之间的数据传输对象)</span><br>                                    <span class="hljs-string">|- *Application.java  // 入口启动类</span><br>                <span class="hljs-string">|- resources         // 资源</span><br>                    <span class="hljs-string">|- static        // 静态资源(html、css、js、图片等)</span><br>                    <span class="hljs-string">|- templates     // 视图模板(jsp、thymeleaf等)</span><br>                    <span class="hljs-string">|- mapper        // 存放数据访问层对应的XML配置</span><br>                        <span class="hljs-string">|- *Mapper.xml</span><br>                        <span class="hljs-string">|- ...</span><br>                    <span class="hljs-string">|- application.yml        // 公共配置</span><br>                    <span class="hljs-string">|- application-dev.yml    // 开发环境配置</span><br>                    <span class="hljs-string">|- application-prod.yml   // 生产环境配置</span><br>                    <span class="hljs-string">|- banner.txt    </span><br>                    <span class="hljs-string">|- logback.xml            // 日志配置</span><br>            <span class="hljs-string">|- test                  // 测试源码</span><br>               <span class="hljs-string">|- java               </span><br>                    <span class="hljs-string">|- com</span><br>                        <span class="hljs-string">|- hadoopx</span><br>                            <span class="hljs-string">|- servicex</span><br>                                <span class="hljs-string">|- system</span><br>                                    <span class="hljs-string">|- 根据具体情况按源码目录结构存放编写的测试用例</span><br>        <span class="hljs-string">|- target     // 编译打包输出目录(自动生成，不需要创建)</span><br>        <span class="hljs-string">|- pom.xml    // 该模块的POM文件</span><br>    <span class="hljs-string">|- sql            // 项目需要的SQL脚本</span><br>    <span class="hljs-string">|- doc            // 精简版的开发、运维手册</span><br>    <span class="hljs-string">|- .gitignore     // 哪些文件不用传到版本管控工具中</span><br>    <span class="hljs-string">|- pom.xml        // 工程总POM文件</span><br>    <span class="hljs-string">|- README.md      // 注意事项</span><br>External Libraries    <span class="hljs-comment">// 相关JAR包依赖</span><br></code></pre></td></tr></table></figure>
 
+
+<h3 id="客诉项目问题"><a href="#客诉项目问题" class="headerlink" title="客诉项目问题"></a>客诉项目问题</h3><ul>
+<li>JVM问题<ul>
+<li>发现问题</li>
+<li>定位问题<ul>
+<li>通过运维平台 GC 频率，GC 占用大小，GC 释放空间</li>
+</ul>
+</li>
+<li>什么情况下会导致 Full GC 的现象<ul>
+<li>大对象</li>
+<li>Edgn 区</li>
+</ul>
+</li>
+<li>Full GC 回收哪些区域<ul>
+<li>堆、元空间区</li>
+</ul>
+</li>
+<li>除了 Full GC 还有哪些 GC </li>
+<li>哪些区域会有 GC 发送</li>
+<li>JDK 1.8 默认的垃圾回收器是哪个</li>
+<li>了解哪些垃圾回收算法</li>
+<li>垃圾回收器<ul>
+<li>G1<ul>
+<li>增量并发，堆</li>
+</ul>
+</li>
+<li>G1 的好处<ul>
+<li>STW 消耗不会太长</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Redis 怎么定位<ul>
+<li>历史遗留问题解决</li>
+</ul>
+</li>
+<li>详情<ul>
+<li>1、主键查询</li>
+</ul>
+</li>
+<li><h2 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a>分布式事务</h2></li>
+</ul>
 <h2 id="简历项目内容"><a href="#简历项目内容" class="headerlink" title="简历项目内容"></a>简历项目内容</h2><h4 id="使用账号密码访问流程（JWT-方式）"><a href="#使用账号密码访问流程（JWT-方式）" class="headerlink" title="使用账号密码访问流程（JWT 方式）"></a>使用账号密码访问流程（JWT 方式）</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240330222111.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <ul>
 <li>SpringSecurity：matches 方法（提取盐操作，生成哈希值，比较哈希值）</li>

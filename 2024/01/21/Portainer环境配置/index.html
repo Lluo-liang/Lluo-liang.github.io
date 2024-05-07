@@ -226,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          819 字
+          829 字
         
       </span>
     
@@ -289,7 +289,10 @@
 
 <ul>
 <li><code>-d</code>: 后台运行容器。</li>
-<li><code>-p 9000:9000</code>: 将容器的 9000 端口映射到主机的 9000 端口。</li>
+<li><code>-p 9000:9000</code>: 将容器的 9000 端口映射到主机的 9000 端口。<ul>
+<li>宿主机端口：容器端口</li>
+</ul>
+</li>
 <li><code>--name=portainer</code>: 将容器命名为 portainer。</li>
 <li><code>--restart=always</code>: 确保容器总是重新启动。</li>
 <li><code>-v /var/run/docker.sock:/var/run/docker.sock</code>: 将 Docker 的 Unix socket 映射到容器，允许 Portainer 与本地 Docker 守护进程通信。</li>

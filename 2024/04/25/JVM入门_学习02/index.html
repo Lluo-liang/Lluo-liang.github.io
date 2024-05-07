@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          428 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          1 分钟
+          4 分钟
         
       </span>
     
@@ -276,7 +276,21 @@
             
               <div class="markdown-body">
                 
-                
+                <h3 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h3><p>本期是 2024年5月1日对于JVM相关内容进行进阶学习的相关扩展，主要会围绕部分的面试题和自己的确不太了解的内容进行阐述和说明。</p>
+<p>预先知识，选自![[面试煎熬成蛋_面试速刷版#JVM]]</p>
+<p>ZZ</p>
+<h3 id="垃圾回收器"><a href="#垃圾回收器" class="headerlink" title="垃圾回收器"></a>垃圾回收器</h3><p>前面讲述到垃圾回收器一般是有 <strong>Serial GC</strong>、<strong>Parallel GC</strong>、<strong>CMS (Concurrent Mark Sweep) GC</strong>、<strong>G1 GC</strong> 四种，如果问道其他的垃圾收集器，暂时只能抱歉说不太了解。</p>
+<ul>
+<li><strong>Serial GC</strong>: 单线程执行，适合单核处理器。</li>
+<li><strong>Parallel GC</strong>: 多线程执行，关注吞吐量。</li>
+<li><strong>CMS (Concurrent Mark Sweep) GC</strong>: 关注最短停顿时间。</li>
+<li><strong>G1 GC</strong>: 面向服务端应用，将堆内存分为多个区域，并并行执行垃圾回收。</li>
+</ul>
+<p>OK，在这四种的基础上，然后我们继续往下去了解。</p>
+<p>一般性能调优，指垃圾回收器，会说一下相关命令：</p>
+<p>可达性分析 + 分代收集</p>
+<h3 id="内存溢出"><a href="#内存溢出" class="headerlink" title="内存溢出"></a>内存溢出</h3><p>内存溢出的不同原因： <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Rt4y1G7zN">https://www.bilibili.com/video/BV1Rt4y1G7zN</a></p>
+<h3 id="线上-GC"><a href="#线上-GC" class="headerlink" title="线上 GC"></a>线上 GC</h3>
                 
               </div>
             

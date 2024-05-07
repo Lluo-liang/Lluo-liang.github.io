@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.6k 字
+          2.7k 字
         
       </span>
     
@@ -335,28 +335,24 @@
 </li>
 </ol>
 <h4 id="网络使用情况"><a href="#网络使用情况" class="headerlink" title="网络使用情况"></a>网络使用情况</h4><ol>
-<li><p><strong>netstat</strong>:</p>
-<ul>
+<li><strong>netstat</strong>:<ul>
 <li><code>netstat</code> 命令用于显示网络连接、路由表、接口统计等网络信息。</li>
 <li>例如：<code>netstat -tulnp</code> 显示所有监听端口。</li>
 </ul>
 </li>
-<li><p><strong>ss</strong>:</p>
-<ul>
+<li><strong>ss</strong>:<ul>
 <li><code>ss</code>（Socket Statistics）命令是 <code>netstat</code> 的一个现代替代品，用于显示套接字统计信息。</li>
 <li>例如：<code>ss -tuln</code> 显示监听端口。</li>
 </ul>
 </li>
 </ol>
 <h4 id="系统活动和性能"><a href="#系统活动和性能" class="headerlink" title="系统活动和性能"></a>系统活动和性能</h4><ol>
-<li><p><strong>sar</strong>:</p>
-<ul>
+<li><strong>sar</strong>:<ul>
 <li><code>sar</code> 命令用于收集、报告或保存系统活动信息，它是sysstat包的一部分。</li>
 <li>例如：<code>sar -u 1 5</code> 每秒报告一次CPU使用情况，共报告5次。</li>
 </ul>
 </li>
-<li><p><strong>iostat</strong>:</p>
-<ul>
+<li><strong>iostat</strong>:<ul>
 <li><code>iostat</code> 命令用于显示CPU统计信息和所有分区的I&#x2F;O统计信息。</li>
 <li>它有助于监控系统的输入&#x2F;输出设备负载。</li>
 </ul>
@@ -406,6 +402,9 @@
 <li><code>zip &lt;archive.zip&gt; &lt;files&gt;</code>、<code>unzip &lt;archive.zip&gt;</code>：压缩和解压<code>.zip</code>文件。</li>
 </ul>
 <p>这些命令只是Shell命令的一小部分，但它们是日常使用中最基本和最常见的。熟练掌握这些命令，可以大大提高在Linux或Unix环境下的工作效率。</p>
+<h3 id="4、常用命令"><a href="#4、常用命令" class="headerlink" title="4、常用命令"></a>4、常用命令</h3><h4 id="搜索文件"><a href="#搜索文件" class="headerlink" title="搜索文件"></a>搜索文件</h4><p>可以在指定目录及其子目录下搜索符合条件的文件</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-comment">#根目录下搜索文件</span><br><span class="hljs-built_in">find</span> / -type f -name <span class="hljs-string">&quot;苦涩脚.wld&quot;</span><br></code></pre></td></tr></table></figure>
+
 
                 
               </div>

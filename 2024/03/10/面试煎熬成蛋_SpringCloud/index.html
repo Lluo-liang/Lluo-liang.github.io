@@ -254,7 +254,7 @@
         
         
         
-          124 分钟
+          125 分钟
         
       </span>
     
@@ -400,7 +400,7 @@
 <p>Apollo 只能用来做配置管理，使用相对复杂些。</p>
 <p>如果你的项目仅仅需要配置中心的话，建议使用 Apollo。如果你的项目需要配置中心的同时还需要服务发现及管理的话，那就更建议使用Nacos。</p>
 <p>大概讲一下 Nacos 配置中心是怎么用的，然后带一下 说知道有 Apollo 这个东西，但没有用过。</p>
-<h3 id="OpenFeign"><a href="#OpenFeign" class="headerlink" title="OpenFeign"></a>OpenFeign</h3><h4 id="Ribbon-常见的负载均衡策略有哪些"><a href="#Ribbon-常见的负载均衡策略有哪些" class="headerlink" title="Ribbon 常见的负载均衡策略有哪些"></a>Ribbon 常见的负载均衡策略有哪些</h4><p>Ribbon 常见的负载均衡策略：</p>
+<h4 id="Nacos-是去中心的吗，如果服务挂了，是否可以继续进行访问操作"><a href="#Nacos-是去中心的吗，如果服务挂了，是否可以继续进行访问操作" class="headerlink" title="Nacos 是去中心的吗，如果服务挂了，是否可以继续进行访问操作"></a>Nacos 是去中心的吗，如果服务挂了，是否可以继续进行访问操作</h4><h3 id="OpenFeign"><a href="#OpenFeign" class="headerlink" title="OpenFeign"></a>OpenFeign</h3><h4 id="Ribbon-常见的负载均衡策略有哪些"><a href="#Ribbon-常见的负载均衡策略有哪些" class="headerlink" title="Ribbon 常见的负载均衡策略有哪些"></a>Ribbon 常见的负载均衡策略有哪些</h4><p>Ribbon 常见的负载均衡策略：</p>
 <ul>
 <li><strong>Round Robin Rule（轮询规则）</strong><ul>
 <li>这是最简单也是最常用的负载均衡策略。它按顺序循环地选择服务实例，每次请求轮流分配给下一个服务实例。</li>
@@ -511,7 +511,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="生产"><a href="#生产" class="headerlink" title="生产"></a>生产</h3><h4 id="你们项目中有没有做过限流，怎么做的"><a href="#你们项目中有没有做过限流，怎么做的" class="headerlink" title="你们项目中有没有做过限流，怎么做的"></a>你们项目中有没有做过限流，怎么做的</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402281528174.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="Gateway"><a href="#Gateway" class="headerlink" title="Gateway"></a>Gateway</h3><h4 id="Gateway-的配置你有搞过吗，大概说一下"><a href="#Gateway-的配置你有搞过吗，大概说一下" class="headerlink" title="Gateway 的配置你有搞过吗，大概说一下"></a>Gateway 的配置你有搞过吗，大概说一下</h4><h3 id="生产"><a href="#生产" class="headerlink" title="生产"></a>生产</h3><h4 id="你们项目中有没有做过限流，怎么做的"><a href="#你们项目中有没有做过限流，怎么做的" class="headerlink" title="你们项目中有没有做过限流，怎么做的"></a>你们项目中有没有做过限流，怎么做的</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202402281528174.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>限流的常见实现方式：</p>
 <ul>
 <li>1、Tomcat: 可以设置最大连接数<ul>
