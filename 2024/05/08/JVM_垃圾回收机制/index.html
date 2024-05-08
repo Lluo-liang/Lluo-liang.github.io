@@ -1,0 +1,960 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/Xbox%20L.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Luo QI">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="JVM_垃圾回收机制相关的视频学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM_垃圾回收机制">
+<meta property="og:url" content="https://varcel.luoqi.icu/2024/05/08/JVM_%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/index.html">
+<meta property="og:site_name" content="轻松的洛亓">
+<meta property="og:description" content="JVM_垃圾回收机制相关的视频学习">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240508102900.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240508103139.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240508103244.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240508111542.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240508111641.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240508113444.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240508102042.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240508134012.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240508133953.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240508134300.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240508141340.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240508103510.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240508134912.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240508135114.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240508150708.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240508151042.png">
+<meta property="article:published_time" content="2024-05-08T10:09:22.000Z">
+<meta property="article:modified_time" content="2024-05-08T10:09:22.000Z">
+<meta property="article:author" content="Luo QI">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="jvm">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240508102900.png">
+  
+  
+  
+  <title>JVM_垃圾回收机制 - 轻松的洛亓</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"varcel.luoqi.icu","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  <meta name="baidu-site-verification" content="codeva-Oq0KOjHuD3" />
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>轻松的洛亓</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="JVM_垃圾回收机制"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-05-08 10:09" pubdate>
+          2024年5月8日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          60 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">JVM_垃圾回收机制</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>视频学习： <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1sp4y1Y7ap">https://www.bilibili.com/video/BV1sp4y1Y7ap</a></p>
+<p>文档学习：略</p>
+<h3 id="什么是可回收垃圾对象"><a href="#什么是可回收垃圾对象" class="headerlink" title="什么是可回收垃圾对象"></a>什么是可回收垃圾对象</h3><p><strong>gc过程</strong></p>
+<p>gc 判断对象是否需要回收有两种判定方法</p>
+<h4 id="引用计数算法"><a href="#引用计数算法" class="headerlink" title="引用计数算法"></a>引用计数算法</h4><p>引用计数算法，被引用时计数+1，释放引用时-1，计数为0就回收（简单不推荐，解决不了循环引用）</p>
+<h4 id="可达性分析算法"><a href="#可达性分析算法" class="headerlink" title="可达性分析算法"></a>可达性分析算法</h4><p>将“GCRoots”对象作为起点，从这些节点开始向下搜索引用的对象，找到的对象都标记为非垃圾对象，其余未标记的对象都是垃圾对象</p>
+<p>GCRoots 根节点：线程栈的本地变量、静态变量、本地方法栈的变量等等</p>
+<ul>
+<li>可达性分析算法，就是从gc roots开始往下搜索，走过的对象就是引用链，没有任何引用链时，就是不可达对象，就会被回收（gc roots包含虚拟机栈中引用对象，方法区中静态属性&#x2F;常量引用对象，本地方法栈中引用对象）<ul>
+<li>如果对象重写了finalize()，并将自身赋予某个引用，那么这个对象不会被回收</li>
+<li>可以自己调用system.gc或Runtime.getRuntime().gc，都是像系统提交申请进行gc操作，但不会立即gc</li>
+</ul>
+</li>
+</ul>
+<p>比较</p>
+<ul>
+<li>System.gc()调用起来更方便，但是会给应用带来不必要的性能问题。还可以通过参数 -XX:+DisableExplicitGC.禁止显示调用gc。</li>
+<li>Runtime.getRuntime()  用来与Java运行时进行交互，调用该方法会建议JVM 花费精力回收不再使用的对象。</li>
+</ul>
+<h5 id="GC-Root-对象"><a href="#GC-Root-对象" class="headerlink" title="GC Root 对象"></a>GC Root 对象</h5><blockquote>
+<p>哪些对象可以作为 GC Root 对象</p>
+</blockquote>
+<p>GCRoots 根节点：线程栈的本地变量、静态变量、本地方法栈的变量等等</p>
+<h3 id="垃圾回收算法"><a href="#垃圾回收算法" class="headerlink" title="垃圾回收算法"></a>垃圾回收算法</h3><ul>
+<li>1、标记-清除算法，给回收对象标记，然后清除对象，缺点效率不高清除后空间不连续<ul>
+<li>位置不连续，容易产生内存碎片</li>
+</ul>
+</li>
+<li>2、标记-整理算法，存活对象整理到一块，清除存活对象以外的数据，缺点整理过程执行较多复制操作，算法效率降低<ul>
+<li>没有碎片，效率较低</li>
+</ul>
+</li>
+<li>3、复制算法，就是把回收对象复制到半块地方，原来的地方直接清空，缺点内存缩小一半<ul>
+<li>没有碎片，浪费空间</li>
+</ul>
+</li>
+</ul>
+<h4 id="标记-清除算法"><a href="#标记-清除算法" class="headerlink" title="标记-清除算法"></a>标记-清除算法</h4><p>给回收对象标记，然后清除对象，缺点效率不高清除后空间不连续</p>
+<ul>
+<li>位置不连续，容易产生内存碎片</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240508102900.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="复制算法"><a href="#复制算法" class="headerlink" title="复制算法"></a>复制算法</h4><p>把回收对象复制到半块地方，原来的地方直接清空，缺点内存缩小一半</p>
+<ul>
+<li>没有碎片，浪费空间</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240508103139.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="标记-整理算法"><a href="#标记-整理算法" class="headerlink" title="标记-整理算法"></a>标记-整理算法</h4><p>存活对象整理到一块，清除存活对象以外的数据，缺点整理过程执行较多复制操作，算法效率降低</p>
+<ul>
+<li>没有碎片，效率较低</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240508103244.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="JVM-内存模型"><a href="#JVM-内存模型" class="headerlink" title="JVM 内存模型"></a>JVM 内存模型</h3><p>一般会有分代模型和分区模型，在 JDK 1.8 的时候使用的是 分代模型</p>
+<p>运行时数据区</p>
+<ul>
+<li><h2 id="线程私有"><a href="#线程私有" class="headerlink" title="线程私有"></a>线程私有</h2></li>
+<li>线程共享</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240508111542.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="堆内存"><a href="#堆内存" class="headerlink" title="堆内存"></a>堆内存</h4><p>JDK 1.8 堆内存使用内存模型是分代模型</p>
+<ul>
+<li>堆<ul>
+<li>年轻代       1&#x2F;3<ul>
+<li>Eden          8   <ul>
+<li>一般是朝思夕死的对象，MInor GC 的时候大部分存活的对象不多</li>
+</ul>
+</li>
+<li>Survivor<ul>
+<li>From   1</li>
+<li>To        1</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>老年代        2&#x2F;3<ul>
+<li>当对象经历过 15 次 GC，会将该对象从幸存区放入到老年代</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240508111641.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="垃圾回收过程"><a href="#垃圾回收过程" class="headerlink" title="垃圾回收过程"></a>垃圾回收过程</h4><p>新创建的对象，放入到 Eden 区，根据可达性分析，判断对象是否可以被回收，如果不可被回收，会通过 复制算法 复制到 to 区域</p>
+<p>当对象经历过 15 次 GC，会将该对象从幸存区放入到老年代</p>
+<ul>
+<li>Minor GC&#x2F;Young GC</li>
+<li>Full GC</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240508113444.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>在堆中的对象，首先执行引擎会开启</p>
+<p>一、堆的区域划分</p>
+<ul>
+<li>1.堆被分为了两份：新生代和老年代【1：2】</li>
+<li>2.对于新生代，内部又被分为了三个区域。Eden区，幸存者区survivor(分成from和to)【8:1:1】</li>
+</ul>
+<p>二、对象回收分代回收策略</p>
+<ul>
+<li>1.新创建的对象，都会先分配到 eden 区</li>
+<li>2.当伊甸园内存不足，标记伊甸园与from(现阶段没有)的存活对象</li>
+<li>3.将存活对象采用复制算法复制到to中，复制完毕后，伊甸园和from内存都得到释放</li>
+<li>4.经过一段时间后伊甸园的内存又出现不足，标记eden区域to区存活的对象，将其复制到from区</li>
+<li>5.当幸存区对象熬过几次回收（最多15次），晋升到老年代（幸存区内存不足或大对象会提前晋升）</li>
+</ul>
+<p>MinorGC、Mixed GC、FullGC的区别是什么</p>
+<ul>
+<li>MinorGC【young GC】发生在新生代的垃圾回收，暂停时间短(STW)</li>
+<li>Mixed GC新生代+老年代部分区域的垃圾回收，G1收集器特有</li>
+<li>FuGC:新生代+老年代完整垃圾回收，暂停时间长(STW),应尽力避免</li>
+</ul>
+<p>stw（stop the world）停止用户线程（停止事件）</p>
+<p>Full  GC 触发：</p>
+<p>Full GC（Full Garbage Collection）是指对整个堆内存（包括新生代和老年代）进行垃圾回收的过程。</p>
+<p>Full GC通常比单独的新生代GC或老年代GC要慢，因为它需要检查整个堆。（stw 停顿时间会久一些）</p>
+<p>触发Full GC的情况可能包括但不限于以下几种：（常见的几种情况）【了解，后面整理一下】</p>
+<ol>
+<li><strong>老年代空间不足</strong>： 当老年代的内存占用接近其最大值时，JVM可能会执行Full GC来释放内存。</li>
+<li><strong>永久代（PermGen）空间不足</strong>（Java 8之前）： 永久代用于存储类元数据，当永久代空间不足时，会触发Full GC。</li>
+<li><strong>CMS垃圾回收后的清理</strong>： 使用CMS（Concurrent Mark-Sweep）垃圾回收器时，如果并发清理后老年代空间仍然不足，可能会触发Full GC。 </li>
+<li><strong>系统属性设置</strong>： 通过JVM参数（如<code>-XX:+HeapDumpOnOutOfMemoryError</code>）可以设置在 OOM（Out of Memory）异常时进行Full GC。</li>
+<li>**显式调用System.gc()**： 虽然调用<code>System.gc()</code>并不保证一定会执行Full GC，但这会是一个提示给JVM，可能会触发一次Full GC。</li>
+<li><strong>JVM监控到大量的对象死亡和内存回收</strong>： 如果新生代GC后，大量的对象从新生代晋升到老年代，JVM可能会认为需要进行Full GC。</li>
+<li><strong>堆外内存的回收</strong>： 如果使用了直接内存（如NIO缓冲区），JVM可能会在清理堆外内存时触发Full GC。</li>
+<li><strong>GC策略和垃圾回收器的选择</strong>： 不同的垃圾回收器和GC策略可能在特定条件下触发Full GC。</li>
+<li><strong>空间分配担保（Space Allocation Guarantee）失败</strong>： 在GC后，如果新生代的内存分配失败，JVM可能会尝试进行Full GC。</li>
+<li><strong>元空间（Metaspace）达到阈值</strong>（Java 8及之后）： 元空间用于存储类元数据，当达到一定阈值时，可能会触发Full GC。</li>
+<li><strong>堆内存分配策略</strong>： 根据JVM的堆内存分配策略，某些情况下可能会执行Full GC。</li>
+<li><strong>应用程序特定的行为</strong>： 某些应用程序在特定条件下可能会请求执行Full GC</li>
+</ol>
+<h3 id="GC-垃圾回收"><a href="#GC-垃圾回收" class="headerlink" title="GC 垃圾回收"></a>GC 垃圾回收</h3><p>而系统自己会自动进行gc，在堆区划分俩个空间</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240508102042.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>新生对象在新生代的伊甸区创建，如果伊甸区满了，会进行<strong>minor gc</strong>操作，仅除<strong>新生代</strong> 未被回收会进入幸存区（from），（大对象直接进入老年区）</p>
+<p>在幸存区的对象，每次伊甸区满了进行minor gc操作，存活的计数加1，且从from区复制到to区，from和to交换位置够岁数（15）的对象就直接进入老年代，直到老年代满了，会先执行一次minor gc操作，空间还是不足，就执行<strong>full gc</strong>，清除<strong>整个堆</strong></p>
+<p>其中每次gc都会触发stw（stop the world）耗时minor&lt;majoi&lt;full，所以要尽量避免full gc</p>
+<p>ps</p>
+<p>如果是<strong>CMS GC</strong>会有<strong>老年代</strong>后的单独执行<strong>major gc</strong>操作（非整堆，执行前也会执行一次minor gc比minor gc慢10倍）</p>
+<p>如果是<strong>G1 GC</strong>会进行<strong>mixed gc</strong>，混合gc，回收整个新生代和部分老年代</p>
+<h3 id="垃圾回收调优工具"><a href="#垃圾回收调优工具" class="headerlink" title="垃圾回收调优工具"></a>垃圾回收调优工具</h3><h4 id="visualvm"><a href="#visualvm" class="headerlink" title="visualvm"></a>visualvm</h4><p>visualvm  插件下载</p>
+<p>这里展示一下相关的使用</p>
+<p>工具下载地址： <a target="_blank" rel="noopener" href="https://visualvm.github.io/index.html">https://visualvm.github.io/index.html</a></p>
+<p>插件 下载界面： <a target="_blank" rel="noopener" href="https://visualvm.github.io/pluginscenters.html">https://visualvm.github.io/pluginscenters.html</a></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240508134012.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>下载地址： <a target="_blank" rel="noopener" href="https://visualvm.github.io/archive/uc/8u20/updates.html">https://visualvm.github.io/archive/uc/8u20/updates.html</a></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240508133953.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>选择 工具 →  插件 →  已下载  →  选择安装  →  重启</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240508134300.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>测试类</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MemoryTest</span> &#123;  <br>  <br>    <span class="hljs-type">byte</span>[] arr = <span class="hljs-keyword">new</span> <span class="hljs-type">byte</span>[<span class="hljs-number">1024</span> * <span class="hljs-number">25</span>];  <br>  <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-type">static</span> <span class="hljs-type">void</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">String</span>[] args)</span> throws InterruptedException </span>&#123;  <br>        List&lt;MemoryTest&gt; ms = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();  <br>  <br>        <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>)&#123;  <br>            ms.<span class="hljs-built_in">add</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">MemoryTest</span>());  <br>            Thread.<span class="hljs-built_in">sleep</span>(<span class="hljs-number">20</span>);  <br>        &#125;  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>然后看一下 GC 堆内存图</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240508141340.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h3><p>参考： <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1sp4y1Y7ap">https://www.bilibili.com/video/BV1sp4y1Y7ap</a></p>
+<p>常用垃圾收集器</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240508103510.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="Serial-、Serial-Old"><a href="#Serial-、Serial-Old" class="headerlink" title="Serial 、Serial Old"></a>Serial 、Serial Old</h4><p>在 JDK 1.0，1.2 早期的时候，当时使用的垃圾收集器主要使用的是  Serial + Serial Old 这一对</p>
+<ul>
+<li>Serial 、Serial Old<ul>
+<li>Serial 和 Serial Old 是 单线程垃圾收集器，在GC时，只允许⼀个 线程进⾏</li>
+<li>Serial ⽤在年轻代采⽤的是 复制算法、Serial Old ⽤在⽼年代采⽤ 的是 标记整理算法</li>
+<li>在单核处理器的情况下，简单⾼效，但是多核处理器下⽆法发挥 多核的性能不推荐使⽤，适合 100M以内 内存</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240508134912.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="Parallel、Parallel-Old"><a href="#Parallel、Parallel-Old" class="headerlink" title="Parallel、Parallel Old"></a>Parallel、Parallel Old</h4><p>Parallel  Scavenge +  Parallel Old  是 JDK8 默认使用的垃圾收集器</p>
+<ul>
+<li>Parallel、Parallel Old<ul>
+<li>Parallel 和 Parallel Old 是 多线程垃圾收集器，是serial系列的多线 程版本</li>
+<li>Parallel ⽤在年轻代采⽤的是 <strong>复制算法</strong>，Parallel Old采⽤的是 <strong>标 记整理算法</strong></li>
+<li>关注点在于吞吐量，⽐较适合CPU密集型场景，⼀般 4G以下 内存 推荐使⽤</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240508135114.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="ParNew-、CMS"><a href="#ParNew-、CMS" class="headerlink" title="ParNew 、CMS"></a>ParNew 、CMS</h4><ul>
+<li><p>ParNew 与 Parallel类似，只是为了配合 CMS 才出现的</p>
+</li>
+<li><p>ParNew ⽤在年轻代采⽤的是 复制算法， CMS ⽤在⽼年代采⽤的 是 <strong>标记清除算法</strong></p>
+</li>
+<li><p>CMS关注点是最⼤停顿时间，也就是<strong>⽤户的体验度，⽐较适合 4~8G 内存的情况使⽤</strong></p>
+</li>
+<li><p>CMS的运作步骤</p>
+<ul>
+<li>初始标记<ul>
+<li>STW，从GC Root出发，<strong>只标记直接引⽤对象</strong>(不包含内部 成员变量相关的间接引⽤对象)</li>
+</ul>
+</li>
+<li>并发标记<ul>
+<li>从GC Root的直接引⽤对象出发，遍历整个对象图进⾏标 记，耗时较⻓，由于⽤户线程和GC线程都在运⾏着，所以 会有多标、漏标的问题</li>
+<li>多标<ul>
+<li>多标 就是本应该是垃圾对象，但是由于⽤户线程还 在运⾏，所以没来及去清除标记</li>
+</ul>
+</li>
+<li>漏标<ul>
+<li>漏标 就是 新来的对象引⽤了GC Root链上的对象， 但是由于⽤户线程还在运⾏，没来得及标记为⾮垃 圾，被GC误清除</li>
+<li>漏标 的处理⽅案主要是 三⾊标记算法，主要分为 增量更新 和 原始快照<ul>
+<li>三⾊标记主要是分为三种颜⾊，分别是⿊⾊、⽩ ⾊、灰⾊<ul>
+<li>⿊⾊对象 表示 当前对象的引⽤对象图都扫描 完了</li>
+<li>灰⾊对象 表示 当前对象的引⽤对象图只扫描 了⼀部分</li>
+<li>⽩⾊对象 表示 当前对象的引⽤对象图没扫描</li>
+</ul>
+</li>
+<li>增量更新 是通过 记录下⿊⾊对象新增的⽩⾊对 象引⽤关系，将⿊⾊对象回退到灰⾊对象，重新 深度扫描⼀次</li>
+<li>原始快照 是通过 记录下灰⾊对象删除的⽩⾊对 象的引⽤关系，以灰⾊对象为根简单扫描⼀下， 将⽩⾊对象标记为⿊⾊对象，当作浮动垃圾处 理，等待下⼀轮GC<ul>
+<li>浮动垃圾<ul>
+<li>浮动垃圾 就是在 并发标记 和 并发清理 阶 段产⽣的垃圾，对GC最终效果影响不 ⼤，只要等待下⼀轮GC处理就⾏</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>重新标记<ul>
+<li>STW，对 并发标记 过程中产⽣状态改变的对象进⾏修正， 这⾥对于 漏标 的问题采⽤的是 三⾊标记算法 中的 增量更 新 来做的重新标记</li>
+</ul>
+</li>
+<li>并发清理<ul>
+<li>对未标记的对象进⾏清理，这⾥因为没有进⾏STW，所以 对于新增对象会被标记为⿊⾊对象</li>
+</ul>
+</li>
+<li>并发重置<ul>
+<li>将对象的标记位进⾏重置，进⾏下⼀轮GC</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>CMS：ConcurrentMarkSweep 并发标记清除</p>
+<p>CMS 的出现通过有效减少 STW 的间隔时间（大概百ms左右）</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240508150708.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>CMS 的执行：初始标记  →   并发标记（中间由于是并行的，会存在多标、漏标的问题）  →  重新标记  →  并发清理</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240508151042.png" srcset="/img/loading.gif" lazyload alt="image.png|500"></p>
+<h4 id="G1"><a href="#G1" class="headerlink" title="G1"></a>G1</h4><p>JDK1.8 之后的内存模型采用了分区模型的方式</p>
+<p>从JDK 9开始，CMS GC已经被标记为废弃，并在JDK 14中被完全移除。因此，对于使用JDK 9及以后版本的应用，推荐使用G1 GC或ZGC等其他低延迟垃圾回收器</p>
+<p>分区的话会进行回收部分区域（不一定是回收全部区域）</p>
+<ul>
+<li>G1 跟以往的垃圾收集器有点不同，它对于分代的概念不是物理分 代⽽是逻辑分代了，它将堆默认分成了2048个region，每个region 在每次GC结束后都会有不同的⻆⾊，并且相对于以往的⼤对象， 它也有专⻔的⼀个 Humogous区 来存放，倘若⼀个 Humogous区 放不下⼤对象会⽤连续的⼏个region来存放，对于G1从region来 看采⽤的是复制算法，但是从整体上来看是标记整理算法，G1 和 CMS 的出发点⼀样，但是 G1 ⽐ CMS 更加先进，可控的最⼤停顿 时间，⼀般建议需要500ms以内停顿或者内存超过8G的可以去使 ⽤</li>
+<li>G1的运作步骤<ul>
+<li>初始标记 和 CMS的初始标记 ⼀样</li>
+<li>并发标记 和 CMS的并发标记 ⼀样</li>
+<li>最终标记 和 CMS的重新标记 ⼀样，但是这⾥对于 漏标 的对 象采⽤ 原始快照 的⽅式进⾏处理</li>
+<li>筛选回收<ul>
+<li>STW对未标记的 region 进⾏清理，此时会将每个 region 区域 回收价值和成本进⾏排序，根据⽤户的预期停顿时间进⾏ ⽐较来选择合适的回收⽅式，此时并不会把所有垃圾对象 进⾏回收，因为考虑到预期停顿时间，所以只会回收接近 于这个时间的region，剩余的region等待下⼀轮GC进⾏回 收</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="常用参数"><a href="#常用参数" class="headerlink" title="常用参数"></a>常用参数</h3><p>一些常用的JVM参数，用于调整垃圾收集器的行为：</p>
+<p>选择垃圾收集器：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs ruby">-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:+UseSerialGC</span>：选择串行收集器，适用于单核处理器或小型应用。<br>-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:+UseParallelGC</span>：选择<span class="hljs-title class_">Parallel</span> <span class="hljs-variable constant_">GC</span>，适用于多核处理器的新生代收集。<br>-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:+UseConcMarkSweepGC</span>：使用<span class="hljs-variable constant_">CMS</span> <span class="hljs-variable constant_">GC</span>进行老年代收集，与<span class="hljs-title class_">Parallel</span> <span class="hljs-variable constant_">GC</span>配合使用。<br>-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:+UseG1GC</span>：使用<span class="hljs-variable constant_">G1</span> <span class="hljs-variable constant_">GC</span>，适用于大堆内存和需要低延迟的应用。<br>-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:+UseZGC</span>：使用Z <span class="hljs-title class_">Garbage</span> <span class="hljs-title class_">Collector</span>，适用于需要极低停顿时间的场景。<br></code></pre></td></tr></table></figure>
+
+<p>其中，-XX:+UseConcMarkSweepGC  命令中，老年代使用 的是 CMS GC与Serial Old GC的收集器组合，Serial Old 会作为 CMS GC的后备收集器，当 CMS 挂了后顶上。</p>
+<p>设置堆大小：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs arduino">-Xms&lt;size&gt;：设置JVM启动时的初始堆内存大小。<br>-Xmx&lt;size&gt;：设置JVM最大堆内存大小。<br></code></pre></td></tr></table></figure>
+
+<p>设置新生代大小：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">-Xmn&lt;size&gt;：设置新生代的大小。<br></code></pre></td></tr></table></figure>
+
+
+<p>设置Eden区与Survivor区的比例：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ruby">-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:SurvivorRatio=&lt;ratio&gt;</span>：设置<span class="hljs-title class_">Survivor</span>区与<span class="hljs-title class_">Eden</span>区的比例。<br></code></pre></td></tr></table></figure>
+
+<p>设置老年代占堆内存的最大比例：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ruby">-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:OldPLABSizePercent=&lt;percent&gt;</span>：设置老年代并行垃圾回收时的<span class="hljs-variable constant_">PLAB</span>（<span class="hljs-title class_">Promotion</span> <span class="hljs-title class_">Local</span> <span class="hljs-title class_">Allocation</span> <span class="hljs-title class_">Buffer</span>）区域占堆内存的百分比。<br></code></pre></td></tr></table></figure>
+
+<p>设置GC日志参数：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-literal">-Xlog</span>:<span class="hljs-built_in">gc</span>：开启<span class="hljs-built_in">GC</span>日志记录。<br><span class="hljs-literal">-Xlog</span>:<span class="hljs-built_in">gc</span>：记录所有<span class="hljs-built_in">GC</span>的详细信息。<br></code></pre></td></tr></table></figure>
+
+
+<p>设置CMS GC参数：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ruby">-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:+UseCMSInitiatingOccupancyOnly</span>：设置<span class="hljs-variable constant_">CMS</span>启动的内存占用阈值。<br>-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:CMSInitiatingOccupancyFraction=&lt;percent&gt;</span>：设置老年代使用到达一定比例时触发<span class="hljs-variable constant_">CMS</span>。<br></code></pre></td></tr></table></figure>
+
+<p>设置G1 GC参数：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ruby">-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:G1HeapRegionSize=&lt;region-size&gt;</span>：设置<span class="hljs-variable constant_">G1</span>的<span class="hljs-title class_">Region</span>大小。<br>-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:MaxGCPauseMillis=&lt;time&gt;</span>：设置<span class="hljs-variable constant_">G1</span>最大<span class="hljs-variable constant_">GC</span>停顿时间目标。<br></code></pre></td></tr></table></figure>
+
+<p>设置ZGC参数：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ruby">-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:ZSize=&lt;size&gt;</span>：设置<span class="hljs-variable constant_">ZGC</span>的Z-<span class="hljs-title class_">Heap</span>大小。<br></code></pre></td></tr></table></figure>
+
+
+<p>堆外内存设置：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ruby">-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:MaxDirectMemorySize=&lt;size&gt;</span>：设置直接内存（堆外内存）的最大值。<br></code></pre></td></tr></table></figure>
+
+<p>垃圾收集器的并行线程数：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ruby">-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:ParallelGCThreads=&lt;number-of-threads&gt;</span>：设置<span class="hljs-title class_">Parallel</span> <span class="hljs-variable constant_">GC</span>使用的线程数。<br>-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:ConcGCThreads=&lt;number-of-threads&gt;</span>：设置<span class="hljs-variable constant_">CMS</span>的并发标记线程数。<br></code></pre></td></tr></table></figure>
+
+
+<p>软引用和弱引用的设置：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ruby">-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:SoftRefLRUPolicyMSPerMB=&lt;millis-per-mb&gt;</span>：设置软引用对象在每<span class="hljs-variable constant_">MB</span>堆内存中存活的最长时间。<br>-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:+DisableExplicitGC</span>：禁用<span class="hljs-title class_">System</span>.gc()调用。<br></code></pre></td></tr></table></figure>
+
+
+<p>元空间（Metaspace）设置：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ruby">-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:MetaspaceSize=&lt;size&gt;</span>：设置类元数据区域的初始大小。<br>-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:MaxMetaspaceSize=&lt;size&gt;</span>：设置类元数据区域的最大大小。<br></code></pre></td></tr></table></figure>
+
+
+<p>堆Dump和分析：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ruby">-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:+HeapDumpOnOutOfMemoryError</span>：当发生<span class="hljs-variable constant_">OOM</span>时，生成堆转储。<br>-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:HeapDumpPath=&lt;directory&gt;</span>：设置堆转储文件的路径。<br></code></pre></td></tr></table></figure>
+
+<p>这些参数可以根据应用程序的具体需求进行调整。在生产环境中，建议进行充分的测试，以确保所选设置不会对性能产生负面影响。此外，随着JDK版本的更新，某些参数可能会被弃用或替换，因此需要查阅对应版本的官方文档以获取最新的信息。</p>
+<h3 id="JVM-调优"><a href="#JVM-调优" class="headerlink" title="JVM 调优"></a>JVM 调优</h3><p>参考： </p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV13Y411j7Nz">https://www.bilibili.com/video/BV13Y411j7Nz</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV145411U7er">https://www.bilibili.com/video/BV145411U7er</a></p>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Java%E5%9F%BA%E7%A1%80/" class="category-chain-item">Java基础</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Java%E5%9F%BA%E7%A1%80/JVM/" class="category-chain-item">JVM</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/java/" class="print-no-link">#java</a>
+      
+        <a href="/tags/jvm/" class="print-no-link">#jvm</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>JVM_垃圾回收机制</div>
+      <div>https://varcel.luoqi.icu/2024/05/08/JVM_垃圾回收机制/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Luo QI</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年5月8日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
