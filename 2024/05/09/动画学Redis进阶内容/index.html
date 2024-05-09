@@ -18,23 +18,32 @@
   <meta name="author" content="Luo QI">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Redis入门_Redis实战篇，主要是总结一下别人的一篇博客内容，向对方学习">
+    <meta name="description" content="B 站的一个视频，讲的还不错，建议看下">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Redis入门_Redis实战篇">
-<meta property="og:url" content="https://varcel.luoqi.icu/2023/12/25/Redis%E5%85%A5%E9%97%A8_Redis%E5%AE%9E%E6%88%98%E7%AF%87/index.html">
+<meta property="og:title" content="动画学Redis进阶内容">
+<meta property="og:url" content="https://varcel.luoqi.icu/2024/05/09/%E5%8A%A8%E7%94%BB%E5%AD%A6Redis%E8%BF%9B%E9%98%B6%E5%86%85%E5%AE%B9/index.html">
 <meta property="og:site_name" content="轻松的洛亓">
-<meta property="og:description" content="Redis入门_Redis实战篇，主要是总结一下别人的一篇博客内容，向对方学习">
+<meta property="og:description" content="B 站的一个视频，讲的还不错，建议看下">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-12-25T16:47:48.000Z">
-<meta property="article:modified_time" content="2023-12-25T16:47:48.000Z">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240509165650.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240509165828.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240509165933.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240509170035.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240509170541.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240509170929.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240509190558.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240509200158.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240509200455.png">
+<meta property="article:published_time" content="2024-05-09T16:51:54.000Z">
+<meta property="article:modified_time" content="2024-05-09T16:51:54.000Z">
 <meta property="article:author" content="Luo QI">
-<meta property="article:tag" content="NoSQL">
 <meta property="article:tag" content="redis">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240509165650.png">
   
   
   
-  <title>Redis入门_Redis实战篇 - 轻松的洛亓</title>
+  <title>动画学Redis进阶内容 - 轻松的洛亓</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +209,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Redis入门_Redis实战篇"></span>
+            <span id="subtitle" data-typed-text="动画学Redis进阶内容"></span>
           
         </div>
 
@@ -211,8 +220,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-12-25 16:47" pubdate>
-          2023年12月25日 下午
+        <time datetime="2024-05-09 16:51" pubdate>
+          2024年5月9日 下午
         </time>
       </span>
     
@@ -223,7 +232,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          341 字
+          1.8k 字
         
       </span>
     
@@ -234,7 +243,7 @@
         
         
         
-          3 分钟
+          15 分钟
         
       </span>
     
@@ -271,27 +280,64 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Redis入门_Redis实战篇</h1>
+            <h1 id="seo-header">动画学Redis进阶内容</h1>
             
             
               <div class="markdown-body">
                 
-                <p>参考：  <a target="_blank" rel="noopener" href="https://cyborg2077.github.io/2022/10/22/RedisPractice/">https://cyborg2077.github.io/2022/10/22/RedisPractice/</a></p>
-<p>建议先进行阅读文章 10分钟 左右</p>
-<h3 id="短信登录"><a href="#短信登录" class="headerlink" title="短信登录"></a>短信登录</h3><h3 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h3><p>分布式锁的实现常见的有：</p>
+                <p>视频地址： <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1xm42177Fq">https://www.bilibili.com/video/BV1xm42177Fq</a></p>
+<h3 id="实现分布式全局ID、浏览数、值缓存、分布式session"><a href="#实现分布式全局ID、浏览数、值缓存、分布式session" class="headerlink" title="实现分布式全局ID、浏览数、值缓存、分布式session"></a>实现分布式全局ID、浏览数、值缓存、分布式session</h3><h4 id="Stirng-应用-值缓存"><a href="#Stirng-应用-值缓存" class="headerlink" title="Stirng 应用-值缓存"></a>Stirng 应用-值缓存</h4><p>举一个例子，存在一个树结构【角色  →  人物】的一个树结构</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240509165650.png" srcset="/img/loading.gif" lazyload alt="image.png|300"></p>
+<p>考虑将列表内容存入到 Redis 中，</p>
 <ul>
-<li>基于数据库的锁（乐观锁和悲观锁）</li>
-<li>基于缓存的锁</li>
-<li>基于Zookeeper 的锁（强一致性）</li>
-<li>基于消息队列的锁（少见）</li>
-<li>基于其他分布式协调服务</li>
+<li>将查询结果反序列化为一个 Json 数据，存入到 Redis 中</li>
+<li>作为一个查询缓存</li>
 </ul>
-<p>这里主要介绍一下 Redis 分布式锁的实现方式，以及它是如何使用的。</p>
-<p>Redis 分布式锁通过是<strong>利用<code>SETNX</code>这个方法</strong>，如果插入Key成功，则表示获得到了锁，如果有人插入成功，那么其他人就回插入失败，无法获取到锁，利用这套逻辑完成<code>互斥</code>，从而实现分布式锁</p>
-<p>在使用 <code>SETNX</code>这个方法的时候，一般还会使用 EXPIRE 命令为锁设置一个过期时间防止死锁。</p>
-<p>to be contined…..</p>
-<hr>
-<p>参考</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240509165828.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="三级下拉框"><a href="#三级下拉框" class="headerlink" title="三级下拉框"></a>三级下拉框</h4><p>根据上文，这里扩展一下，一般来说，下拉框数据也可以使用 hash 结构，数据量少的话可以使用 string 类型。</p>
+<p>Hash结构，以 国家、省份、城市 为示例</p>
+<p>一级</p>
+<p>键 countries<br>值 列表《国家ID，名称 》</p>
+<p>二级：</p>
+<p>键  privinces:国家ID，<br>值 列表《省份ID，名称 》</p>
+<p>三级：</p>
+<p>键  privinces:省份ID，<br>值 列表《城市ID，名称 》</p>
+<h4 id="Stirng应用-浏览数"><a href="#Stirng应用-浏览数" class="headerlink" title="Stirng应用-浏览数"></a>Stirng应用-浏览数</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240509165933.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="Stirng应用-分布式系统全局-ID"><a href="#Stirng应用-分布式系统全局-ID" class="headerlink" title="Stirng应用-分布式系统全局 ID"></a>Stirng应用-分布式系统全局 ID</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240509170035.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>扩展：在高并发情况下，每次创建一个订单，就需要和 Redis 交互一次，对于 redis 的压力会非常大的</p>
+<p>如何优化这个场景？</p>
+<p>我们可以每一次取 1000 个订单 ID（各服务取1000个 ID 备用）；</p>
+<p>每当订单服务需要创建订单的时候，就自增一次服务器内部的这个自增ID，直到 服务器内部的这个备用 ID 都用光了，再去 redis 中取 1000 个订单ID</p>
+<p>可以使用命令  incr  key count 来实现这个操作</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240509170541.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>命令</p>
+<h4 id="分布式-session"><a href="#分布式-session" class="headerlink" title="分布式 session"></a>分布式 session</h4><p>将 session 存入到 redis 中，通过 session ID  来获取 session 信息，实现跨服务器访问应用服务（共享 session）</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240509170929.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="Redis分布式锁，超多动画，锁订阅、锁续期、Lua原子执行原理、顺便讲Sync锁升级"><a href="#Redis分布式锁，超多动画，锁订阅、锁续期、Lua原子执行原理、顺便讲Sync锁升级" class="headerlink" title="Redis分布式锁，超多动画，锁订阅、锁续期、Lua原子执行原理、顺便讲Sync锁升级"></a>Redis分布式锁，超多动画，锁订阅、锁续期、Lua原子执行原理、顺便讲Sync锁升级</h3><h4 id="可重入锁"><a href="#可重入锁" class="headerlink" title="可重入锁"></a>可重入锁</h4><p>单体，JVM 进行通过加锁 synchronized</p>
+<p>跨进程：Redis 分布式锁</p>
+<p>setnx 设置会返回一个响应，如果存在再设置</p>
+<p>问题</p>
+<ul>
+<li>可重入锁设置</li>
+<li>使用 hash 结构解决重入锁问题<ul>
+<li>hash 的 key1：锁的名称</li>
+<li>hash 的 key2：锁的持有者线程 UUID</li>
+<li>hash 的 value：重入次数</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240509190558.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>复习一个基础概念：redis 一般是键值对结构，键始终是字符串，值有多种类型，比如 set、string、list、zset、hash 等。</p>
+<p>这里的可重入锁的 key 为 锁名称， value 是 一个 hash 结构，结构为：锁持有者，重入计数 （计数器结构）</p>
+<p>由于是 hash 结构，因此这里不能使用  setnx 命令，而是使用的 lua 命令</p>
+<p>redisson 的部分代码</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp">&lt;T&gt; <span class="hljs-function">RFuture&lt;T&gt; <span class="hljs-title">tryLockInnerAsync</span><span class="hljs-params">(<span class="hljs-type">long</span> waitTime, <span class="hljs-type">long</span> leaseTime, TimeUnit unit, <span class="hljs-type">long</span> threadId, RedisStrictCommand&lt;T&gt; command)</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.commandExecutor.<span class="hljs-built_in">syncedEval</span>(<span class="hljs-keyword">this</span>.<span class="hljs-built_in">getRawName</span>(), LongCodec.INSTANCE, command, <span class="hljs-string">&quot;if ((redis.call(&#x27;exists&#x27;, KEYS[1]) == 0) or (redis.call(&#x27;hexists&#x27;, KEYS[1], ARGV[2]) == 1)) then redis.call(&#x27;hincrby&#x27;, KEYS[1], ARGV[2], 1); redis.call(&#x27;pexpire&#x27;, KEYS[1], ARGV[1]); return nil; end; return redis.call(&#x27;pttl&#x27;, KEYS[1]);&quot;</span>, Collections.<span class="hljs-built_in">singletonList</span>(<span class="hljs-keyword">this</span>.<span class="hljs-built_in">getRawName</span>()), <span class="hljs-keyword">new</span> Object[]&#123;unit.<span class="hljs-built_in">toMillis</span>(leaseTime), <span class="hljs-keyword">this</span>.<span class="hljs-built_in">getLockName</span>(threadId)&#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<p>这条Lua脚本的目的是原子性地处理一个计数器，通常用于实现锁机制。它检查一个锁键是否存在或一个特定的锁标识是否存在，如果满足条件，则递增锁标识的计数器，并设置或更新键的过期时间。如果计数器递增成功，脚本返回<code>nil</code>；如果没有递增（即锁已被其他客户端持有），则返回当前锁的剩余过期时间。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240509200158.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>每当我们每次重入一次，则计数 + 1，如果释放锁，计数 - 1</p>
+<h4 id="释放锁"><a href="#释放锁" class="headerlink" title="释放锁"></a>释放锁</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240509200455.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 
                 
               </div>
@@ -303,8 +349,6 @@
   
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/NoSQL/" class="print-no-link">#NoSQL</a>
       
         <a href="/tags/redis/" class="print-no-link">#redis</a>
       
@@ -318,8 +362,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Redis入门_Redis实战篇</div>
-      <div>https://varcel.luoqi.icu/2023/12/25/Redis入门_Redis实战篇/</div>
+      <div>动画学Redis进阶内容</div>
+      <div>https://varcel.luoqi.icu/2024/05/09/动画学Redis进阶内容/</div>
     </div>
     <div class="license-meta">
       
@@ -331,7 +375,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年12月25日</div>
+          <div>2024年5月9日</div>
         </div>
       
       
