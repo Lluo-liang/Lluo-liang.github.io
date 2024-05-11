@@ -26,6 +26,16 @@
 <meta property="og:description" content="面试煎熬成蛋_项目场景题">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240330222111.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240511114041.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240511114130.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240511114249.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240511114445.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240511115142.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240511115454.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240511115738.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240511115912.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240511120031.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305184231.png">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240312113836.png">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240330230550.png">
 <meta property="article:published_time" content="2024-03-10T20:35:44.000Z">
@@ -226,7 +236,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.7k 字
+          4.6k 字
         
       </span>
     
@@ -237,7 +247,7 @@
         
         
         
-          31 分钟
+          39 分钟
         
       </span>
     
@@ -442,6 +452,69 @@
 </li>
 </ul>
 <p>一般还是建议从如何监控线上，排查出对应的问题，然后如何解决的去回答。</p>
+<h4 id="CPU-飘升如何定位到代码"><a href="#CPU-飘升如何定位到代码" class="headerlink" title="CPU 飘升如何定位到代码"></a>CPU 飘升如何定位到代码</h4><p>参考： <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1sP4y1F76s">https://www.bilibili.com/video/BV1sP4y1F76s</a></p>
+<p>项目上线之后，CpU飙升，居高不下。触发报警。我们该如何排查问题所在？</p>
+<p>传统的查看日志的方式</p>
+<ul>
+<li>1、top</li>
+<li>2、ps -mp</li>
+<li>3、tid转换</li>
+<li>4、jstack打印</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240511114041.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>查看线程下进程占用 CPU 情况，TID 需要转换为 16 进制信息</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240511114130.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>根据 线程 PID 和进程 TID 查看到进程的运行状态日志</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240511114249.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>或者火焰图的方式</p>
+<h4 id="线上服务内存溢出如何排查定位"><a href="#线上服务内存溢出如何排查定位" class="headerlink" title="线上服务内存溢出如何排查定位"></a>线上服务内存溢出如何排查定位</h4><ul>
+<li>jmap (Memory Map for Java)命令用于生成堆转储快照。就是我们常说的dump文件，我们可以手动执行命令来生成dump文件。还可以使用JVM参数来配置自动生成</li>
+<li>自动生成<ul>
+<li>XX:+HeapDumpOnOutofMemoryError, 可以让虚拟机在OOM异常出现之后自动生成dump文件</li>
+<li>-XX:HeapDumpPath&#x3D;path设置dump文件路径</li>
+</ul>
+</li>
+<li>手动生成<ul>
+<li>jmap -dump:format&#x3D; b.file &#x3D; heap.hprof.pid</li>
+</ul>
+</li>
+<li>jmap 除了生成dump也可以看到 jvm堆的数据占用情况。</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240511114445.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>根据 进程 PID 生成对应的 dump 文件</p>
+<p>生成的时候，需要将流量关掉，生成 dump 的过程中服务会停止，不会向外提供服务</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240511115142.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>通过 MAT 工具进行分析处理</p>
+<ul>
+<li>进入下载后的文件夹，双击 MemoryAnalyer.exe 启动，进行打开 dump 文件，选择对应 dump.dat 文件，选择第一个 Leak Suspect Reports，生成一个报告操作</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240511115454.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>选择 Dominator Tree</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240511115738.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li><p>进入，查看占用内存情况<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240511115912.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+</li>
+<li><p>右键查看 →  Java Basics → Thread Overview and Stacks  查看线程以内的情况</p>
+</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240511120031.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<blockquote>
+<p>VisualVM 工具</p>
+</blockquote>
+<p>生成 dump 文件：</p>
+<ul>
+<li>一般是设置 JVM 参数，有时候程序是直接闪退挂了，不太可能让你运行的时候使用  jmap 命令（使用 vm 参数获取 dump 文件）</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305184231.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>分析 dump 文件</p>
+<ul>
+<li>1、打开 VisualVM</li>
+<li>2、选择：文件 →  装入  →  （选择文件） →  打开</li>
+<li>3、概要  →  堆转储</li>
+<li>4、通过查看堆信息的情况，可以大概定位内存谥出是哪行代码出了问题</li>
+</ul>
 <h3 id="业务问题"><a href="#业务问题" class="headerlink" title="业务问题"></a>业务问题</h3><h4 id="库存扣减问题"><a href="#库存扣减问题" class="headerlink" title="库存扣减问题"></a>库存扣减问题</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240312113836.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="使用-websocket-进行前后端-http-长连接操作"><a href="#使用-websocket-进行前后端-http-长连接操作" class="headerlink" title="使用 websocket 进行前后端 http 长连接操作"></a>使用 websocket 进行前后端 http 长连接操作</h4><h4 id="socket-监听，实时推送站点车辆信息到前端界面"><a href="#socket-监听，实时推送站点车辆信息到前端界面" class="headerlink" title="socket 监听，实时推送站点车辆信息到前端界面"></a>socket 监听，实时推送站点车辆信息到前端界面</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240330230550.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h3 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h3><h4 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h4><p>参考看一下： <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40851232/article/details/134402593?spm=1001.2014.3001.5502">https://blog.csdn.net/qq_40851232/article/details/134402593?spm=1001.2014.3001.5502</a></p>

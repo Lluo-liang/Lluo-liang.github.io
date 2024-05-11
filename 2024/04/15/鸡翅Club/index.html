@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          227 字
+          2k 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          2 分钟
+          17 分钟
         
       </span>
     
@@ -279,9 +279,24 @@
 <p>密码 xwg2</p>
 <p>后端项目地址（需要审核）： <a target="_blank" rel="noopener" href="https://gitcode.net/jingdianjichi/jc-club">https://gitcode.net/jingdianjichi/jc-club</a></p>
 <p>前端项目地址： <a target="_blank" rel="noopener" href="https://gitcode.net/jingdianjichi/jc-club-front">https://gitcode.net/jingdianjichi/jc-club-front</a></p>
-<p>20240501</p>
 <p>这里搞一下，根据他的文档内容以及代码内容复习一下上面的面试题内容。</p>
-<h3 id="2、项目启动"><a href="#2、项目启动" class="headerlink" title="2、项目启动"></a>2、项目启动</h3><p>to be contined…</p>
+<h3 id="2、项目启动"><a href="#2、项目启动" class="headerlink" title="2、项目启动"></a>2、项目启动</h3><p>启动后面再看一下</p>
+<h3 id="课程学习"><a href="#课程学习" class="headerlink" title="课程学习"></a>课程学习</h3><h4 id="104-futruetask多线程优化分类查询"><a href="#104-futruetask多线程优化分类查询" class="headerlink" title="104 futruetask多线程优化分类查询"></a>104 futruetask多线程优化分类查询</h4><p>定义线程池</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 线程池的config管理</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * @author: ChickenWing</span><br><span class="hljs-comment"> * @date: 2023/11/26</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-title class_"><span class="hljs-keyword">class</span> <span class="hljs-title">ThreadPoolConfig</span> </span>&#123;<br><br>    <span class="hljs-meta">@Bean</span>(name = <span class="hljs-string">&quot;labelThreadPool&quot;</span>)<br>    <span class="hljs-keyword">public</span> ThreadPoolExecutor getLabelThreadPool() &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-type">ThreadPoolExecutor</span>(<span class="hljs-number">20</span>, <span class="hljs-number">100</span>, <span class="hljs-number">5</span>,<br>                TimeUnit.SECONDS, <span class="hljs-keyword">new</span> <span class="hljs-type">LinkedBlockingDeque</span>&lt;&gt;(<span class="hljs-number">40</span>),<br>                <span class="hljs-keyword">new</span> <span class="hljs-type">CustomNameThreadFactory</span>(<span class="hljs-string">&quot;label&quot;</span>),<br>                <span class="hljs-keyword">new</span> <span class="hljs-type">ThreadPoolExecutor</span>.CallerRunsPolicy());<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这个不好直接在这里写，还是得引入需求，然后根据实际情况写，大概讲一下区别</p>
+<p>CompletableFuture异步编程 推荐文章： <a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/951588">https://developer.aliyun.com/article/951588</a></p>
+<p>FutrueTask： <a target="_blank" rel="noopener" href="https://www.cnblogs.com/skyblue-li/p/15526613.html">https://www.cnblogs.com/skyblue-li/p/15526613.html</a></p>
+<p>相关： <a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/1478152">https://developer.aliyun.com/article/1478152</a></p>
+<p>原子变量、CountDownLatch 、ThreadLocal 等。</p>
+<hr>
+<h4 id="106-自定义线程工厂实现"><a href="#106-自定义线程工厂实现" class="headerlink" title="106 自定义线程工厂实现"></a>106 自定义线程工厂实现</h4><p>我们在 第六个参数 线程工厂，可以进行自定义线程工厂实现</p>
+<p>可以对 DefaultThreadFactory 进行复制一手</p>
+<p>一个最简单的使用示例：对于 namePrefix 可以通过传参进行传入</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 自定义名称的线程工厂</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * @author: ChickenWing</span><br><span class="hljs-comment"> * @date: 2023/11/26</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-title class_"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomNameThreadFactory</span> <span class="hljs-keyword"><span class="hljs-keyword">implements</span> <span class="hljs-type">ThreadFactory</span></span> </span>&#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> AtomicInteger poolNumber = <span class="hljs-keyword">new</span> <span class="hljs-type">AtomicInteger</span>(<span class="hljs-number">1</span>);<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> ThreadGroup group;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> AtomicInteger threadNumber = <span class="hljs-keyword">new</span> <span class="hljs-type">AtomicInteger</span>(<span class="hljs-number">1</span>);<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">String</span> namePrefix;<br><br>    CustomNameThreadFactory(<span class="hljs-keyword">String</span> name) &#123;<br>        SecurityManager s = System.getSecurityManager();<br>        group = (s != <span class="hljs-literal">null</span>) ? s.getThreadGroup() :<span class="hljs-type"></span><br>                Thread.currentThread().getThreadGroup();<br>        <span class="hljs-keyword">if</span> (StringUtils.isBlank(name)) &#123;<br>            name = <span class="hljs-string">&quot;pool&quot;</span>;<br>        &#125;<br>        namePrefix = name + <span class="hljs-string">&quot;-&quot;</span> +<br>                poolNumber.getAndIncrement() +<br>                <span class="hljs-string">&quot;-thread-&quot;</span>;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> Thread <span class="hljs-keyword">new</span><span class="hljs-type">Thread</span>(Runnable r) &#123;<br>        Thread t = <span class="hljs-keyword">new</span> <span class="hljs-type">Thread</span>(group, r,<br>                namePrefix + threadNumber.getAndIncrement(),<br>                <span class="hljs-number">0</span>);<br>        <span class="hljs-keyword">if</span> (t.isDaemon())&#123;<br>            t.setDaemon(<span class="hljs-literal">false</span>);<br>        &#125;<br>        <span class="hljs-keyword">if</span> (t.getPriority() != Thread.NORM_PRIORITY)&#123;<br>            t.setPriority(Thread.NORM_PRIORITY);<br>        &#125;<br>        <span class="hljs-keyword">return</span> t;<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在配置类中使用 <code>new CustomNameThreadFactory(&quot;label&quot;),</code></p>
+<h4 id="107-线程池到底设置多少数量"><a href="#107-线程池到底设置多少数量" class="headerlink" title="107 线程池到底设置多少数量"></a>107 线程池到底设置多少数量</h4><p>这个视频得再看一下</p>
 
                 
               </div>
