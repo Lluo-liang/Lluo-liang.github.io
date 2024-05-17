@@ -21,7 +21,7 @@
     <meta name="description" content="面试煎熬成蛋_面试速刷版">
 <meta property="og:type" content="article">
 <meta property="og:title" content="面试煎熬成蛋_面试速刷版">
-<meta property="og:url" content="https://varcel.luoqi.icu/2024/03/14/%E9%9D%A2%E8%AF%95%E7%85%8E%E7%86%AC%E6%88%90%E8%9B%8B_%E9%9D%A2%E8%AF%95%E9%80%9F%E5%88%B7%E7%89%88/index.html">
+<meta property="og:url" content="https://varcel.luoqi.icu/2024/03/14/%E9%9D%A2%E8%AF%95%E7%85%8E%E7%86%AC%E6%88%90%E8%9B%8B_%E9%9D%A2%E8%AF%95%E9%80%9F%E5%88%B7%E7%89%88_%E7%AC%AC%E4%B8%80%E7%89%88/index.html">
 <meta property="og:site_name" content="轻松的洛亓">
 <meta property="og:description" content="面试煎熬成蛋_面试速刷版">
 <meta property="og:locale" content="zh_CN">
@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          24k 字
+          25k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          200 分钟
+          207 分钟
         
       </span>
     
@@ -568,7 +568,7 @@
 <li>线程状态</li>
 </ul>
 <h4 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h4><ul>
-<li><p>使用场景</p>
+<li><p>使用场景 </p>
 <ul>
 <li>1、异步</li>
 <li>2、记录日志</li>
@@ -636,6 +636,14 @@
 <li>3.DiscardOldestPolicy:丢弃阻塞队列中靠最前的任务，并执行当前任务：</li>
 <li>4.DiscardPolicy:直接丢弃任务：</li>
 </ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240512172606.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>线程计算公式</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240512173029.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>假设：核数 12、CPU 利用率 90%，等待时间 50ms，计算时间51ms</p>
+<p>N &#x3D; 12 * 0.9 * (1 + 50&#x2F;51) ≈ 22</p>
+<p>设置核心线程数 22 是比较符合预期的值</p>
+<p>在真实的程序中，<strong>一般很难获得准确的等待时间和计算时间，因为程序很复杂，不只是“计算”</strong>。一段代码中会有很多的内存读写，计算，I&#x2F;O 等复合操作，精确的获取这两个指标很难，所以光靠公式计算线程数过于理想化。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240512173427.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h4><p>线程死锁：通过 JVM 排查工具去排查到具体原因，然后定位现象</p>
 <p>MySQL：一般有监控信息，可以看到，看到后进行处理，通过现象分析死锁原因，然后去进行事务或者SQL的优化</p>
 <h4 id="synchronized"><a href="#synchronized" class="headerlink" title="synchronized"></a>synchronized</h4><h5 id="使用-synchronized-修饰类和方法的区别"><a href="#使用-synchronized-修饰类和方法的区别" class="headerlink" title="使用 synchronized 修饰类和方法的区别"></a>使用 synchronized 修饰类和方法的区别</h5><ul>
@@ -1180,6 +1188,10 @@
 <li>后面解决问题</li>
 </ul>
 <h4 id="热点数据续期"><a href="#热点数据续期" class="headerlink" title="热点数据续期"></a>热点数据续期</h4><p> - 当热点数据设置有效时间后，会采用预热（应用启动时加载），写入时续期，访问时续期，或者定时任务执行（为即将过期的热点数据执行续期操作）；<br> - 定时要搞的话一般还是设置了有效时间才会这么做，并不是指刷新数据，而是延长有效时间才需要这个操作；如果不设置有效时间，反而不需要这样做</p>
+<h4 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h4><ul>
+<li>主从</li>
+<li></li>
+</ul>
 <h3 id="MQ-🚩"><a href="#MQ-🚩" class="headerlink" title="MQ  🚩"></a>MQ  🚩</h3><p>见：[[面试煎熬成蛋_MQ]]</p>
 <a href="/2024/03/10/%E9%9D%A2%E8%AF%95%E7%85%8E%E7%86%AC%E6%88%90%E8%9B%8B_MQ/" title="面试煎熬成蛋_MQ">面试煎熬成蛋_MQ</a>
 
@@ -1207,6 +1219,37 @@
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240423182313.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="服务高可用"><a href="#服务高可用" class="headerlink" title="服务高可用"></a>服务高可用</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240322182806.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="相关组件"><a href="#相关组件" class="headerlink" title="相关组件"></a>相关组件</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240325083057.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="OpenFeign"><a href="#OpenFeign" class="headerlink" title="OpenFeign"></a>OpenFeign</h4><p>ribbon是一个负载均衡客户端，可以很好的控制htt和tcp的一些行为。feign默认集成了ribbon。</p>
+<ul>
+<li><p>1.feign采用的是基于接口的注解 </p>
+</li>
+<li><p>2.feign整合了ribbon，具有负载均衡的能力 </p>
+</li>
+<li><p>3.整合了Hystrix，具 有熔断的能力 </p>
+</li>
+<li><p>使用: </p>
+<ul>
+<li>1.添加pom依赖。 </li>
+<li>2.启动类添加@EnableFeignClients </li>
+<li>3.定义一个接口 @FeignClient(name&#x3D;“xxx”)指定调用哪个服务</li>
+</ul>
+</li>
+<li><p>启动类：@EnableFeignClients</p>
+</li>
+</ul>
+<p>总结来说，OpenFeign：</p>
+<ul>
+<li>提供了 RPC 风格的编程接口，使得开发者可以以一种更简洁的方式编写调用远程服务的代码。</li>
+<li>在底层实现上，它是基于 HTTP 协议的，通过构建和解析 HTTP 请求来完成服务调用。</li>
+<li>封装了 HTTP 协议的细节，让开发者可以更专注于业务逻辑而非网络通信的细节。</li>
+</ul>
+<p>因此，虽然 OpenFeign 的使用体验类似于 RPC，但它并非真正意义上的 RPC 框架，而是一个基于 HTTP 的服务调用工具</p>
+<h4 id="Hystric"><a href="#Hystric" class="headerlink" title="Hystric"></a>Hystric</h4><p>熔断机制是应对雪崩效应的一种微服务链路保护机制。当某个微服务不可用或者响应时间太长时， 会进行服务降级，进而熔断该节点微服务的调用，快速返回“错误”的响应信息。当检测到该节点微 服务调用响应正常后恢复调用链路。在SpringCloud框架里熔断机制通过Hystrix实现，Hystrix会监 控微服务间调用的状况，当失败的调用到一定阈值，缺省是5秒内调用20次，如果失败，就会启动 熔断机制。 服务降级，一般是从整体负荷考虑。就是当某个服务熔断之后，服务器将不再被调用，此时客户端 可以自己准备一个本地的fallback回调，返回一个缺省值。这样做，虽然水平下降，但好歹可用， 比直接挂掉强。 </p>
+<p>Hystrix相关注解 </p>
+<ul>
+<li>@EnableHystrix：开启熔断 </li>
+<li>@HystrixCommand(fallbackMethod&#x3D;”XXX”)：声明 一个失败回滚处理函数XXX，当被注解的方法执行超时（默认是1000毫秒），就会执行fallback函 数，返回错误提示。</li>
+</ul>
 <h4 id="Gateway"><a href="#Gateway" class="headerlink" title="Gateway"></a>Gateway</h4><h5 id="gateway-的功能"><a href="#gateway-的功能" class="headerlink" title="gateway 的功能"></a>gateway 的功能</h5><ul>
 <li>网关<ul>
 <li>路由转发</li>
@@ -1232,16 +1275,6 @@
 </li>
 </ul>
 <p>如果是 Nginx，则是：Nginx，漏桶算法</p>
-<h5 id="Gateway-的版本区分"><a href="#Gateway-的版本区分" class="headerlink" title="Gateway 的版本区分"></a>Gateway 的版本区分</h5><blockquote>
-<p>版本差异</p>
-</blockquote>
-<ul>
-<li><strong>2.0.x 版本</strong>：引入了基于WebFlux的反应式编程模型，不再使用传统的Servlet API。提供了基本的路由、过滤功能。</li>
-<li><strong>2.1.x 版本</strong>：增加了对WebSocket的支持，改进了路由断言和过滤器的功能。</li>
-<li><strong>2.2.x 版本</strong>：引入了更多的路由断言和过滤器，增强了安全性和可管理性。</li>
-<li><strong>3.0.x 版本</strong>：更新了底层的Spring Boot和Spring Framework的版本，支持最新的功能，例如更好的错误处理和性能优化。</li>
-</ul>
-<p>一般说我们常见的是2.2 版本就行</p>
 <h4 id="分布式事务-🚩"><a href="#分布式事务-🚩" class="headerlink" title="分布式事务   🚩"></a>分布式事务   🚩</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240425195950.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <ul>
 <li>2PC（两阶段提交）</li>
@@ -1476,27 +1509,6 @@
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E9%9D%A2%E8%AF%95%E7%85%8E%E7%86%AC%E6%88%90%E8%9B%8B/" class="category-chain-item">面试煎熬成蛋</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
   
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
@@ -1514,7 +1526,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>面试煎熬成蛋_面试速刷版</div>
-      <div>https://varcel.luoqi.icu/2024/03/14/面试煎熬成蛋_面试速刷版/</div>
+      <div>https://varcel.luoqi.icu/2024/03/14/面试煎熬成蛋_面试速刷版_第一版/</div>
     </div>
     <div class="license-meta">
       
@@ -1553,29 +1565,6 @@
 
 
 
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2024/03/21/Docker%20Compose%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/" title="Docker Compose基础使用">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Docker Compose基础使用</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2024/03/10/%E9%9D%A2%E8%AF%95%E7%85%8E%E7%86%AC%E6%88%90%E8%9B%8B_%E9%A1%B9%E7%9B%AE%E5%9C%BA%E6%99%AF%E9%A2%98/" title="面试煎熬成蛋_项目场景题">
-                        <span class="hidden-mobile">面试煎熬成蛋_项目场景题</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
               
             </div>
 

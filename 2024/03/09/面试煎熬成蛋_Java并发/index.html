@@ -270,7 +270,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          17k 字
+          18k 字
         
       </span>
     
@@ -281,7 +281,7 @@
         
         
         
-          141 分钟
+          151 分钟
         
       </span>
     
@@ -969,16 +969,21 @@
 <li>4.SynchronousQueue:不存储元素的阻塞队列，每个插入操作都必须等待一个移出操作。</li>
 </ul>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313105753.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="如何确认核心线程数"><a href="#如何确认核心线程数" class="headerlink" title="如何确认核心线程数"></a>如何确认核心线程数</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313110121.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="如何确认核心线程数-🚩"><a href="#如何确认核心线程数-🚩" class="headerlink" title="如何确认核心线程数  🚩"></a>如何确认核心线程数  🚩</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313110121.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313110201.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="线程池的种类有哪些"><a href="#线程池的种类有哪些" class="headerlink" title="线程池的种类有哪些"></a>线程池的种类有哪些</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313110448.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="线程池的种类有哪些-🚩"><a href="#线程池的种类有哪些-🚩" class="headerlink" title="线程池的种类有哪些  🚩"></a>线程池的种类有哪些  🚩</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313110448.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li><strong>FixedThreadPool</strong>：固定大小的线程池，适用于需要限制线程数量的场景。</li>
+<li><strong>CachedThreadPool</strong>：可缓存的线程池，适用于执行许多短期异步任务的场景。</li>
+<li><strong>ScheduledThreadPool</strong>：支持定时和周期性任务执行的线程池。</li>
+<li><strong>SingleThreadExecutor</strong>：单线程执行器，适用于顺序执行任务的场景。</li>
+</ul>
 <h4 id="核心线程数可以为零吗"><a href="#核心线程数可以为零吗" class="headerlink" title="核心线程数可以为零吗"></a>核心线程数可以为零吗</h4><h4 id="怎么判断这个线程是可以被回收的"><a href="#怎么判断这个线程是可以被回收的" class="headerlink" title="怎么判断这个线程是可以被回收的"></a>怎么判断这个线程是可以被回收的</h4><h4 id="线程池的状态有哪些"><a href="#线程池的状态有哪些" class="headerlink" title="线程池的状态有哪些"></a>线程池的状态有哪些</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313112723.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="Shutdown-和-shutdownnow-的区别，是通过什么方式关闭"><a href="#Shutdown-和-shutdownnow-的区别，是通过什么方式关闭" class="headerlink" title="Shutdown 和 shutdownnow 的区别，是通过什么方式关闭"></a>Shutdown 和 shutdownnow 的区别，是通过什么方式关闭</h4><h4 id="怎么将一个正在运行的线程关闭，什么样的线程是可以被中断的"><a href="#怎么将一个正在运行的线程关闭，什么样的线程是可以被中断的" class="headerlink" title="怎么将一个正在运行的线程关闭，什么样的线程是可以被中断的"></a>怎么将一个正在运行的线程关闭，什么样的线程是可以被中断的</h4><h4 id="项目中线程池的使用"><a href="#项目中线程池的使用" class="headerlink" title="项目中线程池的使用"></a>项目中线程池的使用</h4><p>直接使用<code>@Autowired</code>注入一个<code>ThreadPoolTaskExecutor</code>实例通常意味着你要使用Spring的默认配置</p>
 <ul>
 <li>1、一般会注入一个线程池的配置类的 @Bean</li>
-<li></li>
 </ul>
-<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ul>
+<h4 id="线程池如何监听子线程的异常，并作出处理"><a href="#线程池如何监听子线程的异常，并作出处理" class="headerlink" title="线程池如何监听子线程的异常，并作出处理"></a>线程池如何监听子线程的异常，并作出处理</h4><h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ul>
 <li>1、讲述一下你们项目中哪里用到了线程池（异步线程）</li>
 <li>2、如何控制某个方法允许并发访问线程的数量</li>
 <li>3、谈谈你对 ThreadLocal 的理解</li>
@@ -990,6 +995,7 @@
 </ul>
 <h5 id="es-数据批量导入"><a href="#es-数据批量导入" class="headerlink" title="es 数据批量导入"></a>es 数据批量导入</h5><p>CountDownLatch 的使用： <a target="_blank" rel="noopener" href="https://www.bilibili.com/list/watchlater?bvid=BV1yT411H7YK&oid=485022417&p=111">https://www.bilibili.com/list/watchlater?bvid=BV1yT411H7YK&amp;oid=485022417&amp;p=111</a></p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313113337.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>CountDownLatch</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313111009.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313113212.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240313113337.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
@@ -1033,7 +1039,9 @@
 <p>慎用的场景：线程池中线程调用使用ThreadLocal、异步程序；同时注意的是使用完ThreadLocal ，最好手动调用 remove() 方法。</p>
 <hr>
 <p>关于 ThreadLocal 的数据结构，方法源码，扩容机制等可以看一下这篇文章： <a target="_blank" rel="noopener" href="https://javaguide.cn/java/concurrent/threadlocal.html">https://javaguide.cn/java/concurrent/threadlocal.html</a></p>
+<h4 id="Future"><a href="#Future" class="headerlink" title="Future"></a>Future</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.concurrent.Callable;<br><span class="hljs-keyword">import</span> java.util.concurrent.ExecutionException;<br><span class="hljs-keyword">import</span> java.util.concurrent.ExecutorService;<br><span class="hljs-keyword">import</span> java.util.concurrent.Executors;<br><span class="hljs-keyword">import</span> java.util.concurrent.Future;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">FutureExample</span> &#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-comment">// 创建一个固定大小的线程池</span><br>        <span class="hljs-type">ExecutorService</span> <span class="hljs-variable">executorService</span> <span class="hljs-operator">=</span> Executors.newFixedThreadPool(<span class="hljs-number">3</span>);<br><br>        <span class="hljs-comment">// 定义一个 Callable 任务</span><br>        Callable&lt;String&gt; callableTask = () -&gt; &#123;<br>            <span class="hljs-comment">// 模拟耗时操作</span><br>            Thread.sleep(<span class="hljs-number">2000</span>);<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Task&#x27;s execution result&quot;</span>;<br>        &#125;;<br><br>        <span class="hljs-comment">// 提交任务并获取 Future 对象</span><br>        Future&lt;String&gt; future = executorService.submit(callableTask);<br><br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">// 其他操作可以在这里进行</span><br>            System.out.println(<span class="hljs-string">&quot;Do something else while task is executing...&quot;</span>);<br><br>            <span class="hljs-comment">// 获取任务执行结果（会阻塞直到任务完成）</span><br>            <span class="hljs-type">String</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> future.get();<br>            System.out.println(<span class="hljs-string">&quot;Task result: &quot;</span> + result);<br><br>        &#125; <span class="hljs-keyword">catch</span> (InterruptedException | ExecutionException e) &#123;<br>            e.printStackTrace();<br>        &#125; <span class="hljs-keyword">finally</span> &#123;<br>            <span class="hljs-comment">// 关闭线程池</span><br>            executorService.shutdown();<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
+<h4 id="CompletableFuture"><a href="#CompletableFuture" class="headerlink" title="CompletableFuture"></a>CompletableFuture</h4><h4 id="CountDownLatch"><a href="#CountDownLatch" class="headerlink" title="CountDownLatch"></a>CountDownLatch</h4>
                 
               </div>
             

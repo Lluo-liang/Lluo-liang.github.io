@@ -25,11 +25,15 @@
 <meta property="og:site_name" content="轻松的洛亓">
 <meta property="og:description" content="鸡翅Club">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240512172606.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240512173029.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240512173427.png">
 <meta property="article:published_time" content="2024-04-15T23:48:34.000Z">
 <meta property="article:modified_time" content="2024-04-15T23:48:34.000Z">
 <meta property="article:author" content="Luo QI">
 <meta property="article:tag" content="project">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240512172606.png">
   
   
   
@@ -222,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2k 字
+          2.6k 字
         
       </span>
     
@@ -233,7 +237,7 @@
         
         
         
-          17 分钟
+          22 分钟
         
       </span>
     
@@ -296,8 +300,24 @@
 <figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 自定义名称的线程工厂</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * @author: ChickenWing</span><br><span class="hljs-comment"> * @date: 2023/11/26</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-title class_"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomNameThreadFactory</span> <span class="hljs-keyword"><span class="hljs-keyword">implements</span> <span class="hljs-type">ThreadFactory</span></span> </span>&#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> AtomicInteger poolNumber = <span class="hljs-keyword">new</span> <span class="hljs-type">AtomicInteger</span>(<span class="hljs-number">1</span>);<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> ThreadGroup group;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> AtomicInteger threadNumber = <span class="hljs-keyword">new</span> <span class="hljs-type">AtomicInteger</span>(<span class="hljs-number">1</span>);<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">String</span> namePrefix;<br><br>    CustomNameThreadFactory(<span class="hljs-keyword">String</span> name) &#123;<br>        SecurityManager s = System.getSecurityManager();<br>        group = (s != <span class="hljs-literal">null</span>) ? s.getThreadGroup() :<span class="hljs-type"></span><br>                Thread.currentThread().getThreadGroup();<br>        <span class="hljs-keyword">if</span> (StringUtils.isBlank(name)) &#123;<br>            name = <span class="hljs-string">&quot;pool&quot;</span>;<br>        &#125;<br>        namePrefix = name + <span class="hljs-string">&quot;-&quot;</span> +<br>                poolNumber.getAndIncrement() +<br>                <span class="hljs-string">&quot;-thread-&quot;</span>;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> Thread <span class="hljs-keyword">new</span><span class="hljs-type">Thread</span>(Runnable r) &#123;<br>        Thread t = <span class="hljs-keyword">new</span> <span class="hljs-type">Thread</span>(group, r,<br>                namePrefix + threadNumber.getAndIncrement(),<br>                <span class="hljs-number">0</span>);<br>        <span class="hljs-keyword">if</span> (t.isDaemon())&#123;<br>            t.setDaemon(<span class="hljs-literal">false</span>);<br>        &#125;<br>        <span class="hljs-keyword">if</span> (t.getPriority() != Thread.NORM_PRIORITY)&#123;<br>            t.setPriority(Thread.NORM_PRIORITY);<br>        &#125;<br>        <span class="hljs-keyword">return</span> t;<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>在配置类中使用 <code>new CustomNameThreadFactory(&quot;label&quot;),</code></p>
-<h4 id="107-线程池到底设置多少数量"><a href="#107-线程池到底设置多少数量" class="headerlink" title="107 线程池到底设置多少数量"></a>107 线程池到底设置多少数量</h4><p>这个视频得再看一下</p>
-
+<h4 id="107-线程池到底设置多少数量"><a href="#107-线程池到底设置多少数量" class="headerlink" title="107 线程池到底设置多少数量"></a>107 线程池到底设置多少数量</h4><p>文档： <a target="_blank" rel="noopener" href="https://www.yuque.com/jingdianjichi/kwag7a/wt0yaa4osiheqwua">https://www.yuque.com/jingdianjichi/kwag7a/wt0yaa4osiheqwua</a></p>
+<p>核心理论： <strong>一个CPU核心，单位时间内只能执行一个线程的指令</strong></p>
+<p>理解线程数&#x2F;程序行为&#x2F;CPU状态的关系，来简单总结一下：</p>
+<ol>
+<li>一个极端的线程（不停执行“计算”型操作时），就可以把单个核心的利用率跑满，多核心CPU最多只能同时执行等于核心数的“极端”线程数</li>
+<li>如果每个线程都这么“极端”，且同时执行的线程数超过核心数，会导致不必要的切换，造成负载过高，只会让执行更慢</li>
+<li>I&#x2F;O 等暂停类操作时，CPU处于空闲状态，操作系统调度CPU执行其他线程，可以提高CPU利用率，同时执行更多的线程</li>
+<li>I&#x2F;O 事件的频率频率越高，或者等待&#x2F;暂停时间越长，CPU的空闲时间也就更长，利用率越低，操作系统可以调度CPU执行更多的线程</li>
+</ol>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240512172606.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>线程计算公式</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240512173029.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>假设：核数 12、CPU 利用率 90%，等待时间 50ms，计算时间51ms</p>
+<p>N &#x3D; 12 * 0.9 * (1 + 50&#x2F;51) ≈ 22</p>
+<p>设置核心线程数 22 是比较符合预期的值</p>
+<p>在真实的程序中，<strong>一般很难获得准确的等待时间和计算时间，因为程序很复杂，不只是“计算”</strong>。一段代码中会有很多的内存读写，计算，I&#x2F;O 等复合操作，精确的获取这两个指标很难，所以光靠公式计算线程数过于理想化。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240512173427.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="108-用户上下文打通"><a href="#108-用户上下文打通" class="headerlink" title="108 用户上下文打通"></a>108 用户上下文打通</h4>
                 
               </div>
             

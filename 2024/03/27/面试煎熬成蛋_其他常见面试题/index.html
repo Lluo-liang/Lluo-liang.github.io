@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          317 字
+          478 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          3 分钟
+          4 分钟
         
       </span>
     
@@ -283,7 +283,18 @@
 <li>ChannelPipeline 相当于存放ChannelHandler的容器，每个Channel会绑定⼀个</li>
 <li>ByteBuf 是Netty⾃⼰字节容器，⽤于⽹络数据读写</li>
 </ul>
-<h4 id="谈谈你对Netty中Pipeline⼯作原理理解"><a href="#谈谈你对Netty中Pipeline⼯作原理理解" class="headerlink" title="谈谈你对Netty中Pipeline⼯作原理理解"></a>谈谈你对Netty中Pipeline⼯作原理理解</h4><h4 id="Netty中提供了哪些线程模型"><a href="#Netty中提供了哪些线程模型" class="headerlink" title="Netty中提供了哪些线程模型"></a>Netty中提供了哪些线程模型</h4><h4 id="Netty是如何实现零拷⻉的"><a href="#Netty是如何实现零拷⻉的" class="headerlink" title="Netty是如何实现零拷⻉的"></a>Netty是如何实现零拷⻉的</h4><h3 id="ZK"><a href="#ZK" class="headerlink" title="ZK"></a>ZK</h3>
+<h4 id="谈谈你对Netty中Pipeline⼯作原理理解"><a href="#谈谈你对Netty中Pipeline⼯作原理理解" class="headerlink" title="谈谈你对Netty中Pipeline⼯作原理理解"></a>谈谈你对Netty中Pipeline⼯作原理理解</h4><h4 id="Netty中提供了哪些线程模型"><a href="#Netty中提供了哪些线程模型" class="headerlink" title="Netty中提供了哪些线程模型"></a>Netty中提供了哪些线程模型</h4><h4 id="Netty是如何实现零拷⻉的"><a href="#Netty是如何实现零拷⻉的" class="headerlink" title="Netty是如何实现零拷⻉的"></a>Netty是如何实现零拷⻉的</h4><h3 id="ZK"><a href="#ZK" class="headerlink" title="ZK"></a>ZK</h3><h3 id="ES"><a href="#ES" class="headerlink" title="ES"></a>ES</h3><h4 id="ES-了解多吗，讲一下他的原理"><a href="#ES-了解多吗，讲一下他的原理" class="headerlink" title="ES 了解多吗，讲一下他的原理"></a>ES 了解多吗，讲一下他的原理</h4><h4 id="倒排索引"><a href="#倒排索引" class="headerlink" title="倒排索引"></a>倒排索引</h4><ul>
+<li><p>分词器  </p>
+</li>
+<li><p>倒排索引是 Elasticsearch 实现全文搜索的核心技术。它类似于一本书的索引，通过单词快速找到包含该单词的文档。</p>
+</li>
+<li><p>倒排索引将文档内容分词，并将词项映射到包含这些词项的文档 ID 列表</p>
+</li>
+</ul>
+<h4 id="ES-做会聚查询的时候，当数据超过-10000-条的这种情况下，你一般怎么解决"><a href="#ES-做会聚查询的时候，当数据超过-10000-条的这种情况下，你一般怎么解决" class="headerlink" title="ES 做会聚查询的时候，当数据超过 10000 条的这种情况下，你一般怎么解决"></a>ES 做会聚查询的时候，当数据超过 10000 条的这种情况下，你一般怎么解决</h4><ul>
+<li>可以采用分批次聚合的方式</li>
+</ul>
+
                 
               </div>
             
