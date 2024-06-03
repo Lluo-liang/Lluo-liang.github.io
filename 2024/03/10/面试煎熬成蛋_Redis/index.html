@@ -767,7 +767,13 @@
 <p>订阅数据库变更日志</p>
 <p>另一个高级的方案是直接订阅数据库的变更日志（如果数据库支持），如MySQL的binlog。通过解析变更日志，对相关缓存进行更新或删除操作。这种方法可以确保缓存数据的最终一致性，但实现复杂，对数据库和缓存系统的要求较高。</p>
 <h4 id="数据双写不一致（数据一致性）"><a href="#数据双写不一致（数据一致性）" class="headerlink" title="数据双写不一致（数据一致性）"></a>数据双写不一致（数据一致性）</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317223928.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="讲一下延迟双删"><a href="#讲一下延迟双删" class="headerlink" title="讲一下延迟双删"></a>讲一下延迟双删</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317223544.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="讲一下延迟双删"><a href="#讲一下延迟双删" class="headerlink" title="讲一下延迟双删"></a>讲一下延迟双删</h4><ul>
+<li>延迟双删<ul>
+<li>更新数据库智慧，等待一段时间，再次删除缓存中的数据</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240317223544.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="缓存雪崩、缓存击穿、缓存穿透"><a href="#缓存雪崩、缓存击穿、缓存穿透" class="headerlink" title="缓存雪崩、缓存击穿、缓存穿透"></a>缓存雪崩、缓存击穿、缓存穿透</h4><ul>
 <li>缓存穿透<ul>
 <li>缓存穿透是指当请求的数据既不在缓存中也不存在于数据库中时，导致请求直接到达数据库层的现象。</li>

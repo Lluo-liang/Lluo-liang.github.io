@@ -287,7 +287,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.2k 字
+          5.3k 字
         
       </span>
     
@@ -298,7 +298,7 @@
         
         
         
-          44 分钟
+          45 分钟
         
       </span>
     
@@ -387,7 +387,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="讲一下老年代和年轻代"><a href="#讲一下老年代和年轻代" class="headerlink" title="讲一下老年代和年轻代"></a>讲一下老年代和年轻代</h4><ul>
+<h4 id="讲一下老年代和年轻代-🚩"><a href="#讲一下老年代和年轻代-🚩" class="headerlink" title="讲一下老年代和年轻代  🚩"></a>讲一下老年代和年轻代  🚩</h4><ul>
 <li>堆中区域（用于垃圾回收，垃圾回收主要针对的是堆这个区域）【基于对象生命周期划分】<ul>
 <li>年轻代<ul>
 <li>Eden空间<ul>
@@ -440,8 +440,8 @@
 <li>堆会GC垃圾回收，而栈不会。</li>
 <li>栈内存是线程私有的，而堆内存是线程共有的。</li>
 <li>两者异常错误不同，但如果栈内存或者堆内存不足都会抛出异常<ul>
-<li>栈空间不足：java.lang.StackOverFlowError。.</li>
-<li>堆空间不足：java.lang.OutOfMemoryError。.</li>
+<li>栈空间不足：java.lang.StackOverFlowError。</li>
+<li>堆空间不足：java.lang.OutOfMemoryError。</li>
 </ul>
 </li>
 </ul>
@@ -454,7 +454,7 @@
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305163227.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h4 id="直接内存"><a href="#直接内存" class="headerlink" title="直接内存"></a>直接内存</h4><p>先看一下普通 IO 和 NIO 的数据拷贝图示区别</p>
 <p>普通 IO</p>
-<p>使用常规IO 进行数据拷贝的时候，需要使用到 Java 缓冲区 和 操作系统的 系统缓存区的两个缓存区的数据交互（Java 不能直接访问系统缓存区，两个缓存区之间有一个数据复制耗时）</p>
+<p>使用常规 IO 进行数据拷贝的时候，需要使用到 Java 缓冲区 和 操作系统的 系统缓存区的两个缓存区的数据交互（Java 不能直接访问系统缓存区，两个缓存区之间有一个数据复制耗时）</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305163718.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>NIO</p>
 <p>提供了一个直接内存（Java 能直接访问）</p>
@@ -501,7 +501,13 @@
 <p>可达性分析算法</p>
 </blockquote>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305173812.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="哪些对象可以作为-GC-Root-？"><a href="#哪些对象可以作为-GC-Root-？" class="headerlink" title="哪些对象可以作为 GC Root ？"></a>哪些对象可以作为 GC Root ？</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305173900.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="哪些对象可以作为-GC-Root-？"><a href="#哪些对象可以作为-GC-Root-？" class="headerlink" title="哪些对象可以作为 GC Root ？"></a>哪些对象可以作为 GC Root ？</h4><ul>
+<li>虚拟机栈中（栈帧中的本地变量表）中引用的对象</li>
+<li>方法区中类静态属性引用的对象</li>
+<li>方法区中常量引用的对象</li>
+<li>本地方法栈中 JNI 引用的对象</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305173900.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>总结</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305173920.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <hr>
@@ -533,7 +539,7 @@
 <hr>
 <h4 id="说一下-JVM-的分代回收"><a href="#说一下-JVM-的分代回收" class="headerlink" title="说一下 JVM 的分代回收"></a>说一下 JVM 的分代回收</h4><p>工作机制</p>
 <ul>
-<li>1、新创建的对象，都会先分配到eden区</li>
+<li>1、新创建的对象，都会先分配到 eden 区</li>
 <li>2、当伊甸园内存不足，标记伊甸园与 from(现阶段没有) 的存活对象</li>
 <li>3、将存活对象采用复制算法复制到to中，复制完毕后，伊甸园和 from内存都得到释放</li>
 <li>4、经过一段时间后伊甸园的内存又出现不足，标记eden区域to区存活的对象，将存活的对象复制到from区</li>
@@ -616,7 +622,11 @@
 <p>一般不会用到很多</p>
 <p>对于 JVM调优，主要就是调整年轻代、老年代、元空间的内存空间大小及使用的垃圾回收器类型。</p>
 <ul>
-<li>设置堆空间大小</li>
+<li>设置堆空间大小  <ul>
+<li>-Xms 设置堆的初始化大小</li>
+<li>-Xmx：设置堆的最大大小</li>
+</ul>
+</li>
 <li>虚拟机栈的设置</li>
 <li>年轻代中Eden区和两个Survivor区的大小比例</li>
 <li>年轻代晋升老年代阈值</li>
@@ -627,6 +637,9 @@
 <p>虚拟机栈的设置</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305181941.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>年轻代中 Eden 区和 两个 Survivor 区的大小比例</p>
+<ul>
+<li>默认 Eden区：From：To &#x3D; 8：1：1</li>
+</ul>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305182044.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>设置垃圾回收收集器</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240305182124.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>

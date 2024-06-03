@@ -232,7 +232,7 @@
         
         
         
-          31 分钟
+          32 分钟
         
       </span>
     
@@ -362,7 +362,8 @@
 </li>
 <li>Snowflake 模式基于 Twitter 的 Snowflake 算法，生成按时间有序递增的 64 位唯一 ID，包含时间戳、机器 ID 和序列号部分。</li>
 </ul>
-<p>数据库服务重构： <a target="_blank" rel="noopener" href="https://www.bilibili.com/list/watchlater?oid=1253727593&bvid=BV1AJ4m1n73Z">https://www.bilibili.com/list/watchlater?oid=1253727593&amp;bvid=BV1AJ4m1n73Z</a></p>
+<p>参考： <a target="_blank" rel="noopener" href="https://pdai.tech/md/arch/arch-z-id.html">https://pdai.tech/md/arch/arch-z-id.html</a></p>
+<p>在类 snowflake算法上都存在时钟回拨的问题，Leaf-snowflake在解决时钟回拨的问题上是通过校验自身系统时间与 <code>leaf_forever/$&#123;self&#125;</code>节点记录时间做比较然后启动报警的措施。</p>
 <h4 id="redis-内存溢出问题"><a href="#redis-内存溢出问题" class="headerlink" title="redis 内存溢出问题"></a>redis 内存溢出问题</h4><p>测试反馈客诉线上运营的资源没展示-&gt;查看代码逻辑</p>
 <ul>
 <li>1、查看链路追踪观测下游接口调用正常</li>
@@ -376,6 +377,8 @@
 <li>2、当时采用的方案是：对于hash,使用 hscan 扫描法查找最开始一个月的数据，通过 使用 <code>HDEL</code> 命令删除符合条件的字段，观察线上问题是否解决，解决后，再批次进行删除的操作</li>
 <li>3、后续做法：更改了内存淘汰策略，更改了程序代码，添加了过期时间，添加了对应 大 key 的日常监控。</li>
 </ul>
+<p>业务</p>
+<p>客诉单  →  </p>
 
                 
               </div>

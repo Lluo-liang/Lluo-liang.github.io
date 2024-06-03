@@ -261,7 +261,7 @@
         
         
         
-          202 分钟
+          203 分钟
         
       </span>
     
@@ -426,7 +426,7 @@
 <ul>
 <li><p>在默认配置下，Feign 客户端会与 Ribbon 和 Hystrix 集成，以提供负载均衡和断路器功能</p>
 </li>
-<li><p>首先，如果你对某个接口定义了@FeignClient注解，Feign就会针对这个接口创建一个动态代理</p>
+<li><p>首先，如果你对某个接口定义了 @FeignClient 注解，Feign就会针对这个接口创建一个动态代理</p>
 </li>
 <li><p>你要是调用那个接口，本质就是会调用 Feign创建的动态代理，这是核心中的核心</p>
 </li>
@@ -479,7 +479,19 @@
 </ul>
 </li>
 </ul>
-<h4 id="讲一下-OpenFeign-的-Fallback-原理"><a href="#讲一下-OpenFeign-的-Fallback-原理" class="headerlink" title="讲一下 OpenFeign 的 Fallback 原理"></a>讲一下 OpenFeign 的 Fallback 原理</h4><h4 id="远程调用整个架构怎么设计的，少的话几个，多的话几百个、上千个接口如何管理？"><a href="#远程调用整个架构怎么设计的，少的话几个，多的话几百个、上千个接口如何管理？" class="headerlink" title="远程调用整个架构怎么设计的，少的话几个，多的话几百个、上千个接口如何管理？"></a>远程调用整个架构怎么设计的，少的话几个，多的话几百个、上千个接口如何管理？</h4><h3 id="Ribbon"><a href="#Ribbon" class="headerlink" title="Ribbon"></a>Ribbon</h3><h4 id="讲一下-Ribbon-的作用"><a href="#讲一下-Ribbon-的作用" class="headerlink" title="讲一下 Ribbon 的作用"></a>讲一下 Ribbon 的作用</h4><ul>
+<h4 id="讲一下-OpenFeign-的-Fallback-原理"><a href="#讲一下-OpenFeign-的-Fallback-原理" class="headerlink" title="讲一下 OpenFeign 的 Fallback 原理"></a>讲一下 OpenFeign 的 Fallback 原理</h4><h4 id="远程调用整个架构怎么设计的，少的话几个，多的话几百个、上千个接口如何管理？"><a href="#远程调用整个架构怎么设计的，少的话几个，多的话几百个、上千个接口如何管理？" class="headerlink" title="远程调用整个架构怎么设计的，少的话几个，多的话几百个、上千个接口如何管理？"></a>远程调用整个架构怎么设计的，少的话几个，多的话几百个、上千个接口如何管理？</h4><ul>
+<li>服务注册与发现</li>
+<li>负载均衡</li>
+<li>API 管理平台</li>
+</ul>
+<p>扩展</p>
+<ul>
+<li>缓存</li>
+<li>限流与熔断</li>
+<li>异步通信</li>
+<li>监控日志</li>
+</ul>
+<h3 id="Ribbon"><a href="#Ribbon" class="headerlink" title="Ribbon"></a>Ribbon</h3><h4 id="讲一下-Ribbon-的作用"><a href="#讲一下-Ribbon-的作用" class="headerlink" title="讲一下 Ribbon 的作用"></a>讲一下 Ribbon 的作用</h4><ul>
 <li>均匀的把请求分发到各个机器上</li>
 </ul>
 <p>实现工作流程</p>
@@ -595,7 +607,9 @@
 <li><strong>特定服务配置</strong>：通过为特定服务创建独立的Ribbon配置类并使用<code>@RibbonClient</code>注解来指定，可以实现对不同服务使用不同的负载均衡策略。这种方式提供了更高的灵活性和针对性。</li>
 </ul>
 <h4 id="负载均衡策略"><a href="#负载均衡策略" class="headerlink" title="负载均衡策略"></a>负载均衡策略</h4><p>获取 URL路径</p>
-<h4 id="Ribbon-的底层原理-🚩"><a href="#Ribbon-的底层原理-🚩" class="headerlink" title="Ribbon 的底层原理  🚩"></a>Ribbon 的底层原理  🚩</h4><h3 id="Hystrix"><a href="#Hystrix" class="headerlink" title="Hystrix"></a>Hystrix</h3><h4 id="讲一下-hystrix-的作用"><a href="#讲一下-hystrix-的作用" class="headerlink" title="讲一下 hystrix 的作用"></a>讲一下 hystrix 的作用</h4><ul>
+<h4 id="Ribbon-的底层原理-🚩"><a href="#Ribbon-的底层原理-🚩" class="headerlink" title="Ribbon 的底层原理  🚩"></a>Ribbon 的底层原理  🚩</h4><p>Ribbon 的底层原理包括<strong>获取服务实例列表、应用负载均衡策略选择服务实例</strong>、提供重试机制以及与服务发现组件的集成。</p>
+<p>通过这些机制，Ribbon 可以在客户端实现高效的负载均衡，使得分布式系统中的服务调用更加稳定和高效。</p>
+<h3 id="Hystrix"><a href="#Hystrix" class="headerlink" title="Hystrix"></a>Hystrix</h3><h4 id="讲一下-hystrix-的作用"><a href="#讲一下-hystrix-的作用" class="headerlink" title="讲一下 hystrix 的作用"></a>讲一下 hystrix 的作用</h4><ul>
 <li>Hystrix隔离、熔断和降级</li>
 </ul>
 <blockquote>
