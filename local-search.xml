@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>项目学习_mall学习教程</title>
+    <link href="/2024/06/03/%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0_mall%E5%AD%A6%E4%B9%A0%E6%95%99%E7%A8%8B/"/>
+    <url>/2024/06/03/%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0_mall%E5%AD%A6%E4%B9%A0%E6%95%99%E7%A8%8B/</url>
+    
+    <content type="html"><![CDATA[<p>文档地址： <a href="https://www.macrozheng.com/">https://www.macrozheng.com/</a></p><p>视频学习地址： <a href="https://wx.zsxq.com/dweb2/index/columns/88885815888252">https://wx.zsxq.com/dweb2/index/columns/88885815888252</a></p><p>教程文档地址： <a href="https://www.yuque.com/macrozheng/mall-learning">https://www.yuque.com/macrozheng/mall-learning</a></p><h3 id="项目介绍"><a href="#项目介绍" class="headerlink" title="项目介绍"></a>项目介绍</h3><h3 id="序章"><a href="#序章" class="headerlink" title="序章"></a>序章</h3><h4 id="项目学习思路"><a href="#项目学习思路" class="headerlink" title="项目学习思路"></a>项目学习思路</h4><ul><li>1、先将项目跑起来</li><li>2、学习项目中用到的技术栈内容</li><li>3、阅读项目源码</li><li>4、二次开发（在原有功能基础上改造）</li></ul><h4 id="功能概览"><a href="#功能概览" class="headerlink" title="功能概览"></a>功能概览</h4><ul><li>商品模块<ul><li>商品管理</li><li>商品分类管理</li><li>商品类型管理</li><li>品牌管理</li></ul></li><li>订单模块<ul><li>订单管理</li><li>订单设置</li><li>退货申请处理</li><li>退货原因设置</li></ul></li><li>营销模块<ul><li>秒杀活动管理</li><li>优惠价管理</li><li>品牌推荐管理</li><li>新品推荐管理</li><li>人气推荐管理</li><li>专题推荐管理</li><li>首页广告管理</li></ul></li></ul><h4 id="数据库表概览"><a href="#数据库表概览" class="headerlink" title="数据库表概览"></a>数据库表概览</h4><p>mall项目目前有71张数据表，业务逻辑有一定复杂度，平时做项目参考也够了。</p><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240531190205.png" alt="image.png"></p><p>数据库表前缀说明</p><ul><li>cms_* ：内容管理模块相关表</li><li>oms_* ：订单管理模块相关表</li><li>pms_* ：商品模块相关表</li><li>sms_* ：营销模块相关表</li><li>ums_* ：会员模块相关表</li></ul><h4 id="前置技能点"><a href="#前置技能点" class="headerlink" title="前置技能点"></a>前置技能点</h4><ul><li>IDEA</li><li>Spring</li><li>SpringBoot</li><li>Mybatis</li><li>Mysql</li><li>Linux</li><li>Elasticsearch</li><li>Mongodb</li><li>Docker</li></ul><h3 id="架构篇"><a href="#架构篇" class="headerlink" title="架构篇"></a>架构篇</h3><ul><li>mall 整合 SpringBoot + MyBatis 搭建基本骨架</li><li>mall 整合 Swagger-UI 实现在线 API  文档</li><li>mall 整合 Redis 实现缓存功能</li><li>mall 整合 SpringSecurity 和 JWT 实现认证和授权</li><li>mall 整合 SpringTask 实现定时任务</li><li>mall 整合 Elasticsearch 实现商品搜索</li><li>mall 整合 MongoDB 实现文档操作</li><li>mall 整合 RabbitMQ 实现延迟消息</li><li>mall 整合 OSS 实现文件上传</li></ul><h4 id="项目拉取与运行"><a href="#项目拉取与运行" class="headerlink" title="项目拉取与运行"></a>项目拉取与运行</h4><h3 id="业务篇"><a href="#业务篇" class="headerlink" title="业务篇"></a>业务篇</h3><h3 id="技术要点篇"><a href="#技术要点篇" class="headerlink" title="技术要点篇"></a>技术要点篇</h3><h3 id="部署篇"><a href="#部署篇" class="headerlink" title="部署篇"></a>部署篇</h3><h3 id="参考篇"><a href="#参考篇" class="headerlink" title="参考篇"></a>参考篇</h3>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>SpringBoot学习_学习02</title>
     <link href="/2024/05/01/SpringBoot%E5%AD%A6%E4%B9%A0_%E5%AD%A6%E4%B9%A002/"/>
     <url>/2024/05/01/SpringBoot%E5%AD%A6%E4%B9%A0_%E5%AD%A6%E4%B9%A002/</url>
