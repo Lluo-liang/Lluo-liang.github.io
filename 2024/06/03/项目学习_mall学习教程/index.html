@@ -221,7 +221,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          583 字
+          1.9k 字
         
       </span>
     
@@ -232,7 +232,7 @@
         
         
         
-          5 分钟
+          17 分钟
         
       </span>
     
@@ -274,19 +274,72 @@
             
               <div class="markdown-body">
                 
-                <h4 id="文档与教学视频，项目地址"><a href="#文档与教学视频，项目地址" class="headerlink" title="文档与教学视频，项目地址"></a>文档与教学视频，项目地址</h4><p>文档地址： <a target="_blank" rel="noopener" href="https://www.macrozheng.com/">https://www.macrozheng.com/</a></p>
+                <p>建议还是学习整体对方的这个开发思路和一些细节地方,这个很重要,包括一些学习的方法.</p>
+<p>按照章节和天数顺序记录一下自己的所学,沉淀一些东西,同时按照自己的节奏去做这些东西.</p>
+<p>按照记录博客的方式去表述.</p>
+<p>Mall 商城学习记录</p>
+<ul>
+<li>[[Mall 商城学习记录_01]]</li>
+</ul>
+<h4 id="技术栈学习"><a href="#技术栈学习" class="headerlink" title="技术栈学习"></a>技术栈学习</h4><p>[[项目学习_mall商城学习_常用技术栈]]</p>
+<p>常见的技术栈内容使用:</p>
+<ul>
+<li><h2 id="框架-SpringBoot-MyBatis"><a href="#框架-SpringBoot-MyBatis" class="headerlink" title="框架  - SpringBoot  - MyBatis"></a>框架<br>  - SpringBoot<br>  - MyBatis</h2></li>
+<li>组件<ul>
+<li>Spring Data Redis</li>
+<li>ES</li>
+<li>MongoDB</li>
+<li>RabbitMQ</li>
+</ul>
+</li>
+<li>工具, 常用技术(认证授权等)<ul>
+<li>Lombok</li>
+<li>Mybatis_Generator</li>
+<li>JWT 认证授权</li>
+<li>MinIo</li>
+<li>Hutool</li>
+<li>Swagger</li>
+<li>PostMan</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="文档与教学视频，项目地址"><a href="#文档与教学视频，项目地址" class="headerlink" title="文档与教学视频，项目地址"></a>文档与教学视频，项目地址</h4><p>文档地址： <a target="_blank" rel="noopener" href="https://www.macrozheng.com/">https://www.macrozheng.com/</a></p>
 <p>视频学习地址： <a target="_blank" rel="noopener" href="https://wx.zsxq.com/dweb2/index/columns/88885815888252">https://wx.zsxq.com/dweb2/index/columns/88885815888252</a></p>
 <p>教程文档地址： <a target="_blank" rel="noopener" href="https://www.yuque.com/macrozheng/mall-learning">https://www.yuque.com/macrozheng/mall-learning</a>  🚩</p>
-<p>访问密码：hvmz</p>
+<p>访问密码：ukcn</p>
 <p>密码更新： <a target="_blank" rel="noopener" href="https://wx.zsxq.com/dweb2/index/topic_detail/214455852415851">https://wx.zsxq.com/dweb2/index/topic_detail/214455852415851</a></p>
 <p>语雀编辑地址： <a target="_blank" rel="noopener" href="https://www.yuque.com/u29310439/yigqfn/dzs6py4tb71kxq71">https://www.yuque.com/u29310439/yigqfn/dzs6py4tb71kxq71</a></p>
 <h4 id="工具使用"><a href="#工具使用" class="headerlink" title="工具使用"></a>工具使用</h4><p>Redis 推荐使用工具： RedisInsight</p>
 <p>RedisInsight的安装包，下载地址：<a target="_blank" rel="noopener" href="https://redis.com/redis-enterprise/redis-insight/">https://redis.com/redis-enterprise/redis-insight/</a></p>
-<h4 id="技术栈学习"><a href="#技术栈学习" class="headerlink" title="技术栈学习"></a>技术栈学习</h4><p>[[项目学习_mall学习_架构知识篇]]</p>
+<h3 id="项目拉取与运行"><a href="#项目拉取与运行" class="headerlink" title="项目拉取与运行"></a>项目拉取与运行</h3><p>项目地址：</p>
+<ul>
+<li>项目脚手架项目 mall-learning： <a target="_blank" rel="noopener" href="https://github.com/macrozheng/mall-learning/tree/teach">https://github.com/macrozheng/mall-learning/tree/teach</a>  (分支切换为 teach)</li>
+<li>后台管理项目： <a target="_blank" rel="noopener" href="https://github.com/macrozheng/mall/tree/teach">https://github.com/macrozheng/mall/tree/teach</a>   (分支切换为 teach)</li>
+<li>前端项目： 略</li>
+</ul>
+<p>运行脚手架 Learning 学习项目之前，先执行一下数据库文件（mysql 5.5，5.7 都可以，字符串格式选择 utf8mb4</p>
+<p>由于<code>mall-learning</code>项目为一个聚合项目，所以在导入代码时需要整个导入，不能单独导入某个示例。(注意一下)</p>
+<p>分页依赖</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">pagehelper-starter.version</span>&gt;</span>1.4.5<span class="hljs-tag">&lt;/<span class="hljs-name">pagehelper-starter.version</span>&gt;</span>  </span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">pagehelper.version</span>&gt;</span>5.3.2<span class="hljs-tag">&lt;/<span class="hljs-name">pagehelper.version</span>&gt;</span></span><br><span class="language-xml"></span><br><span class="language-xml"><span class="hljs-comment">&lt;!--MyBatis分页插件--&gt;</span>  </span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>  </span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.github.pagehelper<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  </span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>pagehelper-spring-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  </span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>$</span><span class="hljs-template-variable">&#123;pagehelper-starter.version&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>  </span><br><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+
+<p>Spring 的诞生：简化 Spring 中的配置和统一各种依赖的版本</p>
+<p>核心功能：</p>
+<ul>
+<li>自动配置：对于很多Spring应用程序常见的应用功能，SpringBoot能自动提供相关配置，集成功能开发者仅需很少的配置。</li>
+<li>起步依赖：告诉SpringBoot需要什么功能，它就能引入对应的库，无需考虑该功能依赖库的版本问题。</li>
+<li>Actuator：可以深入了解SpringBoot应用程序内部情况，比如创建了哪些Bean、自动配置的决策、应用程序的状态信息等。</li>
+</ul>
+<p><code>@SpringBootApplication</code>注解是三个注解的结合体，拥有以下三个注解的功能：</p>
+<ul>
+<li><code>@Configuration</code>：用于声明Spring中的Java配置；</li>
+<li><code>@ComponentScan</code>：启用组件扫描，当我们使用<code>@Component</code>注解声明组件时，会自动发现并注册为Spring应用上下文中的Bean；</li>
+<li><code>@EnableAutoConfiguration</code>：开启SpringBoot自动配置功能，简化配置编写</li>
+</ul>
 <h4 id="业务整理"><a href="#业务整理" class="headerlink" title="业务整理"></a>业务整理</h4><h5 id="Mall-整合-ELK"><a href="#Mall-整合-ELK" class="headerlink" title="Mall 整合 ELK"></a>Mall 整合 ELK</h5><p>参考： <a target="_blank" rel="noopener" href="https://www.yuque.com/macrozheng/mall-learning/yu3lh69e1gu0ppiq">https://www.yuque.com/macrozheng/mall-learning/yu3lh69e1gu0ppiq</a></p>
 <p>文档中用的是 下载Elasticsearch<code>7.17.3</code>  版本，注意一下</p>
 <p>配置参考； <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f45e4b6de0e8">https://www.jianshu.com/p/f45e4b6de0e8</a></p>
-<h4 id="项目二次改造"><a href="#项目二次改造" class="headerlink" title="项目二次改造"></a>项目二次改造</h4>
+<h3 id="项目二次改造"><a href="#项目二次改造" class="headerlink" title="项目二次改造"></a>项目二次改造</h3>
                 
               </div>
             
@@ -343,29 +396,6 @@
 
 
 
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2024/06/04/IDEA%E4%B8%AD%E7%9A%84%E5%B8%B8%E8%A7%81%E4%BD%BF%E7%94%A8/" title="IDEA中的常见使用">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">IDEA中的常见使用</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2024/05/01/SpringBoot%E5%AD%A6%E4%B9%A0_%E5%AD%A6%E4%B9%A002/" title="SpringBoot学习_学习02">
-                        <span class="hidden-mobile">SpringBoot学习_学习02</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
               
             </div>
 
