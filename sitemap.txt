@@ -167,8 +167,8 @@ https://varcel.luoqi.icu/tags/%E9%9B%86%E5%90%88/
 https://varcel.luoqi.icu/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/
 https://varcel.luoqi.icu/tags/%E8%BF%90%E7%BB%B4/
 https://varcel.luoqi.icu/tags/maven/
-https://varcel.luoqi.icu/tags/mysql/
 https://varcel.luoqi.icu/tags/mongodb/
+https://varcel.luoqi.icu/tags/mysql/
 https://varcel.luoqi.icu/tags/netty/
 https://varcel.luoqi.icu/tags/nginx/
 https://varcel.luoqi.icu/tags/NoSQL/
@@ -226,9 +226,9 @@ https://varcel.luoqi.icu/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/
 https://varcel.luoqi.icu/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/Redis/
 https://varcel.luoqi.icu/categories/%E6%A1%86%E6%9E%B6/
 https://varcel.luoqi.icu/categories/%E5%89%8D%E7%AB%AF/
-https://varcel.luoqi.icu/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/
-https://varcel.luoqi.icu/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/
 https://varcel.luoqi.icu/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/
+https://varcel.luoqi.icu/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/
+https://varcel.luoqi.icu/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/
 https://varcel.luoqi.icu/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/NoSQL/
 https://varcel.luoqi.icu/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/Oracle/
 https://varcel.luoqi.icu/categories/%E6%A1%86%E6%9E%B6/SpringBoot/

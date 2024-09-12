@@ -1473,14 +1473,14 @@
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/tags/mysql/</loc>
+    <loc>https://varcel.luoqi.icu/tags/mongodb/</loc>
     <lastmod>2024-09-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/tags/mongodb/</loc>
+    <loc>https://varcel.luoqi.icu/tags/mysql/</loc>
     <lastmod>2024-09-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1888,7 +1888,7 @@
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/</loc>
+    <loc>https://varcel.luoqi.icu/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/</loc>
     <lastmod>2024-09-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1902,7 +1902,7 @@
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/</loc>
+    <loc>https://varcel.luoqi.icu/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/</loc>
     <lastmod>2024-09-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
