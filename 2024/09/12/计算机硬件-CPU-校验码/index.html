@@ -1,0 +1,1232 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/Xbox%20L.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Luo QI">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="计算机硬件-CPU-校验码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机硬件-CPU-校验码">
+<meta property="og:url" content="https://varcel.luoqi.icu/2024/09/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6-CPU-%E6%A0%A1%E9%AA%8C%E7%A0%81/index.html">
+<meta property="og:site_name" content="轻松的洛亓">
+<meta property="og:description" content="计算机硬件-CPU-校验码">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/526e66add9a1780a89c096218b317312_MD5.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20230909-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6-CPU-%E6%A0%A1%E9%AA%8C%E7%A0%81.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/7afc24d6b80cb9ef31deaf59898b9d3c_MD5.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/ad48d0cc13a61f4dd1873703d3bf8e28_MD5.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/1-720230909-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6-CPU-%E6%A0%A1%E9%AA%8C%E7%A0%81.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/0fb184816b3fb7f8accbaa214e6569d3_MD5.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/14c1b706fffc7813c46b9301e658b28b_MD5.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/4-720230909-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6-CPU-%E6%A0%A1%E9%AA%8C%E7%A0%81.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/2-720230909-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6-CPU-%E6%A0%A1%E9%AA%8C%E7%A0%81.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/7c5034f0ad4e1e1587bd7694896452fe_MD5.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/5-720230909-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6-CPU-%E6%A0%A1%E9%AA%8C%E7%A0%81.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/8605adb48d54d974f2b08ac95bff5084_MD5.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/6957895a7e77a1a95f03ae832eafe29a_MD5.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/a781900e425e045193b5751a9a5ced26_MD5.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/39d3bc835118cc7ed8b713e96c026cb1_MD5.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/6-720230909-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6-CPU-%E6%A0%A1%E9%AA%8C%E7%A0%81.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/2ea98c2ec3ad33be17316c0297050acd_MD5.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/7-720230909-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6-CPU-%E6%A0%A1%E9%AA%8C%E7%A0%81.png">
+<meta property="article:published_time" content="2024-09-12T23:42:34.000Z">
+<meta property="article:modified_time" content="2024-09-12T23:42:34.000Z">
+<meta property="article:author" content="Luo QI">
+<meta property="article:tag" content="软考">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/526e66add9a1780a89c096218b317312_MD5.png">
+  
+  
+  
+  <title>计算机硬件-CPU-校验码 - 轻松的洛亓</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"varcel.luoqi.icu","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  <meta name="baidu-site-verification" content="codeva-Oq0KOjHuD3" />
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>轻松的洛亓</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="计算机硬件-CPU-校验码"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-12 23:42" pubdate>
+          2024年9月12日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          13k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          106 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">计算机硬件-CPU-校验码</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>趋势：考的概览比较小，分值占比较低</p>
+<p>历年真题考情：</p>
+<p>本章节19-21年没考过，但在22年真题考过磁盘调度，根据趋势，以后考的概率很小。</p>
+<p>第二版更新：</p>
+<p>第二版教材改版后在2.2增加了这块内容，但是内容很少很少，只有基础的硬件组成介绍，因此我们根据历年真题考察情况做了调整。</p>
+<p>相比较原来视频，删除了不考的编码、海明码等内容，同时将可靠性独立到可靠性章节。学员看到课件编号不连续无需疑问，是有删减的，按我们最新视频学习即可。</p>
+<hr>
+<p>目录：</p>
+<ul>
+<li>计算机硬件组成</li>
+<li>校验码</li>
+<li>指令系统</li>
+<li>存储系统</li>
+<li>输入&#x2F;输出系统</li>
+<li>总线结构</li>
+</ul>
+<h3 id="计算机硬件组成"><a href="#计算机硬件组成" class="headerlink" title="计算机硬件组成"></a>计算机硬件组成</h3><p>计算机的基本硬件系统由运算器、控制器、存储器、输入设备和输出设备5大部件组成。</p>
+<p>运算器、控制器等部件被集成在一起统称为中央处理单元(Central Processing Unit,CPU)<br>CPU是硬件系统的核心，用于数据的加工处理，能完成各种算术逻辑运算及控制功能。</p>
+<p>存储器是计算机系统中的<strong>记忆设备</strong>，分为<strong>内部存储器和外部存储器</strong>。前者速度高、容量小，一般用于临时存放程序、数据及中间结果。而后者容量大、速度慢，可以长期保存程序和数据。</p>
+<p><strong>输入设备和输出设备合称为外部设备</strong>（简称外设）,输入设备用于输入原始 数据及各种命令，而输出设备则用于输出计算机运行的结果。</p>
+<h4 id="CPU的功能"><a href="#CPU的功能" class="headerlink" title="CPU的功能"></a>CPU的功能</h4><p>(1)<strong>程序控制</strong>。</p>
+<p>CPU通过执行指令来控制程序的执行顺序，这是CPU的重要功能。</p>
+<p>(2)<strong>操作控制</strong>。</p>
+<p>一条指令功能的实现需要若干操作信号配合来完成，CPU产生每条指令的操作信号并将操作信号送往对应的部件，控制相应的部件按指令的功能<br>要求进行操作。</p>
+<p>(3)<strong>时间控制</strong>。</p>
+<p>CPU对各种操作进行时间上的控制，即指令执行过程中操作信号的出现时间、持续时间及出现的时间顺序都需要进行严格控制。</p>
+<p>(4)<strong>数据处理</strong>。</p>
+<p>CPU通过对数据进算术运算及逻箱运算等务进行加工处理，数据加工处理的结果被人们所利用。所以，对数据的加工处理也是CPU最根本的<br>任务。</p>
+<p>此外，<strong>CPU还需要对系统内部和外部的中断（异常）做出响应，进行相应的处理。</strong></p>
+<h4 id="CPU-的组成"><a href="#CPU-的组成" class="headerlink" title="CPU 的组成"></a>CPU 的组成</h4><p>CPU的组成：CPU主要由<strong>运算器、控制器、寄存器组和内部总线等部件组成。</strong></p>
+<hr>
+<p>运算器：</p>
+<p>组成</p>
+<ul>
+<li>算术逻辑单元 ALU (实现对数据的算术和逻辑运算)、</li>
+<li>累加寄存器 AC(运算结果或源操作数的存放区)、</li>
+<li>数据缓冲寄存器 DR (暂时存放内存的指令或数据)、</li>
+<li>状态条件寄存器 PSW (保存指令运行结果的条件码内容，如溢出标志等)</li>
+</ul>
+<p>功能：执行所有的算术运算，如加减乘除等；执行所有的逻辑运算并进行逻辑测试，如与、或、非、比较等。</p>
+<hr>
+<p>控制器：</p>
+<p>组成：</p>
+<ul>
+<li>指令寄存器 IR(暂存CPU执行指令)、</li>
+<li>程序计数器PC(存放指令执行地址)、</li>
+<li>地址寄存器AR(保存当前 CPU 所访问的内存地址)、</li>
+<li>指令译码器 ID (分析指令操作码)等</li>
+</ul>
+<p>功能：控制整个CPU的工作，最为重要。</p>
+<p>CPU依据<strong>指令周期的不同阶段</strong>来区分二进制的指令和数据，因为在指令周期的不同阶段，指令会命令CPU分别去取指令或者数据。</p>
+<p>考试真题</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/526e66add9a1780a89c096218b317312_MD5.png" srcset="/img/loading.gif" lazyload alt="526e66add9a1780a89c096218b317312_MD5"><br>答案：B  C</p>
+<p>要求：理解运算器和控制器相关的组成内容和对应的组件作用</p>
+<p>解析：</p>
+<p>第一题：<br>先看功能</p>
+<ul>
+<li>程序计数器PC(存放指令执行地址)【控制器】</li>
+<li>累加寄存器 AC(运算结果或源操作数的存放区)【运算器】</li>
+<li>指令寄存器 IR(暂存CPU执行指令)【控制器】</li>
+<li>地址寄存器AR(保存当前 CPU 所访问的内存地址)【控制器】<br>由于这里题目问的是暂存源操作数，会涉及到运算器部分，这里运算器下元件只有 B下选项一个。如果熟悉 AC 的作用，也可以通过作用来进行选择。</li>
+</ul>
+<p>第二题：</p>
+<ul>
+<li>指令寄存器 IR(暂存CPU执行指令)【控制器】</li>
+<li>程序计数器PC(存放指令执行地址)【控制器】</li>
+</ul>
+<p>这里B、D 前面好像并没有讲述到，大致了解一下：</p>
+<ul>
+<li>通用寄存器（GR，General register）通用寄存器可用于传送和暂存数据，也可参与算术逻辑运算，并保存运算结果。</li>
+<li>状态寄存器又名条件码寄存器（SR,Status register），<strong>一类是体现当前指令执行结果的各种状态信息（条件码）</strong>，<strong>另一类是存放控制信息（PSW:程序状态字寄存器）</strong> 【运算器】</li>
+</ul>
+<p>理解这两个应该都是 运算器下面的组件，状态寄存器可能是 PSW 的上一层组件。可以进行排除。</p>
+<p>题目要求是存放的是 地址，因此选 C 。</p>
+<hr>
+<p>上面内容小结<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20230909-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6-CPU-%E6%A0%A1%E9%AA%8C%E7%A0%81.png" srcset="/img/loading.gif" lazyload alt="20230909-系统架构设计师_计算机硬件-CPU-校验码"></p>
+<h3 id="校验码"><a href="#校验码" class="headerlink" title="校验码"></a>校验码</h3><p>小结：</p>
+<ul>
+<li>码距<ul>
+<li>从A码到B码转换所需要改变的位数</li>
+</ul>
+</li>
+<li>奇偶校验码</li>
+<li>循环冗余校验码<ul>
+<li><ol>
+<li>原始信息串后面添加阶位0</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>多项式转换为串除数</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>模2 除法运算</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>原始信息串后面添加余数进行发送</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="码距"><a href="#码距" class="headerlink" title="码距"></a>码距</h4><p>就单个编码A: 00而言，其码距为1，因为其只需要改变一位就变成另一个编码。</p>
+<p>在两个编码中，从A码到B码转换所需要改变的位数称为码距；如A:00要转换为B:11,  码距为2。<br>一般来说，码距越大，越利于纠错和检错。</p>
+<h4 id="奇偶校验码"><a href="#奇偶校验码" class="headerlink" title="奇偶校验码"></a>奇偶校验码</h4><p>在编码中<strong>增加1位校验位来使编码中1的个数为奇数（奇校验）或者偶数（偶校验）</strong>，从而使码距变为2。</p>
+<p>例如：<br>奇校验：编码中，含有奇数个1，发送给接收方，接收方收到后，会计算收到的编码有多少个1，<strong>如果是奇数个，则无误，是偶数个，则有误</strong>。<br>偶校验同理，只是编码中有偶数个1，由上述，奇偶校验只能检1位错，并且无法纠错。</p>
+<h4 id="循环冗余校验码"><a href="#循环冗余校验码" class="headerlink" title="循环冗余校验码"></a>循环冗余校验码</h4><p><strong>CRC只能检错，不能纠错。</strong></p>
+<p>使用CRC编码，需要先约定一个生成多项式G(x)。生成多项式的最高位和最低位必须是1。</p>
+<p>假设原始信息有 m 位，则对应多项式M(x)。生成校验码思想就是<strong>在原始信息位后追加若干校验位，使得追加的信息能被G(x)整除。接收方接收到带校验位的信息，然后用G(x)整除。余数为0，则没有错误；反之则发生错误</strong>。</p>
+<p>例题：</p>
+<p>例：假设原始信息串为10110，CRC的生成多项式为G(x)&#x3D;x^4+x+1,求CRC校验码。</p>
+<p>(1)在原始信息位后面添0，假设生成多项式的阶为r,则在原始信息位后添加 r 个0，</p>
+<p>本题中，G(x)阶为4，则在原始信息串后加4个0，得到的新串为101100000，作为被除数。</p>
+<p>(2)由多项式得到除数，多项中x的幂指数存在的位置1，不存在的位置0。本题中，x 的幂指数为0,1,4的变量都存在，而幂指数为2,3的不存在，因此得到串 10011。</p>
+<p>(3)生成 CRC 校验码，将前两步得出的被除数和除数进行模2除法运算（即不进位也不借位的除法运算)。除法过程如下图所示。<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/7afc24d6b80cb9ef31deaf59898b9d3c_MD5.png" srcset="/img/loading.gif" lazyload alt="7afc24d6b80cb9ef31deaf59898b9d3c_MD5"><br>得到余数1111</p>
+<p>注意：余数不足r,则余数左边用若干个0补齐。例如求得余数为11，r &#x3D; 4，则补两个0得到0011。</p>
+<p>(4)生成最终发送信息串，将余数添加到原始信息后。</p>
+<p>上例中，原始信息为 10110,添加余数1111后，**结果为101101111。发送方将此数据发送给接收方。</p>
+<p>(5)接收方进行校验。接收方的CC校验过程与生成过程类似，接收方接收了带校验和的帧后，用多项式G(x)来除。余数为0，则表示信息无错；否则要求发送方进行重传。</p>
+<p>注意：收发信息双方需使用相同的生成多项式。</p>
+<hr>
+<p>考试真题</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/ad48d0cc13a61f4dd1873703d3bf8e28_MD5.png" srcset="/img/loading.gif" lazyload alt="ad48d0cc13a61f4dd1873703d3bf8e28_MD5"></p>
+<p>答案：A</p>
+<p>解析：按照上文的进行模2除法运算，得到   1100010</p>
+<p>根据这个关键信息解题一下<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/1-720230909-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6-CPU-%E6%A0%A1%E9%AA%8C%E7%A0%81.png" srcset="/img/loading.gif" lazyload alt="1-720230909-系统架构设计师_计算机硬件-CPU-校验码"></p>
+<ul>
+<li><ol>
+<li>原始信息串 → 110000  （三阶）</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>1011</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>1100000&#x2F;1011  余数  010</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>选择 A</li>
+</ol>
+</li>
+</ul>
+<h3 id="指令系统"><a href="#指令系统" class="headerlink" title="指令系统"></a>指令系统</h3><p>小结：</p>
+<ul>
+<li>计算机指令执行过程<ul>
+<li><ol>
+<li>取指令</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>分析指令</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>执行指令</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>指令寻址方式<ul>
+<li>顺序寻址方式</li>
+<li>跳跃寻址方式</li>
+</ul>
+</li>
+<li>指令操作数的寻址方式<ul>
+<li>立即寻址方式</li>
+<li>直接寻址方式</li>
+<li>间接寻址方式</li>
+<li>寄存器寻址方式</li>
+<li>基址寻址方式</li>
+<li>变址寻址方式</li>
+</ul>
+</li>
+<li>CISC  与  RISC<ul>
+<li>CISC: 复杂指令系统</li>
+<li>RISC: 精简指令系统</li>
+</ul>
+</li>
+</ul>
+<h4 id="计算机指令"><a href="#计算机指令" class="headerlink" title="计算机指令"></a>计算机指令</h4><h5 id="计算机指令的组成"><a href="#计算机指令的组成" class="headerlink" title="计算机指令的组成"></a>计算机指令的组成</h5><p>一条指令由操作码和操作数两部分组成，<strong>操作码决定要完成的操作</strong>，操作数指参加运算的数据及其所在的单元地址。<br>在计算机中，操作要求和操作数地址都由二进制数码表示，分别称作操作码和地址码，整条指令以二进制编码的形式存放在存储器中。</p>
+<h5 id="计算机指令执行过程"><a href="#计算机指令执行过程" class="headerlink" title="计算机指令执行过程"></a>计算机指令执行过程</h5><p>取指令一一分析指令一一执行指令三个步骤，首先将程序计数器PC中的指令地址取出，送入地址总线，CPU依据指令地址去内存中取出<br>指令内容存入指令寄存器 IR ；而后由指令译码器进行分析，分析指令操作码；最后执行指令，取出指令执行所需的源操作数。</p>
+<h5 id="指令寻址方式"><a href="#指令寻址方式" class="headerlink" title="指令寻址方式"></a>指令寻址方式</h5><p><strong>顺序寻址方式</strong>：当执行一段程序时，是一条指令接着一条指令地顺序执行：<br><strong>跳跃寻址方式</strong>：指下一条指令的地址码不是由程序计数器给出，而是由本条指令直接给出。<br>程序跳跃后，按新的指令地址开始顺序执行。因此，程序计数器的内容也必须相应改变，以便及时跟踪新的指令地址。</p>
+<h5 id="指令操作数的寻址方式"><a href="#指令操作数的寻址方式" class="headerlink" title="指令操作数的寻址方式"></a>指令操作数的寻址方式</h5><p><strong>立即寻址方式</strong>：指令的地址码字段指出的不是地址，而是操作数本身。<br><strong>直接寻址方式</strong>：在指令的地址字段中直接指出操作数在主存中的地址。<br><strong>间接寻址方式</strong>：指令地址码字段所指向的存储单元中存储的是操作数的地址。<br><strong>寄存器寻址方式</strong>：指令中的地址码是寄存器的编号。<br><strong>基址寻址方式</strong>：将基址寄存器的内容加上指令中的形式地址而形成操作数的有效地址，其优点是可以扩大寻址能力。<br><strong>变址寻址方式</strong>：变址寻址方式计算有效地址的方法与基址寻址方式很相似，它是将变址寄存器的内容加上指令中的形式地址而形成操作数的有效地址。****</p>
+<h5 id="CISC-与-RISC"><a href="#CISC-与-RISC" class="headerlink" title="CISC 与 RISC"></a>CISC 与 RISC</h5><p>CISC 是<strong>复杂指令系统</strong>，兼容性强，指令繁多、长度可变，由微程序实现：</p>
+<p>RISC 是<strong>精简指令系统</strong>，指令少，使用频率接近，主要依靠硬件实现（通用寄存器、硬布线逻辑控制)</p>
+<p>具体区别如下：<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/0fb184816b3fb7f8accbaa214e6569d3_MD5.png" srcset="/img/loading.gif" lazyload alt="0fb184816b3fb7f8accbaa214e6569d3_MD5"><br>建议：同时记一下对应的实现方式</p>
+<p>考试真题：<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/14c1b706fffc7813c46b9301e658b28b_MD5.png" srcset="/img/loading.gif" lazyload alt="14c1b706fffc7813c46b9301e658b28b_MD5"></p>
+<p>视频时间：09：46</p>
+<p>后面时间稍微加快一点，直接看他课件学习。（还是需要看一下视频或者看真题答案回顾下，这里先看课件学习下）</p>
+<hr>
+<p>暂时放弃看视频，答案后面补。</p>
+<p>第一题：</p>
+<p>第一题属于概念内容，Flynn 是 根据不同的指令流和数据流组织方式，将计算机系统进行分类，有4 类；</p>
+<p>主流的多核计算机是多指令流多数据流 MIMD</p>
+<p>答案选： A  D</p>
+<p>第二题：应该是选择 D；其他跟概念不符，具体可以到时候看真题来回顾。</p>
+<h5 id="Flynn分类法"><a href="#Flynn分类法" class="headerlink" title="Flynn分类法"></a>Flynn分类法</h5><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/4-720230909-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6-CPU-%E6%A0%A1%E9%AA%8C%E7%A0%81.png" srcset="/img/loading.gif" lazyload alt="4-720230909-系统架构设计师_计算机硬件-CPU-校验码"></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/2-720230909-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6-CPU-%E6%A0%A1%E9%AA%8C%E7%A0%81.png" srcset="/img/loading.gif" lazyload alt="2-720230909-系统架构设计师_计算机硬件-CPU-校验码"></p>
+<p>1966年，Michael.J.Flynn提出根据指令流、数据流的多倍性特征对计算机系统进行了分类（通常称为Flynn分类法），有关概念的定义如下。</p>
+<p>（1）指令流：指机器执行的指令序列。</p>
+<p>（2）数据流：指由指令流调用的数据序列，包括输入数据和中间结果，但不包括输出数据。</p>
+<p>（3）多倍性：指在系统性能瓶颈部件上同时处于同一执行阶段的指令或数据的最大可能个数。</p>
+<p><strong>Flynn根据不同的指令流和数据流组织方式，把计算机系统分成如下4类。</strong></p>
+<p>（1）单指令流单数据流（Single Instruction stream and Single Data stream,SISD）。SISD其实就是传统的顺序执行的单处理器计算机，其指令部件每次只对一条指令进行译码，并只对一个操作部件分配数据。流水线方式的单处理机有时也被当作SISD.早期的计算机都是SISD机器，如冯诺.依曼架构，如IBM PC机，早期的巨型机和许多8位的家用机等。</p>
+<p>（2）单指令流多数据流（Single Instruction stream and Multiple Data stream,SIMD）。SIMD以并行处理机（阵列处理机）为代表，并行处理机包括多个重复的处理单元，由单一指令部件控制，按照同一指令流的要求为它们分配各自所需的不同数据。相联处理机也属于这一类。</p>
+<p>（3）多指令流单数据流（Multiple Instruction stream and Single Data stream,MISD）。MISD具有n个处理单元，按n条不同指令的要求对同一数据流及其中间结果进行不同的处理。一个处理单元的输出又作为另一个处理单元的输入。这类系统实际上很少见到。有文献把流水线看作多个指令部件，称流水线计算机是MISD.</p>
+<p>（4）多指令流多数据流（Multiple Instruction stream and Multiple Data stream,MIMD）。MIMD是指能实现作业、任务、指令等各级全面并行的多机系统。多处理机属于MIMD.当前的高性能服务器与超级计算机大多具有多个处理机，能进行多任务处理，称为多处理机系统，不论是大规模并行处理机还是对称多处理机，都属于MIMD.</p>
+<h4 id="指令流水线"><a href="#指令流水线" class="headerlink" title="指令流水线"></a>指令流水线</h4><p>小结：</p>
+<ul>
+<li>指令流水线原理：指令分成不同段，每段由不同的部分去处理</li>
+<li>流水线技术（RISC ）<ul>
+<li>超流水线技术</li>
+<li>超标量技术</li>
+<li>超长指令字</li>
+</ul>
+</li>
+</ul>
+<p>指令流水线原理：将<strong>指令分成不同段，每段由不同的部分去处理</strong>，因此可以产生叠加的效果，所有的部件去处理指令的不同段</p>
+<p>RISC中的流水线技术：<br>(1)<strong>超流水线(Super Pipe Line)技术</strong>。它通过细化流水、增加级数和提高主频，使得在每个机器周期内能完成一个甚至两个浮点操作。<br>其实质是以时间换取空间。</p>
+<p>(2)<strong>超标量(Super Scalar)技术</strong>。它通过内装多条流水线来同时执行多个处理，其时钟频率虽然与一般流水接近，却有更小的CPI。其实质是以空间换取时间。</p>
+<p>(3)<strong>超长指令字(Very Long Instruction Word,VLIW)技术</strong>。VLIW和超标量都是20世纪80年代出现的概念，其共同点是要同时执行多条指令，其不同在于超标量依靠硬件来实现并行处理的调度，VLIW 则充分发挥软件的作用，而使硬件简化，性能提高。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/7c5034f0ad4e1e1587bd7694896452fe_MD5.png" srcset="/img/loading.gif" lazyload alt="7c5034f0ad4e1e1587bd7694896452fe_MD5"></p>
+<p><strong>流水线周期</strong>：指令分成不同执行段，其中执行时间最长的段为流水线周期。</p>
+<p><strong>流水线执行时间</strong>：1条指令总执行时间+（总指令条数-1）* 流水线周期。</p>
+<p>流水线吞吐率计算：吞吐率即单位时间内执行的指令条数。公式：指令条数&#x2F;流水线执行时间。</p>
+<p>流水线的加速比计算：加速比即使用流水线后的效率提升度，即比不使用流水线快了多少倍，越高表明流水线效率越高;</p>
+<p>公式：不使用流水线执行时间&#x2F;使用流水线执行时间。</p>
+<hr>
+<p>流水线执行时间计算方式：1条指令总执行时间+（总指令条数-1）* 流水线周期。</p>
+<p>分类<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/5-720230909-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6-CPU-%E6%A0%A1%E9%AA%8C%E7%A0%81.png" srcset="/img/loading.gif" lazyload alt="5-720230909-系统架构设计师_计算机硬件-CPU-校验码"></p>
+<p>考试真题：</p>
+<p>第一题：</p>
+<p>流水线的吞吐率是指流水线在单位时间里所完成的任务数或输出的结果数。<br>设某流水线有5段，有1段的时间为2ns, 另外4段的每段时间为1s, 利用此流水线完成100个任务的吞吐率约为（   )  个&#x2F;s 。</p>
+<ul>
+<li>A. 500X10^6</li>
+<li>B. 490×10^6</li>
+<li>C. 250×10^6</li>
+<li>D. 167× 10^6</li>
+</ul>
+<p>解析：流水线执行100个任务所需要的时间为：(2+1+1+1+1)+（100-1) * 2&#x3D;204 ns。<br>所以每秒吞吐率为：(100&#x2F;204) * 10 ^ 9&#x3D;490 * 10^6。注意：1秒&#x3D;10^9纳秒。<br>答案：B</p>
+<p>解答：吞吐率这个还是靠刷题来增加自己的印象，<br>流水线吞吐率计算：吞吐率即单位时间内执行的指令条数。公式：指令条数&#x2F;流水线执行时间。</p>
+<ul>
+<li><ol>
+<li>先计算流水线执行时间</li>
+</ol>
+<ul>
+<li>1条指令总执行时间+（总指令条数-1）* 流水线周期。</li>
+<li>流水线周期 ：其中执行时间最长的段为流水线周期。</li>
+<li>计算<ul>
+<li>（2 + 1 + 1+ 1 + 1 ） + （100 - 1 ） *  2 &#x3D; 204 ns</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><ol start="2">
+<li>指令条数为：100</li>
+</ol>
+<ul>
+<li>(100&#x2F;204) * 10 ^ 9&#x3D;490 * 10^6</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>第二题：</p>
+<p>假设磁盘块与缓冲区大小相同，每个盘块读入缓冲区的时间为15us,由缓冲区送至用户区的时间是5us, 在用户区内系统对每块数据的处理时间为1us,</p>
+<p>若用户需要将大小为10个磁盘块的 Docl 文件逐块从磁盘读入缓冲区，并送至用户区进行处理，那么采用单缓冲区需要花费的时间为(  ) us;   采用双缓冲区需要花费的时间为(  ) us。</p>
+<ul>
+<li><p>A. 150</p>
+</li>
+<li><p>B. 151</p>
+</li>
+<li><p>C. 156</p>
+</li>
+<li><p>D. 201</p>
+</li>
+<li><p>A. 150</p>
+</li>
+<li><p>B. 151</p>
+</li>
+<li><p>C. 156</p>
+</li>
+<li><p>D. 201</p>
+</li>
+</ul>
+<p>答案：D    C</p>
+<p>单缓冲区：前两段要合并，是两段流水线，21+20*(10-1)&#x3D;201</p>
+<p>双缓冲区：标准三段流水线，21+15*(10-1)&#x3D;156</p>
+<p>解答： 分析题目需要一定的题感</p>
+<p>暂时先根据题目解析记一下，这里的缓冲区是对于读入和送至用户区部分进行了不同处理，但是和用户区系统处理这部分是作为单独的流水线处理的一个执行段。</p>
+<p>根据公式：1条指令总执行时间+（总指令条数-1）* 流水线周期。（执行时间最长的段为流水线周期。）</p>
+<p>这里主要的区分是最大的执行时间的段，前者是 20 ，后者 是15。</p>
+<hr>
+<p>第三题：</p>
+<p>流水线技术是通过并行硬件来提高系统性能的常用方法。对于一个k段流水线，假设其各段的执行时间均相等（设为t ),输入到流水线中的任务是连续的理想情况下，完成 n 个连续任务需要的总时间为（   ）。</p>
+<p>若某流水线浮点加法运算器分为5段，所需要的时间分别是6ns、7ns、8ns、9ns 和 6ns,  则其最大加速比为(    )</p>
+<ul>
+<li><p>A. nkt</p>
+</li>
+<li><p>B. (k+n-1)t</p>
+</li>
+<li><p>C. (n-k)kt</p>
+</li>
+<li><p>D. (k+n+1)t</p>
+</li>
+<li><p>A.4</p>
+</li>
+<li><p>B.5</p>
+</li>
+<li><p>C.6</p>
+</li>
+<li><p>D.7</p>
+</li>
+</ul>
+<p>答案：B   A</p>
+<p>解析：当流水线各段执行时间相等时，公式化简后，完成n个连续任务需要的总时间为(k+n-1) * t。<br>加速比定义为顺序执行时间与流水线执行时间的比值，根据题干假设，假设一共有条指令，则顺序执行时间为(6+7+8+9+6) * n&#x3D;36n,该流水线周期为最长的9ns,则在流水线中的执行时间为 36+9*(n-1)&#x3D;9n+27,因此加速比为36n&#x2F;(9n+27),题目问的是最大加速比，由这个公式可以知道，当越大时，该公式值越大，因此最大的时候就是n趋向于无穷大的时候，此时可忽略分母的27，也就是36n&#x2F;9n&#x3D;4.</p>
+<p>解答：<strong>流水线执行时间</strong>：1条指令总执行时间+（总指令条数-1）* 流水线周期。</p>
+<p>第一问仍然是对于公式的熟悉；总执行时间简化后是 kt; 流水线周期为执行最长的一段，即为 t； → (k + n - 1) * t</p>
+<p>第二问：最大加速比：公式：不使用流水线执行时间&#x2F;使用流水线执行时间。</p>
+<p>不适用流水线：36n; 使用流水线： 9n + 27 ; → 4  选择 A。</p>
+<hr>
+<h3 id="存储系统"><a href="#存储系统" class="headerlink" title="存储系统"></a>存储系统</h3><p>小结：</p>
+<ul>
+<li><p>分级存储</p>
+<ul>
+<li>Cache - 主存</li>
+<li>主存 - 辅存</li>
+</ul>
+</li>
+<li><p>地址映射（硬件自动完成）</p>
+<ul>
+<li>直接映像</li>
+<li>全相联映像</li>
+<li>组组相连映像</li>
+</ul>
+</li>
+<li><p>替换算法</p>
+<ul>
+<li>随机替换算法</li>
+<li>先进先出算法</li>
+<li>近期最少使用算法</li>
+<li>优化替换算法</li>
+</ul>
+</li>
+<li><p>磁盘调度算法</p>
+<ul>
+<li>FCFS<ul>
+<li>先来先服务FCFS</li>
+</ul>
+</li>
+<li>SSTF<ul>
+<li>最短寻道时间优先SSTF</li>
+</ul>
+</li>
+<li>SCAN<ul>
+<li>扫描算法SCAN</li>
+</ul>
+</li>
+<li>CSCAN<ul>
+<li>单向扫描调度算法CSCAN</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>先来先服务FCFS</strong>:  根据进程请求访问磁盘的先后顺序进行调度。</p>
+</li>
+<li><p><strong>最短寻道时间优先SSTF</strong>:请求访问的磁道与当前磁道最近的进程优先调度，使得每次的寻道时间最短。会产生“饥饿”现象，即远处进程可能永远无法访问。</p>
+</li>
+<li><p><strong>扫描算法SCAN</strong>:  又称“电梯算法”，磁头在磁盘上双向移动，其会选择离磁头当前所在磁道最近的请求访问的磁道，并且与磁头移动方向一致，磁头永远都是从里向外或者从外向里一直移动完才掉头，与电梯类似。</p>
+</li>
+<li><p><strong>单向扫描调度算法CSCAN</strong>: 与SCAN不同的是，其只做单向移动，即只能从里向外或者从外向里。</p>
+</li>
+</ul>
+<h4 id="分级存储体系"><a href="#分级存储体系" class="headerlink" title="分级存储体系"></a>分级存储体系</h4><p>计算机采用分级存储体系的主要目的是为了解决存储容量、成本和速度之间的矛盾问题。</p>
+<p>两级存储：Cache-主存、主存-铺存（虚拟存储体系)。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/8605adb48d54d974f2b08ac95bff5084_MD5.png" srcset="/img/loading.gif" lazyload alt="8605adb48d54d974f2b08ac95bff5084_MD5"></p>
+<p><strong>局部性原理</strong>：总的来说，在CPU运行时，所访问的数据会趋向于一个较小的局部空间地址内，包括下面两个方面：</p>
+<ul>
+<li>时间局部性原理：如果一个数据项正在被访问，那么在近期它很可能会被再次访问，即<strong>在相邻的时间里会访问同一个数据项。</strong></li>
+<li>空间局部性原理：在最近的将来会用到的数据的地址和现在正在访问的数据地址很可能是相近的，即<strong>相邻的空间地址会被连续访问</strong>。</li>
+</ul>
+<p>高速缓存Cache用来存储<strong>当前最活跃的程序和数据，直接与CPU交互</strong>，位于CPU和主存之间，容量小，速度为内存的5 ~ 10倍，由半导体材料构成。其内容是主存内存的副本拷贝，对于程序员来说是透明的。</p>
+<p>Cache由控制部分和存储器组成，存储器存储数据，控制部分判断CPU要访问的数据是否在Cache中，在则命中，不在则依据一定的算法从主存中替换。</p>
+<h4 id="地址映射"><a href="#地址映射" class="headerlink" title="地址映射"></a>地址映射</h4><p>地址映射：在CPU工作时，<strong>送出的是主存单元的地址，而应从Cache存储器中读&#x2F;写信息</strong>。这就需要将主存地址转换为Cache存储器地址，这种地址的转换称为<strong>地址映像，由硬件自动完成映射</strong>，分为下列三种方法：</p>
+<ul>
+<li><p>直接映像：将<strong>Cache:存储器等分成块，主存也等分成块并编号</strong>。主存中的块与Cachet中的块的对应关系是固定的，也即<strong>二者块号相同才能命中</strong>。地址变换简单但不灵活，容易造成资源浪费。（如图所示）<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/6957895a7e77a1a95f03ae832eafe29a_MD5.png" srcset="/img/loading.gif" lazyload alt="6957895a7e77a1a95f03ae832eafe29a_MD5"></p>
+</li>
+<li><p>全相联映像：同样都等分成块并编号。<strong>主存中任意一块都与Cache中任意一块对应</strong>。因此<strong>可以随意调入Cache任意位置</strong>，但地址变换复杂，速度较慢。因为主存可以随意调入Cache任意块，只有当Cache满了才会发生块冲突，是<strong>最不容易发生块冲突的映像方式。</strong><br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/a781900e425e045193b5751a9a5ced26_MD5.png" srcset="/img/loading.gif" lazyload alt="a781900e425e045193b5751a9a5ced26_MD5"></p>
+</li>
+<li><p>组组相连映像：<strong>前面两种方式的结合</strong>，将Cache存储器先分块再分组，主存也同样先分块再分组，<strong>组间采用直接映像，即主存中组号与Cache中组号相同的组才能命中，但是组内全相联映像，也即组号相同的两个组内的所有块可以任意调换。</strong></p>
+</li>
+</ul>
+<hr>
+<p>CPU 需要从 Cache 中获取数据，但是 CPU 工作时，送出的是主存单元的地址；</p>
+<p>将主存地址转换为Cache存储器地址，称为<strong>地址映像，由硬件自动完成映射</strong></p>
+<h4 id="替换算法"><a href="#替换算法" class="headerlink" title="替换算法"></a>替换算法</h4><p>替换算法的目标就是<strong>使 Cache获得尽可能高的命中率。</strong></p>
+<p>常用算法有如下几种。</p>
+<ul>
+<li>(1)<strong>随机替换算法</strong>。就是用随机数发生器产生一个要替换的块号，将该块替换出去。</li>
+<li>(2)<strong>先进先出算法</strong>。就是将最先进入Cache的信息块替换出去.</li>
+<li>(3)<strong>近期最少使用算法</strong>。这种方法是将近期最少使用的Cache中的信息块替换出去。</li>
+<li>(4)<strong>优化替换算法</strong>。这种方法必须先执行一次程序，统计Cache的替换情况。</li>
+</ul>
+<p>有了这样的先验信息，在第二次执行该程序时便可以用最有效的方式来替换。</p>
+<h4 id="命中率及平均时间"><a href="#命中率及平均时间" class="headerlink" title="命中率及平均时间"></a>命中率及平均时间</h4><p>Cache有一个命中率的概念，<strong>即当 CPU 所访问的数据在Cache中时，命中，直接从Cache中读取数据</strong>，设读取一次Cache时间为l ns,若CPU访问的数据<strong>不在Cache中，则需要从内存中读取</strong>，设读取一次内存的时间为1000 ns,若在CPU多次读取数据过程中，有90%命中Cache,<br>则 CPU 读取一次的平均时间为(90%* 1+10%* 1000)ns<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/39d3bc835118cc7ed8b713e96c026cb1_MD5.png" srcset="/img/loading.gif" lazyload alt="39d3bc835118cc7ed8b713e96c026cb1_MD5"></p>
+<p>考试真题：</p>
+<p>按照Cache地址映像的块冲突概率，从高到低排列的是（)。</p>
+<ul>
+<li>A. 全相联映像→直接映像→组相联映像</li>
+<li>B. 直接映像→组相联映像→全相联映像</li>
+<li>C. 组相联映像→全相联映像→直接映像</li>
+<li>D. 直接映像→全相联映像→组相联映像</li>
+</ul>
+<p>答案：  B</p>
+<p>解答：这个记一下：直接映像→组相联映像→全相联映像 （块冲突概率，从 高 到 低）</p>
+<hr>
+<p>以下关于Cache 与主存间地址映射的叙述中，正确的是(  )。</p>
+<ul>
+<li>A.操作系统负责管理Cache与主存之间的地址映射</li>
+<li>B.程序员需要通过编程来处理Cache与主存之间的地址映射</li>
+<li>C,应用软件对Cache与主存之间的地址映射进行调度</li>
+<li>D:由硬件自动完成Cache与主存之间的地址映射</li>
+</ul>
+<p>答案： D</p>
+<p>解答：地址映射：硬件自动完成</p>
+<hr>
+<h4 id="磁盘结构和参数"><a href="#磁盘结构和参数" class="headerlink" title="磁盘结构和参数"></a>磁盘结构和参数</h4><p>磁盘有<strong>正反两个盘面</strong>，每个盘面有多个同心圆，每个同心圆是一个磁道，每个同心圆又被划分为多个扇区，数据就被存放在一个个扇区中。</p>
+<p><strong>磁头首先要寻找到对应的磁道</strong>，然后等待磁盘进行<strong>周期旋转，旋转到指定的扇区，才能读取到对应的数据</strong>，因此，会产生寻道时间和等待时间。</p>
+<p>公式为：存取时间&#x3D;寻道时间+等待时间（平均定位时间+转动延迟）。</p>
+<p>注意：寻道时间是指磁头移动到磁道所需的时间；等待时间为等待读写的扇区转到磁头下方所用的时间。</p>
+<h4 id="磁盘调度算法"><a href="#磁盘调度算法" class="headerlink" title="磁盘调度算法"></a>磁盘调度算法</h4><p>之前已经说过，磁盘数据的读取时间分为寻道时间+旋转时间，也即先找到对应的磁道，而后再旋转到对应的扇区才能读取数据，其中<strong>寻道时间耗时最长</strong>，需要重点调度，有如下调度算法：</p>
+<ul>
+<li><strong>先来先服务FCFS</strong>:  根据进程请求访问磁盘的先后顺序进行调度。</li>
+<li><strong>最短寻道时间优先SSTF</strong>:请求访问的磁道与当前磁道最近的进程优先调度，使得每次的寻道时间最短。会产生“饥饿”现象，即远处进程可能永远无法访问。</li>
+<li><strong>扫描算法SCAN</strong>:  又称“电梯算法”，磁头在磁盘上双向移动，其会选择离磁头当前所在磁道最近的请求访问的磁道，并且与磁头移动方向一致，磁头永远都是从里向外或者从外向里一直移动完才掉头，与电梯类似。</li>
+<li><strong>单向扫描调度算法CSCAN</strong>: 与SCAN不同的是，其只做单向移动，即只能从里向外或者从外向里。</li>
+</ul>
+<p>考试真题：</p>
+<p>第一题：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/6-720230909-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6-CPU-%E6%A0%A1%E9%AA%8C%E7%A0%81.png" srcset="/img/loading.gif" lazyload alt="6-720230909-系统架构设计师_计算机硬件-CPU-校验码"></p>
+<p>答案： C     B</p>
+<p>解析：这道题目是没有寻道时间的，是直接从 R0 开始的，考的内容是 磁头旋转部分。</p>
+<p>磁盘的旋转周期是 33ms ，因此每一个扇区旋转时间读取时间是 33&#x2F;11 &#x3D; 3 ms （每次磁头旋转时间即读取时间，<strong>读取数据后数据还需要进行处理</strong>）,  处理时间是 3ms；<br>因此在这种情况下，处理完 R0 的时间是 3 + 3 &#x3D; 6 ms; 此时磁头已经越过R1,到达 R2，再次读取 R1 的时候需要磁头重新到 R1; </p>
+<p>此时 R1 处理完的时间为：10 * 3  + 3 + 3 &#x3D; 36 ms ；其他10 个同理。全部时间是 36 * 10 + 6 &#x3D; 366 ； 答案选 C。</p>
+<p>存储优化：在理想的情况下，应该是磁头刚好移动到这个区域的时候，开始读取数据，移动开这个区域的时候，读取完数据；</p>
+<p>第二种情况优化如下：（下面这种间隔存储的方式刚刚满足逻辑上 R0, R1，R2  的读取完数据再进行处理完数据，刚好到下一个逻辑位置）</p>
+<p>花费时间为两个旋转周期： 33 * 2  &#x3D; 66 ms ，答案选 B。<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/2ea98c2ec3ad33be17316c0297050acd_MD5.png" srcset="/img/loading.gif" lazyload alt="2ea98c2ec3ad33be17316c0297050acd_MD5"></p>
+<hr>
+<p>第二题：</p>
+<p>在磁盘调度管理中，应先进行移臂调度，再进行旋转调度。假设磁盘移动臂位于21号柱面上，进程的请求序列如下表所示。如果采用最短移臂调度算法，那么系统的响应序列应为(   )。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/7-720230909-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6-CPU-%E6%A0%A1%E9%AA%8C%E7%A0%81.png" srcset="/img/loading.gif" lazyload alt="7-720230909-系统架构设计师_计算机硬件-CPU-校验码"></p>
+<ul>
+<li>A.②⑧③④⑤①⑦⑥⑨</li>
+<li>B.②③⑧④⑥⑨①⑤⑦</li>
+<li>c.①②③④⑤⑥⑦⑧⑨</li>
+<li>D.②⑧③⑤⑦①④⑥⑨</li>
+</ul>
+<p>答案： D</p>
+<p>解析：题目中的是最短移臂指是就是最短寻道时间，</p>
+<p>看一下这个概念： <strong>最短寻道时间优先SSTF</strong>:请求访问的磁道与当前磁道最近的进程优先调度，使得每次的寻道时间最短。会产生“饥饿”现象，即远处进程可能永远无法访问。</p>
+<p>这里开始是21号柱面，表中最近的是 23 ; 扇区号一般是从小到大的扇区，因此这里一开始访问的23号柱面的顺序是: ②⑧③</p>
+<p>此时排除 B  C</p>
+<p>17 和 32 中 17 离  23 更近，⑤ 会先访问，后面是 ①  ⑦ 其中一个，这里选 D。</p>
+<h3 id="输入-输出技术"><a href="#输入-输出技术" class="headerlink" title="输入&#x2F;输出技术"></a>输入&#x2F;输出技术</h3><p>小结：</p>
+<ul>
+<li>输入&#x2F;输出技术<ul>
+<li>内存与接口地址编制方法<ul>
+<li>内存与接口地址独立编址方法</li>
+<li>内存与接口地址统一编址方法</li>
+</ul>
+</li>
+<li>计算机和外设数据交互方式<ul>
+<li>程序控制（查询）方式</li>
+<li>程序中断方式</li>
+<li>DMA方式（直接主存存取）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="内存与接口地址编制方法"><a href="#内存与接口地址编制方法" class="headerlink" title="内存与接口地址编制方法"></a>内存与接口地址编制方法</h4><p>计算机系统中存在多种<strong>内存与接口地址的编址方法</strong>，常见的是下面两种：</p>
+<p>1)内存与接口地址<strong>独立编址方法</strong></p>
+<p>内存地址和接口地址是完全独立的两个地址空间。访问数据时所使用的指令也完全不同，用于接口的指令只用于接口的读&#x2F;写，其余的指令全都是用于内存的。<br>因此，在编程序或读程序时很易使用和辨认。这种编址方法的缺点是用于接口的指令太少、功能太弱。</p>
+<p>2)内存与接口地址<strong>统一编址方法</strong><br>内存地址和接口地址统一在一个公共的地址空间里，即内存单元和接口共用地址空间。<br>优点是原则上用于内存的指令全都可以用于接口，这就大大地增强了对接口的操作功能，而且在指令上也不再区分内存或接口指令。<br>该编址方法的<strong>缺点就在于整个地址空间被分成两部分</strong>，其中一部分分配给接口使用，剩余的为内存所用，这经常会导致内存地址不连续。</p>
+<h4 id="计算机和外设数据交互方式"><a href="#计算机和外设数据交互方式" class="headerlink" title="计算机和外设数据交互方式"></a>计算机和外设数据交互方式</h4><p>计算机和外设间的数据交互方式：</p>
+<p>程序控制（查询）方式：CPU<strong>主动查询外设是否完成数据传输，效率极低。</strong></p>
+<p>程序中断方式：<br>外设完成数据传输后，<strong>向CPU发送中断</strong>，等待CPU处理数据，效率相对较高。 <strong>中断响应时间</strong>指的是从发出中断请求到开始进入中断处理程序；中断处理时间指的是从中断处理开始到中断处理结束。<strong>中断向量</strong>提供中断服务程序的入口地址。多级中断嵌套，使用堆栈来保护断点和现场。</p>
+<p>DMA方式（直接主存存取）：CPU只需完成必要的初始化等操作，<strong>数据传输的整个过程都由DMA控制器来完成</strong>，在主存和外设之间建立直接的数据通路，<br>效率很高。</p>
+<p>在一个总线周期结束后，<strong>CPU会响应DMA请求开始读取数据；CPU响应程序中断方式请求是在一条指令执行结束时。</strong></p>
+<h3 id="总线结构"><a href="#总线结构" class="headerlink" title="总线结构"></a>总线结构</h3><p>小结</p>
+<ul>
+<li>总线结构<ul>
+<li>内部总线</li>
+<li>系统总线</li>
+<li>外部总线</li>
+</ul>
+</li>
+</ul>
+<h4 id="总线"><a href="#总线" class="headerlink" title="总线"></a>总线</h4><p>**总线(Bus)**，是指计算机设备和设备之间传输信息的公共数据通道。<br>总线是连接计算机硬件系统内多种设备的通信线路，它的一个重要特征是由总线上的所有设备共享，因此可以将计算机系统内的多种设备连接到总线上。</p>
+<p>从广义上讲，任何连接两个以上电子元器件的导线都可以称为总线，通常分为以下三类：</p>
+<ul>
+<li><strong>内部总线</strong>：内部芯片级别的总线，芯片与处理器之间通信的总线。</li>
+<li><strong>系统总线</strong>：是板级总线，用于计算机内各部分之间的连接，具体分为数据总线(并行数据传输位数)、地址总线（系统可管理的内存空间的大小）、控制总线（传送控制命令）。代表的有ISA总线、EISA总线、PCl总线。</li>
+<li><strong>外部总线</strong>：设备一级的总线，微机和外部设备的总线。代表的有 RS232(串行总线、SCSI(并行总线)、USB(通用串行总线，即插即用，支持热插拔)。</li>
+</ul>
+<hr>
+<p>考试真题：</p>
+<p>计算机系统中常用的输入&#x2F;输出控制方式有无条件传送、中断、程序查询和DMA方式等。当采用 ( ) 方式时，不需要CPU执行程序指令来传送数据。</p>
+<ul>
+<li>A.中断</li>
+<li>B.程序查询</li>
+<li>C.无条件传送</li>
+<li>D.DMA</li>
+</ul>
+<p>答案： D</p>
+<p>在DMA 方式i中，CPU只需完成必要的初始化等操作，数据传输的整个过程都由DMA控制器来完成</p>
+<hr>
+<p>以下关于总线的说法中，正确的是（)。</p>
+<ul>
+<li>A.串行总线适合近距离高速数据传输，但线间串扰会导致速率受限</li>
+<li>B.并行总线适合长距离数据传输，易提高通信时钟频率来实现高速数据传输</li>
+<li>C.单总线结构在一个总线上适应不同种类的设备，设计复杂导致性能降低</li>
+<li>D.半双工总线只能在一个方向上传输信息</li>
+</ul>
+<p>答案：C</p>
+<p>解析:  A B 排除，串行长距离，并行短距离；半双工数据在两个方向上传输，但只能通信双方不能同时收发数据；排除 D；选择 C 。</p>
+<p>按功能分类</p>
+<p>系统总线包含有三种不同功能的总线，即数据总线DB（Data Bus）、地址总线AB（Address Bus）和控制总线CB（Control Bus）</p>
+<p>并行总线、串行总线</p>
+<p>根据总线它当中的数据线的多少，可以分为：串行总线（适合长距离传输）与并行总线（适合短距离连接，不宜过长）。</p>
+<h4 id="单工、半双工和全双工"><a href="#单工、半双工和全双工" class="headerlink" title="单工、半双工和全双工"></a>单工、半双工和全双工</h4><p>一，单工、半双工和全双工的区别：</p>
+<p>在串行通信中，数据通常是在两个终端（如电脑和外设）之间进行传送，根据数据流的传输方向可分为3种基本传送方式：单工、半双工和全双工。</p>
+<p>这3种传输方式的区别如下所示：</p>
+<ul>
+<li>单工通信的传输方向只有一个方向	</li>
+<li>半双工通信可以双向通信但只能轮流传输	</li>
+<li>全双工通信可以同时双向传输数据</li>
+</ul>
+<p>	</p>
+<p>二， 定义：</p>
+<p>1、单工通信</p>
+<p>单工通信只有一根数据线，通信只在一个方向上进行，这种方式的应用实例有：监视器、打印机、电视机等。</p>
+<p>2、半双工通信</p>
+<p>半双工通信也只有一根数据线，它也单工的区别是这根数据线既可作发送又可作发接收，虽然数据可在两个方向上传送，但通信双方不能同时收发数据。</p>
+<p>3、全双工通信</p>
+<p>数据的发送和接收用两根不同的数据线，通信双方在同一时刻都能进行发送和接收，这一工作方式称为全双工通信。在这种方式下，通信双方都有发送器和接收器，发送和接收可同时进行，没有时间延迟。</p>
+<p>三，应用：</p>
+<p>1、单工</p>
+<p>单工就是指A只能发信号，而B只能接收信号，通信是单向的，就象灯塔之于航船——灯塔发出光信号而航船只能接收信号以确保自己行驶在正确的航线上。</p>
+<p>2、半双工</p>
+<p>双工就是指A能发信号给B，B也能发信号给A，但这两个过程不能同时进行。</p>
+<p>最典型的例子就象我们在影视作品中看到的对讲机一样：</p>
+<p>湖盟防御帮助中心</p>
+<ul>
+<li>07：呼叫总部，请求支援，OVER</li>
+<li>总部：收到，增援人员将在5分钟内赶到，OVER</li>
+<li>007：要5分钟这么久？！要快呀！OVER</li>
+</ul>
+<p>在这里，每方说完一句话后都要说个OVER，然后切换到接收状态，同时也告之对方——你可以发言了。如果双方同时处于收状态，或同时处于发状态，便不能正常通信了。</p>
+<p>3、全双工</p>
+<p>全双工比半双工又进了一步。在A给B发信号的同时，B也可以给A发信号。</p>
+<p>典型的例子就是打电话。<br>A：我跟你说呀……<br>B：你先听我说，情况是这样的…… </p>
+<p>A和B在说的同时也能听到对方说的内容，这就是全双工</p>
+<hr>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%9A%8F%E8%AE%B0/" class="category-chain-item">随记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%BD%AF%E8%80%83/" class="print-no-link">#软考</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>计算机硬件-CPU-校验码</div>
+      <div>https://varcel.luoqi.icu/2024/09/12/计算机硬件-CPU-校验码/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Luo QI</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年9月12日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/09/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86/" title="操作系统知识">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">操作系统知识</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/01/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%BA%9B%E8%BF%98%E4%B8%8D%E9%94%99%E7%9A%84%E6%96%87%E7%AB%A0/" title="记录一些还不错的文章">
+                        <span class="hidden-mobile">记录一些还不错的文章</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

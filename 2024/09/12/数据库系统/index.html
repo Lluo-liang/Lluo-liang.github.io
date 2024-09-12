@@ -1,0 +1,1336 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/Xbox%20L.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Luo QI">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="数据库系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库系统">
+<meta property="og:url" content="https://varcel.luoqi.icu/2024/09/12/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="轻松的洛亓">
+<meta property="og:description" content="数据库系统">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/5052a2e82dad1c0f761d4b0fdfc256f0_MD5.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830100737.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830100909.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20230910-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830101440.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830101658.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830101747.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830171155.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830114025.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830171448.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830171537.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830171605.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830230326.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/1-720230910-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830231042.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830231151.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830231406.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/3-720230910-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/4-720230910-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/4-720230911-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/5-720230911-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830232851.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/6-720230911-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830233338.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830233505.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830233602.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830233639.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830233915.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830234235.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830234443.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20230911-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/1-720230911-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/9d4ae9f08d9057fb763690ba4d3e9b06_MD5.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/2-720230911-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/1-720230910-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830235625.png">
+<meta property="article:published_time" content="2024-09-12T23:59:03.000Z">
+<meta property="article:modified_time" content="2024-09-12T23:59:03.000Z">
+<meta property="article:author" content="Luo QI">
+<meta property="article:tag" content="软考">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/5052a2e82dad1c0f761d4b0fdfc256f0_MD5.png">
+  
+  
+  
+  <title>数据库系统 - 轻松的洛亓</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"varcel.luoqi.icu","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  <meta name="baidu-site-verification" content="codeva-Oq0KOjHuD3" />
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>轻松的洛亓</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="数据库系统"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-12 23:59" pubdate>
+          2024年9月12日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          14k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          119 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">数据库系统</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>#软考 </p>
+<p>历年真题考情：本章节每年都考3-5分左右。</p>
+<p>第二版更新：第二版教材上对应2.3.3 及 6，主要考点在6，这里一起合并到本章节视频中，从历年真题考点来看无变化，按本视频学习即可。</p>
+<p>主要改动在数据设计，至于增加的NOSQL在案例专题有，这里不新增。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/5052a2e82dad1c0f761d4b0fdfc256f0_MD5.png" srcset="/img/loading.gif" lazyload alt="5052a2e82dad1c0f761d4b0fdfc256f0_MD5"></p>
+<h3 id="数据库基本概念"><a href="#数据库基本概念" class="headerlink" title="数据库基本概念"></a>数据库基本概念</h3><h4 id="数据库系统"><a href="#数据库系统" class="headerlink" title="数据库系统"></a>数据库系统</h4><p>数据：是数据库中存储的基本对象，是描述事物的符号记录。</p>
+<p>数据的种类：文本、图形、图像、音频、视频、学生的档案记录、货物的运输情况等。</p>
+<p>数据库DB:是长期存储在计算机内、有组织的、可共享的大量数据的集合。</p>
+<p>数据库的基本特征：</p>
+<ul>
+<li>数据按一定的数据模型组织、描述和存储：</li>
+<li>可为各种用户共享；</li>
+<li>冗余度较小；</li>
+<li>数据独立性较高；</li>
+<li>易扩展。</li>
+</ul>
+<p>数据库系统DBS:  是一个采用了数据库技术，有组织地、动态地存储大量相关数据，方便多用户访问的计算机系统。</p>
+<p>其由下面四个部分组成：</p>
+<ul>
+<li>数据库（统一管理、长期存储在计算机内的，有组织的相关数据的集合）</li>
+<li>硬件（构成计算机系统包括存储数据所需的外部设备）</li>
+<li>软件（操作系统、数据库管理系统及应用程序）</li>
+<li>人员（系统分析和数据库设计人员、应用程序员、最终用户、数据库管理员DBA).</li>
+</ul>
+<p>数据库管理系统DBMS的功能：</p>
+<p>实现对共享数据有效的组织、管理和存取。包括数据定义、数据库操作、数据库运行管理、数据的存储管理、数据库的建立和维护等。</p>
+<h4 id="三级模式-两级映像"><a href="#三级模式-两级映像" class="headerlink" title="三级模式-两级映像"></a>三级模式-两级映像</h4><p><strong>内模式</strong>：管理如何存储物理的数据，对应具体物理存储文件。</p>
+<p><strong>模式</strong>：又称为概念模式，就是我们通常使用的基本表，根据应用、需求将物理数据划分成一张张表。</p>
+<p><strong>外模式</strong>：对应数据库中的视图这个级别，将表进行一定的处理后再提供给用户使用</p>
+<p><strong>外模式一模式映像</strong>：是表和视图之间的映射，存在于概念级和外部级之间，若表中数据发生了修改，只需要修改此映射，而无需修改应用程序。</p>
+<p><strong>模式一内模式映像</strong>：是表和数据的物理存储之间的映射，存在于概念级和内部级之间，若修改了数据存储方式，只需要修改此映射，而不需要去修改应用程序。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830100737.png" srcset="/img/loading.gif" lazyload alt="Pasted image 20230830100737"></p>
+<h4 id="数据库设计"><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h4><p>(1)<strong>需求分析</strong>：即分析数据存储的要求，产出物有数据流图、数据字典、需求说明书。获得用户对系统的三个要求：信息要求、处理要求、系统要求。</p>
+<p>(2)<strong>概念结构设计</strong>：就是设计E-R图，也即实体-联系图。工作步骤包括：选择局部应用、逐一设计分E-R图、E-R图合并。</p>
+<p><strong>分E-R图进行合并时，它们之间存在的冲突主要有以下3类。</strong></p>
+<ul>
+<li>属性冲突。同一属性可能会存在于不同的分E-R图中。</li>
+<li>命名冲突。相同意义的属性，在不同的分E-R图上有着不同的命名，或是名称相同的属性在不同的分E-R图中代表着不同的意义。</li>
+<li>结构冲突。同一实体在不同的分E-R图中有不同的属性，同一对象在某一分E-R图中被抽象为实体而在另一分E-R图中又被抽象为属性</li>
+</ul>
+<p>(3)<strong>逻辑结构设计</strong>：将E-R图，转换成关系模式。工作步骤包括：确定数据模型、将E-R图转换成为指定的数据模型、确定完整性约束和确定用户视图。</p>
+<p>(4)<strong>物理设计</strong>：步骤包括确定数据分布、存储结构和访问方式。</p>
+<p>(5)<strong>数据库实施阶段</strong>。根据逻辑设计和物理设计阶段的结果建立数据库，编制与调试应用程序，组织数据入库，并进行试运行。</p>
+<p>(6)<strong>数据库运行和维护阶段</strong>。数据库应用系统经过试运行即可投入运行，但该阶段需要不断地对系统进行评价、调整与修改。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830100909.png" srcset="/img/loading.gif" lazyload alt="Pasted image 20230830100909"></p>
+<p><strong>考试真题</strong></p>
+<p>在数据库系统中，数据库的视图、基本表和存储文件的结构分别与(   )对应；数据的物理独立性和数据的逻辑独立性是分别通过修改(   )来完成的。</p>
+<ul>
+<li><p>A.模式、外模式、内模式</p>
+</li>
+<li><p>B.模式、内模式、外模式</p>
+</li>
+<li><p>C.外模式、模式、内模式</p>
+</li>
+<li><p>D.外模式、内模式、模式</p>
+</li>
+<li><p>A.模式与内模式之间的映像、外模式与模式之间的映像</p>
+</li>
+<li><p>B.外模式与内模式之间的映像、外模式与模式之间的映像</p>
+</li>
+<li><p>C外模式与模式之间的映像、模式与内模式之间的映像</p>
+</li>
+<li><p>D.外模式与内模式之间的映像、模式与内模式之间的映像</p>
+</li>
+<li><p>答案：C    A</p>
+</li>
+</ul>
+<hr>
+<p>在数据库逻辑结构设计阶段，需要(    )阶段形成的(   )作为设计依据。</p>
+<ul>
+<li><p>A.需求分析</p>
+</li>
+<li><p>B.概念结构设计</p>
+</li>
+<li><p>C.物理结构设计</p>
+</li>
+<li><p>D.数据库运行和维护</p>
+</li>
+<li><p>A.程序文档、数据字典和数据流图。</p>
+</li>
+<li><p>B.需求说明文档、程序文档和数据流图</p>
+</li>
+<li><p>C.需求说明文档、数据字典和数据流图</p>
+</li>
+<li><p>D.需求说明文档、数据字典和程序文档</p>
+</li>
+</ul>
+<p>答案：A    C</p>
+<p>理解性记一下<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20230910-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F.png" srcset="/img/loading.gif" lazyload alt="20230910-系统架构设计师_数据库系统"></p>
+<hr>
+<h4 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型</h4><p>E-R模型&#x2F;关系模型</p>
+<p><strong>关系模型是二维表的形式表示的实体-联系模型</strong>，是将实体-联系模型转换而来的，经过开发人员设计的；</p>
+<p><strong>概念模型是从用户的角度进行建模的</strong>，是现实世界到信息世界的第一抽象，是真正的实体-联系模型。</p>
+<p>网状模型表示实体类型及其实体之间的联系，一个事物和另外几个都有联系，形成一张网。</p>
+<p>面向对象模型是采用面向对象的方法设计数据库，以对象为单位，每个对象包括属性和方法，具有类和继承等特点。</p>
+<p>数据模型三要素：</p>
+<ul>
+<li><strong>数据结构</strong>（所研究的对象类型的集合)、</li>
+<li><strong>数据操作</strong>（对数据库中各种对象的实例允许执行的操作的集合)、</li>
+<li><strong>数据的约束条件</strong>（一组完整性规则的集合)。</li>
+</ul>
+<p>用E-R图来描述概念数据模型，世界是由一组称作实体的基本对象和这些对象之间的联系构成的。</p>
+<p>在E-R模型中，使用<strong>椭圆表示属性</strong>（一般没有）、<strong>长方形表示实体、菱形表示联系，联系的两端要填写联系类型，</strong></p>
+<p>示例如下图：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830101440.png" srcset="/img/loading.gif" lazyload alt="Pasted image 20230830101440"></p>
+<p>实体：<strong>客观存在并可相互区别的事物</strong>。可以是具体的人、事、物或抽象概念。如人、汽车、图书、账户、贷款。</p>
+<p>弱实体和强实体：弱实体依赖于强实体的存在而存在。</p>
+<p>实体集：具有相同类型和共享相同属性的实体的集合，如学生、课程。</p>
+<p>属性：<strong>实体所具有的特性。</strong><br>属性分类：简单属性和复合属性；单值属性和多值属性； NULL 属性；派生属性。<br>域：属性的取值范围称为该属性的域。<br>码(key):  唯一标识实体的属性集。</p>
+<p>联系：现实世界中<strong>事物内部以及事物之间的联系</strong>，在E-R图中反映为<strong>实体内部的联系和实体之间的联系。</strong></p>
+<p>联系类型：<strong>一对一1：1、一对多1：N、多对多M:N。</strong></p>
+<p>两个以上实体型的联系：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830101658.png" srcset="/img/loading.gif" lazyload alt="Pasted image 20230830101658"></p>
+<p>关系模型中数据的逻辑结构是一张<strong>二维表</strong>，由行列组成。用表格结构表达实体集，用外键标识实体间的联系。如下图：<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830101747.png" srcset="/img/loading.gif" lazyload alt="Pasted image 20230830101747"></p>
+<p>优点：建立在严格的数学概念基础上；概念单一、结构简单、清晰，用户易懂易用；存取路径对用户透明，从而数据独立性、安全性好，简化数据库开发工作。</p>
+<p>缺点：由于存取路径透明，查询效率往往不如非关系数据模型。</p>
+<p>E-R模型转换为关系模型：<strong>每个实体都对应一个关系模式</strong>；联系分为三种：</p>
+<ul>
+<li>1:1联系中，联系可以<strong>放到任意的两端实体中，作为一个属性</strong>（要保证1：1的两端关联)，也可以转换为一个单独的关系模式；</li>
+<li>1:N的联系中，联系可以单独作为一个关系模式，也可以<strong>在N端中加入1端实体的主键；</strong></li>
+<li>M:N的联系中，<strong>联系必须作为一个单独的关系模式，其主键是M和N端的联合主键。</strong></li>
+</ul>
+<hr>
+<p>考试真题：</p>
+<p>某本科高校新建教务管理系统，支撑各学院正常的教学教务管理工作。经过初步分析，系统中包含的实体有学院、教师、学生、课程等。<br>考虑需要将本科学生的考试成绩及时通报给学生家长，新增家长实体；考虑到夜大、网络教育学生管理方式的不同，需要额外的管理数据，新增进修学生实体：规定一个学生可以选择多门课程，每门课程可以被多名学生选修；一个教师可以教授多门课程，一门课程只能被一名教师讲授。(   )实体之间为多对多联系，（    )属于弱实体对强实体的依赖联系。</p>
+<ul>
+<li><p>A、学生、学院</p>
+</li>
+<li><p>B、教师、学院</p>
+</li>
+<li><p>C、学生、课程</p>
+</li>
+<li><p>D、教师、课程</p>
+</li>
+<li><p>A、家长、学生</p>
+</li>
+<li><p>B、学生、教师</p>
+</li>
+<li><p>C、学生、学院</p>
+</li>
+<li><p>D、教师、学院</p>
+</li>
+</ul>
+<p>答案：C     A</p>
+<p>解析：一个学生可以选择多门课程，每门课程可以被多名学生选修，因此学生和课程是多对多。</p>
+<p>弱实体依赖于强实体的存在而存在，只有学生存在，其家长信息才会存在，否则单独的家长信息无意义。</p>
+<hr>
+<p>解答：学院、教师、学生、课程  →  + 家长、 + 进修学生<br>第一题根据题意可以知道选择 C；第二题应该是选择 A ，没有学生就没有家长。</p>
+<hr>
+<p>第二题：</p>
+<p>部门、员工和项目的关系模式及它们之间的E-R图如下所示，其中关系模式中带实下划线的属性表示主键属性。图中：</p>
+<ul>
+<li>部门（部门代码，部门名称，电话）</li>
+<li>员工（员工代码，姓名，部门代码，联系方式，薪资)</li>
+<li>项目（项目编号，项目名称，承担任务）<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830171155.png" srcset="/img/loading.gif" lazyload alt="Pasted image 20230830171155"></li>
+</ul>
+<p>若部门和员工关系进行自然连接运算，其结果为(54)元关系。由于员工和项目之间的联系类型为(55)，所以员工和项目之间的联系需要转换成一个独立的关系模式，该关系模式的主键是(56)。</p>
+<p>(54)</p>
+<ul>
+<li>A.5</li>
+<li>B.6</li>
+<li>C.7</li>
+<li>D.8</li>
+</ul>
+<p>(55)</p>
+<ul>
+<li>A.1对1</li>
+<li>B.1对多</li>
+<li>C.多对1</li>
+<li>D.多对多</li>
+</ul>
+<p>(56)</p>
+<ul>
+<li>A.(项目名称，员工代码)</li>
+<li>B.(项目编号，员工代码)</li>
+<li>C.(项目名称，部门代码)</li>
+<li>D.(项目名称，承担任务)</li>
+</ul>
+<p>答案：C   D   B</p>
+<p>解答：第一问理解就是去重，可以得到是选择C; 第二问根据题目是选择D；第三问选择 B （一般是看主键）。</p>
+<h4 id="关系代数"><a href="#关系代数" class="headerlink" title="关系代数"></a>关系代数</h4><ul>
+<li>关系代数<ul>
+<li>并</li>
+<li>交</li>
+<li>差</li>
+<li>笛卡尔积</li>
+<li>投影</li>
+<li>选择</li>
+<li>自然选择</li>
+</ul>
+</li>
+</ul>
+<p>并：结果是两张表中所有记录数合并，相同记录只显示一次。</p>
+<p>交：结果是两张表中相同的记录。</p>
+<p>差：S1-S2,结果是S1表中有而S2表中没有的那些记录。<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830114025.png" srcset="/img/loading.gif" lazyload alt="Pasted image 20230830114025"></p>
+<p>笛卡尔积：S1 * S2,产生的结果包括S1和S2的所有属性列，并且S1中每条记录依次和S2中所有记录组合成一条记录，最终属性列为S1+S2属性列，记录数为 S1 * S2记录数。</p>
+<p>投影：实际是按条件选择某关系模式中的某列，列也可以用数字表示。</p>
+<p>选择：实际是按条件选择某关系模式中的某条记录。</p>
+<p>【看下面内容理解，笛卡尔积类似相乘；投影和选择，看一下下面这个解释】<br>投影和选择是数据库查询中常用的两种操作，用于从数据库中检索所需的数据。<br>投影操作是指从关系中选择出指定的列，<strong>即只选择需要的列而忽略其他列</strong>。投影操作可以用来实现数据的“剪裁”，使得查询结果只包含需要的信息。例如，从一个包含学生信息的关系表中，可以使用投影操作选择出只包含学生姓名和成绩的结果。<br>选择操作是指从关系中选择出满足指定条件的行，即只选择满足条件的行而忽略其他行。<strong>选择操作可以用来实现数据的“筛选”</strong>，使得查询结果只包含满足条件的数据。例如，从一个包含学生信息的关系表中，可以使用选择操作选择出成绩大于80的学生的结果。<br>总结来说，投影操作是选择列，选择操作是选择行。投影操作用于选择需要的列，选择操作用于选择满足条件的行。两者可以结合使用，以实现更精确的数据查询。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830171448.png" srcset="/img/loading.gif" lazyload alt="Pasted image 20230830171448"><br>自然连接的结果显示全部的属性列，但是相同属性列只显示一次，<strong>显示两个关系模式中属性相同且值相同的记录。</strong></p>
+<p>设有关系R、S如下左图所示，自然连接结果如下右图所示：<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830171537.png" srcset="/img/loading.gif" lazyload alt="Pasted image 20230830171537"></p>
+<hr>
+<p>考试真题：<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830171605.png" srcset="/img/loading.gif" lazyload alt="Pasted image 20230830171605"></p>
+<p>解答：第一问理解自然连接就是去重，选择答案 B；第二问</p>
+<p>里面 的 Π 是 投影的作用，作为选择列；这里题目和选项中很大的一个不同是前者是自然连接，选项是笛卡尔积 ×；因此这里必须用上投影，这里是</p>
+<p>Π 1,2,3,4,7 ；由于是自然连接，他默认的一个规则是相同值的列需要相等；这里对应的是 3&#x3D;5^4&#x3D;6 ；其中 ^ 是并的意思。</p>
+<p>百度了一下，前面的这个符号就是选择：选择的操作符为小写<strong>sigma</strong> (σ)</p>
+<p>因此他这里就是筛选数据，如果不是字符要求比较，是不需要用上单引号的，这里比较的列的值，因此是 σ 2 &gt; 7 ; 可以排除选项 B，答案选 D。</p>
+<hr>
+<p>答案： B    D</p>
+<p>解析：对R与S做自然联接运算时，联接条件为：R.C&#x3D;S.C and R.D&#x3D;S.D。运算结果会自动去重复列，所以结果的列为：A、B、C、D、E,一共5列。</p>
+<h3 id="规范化与并发控制"><a href="#规范化与并发控制" class="headerlink" title="规范化与并发控制"></a>规范化与并发控制</h3><h4 id="函数依赖"><a href="#函数依赖" class="headerlink" title="函数依赖"></a>函数依赖</h4><p>给定一个X,能唯一确定一个Y,就称X确定Y,或者说Y依赖于X,例如 Y&#x3D;X * X函数。</p>
+<p>函数依赖又可扩展以下两种规则：</p>
+<ul>
+<li><p>部分函数依赖：A可确定C,(A,B)也可确定C,(A,B)中的一部分（即A)可以确定C,称为部分函数依赖。</p>
+</li>
+<li><p>传递函数依赖：当A和B不等价时，A可确定B,B可确定C,则A可确定C,是传递函数依赖；若A和B等价，则不存在传递，直接就可确定C。</p>
+</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830230326.png" srcset="/img/loading.gif" lazyload alt="Pasted image 20230830230326"></p>
+<p>函数依赖的公理系统(Armstrong)</p>
+<p>设关系模式R&lt;U,F&gt;,   U是关系模式 R 的属性全集，F是关系模式R的一个函数依赖集。</p>
+<p>对于R&lt;U,F&gt; 来说有以下的：</p>
+<ul>
+<li>自反律：若Y⃀ X ⃀  U,则 X→Y 为F 所逻辑蕴含。</li>
+<li>增广律：若X→Y为F所逻辑蕴含，且Z ⃀ U,  则XZ→YZ为 F所逻辑蕴含</li>
+<li>传递律：若X→Y和Y→Z为 F所逻辑蕴含，则X→Z为F所逻辑蕴含</li>
+<li>合并规则：若x→Y,X→Z,则X→YZ为F所蕴涵</li>
+<li>伪传递率：若X→Y,WY→Z, 则XW→Z为F所蕴涵</li>
+<li>分解规则：若X→Y,Z ⃀ Y,则 X→Z 为F所蕴涵</li>
+</ul>
+<hr>
+<h4 id="键与约束"><a href="#键与约束" class="headerlink" title="键与约束"></a>键与约束</h4><ul>
+<li><p>超键：能<strong>唯一标识</strong>此表的属性的组合</p>
+</li>
+<li><p>候选键：超键中<strong>去掉冗余的属性</strong>，剩余的属性就是候选键。</p>
+</li>
+<li><p>主键：<strong>任选一个候选键</strong>，即可作为主键。</p>
+</li>
+<li><p>外键：<strong>其他表中的主键。</strong></p>
+</li>
+<li><p>主属性：<strong>候选键内的属性为主属性</strong>，其他属性为非主属性。</p>
+</li>
+<li><p>实体完整性约束：即<strong>主键约束，主键值不能为空，也不能重复。</strong></p>
+</li>
+<li><p>参照完整性约束：即外键约束，<strong>外键必须是其他表中已经存在的主键的值，或者为空。</strong></p>
+</li>
+<li><p>用户自定义完整性约束：<strong>自定义表达式约束</strong>，如设定年龄属性的值必须在 0 到 150之间。</p>
+</li>
+</ul>
+<h4 id="范式"><a href="#范式" class="headerlink" title="范式"></a>范式</h4><p>可以结合看一下 [[数据库基础知识总结#数据库范式了解吗? 🐒]]<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/1-720230910-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F.png" srcset="/img/loading.gif" lazyload alt="1-720230910-系统架构设计师_数据库系统"></p>
+<h5 id="第一范式1NF"><a href="#第一范式1NF" class="headerlink" title="第一范式1NF"></a>第一范式1NF</h5><p>关系中的<strong>每一个分量必须是一个不可分的数据项</strong>。通俗地说，第一范式就是表中不允许有小表的存在。比如，对于如下的员工表，就不属于第一范式：<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830231042.png" srcset="/img/loading.gif" lazyload alt="Pasted image 20230830231042"></p>
+<p>实例：用一个单一的关系模式学生来描述学校的教务系统：学生（学号，学生姓名，系号，系主任姓名，课程号，成绩)</p>
+<p>依赖关系（学生-&gt;学号，学生 -&gt; 学生姓名，学生-&gt;系号，系号 - &gt; 系主任姓名，学生-&gt;  课程号，（学生，课程号) -&gt; 成绩)</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830231151.png" srcset="/img/loading.gif" lazyload alt="Pasted image 20230830231151"></p>
+<h5 id="第二范式"><a href="#第二范式" class="headerlink" title="第二范式"></a>第二范式</h5><p>如果关系R属于1NF,且每一个非主属性完全函数依赖于任何一个候选码，则R属于2NF。</p>
+<p>通俗地说，2NF就是在1NF的基础上，表中的每一个非主属性不会依赖复合主键中的某一个列。</p>
+<p>按照定义，上面的学生表就不满足2F，因为学号不能完全确定课程号和成绩(每个学生可以选多门课)。</p>
+<p>将学生表分解为：</p>
+<ul>
+<li>学生（学号，学生姓名，系编号，系名，系主任）</li>
+<li>选课（学号，课程号，成绩）。</li>
+</ul>
+<p>每张表均属于2NF。</p>
+<h5 id="第三范式"><a href="#第三范式" class="headerlink" title="第三范式"></a>第三范式</h5><p>在满足1F的基础上，表中不存在非主属性对码的传递依赖。</p>
+<p>继续上面的实例，学生关系模式就不属于3F,因为学生无法直接决定系主任和系名，是由学号-&gt;系编号，再由系编号-&gt;系主任，系编号-&gt;系名，因此存在非<br>主属性对主属性的传递依赖，</p>
+<p>将学生表进一步分解为：</p>
+<ul>
+<li>学生（学号，学生姓名，系编号）</li>
+<li>系（系编号，系名，系主任）</li>
+<li>选课（学号，课程号，成绩）</li>
+</ul>
+<p>每张表都属于3NF。</p>
+<h5 id="BC范式"><a href="#BC范式" class="headerlink" title="BC范式"></a>BC范式</h5><p>BC范式BCNF, 是指<strong>在第三范式的基础上进一步消除主属性对于码的部分函数依赖和传递依赖。</strong></p>
+<p>通俗的来说，<strong>就是在每一种情况下，每一个依赖的左边决定因素都必然包含候选键</strong>，如下：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830231406.png" srcset="/img/loading.gif" lazyload alt="Pasted image 20230830231406"></p>
+<p>上图中，候选键有两种情况：组合键(S,T)或者(S,J), 依赖集为{SJ一T,T一J},</p>
+<p>可知，STJ三个属性都是主属性，因此其达到了3F(无非主属性)，然而，第二种情况，即(S,J)为候选键的时候，对于依赖T-&gt;J,T在这种情况不是候选键，即T-J 的决定因素不包含任意候选码，因此上图不是BCNF。</p>
+<p>要使上图关系模式转换为BCF也很简单，只需要将依赖 T-&gt;J 变为 TS-&gt;J 即可，这样其左边决定因素就包含了候选键之一S。</p>
+<hr>
+<p>考试真题：</p>
+<p>第一题：</p>
+<p>给定关系模式R(U,F),U&#x3D;{A,B,C,D},  F&#x3D;{AB→C,CD→B}。关系R(  ),且分别有（   )。</p>
+<ul>
+<li><p>A.只有1个候选关键字ACB</p>
+</li>
+<li><p>B.只有1个候选关键字BCD</p>
+</li>
+<li><p>C.有2个候选关键字ACD和ABD</p>
+</li>
+<li><p>D.有2个候选关键字ACB和BCD</p>
+</li>
+<li><p>A.0个非主属性和4个主属性</p>
+</li>
+<li><p>B.1个非主属性和3个主属性</p>
+</li>
+<li><p>C.2个非主属性和2个主属性</p>
+</li>
+<li><p>D.3个非主属性和1个主属性</p>
+</li>
+</ul>
+<p>解答：这里我理解候选关键字就是是否能通过这些候选键推出全部属性，这里是 ACD 和 ABD 两种都可以，选择答案 C ；<br>![[2-720230910-系统架构设计师_数据库系统.png|500]]<br>第二问看一下最后这句话这个理论解释，因此这里是 4 个主属性；选择 A。<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/3-720230910-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F.png" srcset="/img/loading.gif" lazyload alt="3-720230910-系统架构设计师_数据库系统"></p>
+<p>答案：C   A</p>
+<p>解析：候选关键字的求法：根据依赖集，找出从未在右边出现过的属性，必然是候选键之一，以该属性为基础，根据依赖集依次扩展，看能否遍历所有属性，将无法遍历的加入候选键中。</p>
+<p>👆 视频中给出的这个解法也可以学习一下，他这里主要强调：找出从未在右边出现过的属性，必然是候选键之一；通过这种方式找候选键。</p>
+<hr>
+<p>第二题：</p>
+<p>设有关系模式R(E,N,M,L,Q),其函数依赖集为F&#x3D;{E→N,EM→Q,M→L}。则关系模式 R 达到了 ___ ; 该关系模式___ 。</p>
+<ul>
+<li><p>A.1NF</p>
+</li>
+<li><p>B.2NF</p>
+</li>
+<li><p>C.3NF</p>
+</li>
+<li><p>D.BCNF</p>
+</li>
+<li><p>A.无需进行分解，因为已经达到了3NF</p>
+</li>
+<li><p>B.无需进行分解，因为已经达到了BCNF</p>
+</li>
+<li><p>C.尽管不存在部分函数依赖，但还存在传递依赖，所以需要进行分解</p>
+</li>
+<li><p>D.需要进行分解，因为存在冗余、修改操作的不一致性、插入和删除异常</p>
+</li>
+</ul>
+<p>解答：先找一下候选键，（E, M ) 这里就是这道题的候选键（从未在右边出现过的属性）；存在主属性对于非主属性的函数依赖，因此这里不是第二范式；因此这里是第一范式。选择 A   D。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/4-720230910-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F.png" srcset="/img/loading.gif" lazyload alt="4-720230910-系统架构设计师_数据库系统"></p>
+<p>答案：A       D</p>
+<hr>
+<h4 id="模式分解"><a href="#模式分解" class="headerlink" title="模式分解"></a>模式分解</h4><ul>
+<li>模式分解（范式转换）<ul>
+<li>将函数依赖集进行分解，达到范式转换的目的（第一范式转换为第二范式这种）</li>
+</ul>
+</li>
+<li></li>
+</ul>
+<h5 id="保持函数依赖"><a href="#保持函数依赖" class="headerlink" title="保持函数依赖"></a>保持函数依赖</h5><p>范式之间的转换一般都是通过拆分属性，即模式分解，将具有部分函数依赖和传递依赖的属性分离出来，来达到一步步优化，一般分为以下两种：</p>
+<p>1）保持函数依赖分解</p>
+<p>对于关系模式，有依赖集F,  若对R进行分解，<strong>分解出来的多个关系模式，保持原来的依赖集不变</strong>，则为保持函数依赖的分解。另外，注意要消除掉冗余依赖<br>(如传递依赖)。</p>
+<hr>
+<p>实例：设原关系模式R(A,B,C),依赖集F(A&gt;B,B-&gt;C,A-&gt;C),将其分解。分解为两个关系模式R1(A,B)和R2(B,C),</p>
+<p>此时R1中保持依赖A-&gt;B,R2保持依赖B-&gt;C,说明分解后的R1和R2是保持函数依赖的分解，因为<strong>A-&gt;C这个函数依赖实际是一个冗余依赖</strong>，可以由前两个依赖传递得到，因此不需要管。</p>
+<p>👆 上面做的就是消除冗余依赖。</p>
+<hr>
+<p>2）保持函数依赖的判断（补充，第 2 点不强求）。</p>
+<p>👇 左边是理论，右边是例题。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/4-720230911-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F.png" srcset="/img/loading.gif" lazyload alt="4-720230911-系统架构设计师_数据库系统"></p>
+<p>1、如果F上的每一个函数依赖都在其分解后的某一个关系上成立，则这个分解是保持依赖的(这是一个充分条件)。也即我们课堂上说的简单方法，看函数每个依赖的左右两边属性是否都在同一个分解的模式中。<br>2、如上</p>
+<hr>
+<p>例题：</p>
+<p>假设关系模式R(U,F),属性集U&#x3D;{A,B,C),函数依赖集F&#x3D;{A→B,B→C)。若将其分解为 p&#x3D;{R1(U1,F1), R2(U2,F2)) ,   其中U1&#x3D;{A,B), U2&#x3D;{A,C}。那么，分解p(  )。</p>
+<ul>
+<li>A.有损连接但保持函数依赖</li>
+<li>B.既无损连接又保持函数依赖</li>
+<li>C.有损连接且不保持函数依赖</li>
+<li>D.无损连接但不保持函数依赖</li>
+</ul>
+<p>解答：这一章节中的保持函数依赖讲述的(1 )保持函数依赖分解 是如何进行函数依赖分解；具体的判断这个分解是否是保持函数依赖，需要看第二部分 (2)保持函数依赖的判断  的内容。<br>前面提及到的 每一个函数依赖都在其分解后的某一个关系上成立 ； 这里做一个解释，题目中的 U &#x3D; { A, B , C} ；函数依赖集 F&#x3D; { A → B, B → C};<br>分解后的  U1&#x3D;{A,B), U2&#x3D;{A,C} 看不出 B → C 的关系是否成立，因此这里需要使用 “通用方法”来进行下一步的判断。<br>视频中讲述 tip: 考虑到分值取舍的问题和往年考察真题的经验，一般需要使用“通用方法”判断是否保持函数依赖，那么一般答案会是 不保持。【当然这种方式是有逻辑漏洞的】<br>是否是无损分解看下一章节的说明，这里能够还原 A，B,C ；因此是无损连接。</p>
+<p>答案：D</p>
+<p>解析：首先，该分解，U1保持了依赖A-&gt;B,然而 B-&gt;C没有保持，因此针对 B-&gt;C 需要用第2点算法来判断：</p>
+<p>result&#x3D;B,result  ∩ U1&#x3D;B,B+&#x3D;BC,BC ∩ U1&#x3D;B, result&#x3D;B ∪ B&#x3D;B,result 没变，然后，result 再和 U2 交是空，结束了，不保持函数依赖。</p>
+<p>注意，这里B+, <strong>+的意思是代表由B能够推导出的其他所有属性的集合</strong>，这里，B-&gt;C,因此B+&#x3D;BC。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/5-720230911-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F.png" srcset="/img/loading.gif" lazyload alt="5-720230911-系统架构设计师_数据库系统"><br>👆 可以参考看一下，目前是大致了解，掌握的话有兴趣了解下这个公式步骤。</p>
+<hr>
+<h5 id="无损分解"><a href="#无损分解" class="headerlink" title="无损分解"></a>无损分解</h5><ul>
+<li>无损分解：分解后的关系模式能够还原出原关系模式，就是无损分解，不能还原就是有损。</li>
+</ul>
+<p>当分解为<strong>两个关系模式</strong>，可以通过以下定理判断是否无损分解：</p>
+<p><strong>定理</strong>：如果R的分解为 p&#x3D;{R1,R2} ,F为R所满足的函数依赖集合，分解p具有无损连接性的<strong>充分必要条件是 R1 ∩ R2-&gt;(R1-R2) 或者 R1 ∩ R2-&gt;(R2-R1)。</strong></p>
+<p>当分解为<strong>三个及以上关系模式时，可以通过表格法求解</strong>，如下：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830232851.png" srcset="/img/loading.gif" lazyload alt="Pasted image 20230830232851"></p>
+<p>👆 掌握一下上面这种表格法；只要有一行全部为 √ ，即为无损分解</p>
+<hr>
+<p>考试真题</p>
+<p>给定关系模式R&lt;U,F&gt;,  U&#x3D; {A,B,C,D,E}, F&#x3D;{B→A,D→A,A→E,AC→B} ,则R的候选关键字为(  )，分解p&#x3D;{R1(ABCE),R2(CD)} （    ）</p>
+<ul>
+<li><p>A.CD</p>
+</li>
+<li><p>B.ABD</p>
+</li>
+<li><p>C.ACD</p>
+</li>
+<li><p>D.ADE</p>
+</li>
+<li><p>A.具有无损连接性，且保持函数依赖</p>
+</li>
+<li><p>B.不具有无损连接性，但保持函数依赖</p>
+</li>
+<li><p>C.具有无损连接性，但不保持函数依赖</p>
+</li>
+<li><p>D.不具有无损连接性，也不保持函数依赖</p>
+</li>
+</ul>
+<p>答案：A    D</p>
+<p>解答：右边没有出现的元素：C D; 同时可以推出全部元素；因此选 A；<br>R1 - R2: ABE<br>R2 - R1: D</p>
+<p>第二问中：分解为两个关系模式的时候注意一下：<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/6-720230911-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F.png" srcset="/img/loading.gif" lazyload alt="6-720230911-系统架构设计师_数据库系统"></p>
+<p>R1 ∩ R2 &#x3D; C; R1 - R2 &#x3D; ABE;  R2- R1 &#x3D; D;   判断是否 C 能推出 → ABE 或者 C → D; 看上面的题目是不能的; 因此是 不具有无损连接性；</p>
+<p>保持函数依赖下先看一下是否每一个函数依赖都在其分解后的某一个关系上成立  U&#x3D; {A,B,C,D,E}, F&#x3D;{B→A,D→A,A→E,AC→B}<br>分解后的  R1(ABCE), R2(CD) ；<br>看这个式子是不能看出 A → E 是否成立的；需要使用 “通用方法”来进行下一步的判断。这里直接选择 不保持。选择 D。</p>
+<h4 id="并发控制"><a href="#并发控制" class="headerlink" title="并发控制"></a>并发控制</h4><ul>
+<li>事务<ul>
+<li>原子性</li>
+<li>一致性</li>
+<li>隔离性</li>
+<li>持续性</li>
+</ul>
+</li>
+<li>事务并发控制问题<ul>
+<li>丢失更新</li>
+<li>不可重复读</li>
+<li>读脏数据</li>
+</ul>
+</li>
+</ul>
+<p>事务：由一系列操作组成，这些操作，要么全做，要么全不做，拥有四种特性，详解如下：</p>
+<ul>
+<li>(操作)<strong>原子性</strong>：要么全做，要么全不做。</li>
+<li>(数据)<strong>一致性</strong>：事务发生后数据是一致的，例如银行转账，不会存在 A 账户转出，但是B账户没收到的情况。</li>
+<li>(执行)<strong>隔离性</strong>：任一事务的更新操作直到其成功提交的整个过程对其他事务都是不可见的，不同事务之间是隔离的，互不干涉。</li>
+<li>(改变)<strong>持续性</strong>：事务操作的结果是持续性的。</li>
+</ul>
+<p>事务是并发控制的前提条件，并发控制就是<strong>控制不同的事务并发执行</strong>，提高系统效率，但是并发控制中<strong>存在下面三个问题</strong>：</p>
+<ul>
+<li>丢失更新：事务1对数据A进行了修改并写回，事务2也对A进行了修改并写回，此时事务2写回的数据会覆盖事务1写回的数据，就丢失了事务1对 A 的更新。即对数据A的更新会被覆盖。</li>
+<li>不可重复读：事务2读A,而后事务1对数据A进行了修改并写回，此时若事务2再读A,发现数据不对。即一个事务重复读A两次，会发现数据A有误。</li>
+<li>读脏数据：事务1对数据A进行了修改后，事务2读数据A,而后事务1回滚，数据A恢复了原来的值，那么事务2对数据A做的事是无效的，读到了脏数据。</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830233338.png" srcset="/img/loading.gif" lazyload alt="Pasted image 20230830233338"></p>
+<h4 id="封锁协议"><a href="#封锁协议" class="headerlink" title="封锁协议"></a>封锁协议</h4><ul>
+<li><p>封锁协议</p>
+<ul>
+<li>X  排他锁</li>
+<li>S  共享锁</li>
+</ul>
+</li>
+<li><p><strong>X锁是排它锁（写锁）</strong>。若事务T对数据对象A加上X锁，则只允许T读取和修改A, <strong>其他事务都不能再对A加任何类型的锁</strong>，直到T释放A上的锁。</p>
+</li>
+<li><p><strong>S锁是共享锁（读锁）</strong>。若事务T对数据对象A加上S锁，则只允许T读取A,但不能修改A,其他事务只能再对A加S锁（也即能读不能修改），直到T释放A上的S锁。</p>
+</li>
+</ul>
+<p>共分为三级封锁协议，如下：</p>
+<p>一级封锁协议：</p>
+<p>事务在<strong>修改数据R之前必须先对其加X锁</strong>，直到事务结束才释放。<br><strong>可解决丢失更新问题。</strong><br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830233505.png" srcset="/img/loading.gif" lazyload alt="Pasted image 20230830233505"></p>
+<p>二级封锁协议：</p>
+<p>一级封锁协议的基础上加上事务T在<strong>读数据之前必须先对其加S锁，读完后即可释放 S 锁</strong>。<br><strong>可解决丢失更新、读脏数据问题。</strong></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830233602.png" srcset="/img/loading.gif" lazyload alt="Pasted image 20230830233602"><br>三级封锁协议：</p>
+<p>一级封锁协议加上事务T在读取数据R之前先对其加S锁，<strong>直到事务结束才释放。</strong><br><strong>可解决丢失更新、读脏数据、数据重复读问题。</strong><br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830233639.png" srcset="/img/loading.gif" lazyload alt="Pasted image 20230830233639"></p>
+<hr>
+<p>考试真题</p>
+<p>“当多个事务并发执行时，任一事务的更新操作直到其成功提交的整个过程对其他事务都是不可见的”，这一性质通常被称为事务的(  )。</p>
+<ul>
+<li>A.原子性</li>
+<li>B.一致性</li>
+<li>C.隔离性</li>
+<li>D.持久性</li>
+</ul>
+<p>答案：C</p>
+<p>解答：关键字：不可见</p>
+<hr>
+<p>若事务T1对数据D1加了共享锁，事务T2、T3 分别对数据 D2、D3 加了排它锁，则事务T1对数据(  ）;事务T2对数据(  )。</p>
+<ul>
+<li><p>A. D2、D3加排它锁都成功</p>
+</li>
+<li><p>B. D2、D3加共享锁都成功</p>
+</li>
+<li><p>C. D2加共享锁成功，D3加排它锁失败</p>
+</li>
+<li><p>D. D2、D3加排它锁和共享锁都失败</p>
+</li>
+<li><p>A. D1、D3加共享锁都失败</p>
+</li>
+<li><p>B. D1、D3加共享锁都成功</p>
+</li>
+<li><p>C. D1加共享锁成功，D3如排它锁失败</p>
+</li>
+<li><p>D. D1加排它锁成功，D3加共享锁失败</p>
+</li>
+</ul>
+<p>答案：D    C</p>
+<p>解答：D2、D3 已经加了排他锁，此时加其他锁都不行，选择 D；D1 加的是共享锁，此时可以加其他锁，主要还是看 D3 这里，符合要求是 A C；事务T2可以对数据D1 加共享锁，答案选 C。 </p>
+<hr>
+<h3 id="数据库新技术"><a href="#数据库新技术" class="headerlink" title="数据库新技术"></a>数据库新技术</h3><h4 id="数据库安全"><a href="#数据库安全" class="headerlink" title="数据库安全"></a>数据库安全</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830233915.png" srcset="/img/loading.gif" lazyload alt="Pasted image 20230830233915"></p>
+<ul>
+<li><p>静态转储：即<strong>冷备份</strong>，指在转储期间不允许对数据库进行任何存取、修改操作；优点是非常快速的备份方法、容易归档（直接物理复制操作）；<br>缺点是只能提供到某一时间点上的恢复，不能做其他工作，不能按表或按用户恢复。</p>
+</li>
+<li><p>动态转储：即<strong>热备份</strong>，在转储期间允许对数据库进行存取、修改操作，因此，转储和用户事务可并发执行；</p>
+</li>
+</ul>
+<p>优点是可在表空间或数据库文件级备份，数据库扔可使用，可达到秒级恢复；<br>缺点是不能出错，否则后果严重，若热备份不成功，所得结果几乎全部无效。</p>
+<ul>
+<li>完全备份：备份所有数据。</li>
+<li>差量备份：仅备份上一次完全备份之后变化的数据。</li>
+<li>增量备份：备份上一次备份之后变化的数据。</li>
+</ul>
+<p><strong>日志文件</strong>：在事务处理过程中，DBMS把事务开始、事务结束以及对数据库的插入、删除和修改的每一次操作写入日志文件。一旦发生故障，DBMS的恢复子系统<br>利用日志文件撤销事务对数据库的改变，回退到事务的初始状态。</p>
+<h4 id="分布式数据库"><a href="#分布式数据库" class="headerlink" title="分布式数据库"></a>分布式数据库</h4><p>局部数据库位于不同的物理位置，使用一个全局DBMS将所有局部数据库联网管理，这就是分布式数据库。</p>
+<p>分片模式<br>水平分片：将表中<strong>水平的记录</strong>分别存放在不同的地方。<br>垂直分片：将表中的<strong>垂直的列值</strong>分别存放在不同的地方。</p>
+<p>分布透明性</p>
+<ul>
+<li>分片透明性：用户或应用程序<strong>不需要知道逻辑上访问的表具体是如何分块存储的。</strong></li>
+<li>位置透明性：应用程序<strong>不关心数据存储物理位置的改变</strong></li>
+<li>逻辑透明性：用户或应用程序<strong>无需知道局部使用的是哪种数据模型。</strong></li>
+<li>复制透明性：用户或应用程序<strong>不关心复制的数据从何而来。</strong></li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830234235.png" srcset="/img/loading.gif" lazyload alt="Pasted image 20230830234235"></p>
+<h4 id="数据仓库技术"><a href="#数据仓库技术" class="headerlink" title="数据仓库技术"></a>数据仓库技术</h4><p>数据仓库是一个<strong>面向主题的、集成的、非易失的、且随时间变化</strong>的数据集合，用于支持管理决策。</p>
+<p><strong>面向主题</strong>：按照一定的主题域进行组织的。</p>
+<p><strong>集成的</strong>：数据仓库中的数据是在对原有分散的数据库数据抽取、清理的基础上经过系统加工、汇总和整理得到的，必须消除源数据中的不一致性，以保证数据仓库内的信息是关于整个企业的一致的全局信息。</p>
+<p><strong>相对稳定的</strong>：数据仓库的数据主要供企业决策分析之用，所涉及的数据操作主要是数据查询，一旦某个数据进入数据仓库以后，一般情况下将被长期保留，也就是数据仓库中一般有大量的查询操作，但修改和删除操作很少，通常只需要定期的加载、刷新。</p>
+<p><strong>反映历史变化</strong>：数据仓库中的数据通常包含历史信息，系统记录了企业从过去某一时点（如开始应用数据仓库的时点)到目前的各个阶段的信息，通过这些信总，可以对企业的发展历程和未来趋势做出定量分析和预测。</p>
+<p>数据仓库的结构通常包含四个层次，如下图所示：</p>
+<ul>
+<li>1.<strong>数据源</strong>：是数据仓库系统的基础，是整个系统的数据源泉。</li>
+<li>2.<strong>数据的存储与管理</strong>：是整个数据仓库系统的核心。</li>
+<li>3.<strong>0LAP(联机分析处理)服务器</strong>：对分析需要的数据进行有效集成，按多维模型组织，以便进行多角度、多层次的分析，并发现趋势。</li>
+<li>4.<strong>前端工具</strong>：主要包括各种报表工具、查询工具、数据分析工具、数据挖掘工具以及各种基于数据仓库或数据集市的应用开发工具。</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830234443.png" srcset="/img/loading.gif" lazyload alt="Pasted image 20230830234443"><br>商业智能</p>
+<p>BI 系统主要包括数据预处理、建立数据仓库、数据分析和数据展现四个主要阶段。 </p>
+<ul>
+<li>数据预处理是整合企业原始数据的第一步，它包括数据的抽取(Extraction).、转换(Transformation)和加载(Load)三个过程(ETL过程)；</li>
+<li>建立数据仓库则是处理海量数据的基础；</li>
+<li>数据分析是体现系统智能的关键，一般采用联机分析处理(OLAP)和数据挖掘两大技术。联机分析处理不仅进行数据汇总&#x2F;聚集，同时还提供切片、切块、下钻、上卷和旋转等数据分析功能，用户可以方便地对海量数据进行多维分析。数据挖掘的目标则是挖掘数据背后隐藏的知识，通过关联分析、聚类和分类等方法建立分析模型，预测企业未来发展趋势和将要面临的问题；</li>
+<li>在海量数据和分析手段增多的情况下，数据展现则主要保障系统分析结果的可视化。</li>
+</ul>
+<h4 id="反规范化技术"><a href="#反规范化技术" class="headerlink" title="反规范化技术"></a>反规范化技术</h4><p>反规范化技术：规范化设计后，数据库设计者希望<strong>牺牲部分规范化来提高性能。</strong></p>
+<p>采用反规范化技术的<strong>益处：降低连接操作的需求、降低外码和索引的数目，还可能减少表的数目，能够提高查询效率。</strong></p>
+<p><strong>可能带来的问题</strong>：数据的<strong>重复存储</strong>，浪费了磁盘空间；可能出现数据的<strong>完整性</strong>问题，为了保障数据的一致性，增加了数据维护的复杂性，会降低<strong>修改速度</strong>。</p>
+<p>具体方法：<br>(1)增加冗余列：在多<strong>个表中保留相同的列</strong>，通过增加数据冗余减少或避免查询时的连接操作。<br>(2)增加派生列：在表中增加可以<strong>由本表或其它表中数据计算生成的列</strong>，减少查询时的连接操作并避免计算或使用集合函数。<br>(3)重新组表：如果许多用户需要查看两个表连接出来的结果数据，则把<strong>这两个表重新组成一个表来减少连接而提高性能。</strong><br>(4)水平分割表：根据一列或多列数据的值，把<strong>数据放到多个独立的表中，</strong> 主要用于表数据规模很大、表中数据相对独立或数据需要存放到多个介质上时使用。<br>(5)垂直分割表：对表进行分割，将<strong>主键与部分列放到一个表中</strong>，主键与其它列放到另一个表中，在查询时减少 I&#x2F;O 次数。</p>
+<h4 id="大数据"><a href="#大数据" class="headerlink" title="大数据"></a>大数据</h4><p>特点：大量化、多样化、价值密度低、快速化。</p>
+<p>大数据和传统数据的比较如下：</p>
+<table>
+<thead>
+<tr>
+<th>比较维度</th>
+<th>传统数据</th>
+<th>大数据</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数据量</td>
+<td>GB或TB级</td>
+<td>PB级或以上</td>
+</tr>
+<tr>
+<td>数据分析需求</td>
+<td>现有数据的分析的检测</td>
+<td>深度分析（关联分析、回归分析）</td>
+</tr>
+<tr>
+<td>硬件平台</td>
+<td>高端服务器</td>
+<td>集群平台</td>
+</tr>
+</tbody></table>
+<p>要处理大数据，一般使用集成平台，称为大数据处理系统，<br>其特征为：</p>
+<ul>
+<li>高度可扩展性、高性能、高度容错、支持异构环境、较短的分析延迟、易用且开放的接口、较低成本、向下兼容性。</li>
+</ul>
+<hr>
+<p>考试真题：</p>
+<p>为了保证数据库中数据的安全可靠和正确有效，系统在进行事务处理时，对数据的插入、删除或修改的全部有关内容先写入(  )；<br>当系统正常运行时，按一定的时间间隔，把数据库缓冲区内容写入(  )；当发生故障时，根据现场数据内容及相关文件来恢复系统的状态。</p>
+<ul>
+<li><p>A.索引文件</p>
+</li>
+<li><p>B.数据文件</p>
+</li>
+<li><p>C.日志文件</p>
+</li>
+<li><p>D.数据字典</p>
+</li>
+<li><p>A.索引文件</p>
+</li>
+<li><p>B.数据文件</p>
+</li>
+<li><p>C.日志文件</p>
+</li>
+<li><p>D.数据字典</p>
+</li>
+</ul>
+<p>答案：C   B</p>
+<p>解析：在数据库中引入了日志文件，记录系统进行事务处理时的一切操作，但只记录操作内容，数据是存放在数据文件中，恢复现场时，依据日志文件可知有哪些操作，依据数据文件可知操作的数据是哪些。</p>
+<p>解答：概念性问题。<br><strong>日志文件</strong>：在事务处理过程中，DBMS把事务开始、事务结束以及对数据库的插入、删除和修改的每一次操作写入日志文件。一旦发生故障，DBMS的恢复子系统<br>利用日志文件撤销事务对数据库的改变，回退到事务的初始状态。<br><strong>数据文件</strong>：看下这个解释<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20230911-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F.png" srcset="/img/loading.gif" lazyload alt="20230911-系统架构设计师_数据库系统"></p>
+<hr>
+<p>数据仓库中数据( )的特点是指数据一旦进入数据仓库后，将被长期保留并定期加载和刷新，可以进行各种查询操作，但很少对数据进行修改和删除操作。</p>
+<ul>
+<li>A.面向主题</li>
+<li>B.集成性</li>
+<li>C.相对稳定性</li>
+<li>D.反映历史变化</li>
+</ul>
+<p>答案：C</p>
+<p>解答：<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/1-720230911-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F.png" srcset="/img/loading.gif" lazyload alt="1-720230911-系统架构设计师_数据库系统"></p>
+<h4 id="SQL-语言"><a href="#SQL-语言" class="headerlink" title="SQL 语言"></a>SQL 语言</h4><p>SQL 语言中的语法关键字，不区分大小写：</p>
+<ul>
+<li>创建表  create table</li>
+<li>指定主键  primary key()</li>
+<li>指定外键   foreign key()</li>
+<li>修改表  alter table</li>
+<li>删除表  drop table</li>
+<li>索引  index,   视图  view</li>
+</ul>
+<p>示例；</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> S(<br>	 Sno <span class="hljs-type">CHAR</span>(<span class="hljs-number">5</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">UNIQUE</span>,<br>	 Sname <span class="hljs-type">CHAR</span>(<span class="hljs-number">30</span>) <span class="hljs-keyword">UNIQUE</span>,<br>	 Status <span class="hljs-type">CHAR</span>(<span class="hljs-number">8</span>),<br>	 City <span class="hljs-type">CHAR</span>(<span class="hljs-number">20</span>) <br>	 <span class="hljs-keyword">PRIMARY KEY</span>(Sno)<br>);<br> <br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> S <span class="hljs-keyword">ADD</span> Zap <span class="hljs-type">CHAR</span>(<span class="hljs-number">6</span>);<br><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> Student<br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">UNIQUE</span> <span class="hljs-keyword">INDEX</span> S-SNO <span class="hljs-keyword">ON</span> S(Sno):<br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">VIEW</span> CS-STUDENT<br></code></pre></td></tr></table></figure>
+
+<p>SQL 常见语法：</p>
+<ul>
+<li><strong>数据库查询select … from … where;</strong></li>
+<li>分组查询 group by,分组时要注意select后的列名要适应分组，having为分组查询附加条件：<ul>
+<li>select sno,avg(score) from student group by sno having(avg(score)&gt;60)</li>
+</ul>
+</li>
+<li>更名运算as:select sno as “学号” from t1</li>
+<li>字符串匹配Iike,<ul>
+<li>%匹配多个字符串，</li>
+<li>_ 匹配任意一个字符串：<ul>
+<li>select *  from t1 where sname like ‘a_’</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>数据库插入 insert into…values():<ul>
+<li>insert into t1 values(‘a’,66)</li>
+</ul>
+</li>
+<li>数据库删除 delete from…where:<ul>
+<li>delete t1 where sno&#x3D;4</li>
+</ul>
+</li>
+<li>数据库修改update…set…where:<ul>
+<li>update t1 set sname&#x3D;’aa’ where sno&#x3D;3</li>
+</ul>
+</li>
+<li><h2 id="排序-order-by-默认为升序，降序要加关键字DESC-select-from-t1-order-by-sno-desc"><a href="#排序-order-by-默认为升序，降序要加关键字DESC-select-from-t1-order-by-sno-desc" class="headerlink" title="排序 order by, 默认为升序，降序要加关键字DESC:  select * from t1 order by sno desc"></a>排序 order by, 默认为升序，降序要加关键字DESC:  select * from t1 order by sno desc</h2><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/9d4ae9f08d9057fb763690ba4d3e9b06_MD5.png" srcset="/img/loading.gif" lazyload alt="9d4ae9f08d9057fb763690ba4d3e9b06_MD5"></li>
+<li>DISTINCT:过滤重复的选项，只保留一条记录。</li>
+<li>UNION:出现在两个SQL语句之间，将两个SQL语句的查询结果取或运算，即值存在于第一句或第二句都会被选出。</li>
+<li>INTERSECT:对两个SQL语句的查询结果做与运算，即值同时存在于两个语句才被选出。</li>
+<li>MIN、AVG、MAX:分组查询时的聚合函数</li>
+</ul>
+<hr>
+<p>考试真题：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/2-720230911-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F.png" srcset="/img/loading.gif" lazyload alt="2-720230911-系统架构设计师_数据库系统"></p>
+<p>解答：首先回顾一下这个范式；这里的候选键是：零件号、供应商；这里主键就是这两个家伙，其中 零件号 → 零件名称，供应商 → 供应商所在地；这两个都是主键中部分码，即存在非主属性对于码的部分码的函数依赖关系，因此不属于第二范式，属于第一范式。<br>后面两题看一下题目：选择 A  D<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/1-720230910-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F.png" srcset="/img/loading.gif" lazyload alt="1-720230910-系统架构设计师_数据库系统"></p>
+<p>答案：A   A    D</p>
+<p>解析：依题意，基于函数依赖集F,零件P关系中的（零件号，供应商）可决定零件P关系的所有属性，因此零件P关系的主键为（零件号，供应商）。又因为“（零件号，供应商）→零件名称”，而“零件号→零件名称”、“供应商→供应商所在地”，由此可知零件名称和供应商所在地都部分依赖于码，所以关系模式P∈1NF。</p>
+<p>查询各种零件的平均库存量、最多库存量与最少库存量之间差值时，首先需要在结果列中的第一空缺处填入 “AVG(库存量)AS平均库存量，MAX(库存量) - MIN库存量) A S差值”。</p>
+<p>其次必须用分组语句按零件号分组，因第二空缺处应填入“GROUP BY3零件号”。</p>
+<hr>
+<p>第二题：<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/Pasted%20image%2020230830235625.png" srcset="/img/loading.gif" lazyload alt="Pasted image 20230830235625"></p>
+<p>答案：C   A   D    B</p>
+<p>解析：自然连接后的属性列取两个表所有属性列，但相同属性列只显示一次，因此共7列；SELECT后是要查询显示的列，与投影π下标相同，<strong>将ABCDEFG-七列从1开始编号</strong>，取第1,3,6,7列；<br>FROM后面是要查询的表格，是R和S两张表，以逗号分开；<br>WHERE后面是条件，自然连接取的是属性相同且值相同的记录，因此有R的B,C列与S的B,C列相等，表达式中的条件是第3列小于第6列，也加上。</p>
+<p>解答：看上面解析，注意黑体标注内容。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%9A%8F%E8%AE%B0/" class="category-chain-item">随记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%BD%AF%E8%80%83/" class="print-no-link">#软考</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>数据库系统</div>
+      <div>https://varcel.luoqi.icu/2024/09/12/数据库系统/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Luo QI</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年9月12日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/09/13/%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%8A%80%E6%9C%AF/" title="嵌入式技术">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">嵌入式技术</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86/" title="操作系统知识">
+                        <span class="hidden-mobile">操作系统知识</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
