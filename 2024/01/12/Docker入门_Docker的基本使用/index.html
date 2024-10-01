@@ -235,7 +235,7 @@
         
         
         
-          60 分钟
+          61 分钟
         
       </span>
     
@@ -292,6 +292,8 @@
 <figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">docker <span class="hljs-comment">--version</span><br></code></pre></td></tr></table></figure>
 
 
+<p>重启 docker 容器操作: </p>
+<figure class="highlight nsis"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs nsis"><span class="hljs-params">system</span>ctl restart  docker<br><br><span class="hljs-comment">#一般可能还会需要操作</span><br><span class="hljs-params">system</span>ctl daemon-reload<br></code></pre></td></tr></table></figure>
 
 <h3 id="2、docker-compose安装"><a href="#2、docker-compose安装" class="headerlink" title="2、docker-compose安装"></a>2、docker-compose安装</h3><p>Compose 是用于定义和运行多容器 Docker 应用程序的工具。通过 Compose，您可以使用 YML 文件来配置应用程序需要的所有服务。</p>
 <p>使用一个命令，就可以从 YML 文件配置中创建并启动所有服务</p>
