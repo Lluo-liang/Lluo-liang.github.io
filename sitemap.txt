@@ -160,8 +160,8 @@ https://varcel.luoqi.icu/tags/jpa/
 https://varcel.luoqi.icu/tags/hibernate/
 https://varcel.luoqi.icu/tags/idea/
 https://varcel.luoqi.icu/tags/study/
-https://varcel.luoqi.icu/tags/jvm/
 https://varcel.luoqi.icu/tags/hotel/
+https://varcel.luoqi.icu/tags/jvm/
 https://varcel.luoqi.icu/tags/JavaFx/
 https://varcel.luoqi.icu/tags/index/
 https://varcel.luoqi.icu/tags/blog/
