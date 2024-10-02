@@ -1,0 +1,837 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/Xbox%20L.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Luo QI">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="什么是 DDD领域驱动设计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="什么是 DDD领域驱动设计">
+<meta property="og:url" content="https://varcel.luoqi.icu/2024/10/02/%E4%BB%80%E4%B9%88%E6%98%AFDDD%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/index.html">
+<meta property="og:site_name" content="轻松的洛亓">
+<meta property="og:description" content="什么是 DDD领域驱动设计">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20241002075533.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20241002082839.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20241002083302.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20241002083737.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20241002083902.png">
+<meta property="article:published_time" content="2024-10-02T07:49:45.000Z">
+<meta property="article:modified_time" content="2024-10-02T07:49:45.000Z">
+<meta property="article:author" content="Luo QI">
+<meta property="article:tag" content="DDD">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20241002075533.png">
+  
+  
+  
+  <title>什么是 DDD领域驱动设计 - 轻松的洛亓</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"varcel.luoqi.icu","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  <meta name="baidu-site-verification" content="codeva-Oq0KOjHuD3" />
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>轻松的洛亓</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="什么是 DDD领域驱动设计"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-10-02 07:49" pubdate>
+          2024年10月2日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          41 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">什么是 DDD领域驱动设计</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="一、基本介绍"><a href="#一、基本介绍" class="headerlink" title="一、基本介绍"></a>一、基本介绍</h3><p>DDD（Domain-Driven Design，领域驱动设计）是一种软件设计方法，它强调以业务领域为核心来构建复杂的软件系统。DDD 的核心思想是通过领域驱动设计方法定义领域模型，从而确定业务和应用边界，保证业务模型与代码模型的一致性。这种方法特别适用于处理复杂的业务需求和业务逻辑。</p>
+<p>DDD 与 MVC（Model-View-Controller，模型-视图-控制器）开发模式相比，DDD 是领域驱动，自顶向下的设计方法，关注业务活动，而 MVC 是数据驱动，自低向上的思想，关注数据。DDD 的设计方式可以让领域划分更加清楚，利于扩展和维护，实现高度自治和高度内聚，即高内聚、低耦合。</p>
+<p>在 MVC 的开发模式中，模型（Model）负责数据的处理和业务逻辑，视图（View）负责展示数据给用户，并处理用户的输入，控制器（Controller）负责协调模型和视图之间的交互。而 DDD 的分层架构通常包括用户接口层、应用层、领域层和基础层。各层之间职责明确，相互独立，通过接口进行交互。</p>
+<p>DDD 的分层架构设计包括：</p>
+<ol>
+<li><strong>用户接口层</strong>：负责向用户展示信息和接收用户指令。</li>
+<li><strong>应用层</strong>：作为业务用例的协调者，负责处理用户请求，调用领域层进行业务处理，并返回处理结果。</li>
+<li><strong>领域层</strong>：包含领域模型和业务逻辑，是系统的核心部分。</li>
+<li><strong>基础层</strong>：提供基础设施服务，如数据库访问、消息队列、缓存等。</li>
+</ol>
+<p>DDD 的优势在于它能够接触到需求第一步就是考虑领域模型，而不是将其切割成数据和行为，然后数据用数据库实现，行为使用服务实现，最后造成需求的首肢分离。DDD 让你首先考虑的是业务语言，而不是数据。它强调业务抽象和面向对象编程，而不是过程式业务逻辑实现。</p>
+<p>DDD 是设计一个高质量软件系统中的一种解决方案，它通过领域建模、限界上下文、统一语言等技术手段，帮助开发者更好地理解和处理复杂的业务逻辑，从而构建出可维护、可扩展的软件系统。</p>
+<h3 id="二、DDD-架构"><a href="#二、DDD-架构" class="headerlink" title="二、DDD 架构"></a>二、DDD 架构</h3><h4 id="改良版四层架构"><a href="#改良版四层架构" class="headerlink" title="改良版四层架构"></a>改良版四层架构</h4><p>DDD（领域驱动设计）的四层架构是一种常见的架构模式，用于构建复杂的业务系统。这种架构模式将系统分为四个层次，每一层都有其特定的职责和功能。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20241002075533.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h5 id="（1）用户接口层（Presentation-Layer）"><a href="#（1）用户接口层（Presentation-Layer）" class="headerlink" title="（1）用户接口层（Presentation Layer）"></a>（1）用户接口层（Presentation Layer）</h5><ul>
+<li><strong>职责</strong>：这是系统的最外层，直接与用户或其他系统交互。它负责接收输入请求并返回响应结果。</li>
+<li><strong>特点</strong>：<ul>
+<li>提供必要的参数校验和异常捕获流程。</li>
+<li>通常很薄，不包含复杂的业务逻辑。</li>
+<li>负责VO（Value Object）或DTO（Data Transfer Object）到Entity的转换，用于适配前后端调用。</li>
+<li>对外暴露API，形式不限于RPC、REST API、消息等。</li>
+</ul>
+</li>
+</ul>
+<h5 id="（2）应用层（Application-Layer）"><a href="#（2）应用层（Application-Layer）" class="headerlink" title="（2）应用层（Application Layer）"></a>（2）应用层（Application Layer）</h5><ul>
+<li><strong>职责</strong>：应用层是业务用例的协调者，它定义了系统的操作，如创建订单、查询用户等。</li>
+<li><strong>特点</strong>：<ul>
+<li>不处理业务逻辑，而是调用领域层的服务。</li>
+<li>负责服务编排，如权限校验、事务控制等。</li>
+<li>可以发布或订阅领域事件。</li>
+<li>通常包含用例级别的方法，执行轻量级逻辑。</li>
+</ul>
+</li>
+</ul>
+<h5 id="（3）领域层（Domain-Layer）"><a href="#（3）领域层（Domain-Layer）" class="headerlink" title="（3）领域层（Domain Layer）"></a>（3）领域层（Domain Layer）</h5><ul>
+<li><strong>职责</strong>：领域层是系统的核心，包含了业务逻辑和业务规则。</li>
+<li><strong>特点</strong>：<ul>
+<li>包含实体（Entity）和值对象（Value Object），使用充血模型实现业务功能。</li>
+<li>业务逻辑封装在聚合根中，对外提供领域级别的服务接口。</li>
+<li>聚合根之间通过ID引用，不能直接操作其他聚合根。</li>
+<li>领域服务用于跨实体的状态变化，但不能直接修改实体状态，只能调用实体的业务方法。</li>
+</ul>
+</li>
+</ul>
+<h5 id="（4）基础设施层（Infrastructure-Layer）"><a href="#（4）基础设施层（Infrastructure-Layer）" class="headerlink" title="（4）基础设施层（Infrastructure Layer）"></a>（4）基础设施层（Infrastructure Layer）</h5><ul>
+<li><strong>职责</strong>：基础设施层为业务逻辑提供支撑，包括技术实现和第三方服务的集成。</li>
+<li><strong>特点</strong>：<ul>
+<li>提供通用技术能力，如数据库交互、缓存、消息队列等。</li>
+<li>实现防腐层，用于业务检查和隔离第三方服务。</li>
+<li>包含仓储层接口，但聚合根才拥有Repository，Repository不同于DAO，它向领域模型提供聚合根。</li>
+</ul>
+</li>
+</ul>
+<h5 id="依赖倒置原则"><a href="#依赖倒置原则" class="headerlink" title="依赖倒置原则"></a>依赖倒置原则</h5><p>在DDD架构中，依赖倒置原则是关键，它要求低层服务（如基础设施层）依赖于高层组件（如应用层、领域层）所提供的接口。这样可以实现各层之间的解耦，提高系统的灵活性和可测试性。</p>
+<ul>
+<li><strong>具体依赖于抽象</strong>：高层组件定义接口，低层组件实现这些接口。</li>
+<li><strong>抽象依赖于具体</strong>：高层组件不依赖于低层组件的具体实现，而是依赖于它们提供的抽象接口。</li>
+</ul>
+<p>通过这种架构和设计原则，DDD有助于构建可维护、可扩展的复杂业务系统。它将业务逻辑集中在领域层，通过应用层协调不同的业务用例，用户接口层处理外部请求，基础设施层提供技术支持，从而实现了清晰的分层和职责划分。</p>
+<h4 id="整洁架构-洋葱架构"><a href="#整洁架构-洋葱架构" class="headerlink" title="整洁架构(洋葱架构)"></a>整洁架构(洋葱架构)</h4><p>整洁架构（也称为洋葱架构）是一种软件架构模式，它的目的是清晰地分离系统中的不同职责，使得系统更容易理解和维护。整洁架构通过一系列的同心圆来表示软件的不同层次，每个层次都有其特定的职责和功能。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20241002082839.png" srcset="/img/loading.gif" lazyload alt="image.png|600"></p>
+<p>整洁架构的层次：</p>
+<ol>
+<li><strong>领域模型（Domain Model）</strong>：<ul>
+<li>位于架构的中心，封装了企业级的业务规则。</li>
+<li>主体是实体（Entity），可以是带方法的对象，也可以是数据结构和方法的集合。</li>
+<li>实现领域内核心业务逻辑。</li>
+</ul>
+</li>
+<li><strong>领域服务（Domain Services）</strong>：<ul>
+<li>位于领域模型和应用服务之间，实现涉及多个实体的复杂业务逻辑。</li>
+<li>领域服务用于协调领域模型中的实体，处理跨实体的业务操作。</li>
+</ul>
+</li>
+<li><strong>应用服务（Application Services）</strong>：<ul>
+<li>定义系统的操作，如创建订单、查询用户等。</li>
+<li>实现与用户操作相关的服务组合与编排。</li>
+<li>包含应用特有的业务流程规则，封装和实现了系统所有用例。</li>
+</ul>
+</li>
+<li><strong>最外层（User Interface &#x2F; Infrastructure）</strong>：<ul>
+<li>提供适配的能力，分为主动适配和被动适配。</li>
+<li><strong>主动适配</strong>：实现外部用户、网页、批处理和自动化测试等对内层业务逻辑的访问适配。</li>
+<li><strong>被动适配</strong>：实现核心业务逻辑对基础资源访问的适配，如数据库、缓存、文件系统和消息中间件等。</li>
+</ul>
+</li>
+</ol>
+<p>整洁架构的原则：</p>
+<ul>
+<li><strong>依赖原则</strong>：整洁架构的最核心原则是依赖原则，也称为“好莱坞原则”（Don’t call us, we’ll call you）。<ul>
+<li>外层代码依赖只能指向内层，内层不需要知道外层的任何情况。</li>
+<li>越往里依赖越低，代码级别越高，越是核心能力。</li>
+</ul>
+</li>
+</ul>
+<p>整洁架构的优点：</p>
+<ul>
+<li><strong>清晰的职责划分</strong>：每个层次都有明确的职责，使得代码更加模块化。</li>
+<li><strong>易于测试</strong>：由于层次分明，可以更容易地对内部层次进行单元测试，而不需要模拟外部层次。</li>
+<li><strong>灵活性</strong>：外部层次的变化不会影响到内部层次，使得系统更容易适应变化。</li>
+</ul>
+<p>整洁架构的实现：</p>
+<ul>
+<li>红圈内的领域模型、领域服务和应用服务一起组成软件核心业务能力。</li>
+<li>这种架构模式强调核心业务逻辑与外部变化的解耦，使得系统的核心部分更加稳定和可靠。</li>
+</ul>
+<p>整洁架构（洋葱架构）通过这种层次分明的结构，帮助开发者构建出高内聚低耦合的系统，从而提高软件的可维护性和可扩展性。</p>
+<h4 id="CQRS架构-命令查询隔离架构"><a href="#CQRS架构-命令查询隔离架构" class="headerlink" title="CQRS架构(命令查询隔离架构)"></a>CQRS架构(命令查询隔离架构)</h4><p>CQRS（Command Query Responsibility Segregation，命令查询责任隔离）架构是一种软件设计模式，它将系统中的读（查询）和写（命令）操作分离开来，以提高性能和可伸缩性。这种模式特别适用于读操作和写操作有显著不同需求的场景。</p>
+<p>CQRS的基本概念：</p>
+<ul>
+<li><strong>Command（命令）</strong>：指的是引起数据变化的操作，如新增、更新、删除等。</li>
+<li><strong>Query（查询）</strong>：指的是不会引起数据变化的操作，只是按条件查找数据。</li>
+</ul>
+<p>CQRS的三种模式：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20241002083302.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ol>
+<li><strong>共享模型&#x2F;共享存储</strong>：<ul>
+<li>读写操作使用同一种领域模型。</li>
+<li>读写模型共享同一种数据存储。</li>
+</ul>
+</li>
+<li><strong>分离模型&#x2F;共享存储</strong>：<ul>
+<li>读操作使用读领域模型，写操作使用写领域模型。</li>
+<li>读写模型不同，但共享同一种数据存储。</li>
+</ul>
+</li>
+<li><strong>分离模型&#x2F;分离存储</strong>：<ul>
+<li>也称为事件源（Event Sourcing）CQRS。</li>
+<li>使用领域事件来保证读写数据的一致性。</li>
+<li>当命令系统完成数据更新后，通过领域事件通知查询系统，查询系统接收事件后更新自己的数据源。</li>
+</ul>
+</li>
+</ol>
+<p>CQRS架构的优势：</p>
+<ul>
+<li><strong>性能优化</strong>：读操作和写操作可以针对各自的需求进行优化。</li>
+<li><strong>可伸缩性</strong>：可以根据负载分别扩展读和写的能力。</li>
+<li><strong>灵活性</strong>：可以根据不同的业务需求定制读和写模型。</li>
+</ul>
+<p>CQRS在DDD（领域驱动设计）中的应用：</p>
+<p>在DDD中，写操作通常遵循“应用服务 -&gt; 聚合根 -&gt; 资源库”的结构，而读操作可能不需要完全遵循这一结构。CQRS允许我们根据读操作的需求设计不同的读模型和读仓库，从而提高查询性能。</p>
+<p>CQRS实战中的应用：</p>
+<ul>
+<li><p><strong>读操作</strong>：</p>
+<ul>
+<li>基于数据模型，应用层提供单独的读仓库。</li>
+<li>绕过聚合根和资源库，直接在应用层返回数据。</li>
+<li>专注于快速返回数据，提高查询性能。</li>
+</ul>
+</li>
+<li><p><strong>写操作</strong>：</p>
+<ul>
+<li>基于领域模型，通过“应用服务 -&gt; 聚合根&#x2F;领域服务 -&gt; 资源库”的结构进行编码。</li>
+<li>专注于业务逻辑和数据一致性。</li>
+</ul>
+</li>
+</ul>
+<p>CQRS架构通过分离读和写操作，允许系统针对不同的操作需求进行优化。在DDD中，这种分离使得我们可以为读操作和写操作设计不同的模型和存储，从而提高系统的性能和可伸缩性。通过事件源CQRS，我们可以使用领域事件来同步读写操作，确保数据的一致性。这种架构特别适合于读多写少或读写负载差异较大的系统。</p>
+<h4 id="六边形架构-端口适配器架构"><a href="#六边形架构-端口适配器架构" class="headerlink" title="六边形架构(端口适配器架构)"></a>六边形架构(端口适配器架构)</h4><p>六边形架构（也称为端口-适配器架构）是一种软件架构模式，它的核心理念是应用程序通过端口与外部进行交互。这种架构模式旨在解耦内部业务逻辑与外部资源，包括用户界面、数据库、第三方服务等。</p>
+<p>六边形架构的核心特点：</p>
+<ul>
+<li><strong>核心业务逻辑</strong>：位于内部六边形，与外部资源完全隔离。</li>
+<li><strong>适配器</strong>：作为内部业务逻辑与外部资源之间的桥梁，实现协议转换。</li>
+<li><strong>端口</strong>：定义了与外部系统交互的接口。</li>
+</ul>
+<p>六边形架构的层次划分：</p>
+<ol>
+<li><p><strong>内六边形（Core）</strong>：</p>
+<ul>
+<li>包含应用程序的核心业务逻辑和领域模型。</li>
+<li>不依赖于任何外部系统的具体实现。</li>
+</ul>
+</li>
+<li><p><strong>外六边形（Infrastructure and User Interface）</strong>：</p>
+<ul>
+<li>处理外部应用、驱动和基础资源的交互和访问。</li>
+<li>对前端应用以API主动适配的方式提供服务。</li>
+<li>对基础资源以依赖倒置被动适配的方式实现资源访问。</li>
+</ul>
+</li>
+</ol>
+<p>六边形架构的核心理念是：应用是通过端口与外部进行交互的</p>
+<p>六边形架构通过将系统分为内六边形和外六边形两层，实现了核心业务逻辑与外部资源的解耦。这种架构模式强调了端口和适配器的重要性，使得应用程序能够以一致的方式被用户、程序、自动化测试和批处理脚本使用。六边形架构是实现高内聚低耦合系统的有效方法，特别适用于需要与多种外部系统交互的复杂应用程序。</p>
+<p>下图的红圈内的核心业务逻辑（应用程序和领域模型）与外部资源（包括 APP、Web 应用以及数据库资源等）完全隔离，仅通过适配器进行交互。它解决了业务逻辑与用户界面的代码交错问题，很好地实现了前后端分离。六边形架构各层的依赖关系与整洁架构一样，都是由外向内依赖。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20241002083737.png" srcset="/img/loading.gif" lazyload alt="image.png|600"></p>
+<p>六边形架构将系统分为内六边形和外六边形两层，这两层的职能划分如下：红圈内的六边形实现应用的核心业务逻辑；外六边形完成外部应用、驱动和基础资源等的交互和访问，对前端应用以 API 主动适配的方式提供服务，对基础资源以依赖倒置被动适配的方式实现资源访问。六边形架构的一个端口可能对应多个外部系统，不同的外部系统也可能会使用不同的适配器，由适配器负责协议转换。这就使得应用程序能够以一致的方式被用户、程序、自动化测试和批处理脚本使用</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20241002083902.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>这三种架构模型的设计思想微服务架构高内聚低耦合原则的完美体现，而它们身上闪耀的正是以领域模型为中心的设计思想，将核心业务逻辑与外部应用、基础资源进行隔离。</p>
+<p>红色框内部主要实现核心业务逻辑，但核心业务逻辑也是有差异的，有的业务逻辑属于领域模型的能力，有的则属于面向用户的用例和流程编排能力。按照这种功能的差异，我们在这三种架构中划分了应用层和领域层，来承担不同的业务逻辑。<br>领域层实现面向领域模型，实现领域模型的核心业务逻辑，属于原子模型，它需要保持领域模型和业务逻辑的稳定，对外提供稳定的细粒度的领域服务，所以它处于架构的核心位置。<br>应用层实现面向用户操作相关的用例和流程，对外提供粗粒度的 API 服务。它就像一个齿轮一样进行前台应用和领域层的适配，接收前台需求，随时做出响应和调整，尽量避免将前台需求传导到领域层。应用层作为配速齿轮则位于前台应用和领域层之间。</p>
+<hr>
+<p>参考链接:  <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41889508/article/details/124907312">https://blog.csdn.net/qq_41889508/article/details/124907312</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AE%BE%E8%AE%A1/" class="category-chain-item">编程设计</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/DDD/" class="print-no-link">#DDD</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>什么是 DDD领域驱动设计</div>
+      <div>https://varcel.luoqi.icu/2024/10/02/什么是DDD领域驱动设计/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Luo QI</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年10月2日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/10/01/01_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6/" title="01_计算机硬件">
+                        <span class="hidden-mobile">01_计算机硬件</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
