@@ -279,25 +279,7 @@
             
               <div class="markdown-body">
                 
-                <h3 id="1、windows下rabbitMQ-的安装"><a href="#1、windows下rabbitMQ-的安装" class="headerlink" title="1、windows下rabbitMQ 的安装"></a>1、windows下rabbitMQ 的安装</h3><p>RabbitMQ服务端代码是使用并发式语言Erlang编写的，安装Rabbit MQ的前提是需要安装一下Erlang</p>
-<p>Erlang 下载地址： <a target="_blank" rel="noopener" href="https://www.erlang.org/downloads">https://www.erlang.org/downloads</a></p>
-<p>环境变量配置</p>
-<figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs haml">ERLANG_HOME<br><span class="hljs-tag">%<span class="hljs-selector-tag">ERLANG_HOME</span></span>%\bin<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231203233950.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>打开 cmd 输入 erl -version 出现版本号即安装成功</p>
-<blockquote>
-<p>RabbitMQ</p>
-</blockquote>
-<p>rabbitmq 下载地址： <a target="_blank" rel="noopener" href="https://www.rabbitmq.com/download.html">https://www.rabbitmq.com/download.html</a></p>
-<p>下载进行安装操作。</p>
-<p>CMD 进入终端 进入到安装目录 执行 rabbitmq-plugins enable rabbitmq_management 命令安装管理页面的插件，</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231203234341.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>启动rabbitMQ服务：rabbitmq-service.bat start</p>
-<p>双击 rabbitmq-service.bat 即完成安装。（关闭的话手动在服务列表进行关闭一下）</p>
-<p>登陆： <a target="_blank" rel="noopener" href="http://127.0.0.1:15672/">http://127.0.0.1:15672/</a></p>
-<p>初始的默认用户及密码都是 <code>guest</code> ， 输入后即可登录</p>
-<h3 id="2、centos-系统下-rabbitMQ-的安装"><a href="#2、centos-系统下-rabbitMQ-的安装" class="headerlink" title="2、centos 系统下 rabbitMQ 的安装"></a>2、centos 系统下 rabbitMQ 的安装</h3><h4 id="RabbitMQ-服务安装"><a href="#RabbitMQ-服务安装" class="headerlink" title="RabbitMQ 服务安装"></a>RabbitMQ 服务安装</h4><p>略</p>
+                <h3 id="1、centos-系统下-rabbitMQ-的安装"><a href="#1、centos-系统下-rabbitMQ-的安装" class="headerlink" title="1、centos 系统下 rabbitMQ 的安装"></a>1、centos 系统下 rabbitMQ 的安装</h3><h4 id="RabbitMQ-服务安装"><a href="#RabbitMQ-服务安装" class="headerlink" title="RabbitMQ 服务安装"></a>RabbitMQ 服务安装</h4><p>略</p>
 <h4 id="Docker容器方式安装RabbitMQ"><a href="#Docker容器方式安装RabbitMQ" class="headerlink" title="Docker容器方式安装RabbitMQ"></a>Docker容器方式安装RabbitMQ</h4><p>1、拉取镜像（默认安装最新版本）</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">docker pull rabbitmq<br></code></pre></td></tr></table></figure>
 
@@ -353,6 +335,24 @@
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/u011709538/article/details/131396367">https://blog.csdn.net/u011709538/article/details/131396367</a></li>
 <li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/609676322?utm_id=0">https://zhuanlan.zhihu.com/p/609676322?utm_id=0</a></li>
 </ul>
+<h3 id="2、windows下rabbitMQ-的安装"><a href="#2、windows下rabbitMQ-的安装" class="headerlink" title="2、windows下rabbitMQ 的安装"></a>2、windows下rabbitMQ 的安装</h3><p>RabbitMQ服务端代码是使用并发式语言Erlang编写的，安装Rabbit MQ的前提是需要安装一下Erlang</p>
+<p>Erlang 下载地址： <a target="_blank" rel="noopener" href="https://www.erlang.org/downloads">https://www.erlang.org/downloads</a></p>
+<p>环境变量配置</p>
+<figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs haml">ERLANG_HOME<br><span class="hljs-tag">%<span class="hljs-selector-tag">ERLANG_HOME</span></span>%\bin<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231203233950.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>打开 cmd 输入 erl -version 出现版本号即安装成功</p>
+<blockquote>
+<p>RabbitMQ</p>
+</blockquote>
+<p>rabbitmq 下载地址： <a target="_blank" rel="noopener" href="https://www.rabbitmq.com/download.html">https://www.rabbitmq.com/download.html</a></p>
+<p>下载进行安装操作。</p>
+<p>CMD 进入终端 进入到安装目录 执行 rabbitmq-plugins enable rabbitmq_management 命令安装管理页面的插件，</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20231203234341.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>启动rabbitMQ服务：rabbitmq-service.bat start</p>
+<p>双击 rabbitmq-service.bat 即完成安装。（关闭的话手动在服务列表进行关闭一下）</p>
+<p>登陆： <a target="_blank" rel="noopener" href="http://127.0.0.1:15672/">http://127.0.0.1:15672/</a></p>
+<p>初始的默认用户及密码都是 <code>guest</code> ， 输入后即可登录</p>
 
                 
               </div>

@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          7.2k 字
+          3.9k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          61 分钟
+          33 分钟
         
       </span>
     
@@ -295,44 +295,7 @@
 <p>重启 docker 容器操作: </p>
 <figure class="highlight nsis"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs nsis"><span class="hljs-params">system</span>ctl restart  docker<br><br><span class="hljs-comment">#一般可能还会需要操作</span><br><span class="hljs-params">system</span>ctl daemon-reload<br></code></pre></td></tr></table></figure>
 
-<h3 id="2、docker-compose安装"><a href="#2、docker-compose安装" class="headerlink" title="2、docker-compose安装"></a>2、docker-compose安装</h3><p>Compose 是用于定义和运行多容器 Docker 应用程序的工具。通过 Compose，您可以使用 YML 文件来配置应用程序需要的所有服务。</p>
-<p>使用一个命令，就可以从 YML 文件配置中创建并启动所有服务</p>
-<blockquote>
-<p>安装操作</p>
-</blockquote>
-<p>先需要下载一下二进制文件</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/docker/</span>compose<span class="hljs-regexp">/releases/</span>download<span class="hljs-regexp">/v2.5.0/</span>docker-compose-linux-x86_64<br></code></pre></td></tr></table></figure>
-<p>放入&#x2F;usr&#x2F;local&#x2F;bin&#x2F; 路径下并重新命名添加可执行权限</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mv</span> docker-compose-linux-x86_64 docker-compose<br><span class="hljs-built_in">chmod</span> +x docker-compose<br></code></pre></td></tr></table></figure>
-
-<p>这个也可以推荐看一下</p>
-<p>将脚本下载，阿里云的下载速度较快，推荐适用</p>
-<p><a target="_blank" rel="noopener" href="https://mirrors.aliyun.com/docker-toolbox/linux/compose/1.21.2/">https://mirrors.aliyun.com/docker-toolbox/linux/compose/1.21.2/</a></p>
-<p>把脚本放在&#x2F;usr&#x2F;local&#x2F;bin&#x2F;下.名字为docker-compose ,加执行权限 ，docker-compose命令就有了</p>
-<h3 id="3、docker-安装-redis-操作"><a href="#3、docker-安装-redis-操作" class="headerlink" title="3、docker 安装 redis 操作"></a>3、docker 安装 redis 操作</h3><p>安装 Redis 使用 Docker 是一个非常简单且快捷的过程。以下是通过 Docker 安装和运行 Redis 的基本步骤：</p>
-<ol>
-<li><p><strong>拉取 Redis 镜像</strong>： 首先，你需要从 Docker Hub 拉取最新的 Redis 镜像。打开命令行界面，然后输入以下命令：</p>
-<p> <code>docker pull redis</code></p>
-<p> 这个命令会从 Docker Hub 下载最新的 Redis 镜像。</p>
-</li>
-<li><p><strong>运行 Redis 容器</strong>： 接着，使用以下命令来启动一个 Redis 容器：</p>
-<p> <code>docker run --name redis -d redis</code></p>
-<p> 这里，<code>--name redis</code> 设置容器的名称为 <code>some-redis</code>。你可以根据需要更改这个名称。<code>-d</code> 参数表示容器将在后台运行。</p>
-</li>
-<li><p><strong>暴露和映射端口</strong>（可选）： 如果你打算从宿主机外部访问 Redis，你需要映射端口。Redis 默认端口是 <code>6379</code>，所以你可以这样映射端口：</p>
-<p> <code>docker run --name redis -d -p 6379:6379 redis</code></p>
-<p> <code>-p 6379:6379</code> 表示将容器的 6379 端口映射到宿主机的 6379 端口。</p>
-</li>
-<li><p><strong>访问 Redis</strong>： 一旦 Redis 容器在运行，你可以通过 Redis 客户端或任何支持 Redis 的程序访问它。如果你只是在本地机器上运行和访问 Redis，你可以通过 <code>localhost:6379</code> 来访问它。</p>
-</li>
-<li><p><strong>使用 Redis CLI 进行交互</strong>（可选）： 如果你想要通过 Redis 命令行界面与 Redis 容器交互，可以使用以下命令进入 Redis 容器：</p>
-<p> <code>docker exec -it some-redis redis-cli</code></p>
-</li>
-</ol>
-<p>小结：</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs dockerfile">docker pull redis<br>docker <span class="hljs-keyword">run</span><span class="language-bash"> --name redis -d -p 6379:6379 redis</span><br>firewall-<span class="hljs-keyword">cmd</span><span class="language-bash"> --permanent --add-port=6379/tcp</span><br>firewall-<span class="hljs-keyword">cmd</span><span class="language-bash"> --reload      <span class="hljs-comment"># 重启防火墙</span></span><br></code></pre></td></tr></table></figure>
-
-<h3 id="4、docker-的一些常用命令-🦌"><a href="#4、docker-的一些常用命令-🦌" class="headerlink" title="4、docker 的一些常用命令   🦌"></a>4、docker 的一些常用命令   🦌</h3><p>常用的Docker命令：</p>
+<h3 id="2、docker-的一些常用命令-🦌"><a href="#2、docker-的一些常用命令-🦌" class="headerlink" title="2、docker 的一些常用命令   🦌"></a>2、docker 的一些常用命令   🦌</h3><p>常用的Docker命令：</p>
 <h4 id="容器管理"><a href="#容器管理" class="headerlink" title="容器管理"></a>容器管理</h4><p>1、 <strong>启动容器</strong>:</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">docker run <span class="hljs-selector-attr">[OPTIONS]</span> IMAGE <span class="hljs-selector-attr">[COMMAND]</span> <span class="hljs-selector-attr">[ARG...]</span><br></code></pre></td></tr></table></figure>
 
@@ -433,103 +396,21 @@
 <p> <code>docker inspect NAME|ID</code></p>
 </li>
 </ol>
-<h3 id="5、docker-安装-Mysql-操作"><a href="#5、docker-安装-Mysql-操作" class="headerlink" title="5、docker 安装 Mysql 操作"></a>5、docker 安装 Mysql 操作</h3><p>以下是使用Docker安装和运行MySQL 5.7和8.0版本的步骤：</p>
+<h3 id="3、docker-compose安装"><a href="#3、docker-compose安装" class="headerlink" title="3、docker-compose安装"></a>3、docker-compose安装</h3><p>Compose 是用于定义和运行多容器 Docker 应用程序的工具。通过 Compose，您可以使用 YML 文件来配置应用程序需要的所有服务。</p>
+<p>使用一个命令，就可以从 YML 文件配置中创建并启动所有服务</p>
 <blockquote>
-<ol>
-<li><strong>运行MySQL 5.7</strong></li>
-</ol>
+<p>安装操作</p>
 </blockquote>
-<ol>
-<li><p><strong>拉取MySQL 5.7镜像</strong>:</p>
-<p> <code>docker pull mysql:5.7</code></p>
-</li>
-<li><p><strong>启动MySQL 5.7容器</strong>:</p>
-</li>
-</ol>
-<p>以下命令启动一个名为 <code>mysql57</code> 的MySQL 5.7容器，设置root密码（在此示例中为<code>yourpassword</code>），并映射端口3306（或选择其他未使用的端口）到宿主机。<br>同时，你可以指定一个数据卷来持久化MySQL数据。</p>
-<p><code>docker run --name mysql57 -e MYSQL_ROOT_PASSWORD=yourpassword -p 3306:3306 -d mysql:5.7</code></p>
-<ul>
-<li>如果需要持久化数据到特定路径，可以添加 <code>-v</code> 参数，如:</li>
-</ul>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">docker</span> run --name mysql57 -e MYSQL_ROOT_PASSWORD=yourpassword -p <span class="hljs-number">3306</span>:<span class="hljs-number">3306</span> -v /my/own/datadir:/var/lib/mysql -d mysql:<span class="hljs-number">5</span>.<span class="hljs-number">7</span><br></code></pre></td></tr></table></figure>
+<p>先需要下载一下二进制文件</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/docker/</span>compose<span class="hljs-regexp">/releases/</span>download<span class="hljs-regexp">/v2.5.0/</span>docker-compose-linux-x86_64<br></code></pre></td></tr></table></figure>
+<p>放入&#x2F;usr&#x2F;local&#x2F;bin&#x2F; 路径下并重新命名添加可执行权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mv</span> docker-compose-linux-x86_64 docker-compose<br><span class="hljs-built_in">chmod</span> +x docker-compose<br></code></pre></td></tr></table></figure>
 
-
-<blockquote>
-<ol start="2">
-<li><strong>运行MySQL 8.0</strong></li>
-</ol>
-</blockquote>
-<ol>
-<li><p><strong>拉取MySQL 8.0镜像</strong>:</p>
-<p> <code>docker pull mysql:8.0</code></p>
-</li>
-<li><p><strong>启动MySQL 8.0容器</strong>:</p>
-</li>
-</ol>
-<ul>
-<li>由于MySQL 5.7已经使用了3306端口，所以对于MySQL 8.0，你需要映射到宿主机的另一个端口，例如3307。</li>
-</ul>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">docker</span> run --name mysql8 -e MYSQL_ROOT_PASSWORD=yourpassword -p <span class="hljs-number">3307</span>:<span class="hljs-number">3306</span> -d mysql:<span class="hljs-number">8</span>.<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
-
-<ul>
-<li>同样，你也可以指定数据卷来持久化MySQL 8.0的数据。</li>
-<li><code>mysql:8.0</code> 指的是Docker镜像的名称和标签。在这里，<code>mysql</code> 是镜像的名称，<code>8.0</code> 是镜像的标签，它指定了MySQL的具体版本。</li>
-</ul>
-<ol start="3">
-<li><p><strong>验证和连接</strong></p>
-</li>
-<li><p><strong>验证容器运行状态</strong>:</p>
-<p> <code>docker ps</code></p>
-</li>
-<li><p><strong>连接到MySQL容器</strong>:</p>
-</li>
-</ol>
-<p>使用Docker内置的命令行或者使用任何MySQL客户端连接到数据库。例如，要连接到MySQL 5.7实例，可以使用：<br><code>docker exec -it mysql57 mysql -uroot -pyourpassword</code></p>
-<ul>
-<li>对于MySQL 8.0，连接命令类似，只是容器名称不同。</li>
-</ul>
-<blockquote>
-<p>注意事项</p>
-</blockquote>
-<ul>
-<li>替换上述命令中的 <code>yourpassword</code> 为你自己的强密码。</li>
-<li>如果你使用了自定义数据卷路径（如 <code>/my/own/datadir</code>），确保该路径在宿主机上存在，并且Docker有权限访问。</li>
-<li>MySQL 8.0 默认使用了更强的密码加密策略（caching_sha2_password），某些客户端可能需要更新或配置以支持新的加密方式。</li>
-</ul>
-<hr>
-<h3 id="6、docker-安装-nginx"><a href="#6、docker-安装-nginx" class="headerlink" title="6、docker 安装 nginx"></a>6、docker 安装 nginx</h3><p>参考: <a target="_blank" rel="noopener" href="https://blog.csdn.net/BThinker/article/details/123507820">https://blog.csdn.net/BThinker/article/details/123507820</a></p>
-<p>下面是先运行最新版本的 Nginx ,然后将服务下的文件复制一份到挂载目录,然后删除容器,重启运行的一个操作。</p>
-<p>后面的一些目录和配置查看就可以直接在目录 home&#x2F;nginx&#x2F; 查看相关内容.</p>
-<p>可以选择下载指定版本，或者最新版本</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">docker pull nginx</span><br></code></pre></td></tr></table></figure>
-
-<p>创建Nginx配置文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 创建挂载目录</span><br><span class="hljs-built_in">mkdir</span> -p /home/nginx/conf<br><span class="hljs-built_in">mkdir</span> -p /home/nginx/log<br><span class="hljs-built_in">mkdir</span> -p /home/nginx/html<br></code></pre></td></tr></table></figure>
-
-<p>启动前需要先创建Nginx外部挂载的配置文件（ &#x2F;home&#x2F;nginx&#x2F;conf&#x2F;nginx.conf）</p>
-<p>之所以要先创建 , 是因为Nginx本身容器只存在&#x2F;etc&#x2F;nginx 目录 , 本身就不创建 nginx.conf 文件<br>当服务器和容器都不存在 nginx.conf 文件时, 执行启动命令的时候 docker会将nginx.conf 作为目录创建 , 这并不是我们想要的结果 。</p>
-<blockquote>
-<p>容器中的nginx.conf文件和conf.d文件夹复制到宿主机</p>
-</blockquote>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-comment"># 生成容器</span><br>docker run --name nginx -p <span class="hljs-number">9001</span>:<span class="hljs-number">80</span> -d nginx<br><span class="hljs-comment"># 将容器nginx.conf文件复制到宿主机</span><br>docker cp nginx:<span class="hljs-regexp">/etc/</span>nginx<span class="hljs-regexp">/nginx.conf /</span>home<span class="hljs-regexp">/nginx/</span>conf/nginx.conf<br><span class="hljs-comment"># 将容器conf.d文件夹下内容复制到宿主机</span><br>docker cp nginx:<span class="hljs-regexp">/etc/</span>nginx<span class="hljs-regexp">/conf.d /</span>home<span class="hljs-regexp">/nginx/</span>conf/conf.d<br><span class="hljs-comment"># 将容器中的html文件夹复制到宿主机</span><br>docker cp nginx:<span class="hljs-regexp">/usr/</span>share<span class="hljs-regexp">/nginx/</span>html <span class="hljs-regexp">/home/</span>nginx/<br></code></pre></td></tr></table></figure>
-
-<p>创建 Nginx 容器并运行</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># 直接执行docker rm nginx或者以容器id方式关闭容器</span><br><span class="hljs-comment"># 找到nginx对应的容器id</span><br>docker <span class="hljs-built_in">ps</span> <span class="hljs-literal">-a</span><br><span class="hljs-comment"># 关闭该容器</span><br>docker stop nginx<br><span class="hljs-comment"># 删除该容器</span><br>docker <span class="hljs-built_in">rm</span> nginx<br> <br><span class="hljs-comment"># 删除正在运行的nginx容器</span><br>docker <span class="hljs-built_in">rm</span> <span class="hljs-operator">-f</span> nginx<br></code></pre></td></tr></table></figure>
-
-<p>启动命令</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs groovy">docker run \<br>-p <span class="hljs-number">9002</span>:<span class="hljs-number">80</span> \<br>--name nginx \<br>-v <span class="hljs-regexp">/home/</span>nginx<span class="hljs-regexp">/conf/</span>nginx.<span class="hljs-attr">conf:</span><span class="hljs-regexp">/etc/</span>nginx/nginx.conf \<br>-v <span class="hljs-regexp">/home/</span>nginx<span class="hljs-regexp">/conf/</span>conf.<span class="hljs-attr">d:</span><span class="hljs-regexp">/etc/</span>nginx/conf.d \<br>-v <span class="hljs-regexp">/home/</span>nginx<span class="hljs-regexp">/log:/</span><span class="hljs-keyword">var</span><span class="hljs-regexp">/log/</span>nginx \<br>-v <span class="hljs-regexp">/home/</span>nginx<span class="hljs-regexp">/html:/</span>usr<span class="hljs-regexp">/share/</span>nginx/html \<br>-v <span class="hljs-regexp">/home/</span>nginx<span class="hljs-regexp">/shareFile/</span>:<span class="hljs-regexp">/usr/</span>share<span class="hljs-regexp">/nginx/</span>shareFile \<br>-v <span class="hljs-regexp">/home/</span>nginx<span class="hljs-regexp">/ssl:/</span>etc<span class="hljs-regexp">/nginx/</span>ssl \<br>-d <span class="hljs-attr">nginx:</span>latest<br></code></pre></td></tr></table></figure>
-
-<p>单行模式</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs groovy">docker run -p <span class="hljs-number">9002</span>:<span class="hljs-number">80</span> --name nginx -v <span class="hljs-regexp">/home/</span>nginx<span class="hljs-regexp">/conf/</span>nginx.<span class="hljs-attr">conf:</span><span class="hljs-regexp">/etc/</span>nginx<span class="hljs-regexp">/nginx.conf -v /</span>home<span class="hljs-regexp">/nginx/</span>conf<span class="hljs-regexp">/conf.d:/</span>etc<span class="hljs-regexp">/nginx/</span>conf.d -v <span class="hljs-regexp">/home/</span>nginx<span class="hljs-regexp">/log:/</span><span class="hljs-keyword">var</span><span class="hljs-regexp">/log/</span>nginx -v <span class="hljs-regexp">/home/</span>nginx<span class="hljs-regexp">/html:/</span>usr<span class="hljs-regexp">/share/</span>nginx/html -d <span class="hljs-attr">nginx:</span>latest<br></code></pre></td></tr></table></figure>
-
-<p>测试访问:</p>
-<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-symbol">http:</span><span class="hljs-comment">//IP:9002/</span><br></code></pre></td></tr></table></figure>
-
-<p>重启容器操作:</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-comment"># 重启容器</span><br><span class="hljs-attribute">docker</span> restart nginx<br></code></pre></td></tr></table></figure>
-
-
-<h3 id="7、Docker-部署微服务项目-💣"><a href="#7、Docker-部署微服务项目-💣" class="headerlink" title="7、Docker 部署微服务项目  💣"></a>7、Docker 部署微服务项目  💣</h3><p>主要讲述部署后端服务</p>
+<p>这个也可以推荐看一下</p>
+<p>将脚本下载，阿里云的下载速度较快，推荐适用</p>
+<p><a target="_blank" rel="noopener" href="https://mirrors.aliyun.com/docker-toolbox/linux/compose/1.21.2/">https://mirrors.aliyun.com/docker-toolbox/linux/compose/1.21.2/</a></p>
+<p>把脚本放在&#x2F;usr&#x2F;local&#x2F;bin&#x2F;下.名字为docker-compose ,加执行权限 ，docker-compose命令就有了</p>
+<h3 id="4、Docker-部署微服务项目-💣"><a href="#4、Docker-部署微服务项目-💣" class="headerlink" title="4、Docker 部署微服务项目  💣"></a>4、Docker 部署微服务项目  💣</h3><p>主要讲述部署后端服务</p>
 <ul>
 <li>1、讲项目进行 maven 打包为 Jar 包</li>
 <li>2、编写 Dockerfile 用于构建镜像</li>
@@ -544,7 +425,7 @@
 <figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs dockerfile"><span class="hljs-keyword">FROM</span> openjdk:<span class="hljs-number">8</span><br><span class="hljs-keyword">ENV</span> APP_HOME=/apps<br><span class="hljs-keyword">WORKDIR</span><span class="language-bash"> <span class="hljs-variable">$APP_HOME</span></span><br><span class="hljs-keyword">COPY</span><span class="language-bash"> ./service_edu-0.0.1-SNAPSHOT.jar ./service_edu.jar</span><br><span class="hljs-keyword">EXPOSE</span> <span class="hljs-number">8001</span><br><span class="hljs-keyword">ENTRYPOINT</span><span class="language-bash"> [<span class="hljs-string">&quot;java&quot;</span>,<span class="hljs-string">&quot;-jar&quot;</span>,<span class="hljs-string">&quot;-Xms100m&quot;</span>,<span class="hljs-string">&quot;-Xmx100m&quot;</span>]</span><br><span class="hljs-keyword">CMD</span><span class="language-bash"> [<span class="hljs-string">&quot;service_edu.jar&quot;</span>]</span><br></code></pre></td></tr></table></figure>
 
 <hr>
-<h3 id="8、Docker-配置镜像源"><a href="#8、Docker-配置镜像源" class="headerlink" title="8、Docker 配置镜像源"></a>8、Docker 配置镜像源</h3><p>配置文件  &#x2F;etc&#x2F;docker&#x2F;daemon.json</p>
+<h3 id="5、Docker-配置镜像源"><a href="#5、Docker-配置镜像源" class="headerlink" title="5、Docker 配置镜像源"></a>5、Docker 配置镜像源</h3><p>配置文件  &#x2F;etc&#x2F;docker&#x2F;daemon.json</p>
 <p>添加内容</p>
 <figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs prolog">&#123;<br>  <span class="hljs-string">&quot;registry-mirrors&quot;</span>: [<span class="hljs-string">&quot;https://hub-mirror.c.163.com&quot;</span>]<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -554,12 +435,6 @@
 
 <p>常见的镜像源</p>
 <figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">网易云 Docker 镜像：<span class="hljs-keyword">https</span>://hub-mirror.c<span class="hljs-number">.163</span>.com<br>百度云 Docker 镜像：<span class="hljs-keyword">https</span>://mirror.baidubce.com<br>阿里云 Docker 镜像（需要使用阿里账号自行创建专属镜像仓库）：<span class="hljs-keyword">https</span>://<span class="hljs-literal">cr</span>.console.aliyun.com/<br>DaoCloud Docker 镜像（配置文档）：<span class="hljs-keyword">http</span>://f1361db2.m.daocloud.io<br></code></pre></td></tr></table></figure>
-
-
-
-
-
-
 
 
 

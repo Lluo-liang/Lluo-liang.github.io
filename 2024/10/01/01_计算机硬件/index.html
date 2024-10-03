@@ -29,14 +29,11 @@
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20241001220942.png">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20241001222443.png">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/7afc24d6b80cb9ef31deaf59898b9d3c_MD5.png">
-<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/ad48d0cc13a61f4dd1873703d3bf8e28_MD5.png">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/1-720230909-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6-CPU-%E6%A0%A1%E9%AA%8C%E7%A0%81.png">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/0fb184816b3fb7f8accbaa214e6569d3_MD5.png">
-<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/14c1b706fffc7813c46b9301e658b28b_MD5.png">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/4-720230909-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6-CPU-%E6%A0%A1%E9%AA%8C%E7%A0%81.png">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/2-720230909-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6-CPU-%E6%A0%A1%E9%AA%8C%E7%A0%81.png">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/7c5034f0ad4e1e1587bd7694896452fe_MD5.png">
-<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/5-720230909-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6-CPU-%E6%A0%A1%E9%AA%8C%E7%A0%81.png">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/8605adb48d54d974f2b08ac95bff5084_MD5.png">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/6957895a7e77a1a95f03ae832eafe29a_MD5.png">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/a781900e425e045193b5751a9a5ced26_MD5.png">
@@ -242,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          14k 字
+          17k 字
         
       </span>
     
@@ -253,7 +250,7 @@
         
         
         
-          114 分钟
+          143 分钟
         
       </span>
     
@@ -393,8 +390,8 @@
 </blockquote>
 <p>执行CPU指令时，在一个指令周期的过程中，首先需从内存读取要执行的指令，此时先要将指令的地址即(   )的内容送到地址总线上。</p>
 <ul>
-<li>A指令寄存器IR)</li>
-<li>B.通用寄存器(GR)</li>
+<li>A. 指令寄存器IR)</li>
+<li>B. 通用寄存器(GR)</li>
 <li>C程序计数器(PC)</li>
 <li>D.状态寄存器(PSW)</li>
 </ul>
@@ -415,56 +412,64 @@
 <li><strong>使用场景</strong>：GR通常用于存储操作数、中间计算结果或地址等。它们并不直接参与指令地址的获取过程。</li>
 </ul>
 <hr>
-<h3 id="校验码"><a href="#校验码" class="headerlink" title="校验码"></a>校验码</h3><ul>
-<li>码距<ul>
-<li>从A码到B码转换所需要改变的位数</li>
-</ul>
-</li>
-<li>奇偶校验码</li>
-<li>循环冗余校验码<ul>
-<li><ol>
-<li>原始信息串后面添加阶位0</li>
+<h3 id="校验码"><a href="#校验码" class="headerlink" title="校验码"></a>校验码</h3><p>校验码是一种用于检测和校正数据传输或存储过程中出现的错误的方法。它通过添加额外的一组数据（即校验码）来实现这一目的。校验码的基本原理是利用数据的某些数学特性来检测错误，并且有时还能纠正错误。</p>
+<h4 id="码距"><a href="#码距" class="headerlink" title="码距"></a>码距</h4><p><strong>码距</strong>是指两个不同编码之间至少需要改变的位数。码距越大，编码之间的区分度越高，错误检测和纠正的能力也越强。</p>
+<p>就单个编码A: 00而言，其码距为1，因为其只需要改变一位就变成另一个编码。</p>
+<p>在两个编码中，从A码到B码转换所需要改变的位数称为码距；如A:00要转换为B:11,  码距为2。一般来说，码距越大，越利于纠错和检错。</p>
+<h4 id="奇偶校验码"><a href="#奇偶校验码" class="headerlink" title="奇偶校验码"></a>奇偶校验码</h4><p><strong>奇偶校验码</strong>是一种简单的错误检测方法，它通过确保数据中1的个数为奇数（奇校验）或偶数（偶校验）来工作。如果接收到的数据不满足奇偶性，那么可以知道数据在传输过程中出现了错误。</p>
+<p>在编码中<strong>增加1位校验位来使编码中1的个数为奇数（奇校验）或者偶数（偶校验）</strong>，从而使码距变为2。</p>
+<p>奇偶校验是一种简单的错误检测方法，它依赖于数据中1的个数。有两种类型的奇偶校验：</p>
+<ol>
+<li><strong>奇校验</strong>：在这种方法中，数据被编码以确保编码中包含奇数个1。发送方发送数据后，接收方会计算收到的数据中1的个数。如果1的个数是奇数，接收方认为数据没有错误；如果1的个数是偶数，则认为数据在传输过程中出现了错误。</li>
+<li><strong>偶校验</strong>：与奇校验相反，偶校验要求编码中包含偶数个1。接收方收到数据后，会检查1的个数。如果1的个数是偶数，接收方认为数据没有错误；如果1的个数是奇数，则认为数据有误。</li>
 </ol>
-</li>
-<li><ol start="2">
-<li>多项式转换为串除数</li>
+<p>奇偶校验的优点是实现简单，但它只能检测出奇数个错误（对于奇校验）或偶数个错误（对于偶校验），并且它不能纠正任何错误。如果数据中恰好有一个错误，奇偶校验<strong>可以检测到</strong>，但无法确定错误的位置，因此<strong>无法进行纠正</strong>。如果数据中有多于一个的错误，奇偶校验可能无法检测到错误。</p>
+<h4 id="循环冗余校验码"><a href="#循环冗余校验码" class="headerlink" title="循环冗余校验码"></a>循环冗余校验码</h4><p>循环冗余校验码（CRC）是一种更复杂的错误检测方法，它使用多项式算法来生成校验码。CRC的步骤如下：</p>
+<ol>
+<li><strong>原始信息串后面添加阶位0</strong>：在原始数据后面添加一定数量的0，<strong>数量取决于使用的多项式的最高次数</strong>。</li>
+<li><strong>多项式转换为串除数</strong>：选择一个合适的多项式作为除数，这个多项式通常由发送方和接收方事先约定。</li>
+<li><strong>模2除法运算</strong>：将原始信息串（现在后面已经添加了0）用选定的多项式进行模2除法运算。模2除法是一种特殊的除法，它不使用普通的加法和减法，而是使用异或（XOR）操作。</li>
+<li><strong>原始信息串后面添加余数进行发送</strong>：模2除法运算后得到的余数就是CRC校验码。将这个余数添加到原始信息串的后面，然后一起发送。</li>
 </ol>
-</li>
-<li><ol start="3">
-<li>模2 除法运算</li>
-</ol>
-</li>
-<li><ol start="4">
-<li>原始信息串后面添加余数进行发送</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="码距"><a href="#码距" class="headerlink" title="码距"></a>码距</h4><p>就单个编码A: 00而言，其码距为1，因为其只需要改变一位就变成另一个编码。</p>
-<p>在两个编码中，从A码到B码转换所需要改变的位数称为码距；如A:00要转换为B:11,  码距为2。<br>一般来说，码距越大，越利于纠错和检错。</p>
-<h4 id="奇偶校验码"><a href="#奇偶校验码" class="headerlink" title="奇偶校验码"></a>奇偶校验码</h4><p>在编码中<strong>增加1位校验位来使编码中1的个数为奇数（奇校验）或者偶数（偶校验）</strong>，从而使码距变为2。</p>
-<p>例如：<br>奇校验：编码中，含有奇数个1，发送给接收方，接收方收到后，会计算收到的编码有多少个1，<strong>如果是奇数个，则无误，是偶数个，则有误</strong>。<br>偶校验同理，只是编码中有偶数个1，由上述，奇偶校验只能检1位错，并且无法纠错。</p>
-<h4 id="循环冗余校验码"><a href="#循环冗余校验码" class="headerlink" title="循环冗余校验码"></a>循环冗余校验码</h4><p><strong>CRC只能检错，不能纠错。</strong></p>
+<p>接收方收到数据后，会用同样的多项式对整个数据（包括原始信息和CRC校验码）进行模2除法运算。如果结果为0，说明数据在传输过程中没有出现错误；如果结果不为0，则说明数据出现了错误。</p>
+<p>CRC的优点是错误检测能力强，可以检测出几乎所有的2位以内的错误，并且实现起来相对简单。但它也有缺点，比如不能检测出所有类型的错误，并且不能用于错误更正。</p>
+<blockquote>
+<p><strong>CRC只能检错，不能纠错。</strong></p>
+</blockquote>
 <p>使用CRC编码，需要先约定一个生成多项式G(x)。生成多项式的最高位和最低位必须是1。</p>
 <p>假设原始信息有 m 位，则对应多项式M(x)。生成校验码思想就是<strong>在原始信息位后追加若干校验位，使得追加的信息能被G(x)整除。接收方接收到带校验位的信息，然后用G(x)整除。余数为0，则没有错误；反之则发生错误</strong>。</p>
-<p>例题：</p>
-<p>例：假设原始信息串为10110，CRC的生成多项式为G(x)&#x3D;x^4+x+1,求CRC校验码。</p>
-<p>(1)在原始信息位后面添0，假设生成多项式的阶为r,则在原始信息位后添加 r 个0，</p>
-<p>本题中，G(x)阶为4，则在原始信息串后加4个0，得到的新串为101100000，作为被除数。</p>
-<p>(2)由多项式得到除数，多项中x的幂指数存在的位置1，不存在的位置0。本题中，x 的幂指数为0,1,4的变量都存在，而幂指数为2,3的不存在，因此得到串 10011。</p>
-<p>(3)生成 CRC 校验码，将前两步得出的被除数和除数进行模2除法运算（即不进位也不借位的除法运算)。除法过程如下图所示。<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/7afc24d6b80cb9ef31deaf59898b9d3c_MD5.png" srcset="/img/loading.gif" lazyload alt="7afc24d6b80cb9ef31deaf59898b9d3c_MD5"><br>得到余数1111</p>
+<blockquote>
+<p>让我们通过一个例子来理解CRC校验码的生成和校验过程：</p>
+</blockquote>
+<p><strong>例子</strong>：假设我们有一条原始信息串<code>10110</code>，并且我们使用的CRC生成多项式是<code>G(x) = x^4 + x + 1</code>, 求CRC校验码。</p>
+<p>解答： </p>
+<p><strong>步骤1</strong>：在原始信息串后面添加<code>r</code>个0。在这个例子中，生成多项式的阶<code>r</code>是4，所以我们在原始信息串后面添加4个0，得到新的串<code>101100000</code>。</p>
+<p><strong>步骤2</strong>：根据生成多项式得到除数。生成多项式<code>G(x) = x^4 + x + 1</code>对应的二进制串是<code>10011</code>，因为<code>x^4</code>、<code>x</code>和常数项1存在，而<code>x^2</code>和<code>x^3</code>不存在。</p>
+<p><strong>步骤3</strong>：进行模2除法运算。我们用得到的除数<code>10011</code>去除被除数<code>101100000</code>（即原始信息串后面添加了4个0的串）。这个过程类似于长除法，但是使用的是异或操作而不是减法。</p>
+<p><strong>步骤4</strong>：得到余数。在这个例子中，除法运算后得到的余数是<code>1111</code>。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/7afc24d6b80cb9ef31deaf59898b9d3c_MD5.png" srcset="/img/loading.gif" lazyload alt="7afc24d6b80cb9ef31deaf59898b9d3c_MD5"><br>得到余数1111</p>
 <p>注意：余数不足r,则余数左边用若干个0补齐。例如求得余数为11，r &#x3D; 4，则补两个0得到0011。</p>
-<p>(4)生成最终发送信息串，将余数添加到原始信息后。</p>
-<p>上例中，原始信息为 10110,添加余数1111后，**结果为101101111。发送方将此数据发送给接收方。</p>
-<p>(5)接收方进行校验。接收方的CC校验过程与生成过程类似，接收方接收了带校验和的帧后，用多项式G(x)来除。余数为0，则表示信息无错；否则要求发送方进行重传。</p>
-<p>注意：收发信息双方需使用相同的生成多项式。</p>
+<p><strong>步骤5</strong>：如果余数的位数小于<code>r</code>，则在余数的左边补足0，直到长度为<code>r</code>。在这个例子中，余数<code>1111</code>已经是4位，所以不需要补0。</p>
+<p><strong>步骤6</strong>：生成最终发送的信息串。将余数<code>1111</code>添加到原始信息串<code>10110</code>的后面，得到最终的发送信息串<code>101101111</code>。</p>
+<p><strong>步骤7</strong>：接收方校验。接收方收到信息后，使用相同的生成多项式<code>G(x)</code>对收到的信息串进行模2除法运算。如果余数为0，说明信息在传输过程中没有出错；如果余数不为0，则说明信息有误，需要请求发送方重传。</p>
+<p><strong>注意</strong>：发送方和接收方必须使用相同的生成多项式<code>G(x)</code>来进行CRC校验。</p>
+<p>通过这个例子，我们可以看到CRC校验码是一种有效的方式来检测数据在传输过程中是否出现错误。如果出现错误，接收方可以请求发送方重传数据，以确保数据的完整性和准确性。</p>
 <hr>
-<p>考试真题</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/ad48d0cc13a61f4dd1873703d3bf8e28_MD5.png" srcset="/img/loading.gif" lazyload alt="ad48d0cc13a61f4dd1873703d3bf8e28_MD5"></p>
+<blockquote>
+<p>例题2：</p>
+</blockquote>
+<p>循环冗余校验码(Cyclic Redundancy Check,CRC)是数据通信领域中最常用的一种差错校验码，该校验方法中，使用多项式除法（模2除法）运算后的余数为校验字段。若数据信息为 n 位，则将其左移k位后，被长度为 k+1 位的生成多项式相除，所得的k位余数即构成 k 个校验位，构成 n + k 位编码。若数据信息为1100，生成多项式为  X3+X+1 (即1011)，则CRC编码是（   )。</p>
+<ul>
+<li>A. 1100010</li>
+<li>B. 1011010</li>
+<li>C. 1100011</li>
+<li>D. 1011110</li>
+</ul>
+<hr>
 <p>答案：A</p>
 <p>解析：按照上文的进行模2除法运算，得到   1100010</p>
-<p>根据这个关键信息解题一下<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/1-720230909-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6-CPU-%E6%A0%A1%E9%AA%8C%E7%A0%81.png" srcset="/img/loading.gif" lazyload alt="1-720230909-系统架构设计师_计算机硬件-CPU-校验码"></p>
+<p>步骤解题： </p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/1-720230909-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6-CPU-%E6%A0%A1%E9%AA%8C%E7%A0%81.png" srcset="/img/loading.gif" lazyload alt="1-720230909-系统架构设计师_计算机硬件-CPU-校验码"></p>
 <ul>
 <li><ol>
 <li>原始信息串 → 110000  （三阶）</li>
@@ -520,46 +525,159 @@
 </ul>
 </li>
 </ul>
-<h4 id="计算机指令"><a href="#计算机指令" class="headerlink" title="计算机指令"></a>计算机指令</h4><h5 id="计算机指令的组成"><a href="#计算机指令的组成" class="headerlink" title="计算机指令的组成"></a>计算机指令的组成</h5><p>一条指令由操作码和操作数两部分组成，<strong>操作码决定要完成的操作</strong>，操作数指参加运算的数据及其所在的单元地址。<br>在计算机中，操作要求和操作数地址都由二进制数码表示，分别称作操作码和地址码，整条指令以二进制编码的形式存放在存储器中。</p>
-<h5 id="计算机指令执行过程"><a href="#计算机指令执行过程" class="headerlink" title="计算机指令执行过程"></a>计算机指令执行过程</h5><p>取指令一一分析指令一一执行指令三个步骤，首先将程序计数器PC中的指令地址取出，送入地址总线，CPU依据指令地址去内存中取出<br>指令内容存入指令寄存器 IR ；而后由指令译码器进行分析，分析指令操作码；最后执行指令，取出指令执行所需的源操作数。</p>
-<h5 id="指令寻址方式"><a href="#指令寻址方式" class="headerlink" title="指令寻址方式"></a>指令寻址方式</h5><p><strong>顺序寻址方式</strong>：当执行一段程序时，是一条指令接着一条指令地顺序执行：<br><strong>跳跃寻址方式</strong>：指下一条指令的地址码不是由程序计数器给出，而是由本条指令直接给出。<br>程序跳跃后，按新的指令地址开始顺序执行。因此，程序计数器的内容也必须相应改变，以便及时跟踪新的指令地址。</p>
-<h5 id="指令操作数的寻址方式"><a href="#指令操作数的寻址方式" class="headerlink" title="指令操作数的寻址方式"></a>指令操作数的寻址方式</h5><p><strong>立即寻址方式</strong>：指令的地址码字段指出的不是地址，而是操作数本身。<br><strong>直接寻址方式</strong>：在指令的地址字段中直接指出操作数在主存中的地址。<br><strong>间接寻址方式</strong>：指令地址码字段所指向的存储单元中存储的是操作数的地址。<br><strong>寄存器寻址方式</strong>：指令中的地址码是寄存器的编号。<br><strong>基址寻址方式</strong>：将基址寄存器的内容加上指令中的形式地址而形成操作数的有效地址，其优点是可以扩大寻址能力。<br><strong>变址寻址方式</strong>：变址寻址方式计算有效地址的方法与基址寻址方式很相似，它是将变址寄存器的内容加上指令中的形式地址而形成操作数的有效地址。****</p>
-<h5 id="CISC-与-RISC"><a href="#CISC-与-RISC" class="headerlink" title="CISC 与 RISC"></a>CISC 与 RISC</h5><p>CISC 是<strong>复杂指令系统</strong>，兼容性强，指令繁多、长度可变，由微程序实现：</p>
-<p>RISC 是<strong>精简指令系统</strong>，指令少，使用频率接近，主要依靠硬件实现（通用寄存器、硬布线逻辑控制)</p>
-<p>具体区别如下：<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/0fb184816b3fb7f8accbaa214e6569d3_MD5.png" srcset="/img/loading.gif" lazyload alt="0fb184816b3fb7f8accbaa214e6569d3_MD5"><br>建议：同时记一下对应的实现方式</p>
-<p>考试真题：<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/14c1b706fffc7813c46b9301e658b28b_MD5.png" srcset="/img/loading.gif" lazyload alt="14c1b706fffc7813c46b9301e658b28b_MD5"></p>
-<p>视频时间：09：46</p>
-<p>后面时间稍微加快一点，直接看他课件学习。（还是需要看一下视频或者看真题答案回顾下，这里先看课件学习下）</p>
+<h4 id="计算机指令"><a href="#计算机指令" class="headerlink" title="计算机指令"></a>计算机指令</h4><h5 id="计算机指令的组成"><a href="#计算机指令的组成" class="headerlink" title="计算机指令的组成"></a>计算机指令的组成</h5><p>一条指令由操作码和操作数两部分组成，<strong>操作码决定要完成的操作</strong>，操作数指参加运算的数据及其所在的单元地址。</p>
+<p>在计算机中，操作要求和操作数地址都由二进制数码表示，分别称作<strong>操作码和地址码</strong>，整条指令以二进制编码的形式存放在存储器中。</p>
+<h5 id="计算机指令执行过程"><a href="#计算机指令执行过程" class="headerlink" title="计算机指令执行过程"></a>计算机指令执行过程</h5><p>计算机执行指令的过程通常分为三个主要步骤：取指令、分析指令和执行指令。</p>
+<ol>
+<li><strong>取指令</strong>：首先，计算机通过程序计数器（PC）获取当前要执行的指令的地址。这个地址被送到地址总线上，CPU根据这个地址从内存中取出指令内容。</li>
+<li><strong>分析指令</strong>：取出的指令内容被存储在指令寄存器（IR）中。接下来，指令译码器对指令进行分析，主要是识别指令中的操作码（Opcode），操作码决定了指令要执行的操作类型。</li>
+<li><strong>执行指令</strong>：在指令被分析之后，CPU会执行该指令。这通常涉及到取出执行指令所需的源操作数，这些操作数可能来自寄存器、内存或其他数据源。</li>
+</ol>
+<p>这个过程是连续的，每执行完一条指令后，程序计数器就会更新为下一条指令的地址，然后重复上述步骤，直到程序执行完毕。这个过程是计算机执行程序的基础，确保了计算机能够按照预定的指令序列正确地运行程序。</p>
+<h5 id="指令寻址方式"><a href="#指令寻址方式" class="headerlink" title="指令寻址方式"></a>指令寻址方式</h5><p><strong>顺序寻址方式</strong>：当执行一段程序时，是一条指令接着一条指令地顺序执行：</p>
+<p><strong>跳跃寻址方式</strong>：指下一条指令的地址码不是由程序计数器给出，而是由本条指令直接给出。程序跳跃后，按新的指令地址开始顺序执行。因此，程序计数器的内容也必须相应改变，以便及时跟踪新的指令地址。</p>
+<h5 id="指令操作数的寻址方式"><a href="#指令操作数的寻址方式" class="headerlink" title="指令操作数的寻址方式"></a>指令操作数的寻址方式</h5><p>在计算机指令执行过程中，指令操作数的寻址方式决定了如何获取操作数。以下是几种常见的寻址方式及其区别：</p>
+<ol>
+<li><strong>立即寻址方式</strong>：<ul>
+<li>在这种寻址方式中，指令的地址码字段直接包含操作数本身，而不是操作数的地址。</li>
+<li>例如，指令<code>MOV AX, 1234</code>中，1234就是立即数，直接作为操作数。</li>
+</ul>
+</li>
+<li><strong>直接寻址方式</strong>：<ul>
+<li>指令的地址字段中包含的是操作数在内存中的确切地址。</li>
+<li>例如，指令<code>MOV AX, [1000]</code>中，1000是内存地址，直接指向操作数。</li>
+</ul>
+</li>
+<li><strong>间接寻址方式</strong>：<ul>
+<li>指令的地址码字段指向一个存储单元，而该存储单元中存储的是操作数的地址。</li>
+<li>例如，如果指令是<code>MOV AX, [BX]</code>，并且BX寄存器的值是1000，那么实际的操作数地址是1000。</li>
+</ul>
+</li>
+<li><strong>寄存器寻址方式</strong>：<ul>
+<li>指令中的地址码直接指向一个寄存器，操作数就在该寄存器中。</li>
+<li>例如，指令<code>ADD AX, BX</code>中，AX和BX都是寄存器，操作数就在这些寄存器中。</li>
+</ul>
+</li>
+<li><strong>基址寻址方式</strong>：<ul>
+<li>通过将基址寄存器的内容加上指令中的形式地址来形成操作数的有效地址。</li>
+<li>这种方式可以扩大内存的寻址范围，因为它允许访问超出普通直接寻址能力范围的内存区域。</li>
+</ul>
+</li>
+<li><strong>变址寻址方式</strong>：<ul>
+<li>类似于基址寻址，变址寻址也是通过将变址寄存器的内容加上指令中的形式地址来形成操作数的有效地址。</li>
+<li>变址寻址常用于数组和字符串处理，因为它允许通过改变形式地址来访问连续的内存区域。</li>
+</ul>
+</li>
+</ol>
+<p><strong>区别</strong>：</p>
+<ul>
+<li><strong>立即寻址</strong>和<strong>直接寻址</strong>的主要区别在于立即寻址直接包含操作数，而直接寻址包含的是操作数的内存地址。</li>
+<li><strong>间接寻址</strong>比直接寻址多了一步，需要先访问指令中指定的地址来获取操作数的实际地址。</li>
+<li><strong>寄存器寻址</strong>是最快的寻址方式，因为操作数已经在CPU内部的寄存器中。</li>
+<li><strong>基址寻址</strong>和<strong>变址寻址</strong>都涉及将寄存器的内容与形式地址相加，但基址寻址通常用于访问静态数据，而变址寻址用于访问动态数据，如数组。</li>
+</ul>
+<p>每种寻址方式都有其适用的场景，选择合适的寻址方式可以提高程序的效率和灵活性。</p>
+<blockquote>
+<p>基址寻址方式和变址寻址方式的进一步理解</p>
+</blockquote>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section">### 基址寻址方式</span><br><br><span class="hljs-strong">**基址寻址**</span>是一种相对寻址方式，它使用一个基址寄存器和一个形式地址来计算操作数的有效地址。<br><br><span class="hljs-bullet">1.</span> <span class="hljs-strong">**基址寄存器**</span>：基址寄存器通常包含一个固定的内存地址，这个地址是程序中数据区域的起始地址。<br><span class="hljs-bullet">2.</span> <span class="hljs-strong">**形式地址**</span>：形式地址是指令中给出的偏移量，它相对于基址寄存器的值。<br><span class="hljs-bullet">3.</span> <span class="hljs-strong">**有效地址**</span>：有效地址是基址寄存器的值与形式地址相加得到的。<br><br><span class="hljs-strong">**基址寻址**</span>的典型应用场景是访问静态数据，如数组或结构体。例如，程序中有一个数组存储在内存中，基址寄存器可能包含数组的起始地址，形式地址是数组元素的索引。<br><br><span class="hljs-section">### 变址寻址方式</span><br><br><span class="hljs-strong">**变址寻址**</span>也是一种相对寻址方式，它使用一个变址寄存器和一个形式地址来计算操作数的有效地址。<br><br><span class="hljs-bullet">1.</span> <span class="hljs-strong">**变址寄存器**</span>：变址寄存器通常包含一个可变的内存地址，这个地址可以随着程序的执行而改变。<br><span class="hljs-bullet">2.</span> <span class="hljs-strong">**形式地址**</span>：形式地址是指令中给出的偏移量，它相对于变址寄存器的值。<br><span class="hljs-bullet">3.</span> <span class="hljs-strong">**有效地址**</span>：有效地址是变址寄存器的值与形式地址相加得到的。<br><br><span class="hljs-strong">**变址寻址**</span>的典型应用场景是访问动态数据，如数组或字符串。例如，程序中有一个循环遍历数组，变址寄存器可能包含数组当前元素的地址，形式地址是循环的索引。<br><br><span class="hljs-section">### 区别</span><br><br><span class="hljs-bullet">1.</span> <span class="hljs-strong">**基址寻址**</span>：<br><span class="hljs-code">    </span><br><span class="hljs-code">    - 使用基址寄存器，通常包含一个固定的起始地址。</span><br><span class="hljs-code">    - 适用于访问静态数据，如数组或结构体的起始位置。</span><br><span class="hljs-code">    - 形式地址是相对于基址寄存器的偏移量。</span><br><span class="hljs-code">2. **变址寻址**：</span><br><span class="hljs-code">    </span><br><span class="hljs-code">    - 使用变址寄存器，通常包含一个可变的地址。</span><br><span class="hljs-code">    - 适用于访问动态数据，如数组或字符串的当前位置。</span><br><span class="hljs-code">    - 形式地址是相对于变址寄存器的偏移量。</span><br><span class="hljs-code"></span><br><span class="hljs-section">### 例子</span><br><br>假设我们有一个数组<span class="hljs-code">`data`</span>，存储在内存地址<span class="hljs-code">`2000`</span>开始的位置，数组的大小为<span class="hljs-code">`10`</span>。<br><br><span class="hljs-bullet">-</span> <span class="hljs-strong">**基址寻址**</span>：<br><span class="hljs-code">    </span><br><span class="hljs-code">    - 基址寄存器`BX`可能包含`2000`。</span><br><span class="hljs-code">    - 形式地址是数组索引，例如`i`。</span><br><span class="hljs-code">    - 有效地址计算为`2000 + i`。</span><br><span class="hljs-code">- **变址寻址**：</span><br><span class="hljs-code">    </span><br><span class="hljs-code">    - 变址寄存器`SI`可能在循环开始时初始化为`2000`。</span><br><span class="hljs-code">    - 形式地址是循环索引`i`。</span><br><span class="hljs-code">    - 有效地址计算为`SI + i`，其中`SI`在循环过程中会更新。</span><br><span class="hljs-code"></span><br>通过这些例子，我们可以看到基址寻址和变址寻址都是通过寄存器和偏移量来计算有效地址，但它们适用于不同的场景。基址寻址适用于静态数据，而变址寻址适用于动态数据。<br></code></pre></td></tr></table></figure>
+
+<h5 id="CISC-与-RISC"><a href="#CISC-与-RISC" class="headerlink" title="CISC 与 RISC"></a>CISC 与 RISC</h5><ul>
+<li><strong>CISC</strong>：复杂、指令多、长度可变、兼容性强、微程序实现。Complex（复杂）</li>
+<li><strong>RISC</strong>：精简、指令少、长度固定、频率接近、硬件实现。Reduced（精简）</li>
+</ul>
+<p>具体区别如下：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/0fb184816b3fb7f8accbaa214e6569d3_MD5.png" srcset="/img/loading.gif" lazyload alt="0fb184816b3fb7f8accbaa214e6569d3_MD5"></p>
+<blockquote>
+<p>例题</p>
+</blockquote>
+<p>以下关于复杂指令集计算机(Complex Instruction Set Computer,,CISC)的叙述中，正确的是（)。</p>
+<ul>
+<li>A.  只设置使用频度高的一些简单指令，不同指令执行时间差别很小</li>
+<li>B.  CPU中设置大量寄存器，利用率低</li>
+<li>C. 常采用执行速度更快的组合逻辑实现控制器</li>
+<li>D. 指令长度不固定，指令格式和寻址方式多</li>
+</ul>
 <hr>
-<p>暂时放弃看视频，答案后面补。</p>
-<p>第一题：</p>
-<p>第一题属于概念内容，Flynn 是 根据不同的指令流和数据流组织方式，将计算机系统进行分类，有4 类；</p>
-<p>主流的多核计算机是多指令流多数据流 MIMD</p>
-<p>答案选： A  D</p>
-<p>第二题：应该是选择 D；其他跟概念不符，具体可以到时候看真题来回顾。</p>
+<p>解析：</p>
+<p>选择 D；</p>
+<p>解析如下：</p>
+<ul>
+<li><strong>A</strong>：这个选项描述的是RISC（精简指令集计算机）的特点，而不是CISC。RISC架构倾向于只设置使用频度高的一些简单指令，并且不同指令的执行时间差别很小。</li>
+<li><strong>B</strong>：这个选项不是CISC的典型特点。虽然CISC架构的CPU可能包含大量的寄存器，但这并不是CISC定义的核心特征。CISC架构的特点是指令集复杂，包括许多不同的指令，而不是寄存器的多少。</li>
+<li><strong>C</strong>：这个选项描述的是RISC的一个特点，RISC通常采用执行速度更快的组合逻辑实现控制器，因为它们的指令集简单，易于通过硬件实现。</li>
+<li><strong>D</strong>：这个选项正确描述了CISC的特点。CISC架构的计算机通常有不固定的指令长度，以及多种不同的指令格式和寻址方式。这是因为CISC设计允许各种复杂的指令，以适应不同的编程需求，这导致指令集的复杂性和多样性。</li>
+</ul>
+<hr>
 <h5 id="Flynn分类法"><a href="#Flynn分类法" class="headerlink" title="Flynn分类法"></a>Flynn分类法</h5><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/4-720230909-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6-CPU-%E6%A0%A1%E9%AA%8C%E7%A0%81.png" srcset="/img/loading.gif" lazyload alt="4-720230909-系统架构设计师_计算机硬件-CPU-校验码"></p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/2-720230909-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6-CPU-%E6%A0%A1%E9%AA%8C%E7%A0%81.png" srcset="/img/loading.gif" lazyload alt="2-720230909-系统架构设计师_计算机硬件-CPU-校验码"></p>
 <p>1966年，Michael.J.Flynn提出根据指令流、数据流的多倍性特征对计算机系统进行了分类（通常称为Flynn分类法），有关概念的定义如下。</p>
 <p>（1）指令流：指机器执行的指令序列。</p>
 <p>（2）数据流：指由指令流调用的数据序列，包括输入数据和中间结果，但不包括输出数据。</p>
 <p>（3）多倍性：指在系统性能瓶颈部件上同时处于同一执行阶段的指令或数据的最大可能个数。</p>
-<p><strong>Flynn根据不同的指令流和数据流组织方式，把计算机系统分成如下4类。</strong></p>
-<p>（1）单指令流单数据流（Single Instruction stream and Single Data stream,SISD）。SISD其实就是传统的顺序执行的单处理器计算机，其指令部件每次只对一条指令进行译码，并只对一个操作部件分配数据。流水线方式的单处理机有时也被当作SISD.早期的计算机都是SISD机器，如冯诺.依曼架构，如IBM PC机，早期的巨型机和许多8位的家用机等。</p>
-<p>（2）单指令流多数据流（Single Instruction stream and Multiple Data stream,SIMD）。SIMD以并行处理机（阵列处理机）为代表，并行处理机包括多个重复的处理单元，由单一指令部件控制，按照同一指令流的要求为它们分配各自所需的不同数据。相联处理机也属于这一类。</p>
-<p>（3）多指令流单数据流（Multiple Instruction stream and Single Data stream,MISD）。MISD具有n个处理单元，按n条不同指令的要求对同一数据流及其中间结果进行不同的处理。一个处理单元的输出又作为另一个处理单元的输入。这类系统实际上很少见到。有文献把流水线看作多个指令部件，称流水线计算机是MISD.</p>
-<p>（4）多指令流多数据流（Multiple Instruction stream and Multiple Data stream,MIMD）。MIMD是指能实现作业、任务、指令等各级全面并行的多机系统。多处理机属于MIMD.当前的高性能服务器与超级计算机大多具有多个处理机，能进行多任务处理，称为多处理机系统，不论是大规模并行处理机还是对称多处理机，都属于MIMD.</p>
-<h4 id="指令流水线"><a href="#指令流水线" class="headerlink" title="指令流水线"></a>指令流水线</h4><p>小结：</p>
-<ul>
-<li>指令流水线原理：指令分成不同段，每段由不同的部分去处理</li>
-<li>流水线技术（RISC ）<ul>
-<li>超流水线技术</li>
-<li>超标量技术</li>
-<li>超长指令字</li>
+<hr>
+<p>Flynn的分类法是一种根据指令流和数据流的组织方式来区分计算机系统的方法。他将计算机系统分为以下四类：</p>
+<ol>
+<li><strong>单指令流单数据流（SISD）</strong>：<ul>
+<li>SISD指的是传统的顺序执行的单处理器计算机。</li>
+<li>在这种系统中，指令部件每次只对一条指令进行译码，并且只对一个操作部件分配数据。</li>
+<li>流水线方式的单处理机有时也被看作SISD。</li>
+<li>早期的计算机，如冯·诺依曼架构的机器、IBM PC机、早期的巨型机和许多8位的家用机等，都是SISD机器。</li>
 </ul>
 </li>
+<li><strong>单指令流多数据流（SIMD）</strong>：<ul>
+<li>SIMD以并行处理机（如阵列处理机）为代表。</li>
+<li>并行处理机包含多个重复的处理单元，由单一指令部件控制。</li>
+<li>这些处理单元按照同一指令流的要求为它们分配各自所需的不同数据。</li>
+<li>相联处理机也属于这一类。</li>
 </ul>
-<p>指令流水线原理：将<strong>指令分成不同段，每段由不同的部分去处理</strong>，因此可以产生叠加的效果，所有的部件去处理指令的不同段</p>
-<p>RISC中的流水线技术：<br>(1)<strong>超流水线(Super Pipe Line)技术</strong>。它通过细化流水、增加级数和提高主频，使得在每个机器周期内能完成一个甚至两个浮点操作。<br>其实质是以时间换取空间。</p>
+</li>
+<li><strong>多指令流单数据流（MISD）</strong>：<ul>
+<li>MISD具有多个处理单元，每个处理单元对同一数据流及其中间结果进行不同的处理。</li>
+<li>一个处理单元的输出又作为另一个处理单元的输入。</li>
+<li>这类系统在实际中很少见。</li>
+<li>有文献将流水线计算机视为MISD，因为流水线中多个指令部件可以同时处理同一数据流。</li>
+</ul>
+</li>
+<li><strong>多指令流多数据流（MIMD）</strong>：<ul>
+<li>MIMD是指能实现作业、任务、指令等各级全面并行的多机系统。</li>
+<li>多处理机属于MIMD，包括大规模并行处理机和对称多处理机。</li>
+<li>当前的高性能服务器与超级计算机大多具有多个处理机，能进行多任务处理，属于MIMD系统。</li>
+</ul>
+</li>
+</ol>
+<p>总结来说，这四类系统代表了不同的并行处理能力和复杂性。SISD是最基础的单处理器系统，SIMD强调数据的并行处理，MISD则强调指令对同一数据的不同处理，而MIMD则代表了最高级别的并行处理能力，其中每个处理单元都可以独立地执行不同的指令流。</p>
+<blockquote>
+<p>例题</p>
+</blockquote>
+<p>Flynn分类法根据计算机在执行程序的过程中（)的不同组合，将计算机分为4类。当前主流的多核计算机属于()计算机。</p>
+<ul>
+<li><p>A指令流和数据流</p>
+</li>
+<li><p>B数据流和控制流</p>
+</li>
+<li><p>C指令流和控制流</p>
+</li>
+<li><p>D.数据流和总线带宽</p>
+</li>
+<li><p>A.SISD</p>
+</li>
+<li><p>B.SIMD</p>
+</li>
+<li><p>C.MISD</p>
+</li>
+<li><p>D.MIMD</p>
+</li>
+</ul>
+<hr>
+<p>解析：</p>
+<p>属于概念内容，Flynn 是 根据不同的指令流和数据流组织方式，将计算机系统进行分类，有4 类；</p>
+<p>主流的多核计算机是多指令流多数据流 MIMD</p>
+<p>答案选： A  D</p>
+<h4 id="指令流水线"><a href="#指令流水线" class="headerlink" title="指令流水线"></a>指令流水线</h4><p>指令流水线原理：将<strong>指令分成不同段，每段由不同的部分去处理</strong>，因此可以产生叠加的效果，所有的部件去处理指令的不同段</p>
+<p>RISC中的流水线技术：</p>
+<p>(1)<strong>超流水线(Super Pipe Line)技术</strong>。它通过细化流水、增加级数和提高主频，使得在每个机器周期内能完成一个甚至两个浮点操作。</p>
+<p>其实质是以时间换取空间。</p>
 <p>(2)<strong>超标量(Super Scalar)技术</strong>。它通过内装多条流水线来同时执行多个处理，其时钟频率虽然与一般流水接近，却有更小的CPI。其实质是以空间换取时间。</p>
 <p>(3)<strong>超长指令字(Very Long Instruction Word,VLIW)技术</strong>。VLIW和超标量都是20世纪80年代出现的概念，其共同点是要同时执行多条指令，其不同在于超标量依靠硬件来实现并行处理的调度，VLIW 则充分发挥软件的作用，而使硬件简化，性能提高。</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/7c5034f0ad4e1e1587bd7694896452fe_MD5.png" srcset="/img/loading.gif" lazyload alt="7c5034f0ad4e1e1587bd7694896452fe_MD5"></p>
@@ -570,18 +688,31 @@
 <p>公式：不使用流水线执行时间&#x2F;使用流水线执行时间。</p>
 <hr>
 <p>流水线执行时间计算方式：1条指令总执行时间+（总指令条数-1）* 流水线周期。</p>
-<p>分类<br><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/5-720230909-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6-CPU-%E6%A0%A1%E9%AA%8C%E7%A0%81.png" srcset="/img/loading.gif" lazyload alt="5-720230909-系统架构设计师_计算机硬件-CPU-校验码"></p>
-<p>考试真题：</p>
-<p>第一题：</p>
-<p>流水线的吞吐率是指流水线在单位时间里所完成的任务数或输出的结果数。<br>设某流水线有5段，有1段的时间为2ns, 另外4段的每段时间为1s, 利用此流水线完成100个任务的吞吐率约为（   )  个&#x2F;s 。</p>
+<p>分类</p>
+<ul>
+<li>流水线技术 RISC<ul>
+<li>超流水线技术</li>
+<li>超标量技术</li>
+<li>超长指令字</li>
+</ul>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p>例题一：</p>
+</blockquote>
+<p>流水线的吞吐率是指流水线在单位时间里所完成的任务数或输出的结果数。</p>
+<p>设某流水线有5段，有1段的时间为2ns, 另外4段的每段时间为1s, 利用此流水线完成100个任务的吞吐率约为（   )  个&#x2F;s 。</p>
 <ul>
 <li>A. 500X10^6</li>
 <li>B. 490×10^6</li>
 <li>C. 250×10^6</li>
 <li>D. 167× 10^6</li>
 </ul>
-<p>解析：流水线执行100个任务所需要的时间为：(2+1+1+1+1)+（100-1) * 2&#x3D;204 ns。<br>所以每秒吞吐率为：(100&#x2F;204) * 10 ^ 9&#x3D;490 * 10^6。注意：1秒&#x3D;10^9纳秒。<br>答案：B</p>
-<p>解答：吞吐率这个还是靠刷题来增加自己的印象，<br>流水线吞吐率计算：吞吐率即单位时间内执行的指令条数。公式：指令条数&#x2F;流水线执行时间。</p>
+<p>解析：流水线执行100个任务所需要的时间为：(2+1+1+1+1)+（100-1) * 2&#x3D;204 ns。所以每秒吞吐率为：(100&#x2F;204) * 10 ^ 9&#x3D;490 * 10^6。注意：1秒&#x3D;10^9纳秒。</p>
+<p>答案：B</p>
+<p>解答：</p>
+<p>流水线吞吐率计算：吞吐率即单位时间内执行的指令条数。公式：指令条数&#x2F;流水线执行时间。</p>
 <ul>
 <li><ol>
 <li>先计算流水线执行时间</li>
@@ -604,7 +735,9 @@
 </li>
 </ul>
 <hr>
-<p>第二题：</p>
+<blockquote>
+<p>例题二：</p>
+</blockquote>
 <p>假设磁盘块与缓冲区大小相同，每个盘块读入缓冲区的时间为15us,由缓冲区送至用户区的时间是5us, 在用户区内系统对每块数据的处理时间为1us,</p>
 <p>若用户需要将大小为10个磁盘块的 Docl 文件逐块从磁盘读入缓冲区，并送至用户区进行处理，那么采用单缓冲区需要花费的时间为(  ) us;   采用双缓冲区需要花费的时间为(  ) us。</p>
 <ul>
@@ -633,7 +766,9 @@
 <p>根据公式：1条指令总执行时间+（总指令条数-1）* 流水线周期。（执行时间最长的段为流水线周期。）</p>
 <p>这里主要的区分是最大的执行时间的段，前者是 20 ，后者 是15。</p>
 <hr>
-<p>第三题：</p>
+<blockquote>
+<p>例题三：</p>
+</blockquote>
 <p>流水线技术是通过并行硬件来提高系统性能的常用方法。对于一个k段流水线，假设其各段的执行时间均相等（设为t ),输入到流水线中的任务是连续的理想情况下，完成 n 个连续任务需要的总时间为（   ）。</p>
 <p>若某流水线浮点加法运算器分为5段，所需要的时间分别是6ns、7ns、8ns、9ns 和 6ns,  则其最大加速比为(    )</p>
 <ul>
@@ -829,24 +964,42 @@
 <p>程序中断方式：<br>外设完成数据传输后，<strong>向CPU发送中断</strong>，等待CPU处理数据，效率相对较高。 <strong>中断响应时间</strong>指的是从发出中断请求到开始进入中断处理程序；中断处理时间指的是从中断处理开始到中断处理结束。<strong>中断向量</strong>提供中断服务程序的入口地址。多级中断嵌套，使用堆栈来保护断点和现场。</p>
 <p>DMA方式（直接主存存取）：CPU只需完成必要的初始化等操作，<strong>数据传输的整个过程都由DMA控制器来完成</strong>，在主存和外设之间建立直接的数据通路，<br>效率很高。</p>
 <p>在一个总线周期结束后，<strong>CPU会响应DMA请求开始读取数据；CPU响应程序中断方式请求是在一条指令执行结束时。</strong></p>
-<h3 id="总线结构"><a href="#总线结构" class="headerlink" title="总线结构"></a>总线结构</h3><p>小结</p>
-<ul>
-<li>总线结构<ul>
-<li>内部总线</li>
-<li>系统总线</li>
-<li>外部总线</li>
+<h3 id="总线结构"><a href="#总线结构" class="headerlink" title="总线结构"></a>总线结构</h3><h4 id="总线"><a href="#总线" class="headerlink" title="总线"></a>总线</h4><p>**总线(Bus)**，是指计算机设备和设备之间传输信息的公共数据通道。</p>
+<p>总线是连接计算机硬件系统内多种设备的通信线路，它的一个重要特征是由总线上的所有设备共享，因此可以将计算机系统内的多种设备连接到总线上。</p>
+<p>总线的分类：</p>
+<ol>
+<li><strong>内部总线</strong>：<ul>
+<li><strong>定义</strong>：内部总线是芯片级别的总线，主要用于芯片内部或芯片与处理器之间的通信。</li>
+</ul>
+</li>
+<li><strong>系统总线</strong>：<ul>
+<li><strong>定义</strong>：系统总线是板级总线，用于计算机内部各部分之间的连接。</li>
+<li><strong>组成</strong>：系统总线通常分为三类：<ul>
+<li><strong>数据总线</strong>：负责在设备间传输实际的数据，其宽度决定了一次可以传输的数据位数。</li>
+<li><strong>地址总线</strong>：决定了系统可以管理的内存空间大小，即它能够访问的内存地址范围。</li>
+<li><strong>控制总线</strong>：用于传送控制命令，如读写指令等。</li>
+</ul>
+</li>
+<li><strong>代表类型</strong>：ISA总线、EISA总线、PCI总线等。</li>
+</ul>
+</li>
+<li><strong>外部总线</strong>：<ul>
+<li><strong>定义</strong>：外部总线是设备一级的总线，用于连接微机和外部设备。</li>
+<li><strong>特点</strong>：外部总线通常支持即插即用和热插拔功能。</li>
+<li><strong>代表类型</strong>：<ul>
+<li><strong>RS232</strong>：一种传统的串行总线，用于连接计算机和外设，如调制解调器。</li>
+<li><strong>SCSI</strong>：一种并行总线，用于连接硬盘驱动器、扫描器等设备。</li>
+<li><strong>USB</strong>：通用串行总线，支持即插即用和热插拔，广泛应用于连接各种外部设备。</li>
 </ul>
 </li>
 </ul>
-<h4 id="总线"><a href="#总线" class="headerlink" title="总线"></a>总线</h4><p>**总线(Bus)**，是指计算机设备和设备之间传输信息的公共数据通道。<br>总线是连接计算机硬件系统内多种设备的通信线路，它的一个重要特征是由总线上的所有设备共享，因此可以将计算机系统内的多种设备连接到总线上。</p>
-<p>从广义上讲，任何连接两个以上电子元器件的导线都可以称为总线，通常分为以下三类：</p>
-<ul>
-<li><strong>内部总线</strong>：内部芯片级别的总线，芯片与处理器之间通信的总线。</li>
-<li><strong>系统总线</strong>：是板级总线，用于计算机内各部分之间的连接，具体分为数据总线(并行数据传输位数)、地址总线（系统可管理的内存空间的大小）、控制总线（传送控制命令）。代表的有ISA总线、EISA总线、PCl总线。</li>
-<li><strong>外部总线</strong>：设备一级的总线，微机和外部设备的总线。代表的有 RS232(串行总线、SCSI(并行总线)、USB(通用串行总线，即插即用，支持热插拔)。</li>
-</ul>
+</li>
+</ol>
+<p>总线（Bus）是计算机系统中的关键组成部分，它允许不同设备之间通过共享的通信线路进行数据交换。内部总线负责芯片级别的通信，系统总线负责计算机内部各部件之间的通信，而外部总线则连接计算机和外部设备。每种总线都有其特定的应用场景和功能，共同构成了计算机系统的通信网络。</p>
 <hr>
-<p>考试真题：</p>
+<blockquote>
+<p>例题1：</p>
+</blockquote>
 <p>计算机系统中常用的输入&#x2F;输出控制方式有无条件传送、中断、程序查询和DMA方式等。当采用 ( ) 方式时，不需要CPU执行程序指令来传送数据。</p>
 <ul>
 <li>A.中断</li>
@@ -854,9 +1007,13 @@
 <li>C.无条件传送</li>
 <li>D.DMA</li>
 </ul>
+<hr>
 <p>答案： D</p>
 <p>在DMA 方式i中，CPU只需完成必要的初始化等操作，数据传输的整个过程都由DMA控制器来完成</p>
 <hr>
+<blockquote>
+<p>例题2：</p>
+</blockquote>
 <p>以下关于总线的说法中，正确的是（)。</p>
 <ul>
 <li>A.串行总线适合近距离高速数据传输，但线间串扰会导致速率受限</li>
@@ -864,45 +1021,57 @@
 <li>C.单总线结构在一个总线上适应不同种类的设备，设计复杂导致性能降低</li>
 <li>D.半双工总线只能在一个方向上传输信息</li>
 </ul>
+<hr>
 <p>答案：C</p>
 <p>解析:  A B 排除，串行长距离，并行短距离；半双工数据在两个方向上传输，但只能通信双方不能同时收发数据；排除 D；选择 C 。</p>
 <p>按功能分类</p>
 <p>系统总线包含有三种不同功能的总线，即数据总线DB（Data Bus）、地址总线AB（Address Bus）和控制总线CB（Control Bus）</p>
 <p>并行总线、串行总线</p>
 <p>根据总线它当中的数据线的多少，可以分为：串行总线（适合长距离传输）与并行总线（适合短距离连接，不宜过长）。</p>
-<h4 id="单工、半双工和全双工"><a href="#单工、半双工和全双工" class="headerlink" title="单工、半双工和全双工"></a>单工、半双工和全双工</h4><p>一，单工、半双工和全双工的区别：</p>
-<p>在串行通信中，数据通常是在两个终端（如电脑和外设）之间进行传送，根据数据流的传输方向可分为3种基本传送方式：单工、半双工和全双工。</p>
-<p>这3种传输方式的区别如下所示：</p>
+<h4 id="单工、半双工和全双工"><a href="#单工、半双工和全双工" class="headerlink" title="单工、半双工和全双工"></a>单工、半双工和全双工</h4><p>串行通信传输方式：单工、半双工与全双工</p>
+<p>在串行通信中，数据在两个终端（例如电脑和外设）间传输，其传输方向可分为三种基本方式：单工、半双工和全双工。</p>
+<p><strong>区别简述：</strong></p>
 <ul>
-<li>单工通信的传输方向只有一个方向	</li>
-<li>半双工通信可以双向通信但只能轮流传输	</li>
-<li>全双工通信可以同时双向传输数据</li>
+<li><strong>单工通信</strong>：仅支持单向数据传输。</li>
+<li><strong>半双工通信</strong>：支持双向通信，但数据传输不能同时进行。</li>
+<li><strong>全双工通信</strong>：支持双向数据同时传输。</li>
 </ul>
-<p>	</p>
-<p>二， 定义：</p>
-<p>1、单工通信</p>
-<p>单工通信只有一根数据线，通信只在一个方向上进行，这种方式的应用实例有：监视器、打印机、电视机等。</p>
-<p>2、半双工通信</p>
-<p>半双工通信也只有一根数据线，它也单工的区别是这根数据线既可作发送又可作发接收，虽然数据可在两个方向上传送，但通信双方不能同时收发数据。</p>
-<p>3、全双工通信</p>
-<p>数据的发送和接收用两根不同的数据线，通信双方在同一时刻都能进行发送和接收，这一工作方式称为全双工通信。在这种方式下，通信双方都有发送器和接收器，发送和接收可同时进行，没有时间延迟。</p>
-<p>三，应用：</p>
-<p>1、单工</p>
-<p>单工就是指A只能发信号，而B只能接收信号，通信是单向的，就象灯塔之于航船——灯塔发出光信号而航船只能接收信号以确保自己行驶在正确的航线上。</p>
-<p>2、半双工</p>
-<p>双工就是指A能发信号给B，B也能发信号给A，但这两个过程不能同时进行。</p>
-<p>最典型的例子就象我们在影视作品中看到的对讲机一样：</p>
-<p>湖盟防御帮助中心</p>
-<ul>
-<li>07：呼叫总部，请求支援，OVER</li>
-<li>总部：收到，增援人员将在5分钟内赶到，OVER</li>
-<li>007：要5分钟这么久？！要快呀！OVER</li>
+<p>详细定义：</p>
+<ol>
+<li><strong>单工通信</strong><ul>
+<li><strong>特点</strong>：只有一根数据线，通信仅在一个方向上进行。</li>
+<li><strong>应用实例</strong>：监视器、打印机、电视机等。</li>
 </ul>
-<p>在这里，每方说完一句话后都要说个OVER，然后切换到接收状态，同时也告之对方——你可以发言了。如果双方同时处于收状态，或同时处于发状态，便不能正常通信了。</p>
-<p>3、全双工</p>
-<p>全双工比半双工又进了一步。在A给B发信号的同时，B也可以给A发信号。</p>
-<p>典型的例子就是打电话。<br>A：我跟你说呀……<br>B：你先听我说，情况是这样的…… </p>
-<p>A和B在说的同时也能听到对方说的内容，这就是全双工</p>
+</li>
+<li><strong>半双工通信</strong><ul>
+<li><strong>特点</strong>：一根数据线，可用作发送和接收，但通信双方不能同时进行发送和接收。</li>
+<li><strong>区别</strong>：与单工相比，半双工允许双向通信，但需轮流进行。</li>
+</ul>
+</li>
+<li><strong>全双工通信</strong><ul>
+<li><strong>特点</strong>：使用两根数据线，通信双方可以同时发送和接收数据。</li>
+<li><strong>优势</strong>：无时间延迟，双方均有发送器和接收器。</li>
+</ul>
+</li>
+</ol>
+<p>应用场景：</p>
+<ol>
+<li><strong>单工</strong><ul>
+<li><strong>描述</strong>：A发送信号，B接收信号，通信是单向的，如灯塔向航船发送信号。</li>
+</ul>
+</li>
+<li><strong>半双工</strong><ul>
+<li><strong>描述</strong>：A和B可以互相发送信号，但这些过程不能同时进行。</li>
+<li><strong>例子</strong>：对讲机，每方说完后需切换到接收状态，并告知对方可以发言。</li>
+</ul>
+</li>
+<li><strong>全双工</strong><ul>
+<li><strong>描述</strong>：A和B可以同时发送和接收信号。</li>
+<li><strong>例子</strong>：电话通话，双方可以同时讲话和听对方讲话。</li>
+</ul>
+</li>
+</ol>
+<p>通过这些定义和例子，我们可以清晰地看到单工、半双工和全双工通信的主要区别和应用场景。</p>
 <hr>
 
                 
