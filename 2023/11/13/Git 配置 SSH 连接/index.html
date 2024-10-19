@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k 字
+          1.2k 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          9 分钟
+          11 分钟
         
       </span>
     
@@ -295,13 +295,15 @@
 </ul>
 <h3 id="设置两个账号切换"><a href="#设置两个账号切换" class="headerlink" title="设置两个账号切换"></a>设置两个账号切换</h3><p>参考： <a target="_blank" rel="noopener" href="https://worktile.com/kb/ask/224209.html">https://worktile.com/kb/ask/224209.html</a></p>
 <p>在工作电脑上面进行生成个人账号的 ssh 的密钥</p>
-<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs perl">ssh-keygen -t rsa -f ~<span class="hljs-regexp">/.ssh/id</span>_rsa_personal -C <span class="hljs-string">&quot;personal_email@example.com&quot;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs perl">ssh-keygen -t rsa -f ~<span class="hljs-regexp">/.ssh/id</span>_rsa_personal -C <span class="hljs-string">&quot;personal_email@example.com&quot;</span><br><br>ssh-keygen -t rsa -f ~<span class="hljs-regexp">/.ssh/id</span>_rsa_personal -C <span class="hljs-string">&quot;lluo2020@163.com&quot;</span><br></code></pre></td></tr></table></figure>
 
 <p><code>-f</code> 参数用于指定生成的 SSH 密钥文件的路径。当你使用这个参数时，你可以指定一个文件名，<code>ssh-keygen</code> 将会在这个文件中生成私钥。如果不使用 <code>-f</code> 参数，默认情况下，<code>ssh-keygen</code> 会在 <code>~/.ssh/id_rsa</code> 路径下生成密钥对</p>
 <p>创建配置文件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">touch</span> ~/.ssh/config<br></code></pre></td></tr></table></figure>
 
 <p>看了一下需要在配置文件中进行对应 host 配置,存在风险,暂时不搞这种方式</p>
+<h3 id="The-authenticity-of-host-github-com-can’t-be-established"><a href="#The-authenticity-of-host-github-com-can’t-be-established" class="headerlink" title="The authenticity of host github.com can’t be established."></a>The authenticity of host github.com can’t be established.</h3><p>工作电脑切换账户后，不能进行和Github授权访问。</p>
+<p>错误失败经历  [[工作电脑GIT如何和GITHUB建立连接]]</p>
 
                 
               </div>
@@ -387,29 +389,6 @@
 
 
 
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2023/11/14/Java%E9%9B%86%E5%90%88_%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5_%E8%A1%A5%E5%85%85%E5%86%85%E5%AE%B901/" title="Java 集合_进阶内容">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Java 集合_进阶内容</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2023/11/13/Git%E5%85%A5%E9%97%A8_%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" title="Git入门_基本操作">
-                        <span class="hidden-mobile">Git入门_基本操作</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
               
             </div>
 
