@@ -4,7 +4,7 @@
   <url>
     <loc>https://varcel.luoqi.icu/about/index.html</loc>
     
-    <lastmod>2024-12-07</lastmod>
+    <lastmod>2024-12-09</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -40,7 +40,7 @@
 
   <url>
     <loc>https://varcel.luoqi.icu/</loc>
-    <lastmod>2024-12-07</lastmod>
+    <lastmod>2024-12-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -48,7 +48,7 @@
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/java/</loc>
-    <lastmod>2024-12-07</lastmod>
+    <lastmod>2024-12-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -57,14 +57,14 @@
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/Java%E5%9F%BA%E7%A1%80/</loc>
-    <lastmod>2024-12-07</lastmod>
+    <lastmod>2024-12-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://varcel.luoqi.icu/categories/Java%E5%9F%BA%E7%A1%80/Base/</loc>
-    <lastmod>2024-12-07</lastmod>
+    <lastmod>2024-12-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
