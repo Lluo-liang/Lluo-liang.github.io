@@ -65,7 +65,7 @@
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/2025/03/05/%E5%BE%85%E6%95%B4%E7%90%86/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0-Mybatis%20%E4%BD%BF%E7%94%A8/</loc>
+    <loc>https://varcel.luoqi.icu/2025/03/05/%E5%BE%85%E6%95%B4%E7%90%86/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0_MyBatis-Plus%E4%BD%BF%E7%94%A8/</loc>
     
     <lastmod>2025-03-05</lastmod>
     
@@ -74,7 +74,7 @@
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/2025/03/05/%E5%BE%85%E6%95%B4%E7%90%86/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0_MyBatis-Plus%E4%BD%BF%E7%94%A8/</loc>
+    <loc>https://varcel.luoqi.icu/2025/03/05/%E5%BE%85%E6%95%B4%E7%90%86/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0-Mybatis%20%E4%BD%BF%E7%94%A8/</loc>
     
     <lastmod>2025-03-05</lastmod>
     
@@ -1721,14 +1721,14 @@
 
   
   <url>
-    <loc>https://varcel.luoqi.icu/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
+    <loc>https://varcel.luoqi.icu/tags/java/</loc>
     <lastmod>2025-03-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/tags/java/</loc>
+    <loc>https://varcel.luoqi.icu/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
     <lastmod>2025-03-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1764,20 +1764,6 @@
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/chatgpt/</loc>
-    <lastmod>2025-03-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://varcel.luoqi.icu/tags/%E7%A4%BE%E4%BA%A4/</loc>
-    <lastmod>2025-03-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://varcel.luoqi.icu/tags/blog/</loc>
     <lastmod>2025-03-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2120,6 +2106,13 @@
   </url>
   
   <url>
+    <loc>https://varcel.luoqi.icu/tags/aop/</loc>
+    <lastmod>2025-03-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://varcel.luoqi.icu/tags/soft/</loc>
     <lastmod>2025-03-05</lastmod>
     <changefreq>weekly</changefreq>
@@ -2135,13 +2128,6 @@
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/terraria/</loc>
-    <lastmod>2025-03-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://varcel.luoqi.icu/tags/aop/</loc>
     <lastmod>2025-03-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2281,6 +2267,13 @@
   </url>
   
   <url>
+    <loc>https://varcel.luoqi.icu/tags/%E7%A4%BE%E4%BA%A4/</loc>
+    <lastmod>2025-03-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://varcel.luoqi.icu/tags/%E4%BA%AC%E4%B8%9C%E4%BA%91/</loc>
     <lastmod>2025-03-05</lastmod>
     <changefreq>weekly</changefreq>
@@ -2380,6 +2373,13 @@
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/travel/</loc>
+    <lastmod>2025-03-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://varcel.luoqi.icu/tags/blog/</loc>
     <lastmod>2025-03-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2521,14 +2521,14 @@
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/categories/%E9%9A%8F%E8%AE%B0/</loc>
+    <loc>https://varcel.luoqi.icu/categories/Java%E5%9F%BA%E7%A1%80/Base/</loc>
     <lastmod>2025-03-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/categories/Java%E5%9F%BA%E7%A1%80/Base/</loc>
+    <loc>https://varcel.luoqi.icu/categories/%E9%9A%8F%E8%AE%B0/</loc>
     <lastmod>2025-03-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2647,14 +2647,14 @@
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/</loc>
+    <loc>https://varcel.luoqi.icu/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/</loc>
     <lastmod>2025-03-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/</loc>
+    <loc>https://varcel.luoqi.icu/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/</loc>
     <lastmod>2025-03-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
