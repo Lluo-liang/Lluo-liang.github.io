@@ -1,0 +1,482 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/Xbox%20L.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Luo QI">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="计算机硬件_流水线技术">
+<meta property="og:type" content="website">
+<meta property="og:title" content="计算机硬件_指令流水线">
+<meta property="og:url" content="https://varcel.luoqi.icu/Notes/%E8%BD%AF%E8%80%83/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6_%E6%8C%87%E4%BB%A4%E6%B5%81%E6%B0%B4%E7%BA%BF.html">
+<meta property="og:site_name" content="轻松的洛亓">
+<meta property="og:description" content="计算机硬件_流水线技术">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/7c5034f0ad4e1e1587bd7694896452fe_MD5.png">
+<meta property="article:published_time" content="2024-10-20T10:47:46.000Z">
+<meta property="article:modified_time" content="2024-10-20T10:47:46.000Z">
+<meta property="article:author" content="Luo QI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/7c5034f0ad4e1e1587bd7694896452fe_MD5.png">
+  
+  
+  
+  <title>计算机硬件_指令流水线 - 轻松的洛亓</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"varcel.luoqi.icu","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  <meta name="baidu-site-verification" content="codeva-Oq0KOjHuD3" />
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>轻松的洛亓</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="计算机硬件_指令流水线"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<article class="page-content">
+  <h3 id="指令流水线"><a href="#指令流水线" class="headerlink" title="指令流水线"></a>指令流水线</h3><p>指令流水线原理：将<strong>指令分成不同段，每段由不同的部分去处理</strong>，因此可以产生叠加的效果，所有的部件去处理指令的不同段</p>
+<p>RISC中的流水线技术：</p>
+<p>(1)<strong>超流水线(Super Pipe Line)技术</strong>。它通过细化流水、增加级数和提高主频，使得在每个机器周期内能完成一个甚至两个浮点操作。</p>
+<p>其实质是以时间换取空间。</p>
+<p>(2)<strong>超标量(Super Scalar)技术</strong>。它通过内装多条流水线来同时执行多个处理，其时钟频率虽然与一般流水接近，却有更小的CPI。其实质是以空间换取时间。</p>
+<p>(3)<strong>超长指令字(Very Long Instruction Word,VLIW)技术</strong>。VLIW和超标量都是20世纪80年代出现的概念，其共同点是要同时执行多条指令，其不同在于超标量依靠硬件来实现并行处理的调度，VLIW 则充分发挥软件的作用，而使硬件简化，性能提高。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/7c5034f0ad4e1e1587bd7694896452fe_MD5.png" srcset="/img/loading.gif" lazyload alt="7c5034f0ad4e1e1587bd7694896452fe_MD5"></p>
+<p><strong>流水线周期</strong>：指令分成不同执行段，其中执行时间最长的段为流水线周期。</p>
+<p><strong>流水线执行时间</strong>：1条指令总执行时间+（总指令条数-1）* 流水线周期。</p>
+<p>流水线吞吐率计算：吞吐率即单位时间内执行的指令条数。公式：指令条数&#x2F;流水线执行时间。</p>
+<p>流水线的加速比计算：加速比即使用流水线后的效率提升度，即比不使用流水线快了多少倍，越高表明流水线效率越高;</p>
+<p>公式：不使用流水线执行时间&#x2F;使用流水线执行时间。</p>
+<hr>
+<p>流水线执行时间计算方式：1条指令总执行时间+（总指令条数-1）* 流水线周期。</p>
+<p>分类</p>
+<ul>
+<li>流水线技术 RISC<ul>
+<li>超流水线技术</li>
+<li>超标量技术</li>
+<li>超长指令字</li>
+</ul>
+</li>
+</ul>
+<h3 id="吞吐率"><a href="#吞吐率" class="headerlink" title="吞吐率"></a>吞吐率</h3><p>流水线吞吐率指的是在给定时间内，流水线系统可以处理的任务数量。它是衡量流水线性能的一个重要指标。具体来说，吞吐率通常以任务&#x2F;秒（tasks per second）或其它相关单位表示。</p>
+<p>在计算机体系结构和处理器设计中，吞吐率可以用以下公式来表达：</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">吞吐率<span class="hljs-operator">=</span><span class="hljs-number">1</span>/流水线周期<br></code></pre></td></tr></table></figure>
+
+<p>其中，流水线周期是指流水线中的每个阶段所需的最长时间，也称为流水线阶段时间或时钟周期。</p>
+<hr>
+<h3 id="练习题"><a href="#练习题" class="headerlink" title="练习题"></a>练习题</h3><h4 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h4><p>流水线的吞吐率是指流水线在单位时间里所完成的任务数或输出的结果数。</p>
+<p>设某流水线有5段，有1段的时间为2ns, 另外4段的每段时间为1s, 利用此流水线完成100个任务的吞吐率约为（   )  个&#x2F;s 。</p>
+<ul>
+<li>A. 500X10^6</li>
+<li>B. 490×10^6</li>
+<li>C. 250×10^6</li>
+<li>D. 167× 10^6</li>
+</ul>
+<hr>
+<p>解析：流水线执行100个任务所需要的时间为：(2+1+1+1+1)+（100-1) * 2&#x3D;204 ns。所以每秒吞吐率为：(100&#x2F;204) * 10 ^ 9&#x3D;490 * 10^6。注意：1秒&#x3D;10^9纳秒。</p>
+<p>答案：B</p>
+<p>解答：</p>
+<p>流水线吞吐率计算：吞吐率即单位时间内执行的指令条数。公式：指令条数&#x2F;流水线执行时间。</p>
+<ul>
+<li><ol>
+<li>先计算流水线执行时间</li>
+</ol>
+<ul>
+<li>1条指令总执行时间+（总指令条数-1）* 流水线周期。</li>
+<li>流水线周期 ：其中执行时间最长的段为流水线周期。</li>
+<li>计算<ul>
+<li>（2 + 1 + 1+ 1 + 1 ） + （100 - 1 ） *  2 &#x3D; 204 ns</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><ol start="2">
+<li>指令条数为：100</li>
+</ol>
+<ul>
+<li>(100&#x2F;204) * 10 ^ 9&#x3D;490 * 10^6</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h4><p>假设磁盘块与缓冲区大小相同，每个盘块读入缓冲区的时间为15us,由缓冲区送至用户区的时间是5us, 在用户区内系统对每块数据的处理时间为1us,</p>
+<p>若用户需要将大小为10个磁盘块的 Docl 文件逐块从磁盘读入缓冲区，并送至用户区进行处理，那么采用单缓冲区需要花费的时间为(  ) us;   采用双缓冲区需要花费的时间为(  ) us。</p>
+<ul>
+<li><p>A. 150</p>
+</li>
+<li><p>B. 151</p>
+</li>
+<li><p>C. 156</p>
+</li>
+<li><p>D. 201</p>
+</li>
+<li><p>A. 150</p>
+</li>
+<li><p>B. 151</p>
+</li>
+<li><p>C. 156</p>
+</li>
+<li><p>D. 201</p>
+</li>
+</ul>
+<hr>
+<p>解析</p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs subunit">单缓冲区：前两段要合并，是两段流水线，21<span class="hljs-string">+20</span>*(10<span class="hljs-string">-1</span>)=201<br><br>双缓冲区：标准三段流水线，21<span class="hljs-string">+15</span>*(10<span class="hljs-string">-1</span>)=156<br><br>解答： 分析题目需要一定的题感<br><br>暂时先根据题目解析记一下，这里的缓冲区是对于读入和送至用户区部分进行了不同处理，但是和用户区系统处理这部分是作为单独的流水线处理的一个执行段。<br><br>根据公式：1条指令总执行时间+（总指令条数<span class="hljs-string">-1</span>）* 流水线周期。（执行时间最长的段为流水线周期。）<br><br>这里主要的区分是最大的执行时间的段，前者是 20 ，后者 是15。<br><br>答案：D    C<br></code></pre></td></tr></table></figure>
+
+<p>单缓冲区：</p>
+<ol>
+<li>每个磁盘块需要按顺序处理，时间分配如下：<ul>
+<li>读取磁盘到缓冲区：15us</li>
+<li>从缓冲区放入用户区：5us</li>
+<li>用户处理时间：1us</li>
+</ul>
+</li>
+<li>单缓冲区每个步骤必须依次完成，因此每个磁盘块需要花费 ( 15 + 5 + 1 &#x3D; 21 ) us。</li>
+<li>对于第一个磁盘块，它在21 us内完成，之后剩下的每个磁盘块需要在上一块读取完成之后进行处理，因此总时间为： [ T_{\text{single}} &#x3D; 21 + 20 \times 9 &#x3D; 21 + 180 &#x3D; 201 \text{us} ]</li>
+</ol>
+<p>双缓冲区：</p>
+<ol>
+<li>双缓冲区使得读取下一块数据与处理当前块数据可以并行进行，因此操作会通过流水线进行：<ul>
+<li>读取磁盘到缓冲区：15us</li>
+<li>从缓冲区放入用户区：5us</li>
+<li>用户处理时间：1us</li>
+</ul>
+</li>
+<li>在第一块数据被读入并传输到用户区时（15us读取+5us传输），总共是20us。</li>
+<li>之后每个磁盘块只需等待最长阶段的时间，这里是磁盘读入时间（15us），总时间为： [ T_{\text{dual}} &#x3D; 20 + 15 \times (10 - 1) &#x3D; 20 + 135 &#x3D; 156 \text{us} ]</li>
+</ol>
+<h4 id="第三题"><a href="#第三题" class="headerlink" title="第三题"></a>第三题</h4><p>流水线技术是通过并行硬件来提高系统性能的常用方法。对于一个k段流水线，假设其各段的执行时间均相等（设为t ),输入到流水线中的任务是连续的理想情况下，完成 n 个连续任务需要的总时间为（   ）。</p>
+<p>若某流水线浮点加法运算器分为5段，所需要的时间分别是6ns、7ns、8ns、9ns 和 6ns,  则其最大加速比为(    )</p>
+<ul>
+<li><p>A. nkt</p>
+</li>
+<li><p>B. (k+n-1)t</p>
+</li>
+<li><p>C. (n-k)kt</p>
+</li>
+<li><p>D. (k+n+1)t</p>
+</li>
+<li><p>A.4</p>
+</li>
+<li><p>B.5</p>
+</li>
+<li><p>C.6</p>
+</li>
+<li><p>D.7</p>
+</li>
+</ul>
+<hr>
+<p>解析：</p>
+<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs excel">解析：当流水线各段执行时间相等时，公式化简后，完成<span class="hljs-built_in">n</span>个连续任务需要的总时间为(k+<span class="hljs-built_in">n</span>-<span class="hljs-number">1</span>) * <span class="hljs-built_in">t</span>。<br><br>→ Kt + (<span class="hljs-built_in">n</span>-<span class="hljs-number">1</span>)<span class="hljs-built_in">t</span>  （第一问）<br><br>加速比定义为顺序执行时间与流水线执行时间的比值，根据题干假设，假设一共有条指令，则顺序执行时间为(<span class="hljs-number">6</span>+<span class="hljs-number">7</span>+<span class="hljs-number">8</span>+<span class="hljs-number">9</span>+<span class="hljs-number">6</span>) * <span class="hljs-built_in">n</span>=<span class="hljs-number">36</span><span class="hljs-built_in">n</span>,该流水线周期为最长的<span class="hljs-number">9</span>ns,则在流水线中的执行时间为 <span class="hljs-number">36</span>+<span class="hljs-number">9</span>*(<span class="hljs-built_in">n</span>-<span class="hljs-number">1</span>)=<span class="hljs-number">9</span><span class="hljs-built_in">n</span>+<span class="hljs-number">27</span>,因此加速比为<span class="hljs-number">36</span><span class="hljs-built_in">n</span>/(<span class="hljs-number">9</span><span class="hljs-built_in">n</span>+<span class="hljs-number">27</span>),题目问的是最大加速比，由这个公式可以知道，当越大时，该公式值越大，因此最大的时候就是<span class="hljs-built_in">n</span>趋向于无穷大的时候，此时可忽略分母的<span class="hljs-number">27</span>，也就是<span class="hljs-number">36</span><span class="hljs-built_in">n</span>/<span class="hljs-number">9</span><span class="hljs-built_in">n</span>=<span class="hljs-number">4</span>.<br><br>解答：**流水线执行时间**：<span class="hljs-number">1</span>条指令总执行时间+（总指令条数-<span class="hljs-number">1</span>）* 流水线周期。<br><br>第一问仍然是对于公式的熟悉；总执行时间简化后是 kt; 流水线周期为执行最长的一段，即为 <span class="hljs-built_in">t</span>； → (k + <span class="hljs-built_in">n</span> - <span class="hljs-number">1</span>) * <span class="hljs-built_in">t</span><br><br>第二问：最大加速比：公式：不使用流水线执行时间/使用流水线执行时间。<br><br>不适用流水线：<span class="hljs-number">36</span><span class="hljs-built_in">n</span>; 使用流水线： <span class="hljs-number">9</span><span class="hljs-built_in">n</span> + <span class="hljs-number">27</span> ; → <span class="hljs-number">4</span>  选择 A。<br><br>答案：B   A<br><br></code></pre></td></tr></table></figure>
+
+
+  
+
+</article>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,914 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/Xbox%20L.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Luo QI">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="摘要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ChatGPT问答助手">
+<meta property="og:url" content="https://varcel.luoqi.icu/2024/01/12/%E5%BE%85%E6%95%B4%E7%90%86/ChatGPT%20AI%20%E9%97%AE%E7%AD%94%E5%8A%A9%E6%89%8B_Star1/index.html">
+<meta property="og:site_name" content="轻松的洛亓">
+<meta property="og:description" content="摘要">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/wallpaper1705067456487.jpg">
+<meta property="article:published_time" content="2024-01-12T15:46:44.000Z">
+<meta property="article:modified_time" content="2024-01-12T15:46:44.000Z">
+<meta property="article:author" content="Luo QI">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="project">
+<meta property="article:tag" content="chatgpt">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/wallpaper1705067456487.jpg">
+  
+  
+  
+  <title>ChatGPT问答助手 - 轻松的洛亓</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"varcel.luoqi.icu","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  <meta name="baidu-site-verification" content="codeva-Oq0KOjHuD3" />
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>轻松的洛亓</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/wallpaper1705067456487.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="ChatGPT问答助手"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-01-12 15:46" pubdate>
+          2024年1月12日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          20k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          170 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">ChatGPT问答助手</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>前面一部分内容是开源项目 <a target="_blank" rel="noopener" href="https://github.com/fuzhengwei/chatbot-api">https://github.com/fuzhengwei/chatbot-api</a> 的一些内容，后面是微信API 调用和 通义千问的部分使用介绍。</p>
+<p>本项目来自知识星球《码农会锁》的开源项目【ChatGPT AI 问答助手】</p>
+<p>项目地址：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://gitcode.net/fuzhengwei/chatbot-api">https://gitcode.net/fuzhengwei/chatbot-api</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/fuzhengwei/chatbot-api">https://github.com/fuzhengwei/chatbot-api</a></li>
+</ul>
+<p>本项目使用到了基本的项目工程构建、SpringBoot、DDD架构、Github仓库使用、爬虫接口、镜像打包、Docker容器部署。</p>
+<p>构建的基本过程这里跳过，进入到实际使用和分析阶段。</p>
+<blockquote>
+<p>介绍DDD架构</p>
+</blockquote>
+<p>先介绍一下 DDD 架构，DDD 架构可以想象类似是 在 MVC 分层的基础中再进行了分类，将服务之间的调用耦合减轻。</p>
+<p>DDD （领域驱动设计）是一种软件设计方法，主要关注的是业务领域和业务逻辑。强调基于业务模型来构建软件，使得软件能够更好地反映和满足业务需求。</p>
+<p><strong>核心思想</strong>：</p>
+<ul>
+<li>将复杂的业务逻辑划分为不同的领域，每个领域代表一个业务的子集。</li>
+<li>通过丰富的领域模型来捕捉业务领域的核心概念和逻辑。<br> <strong>实现方式</strong>：</li>
+<li>通常包括实体（Entities）、值对象（Value Objects）、领域服务（Domain Services）、聚合（Aggregates）和仓储（Repositories）等概念。</li>
+<li>DDD 还强调领域层和应用层的分离，确保业务逻辑的独立性。<br><strong>目的</strong>：</li>
+<li>提供一种方法论，帮助开发者更好地理解和设计复杂业务系统。</li>
+<li>通过领域模型的丰富性来提高软件的可维护性和可扩展性</li>
+</ul>
+<p>星球课程入口： <a target="_blank" rel="noopener" href="https://wx.zsxq.com/dweb2/index/columns/48411118851818">https://wx.zsxq.com/dweb2/index/columns/48411118851818</a></p>
+<p>B 站视频地址： <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1RR4y1b7UQ">https://www.bilibili.com/video/BV1RR4y1b7UQ</a></p>
+<p>大纲</p>
+<ul>
+<li>项目运行</li>
+<li>领域服务核心内容分析</li>
+<li>二开（订阅号信息回复）定时发送消息</li>
+<li>接收微信消息并进行回复</li>
+<li>QQ消息回复</li>
+<li>尝试国内的大语言模型</li>
+</ul>
+<h3 id="1、项目运行"><a href="#1、项目运行" class="headerlink" title="1、项目运行"></a>1、项目运行</h3><p>从 项目地址 <a target="_blank" rel="noopener" href="https://gitcode.net/fuzhengwei/chatbot-api">https://gitcode.net/fuzhengwei/chatbot-api</a>  ；</p>
+<h4 id="项目加载"><a href="#项目加载" class="headerlink" title="项目加载"></a>项目加载</h4><p>拉取项目代码后，需要在 Maven 下面的 Lifecycle 下先进行总体的一个 clean 再 install ；</p>
+<p>install 完成后再重新加载一下依赖；</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240112222113.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>在进行上一步操作的时候本人对部分模块先引用打包到了本地 chatbot-api-common、  chatbot-api-domain  ；但这个应该不是关键影响因素（可忽略）</p>
+<h4 id="项目结构分析"><a href="#项目结构分析" class="headerlink" title="项目结构分析"></a>项目结构分析</h4><ul>
+<li>chatbot-api-application<ul>
+<li>ext<ul>
+<li>进行任务注册服务，支持多组任务配置</li>
+</ul>
+</li>
+<li>job<ul>
+<li>定义定时任务，进行检索问题并进行AI回答，AI回答后进行问题回复。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>chatbot-api-common<ul>
+<li>公共服务</li>
+</ul>
+</li>
+<li>chatbot-api-domain<ul>
+<li>领域服务<ul>
+<li>ai<ul>
+<li>调用 openai 的 chatgpt 接口</li>
+</ul>
+</li>
+<li>zsxq<ul>
+<li>queryUnAnsweredQuestionsTopicId  获取知识星球的未回答内容</li>
+<li>answer   回复知识星球的未回答内容</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>chatbot-api-infrastructure<ul>
+<li>聚合</li>
+</ul>
+</li>
+<li>chatbot-api-interface<ul>
+<li>启动类</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="2、领域服务核心内容分析"><a href="#2、领域服务核心内容分析" class="headerlink" title="2、领域服务核心内容分析"></a>2、领域服务核心内容分析</h3><p>根据视频教程内容是需要创建一个知识星球，获取其中分栏”等我回答中的信息”，不过这里知识星球它创建免费星球有限制，而创建收费星球限制最少收费50；</p>
+<p>下面主要分析一下其领域服务核心内容实现流程。</p>
+<p>测试包 cn.bugstack.chatbot.api.test 下类ApiTest 方法分析</p>
+<p>这里大致的一个实现思路：</p>
+<p>首先是通过查询“未回答问题”爬取知识星球的接口信息，然后是通过 chatgpt 回复相关内容（涉及到两个接口，一个是回答知识星球的相关问题，一个是调用 openai 的 chatgpt 接口返回数据）</p>
+<p>这里来执行回复操作是通过定时任务来进行执行的，在教程视频： <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1XR4y1h7JP/">https://www.bilibili.com/video/BV1XR4y1h7JP/</a></p>
+<p>提及到了一个多组任务服务配置的技术实现，是通过将同一套流程但不同爬取接口方（比如：知识星球的多个群对应多个配置)；to be contined…</p>
+<h4 id="查询“未回答问题”"><a href="#查询“未回答问题”" class="headerlink" title="查询“未回答问题”"></a>查询“未回答问题”</h4><p>爬取知识星球的接口信息操作</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs csharp">@Test<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">query_unanswered_questions</span>() throws IOException</span> &#123;<br>    <span class="hljs-comment">// 使用 HttpClientBuilder 创建一个 CloseableHttpClient 实例。</span><br>    CloseableHttpClient httpClient = HttpClientBuilder.create().build();<br><br>    <span class="hljs-comment">// 创建一个 HttpGet 请求对象，URL 指向知识星球API的特定端点。</span><br>    <span class="hljs-comment">// 这个端点用于获取指定群组中的“未回答问题”。</span><br>    HttpGet <span class="hljs-keyword">get</span> = <span class="hljs-keyword">new</span> HttpGet(<span class="hljs-string">&quot;https://api.zsxq.com/v2/groups/48411118851818/topics?scope=unanswered_questions&amp;count=20&quot;</span>);<br><br>    <span class="hljs-comment">// 添加请求头。这里的 &quot;cookie&quot; 需要替换为有效的知识星球个人cookie信息，用于身份验证。</span><br>    <span class="hljs-keyword">get</span>.addHeader(<span class="hljs-string">&quot;cookie&quot;</span>, <span class="hljs-string">&quot;知识星球个人cookie信息&quot;</span>);<br><br>    <span class="hljs-comment">// 设置请求的内容类型为 JSON，并指定字符集为 UTF-8。</span><br>    <span class="hljs-keyword">get</span>.addHeader(<span class="hljs-string">&quot;Content-Type&quot;</span>, <span class="hljs-string">&quot;application/json;charset=utf8&quot;</span>);<br><br>    <span class="hljs-comment">// 执行 HTTP GET 请求并获取响应。</span><br>    CloseableHttpResponse response = httpClient.execute(<span class="hljs-keyword">get</span>);<br><br>    <span class="hljs-comment">// 检查响应状态码。如果状态码为 200 (HttpStatus.SC_OK)，表示请求成功。</span><br>    <span class="hljs-keyword">if</span> (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) &#123;<br>        <span class="hljs-comment">// 将响应实体转换为字符串，并打印出来。这通常是 JSON 格式的数据。</span><br>        String res = EntityUtils.toString(response.getEntity());<br>        System.<span class="hljs-keyword">out</span>.println(res);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-comment">// 如果状态码不是 200，打印出状态码。</span><br>        <span class="hljs-comment">// 这可能表明请求出错或其他问题。</span><br>        System.<span class="hljs-keyword">out</span>.println(response.getStatusLine().getStatusCode());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这里需要注意的是：需要正确设置知识星球的个人cookie信息才能成功发起请求，信息从浏览器的F12中查看。</p>
+<h4 id="回答相关问题"><a href="#回答相关问题" class="headerlink" title="回答相关问题"></a>回答相关问题</h4><p>用于回答知识星球平台上的某个特定话题</p>
+<figure class="highlight wren"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs wren">@<span class="hljs-title class_">Test</span><br><span class="hljs-variable">public</span> <span class="hljs-variable">void</span> <span class="hljs-title function_">answer</span>() <span class="hljs-variable">throws</span> <span class="hljs-title class_">IOException</span> &#123;<br>    <span class="hljs-comment">// 使用 HttpClientBuilder 创建一个 CloseableHttpClient 实例。</span><br>    <span class="hljs-title class_">CloseableHttpClient</span> <span class="hljs-variable">httpClient</span> <span class="hljs-operator">=</span> <span class="hljs-title class_">HttpClientBuilder</span>.<span class="hljs-property">create</span>().<span class="hljs-property">build</span>();<br><br>    <span class="hljs-comment">// 创建一个 HttpPost 请求对象，URL 指向知识星球API的特定端点。</span><br>    <span class="hljs-comment">// 这个端点用于回答一个指定的话题。</span><br>    <span class="hljs-title class_">HttpPost</span> <span class="hljs-variable">post</span> <span class="hljs-operator">=</span> <span class="hljs-variable">new</span> <span class="hljs-title class_">HttpPost</span>(<span class="hljs-string">&quot;https://api.zsxq.com/v2/topics/412884248251548/answer&quot;</span>);<br><br>    <span class="hljs-comment">// 添加请求头。这里的 &quot;cookie&quot; 需要替换为有效的知识星球个人cookie信息，用于身份验证。</span><br>    <span class="hljs-variable">post</span>.<span class="hljs-property">addHeader</span>(<span class="hljs-string">&quot;cookie&quot;</span>, <span class="hljs-string">&quot;知识星球个人cookie信息&quot;</span>);<br><br>    <span class="hljs-comment">// 设置请求的内容类型为 JSON，并指定字符集为 UTF-8。</span><br>    <span class="hljs-variable">post</span>.<span class="hljs-property">addHeader</span>(<span class="hljs-string">&quot;Content-Type&quot;</span>, <span class="hljs-string">&quot;application/json;charset=utf8&quot;</span>);<br><br>    <span class="hljs-comment">// 创建一个 JSON 格式的字符串，作为 POST 请求的参数。</span><br>    <span class="hljs-comment">// 这里的参数包括回答的文本、图片ID（如果有的话）和是否静音（silenced）。</span><br>    <span class="hljs-title class_">String</span> <span class="hljs-variable">paramJson</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;&#123;<span class="hljs-char escape_">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;  <span class="hljs-char escape_">\&quot;</span>req_data<span class="hljs-char escape_">\&quot;</span>: &#123;<span class="hljs-char escape_">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;    <span class="hljs-char escape_">\&quot;</span>text<span class="hljs-char escape_">\&quot;</span>: <span class="hljs-char escape_">\&quot;</span>自己去百度！<span class="hljs-char escape_">\\</span>n<span class="hljs-char escape_">\&quot;</span>,<span class="hljs-char escape_">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;    <span class="hljs-char escape_">\&quot;</span>image_ids<span class="hljs-char escape_">\&quot;</span>: [],<span class="hljs-char escape_">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;    <span class="hljs-char escape_">\&quot;</span>silenced<span class="hljs-char escape_">\&quot;</span>: false<span class="hljs-char escape_">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;  &#125;<span class="hljs-char escape_">\n</span>&quot;</span> <span class="hljs-operator">+</span><br>            <span class="hljs-string">&quot;&#125;&quot;</span>;<br><br>    <span class="hljs-comment">// 创建一个 StringEntity 来封装 JSON 参数，设置其内容类型和编码。</span><br>    <span class="hljs-title class_">StringEntity</span> <span class="hljs-variable">stringEntity</span> <span class="hljs-operator">=</span> <span class="hljs-variable">new</span> <span class="hljs-title class_">StringEntity</span>(<span class="hljs-variable">paramJson</span>, <span class="hljs-title class_">ContentType</span>.<span class="hljs-property">create</span>(<span class="hljs-string">&quot;text/json&quot;</span>, <span class="hljs-string">&quot;UTF-8&quot;</span>));<br><br>    <span class="hljs-comment">// 将封装好的参数设置到 POST 请求中。</span><br>    <span class="hljs-variable">post</span>.<span class="hljs-property">setEntity</span>(<span class="hljs-variable">stringEntity</span>);<br><br>    <span class="hljs-comment">// 执行 HTTP POST 请求并获取响应。</span><br>    <span class="hljs-title class_">CloseableHttpResponse</span> <span class="hljs-variable">response</span> <span class="hljs-operator">=</span> <span class="hljs-variable">httpClient</span>.<span class="hljs-property">execute</span>(<span class="hljs-variable">post</span>);<br><br>    <span class="hljs-comment">// 检查响应状态码。如果状态码为 200 (HttpStatus.SC_OK)，表示请求成功。</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-variable">response</span>.<span class="hljs-property">getStatusLine</span>().<span class="hljs-property">getStatusCode</span>() <span class="hljs-operator">==</span> <span class="hljs-title class_">HttpStatus</span>.<span class="hljs-property">SC_OK</span>) &#123;<br>        <span class="hljs-comment">// 将响应实体转换为字符串，并打印出来。这通常是 JSON 格式的数据。</span><br>        <span class="hljs-title class_">String</span> <span class="hljs-variable">res</span> <span class="hljs-operator">=</span> <span class="hljs-title class_">EntityUtils</span>.<span class="hljs-property">toString</span>(<span class="hljs-variable">response</span>.<span class="hljs-property">getEntity</span>());<br>        <span class="hljs-title class_">System</span>.<span class="hljs-property">out</span>.<span class="hljs-property">println</span>(<span class="hljs-variable">res</span>);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-comment">// 如果状态码不是 200，打印出状态码。</span><br>        <span class="hljs-comment">// 这可能表明请求出错或其他问题。</span><br>        <span class="hljs-title class_">System</span>.<span class="hljs-property">out</span>.<span class="hljs-property">println</span>(<span class="hljs-variable">response</span>.<span class="hljs-property">getStatusLine</span>().<span class="hljs-property">getStatusCode</span>());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="使用-ChatGPT-模型生成文本"><a href="#使用-ChatGPT-模型生成文本" class="headerlink" title="使用 ChatGPT 模型生成文本"></a>使用 ChatGPT 模型生成文本</h4><figure class="highlight wren"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs wren">@<span class="hljs-title class_">Test</span><br><span class="hljs-variable">public</span> <span class="hljs-variable">void</span> <span class="hljs-title function_">test_chatGPT</span>() <span class="hljs-variable">throws</span> <span class="hljs-title class_">IOException</span> &#123;<br>    <span class="hljs-comment">// 使用 HttpClientBuilder 创建一个 CloseableHttpClient 实例。</span><br>    <span class="hljs-title class_">CloseableHttpClient</span> <span class="hljs-variable">httpClient</span> <span class="hljs-operator">=</span> <span class="hljs-title class_">HttpClientBuilder</span>.<span class="hljs-property">create</span>().<span class="hljs-property">build</span>();<br><br>    <span class="hljs-comment">// 创建一个 HttpPost 请求对象，URL 设置为 OpenAI API 的地址。</span><br>    <span class="hljs-title class_">HttpPost</span> <span class="hljs-variable">post</span> <span class="hljs-operator">=</span> <span class="hljs-variable">new</span> <span class="hljs-title class_">HttpPost</span>(<span class="hljs-string">&quot;https://api.openai.com/v1/completions&quot;</span>);<br><br>    <span class="hljs-comment">// 设置请求头，指定内容类型为 JSON。</span><br>    <span class="hljs-variable">post</span>.<span class="hljs-property">addHeader</span>(<span class="hljs-string">&quot;Content-Type&quot;</span>, <span class="hljs-string">&quot;application/json&quot;</span>);<br><br>    <span class="hljs-comment">// 设置授权头。&quot;Bearer 自行申请 https://beta.openai.com/overview&quot; 需要替换为有效的授权令牌。</span><br>    <span class="hljs-variable">post</span>.<span class="hljs-property">addHeader</span>(<span class="hljs-string">&quot;Authorization&quot;</span>, <span class="hljs-string">&quot;Bearer 自行申请 https://beta.openai.com/overview&quot;</span>);<br><br>    <span class="hljs-comment">// 创建一个 JSON 字符串作为请求体。这里指定模型为 &quot;text-davinci-003&quot;，</span><br>    <span class="hljs-comment">// 提示词为 &quot;帮我写一个java冒泡排序&quot;，温度设置为0（生成文本的确定性更高），</span><br>    <span class="hljs-comment">// 并且最大令牌数设置为1024。</span><br>    <span class="hljs-title class_">String</span> <span class="hljs-variable">paramJson</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;&#123;<span class="hljs-char escape_">\&quot;</span>model<span class="hljs-char escape_">\&quot;</span>: <span class="hljs-char escape_">\&quot;</span>text-davinci-003<span class="hljs-char escape_">\&quot;</span>, <span class="hljs-char escape_">\&quot;</span>prompt<span class="hljs-char escape_">\&quot;</span>: <span class="hljs-char escape_">\&quot;</span>帮我写一个java冒泡排序<span class="hljs-char escape_">\&quot;</span>, <span class="hljs-char escape_">\&quot;</span>temperature<span class="hljs-char escape_">\&quot;</span>: 0, <span class="hljs-char escape_">\&quot;</span>max_tokens<span class="hljs-char escape_">\&quot;</span>: 1024&#125;&quot;</span>;<br><br>    <span class="hljs-comment">// 将 JSON 参数封装到一个 StringEntity 对象中，并设置其内容类型和编码。</span><br>    <span class="hljs-title class_">StringEntity</span> <span class="hljs-variable">stringEntity</span> <span class="hljs-operator">=</span> <span class="hljs-variable">new</span> <span class="hljs-title class_">StringEntity</span>(<span class="hljs-variable">paramJson</span>, <span class="hljs-title class_">ContentType</span>.<span class="hljs-property">create</span>(<span class="hljs-string">&quot;text/json&quot;</span>, <span class="hljs-string">&quot;UTF-8&quot;</span>));<br><br>    <span class="hljs-comment">// 将封装好的参数添加到 POST 请求中。</span><br>    <span class="hljs-variable">post</span>.<span class="hljs-property">setEntity</span>(<span class="hljs-variable">stringEntity</span>);<br><br>    <span class="hljs-comment">// 执行 HTTP POST 请求并获取响应。</span><br>    <span class="hljs-title class_">CloseableHttpResponse</span> <span class="hljs-variable">response</span> <span class="hljs-operator">=</span> <span class="hljs-variable">httpClient</span>.<span class="hljs-property">execute</span>(<span class="hljs-variable">post</span>);<br><br>    <span class="hljs-comment">// 检查响应状态码。如果状态码为 200 (HttpStatus.SC_OK)，表示请求成功。</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-variable">response</span>.<span class="hljs-property">getStatusLine</span>().<span class="hljs-property">getStatusCode</span>() <span class="hljs-operator">==</span> <span class="hljs-title class_">HttpStatus</span>.<span class="hljs-property">SC_OK</span>) &#123;<br>        <span class="hljs-comment">// 将响应实体转换为字符串并打印。这通常是 JSON 格式的数据，包含由模型生成的文本。</span><br>        <span class="hljs-title class_">String</span> <span class="hljs-variable">res</span> <span class="hljs-operator">=</span> <span class="hljs-title class_">EntityUtils</span>.<span class="hljs-property">toString</span>(<span class="hljs-variable">response</span>.<span class="hljs-property">getEntity</span>());<br>        <span class="hljs-title class_">System</span>.<span class="hljs-property">out</span>.<span class="hljs-property">println</span>(<span class="hljs-variable">res</span>);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-comment">// 如果状态码不是 200，打印出状态码。</span><br>        <span class="hljs-comment">// 这可能表明请求出错或其他问题。</span><br>        <span class="hljs-title class_">System</span>.<span class="hljs-property">out</span>.<span class="hljs-property">println</span>(<span class="hljs-variable">response</span>.<span class="hljs-property">getStatusLine</span>().<span class="hljs-property">getStatusCode</span>());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="定时任务进行爬取问题并进行回复"><a href="#定时任务进行爬取问题并进行回复" class="headerlink" title="定时任务进行爬取问题并进行回复"></a>定时任务进行爬取问题并进行回复</h4><p>核心方法是 ChatbotTask下重写的 run 方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Override</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-comment">// 随机决定是否执行此次任务。</span><br>        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">new</span> <span class="hljs-title class_">Random</span>().nextBoolean()) &#123;<br>            logger.info(<span class="hljs-string">&quot;&#123;&#125; 随机打烊中...&quot;</span>, groupName);<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br><br>        <span class="hljs-comment">// 获取当前时间。</span><br>        <span class="hljs-type">GregorianCalendar</span> <span class="hljs-variable">calendar</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">GregorianCalendar</span>();<br>        <span class="hljs-type">int</span> <span class="hljs-variable">hour</span> <span class="hljs-operator">=</span> calendar.get(Calendar.HOUR_OF_DAY);<br><br>        <span class="hljs-comment">// 判断当前是否在非工作时间（晚上 22 点后或早上 7 点前）。</span><br>        <span class="hljs-keyword">if</span> (hour &gt; <span class="hljs-number">22</span> || hour &lt; <span class="hljs-number">7</span>) &#123;<br>            logger.info(<span class="hljs-string">&quot;&#123;&#125; 打烊时间不工作，AI 下班了！&quot;</span>, groupName);<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br><br>        <span class="hljs-comment">// 1. 检索问题：从某 API 获取未回答的问题。</span><br>        <span class="hljs-type">UnAnsweredQuestionsAggregates</span> <span class="hljs-variable">unAnsweredQuestionsAggregates</span> <span class="hljs-operator">=</span> zsxqApi.queryUnAnsweredQuestionsTopicId(groupId, cookie);<br>        logger.info(<span class="hljs-string">&quot;&#123;&#125; 检索结果：&#123;&#125;&quot;</span>, groupName, JSON.toJSONString(unAnsweredQuestionsAggregates));<br>        List&lt;Topics&gt; topics = unAnsweredQuestionsAggregates.getResp_data().getTopics();<br><br>        <span class="hljs-comment">// 判断是否检索到未回答的问题。</span><br>        <span class="hljs-keyword">if</span> (<span class="hljs-literal">null</span> == topics || topics.isEmpty()) &#123;<br>            logger.info(<span class="hljs-string">&quot;&#123;&#125; 本次检索未查询到待会答问题&quot;</span>, groupName);<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br><br>        <span class="hljs-comment">// 2. AI 回答：使用 AI（可能是 ChatGPT 或类似服务）来生成回答。</span><br>        <span class="hljs-type">Topics</span> <span class="hljs-variable">topic</span> <span class="hljs-operator">=</span> topics.get(topics.size() - <span class="hljs-number">1</span>); <span class="hljs-comment">// 取最后一个问题进行回答。</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">answer</span> <span class="hljs-operator">=</span> openAI.doChatGPT(openAiKey, topic.getQuestion().getText().trim());<br><br>        <span class="hljs-comment">// 3. 问题回复：将 AI 生成的回答发送回 API。</span><br>        <span class="hljs-type">boolean</span> <span class="hljs-variable">status</span> <span class="hljs-operator">=</span> zsxqApi.answer(groupId, cookie, topic.getTopic_id(), answer, silenced);<br>        logger.info(<span class="hljs-string">&quot;&#123;&#125; 编号：&#123;&#125; 问题：&#123;&#125; 回答：&#123;&#125; 状态：&#123;&#125;&quot;</span>, groupName, topic.getTopic_id(), topic.getQuestion().getText(), answer, status);<br><br>    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>        <span class="hljs-comment">// 记录任何异常。</span><br>        logger.error(<span class="hljs-string">&quot;&#123;&#125; 自动回答问题异常&quot;</span>, groupName, e);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="多组任务配置操作"><a href="#多组任务配置操作" class="headerlink" title="多组任务配置操作"></a>多组任务配置操作</h4><p>TaskRegistrarAutoConfig 配置类, 这个类是用于配置和安排一系列的定时任务</p>
+<p>下面是其中的两个方法的说明和阐述：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-meta">@Override</span><br><span class="hljs-keyword">public</span> <span class="hljs-built_in">void</span> <span class="hljs-title function_">setEnvironment</span>(<span class="hljs-params">Environment environment</span>) &#123;<br>    <span class="hljs-comment">// 设置配置前缀。</span><br>    <span class="hljs-title class_">String</span> prefix = <span class="hljs-string">&quot;chatbot-api.&quot;</span>;<br><br>    <span class="hljs-comment">// 从环境变量中获取配置项 &#x27;chatbot-api.launchList&#x27;。</span><br>    <span class="hljs-title class_">String</span> launchListStr = environment.<span class="hljs-title function_">getProperty</span>(prefix + <span class="hljs-string">&quot;launchList&quot;</span>);<br><br>    <span class="hljs-comment">// 如果配置项为空，则直接返回。</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-title class_">StringUtils</span>.<span class="hljs-title function_">isEmpty</span>(launchListStr)) <span class="hljs-keyword">return</span>;<br><br>    <span class="hljs-comment">// 分割配置字符串，遍历每个组键。</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-title class_">String</span> groupKey : launchListStr.<span class="hljs-title function_">split</span>(<span class="hljs-string">&quot;,&quot;</span>)) &#123;<br>        <span class="hljs-comment">// 根据组键获取相关的任务组属性。</span><br>        <span class="hljs-title class_">Map</span>&lt;<span class="hljs-title class_">String</span>, <span class="hljs-title class_">Object</span>&gt; taskGroupProps = <span class="hljs-title class_">PropertyUtil</span>.<span class="hljs-title function_">handle</span>(environment, prefix + groupKey, <span class="hljs-title class_">Map</span>.<span class="hljs-property">class</span>);<br><br>        <span class="hljs-comment">// 将任务组属性存储在 taskGroupMap 中。</span><br>        taskGroupMap.<span class="hljs-title function_">put</span>(groupKey, taskGroupProps);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>从应用程序的环境变量中读取任务配置。</li>
+<li>将配置字符串（例如，分组键）分割并遍历每个分组。</li>
+<li>对于每个分组键，获取其相关属性并存储在 <code>taskGroupMap</code> 中。</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-meta">@Override</span><br>public <span class="hljs-keyword">void</span> configureTasks(ScheduledTaskRegistrar taskRegistrar) &#123;<br>    <span class="hljs-comment">// 获取所有任务组的键集。</span><br>    <span class="hljs-built_in">Set</span>&lt;<span class="hljs-built_in">String</span>&gt; taskGroups = taskGroupMap.keySet();<br><br>    <span class="hljs-comment">// 遍历每个任务组的键。</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-built_in">String</span> groupKey : taskGroups) &#123;<br>        <span class="hljs-comment">// 获取每个任务组的配置。</span><br>        <span class="hljs-built_in">Map</span>&lt;<span class="hljs-built_in">String</span>, <span class="hljs-built_in">Object</span>&gt; taskGroup = taskGroupMap.<span class="hljs-keyword">get</span>(groupKey);<br><br>        <span class="hljs-comment">// 从配置中提取任务相关信息。</span><br>        <span class="hljs-built_in">String</span> groupName = taskGroup.<span class="hljs-keyword">get</span>(<span class="hljs-string">&quot;groupName&quot;</span>).toString();<br>        <span class="hljs-built_in">String</span> groupId = taskGroup.<span class="hljs-keyword">get</span>(<span class="hljs-string">&quot;groupId&quot;</span>).toString();<br>        <span class="hljs-built_in">String</span> cookie = taskGroup.<span class="hljs-keyword">get</span>(<span class="hljs-string">&quot;cookie&quot;</span>).toString();<br>        <span class="hljs-built_in">String</span> openAiKey = taskGroup.<span class="hljs-keyword">get</span>(<span class="hljs-string">&quot;openAiKey&quot;</span>).toString();<br>        <span class="hljs-built_in">String</span> cronExpressionBase64 = taskGroup.<span class="hljs-keyword">get</span>(<span class="hljs-string">&quot;cronExpression&quot;</span>).toString();<br><br>        <span class="hljs-comment">// 解码 Base64 编码的 cron 表达式。</span><br>        <span class="hljs-built_in">String</span> cronExpression = <span class="hljs-keyword">new</span> <span class="hljs-built_in">String</span>(Base64.getDecoder().decode(cronExpressionBase64), StandardCharsets.UTF_8);<br><br>        <span class="hljs-comment">// 获取是否静音的布尔值。</span><br>        boolean silenced = Boolean.parseBoolean(taskGroup.<span class="hljs-keyword">get</span>(<span class="hljs-string">&quot;silenced&quot;</span>).toString());<br><br>        <span class="hljs-comment">// 记录日志信息。</span><br>        logger.info(<span class="hljs-string">&quot;创建任务 groupName：&#123;&#125; groupId：&#123;&#125; cronExpression：&#123;&#125;&quot;</span>, groupName, groupId, cronExpression);<br><br>        <span class="hljs-comment">// 添加定时任务。</span><br>        taskRegistrar.addCronTask(<span class="hljs-keyword">new</span> ChatbotTask(groupName, groupId, cookie, openAiKey, zsxqApi, openAI, silenced), cronExpression);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>配置和安排定时任务。</li>
+<li>遍历之前在 <code>setEnvironment</code> 方法中设置的任务组。</li>
+<li>从每个任务组配置中提取必要信息，包括任务名称、群组 ID、cookie、OpenAI 密钥、cron 表达式和静音标志。</li>
+<li>对 Base64 编码的 cron 表达式进行解码。</li>
+<li>创建并安排每个任务，使用提取的信息初始化 <code>ChatbotTask</code> 并将其添加到 <code>ScheduledTaskRegistrar</code>。</li>
+</ul>
+<h4 id="项目运行-🦅🦅"><a href="#项目运行-🦅🦅" class="headerlink" title="项目运行 🦅🦅"></a>项目运行 🦅🦅</h4><p>个人充值 openai 的 key 存在问题，这里是使用淘宝第三方购买的 apikey</p>
+<p>to  be contined….</p>
+<h3 id="3、二开（订阅号信息回复）定时发送消息"><a href="#3、二开（订阅号信息回复）定时发送消息" class="headerlink" title="3、二开（订阅号信息回复）定时发送消息"></a>3、二开（订阅号信息回复）定时发送消息</h3><p>有一个公众号定时推送的开源项目，可以看一下：  <a target="_blank" rel="noopener" href="https://gitee.com/love_c/wechatPush?_from=gitee_searc">https://gitee.com/love_c/wechatPush?_from=gitee_searc</a></p>
+<p>微信公众号回复的博客： <a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1641549">https://cloud.tencent.com/developer/article/1641549</a></p>
+<p>其博客内容的代码地址： <a target="_blank" rel="noopener" href="https://github.com/tsmyk0715/wechatproject">https://github.com/tsmyk0715/wechatproject</a> （这个项目还是四年前的项目）</p>
+<p>尝试后续使用一下 WxJava 这个开源项目的相关内容 ： <a target="_blank" rel="noopener" href="https://gitee.com/binary/weixin-java-tools">https://gitee.com/binary/weixin-java-tools</a></p>
+<hr>
+<p>实际运行的时候发现这里的接口参数还是需要使用测试号，如果使用个人号的话有权限限制，微信很多接口不能使用，这个需要注意一下。或者以后有机会拥有自己的服务号。</p>
+<p>测试号申请地址： <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login">https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login</a></p>
+<h4 id="定制化发送消息模板"><a href="#定制化发送消息模板" class="headerlink" title="定制化发送消息模板"></a>定制化发送消息模板</h4><p>wechatPush 这个开源项目中主要的工具类是： PushUtil</p>
+<p>这里进行部分分析，该工具类 PushUtil 下 的 push 方法是 定义了一个微信消息推送的方法。它创建和发送定制化的模板消息给特定的用户</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 消息推送主要业务代码</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">push</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-comment">// 创建一个 CloseableHttpClient 实例。</span><br>    <span class="hljs-type">CloseableHttpClient</span> <span class="hljs-variable">httpClient</span> <span class="hljs-operator">=</span> HttpClientBuilder.create().build();<br><br>    <span class="hljs-comment">// 构建微信模板消息。</span><br>    <span class="hljs-type">WxMpTemplateMessage</span> <span class="hljs-variable">templateMessage</span> <span class="hljs-operator">=</span> WxMpTemplateMessage.builder()<br>            .templateId(PushConfigure.getTemplateId())<br>            .build();<br><br>    <span class="hljs-comment">// 计算与特定日期相关的天数，例如恋爱纪念日。</span><br>    <span class="hljs-type">long</span> <span class="hljs-variable">loveDays</span> <span class="hljs-operator">=</span> MemoryDayUtil.calculationLianAi(PushConfigure.getLoveDate());<br><br>    <span class="hljs-comment">// 计算距离生日的天数。</span><br>    <span class="hljs-type">long</span> <span class="hljs-variable">birthdays</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">if</span> (PushConfigure.isUseLunar()) &#123;<br>        <span class="hljs-comment">// 如果使用农历生日，调用相应方法计算。</span><br>        birthdays = MemoryDayUtil.calculationBirthdayByLunar(PushConfigure.getBirthday());<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-comment">// 使用阳历生日计算。</span><br>        birthdays = MemoryDayUtil.calculationBirthday(PushConfigure.getBirthday());<br>    &#125;<br><br>    <span class="hljs-comment">// 向模板消息添加相关数据。</span><br>    templateMessage.addData(<span class="hljs-keyword">new</span> <span class="hljs-title class_">WxMpTemplateData</span>(<span class="hljs-string">&quot;loveDays&quot;</span>, loveDays + <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-string">&quot;#FF1493&quot;</span>));<br>    templateMessage.addData(<span class="hljs-keyword">new</span> <span class="hljs-title class_">WxMpTemplateData</span>(<span class="hljs-string">&quot;birthdays&quot;</span>, birthdays + <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-string">&quot;#FFA500&quot;</span>));<br><br>    <span class="hljs-comment">// 获取天气数据。</span><br>    <span class="hljs-type">Result</span> <span class="hljs-variable">weatherResult</span> <span class="hljs-operator">=</span> WeatherUtil.getWeather();<br>    <span class="hljs-type">StringBuilder</span> <span class="hljs-variable">messageAll</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>();<br><br>    <span class="hljs-comment">// 处理天气数据。</span><br>    <span class="hljs-keyword">if</span> (!<span class="hljs-string">&quot;0&quot;</span>.equals(weatherResult.getCode())) &#123;<br>        <span class="hljs-comment">// 如果获取天气数据失败，记录失败信息。</span><br>        messageAll.append(<span class="hljs-string">&quot;&lt;br/&gt;&quot;</span>);<br>        messageAll.append(weatherResult.getMessage());<br>        templateMessage.addData(<span class="hljs-keyword">new</span> <span class="hljs-title class_">WxMpTemplateData</span>(<span class="hljs-string">&quot;weather&quot;</span>, <span class="hljs-string">&quot;***&quot;</span>, <span class="hljs-string">&quot;#00FFFF&quot;</span>));<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-comment">// 如果成功获取天气数据，提取并添加到模板消息中。</span><br>        <span class="hljs-type">Weather</span> <span class="hljs-variable">weather</span> <span class="hljs-operator">=</span> (Weather) weatherResult.getData();<br>        <span class="hljs-comment">// 初始化农历日期工具类。</span><br>        <span class="hljs-type">LunarCalendarFestivalUtils</span> <span class="hljs-variable">festival</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">LunarCalendarFestivalUtils</span>();<br>        festival.initLunarCalendarInfo(weather.getDate());<br><br>        <span class="hljs-comment">// 向模板消息中添加各种天气和日期信息。</span><br>        <span class="hljs-comment">// ... (代码省略)</span><br><br>        <span class="hljs-comment">// 天行数据接口调用。</span><br>        <span class="hljs-type">Result</span> <span class="hljs-variable">rainbowResult</span> <span class="hljs-operator">=</span> RainbowUtil.getRainbow();<br>        <span class="hljs-keyword">if</span> (!<span class="hljs-string">&quot;200&quot;</span>.equals(rainbowResult.getCode())) &#123;<br>            <span class="hljs-comment">// 如果天行数据接口调用失败，记录失败信息。</span><br>            messageAll.append(<span class="hljs-string">&quot;&lt;br/&gt;&quot;</span>);<br>            messageAll.append(rainbowResult.getMessage());<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-comment">// 成功获取天行数据，添加到模板消息。</span><br>            <span class="hljs-type">String</span> <span class="hljs-variable">data</span> <span class="hljs-operator">=</span> (String) rainbowResult.getData();<br>            data = data.replaceAll(<span class="hljs-string">&quot;\r|\n&quot;</span>, <span class="hljs-string">&quot;&quot;</span>);<br>            templateMessage.addData(<span class="hljs-keyword">new</span> <span class="hljs-title class_">WxMpTemplateData</span>(<span class="hljs-string">&quot;rainbow&quot;</span>, data, <span class="hljs-string">&quot;#FF69B4&quot;</span>));<br>        &#125;<br><br>        <span class="hljs-comment">// 根据不同的日期条件添加备注信息。</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">remark</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;❤&quot;</span>;<br>        <span class="hljs-comment">// ... (处理特定日期逻辑的代码)</span><br><br>        templateMessage.addData(<span class="hljs-keyword">new</span> <span class="hljs-title class_">WxMpTemplateData</span>(<span class="hljs-string">&quot;remark&quot;</span>, remark, <span class="hljs-string">&quot;#FF1493&quot;</span>));<br><br>        <span class="hljs-comment">// 输出模板消息的 JSON 表示。</span><br>        System.out.println(templateMessage.toJson());<br><br>        <span class="hljs-comment">// 获取微信模板消息服务。</span><br>        <span class="hljs-type">WxMpTemplateMsgService</span> <span class="hljs-variable">service</span> <span class="hljs-operator">=</span> getService();<br><br>        <span class="hljs-comment">// 记录发送成功和失败的计数。</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">suc</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">err</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (String userId : PushConfigure.getUserId()) &#123;<br>            templateMessage.setToUser(userId);<br>            <span class="hljs-keyword">try</span> &#123;<br>                <span class="hljs-comment">// 发送模板消息。</span><br>                service.sendTemplateMsg(templateMessage);<br>                suc += <span class="hljs-number">1</span>;<br>            &#125; <span class="hljs-keyword">catch</span> (WxErrorException e) &#123;<br>                <span class="hljs-comment">// 如果发送失败，记录失败信息。</span><br>	            err += <span class="hljs-number">1</span>;<br>	            messageAll.append(suc).append(<span class="hljs-string">&quot;个成功!&quot;</span>);<br>	            messageAll.append(err).append(<span class="hljs-string">&quot;个失败!&quot;</span>);<br>	            messageAll.append(<span class="hljs-string">&quot;&lt;br/&gt;&quot;</span>);<br>	            messageAll.append(e.getMessage());<br>	            <span class="hljs-comment">// 返回推送结果。</span><br>	            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;推送结果:&quot;</span> + messageAll;<br>	        &#125;<br>	    &#125;<br><br>	    <span class="hljs-comment">// 如果所有消息发送完毕，返回成功推送的用户数量和消息。</span><br>	    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;成功推送给&quot;</span> + suc + <span class="hljs-string">&quot;个用户!&quot;</span> + messageAll;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<p>功能概述：</p>
+<ul>
+<li>此方法主要用于构建和发送定制化的微信模板消息。</li>
+<li>它包含对恋爱纪念日和生日的计算，获取天气信息，以及调用天行数据接口。</li>
+<li>消息的内容根据特定的日期条件进行定制。</li>
+<li>最后，该方法通过微信公众号平台的 API 发送消息给指定的用户列表。</li>
+</ul>
+<p>注意事项：</p>
+<ul>
+<li>需要有效的微信公众号配置信息，如模板 ID 和用户 ID。</li>
+<li><code>PushConfigure</code> 类中应包含所有相关的配置信息。</li>
+<li>天气信息和天行数据接口的实现细节没有在代码中给出，需要单独实现。</li>
+<li>异常处理用于捕获和记录消息发送过程中的错误。</li>
+<li>此方法在成功发送所有消息后，返回一个汇总的结果字符串。</li>
+</ul>
+<h4 id="微信消息推送"><a href="#微信消息推送" class="headerlink" title="微信消息推送"></a>微信消息推送</h4><p>看了一下调用关系，其中核心方法是： executeInternal</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs aspectj"><span class="hljs-keyword">public</span> &lt;T, E&gt; <span class="hljs-function">T <span class="hljs-title">executeInternal</span><span class="hljs-params">(RequestExecutor&lt;T, E&gt; executor, String uri, E data)</span> <span class="hljs-keyword">throws</span> WxErrorException </span>&#123;<br>    <span class="hljs-comment">// 处理日志中的敏感数据，例如脱敏。</span><br>    E dataForLog = DataUtils.handleDataWithSecret(data);<br><br>    <span class="hljs-comment">// 检查 URI 是否错误地包含 access_token，如果包含则抛出异常。</span><br>    <span class="hljs-keyword">if</span> (uri.contains(<span class="hljs-string">&quot;access_token=&quot;</span>)) &#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalArgumentException(<span class="hljs-string">&quot;uri参数中不允许有access_token: &quot;</span> + uri);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-comment">// 获取 access token，并构造带有 access token 的完整 URI。</span><br>        String accessToken = <span class="hljs-keyword">this</span>.getAccessToken(<span class="hljs-keyword">false</span>);<br>        String uriWithAccessToken = uri + (uri.contains(<span class="hljs-string">&quot;?&quot;</span>) ? <span class="hljs-string">&quot;&amp;&quot;</span> : <span class="hljs-string">&quot;?&quot;</span>) + <span class="hljs-string">&quot;access_token=&quot;</span> + accessToken;<br><br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">// 使用传入的 executor 执行请求，并获取结果。</span><br>            T result = executor.execute(uriWithAccessToken, data);<br><br>            <span class="hljs-comment">// 记录请求和响应数据到日志。</span><br>            <span class="hljs-keyword">this</span>.log.debug(<span class="hljs-string">&quot;\n【请求地址】: &#123;&#125;\n【请求参数】：&#123;&#125;\n【响应数据】：&#123;&#125;&quot;</span>, <span class="hljs-keyword">new</span> Object[]&#123;uriWithAccessToken, dataForLog, result&#125;);<br>            <span class="hljs-keyword">return</span> result;<br>        &#125; <span class="hljs-keyword">catch</span> (WxErrorException var9) &#123;<br>            <span class="hljs-comment">// 处理微信错误异常。</span><br>            WxError <span class="hljs-keyword">error</span> = var9.getError();<br><br>            <span class="hljs-comment">// 检查是否是因为 access token 过期引起的错误，并尝试刷新。</span><br>            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">error</span>.getErrorCode() == <span class="hljs-number">42001</span> || <span class="hljs-keyword">error</span>.getErrorCode() == <span class="hljs-number">40001</span> || <span class="hljs-keyword">error</span>.getErrorCode() == <span class="hljs-number">40014</span>) &#123;<br>                <span class="hljs-keyword">this</span>.getWxMpConfigStorage().expireAccessToken();<br>                <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.getWxMpConfigStorage().autoRefreshToken()) &#123;<br>                    <span class="hljs-function"><span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.<span class="hljs-title">execute</span><span class="hljs-params">(executor, uri, data)</span></span>;<br>                &#125;<br>            &#125;<br><br>            <span class="hljs-comment">// 如果错误码不为0，记录错误并抛出异常。</span><br>            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">error</span>.getErrorCode() != <span class="hljs-number">0</span>) &#123;<br>                <span class="hljs-keyword">this</span>.log.<span class="hljs-keyword">error</span>(<span class="hljs-string">&quot;\n【请求地址】: &#123;&#125;\n【请求参数】：&#123;&#125;\n【错误信息】：&#123;&#125;&quot;</span>, <span class="hljs-keyword">new</span> Object[]&#123;uriWithAccessToken, dataForLog, <span class="hljs-keyword">error</span>&#125;);<br>                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> WxErrorException(<span class="hljs-keyword">error</span>, var9);<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>            &#125;<br>        &#125; <span class="hljs-keyword">catch</span> (IOException var10) &#123;<br>            <span class="hljs-comment">// 处理 IO 异常。</span><br>            <span class="hljs-keyword">this</span>.log.<span class="hljs-keyword">error</span>(<span class="hljs-string">&quot;\n【请求地址】: &#123;&#125;\n【请求参数】：&#123;&#125;\n【异常信息】：&#123;&#125;&quot;</span>, <span class="hljs-keyword">new</span> Object[]&#123;uriWithAccessToken, dataForLog, var10.getMessage()&#125;);<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> WxErrorException(WxError.builder().errorMsg(var10.getMessage()).build(), var10);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>具体的调用关系有兴趣可以看一下项目代码。</p>
+<h4 id="天气查询"><a href="#天气查询" class="headerlink" title="天气查询"></a>天气查询</h4><p>通过百度地图开发平台获取当地天气，需要申请成为开发者： <a target="_blank" rel="noopener" href="https://lbsyun.baidu.com/apiconsole/center">https://lbsyun.baidu.com/apiconsole/center</a></p>
+<p>国内天气查询： <a target="_blank" rel="noopener" href="https://lbs.baidu.com/faq/api?title=webapi/weather/base">https://lbs.baidu.com/faq/api?title=webapi/weather/base</a></p>
+<p>用户可通过行政区划代码查询实时天气信息及未来5天天气预报。</p>
+<p>api 服务地址： </p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//</span>api.map.baidu.com<span class="hljs-regexp">/weather/</span>v1/?district_id=<span class="hljs-number">222405</span>&amp;data_type=all&amp;ak=你的ak  <br><span class="hljs-regexp">//</span>GET请求<br></code></pre></td></tr></table></figure>
+
+<p>需要先获取到 Access Key </p>
+<p>在控制台管理 →  应用管理 → 我的应用： <a target="_blank" rel="noopener" href="https://lbs.baidu.com/apiconsole/key/create">https://lbs.baidu.com/apiconsole/key/create</a></p>
+<p>需要创建一个应用才能看到 AK</p>
+<p>有兴趣可以看一下，通过IP地址获取邮政编码: <a target="_blank" rel="noopener" href="https://blog.51cto.com/u_16175454/7185643">https://blog.51cto.com/u_16175454/7185643</a></p>
+<p>但实际并不是邮政编码，而是看一下官网文档给的ID编号。</p>
+<p>官网有一份文档 <a target="_blank" rel="noopener" href="https://lbs.baidu.com/faq/api?title=webapi/weather/base">https://lbs.baidu.com/faq/api?title=webapi/weather/base</a>   ，</p>
+<p>可以下载看一下：广州 440100  深圳 440300</p>
+<p>设置IP访问白名单：  建议直接设置  0.0.0.0&#x2F;0 </p>
+<p>由于不是公网访问，设置的IP应该是有点问题。</p>
+<h4 id="”彩虹屁“接口"><a href="#”彩虹屁“接口" class="headerlink" title="”彩虹屁“接口"></a>”彩虹屁“接口</h4><p>调用的第三方接口，天聚数行平台的</p>
+<p>接口地址： <a target="_blank" rel="noopener" href="https://www.tianapi.com/apiview/181">https://www.tianapi.com/apiview/181</a></p>
+<p>访问需要密钥： <a target="_blank" rel="noopener" href="https://www.tianapi.com/console/">https://www.tianapi.com/console/</a></p>
+<p>控制台 → 安全管理</p>
+<p>实际使用的时候他这个第三方接口的 IP 白名单有遇到坑，设置不生效，新增之后；</p>
+<p>后面不断尝试之后发现你充值他的 密钥Key 好像才刷新生效了。</p>
+<h4 id="编辑模板"><a href="#编辑模板" class="headerlink" title="编辑模板"></a>编辑模板</h4><p>最后推送的时候用到了一个模板ID，我们需要在测试微信公众号这里编辑一下模板</p>
+<figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs handlebars"><span class="language-xml">你好，今天是</span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">date.DATA</span>&#125;&#125;</span><span class="language-xml"></span><br><span class="language-xml">农历</span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">lunar.DATA</span>&#125;&#125;</span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">festival.DATA</span>&#125;&#125;</span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">remark.DATA</span>&#125;&#125;</span><span class="language-xml"></span><br><span class="language-xml">你所在的城市位置:</span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">city.DATA</span>&#125;&#125;</span><span class="language-xml"></span><br><span class="language-xml">当前天气:</span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">weather.DATA</span>&#125;&#125;</span><span class="language-xml"></span><br><span class="language-xml">最低气温: </span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">low.DATA</span>&#125;&#125;</span><span class="language-xml">度</span><br><span class="language-xml">最高气温: </span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">high.DATA</span>&#125;&#125;</span><span class="language-xml">度</span><br><span class="language-xml">风力: </span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">wc_day.DATA</span>&#125;&#125;</span><span class="language-xml"></span><br><span class="language-xml">风向: </span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">wd_day.DATA</span>&#125;&#125;</span><span class="language-xml"></span><br><span class="language-xml"></span><br><span class="language-xml">学习打卡~</span><br><span class="language-xml">请开始今天晚上的学习吧！</span><br><span class="language-xml">今天是打卡的第</span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">loveDays.DATA</span>&#125;&#125;</span><span class="language-xml">天</span><br><span class="language-xml">距离一年还剩下</span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">birthdays.DATA</span>&#125;&#125;</span><span class="language-xml">天</span><br><span class="language-xml">Encourage:</span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">rainbow.DATA</span>&#125;&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>自定义模板后进行提交，复制提交后的 模板ID，放到配置文件中</p>
+<p>userID 也是直接可以在公众号平台的列表可以看到</p>
+<p>调用测试地址： <a target="_blank" rel="noopener" href="http://localhost/test">http://localhost/test</a></p>
+<h4 id="定时推送"><a href="#定时推送" class="headerlink" title="定时推送"></a>定时推送</h4><p>建立了一个定时任务配置类</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">package</span> com.tsmyk.wechatproject.wechat.scheduled;<br><br><span class="hljs-keyword">import</span> com.tsmyk.wechatproject.wechat.utils.PushMessageUtils;<br><span class="hljs-keyword">import</span> org.springframework.context.<span class="hljs-keyword">annotation</span>.Configuration;<br><span class="hljs-keyword">import</span> org.springframework.scheduling.<span class="hljs-keyword">annotation</span>.EnableScheduling;<br><span class="hljs-keyword">import</span> org.springframework.scheduling.<span class="hljs-keyword">annotation</span>.Scheduled;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Task 定时任务</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> cws</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span> 2022/8/22 21:42</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@EnableScheduling</span><br><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Task</span> &#123;<br>    <span class="hljs-comment">// 定时任务</span><br>    <span class="hljs-meta">@Scheduled(cron = <span class="hljs-string">&quot;<span class="hljs-subst">$&#123;wechat.cron&#125;</span>&quot;</span>)</span><br>    <span class="hljs-keyword">public</span> void goodMorning() &#123;<br>        PushMessageUtils.push();;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="4、接收微信消息并进行回复"><a href="#4、接收微信消息并进行回复" class="headerlink" title="4、接收微信消息并进行回复"></a>4、接收微信消息并进行回复</h3><p>项目地址： <a target="_blank" rel="noopener" href="https://github.com/tsmyk0715/wechatproject">https://github.com/tsmyk0715/wechatproject</a></p>
+<h4 id="项目介绍-🦌🦌🦌"><a href="#项目介绍-🦌🦌🦌" class="headerlink" title="项目介绍  🦌🦌🦌"></a>项目介绍  🦌🦌🦌</h4><p>先申请一个订阅号，登陆地址： <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/cgi-bin/loginpage?t=wxm2-login&lang=zh_CN">https://mp.weixin.qq.com/cgi-bin/loginpage?t=wxm2-login&amp;lang=zh_CN</a></p>
+<p>授权信息在 设置与开发 → 基本配置（申请成为开发者）</p>
+<p>也可以进入到这个测试微信公众号地址： <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login">https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login</a></p>
+<p>测试一下获取用户消息并进行回复</p>
+<p>下载该项目： <a target="_blank" rel="noopener" href="https://github.com/tsmyk0715/wechatproject">https://github.com/tsmyk0715/wechatproject</a> </p>
+<h5 id="项目分析"><a href="#项目分析" class="headerlink" title="项目分析"></a>项目分析</h5><p>这个项目是使用的 开源工具 <code>weixin-java-mp</code> 进行开发的</p>
+<p>同时你需要获取到微信向你发送消息，因此需要内网穿透一下，将本地的访问映射到公网。‘</p>
+<p>这个项目相当于了你对自己的微信号服务进行个性化操作，关键操作是通过关联微信接口来进行实现的。</p>
+<p>第三章的学习内容建议学习一下它的模板化操作和定时发送操作。</p>
+<p>这个项目值得学习还挺多内容的，微信平台在后续的使用应该是比较频繁的，后续也可以学习 WxJava 等内容。</p>
+<p>接口参数配置建议使用测试号。</p>
+<h5 id="配置IP白名单"><a href="#配置IP白名单" class="headerlink" title="配置IP白名单"></a>配置IP白名单</h5><p>在公众号的基本配置里面的 IP 白名单，需要配置一下你的服务器IP</p>
+<h5 id="获取access-token"><a href="#获取access-token" class="headerlink" title="获取access_token"></a>获取access_token</h5><p>这个是微信接口中的其中一个接口，需要获取到其他接口信息需要用到这个信息</p>
+<p>微信公众号开发者文档： <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/doc/offiaccount/Getting_Started/Overview.html">https://developers.weixin.qq.com/doc/offiaccount/Getting_Started/Overview.html</a></p>
+<p>什么是 <code>access_token</code>? 官网的介绍如下：</p>
+<p><code>access_token</code>是公众号的全局唯一接口调用凭据，公众号调用各接口时都需使用<code>access_token</code>。开发者需要进行妥善保存。<code>access_token</code>的存储至少要保留512个字符空间。<code>access_token</code>的有效期目前为<code>2</code>个小时，需定时刷新，重复获取将导致上次获取的access_token失效。</p>
+<p>获取 <code>access_token</code> 的接口每日调用是有限制的，所以不是每次调用接口都重新获取<code>access_token</code>，而是获取到之后缓存起来，缓存失效之后再去重新获取即刷新。</p>
+<p>获取这个信息需要调用微信的第三方API接口获取</p>
+<ol>
+<li>接口地址为：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript">https请求方式: <br><br><span class="hljs-attr">https</span>:<span class="hljs-comment">//api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid=APPID&amp;secret=APPSECRET</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>参数说明</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>是否必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>grant_type</td>
+<td>是</td>
+<td>获取access_token填写client_credential</td>
+</tr>
+<tr>
+<td>appid</td>
+<td>是</td>
+<td>第三方用户唯一凭证</td>
+</tr>
+<tr>
+<td>secret</td>
+<td>是</td>
+<td>第三方用户唯一凭证密钥，即appsecret</td>
+</tr>
+<tr>
+<td>返回的是JSON格式的报文：</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">&#123;<span class="hljs-string">&quot;access_token&quot;</span>:<span class="hljs-string">&quot;ACCESS_TOKEN&quot;</span>,<span class="hljs-string">&quot;expires_in&quot;</span>:<span class="hljs-number">7200</span>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<p>修改配置：</p>
+<h5 id="获取用户消息"><a href="#获取用户消息" class="headerlink" title="获取用户消息"></a>获取用户消息</h5><p>除此之外，还可以获取关注者的列表，关注者的信息等。</p>
+<p><strong>获取用户的信息：</strong></p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-meta">@RestController</span><br><span class="hljs-keyword">public</span> <span class="hljs-title class_"><span class="hljs-keyword">class</span> <span class="hljs-title">WechatController</span> </span>&#123;<br>    <span class="hljs-comment">/** 日志 */</span><br>    <span class="hljs-keyword">private</span> Logger logger = LoggerFactory.getLogger(getClass());<br>    <span class="hljs-comment">/** 工具类 */</span><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> WechatUtils wechatUtils;<br><br>    <span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">&quot;getUserInfo&quot;</span>)<br>    <span class="hljs-keyword">public</span> void getUserInfo() &#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            WxMpUserList userList = wechatUtils.getUserList();<br>            <span class="hljs-keyword">if</span> (userList == <span class="hljs-literal">null</span> || userList.getOpenIds().isEmpty()) &#123;<br>                logger.warn(<span class="hljs-string">&quot;关注者openId列表为空&quot;</span>);<br>                <span class="hljs-keyword">return</span>;<br>            &#125;<br>            List&lt;<span class="hljs-keyword">String</span>&gt; openIds = userList.getOpenIds();<br>            logger.info(<span class="hljs-string">&quot;关注者openId列表 = &#123;&#125;&quot;</span>, openIds.toString());<br><br>            <span class="hljs-keyword">String</span> openId = openIds.<span class="hljs-keyword">get</span>(<span class="hljs-number">0</span>);<br>            logger.info(<span class="hljs-string">&quot;开始获取 &#123;&#125; 的基本信息&quot;</span>, openId);<br>            WxMpUser userInfo = wechatUtils.getUserInfo(openId);<br>            <span class="hljs-keyword">if</span> (userInfo == <span class="hljs-literal">null</span>) &#123;<br>                logger.warn(<span class="hljs-string">&quot;获取 &#123;&#125; 的基本信息为空&quot;</span>, openId);<br>                <span class="hljs-keyword">return</span>;<br>            &#125;<br>            <span class="hljs-keyword">String</span> city = userInfo.getCity();<br>            <span class="hljs-keyword">String</span> nickname = userInfo.getNickname();<br>            logger.info(<span class="hljs-string">&quot;&#123;&#125; 的昵称为：&#123;&#125;, 城市为：&#123;&#125;&quot;</span>, openId, nickname, city);<br>        &#125; <span class="hljs-keyword">catch</span> (WxErrorException e) &#123;<br>            logger.error(<span class="hljs-string">&quot;获取用户消息失败&quot;</span>, e);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h5 id="接收用户发送的消息"><a href="#接收用户发送的消息" class="headerlink" title="接收用户发送的消息"></a><strong>接收用户发送的消息</strong></h5><p>当微信用户向公众号发送消息时，微信服务器会通过公众号后台配置的URL把信息发送到我们后台的接口上，注意此时的请求格式为 <code>POST</code>请求，发送过来的消息报文格式是XML格式的，每种消息类型的XML格式不一样。</p>
+<p>这里跳过，具体内容看一下开源项目的代码。</p>
+<h5 id="响应微信发出的请求消息"><a href="#响应微信发出的请求消息" class="headerlink" title="响应微信发出的请求消息"></a>响应微信发出的请求消息</h5><p>接口文档： <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/doc/offiaccount/Message_Management/Passive_user_reply_message.html">https://developers.weixin.qq.com/doc/offiaccount/Message_Management/Passive_user_reply_message.html</a></p>
+<p>微信要求响应信息必须要在五秒内，因此实际调用 API 的时候会有一个时间冲突。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20240114222207.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="项目运行"><a href="#项目运行" class="headerlink" title="项目运行"></a>项目运行</h4><p>通过你获取的测试号的 appid、appsecret、token 信息，配置号内网穿透（获取到微信发送的消息）</p>
+<p>就可以启动这个项目了，启动类： WechatprojectApplication</p>
+<h3 id="5、QQ消息回复"><a href="#5、QQ消息回复" class="headerlink" title="5、QQ消息回复"></a>5、QQ消息回复</h3><p>既然都了解到这里了，不如也看一下QQ消息是否能自动获取并问答。</p>
+<p>to be contined…</p>
+<h3 id="6、尝试国内的大语言模型"><a href="#6、尝试国内的大语言模型" class="headerlink" title="6、尝试国内的大语言模型"></a>6、尝试国内的大语言模型</h3><p>国外的这个封锁对大陆也真的恶心，代理服务等也很难受；</p>
+<p>也可以尝试一下国内的 百度文心一言、讯飞星火、阿里通义千问等。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://yiyan.baidu.com/">https://yiyan.baidu.com/</a></li>
+<li><a target="_blank" rel="noopener" href="https://passport.xfyun.cn/login">https://passport.xfyun.cn/login</a></li>
+<li><a target="_blank" rel="noopener" href="https://tongyi.aliyun.com/">https://tongyi.aliyun.com/</a></li>
+</ul>
+<p>后续考虑使用通义千问。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%A1%B9%E7%9B%AE/" class="category-chain-item">项目</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/java/" class="print-no-link">#java</a>
+      
+        <a href="/tags/project/" class="print-no-link">#project</a>
+      
+        <a href="/tags/chatgpt/" class="print-no-link">#chatgpt</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>ChatGPT问答助手</div>
+      <div>https://varcel.luoqi.icu/2024/01/12/待整理/ChatGPT AI 问答助手_Star1/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Luo QI</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年1月12日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/01/13/%E5%BE%85%E6%95%B4%E7%90%86/%E9%80%9A%E8%BF%87%E9%98%BF%E9%87%8C%E4%BA%91%E7%9A%84%E5%87%BD%E6%95%B0%E8%AE%A1%E7%AE%97FC%E8%BF%9B%E8%A1%8COpenAI%E8%AE%BF%E9%97%AE%E5%9B%BD%E5%86%85%E4%BB%A3%E7%90%86/" title="通过阿里云的函数计算FC进行OpenAI访问国内代理">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">通过阿里云的函数计算FC进行OpenAI访问国内代理</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/01/12/%E5%BE%85%E6%95%B4%E7%90%86/obsidian%E5%B8%B8%E7%94%A8%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/" title="obsidian常用插件使用记录">
+                        <span class="hidden-mobile">obsidian常用插件使用记录</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

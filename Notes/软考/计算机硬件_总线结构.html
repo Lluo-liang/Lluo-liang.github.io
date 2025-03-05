@@ -1,0 +1,498 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/Xbox%20L.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Luo QI">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="计算机硬件_总线结构">
+<meta property="og:type" content="website">
+<meta property="og:title" content="计算机硬件_总线结构">
+<meta property="og:url" content="https://varcel.luoqi.icu/Notes/%E8%BD%AF%E8%80%83/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6_%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84.html">
+<meta property="og:site_name" content="轻松的洛亓">
+<meta property="og:description" content="计算机硬件_总线结构">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20241026110122.png">
+<meta property="article:published_time" content="2024-10-20T10:06:39.000Z">
+<meta property="article:modified_time" content="2024-10-20T10:06:39.000Z">
+<meta property="article:author" content="Luo QI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20241026110122.png">
+  
+  
+  
+  <title>计算机硬件_总线结构 - 轻松的洛亓</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"varcel.luoqi.icu","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  <meta name="baidu-site-verification" content="codeva-Oq0KOjHuD3" />
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>轻松的洛亓</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="计算机硬件_总线结构"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<article class="page-content">
+  <h3 id="总线"><a href="#总线" class="headerlink" title="总线"></a>总线</h3><p>**总线(Bus)**，是指计算机设备和设备之间传输信息的公共数据通道。</p>
+<p>总线是连接计算机硬件系统内多种设备的通信线路，它的一个重要特征是由总线上的所有设备共享，因此可以将计算机系统内的多种设备连接到总线上。</p>
+<p>总线的分类：</p>
+<ol>
+<li><strong>内部总线</strong>：<ul>
+<li><strong>定义</strong>：内部总线是芯片级别的总线，主要用于芯片内部或芯片与处理器之间的通信。</li>
+</ul>
+</li>
+<li><strong>系统总线</strong>：<ul>
+<li><strong>定义</strong>：系统总线是板级总线，用于计算机内部各部分之间的连接。</li>
+<li><strong>组成</strong>：系统总线通常分为三类：<ul>
+<li><strong>数据总线</strong>：负责在设备间传输实际的数据，其宽度决定了一次可以传输的数据位数。</li>
+<li><strong>地址总线</strong>：决定了系统可以管理的内存空间大小，即它能够访问的内存地址范围。</li>
+<li><strong>控制总线</strong>：用于传送控制命令，如读写指令等。</li>
+</ul>
+</li>
+<li><strong>代表类型</strong>：ISA总线、EISA总线、PCI总线等。</li>
+</ul>
+</li>
+<li><strong>外部总线</strong>：<ul>
+<li><strong>定义</strong>：外部总线是设备一级的总线，用于连接微机和外部设备。</li>
+<li><strong>特点</strong>：外部总线通常支持即插即用和热插拔功能。</li>
+<li><strong>代表类型</strong>：<ul>
+<li><strong>RS232</strong>：一种传统的串行总线，用于连接计算机和外设，如调制解调器。</li>
+<li><strong>SCSI</strong>：一种并行总线，用于连接硬盘驱动器、扫描器等设备。</li>
+<li><strong>USB</strong>：通用串行总线，支持即插即用和热插拔，广泛应用于连接各种外部设备。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>总线（Bus）是计算机系统中的关键组成部分，它允许不同设备之间通过共享的通信线路进行数据交换。内部总线负责芯片级别的通信，系统总线负责计算机内部各部件之间的通信，而外部总线则连接计算机和外部设备。每种总线都有其特定的应用场景和功能，共同构成了计算机系统的通信网络。</p>
+<p>总线(Bus)是指计算机部件间遵循某一特定协议实现数据交换的形式,即以一种特定格式  按照规定的控制逻辑实现部件间的数据传输。按照总线在计算机中所处的位置划分为内总线、系  统总线和外部总线。目前,计算机总线存在许多种类,常见的有并行总线和串行总线。</p>
+<p>两者的区  别。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20241026110122.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="单工、半双工和全双工"><a href="#单工、半双工和全双工" class="headerlink" title="单工、半双工和全双工"></a>单工、半双工和全双工</h3><p>串行通信传输方式：单工、半双工与全双工</p>
+<p>在串行通信中，数据在两个终端（例如电脑和外设）间传输，其传输方向可分为三种基本方式：单工、半双工和全双工。</p>
+<p><strong>区别简述：</strong></p>
+<ul>
+<li><strong>单工通信</strong>：仅支持单向数据传输。</li>
+<li><strong>半双工通信</strong>：支持双向通信，但数据传输不能同时进行。</li>
+<li><strong>全双工通信</strong>：支持双向数据同时传输。</li>
+</ul>
+<p>详细定义：</p>
+<ol>
+<li><strong>单工通信</strong><ul>
+<li><strong>特点</strong>：只有一根数据线，通信仅在一个方向上进行。</li>
+<li><strong>应用实例</strong>：监视器、打印机、电视机等。</li>
+</ul>
+</li>
+<li><strong>半双工通信</strong><ul>
+<li><strong>特点</strong>：一根数据线，可用作发送和接收，但通信双方不能同时进行发送和接收。</li>
+<li><strong>区别</strong>：与单工相比，半双工允许双向通信，但需轮流进行。</li>
+</ul>
+</li>
+<li><strong>全双工通信</strong><ul>
+<li><strong>特点</strong>：使用两根数据线，通信双方可以同时发送和接收数据。</li>
+<li><strong>优势</strong>：无时间延迟，双方均有发送器和接收器。</li>
+</ul>
+</li>
+</ol>
+<p>应用场景：</p>
+<ol>
+<li><strong>单工</strong><ul>
+<li><strong>描述</strong>：A发送信号，B接收信号，通信是单向的，如灯塔向航船发送信号。</li>
+</ul>
+</li>
+<li><strong>半双工</strong><ul>
+<li><strong>描述</strong>：A和B可以互相发送信号，但这些过程不能同时进行。</li>
+<li><strong>例子</strong>：对讲机，每方说完后需切换到接收状态，并告知对方可以发言。</li>
+</ul>
+</li>
+<li><strong>全双工</strong><ul>
+<li><strong>描述</strong>：A和B可以同时发送和接收信号。</li>
+<li><strong>例子</strong>：电话通话，双方可以同时讲话和听对方讲话。</li>
+</ul>
+</li>
+</ol>
+<p>通过这些定义和例子，我们可以清晰地看到单工、半双工和全双工通信的主要区别和应用场景。</p>
+<hr>
+<h3 id="练习题"><a href="#练习题" class="headerlink" title="练习题"></a>练习题</h3><h4 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h4><p>计算机系统中常用的输入&#x2F;输出控制方式有无条件传送、中断、程序查询和DMA方式等。当采用 () 方式时，不需要CPU执行程序指令来传送数据。</p>
+<ul>
+<li>A.中断</li>
+<li>B.程序查询</li>
+<li>C.无条件传送</li>
+<li>D.DMA</li>
+</ul>
+<hr>
+<p>解析</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">在DMA 方式<span class="hljs-selector-tag">i</span>中，CPU只需完成必要的初始化等操作，数据传输的整个过程都由DMA控制器来完成<br><br>答案： D<br></code></pre></td></tr></table></figure>
+
+
+
+<p>在计算机系统中，主要的输入&#x2F;输出控制方式有无条件传送、中断、程序查询和DMA（直接内存访问）等。每种方式的特点和适用场景各有不同，以下是对这四种方式的具体解析：</p>
+<blockquote>
+<ol>
+<li>无条件传送</li>
+</ol>
+</blockquote>
+<p><strong>无条件传送</strong>是一种简单的输入&#x2F;输出方式，其中CPU周期性地轮询I&#x2F;O设备并直接传送数据。这种方式效率很低，尤其在需要频繁I&#x2F;O操作时，会浪费大量的CPU时间。</p>
+<blockquote>
+<ol start="2">
+<li>中断（Interrupt）</li>
+</ol>
+</blockquote>
+<p><strong>中断方式</strong>用于提高系统的效率。当I&#x2F;O设备准备好进行数据传输时，会发送一个中断信号给CPU，打断当前执行的任务，使CPU暂停当前任务去处理I&#x2F;O操作。中断服务程序完成后，CPU恢复之前的任务。中断机制比无条件传送更有效，因为CPU只在需要的时候才会处理I&#x2F;O设备。</p>
+<blockquote>
+<ol start="3">
+<li>程序查询（Polling）</li>
+</ol>
+</blockquote>
+<p><strong>程序查询方式</strong>是指CPU通过程序不断查询I&#x2F;O设备的状态，确认设备是否需要服务。虽然比无条件传送更有效，但仍然需要CPU不断执行查询操作，因而可能会导致其他程序的响应变慢。</p>
+<blockquote>
+<ol start="4">
+<li>直接内存访问（DMA, Direct Memory Access）</li>
+</ol>
+</blockquote>
+<p><strong>DMA方式</strong>是一种不需要CPU直接参与数据传输的方式。在DMA方式下，I&#x2F;O设备上的数据可以直接传送到内存区域或从内存区域直接读取，这一过程是由DMA控制器完成的。CPU只需在初始设置时配置DMA控制器，然后就可以不再参与数据传输，DMA控制器会在传输完成后通知CPU。DMA大幅减轻了CPU的负担，提高了系统的整体性能。</p>
+<p>总结以上解析：</p>
+<p>只有<strong>DMA</strong>方式在数据传输过程中完全不需要CPU直接执行程序指令来传送数据。CPU只负责初始化传输和处理数据传输完成的通知。</p>
+<p>答案：</p>
+<p><strong>D. DMA</strong></p>
+<h4 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h4><p>以下关于总线的说法中，正确的是（)。</p>
+<ul>
+<li>A.串行总线适合近距离高速数据传输，但线间串扰会导致速率受限</li>
+<li>B.并行总线适合长距离数据传输，易提高通信时钟频率来实现高速数据传输</li>
+<li>C.单总线结构在一个总线上适应不同种类的设备，设计复杂导致性能降低</li>
+<li>D.半双工总线只能在一个方向上传输信息</li>
+</ul>
+<hr>
+<p>解析</p>
+<p>解析:  A B 排除，串行长距离，并行短距离；半双工数据在两个方向上传输，但只能通信双方不能同时收发数据；排除 D；选择 C 。</p>
+<p>按功能分类</p>
+<p>系统总线包含有三种不同功能的总线，即数据总线DB（Data Bus）、地址总线AB（Address Bus）和控制总线CB（Control Bus）</p>
+<p>并行总线、串行总线</p>
+<p>根据总线它当中的数据线的多少，可以分为：串行总线（适合长距离传输）与并行总线（适合短距离连接，不宜过长）。</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs vhdl">C 的解析<br><br>在计算机架构中，单总线结构（Single <span class="hljs-keyword">Bus</span> <span class="hljs-keyword">Architecture</span>）是一种在同一条总线上连接多种不同设备的设计。这种结构的优点是简化了系统的连线和设计，减少了硬件开销。但其缺点是由于所有设备共享同一条总线，会导致控制和调度的复杂性增加，从而影响系统的整体性能。<br><br>具体来说，单总线结构在使用过程中各个设备之间需要协调使用总线，这种协调在设备种类多、数量多的情况下会变得复杂。例如，当多个设备同时请求使用总线时，需要引入仲裁机制来决定哪个设备优先使用。这会增加系统的等待时间和延迟，降低数据传输效率。同时，不同设备可能有不同的数据传输速率需求，适应这些需求也会进一步增加设计复杂性和管理难度。<br><br>因此，虽然单总线结构简化了硬件设计，但它的性能瓶颈在于总线资源的共享和协调，这使得整体性能可能下降。<br></code></pre></td></tr></table></figure>
+
+<p>答案：C</p>
+<hr>
+<h4 id="第三题"><a href="#第三题" class="headerlink" title="第三题"></a>第三题</h4><p>以下关于串行总线的说法中，正确的是(10)</p>
+<ul>
+<li>A.串行总线一般都是全双工总线，适宜于长距离传输数据</li>
+<li>B.串行总线传输的波特率是总线初始化时预先定义好的，使用中不可改变</li>
+<li>C.串行总线是按位(bit)传输数据的，其数据的正确性依赖于校验码纠正</li>
+<li>D.串行总线的数据发送和接收是以软件查询方式工作</li>
+</ul>
+<hr>
+<p>解析</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mathematica">关于串行总线的特点，总结如下：<br><span class="hljs-number">1</span>、串行总线适宜长距离传输数据。但是串行总线有半双工、全双工之分，全双工是一条线发一条线收。所以<span class="hljs-variable">A</span>选项错误<br><span class="hljs-number">2</span>、串行总线传输的波特率在使用中可以改变，所以<span class="hljs-variable">B</span>选项错误。<br><span class="hljs-number">3</span>、串行总线的数据发送和接收可以使用多种方式，程序查询方式和中断方式都可以。所以<span class="hljs-built_in">D</span>选项错误。<br><br><span class="hljs-built_in">C</span>  选项说法是正确的。本题选择<span class="hljs-built_in">C</span>选项。<br></code></pre></td></tr></table></figure>
+
+  
+
+</article>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

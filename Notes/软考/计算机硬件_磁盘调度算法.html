@@ -1,0 +1,552 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/Xbox%20L.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Luo QI">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="摘要">
+<meta property="og:type" content="website">
+<meta property="og:title" content="计算机硬件_磁盘调度算法">
+<meta property="og:url" content="https://varcel.luoqi.icu/Notes/%E8%BD%AF%E8%80%83/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6_%E7%A3%81%E7%9B%98%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95.html">
+<meta property="og:site_name" content="轻松的洛亓">
+<meta property="og:description" content="摘要">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20241020042449.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/2ea98c2ec3ad33be17316c0297050acd_MD5.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/2ea98c2ec3ad33be17316c0297050acd_MD5.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/7-720230909-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6-CPU-%E6%A0%A1%E9%AA%8C%E7%A0%81.png">
+<meta property="article:published_time" content="2024-10-20T03:48:20.000Z">
+<meta property="article:modified_time" content="2024-10-20T03:48:20.000Z">
+<meta property="article:author" content="Luo QI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20241020042449.png">
+  
+  
+  
+  <title>计算机硬件_磁盘调度算法 - 轻松的洛亓</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"varcel.luoqi.icu","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  <meta name="baidu-site-verification" content="codeva-Oq0KOjHuD3" />
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>轻松的洛亓</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="计算机硬件_磁盘调度算法"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<article class="page-content">
+  <h3 id="什么是磁盘调度算法"><a href="#什么是磁盘调度算法" class="headerlink" title="什么是磁盘调度算法"></a>什么是磁盘调度算法</h3><p><strong>磁盘结构与数据存储：</strong></p>
+<ol>
+<li>磁盘有正反两个盘面。</li>
+<li>每个盘面有多个同心圆（磁道）。</li>
+<li>每个磁道被划分为多个扇区，数据存储在扇区中。</li>
+</ol>
+<p><strong>数据读取过程：</strong></p>
+<ol>
+<li>磁头首先要寻找到对应的磁道。</li>
+<li>然后等待磁盘周期旋转到指定扇区，才能读取数据。</li>
+<li>这过程会产生两部分时间：<strong>寻道时间</strong>和<strong>等待时间</strong>。</li>
+</ol>
+<p>磁盘有<strong>正反两个盘面</strong>，每个盘面有多个同心圆，每个同心圆是一个磁道，每个同心圆又被划分为多个扇区，数据就被存放在一个个扇区中。</p>
+<p><strong>磁头首先要寻找到对应的磁道</strong>，然后等待磁盘进行<strong>周期旋转，旋转到指定的扇区，才能读取到对应的数据</strong>，因此，会产生寻道时间和等待时间。</p>
+<p>公式为：存取时间&#x3D;寻道时间+等待时间（平均定位时间+转动延迟）。</p>
+<p>注意：寻道时间是指磁头移动到磁道所需的时间；等待时间为等待读写的扇区转到磁头下方所用的时间。</p>
+<h4 id="磁头位置示意图"><a href="#磁头位置示意图" class="headerlink" title="磁头位置示意图"></a>磁头位置示意图</h4><ol>
+<li>数据操作：目标扇区到达磁头下方后，进行数据读取&#x2F;写入操作。</li>
+</ol>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs markdown">[磁头位置示意图]<br><br><span class="hljs-section">磁道1  磁道2  磁道3</span><br><span class="hljs-section">=================</span><br>|----|------|----|    &lt;-- 磁头<br>|    |      |    |<br>|----|------|----|<br>^               ^<br>磁盘旋转       扇区移动到磁头下<br><br></code></pre></td></tr></table></figure>
+
+
+<ol>
+<li><strong>磁头移动</strong>到磁道3：寻道过程，耗时。</li>
+<li><strong>磁盘旋转</strong>：等待特定扇区（△）移动到磁头下方，耗时。</li>
+<li><strong>数据操作</strong>：访问扇区△的数据。</li>
+</ol>
+<p>寻道并不是扫描整个磁盘，而是确保磁头在一个合适的磁道上停留，等待磁盘旋转到正确扇区进行数据操作。</p>
+<h4 id="公式"><a href="#公式" class="headerlink" title="公式"></a><strong>公式</strong></h4><p><code>存取时间=寻道时间+等待时间</code></p>
+<p>其中：</p>
+<ul>
+<li><strong>寻道时间</strong>：磁头移动到目标磁道所需的时间。</li>
+<li><strong>等待时间</strong>（转动延迟）：扇区旋转到磁头下方所需的时间。</li>
+</ul>
+<h4 id="调度算法"><a href="#调度算法" class="headerlink" title="调度算法"></a>调度算法</h4><p><strong>调度算法（需重点调度 寻道时间，因为它耗时最长）：</strong></p>
+<ol>
+<li>**先来先服务 (FCFS)**：<ul>
+<li>根据请求访问磁盘的顺序进行调度。</li>
+</ul>
+</li>
+<li>**最短寻道时间优先 (SSTF)**：<ul>
+<li>优先调度与当前磁道最近的请求，最短化每次的寻道时间。</li>
+<li>可能会产生“饥饿”现象，远处的请求可能永远无法被访问。</li>
+</ul>
+</li>
+<li>**扫描算法 (SCAN)**：<ul>
+<li>也称“电梯算法”，磁头在磁盘上双向移动，选择离当前磁道最近的请求，并且与磁头当前的移动方向一致。</li>
+<li>磁头按一个方向（里向外或外向里）完全移动到磁盘边缘后才掉头。</li>
+</ul>
+</li>
+<li>**单向扫描调度算法 (CSCAN)**：<ul>
+<li>只做单向移动，磁头只能从里向外或从外向里移动。</li>
+</ul>
+</li>
+</ol>
+<h3 id="练习题"><a href="#练习题" class="headerlink" title="练习题"></a>练习题</h3><p>考试真题：</p>
+<h4 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h4><p>假设某磁盘的每个磁道划分成11个物理块，每块存放1个逻辑记录。逻辑记录 R0，R1,···,R9,R10存放在同一个磁道上，<br>记录的存放顺序如下表所示：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20241020042449.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>如果磁盘的旋转周期为33s,磁头当前处在R0的开始处。若系统使用单缓冲区顺序处理这些记录，每个记录处理时间为3ms,则处理这11个记录的最长时间为（)；若对信息存储进行优化分布后，处理11个记录的最少时间为（)。</p>
+<ul>
+<li><p>A.33ms </p>
+</li>
+<li><p>B.336ms</p>
+</li>
+<li><p>C.366ms</p>
+</li>
+<li><p>D.376ms</p>
+</li>
+<li><p>A.33ms </p>
+</li>
+<li><p>B.66ms</p>
+</li>
+<li><p>C.86ms</p>
+</li>
+<li><p>D.93ms</p>
+</li>
+</ul>
+<hr>
+<p>解析：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs Note">解析：这道题目是没有寻道时间的，是直接从 R0 开始的，考的内容是 磁头旋转部分。<br><br>磁盘的旋转周期是 33ms ，因此每一个扇区旋转时间读取时间是 33/11 = 3 ms （每次磁头旋转时间即读取时间，**读取数据后数据还需要进行处理**）,  处理时间是 3ms；<br>因此在这种情况下，处理完 R0 的时间是 3 + 3 = 6 ms; 此时磁头已经越过R1,到达 R2，再次读取 R1 的时候需要磁头重新到 R1; <br><br>此时 R1 处理完的时间为：10 * 3  + 3 + 3 = 36 ms ；其他10 个同理。全部时间是 36 * 10 + 6 = 366 ； 答案选 C。<br><br>存储优化：在理想的情况下，应该是磁头刚好移动到这个区域的时候，开始读取数据，移动开这个区域的时候，读取完数据；<br><br>第二种情况优化如下：（下面这种间隔存储的方式刚刚满足逻辑上 R0, R1，R2  的读取完数据再进行处理完数据，刚好到下一个逻辑位置）<br><br>花费时间为两个旋转周期： 33 * 2  = 66 ms ，答案选 B。<br></code></pre></td></tr></table></figure>
+
+
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/2ea98c2ec3ad33be17316c0297050acd_MD5.png" srcset="/img/loading.gif" lazyload alt="2ea98c2ec3ad33be17316c0297050acd_MD5"></p>
+<p>题目重述：</p>
+<ul>
+<li>磁盘每个磁道有11个物理块，每块存放一个逻辑记录（R0, R1, …, R10）。</li>
+<li>读取旋转周期为33ms。</li>
+<li>读取每个记录时间为3ms。</li>
+<li>当前从R0开始。</li>
+<li>使用单缓冲区顺序处理，处理时间为3ms。</li>
+</ul>
+<p>问题1：处理这11个记录的最长时间是多少？ 问题2：优化后处理11个记录的最少时间是多少？</p>
+<blockquote>
+<p>分析</p>
+</blockquote>
+<ol>
+<li><p><strong>处理每个记录的时间</strong>：</p>
+<ul>
+<li>旋转周期：33ms</li>
+<li>每个块的旋转时间：33ms &#x2F; 11 &#x3D; 3ms</li>
+<li>处理每个记录的时间 &#x3D; 读取时间 + 处理时间 &#x3D; 3ms + 3ms &#x3D; 6ms</li>
+</ul>
+</li>
+<li><p><strong>最长时间</strong>：</p>
+<ul>
+<li>处理完R0后，磁头在3ms旋转到R1的位置，但实际已经用了6ms（包括读取与处理），所以需要重新等待一个33ms的旋转周期。</li>
+<li>对于R1：等待时间 &#x3D; 10 * 3ms（一个旋转周期截至）+ 3ms（读取时间）+ 3ms（处理时间）&#x3D; 36ms。</li>
+<li>依次类推，处理完剩下的10个记录，每个记录都需要额外等待一个完整的旋转：<br> 总时间&#x3D;6ms(R0)+10×36ms(R1−R10)&#x3D;6ms+360ms&#x3D;366ms</li>
+</ul>
+<p> 因此最长时间为 <strong>366ms</strong>，答案是 <strong>C</strong>。</p>
+</li>
+</ol>
+<p>图示过程 (部分)：</p>
+<ol>
+<li>R0 -&gt; 等待3ms -&gt; 读取3ms -&gt; 处理3ms &#x3D; 6ms</li>
+<li>R1 -&gt; 等待到完整旋转周期 &#x3D; 33ms全集 -&gt; 读取3ms -&gt; 处理3ms<ul>
+<li>…重复…</li>
+</ul>
+</li>
+</ol>
+<p>优化存储后：</p>
+<p>采用间隔存储方式，使得每个记录读取和处理的时间能被紧凑地利用。</p>
+<ul>
+<li><p><strong>优化原理</strong>：让每个块的数据分布在不同位置上，避免重新旋转周期，理论上可以在两个旋转周期内完成所有读取。</p>
+<p>  总时间&#x3D;2×33ms&#x3D;66ms总时间&#x3D;2×33ms&#x3D;66ms</p>
+</li>
+</ul>
+<p>答案是 <strong>B</strong>。</p>
+<p>详细步骤：</p>
+<ol>
+<li><strong>非优化</strong>：<ul>
+<li>每个记录读取和处理（等待+处理）：全顺序：要额外的一轮盘片移动等待时间</li>
+</ul>
+</li>
+<li><strong>优化后</strong>：<ul>
+<li>利用每块的空间：设置和间隔存储使得处理时间正好覆盖下一个需要处理数据所在位置</li>
+</ul>
+</li>
+</ol>
+<p>通过详细分析和计算，可以确认两种情况最终的处理时间。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/2ea98c2ec3ad33be17316c0297050acd_MD5.png" srcset="/img/loading.gif" lazyload alt="2ea98c2ec3ad33be17316c0297050acd_MD5"></p>
+<hr>
+<h4 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h4><p>在磁盘调度管理中，应先进行移臂调度，再进行旋转调度。假设磁盘移动臂位于21号柱面上，进程的请求序列如下表所示。如果采用最短移臂调度算法，那么系统的响应序列应为(   )。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/7-720230909-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%B8%88_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6-CPU-%E6%A0%A1%E9%AA%8C%E7%A0%81.png" srcset="/img/loading.gif" lazyload alt="7-720230909-系统架构设计师_计算机硬件-CPU-校验码"></p>
+<ul>
+<li>A.②⑧③④⑤①⑦⑥⑨</li>
+<li>B.②③⑧④⑥⑨①⑤⑦</li>
+<li>c.①②③④⑤⑥⑦⑧⑨</li>
+<li>D.②⑧③⑤⑦①④⑥⑨</li>
+</ul>
+<p>解析</p>
+<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs tap">解析：题目中的是最短移臂指是就是最短寻道时间，<br><br>先到最近的柱面，再到最近的扇区。<br><br>看一下这个概念： **最短寻道时间优先SSTF**:请求访问的磁道与当前磁道最近的进程优先调度，使得每次的寻道时间最短。会产生“饥饿”现象，即远处进程可能永远无法访问。<br><br>这里开始是21号柱面，表中最近的是<span class="hljs-number"> 23 </span>; 扇区号一般是从小到大的扇区，因此这里一开始访问的23号柱面的顺序是: ②⑧③<br><br>此时排除 B  C<br><br>17 和<span class="hljs-number"> 32 </span>中<span class="hljs-number"> 17 </span>离 <span class="hljs-number"> 23 </span>更近，⑤ 会先访问，后面是 ①  ⑦ 其中一个，这里选 D。<br><br>答案： D<br></code></pre></td></tr></table></figure>
+
+
+<p>最短移臂调度算法：在该算法中，每次选择距离当前位置最近的请求进行处理，从而实现最短寻道时间</p>
+<blockquote>
+<p>具体步骤说明</p>
+</blockquote>
+<p>输入解析</p>
+<p>初始位置：21号柱面</p>
+<p>请求序列：</p>
+<ol>
+<li>17号柱面，扇区9</li>
+<li>23号柱面，扇区3</li>
+<li>23号柱面，扇区6</li>
+<li>32号柱面，扇区5</li>
+<li>17号柱面，扇区4</li>
+<li>32号柱面，扇区10</li>
+<li>17号柱面，扇区9</li>
+<li>23号柱面，扇区4</li>
+<li>38号柱面，扇区8</li>
+</ol>
+<p>计算最短移臂调度顺序</p>
+<ol>
+<li>初始在21号柱面，距离最近的是23号柱面：<ul>
+<li>23号柱面（②）</li>
+<li>23号柱面（③）</li>
+<li>23号柱面（⑧）</li>
+</ul>
+</li>
+<li>当前在23号柱面，接下来距离最近的是17号柱面和32号柱面：<ul>
+<li>17号柱面（①、⑤、⑦；三者在17号柱面内磁头位置的先后无关紧要）</li>
+<li>32号柱面（④、⑥；原理同上）</li>
+</ul>
+</li>
+<li>当前在17号柱面，距离近的为：<ul>
+<li>17号柱面（①、⑤、⑦）</li>
+</ul>
+</li>
+<li>处理完17号柱面后，转向32号柱面的位置：<ul>
+<li>32号柱面（④、⑥）</li>
+</ul>
+</li>
+<li>最后，处理38号柱面：<ul>
+<li>38号柱面（⑨）</li>
+</ul>
+</li>
+</ol>
+<p>总结：</p>
+<p>根据以上分析，正确的响应顺序为：②, ③, ⑧, ①, ⑤, ⑦, ④, ⑥, ⑨，答案是 <strong>D</strong>。</p>
+
+
+  
+
+</article>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
