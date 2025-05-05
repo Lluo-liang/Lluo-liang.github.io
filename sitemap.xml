@@ -10,6 +10,15 @@
     <priority>0.6</priority>
   </url>
   
+  <url>
+    <loc>https://varcel.luoqi.icu/2023/11/15/Java%E5%AD%A6%E4%B9%A0%E7%9A%84%E8%BD%BB%E6%9D%BE%E4%B9%8B%E6%97%85/</loc>
+    
+    <lastmod>2023-11-14</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 
   <url>
     <loc>https://varcel.luoqi.icu/</loc>
@@ -18,6 +27,13 @@
     <priority>1.0</priority>
   </url>
 
+  
+  <url>
+    <loc>https://varcel.luoqi.icu/tags/index/</loc>
+    <lastmod>2025-05-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
   
 
   
