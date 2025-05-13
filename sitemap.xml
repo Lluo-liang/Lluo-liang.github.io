@@ -4,7 +4,7 @@
   <url>
     <loc>https://varcel.luoqi.icu/about/index.html</loc>
     
-    <lastmod>2025-05-12</lastmod>
+    <lastmod>2025-05-13</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -22,7 +22,7 @@
 
   <url>
     <loc>https://varcel.luoqi.icu/</loc>
-    <lastmod>2025-05-12</lastmod>
+    <lastmod>2025-05-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -30,7 +30,7 @@
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/index/</loc>
-    <lastmod>2025-05-12</lastmod>
+    <lastmod>2025-05-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
