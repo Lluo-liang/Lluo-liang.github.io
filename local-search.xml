@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>电脑重装系统windows</title>
+    <link href="/2025/06/16/computer/%E7%94%B5%E8%84%91%E9%87%8D%E8%A3%85%E7%B3%BB%E7%BB%9Fwindows/"/>
+    <url>/2025/06/16/computer/%E7%94%B5%E8%84%91%E9%87%8D%E8%A3%85%E7%B3%BB%E7%BB%9Fwindows/</url>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>由于电脑C盘空间爆炸，同时电脑出现未知弹窗，重装一下电脑系统，并记录一下相关操作。</p><p>此次操作只改动电脑C盘，其他空间不处理。</p><p>可以参考一下 <a href="/2025/03/30/computer/%E8%AE%BE%E5%A4%87%E2%80%94%E2%80%94%E4%B8%BB%E6%9C%BA%E8%A3%85%E6%9C%BA/" title="第一次主机装机操作">操作系统装机</a>#操作系统装机 使用老毛桃的方式进行安装： <a href="https://lmt.psydrj.com/udisk.html">https://lmt.psydrj.com/udisk.html</a></p><p>其他的方式也挺难受的，目前暂时没找到纯净方式，官方的下载有点慢，后面再研究了</p><p>目前使用的一些软件，重置后可以再安装一下</p><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250613045732.png" alt="image.png"></p><h3 id="重装系统"><a href="#重装系统" class="headerlink" title="重装系统"></a>重装系统</h3><p>电脑重新安装的一些步骤：</p><p>1、使用老毛桃进行安装,iso 文件官网下载（或者提前备份）</p><p>2、驱动使用：驱动修复大师，将显卡驱动升级一下；</p><p>3、电脑激活</p><p>4、卸载一些软件：包括360 卫士等。</p><hr><p>中间过程中下载了几个工具，觉得还不错：</p><ul><li><strong>DiskGenius</strong>   分区工具</li><li><strong>WinDirStat</strong>  磁盘分析工具</li></ul><p>Windows磁盘管理</p><p><strong>按 <code>Win + X</code> → 选择“磁盘管理”​</strong>​。</p><p>DiskGenius 使用</p><ul><li>右键点击 ​<strong>​D盘（软件）​</strong>​ → 选择 ​<strong>​调整分区大小​</strong>​。</li><li>在弹出的窗口中，​<strong>​拖动D盘左侧边界向右​</strong>​，使20GB未分配空间移动到C盘和D盘之间。</li></ul><p>分配好后，再使用磁盘管理就行（需要分配空间在 C 盘右边）</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>computer</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Hexo符号链接自动化重命名脚本</title>
     <link href="/2025/06/15/hexo/Hexo%E7%AC%A6%E5%8F%B7%E9%93%BE%E6%8E%A5+%E8%87%AA%E5%8A%A8%E5%8C%96%E9%87%8D%E5%91%BD%E5%90%8D%E8%84%9A%E6%9C%AC/"/>
     <url>/2025/06/15/hexo/Hexo%E7%AC%A6%E5%8F%B7%E9%93%BE%E6%8E%A5+%E8%87%AA%E5%8A%A8%E5%8C%96%E9%87%8D%E5%91%BD%E5%90%8D%E8%84%9A%E6%9C%AC/</url>
@@ -49,25 +68,6 @@
     <tags>
       
       <tag>springboot</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>电脑重装系统windows</title>
-    <link href="/2025/06/13/computer/%E7%94%B5%E8%84%91%E9%87%8D%E8%A3%85%E7%B3%BB%E7%BB%9Fwindows/"/>
-    <url>/2025/06/13/computer/%E7%94%B5%E8%84%91%E9%87%8D%E8%A3%85%E7%B3%BB%E7%BB%9Fwindows/</url>
-    
-    <content type="html"><![CDATA[<p>由于电脑C盘空间爆炸，同时电脑出现未知弹窗，重装一下电脑系统，并记录一下相关操作。</p><p>此次操作只改动电脑C盘，其他空间不处理。</p><p>可以参考一下 <a href="/2025/03/30/computer/%E8%AE%BE%E5%A4%87%E2%80%94%E2%80%94%E4%B8%BB%E6%9C%BA%E8%A3%85%E6%9C%BA/" title="第一次主机装机操作">操作系统装机</a>#操作系统装机 使用老毛桃的方式进行安装： <a href="https://lmt.psydrj.com/udisk.html">https://lmt.psydrj.com/udisk.html</a></p><p>其他的方式也挺难受的，目前暂时没找到纯净方式，官方的下载有点慢，后面再研究了</p><p>目前使用的一些软件，重置后可以再安装一下</p><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250613045732.png" alt="image.png"></p>]]></content>
-    
-    
-    
-    <tags>
-      
-      <tag>computer</tag>
       
     </tags>
     
