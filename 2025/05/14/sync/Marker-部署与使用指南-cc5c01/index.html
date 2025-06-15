@@ -1,0 +1,690 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/Xbox%20L.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Luo QI">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="摘要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Marker 部署与使用指南">
+<meta property="og:url" content="https://varcel.luoqi.icu/2025/05/14/sync/Marker-%E9%83%A8%E7%BD%B2%E4%B8%8E%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97-cc5c01/index.html">
+<meta property="og:site_name" content="轻松的洛亓">
+<meta property="og:description" content="摘要">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250515084132.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250515084710.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250515215620.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250515212418.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250515220316.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250516014003.png">
+<meta property="article:published_time" content="2025-05-14T21:46:39.000Z">
+<meta property="article:modified_time" content="2025-06-15T00:37:49.000Z">
+<meta property="article:author" content="Luo QI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250515084132.png">
+  
+  
+  
+  <title>Marker 部署与使用指南 - 轻松的洛亓</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"varcel.luoqi.icu","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  <meta name="baidu-site-verification" content="codeva-Oq0KOjHuD3" />
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>轻松的洛亓</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Marker 部署与使用指南"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-05-14 21:46" pubdate>
+          2025年5月14日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          9 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Marker 部署与使用指南</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>安装文档： <a target="_blank" rel="noopener" href="https://skyao.io/post/202408-marker-setup-on-windows/">https://skyao.io/post/202408-marker-setup-on-windows/</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/VikParuchuri/marker.git<br></code></pre></td></tr></table></figure>
+
+<h3 id="python安装"><a href="#python安装" class="headerlink" title="python安装"></a>python安装</h3><p>要求 python 3.9+ ，windows 下继续保持一致，下载地址：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.python.org/ftp/python/3.10.11/python-3.10.11-amd64.exe">https://www.python.org/ftp/python/3.10.11/python-3.10.11-amd64.exe</a></li>
+</ul>
+<p>安装过程选自定义安装，然后记得勾选自动设置windows环境变量。安装完成后，在 cmd 中验证版本：</p>
+<p>验证版本</p>
+<figure class="highlight moonscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs moonscript">$ pip <span class="hljs-comment">--version</span><br>pip <span class="hljs-number">23.0</span><span class="hljs-number">.1</span> <span class="hljs-keyword">from</span> <span class="hljs-name">D</span>:\work\soft\python\lib\site-packages\pip (python <span class="hljs-number">3.10</span>)<br><br>$ python <span class="hljs-comment">--version</span><br>Python <span class="hljs-number">3.10</span><span class="hljs-number">.11</span><br><br></code></pre></td></tr></table></figure>
+
+<h3 id="安装-pytorch-和-torchvision"><a href="#安装-pytorch-和-torchvision" class="headerlink" title="安装 pytorch 和 torchvision"></a>安装 pytorch 和 torchvision</h3><p>选择的是 stable(2.4.0) + windows + pip + python + CUDA 12.4，因此需要运行命令：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">pip install torch torchvision torchaudio --index-url https:<span class="hljs-regexp">//</span>download.pytorch.org<span class="hljs-regexp">/whl/</span>cu124<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250515084132.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="安装-visual-c-生成工具"><a href="#安装-visual-c-生成工具" class="headerlink" title="安装 visual c++ 生成工具"></a>安装 visual c++ 生成工具</h3><p>从 <a target="_blank" rel="noopener" href="https://visualstudio.microsoft.com/visual-cpp-build-tools/">https://visualstudio.microsoft.com/visual-cpp-build-tools/</a> 下载到 <code>vs_BuildTools.exe</code>，然后进行安装。安装内容选择 “visual c++ 生成工具”, 点进去之后勾选第一项 “MSVC v143 - VS 2022 c++ x64&#x2F;x86 生成工具” 和第二项 “windows 11 SDK” 即可。</p>
+<p>为了不占用c盘空间，修改安装路径为：</p>
+<ul>
+<li><p>virtual studio ide：从默认的 <code>C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools</code> 修改为 <code>D:\work\soft\Microsoft Visual Studio\2022\BuildTools</code></p>
+</li>
+<li><p>下载缓存：从默认的<code>C:\ProgramData\Microsoft\VisualStudio\Packages</code> 修改为 <code>D:\work\soft\Microsoft\VisualStudio\Packages</code></p>
+</li>
+<li><p>共享组件，工具和sdk：从默认的<code>C:\Program Files (x86)\Microsoft Visual Studio\Shared</code> 修改为 <code>D:\work\soft\Microsoft Visual Studio\Shared</code></p>
+</li>
+</ul>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250515084710.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="安装-detectron2"><a href="#安装-detectron2" class="headerlink" title="安装 detectron2"></a>安装 detectron2</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ~/work/code/marker<br>git <span class="hljs-built_in">clone</span> https://github.com/facebookresearch/detectron2.git<br><br>pip install -e detectron2<br></code></pre></td></tr></table></figure>
+
+<p>注意一下自己 cd 进入的目录</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250515215620.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="安装-tesseract"><a href="#安装-tesseract" class="headerlink" title="安装 tesseract"></a>安装 tesseract</h3><p><a target="_blank" rel="noopener" href="https://digi.bib.uni-mannheim.de/tesseract/">https://digi.bib.uni-mannheim.de/tesseract/</a></p>
+<p>找到最新版本 tesseract-ocr-w64-setup-5.4.0.20240606.exe：</p>
+<p><a target="_blank" rel="noopener" href="https://digi.bib.uni-mannheim.de/tesseract/tesseract-ocr-w64-setup-5.4.0.20240606.exe">https://digi.bib.uni-mannheim.de/tesseract/tesseract-ocr-w64-setup-5.4.0.20240606.exe</a></p>
+<p>下载安装即可。</p>
+<h3 id="安装-Ghostscript"><a href="#安装-Ghostscript" class="headerlink" title="安装 Ghostscript"></a>安装 Ghostscript</h3><p>安装文档： <a target="_blank" rel="noopener" href="https://ghostscript.readthedocs.io/en/gs10.02.0/Install.html">https://ghostscript.readthedocs.io/en/gs10.02.0/Install.html</a></p>
+<p>下载页面： <a target="_blank" rel="noopener" href="https://ghostscript.com/releases/gsdnld.html">https://ghostscript.com/releases/gsdnld.html</a></p>
+<p>下载得到 gs10031w64.exe，安装即可。</p>
+<p>选择了下载这个</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250515212418.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="安装-CUBA"><a href="#安装-CUBA" class="headerlink" title="安装 CUBA"></a>安装 CUBA</h3><p><a target="_blank" rel="noopener" href="https://developer.nvidia.com/cuda-downloads">https://developer.nvidia.com/cuda-downloads</a></p>
+<p>安装文件有3个G！正常下载安装接口。</p>
+<h3 id="安装-marker"><a href="#安装-marker" class="headerlink" title="安装 marker"></a>安装 marker</h3><p>进入 marker 的下载目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install marker-pdf<br></code></pre></td></tr></table></figure>
+
+<p>安装完成时的输出：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">Installing collected packages: wcwidth, filetype, urllib3, threadpoolctl, scipy, safetensors, regex, rapidfuzz, python-dotenv, pypdfium2, pydantic-core, opencv-python, joblib, idna, ftfy, charset-normalizer, certifi, annotated-types, scikit-learn, requests, pydantic, pydantic-settings, huggingface-hub, tokenizers, pdftext, transformers, texify, surya-ocr, marker-pdf<br>Successfully installed annotated-types-0.7.0 certifi-2024.7.4 charset-normalizer-3.3.2 filetype-1.2.0 ftfy-6.2.3 huggingface-hub-0.24.6 idna-3.8 joblib-1.4.2 marker-pdf-0.2.17 opencv-python-4.10.0.84 pdftext-0.3.10 pydantic-2.8.2 pydantic-core-2.20.1 pydantic-settings-2.4.0 pypdfium2-4.30.0 python-dotenv-1.0.1 rapidfuzz-3.9.6 regex-2024.7.24 requests-2.32.3 safetensors-0.4.4 scikit-learn-1.4.2 scipy-1.14.1 surya-ocr-0.5.0 texify-0.1.10 threadpoolctl-3.5.0 tokenizers-0.19.1 transformers-4.44.2 urllib3-2.2.2 wcwidth-0.2.13<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250515220316.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h2 id="使用-marker"><a href="#使用-marker" class="headerlink" title="使用 marker"></a>使用 marker</h2><p>先尝试转换单个文件，我以从网络上下载的 <code>adobe-photoshop-book-photographers-2nd.pdf</code> 这个680页的英文 pdf 为例。</p>
+<p>变量名 <code>IMAGE_DPI</code> 表明这个值可能用于控制图像的 DPI 分辨率</p>
+<p>先设置临时环境变量，注意在 cmd 下要用 set 命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">set</span> IMAGE_DPI=192 <br><span class="hljs-built_in">echo</span> %IMAGE_DPI%<br></code></pre></td></tr></table></figure>
+
+<p>但是在 bash&#x2F;zsh 下要用 export 命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">export</span> IMAGE_DPI=192 <br><span class="hljs-built_in">echo</span> <span class="hljs-variable">$IMAGE_DPI</span><br></code></pre></td></tr></table></figure>
+
+<p>安全起见，打印一下 IMAGE_DPI 环境变量以检验是否设置成功。然后执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">marker_single E:\study\sky\ebook\photograph\photoshop\2024-adobe-photoshop-book-photographers-2nd\adobe-photoshop-book-photographers-2nd.pdf E:\study\sky\ebook\photograph\photoshop\2024-adobe-photoshop-book-photographers-2nd\markdown-windows --batch_multiplier 4 --max_pages 10<br></code></pre></td></tr></table></figure>
+
+<p>上面这个命令好像有点执行不对，先用了一下下面的</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">marker_single</span> --languages en,zh --output_dir D:\BaiduNetdiskDownload\<span class="hljs-number">2</span> D:\BaiduNetdiskDownload\<span class="hljs-number">1</span>\<span class="hljs-number">123</span>.pdf<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="初步使用"><a href="#初步使用" class="headerlink" title="初步使用"></a>初步使用</h2><h3 id="报错排查记录"><a href="#报错排查记录" class="headerlink" title="报错排查记录"></a>报错排查记录</h3><p>最后在执行的时候</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs gams">E:\L\tool\python\Python310\lib\site-packages\torch\cuda\__init__.py:<span class="hljs-number">235</span>: UserWarning:<br>NVIDIA GeForce RTX <span class="hljs-number">5070</span> with CUDA capability sm_120 is <span class="hljs-keyword">not</span> compatible with the current PyTorch installation.<br>The current PyTorch install supports CUDA capabilities sm_50 sm_60 sm_61 sm_70 sm_75 sm_80 sm_86 sm_90.<br><span class="hljs-keyword">If</span> you want to use the NVIDIA GeForce RTX <span class="hljs-number">5070</span> GPU with PyTorch, please check the instructions at https:<span class="hljs-comment">//pytorch.org/get-started/locally/</span><br><br>  warnings.warn(<br>Loaded layout <span class="hljs-keyword">model</span> s3:<span class="hljs-comment">//layout/2025_02_18 on device cuda with dtype torch.float16</span><br>Loaded texify <span class="hljs-keyword">model</span> s3:<span class="hljs-comment">//texify/2025_02_18 on device cuda with dtype torch.float16</span><br>Loaded recognition <span class="hljs-keyword">model</span> s3:<span class="hljs-comment">//text_recognition/2025_02_18 on device cuda with dtype torch.float16</span><br><span class="hljs-function"><span class="hljs-title">Downloading</span></span> table_recognition <span class="hljs-keyword">model</span>...:   <span class="hljs-number">0</span>%|                                                    | <span class="hljs-number">0</span>/<span class="hljs-number">5</span> [<span class="hljs-number">00</span>:<span class="hljs-number">00</span>&lt;?, ?it/s]<br>Aborted!<br><span class="hljs-function"><span class="hljs-title">Downloading</span></span> table_recognition <span class="hljs-keyword">model</span>...:   <span class="hljs-number">0</span>%|   <br></code></pre></td></tr></table></figure>
+
+<p>最后排查还是自己安装的 PyTorch构建版本 有点不太对</p>
+<p>参考一下这个： <a target="_blank" rel="noopener" href="https://blog.csdn.net/deephub/article/details/147014916">https://blog.csdn.net/deephub/article/details/147014916</a></p>
+<p>问题的核心在于PyTorch稳定版的预编译二进制文件不支持sm_120计算能力。RTX 5070 Ti采用了较新的架构，需要更新的CUDA版本以及对应的 PyTorch构建版本 才能正常工作。</p>
+<ol>
+<li><strong>清理现有环境</strong></li>
+</ol>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs applescript">conda <span class="hljs-built_in">activate</span> development  <br>pip uninstall torch torchvision torchaudio -y  <br>pip cache purge<br></code></pre></td></tr></table></figure>
+
+<ol>
+<li><strong>安装支持CUDA 12.8的Nightly构建版本</strong></li>
+</ol>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"> pip3 install <span class="hljs-params">--pre</span> torch torchvision torchaudio <span class="hljs-params">--index-url</span> https:<span class="hljs-string">//download.pytorch.org/whl/nightly/cu128</span><br><br><span class="hljs-comment">#版本校验</span><br>torch.<span class="hljs-keyword">version</span>.cuda<br><br></code></pre></td></tr></table></figure>
+
+
+<p>然后再执行命令，看是 OK的</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">marker_single</span> --languages en,zh --output_dir D:\BaiduNetdiskDownload\<span class="hljs-number">2</span> D:\BaiduNetdiskDownload\<span class="hljs-number">1</span>\<span class="hljs-number">123</span>.pdf<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250516014003.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="使用初步体验"><a href="#使用初步体验" class="headerlink" title="使用初步体验"></a>使用初步体验</h3><p>还是需要使用  福昕高级PDF编辑器 进行一下OCR识别后再转换后搞一下，要不然问题挺大的，也可能有一些其他设置吧，后面有空看了。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Marker 部署与使用指南</div>
+      <div>https://varcel.luoqi.icu/2025/05/14/sync/Marker-部署与使用指南-cc5c01/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Luo QI</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年5月14日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

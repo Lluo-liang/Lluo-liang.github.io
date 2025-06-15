@@ -1,0 +1,848 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/Xbox%20L.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Luo QI">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="摘要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="05 计算机网络-练习题">
+<meta property="og:url" content="https://varcel.luoqi.icu/2025/05/05/sync/05-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E7%BB%83%E4%B9%A0%E9%A2%98-0b7933/index.html">
+<meta property="og:site_name" content="轻松的洛亓">
+<meta property="og:description" content="摘要">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250505234451.png">
+<meta property="article:published_time" content="2025-05-05T23:26:19.000Z">
+<meta property="article:modified_time" content="2025-06-15T00:37:49.000Z">
+<meta property="article:author" content="Luo QI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250505234451.png">
+  
+  
+  
+  <title>05 计算机网络-练习题 - 轻松的洛亓</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"varcel.luoqi.icu","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  <meta name="baidu-site-verification" content="codeva-Oq0KOjHuD3" />
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>轻松的洛亓</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="05 计算机网络-练习题"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-05-05 23:26" pubdate>
+          2025年5月5日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          22 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">05 计算机网络-练习题</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="01"><a href="#01" class="headerlink" title="01"></a>01</h3><p>13.以下关于HTTPS和HTTP协议的描述中，不正确的是()。</p>
+<ul>
+<li>A.HTTPS协议使用加密传输</li>
+<li>B.HTTPS协议默认服务端口号是443</li>
+<li>C.HTTP协议默认服务端口是80</li>
+<li>D.电子支付类网站应使用HTTP协议</li>
+</ul>
+<h3 id="02"><a href="#02" class="headerlink" title="02"></a>02</h3><p>电子邮件客户端通过发起对(  )服务器的(  )端口的TCP连接来进行邮件发送。</p>
+<ul>
+<li><p>A.POP3</p>
+</li>
+<li><p>B.SMTP</p>
+</li>
+<li><p>C.HTTP</p>
+</li>
+<li><p>D.IMAP</p>
+</li>
+<li><p>A.23</p>
+</li>
+<li><p>B.25</p>
+</li>
+<li><p>C.110</p>
+</li>
+<li><p>D.143</p>
+</li>
+</ul>
+<h3 id="03"><a href="#03" class="headerlink" title="03"></a>03</h3><p>5G网络采用(  )可将5G网络分割成多张虚拟网络，每个虚拟网络的接入，传输和核心网是逻辑独立的，任何一个虚拟网络发生故障都不会影响到其它虚拟网络。</p>
+<ul>
+<li>A.网络切片技术</li>
+<li>B.边缘计算技术</li>
+<li>C.网络隔离技术</li>
+<li>D.软件定义网络技术</li>
+</ul>
+<h3 id="04"><a href="#04" class="headerlink" title="04"></a>04</h3><p>以下wifi认证方式中，(   )使用了AES加密算法，安全性更高。</p>
+<ul>
+<li>A.开放式</li>
+<li>B.WPA </li>
+<li>C.WPA2</li>
+<li>D.WEP</li>
+</ul>
+<h3 id="05"><a href="#05" class="headerlink" title="05"></a>05</h3><p>以下关于以太网交换机转发表的叙述中，正确的是(13)</p>
+<ul>
+<li>A.交换机的初始 MAC 地址表为空</li>
+<li>B.交换机接收到数据帧后，如果没有相应的表项，则不转发该帧</li>
+<li>C.交换机通过读取输入帧中的目的地址添加相应的MAC地址表项</li>
+<li>D.交换机的MAC地址表项是静态增长的，重启时地址表清空</li>
+</ul>
+<h3 id="06"><a href="#06" class="headerlink" title="06"></a>06</h3><p>Intemet网络核心采取的交换方式为(14)</p>
+<ul>
+<li>A.分组交换</li>
+<li>B.电路交换</li>
+<li>C.虚电路交换</li>
+<li>D.消息交换</li>
+</ul>
+<h3 id="07"><a href="#07" class="headerlink" title="07"></a>07</h3><p>以下关于区块链应用系统中“挖矿”行为的描述中，错误的是(13)。</p>
+<ul>
+<li>A.矿工“挖矿”取得区块链的记账权，同时获得代币奖励</li>
+<li>B.“挖矿”本质上是在尝试计算一个Hash碰撞</li>
+<li>C.“挖矿”是一种工作量证明机制</li>
+<li>D.可以防止比特币的双花攻击</li>
+</ul>
+<h3 id="08"><a href="#08" class="headerlink" title="08"></a>08</h3><p>在 Linux 系统中，DNS的配置文件是(14)，它包含了主机的域名搜索顺序和DNS服务器的地址。</p>
+<ul>
+<li>A.&#x2F;etc&#x2F;hostname</li>
+<li>B.&#x2F;dev&#x2F;host.conf</li>
+<li>C.&#x2F;etc&#x2F;resolv.conf</li>
+<li>D.&#x2F;dev&#x2F;name.conf</li>
+</ul>
+<h3 id="09"><a href="#09" class="headerlink" title="09"></a>09</h3><p>下面关于网络延迟的说法中，正确的是(15)。</p>
+<ul>
+<li>A.在对等网络中，网络的延迟大小与网络中的终端数量无关</li>
+<li>B.使用路由器进行数据转发所带来的延迟小于交换机</li>
+<li>C.使用Internet服务能够最大限度地减小网络延迟</li>
+<li>D.服务器延迟的主要影响因素是队列延迟和磁盘I0延迟</li>
+</ul>
+<h3 id="10"><a href="#10" class="headerlink" title="10"></a>10</h3><p>进行系统监视通常有三种方式：</p>
+<p>一是通过(16)，如 UNIX&#x2F;Linux系统中的 ps、last等：二是通过系统记录文件查阅系统在特定时间内的运行状态；三是集成命令、文件记录和可视化技术的监控工具，如(17)。</p>
+<ul>
+<li><p>A.系统命令</p>
+</li>
+<li><p>B.系统调用</p>
+</li>
+<li><p>C,系统接口</p>
+</li>
+<li><p>D.系统功能</p>
+</li>
+<li><p>A.Windows netstat</p>
+</li>
+<li><p>B.Linux的iptables</p>
+</li>
+<li><p>C.Windows的Perfinon</p>
+</li>
+<li><p>D.Linux的top</p>
+</li>
+</ul>
+<h3 id="11"><a href="#11" class="headerlink" title="11"></a>11</h3><p>TCP端口号的作用是(13)</p>
+<ul>
+<li>A.流量控制</li>
+<li>B.ACL过滤</li>
+<li>C.建立连接</li>
+<li>D.对应用层进程的寻址</li>
+</ul>
+<h3 id="12"><a href="#12" class="headerlink" title="12"></a>12</h3><p>Web页面访问过程中，在浏览器发出HTTP请求报文之前不可能执行的操作是(14)。</p>
+<ul>
+<li>A.查询本机DNS缓存，获取主机名对应的IP地址</li>
+<li>B.发起DNS请求，获取主机名对应的IP地址</li>
+<li>C.发送请求信息，获取将要访问的Web应用</li>
+<li>D.发送ARP协议广播数据包，请求网关的MAC地址</li>
+</ul>
+<h3 id="13"><a href="#13" class="headerlink" title="13"></a>13</h3><p>以下关于DHCP服务的说法中，正确的是(15)</p>
+<ul>
+<li>A.在一个园区网中可以存在多台DHCP服务器</li>
+<li>B.默认情况下，客户端要使用DHCP服务需指定DHCP服务器地址</li>
+<li>C.默认情况下，DHCP客户端选择本网段内的IP地址作为本地地址</li>
+<li>D.在DHCP服务器上，DHCP服务功能默认开启</li>
+</ul>
+<h3 id="14"><a href="#14" class="headerlink" title="14"></a>14</h3><p>在客户机上运行 nslookup 查询某服务器名称时能解析出IP地址，查询IP地址时却不能解析出服务器名称，解决这一问题的方法是(14)。</p>
+<ul>
+<li>A.清除DNS缓存</li>
+<li>B.刷新DNS缓存</li>
+<li>C.为该服务器创建PTR记录</li>
+<li>D.重启DNS服务</li>
+</ul>
+<h3 id="15"><a href="#15" class="headerlink" title="15"></a>15</h3><p>如果发送给DHCP客户端的地址已经被其他DHCP 客户端使用，客户端会向服务器发送(15)信息包拒绝接受已经分配的地址信息。</p>
+<ul>
+<li>A.DhcpAck </li>
+<li>B.DhcpOffer </li>
+<li>C.  DhcpDecline</li>
+<li>D,  DhcpNack</li>
+</ul>
+<h3 id="16"><a href="#16" class="headerlink" title="16"></a>16</h3><p>网络逻辑结构设计的内容不包括()。</p>
+<ul>
+<li>A.逻辑网络设计图</li>
+<li>B.IP地址方案</li>
+<li>C.具体的软硬件、广域网连接和基本服务</li>
+<li>D.用户培训计划</li>
+</ul>
+<h3 id="17"><a href="#17" class="headerlink" title="17"></a>17</h3><p>某企业通过一台路由器上联总部，下联4个分支结构，设计人员分配给下级机构一个连续的地址空间，采用一个子网或者超网段表示。这样做的主要作用是 ( )</p>
+<ul>
+<li>A.层次化路由选择</li>
+<li>B.易于管理和性能优化</li>
+<li>C.基于故障排查</li>
+<li>D.使用较少的资源</li>
+</ul>
+<h3 id="18"><a href="#18" class="headerlink" title="18"></a>18</h3><p>IETF 定义的区分服务(DiffServ) 模型要求每个 IP 分组都要根据 IPv4 协议头中的(   )字段加上一<br>个 DS  码点，然后内部路由器根据DS码点的值对分组进行调度和转发。</p>
+<ul>
+<li>A.数据报生存期</li>
+<li>B.服务类型</li>
+<li>C.段偏置值</li>
+<li>D.源地址</li>
+</ul>
+<h3 id="19"><a href="#19" class="headerlink" title="19"></a>19</h3><p>在 Ipv6 无状态自动配置过程中，主机将其（）附加在地址前缀1111 1110 10之后，产生一个链路本地地址。</p>
+<ul>
+<li>A.IPv4地址</li>
+<li>B.MAC地址</li>
+<li>C.主机名</li>
+<li>D.随机产生的字符串</li>
+</ul>
+<h3 id="20"><a href="#20" class="headerlink" title="20"></a>20</h3><p>如果管理距离为15，则(  )。</p>
+<ul>
+<li>A.这是一条静态路由</li>
+<li>B.这是一台直连设备</li>
+<li>C.该路由信息比较可靠</li>
+<li>D.该路由代价较小</li>
+</ul>
+<h3 id="21"><a href="#21" class="headerlink" title="21"></a>21</h3><p>下列说法中正确的是()。</p>
+<ul>
+<li>A.半双工总线只在一个方向上传输信息，全双工总线可在两个方向上轮流传输信息</li>
+<li>B.半双工总线只在一个方向上传输信息，全双工总线可在两个方向上同时传输信息</li>
+<li>C.半双工总线可在两个方向上轮流传输信息，全双工总线可在两个方向上同时传输信息</li>
+<li>D.半双工总线可在两个方向上同时传输信息，全双工总线可在两个方向上轮流传输信息</li>
+</ul>
+<h3 id="22"><a href="#22" class="headerlink" title="22"></a>22</h3><p>假如有3块容量是80G的硬盘做 RAID 5 阵列，则这个RAID 5的容量是(  )；而如果有2块  80G的盘和 1块40G的盘，此时RAID  5的容量是(  )。</p>
+<ul>
+<li><p>A.240G</p>
+</li>
+<li><p>B.160G</p>
+</li>
+<li><p>C.80G</p>
+</li>
+<li><p>D.40G</p>
+</li>
+<li><p>A.40G</p>
+</li>
+<li><p>B.80G</p>
+</li>
+<li><p>C.160G</p>
+</li>
+<li><p>D.200G</p>
+</li>
+</ul>
+<h3 id="23"><a href="#23" class="headerlink" title="23"></a>23</h3><p>以下关于IPv6的论述中，正确的是()</p>
+<ul>
+<li>A.IPv6数据包的首部比IPv4复杂</li>
+<li>B.IPv6的地址分为单播、广播和任意播3种</li>
+<li>C.IPv6的地址长度为128比特</li>
+<li>D.每个主机拥有唯一的IPv6地址</li>
+</ul>
+<h3 id="24"><a href="#24" class="headerlink" title="24"></a>24</h3><p>某高校欲构建财务系统，使得用户可通过校园网访问该系统。根据需求，公司给出如下2套方案。</p>
+<p>方案一：<br>1)出口设备采用1台配置防火墙板卡的核心交换机，并且使用防火墙策略将需要对校园网做应用的服务器进行地址映射；<br>2)采用4台高性能服务器实现整体架构，其中3台作为财务应用服务器、1台作为数据备份管理服务器；<br>3)通过备份管理软件的备份策略将3台财务应用服务器的数据进行定期备份。</p>
+<p>方案二：<br>1)出口设备采用1台配置防火墙板卡的核心交换机，并且使用防火墙策略将需要对校园网做应用的服务器进行地址映射；<br>2)采用2台高性能服务器实现整体架构，服务器采用虚拟化技术，建多个虚拟机满足财务系统业务<br>需求。当一台服务器出现物理故障时将业务迁移到另外一台物理服务器上。</p>
+<p>与方案一相比，方案二的优点是()。方案二还有一些缺点，下列不属于其缺点的是()。</p>
+<ul>
+<li><p>A.网络的安全性得到保障</p>
+</li>
+<li><p>B.数据的安全性得到保障</p>
+</li>
+<li><p>C.业务的连续性得到保障</p>
+</li>
+<li><p>D.业务的可用性得到保障</p>
+</li>
+<li><p>A.缺少企业级磁盘阵列，不能将数据进行统一的存储与管理</p>
+</li>
+<li><p>B.缺少网闸，不能实现财务系统与Internet的物理隔离</p>
+</li>
+<li><p>C.缺少安全审计，不便于相关行为的记录、存储与分析</p>
+</li>
+<li><p>D.缺少内部财务用户接口，不便于快速管理与维护</p>
+</li>
+</ul>
+<h3 id="25"><a href="#25" class="headerlink" title="25"></a>25</h3><p>按照网络分层设计模型，通常把局域网设计为3层，即核心层、汇聚层和接入层，以下关于分层网络功能的描述中，不正确的是()。</p>
+<ul>
+<li>A.核心层设备负责数据包过滤、策略路由等功能</li>
+<li>B.汇聚层完成路由汇总和协议转换功能</li>
+<li>C.接入层应提供一部分管理功能，例如MAC地址认证、计费管理等</li>
+<li>D.接入层负责收集用户信息，例如用户IP地址、MAC地址、访问日志等</li>
+</ul>
+<h3 id="26"><a href="#26" class="headerlink" title="26"></a>26</h3><p>结构化布线系统分为六个子系统，其中水平子系统( ）</p>
+<ul>
+<li>A.由各种交叉连接设备以及集线器和交换机等设备组成</li>
+<li>B.连接了干线子系统和工作区子系统，</li>
+<li>C.由终端设备到信息插座的整个区域组成</li>
+<li>D.实现各楼层设备间子系统之间的互连</li>
+</ul>
+<h3 id="27"><a href="#27" class="headerlink" title="27"></a>27</h3><p>以下关于层次化网络设计原则的叙述中，错误的是()。</p>
+<ul>
+<li>A.一般将网络划分为核心层、汇聚层、接入层三个层次</li>
+<li>B.应当首先设计核心层，再根据必要的分析完成其他层次设计</li>
+<li>C.为了保证网络的层次性，不能在设计中随意加入额外连接</li>
+<li>D.除去接入层，其他层次应尽量采用模块化方式，模块间边界应非常清晰</li>
+</ul>
+<h3 id="28"><a href="#28" class="headerlink" title="28"></a>28</h3><p>网络需求分析包括网络总体需求分析、综合布线需求分析、网络可用性与可靠性分析、网络安全性需求分析，此外还需要进行()。</p>
+<ul>
+<li>A.工程造价估算</li>
+<li>B.工程进度安排</li>
+<li>C.硬件设备选型</li>
+<li>D.IP地址分配分析</li>
+</ul>
+<h3 id="29"><a href="#29" class="headerlink" title="29"></a>29</h3><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250505234451.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>05 计算机网络-练习题</div>
+      <div>https://varcel.luoqi.icu/2025/05/05/sync/05-计算机网络-练习题-0b7933/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Luo QI</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年5月5日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

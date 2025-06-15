@@ -1,0 +1,1041 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/Xbox%20L.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Luo QI">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="开始考虑将综合知识和练习题分离，同时保持综合知识只维护单个内容，练习题和培训习题文档内容保持一致。后续有真题内容，直接按照年份进行复习。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库系统——练习题">
+<meta property="og:url" content="https://varcel.luoqi.icu/2025/04/30/sync/03_%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E7%BB%83%E4%B9%A0%E9%A2%98-88a392/index.html">
+<meta property="og:site_name" content="轻松的洛亓">
+<meta property="og:description" content="开始考虑将综合知识和练习题分离，同时保持综合知识只维护单个内容，练习题和培训习题文档内容保持一致。后续有真题内容，直接按照年份进行复习。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250505230209.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250430155807.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250502094348.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250502100958.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250505230401.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250505230508.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250505230526.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250505230701.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250505230721.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250505230742.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250505230849.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250502171215.png">
+<meta property="article:published_time" content="2025-04-30T08:24:25.000Z">
+<meta property="article:modified_time" content="2025-06-15T00:37:49.000Z">
+<meta property="article:author" content="Luo QI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250505230209.png">
+  
+  
+  
+  <title>数据库系统——练习题 - 轻松的洛亓</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"varcel.luoqi.icu","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  <meta name="baidu-site-verification" content="codeva-Oq0KOjHuD3" />
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>轻松的洛亓</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="数据库系统——练习题"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-04-30 08:24" pubdate>
+          2025年4月30日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          34 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">数据库系统——练习题</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>✈️👶🐲🐎🐒</p>
+<p>关注一下 🐎 的标题</p>
+<p>✈️ 疑惑</p>
+<h3 id="01"><a href="#01" class="headerlink" title="01"></a>01</h3><p>1.采用三级模式结构的数据库系统中，如果对一个表创建聚簇索引，那么改变的是数据库的( )。</p>
+<p>A.外模式<br>B.模式<br>C.内模式<br>D.用户模式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open 或 closed<br><br>答案： C <br><br>解析：如果是索引，改变的实际物理存储  → 内模式（**聚簇索引 → 影响数据的物理存储 → 属于内模式（Internal Schema）**）；视图 → 外模式。<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<hr>
+<h3 id="02"><a href="#02" class="headerlink" title="02"></a>02</h3><p>6.假设系统中有正在运行的事务，若要转储全部数据库，则应采用()方式。</p>
+<p>A.静态全局转储<br>B.动态增量转储<br>C.静态增量转储<br>D.动态全局转储</p>
+<p>答案：D</p>
+<p>解析：正在运行是动态，全部是全局。</p>
+<blockquote>
+<p>记忆技巧</p>
+</blockquote>
+<ul>
+<li><p><strong>动态 vs 静态</strong>：</p>
+<ul>
+<li><p>动态：有活动（事务运行）。</p>
+</li>
+<li><p>静态：无活动（无事务运行）。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>全局 vs 增量</strong>：</p>
+<ul>
+<li><p>全局：全部数据。</p>
+</li>
+<li><p>增量：部分数据。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>题目中“有正在运行的事务” → 动态；“全部数据库” → 全局。因此选D。</p>
+<hr>
+<h3 id="03"><a href="#03" class="headerlink" title="03"></a>03</h3><p>给定关系模式R(U,F),其中U为属性集，F是U上的一组函数依赖，那么函数依赖的公理系统(Armstrong  公理系统)中的分解规则是指( )为F所蕴涵。</p>
+<ul>
+<li>A.若X→Y,Y→Z,则X→Y</li>
+<li>B.若Y ⊆ X ⊆ U, 则X→Y     </li>
+<li>C.若X→Y,Z ⊆ Y,则X→Z</li>
+<li>D.若X→Y,Y→Z,则X→YZ</li>
+</ul>
+<hr>
+<p>答案：C</p>
+<blockquote>
+<p>Armstrong公理系统简介</p>
+</blockquote>
+<p>Armstrong公理系统是用于推导函数依赖的逻辑规则，包含以下基本公理：</p>
+<ol>
+<li><strong>自反律（Reflexivity）</strong>：若Y ⊆ X ⊆ U，则X → Y。<ul>
+<li>这是平凡的依赖，因为一个属性集总是决定自己的子集。</li>
+</ul>
+</li>
+<li><strong>增广律（Augmentation）</strong>：若X → Y，则XZ → YZ（Z是任意属性集）。<ul>
+<li>在函数依赖的两边同时增加相同的属性集。</li>
+</ul>
+</li>
+<li><strong>传递律（Transitivity）</strong>：若X → Y且Y → Z，则X → Z。<ul>
+<li>类似于数学中的传递性。</li>
+</ul>
+</li>
+</ol>
+<p>此外，还有一些<strong>导出规则</strong>（可以从基本公理推导出的规则）：</p>
+<ul>
+<li><strong>合并规则（Union）</strong>：若X → Y且X → Z，则X → YZ。</li>
+<li><strong>分解规则（Decomposition）</strong>：若X → YZ，则X → Y且X → Z。<ul>
+<li>这是题目中提到的分解规则。</li>
+</ul>
+</li>
+<li><strong>伪传递规则（Pseudotransitivity）</strong>：若X → Y且WY → Z，则WX → Z。</li>
+</ul>
+<p>分解规则的定义</p>
+<p>分解规则是指：如果已知 X→YZ，则可以推出 X→Y 和 X→Z。</p>
+<ul>
+<li>这是因为 Y⊆YZY⊆YZ 和 Z⊆YZZ⊆YZ，所以根据分解规则，可以从 X→YZX→YZ 分解为更小的函数依赖。</li>
+<li>形式化描述：若 X→YX→Y 且 Z⊆YZ⊆Y，则 X→ZX→Z。</li>
+</ul>
+<blockquote>
+<p>选项分析</p>
+</blockquote>
+<p>我们需要找到与分解规则形式化描述一致的选项：</p>
+<ul>
+<li><p><strong>A. 若X→Y, Y→Z, 则X→Y</strong>：</p>
+<ul>
+<li>这是传递律的一部分，但不是分解规则。X→Y已经是已知条件，没有分解。</li>
+<li>不正确。</li>
+</ul>
+</li>
+<li><p><strong>B. 若Y ⊆ X ⊆ U, 则X→Y</strong>：</p>
+<ul>
+<li>这是自反律的定义，不是分解规则。</li>
+<li>不正确。</li>
+</ul>
+</li>
+<li><p><strong>C. 若X→Y, Z ⊆ Y, 则X→Z</strong>：</p>
+<ul>
+<li>这正是分解规则的形式化描述：<ul>
+<li>已知 X→Y，且 Z⊆Y，则可以推出 X→Z。</li>
+</ul>
+</li>
+<li>正确。</li>
+</ul>
+</li>
+<li><p><strong>D. 若X→Y, Y→Z, 则X→YZ</strong>：</p>
+<ul>
+<li>这是合并规则和传递律的结合，不是分解规则。</li>
+<li>不正确。</li>
+</ul>
+</li>
+</ul>
+<p>排除法</p>
+<ul>
+<li>A：传递律相关，排除。</li>
+<li>B：自反律，排除。</li>
+<li>D：合并规则，排除。</li>
+<li>只有C完全匹配分解规则的定义。</li>
+</ul>
+<p><strong>常见混淆点</strong></p>
+<ul>
+<li>可能会误选D，因为D看起来像是“分解”的逆过程（合并）。但<strong>分解规则是“从大推到小”</strong>，而D是“从小推到大”。</li>
+<li>可能会误选B，因为B涉及子集关系，但B是自反律，不是分解。</li>
+</ul>
+<p>正确答案是 <strong>C. 若X→Y, Z ⊆ Y, 则X→Z</strong>。</p>
+<hr>
+<h3 id="04-🐎"><a href="#04-🐎" class="headerlink" title="04  🐎"></a>04  🐎</h3><p>题目</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250505230209.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ol>
+<li>给定关系 R (A, B, C, D) 和 S(A, C, E, F)，以下（ ）与 σR.B&gt;S.E(R≈S) 等价。</li>
+</ol>
+<p>A. σ2&gt;7(RxS)<br>B. π₁,₂,₃,₄,₇,₈(σ₁&#x3D;₅∧₂&gt;₇∧₃&#x3D;₆(RxS))<br>C. σ₂&gt;’7’(RxS)<br>D. π₁,₂,₃,₄,₇,₈(σ₁&#x3D;₅∧₂&gt;’7’∧₃&#x3D;₆(RxS))</p>
+<hr>
+<p>答案：B</p>
+<hr>
+<blockquote>
+<p>解析：</p>
+</blockquote>
+<ol>
+<li><p><strong>原式分析</strong>：</p>
+<ul>
+<li><strong>R≈S</strong> 表示自然连接（Natural Join），要求 <strong>R.A &#x3D; S.A</strong> 且 <strong>R.C &#x3D; S.C</strong>。</li>
+<li><strong>σR.B&gt;S.E</strong> 表示在连接结果中筛选 <strong>R.B &gt; S.E</strong> 的元组。</li>
+</ul>
+</li>
+<li><p><strong>笛卡尔积与条件转换</strong>：</p>
+<ul>
+<li>自然连接可转换为 <strong>笛卡尔积（RxS）</strong> 后筛选公共属性相等：<ul>
+<li><strong>R.A &#x3D; S.A</strong>（即第1列 &#x3D; 第5列）</li>
+<li><strong>R.C &#x3D; S.C</strong>（即第3列 &#x3D; 第6列）</li>
+</ul>
+</li>
+<li>再加上 <strong>R.B &gt; S.E</strong>（即第2列 &gt; 第7列）。</li>
+</ul>
+</li>
+<li><p><strong>选项分析</strong>：</p>
+<ul>
+<li>**A. σ₂&gt;₇(RxS)**：<ul>
+<li>仅筛选第2列 &gt; 第7列，但缺少自然连接条件（R.A &#x3D; S.A 和 R.C &#x3D; S.C），<strong>不等价</strong>。</li>
+</ul>
+</li>
+<li>**B. π₁,₂,₃,₄,₇,₈(σ₁&#x3D;₅∧₂&gt;₇∧₃&#x3D;₆(RxS))**：<ul>
+<li><strong>σ₁&#x3D;₅∧₂&gt;₇∧₃&#x3D;₆</strong> 对应自然连接条件（R.A &#x3D; S.A，R.C &#x3D; S.C）和筛选条件（R.B &gt; S.E）。</li>
+<li><strong>投影 π₁,₂,₃,₄,₇,₈</strong> 保留 R 的所有属性和 S 的 E、F，消除重复的 A、C，<strong>等价</strong>。</li>
+</ul>
+</li>
+<li>**C. σ₂&gt;’7’(RxS)**：<ul>
+<li>条件 <strong>2&gt;’7’</strong> 将数值与字符串比较，<strong>类型错误</strong>。</li>
+</ul>
+</li>
+<li>**D. π₁,₂,₃,₄,₇,₈(σ₁&#x3D;₅∧₂&gt;’7’∧₃&#x3D;₆(RxS)))**：<ul>
+<li>类似 B，但条件 <strong>2&gt;’7’</strong> 存在<strong>类型错误</strong>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>结论</strong>：</p>
+<ul>
+<li>只有 <strong>B</strong> 正确结合了自然连接条件、筛选条件和投影操作，与原式等价。</li>
+</ul>
+</li>
+</ol>
+<h3 id="05"><a href="#05" class="headerlink" title="05"></a>05</h3><p>某企业开发信息管理系统平台进行E-R图设计，</p>
+<p>人力部门定义的是员工实体具有属性：员工号、姓名、性别、出生日期、联系方式和部门，</p>
+<p>培训部门定义的培训师实体具有属性：培训师号，姓名和职称，其中职称&#x3D;{初级培训师，中级培训师，高级培训师}，</p>
+<p>这种情况属于（1），在合并E-R图时，解决这一冲突的方法是(2)</p>
+<ul>
+<li><p>A.属性冲突</p>
+</li>
+<li><p>B.结构冲突</p>
+</li>
+<li><p>C.命名冲突</p>
+</li>
+<li><p>D.实体冲突</p>
+</li>
+<li><p>A.员工实体和培训师实体均保持不变</p>
+</li>
+<li><p>B.保留员工实体、删除培训师实体</p>
+</li>
+<li><p>C.员工实体中加入职称属性，删除培训师实体</p>
+</li>
+<li><p>D将培训师实体所有属性并入员工实体，删除培训师实体</p>
+</li>
+</ul>
+<hr>
+<p>答案： B      C</p>
+<p><strong>冲突类型分析（问题一）</strong>  </p>
+<p>题目中，人力部门定义的<strong>员工实体</strong>和培训部门定义的<strong>培训师实体</strong>存在以下差异：</p>
+<ul>
+<li>员工实体属性：员工号、姓名、性别、出生日期、联系方式、部门</li>
+<li>培训师实体属性：培训师号、姓名、职称</li>
+<li>职称属性有固定取值范围（初级、中级、高级），而员工实体中缺少该属性。</li>
+</ul>
+<p>这种冲突属于<strong>结构冲突</strong>。结构冲突是指同一现实对象在不同应用中抽象为不同的实体或属性集合。例如，员工和培训师本质可能是同一类对象（员工可以兼任培训师），但不同部门根据需求定义了不同的属性（员工实体缺少职称，培训师实体缺少部门等）。因此，答案是 <strong>B. 结构冲突</strong></p>
+<p><strong>解决方法分析（问题二）</strong>  </p>
+<p>合并E-R图时，需解决结构冲突：</p>
+<ul>
+<li>培训师实体的<strong>职称</strong>是员工实体中缺失的关键属性。</li>
+<li>培训师号与员工号可能冲突（如两者均为唯一标识符），但员工号作为主键更合理（培训师本质是员工的一种角色）。</li>
+</ul>
+<p>合理做法是将<strong>职称</strong>属性加入员工实体，删除冗余的培训师实体。这样，合并后的员工实体既能表示普通员工，也能表示培训师（职称可为空或设为默认值）。</p>
+<ul>
+<li><strong>选项C</strong>（员工实体加入职称属性，删除培训师实体）正确。</li>
+<li>选项D（并入所有属性）不合理，因为培训师号与员工号可能重复或冲突，且姓名属性已存在。</li>
+</ul>
+<hr>
+<h3 id="06"><a href="#06" class="headerlink" title="06"></a>06</h3><p>通常在设计关系模式时，派生属性不会作为关系中的属性来存储。</p>
+<p>按照这个原则，原设计的学生关系模式为Students(学号，姓名，性别，出生日期，年龄，家庭地址)，那么该关系模式正确的设计应为(5)。</p>
+<ul>
+<li>A,Students(学号，性别，出生日期，年龄，家庭地址)</li>
+<li>B.Students(学号，姓名，性别，出生日期，年龄)</li>
+<li>C.Students(学号，姓名，性别，出生日期，家庭地址)</li>
+<li>D.Students(学号，姓名，出生日期，年龄，家庭地址)</li>
+</ul>
+<hr>
+<p>答案：C</p>
+<p>解析；</p>
+<p>派生属性是指可以由其他属性通过计算来获得，若在系统中存储派生属性，会引起数据冗余，增加额外存储和维护负担，还可能导致数据的不一致性，故派生属性不会作为关系中的属性来存储。</p>
+<p><strong>本题中“年龄”是派生属性</strong>，该属性可以由“系统当前时间-出生日期”计算获得，故关系模式Students正确的设计是“年龄”不作为关系中的属性来存储。</p>
+<h3 id="07-🐒"><a href="#07-🐒" class="headerlink" title="07  🐒"></a>07  🐒</h3><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250430155807.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>分析</p>
+<h3 id="08"><a href="#08" class="headerlink" title="08"></a>08</h3><p>在分布式数据库中有分片透明、复制透明、位置透明和逻辑透明等基本概念。</p>
+<p>其中，(8)是指用户无需知道数据存放的物理位置。</p>
+<ul>
+<li>A.分片透明</li>
+<li>B.逻辑透明</li>
+<li>C.位置透明</li>
+<li>D.复制透明</li>
+</ul>
+<hr>
+<p>解析：</p>
+<p>在分布式数据库中，“透明”（Transparency）指的是对用户或应用程序隐藏系统的复杂性。用户不需要了解数据是如何存储、分布或管理的，可以像使用单一数据库一样进行操作。</p>
+<p>每个选项的具体含义：</p>
+<ol>
+<li><p><strong>分片透明（Fragmentation Transparency）</strong>：</p>
+<ul>
+<li><strong>定义</strong>：用户无需知道数据是否被分片（即数据是否被分割成多个部分存储在不同的地方）。</li>
+<li><strong>例子</strong>：一个表被水平或垂直分片，但用户查询时不需要指定分片信息。</li>
+</ul>
+</li>
+<li><p><strong>复制透明（Replication Transparency）</strong>：</p>
+<ul>
+<li><strong>定义</strong>：用户无需知道数据是否被复制（即同一数据是否有多个副本存储在不同的节点上）。</li>
+<li><strong>例子</strong>：数据可能有多个副本以提高可用性，但用户不需要关心访问的是哪个副本。</li>
+</ul>
+</li>
+<li><p><strong>位置透明（Location Transparency）</strong>：</p>
+<ul>
+<li><strong>定义</strong>：用户无需知道数据存放的物理位置（即数据具体存储在哪个节点或站点）。</li>
+<li><strong>例子</strong>：用户查询数据时，不需要指定数据的物理位置（如服务器名称、IP等）。</li>
+</ul>
+</li>
+<li><p><strong>逻辑透明（Logical Transparency）</strong>：</p>
+<ul>
+<li><strong>定义</strong>：这个术语在分布式数据库中并不常见。可能是“视图透明”或“命名透明”的误用。通常指用户看到的逻辑结构与实际物理存储无关。</li>
+<li><strong>排除</strong>：因为不常见，且其他选项更符合题意。</li>
+</ul>
+</li>
+</ol>
+<p>答案：C 位置透明</p>
+<h3 id="09"><a href="#09" class="headerlink" title="09"></a>09</h3><p>数据库的安全机制中，通过提供（⑤）供第三方开发人员调用进行数据更新，从而保证数据库的关系模式不被第三方所获取。</p>
+<ul>
+<li>A.索引</li>
+<li>B.视图</li>
+<li>C.存储过程</li>
+<li>D.触发器</li>
+</ul>
+<p>答案：C</p>
+<h3 id="10-🐒"><a href="#10-🐒" class="headerlink" title="10 🐒"></a>10 🐒</h3><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250502094348.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<hr>
+<p>解析：</p>
+<p>- </p>
+<h3 id="11"><a href="#11" class="headerlink" title="11"></a>11</h3><p>分布式数据库系统除了包含集中式数据库系统的模式结构之外，还增加了几个模式级别，</p>
+<p>其中(8)定义分布式数据库中数据的整体逻辑结构，<strong>使得数据使用方便，如同没有分布</strong>一样。</p>
+<ul>
+<li>A.分片模式</li>
+<li>B.全局外模式</li>
+<li>C.分布模式</li>
+<li>D.全局概念模式</li>
+</ul>
+<hr>
+<p>分布式数据库系统通常包含以下模式级别（从高到低）：</p>
+<ol>
+<li><p><strong>全局外模式（Global External Schema）</strong>：</p>
+<ul>
+<li>对应于集中式数据库的外模式（视图层）。</li>
+<li>是用户或应用程序看到的数据视图，可以屏蔽分布细节。</li>
+</ul>
+</li>
+<li><p><strong>全局概念模式（Global Conceptual Schema）</strong>：</p>
+<ul>
+<li>定义分布式数据库中数据的<strong>整体逻辑结构</strong>，描述所有数据的逻辑关系。</li>
+<li>目标是让用户使用数据时感觉像在使用单一数据库（分布透明性）。</li>
+</ul>
+</li>
+<li><p><strong>分片模式（Fragmentation Schema）</strong>：</p>
+<ul>
+<li>定义数据如何被分片（水平分片、垂直分片或混合分片）。</li>
+<li>例如，将表按行或列划分到不同节点。</li>
+</ul>
+</li>
+<li><p><strong>分布模式（Distribution Schema）</strong>：</p>
+<ul>
+<li>定义分片的物理存储位置（即分片分配到哪个站点或节点）。</li>
+<li>也称为“分配模式”</li>
+</ul>
+</li>
+</ol>
+<p>答案 D</p>
+<p><strong>全局概念模式</strong>是定义分布式数据库整体逻辑结构的核心模式级别，确保用户无需感知数据分布。</p>
+<h3 id="12"><a href="#12" class="headerlink" title="12"></a>12</h3><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250502100958.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="13"><a href="#13" class="headerlink" title="13"></a>13</h3><p>数据仓库中，数据(8)是指数据一旦进入数据仓库后，将被长期保留并定期加载和刷新，可以进行各种查询操作，但很少对数据进行修改和删除操作。</p>
+<ul>
+<li>A.面向主题</li>
+<li>B.集成性</li>
+<li>C.相对稳定性</li>
+<li>D.反映历史变化</li>
+</ul>
+<hr>
+<p>答案： C</p>
+<p>数据仓库4大特点：</p>
+<ul>
+<li>面向主题：数据按主题组织。</li>
+<li>集成的：消除了源数据中的不一致性，提供整个企业的一致性全局信息。</li>
+<li>相对稳定的（非易失的）：主要进行查询操作，只有少量的修改和删除操作（或是不删除）。</li>
+<li>反映历史变化（随着时间变化）：记录了企业从过去某一时刻到当前各个阶段的信息，可对发展历程和未来趋势做定量分析和预测。</li>
+</ul>
+<h3 id="14"><a href="#14" class="headerlink" title="14"></a>14</h3><p>给定关系模式R(U,F),其中: 属性集U&#x3D;{A1,A2,A3,A4,A5,A6},函数依赖集F&#x3D;{A1→A2,A1→A3,A3→A4,A1A5一A6}。</p>
+<p>关系模式R的候选码为()，由于R存在非主属性对码的部分函数依赖，所以R属于()。</p>
+<ul>
+<li><p>A.A1A3</p>
+</li>
+<li><p>B.A1A4</p>
+</li>
+<li><p>C.A1 A5</p>
+</li>
+<li><p>D.A1A6</p>
+</li>
+<li><p>A.1NF</p>
+</li>
+<li><p>B.2NF</p>
+</li>
+<li><p>C.3NF</p>
+</li>
+<li><p>D.BCNF</p>
+</li>
+</ul>
+<h3 id="15"><a href="#15" class="headerlink" title="15"></a>15</h3><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250505230401.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="16"><a href="#16" class="headerlink" title="16"></a>16</h3><p>分布式数据库两阶段提交协议中的两个阶段是指(12)</p>
+<ul>
+<li>A.加锁阶段、解锁阶段</li>
+<li>B.获取阶段、运行阶段</li>
+<li>C.表决阶段、执行阶段</li>
+<li>D.扩展阶段、收缩阶段</li>
+</ul>
+<h3 id="17"><a href="#17" class="headerlink" title="17"></a>17</h3><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250505230508.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="18"><a href="#18" class="headerlink" title="18"></a>18</h3><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250505230526.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="19"><a href="#19" class="headerlink" title="19"></a>19</h3><p>假设某证券公司的股票交易系统中有正在运行的事务，此时，若要转储该交易系统数据库中的全部<br>数据，则应采用()方式。</p>
+<ul>
+<li>A.静态全局转储</li>
+<li>B.动态全局转储</li>
+<li>C.静态增量转储</li>
+<li>D.动态增量转储</li>
+</ul>
+<h3 id="20"><a href="#20" class="headerlink" title="20"></a>20</h3><p>在分布式数据库中包括分片透明、复制透明、位置透明和逻辑透明等基本概念，<br>其中：(  ) 是指局部数据模型透明，即用户或应用程序无需知道局部场地使用的是哪种数据模型。</p>
+<ul>
+<li>A.分片透明</li>
+<li>B.复制透明</li>
+<li>C.位置透明</li>
+<li>D.逻辑透明</li>
+</ul>
+<h3 id="21"><a href="#21" class="headerlink" title="21"></a>21</h3><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250505230701.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="22"><a href="#22" class="headerlink" title="22"></a>22</h3><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250505230721.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="23"><a href="#23" class="headerlink" title="23"></a>23</h3><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250505230742.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="24"><a href="#24" class="headerlink" title="24"></a>24</h3><p>以下关于嵌入式数据库管理系统的描述不正确的是(  )。</p>
+<ul>
+<li>A.嵌入式数据库管理系统一般只为前端应用提供基本的数据支持</li>
+<li>B.嵌入式数据库管理系统一般支持实时数据的管理</li>
+<li>C.嵌入式数据库管理系统一般不支持多线程并发操作</li>
+<li>D.嵌入式数据库管理系统一般只提供本机服务接口</li>
+</ul>
+<h3 id="25"><a href="#25" class="headerlink" title="25"></a>25</h3><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250505230849.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="26"><a href="#26" class="headerlink" title="26"></a>26</h3><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250502171215.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="27-✈️"><a href="#27-✈️" class="headerlink" title="27 ✈️"></a>27 ✈️</h3><p>数据挖掘是从数据库的大量数据中揭示出隐含的、先前未知的并有潜在价值的信息的非平凡过程，主要任务有（)。</p>
+<ul>
+<li>A.聚类分析、联机分析、信息检索等</li>
+<li>B.信息检索、聚类分析、分类分析等</li>
+<li>C.聚类分析、分类分析、关联规则挖掘等</li>
+<li>D.分类分析、联机分析、关联规则挖掘等</li>
+</ul>
+<hr>
+<p>解析；</p>
+<ul>
+<li>1、数据挖掘是什么<ul>
+<li>数据挖掘是从大量数据中揭示隐含、未知且有潜在价值信息的过程</li>
+<li>数据挖掘一般是指从大量的数据中通过算法搜索隐藏于其中信息的过程。数据挖掘通常与计算机科学有关，并通过统计、在线分析处理、情报检索、机器学习、专家系统（依靠过去的经验法则）和模式识别等诸多方法来实现上述目标</li>
+</ul>
+</li>
+<li>2、数据挖掘的主要任务<ul>
+<li>数据挖掘的核心任务聚焦于<strong>从数据中发现规律</strong>，而非单纯的数据查询（OLAP）或信息查找（信息检索）。</li>
+</ul>
+</li>
+<li>排除<ul>
+<li>A B 包含了信息检索，可以进行排除</li>
+<li><strong>联机分析（OLAP）</strong>是数据仓库的多维查询技术，属于数据分析工具而非数据挖掘的核心任务；<strong>信息检索</strong>（如搜索引擎）是独立领域，与数据挖掘目标不同。D 进行排除</li>
+<li>答案：C</li>
+</ul>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>数据库系统——练习题</div>
+      <div>https://varcel.luoqi.icu/2025/04/30/sync/03_数据库系统练习题-88a392/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Luo QI</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年4月30日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

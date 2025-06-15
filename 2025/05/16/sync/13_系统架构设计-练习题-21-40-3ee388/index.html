@@ -1,0 +1,956 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/Xbox%20L.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Luo QI">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="摘要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="13_系统架构设计-练习题-21-40">
+<meta property="og:url" content="https://varcel.luoqi.icu/2025/05/16/sync/13_%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1-%E7%BB%83%E4%B9%A0%E9%A2%98-21-40-3ee388/index.html">
+<meta property="og:site_name" content="轻松的洛亓">
+<meta property="og:description" content="摘要">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-05-16T22:16:43.000Z">
+<meta property="article:modified_time" content="2025-06-15T00:37:49.000Z">
+<meta property="article:author" content="Luo QI">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>13_系统架构设计-练习题-21-40 - 轻松的洛亓</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"varcel.luoqi.icu","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  <meta name="baidu-site-verification" content="codeva-Oq0KOjHuD3" />
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>轻松的洛亓</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="13_系统架构设计-练习题-21-40"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-05-16 22:16" pubdate>
+          2025年5月16日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          56 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">13_系统架构设计-练习题-21-40</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="21"><a href="#21" class="headerlink" title="21"></a>21</h3><p>2021年H月第35题</p>
+<p>以下关于软件构件的叙述中，错误的是（ ）。</p>
+<ul>
+<li>A. 构件的部署必须能跟它所在的环境及其他构件完全分离</li>
+<li>B. 构件作为一个部署单元是不可拆分的</li>
+<li>C. 在一个特定进程中可能会存在多个特定构件的拷贝</li>
+<li>D. 对于不影响构件功能的某些属性可以对外部可见</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: closed <br><br>答案：D<br>解析：<br>本题考查软件构件的基本特性：<br>- 选项A正确：构件部署应当与环境解耦，符合构件&quot;独立部署&quot;的特性要求<br>- 选项B正确：构件作为最小部署单元具有原子性，不可拆分是核心特征<br>- 选项C正确：同一构件在进程中可能存在多个实例（如线程池）<br>- 选项D错误：构件应当严格封装实现细节，所有对外暴露的属性都应影响功能，这是&quot;信息隐藏&quot;原则的要求<br><br>关键知识点辨析：<br>1. 构件的三要素：独立部署单元、契约化接口、完全封装<br>2. 构件与容器的关系：构件通过容器提供运行环境，但两者必须解耦<br>3. 构件的&quot;白盒&quot;属性（如性能参数）应通过专门接口暴露，而非直接可见<br></code></pre></td></tr></table></figure>
+
+<h3 id="22"><a href="#22" class="headerlink" title="22"></a>22</h3><p>2021年H月第36题</p>
+<p>面向构件的编程目前缺乏完善的方法学支持，构件交互的复杂性带来了很多问题，其中（ ）问题会产生数据竞争和死锁现象。</p>
+<ul>
+<li>A. 多线程</li>
+<li>B. 异步</li>
+<li>C. 封装</li>
+<li>D. 多语言支持</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: closed <br><br>答案：A<br>解析：<br>本题考查构件交互的典型问题：<br>- 选项A正确：多线程环境下，构件并发访问共享资源会导致数据竞争(race condition)，而线程间相互等待资源则会产生死锁(deadlock)<br>- 选项B错误：异步通信主要导致消息顺序问题，不会直接引发数据竞争/死锁<br>- 选项C错误：封装是构件的基本特性，与题干问题无关<br>- 选项D错误：多语言支持涉及接口适配，不直接导致并发问题<br><br>关键知识点：<br>1. 构件并发问题的两大表现：<br>   - 数据竞争：多个线程同时修改共享数据<br>   - 死锁：线程间循环等待资源<br>2. 典型解决方案：<br>   - 同步机制（锁、信号量）<br>   - 避免共享状态（消息传递）<br>   - 事务管理<br></code></pre></td></tr></table></figure>
+
+<h3 id="23"><a href="#23" class="headerlink" title="23"></a>23</h3><p>2021年11月第37-38题</p>
+<p>为实现对象重用，COM 支持两种形式的对象组装。<br>在（ ）重用形式下，一个外部对象拥有指向一个内部对象的唯一引用，外部对象只是把请求转发给内部对象；在（ ）重用形式下，直接把内部对象的接口引用传给外部对象的客户，而不再转发请求。</p>
+<ul>
+<li><p>A.聚集</p>
+</li>
+<li><p>B.包含</p>
+</li>
+<li><p>C.链接</p>
+</li>
+<li><p>D.多态</p>
+</li>
+<li><p>A.引用</p>
+</li>
+<li><p>B.转发</p>
+</li>
+<li><p>C.包含</p>
+</li>
+<li><p>D.聚集</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: closed <br><br>答案：B D<br>解析：<br>本题考查COM对象的两种重用机制：<br><br>1. 第一空考查&quot;包含&quot;(Containment)：<br>- 包含重用中，外部对象完全封装内部对象（选项B正确）<br>- 外部对象持有内部对象的唯一引用<br>- 所有请求通过外部对象显式转发实现<br>- 类比设计模式中的&quot;装饰器模式&quot;<br><br>2. 第二空考查&quot;聚集&quot;(Aggregation)：<br>- 聚集重用中，外部对象直接暴露内部对象接口（选项D正确）<br>- 内部对象接口引用直接传递给客户端<br>- 不需要请求转发，效率更高<br>- 类比设计模式中的&quot;组合模式&quot;<br><br>关键区分特征：<br>- 包含：转发请求，外部对象完全控制<br>- 聚集：直接暴露，内部对象可独立使用<br>其他选项辨析：<br>- 聚集(A)和包含(C)是COM标准术语<br>- 链接(C)和多态(D)非COM重用机制<br>- 引用(A)和转发(B)是干扰项<br></code></pre></td></tr></table></figure>
+
+<h3 id="24"><a href="#24" class="headerlink" title="24"></a>24</h3><p>2021年11月第44-45题</p>
+<p>基于架构的软件设计（ABSD）方法是架构驱动的方法，该方法是一个（ ）的方法，软件系统的架构通过该方法得到细化，直到能产生（ ）。</p>
+<ul>
+<li><p>A. 自顶向下 </p>
+</li>
+<li><p>B. 自底向上 </p>
+</li>
+<li><p>C. 原型 </p>
+</li>
+<li><p>D. 自顶向下和自底向上结合</p>
+</li>
+<li><p>A. 软件质量属性 </p>
+</li>
+<li><p>B. 软件连接性 </p>
+</li>
+<li><p>C. 软件构件或模块 </p>
+</li>
+<li><p>D. 软件接口</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open 或 closed<br><br>答案：A  C<br><br>解析：<br><br>ABSD方法是一个自顶向下、递归细化的方法，软件系统的体系结构通过该方法得到细化，<br>直到能产生软件构件和类。<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="25"><a href="#25" class="headerlink" title="25"></a>25</h3><p>2021年11月第46-47题</p>
+<p>4 +1 视图模型可以从多个视图或视角来描述软件架构。其中，（ ）用于捕捉设计的并发和同步特性；（ ）描述了在开发环境中软件的静态组织结构。</p>
+<ul>
+<li><p>A. 逻辑视图 </p>
+</li>
+<li><p>B. 开发视图 </p>
+</li>
+<li><p>C. 过程视图</p>
+</li>
+<li><p>D. 物理视图</p>
+</li>
+<li><p>A. 类视图 </p>
+</li>
+<li><p>B. 开发视图 </p>
+</li>
+<li><p>C. 过程视图 </p>
+</li>
+<li><p>D. 用例视图</p>
+</li>
+</ul>
+<h3 id="26"><a href="#26" class="headerlink" title="26"></a>26</h3><p>2021年H月第48题</p>
+<p>软件架构风格是描述某一特定应用领域中系统组织方式的惯用模式，按照软件架构风格，物联网系统属于（ ）软件架构风格。</p>
+<ul>
+<li>A. 层次型 </li>
+<li>B. 事件系统 </li>
+<li>C. 数据线</li>
+<li>D.  C2</li>
+</ul>
+<h3 id="27"><a href="#27" class="headerlink" title="27"></a>27</h3><p>2021年11月第49-50题</p>
+<p>特定领域软件架构（DSSA）是指特定应用领域中为一组应用提供组织结构参考的标准软件架构。<br>从功能覆盖的范围角度，（ ）定义了一个特定的系统族，包含整个系统族内的多个系统，可作为该领域系统的可行解决方案的一个通用软件架构；<br>（ ）定义了在多个系统和多个系统族中功能区域的共有部分，在子系统级上涵盖多个系统族的特定部分功能。</p>
+<ul>
+<li><p>A. 垂直域 </p>
+</li>
+<li><p>B. 水平域 </p>
+</li>
+<li><p>C. 功能域 </p>
+</li>
+<li><p>D. 属性域</p>
+</li>
+<li><p>A. 垂直域 </p>
+</li>
+<li><p>B. 水平域 </p>
+</li>
+<li><p>C. 功能域 </p>
+</li>
+<li><p>D. 属性域</p>
+</li>
+</ul>
+<h3 id="28"><a href="#28" class="headerlink" title="28"></a>28</h3><p>2021年n月第51-52题</p>
+<p>某公司拟开发一个个人社保管理系统，该系统的主要功能需求是根据个人收入、家庭负担、身体状态等情况，预估计算个人每年应支付的社保金，该社保金的计算方式可能随着国家经济的变化而动态改变，针对上述需求描述，该软件系统适宜采用（ ）架构风格设计，该风格的主要特点是（ ）。</p>
+<ul>
+<li><p>A. Layered system </p>
+</li>
+<li><p>B. Data flow </p>
+</li>
+<li><p>C. Event system </p>
+</li>
+<li><p>D. Rule-based system</p>
+</li>
+<li><p>A. 将业务逻辑中频繁变化的部分定义为规则 </p>
+</li>
+<li><p>B. 各构件间相互独立 </p>
+</li>
+<li><p>C. 支持并发 </p>
+</li>
+<li><p>D. 无数据不工作</p>
+</li>
+</ul>
+<h3 id="29"><a href="#29" class="headerlink" title="29"></a>29</h3><p>2021年H月第53-54题</p>
+<p>在架构评估过程中，评估人员所关注的是系统的质量属性。<br>其中，（ ）是指系统的响应能力，即要经过多长时间才能对某个事件做出响应，或者在某段时间内系统所能处理的事件的( )。</p>
+<ul>
+<li><p>A. 安全性 </p>
+</li>
+<li><p>B. 性能 </p>
+</li>
+<li><p>C. 可用性</p>
+</li>
+<li><p>D. 可靠性</p>
+</li>
+<li><p>A.个数</p>
+</li>
+<li><p>B.速度</p>
+</li>
+<li><p>C.消耗</p>
+</li>
+<li><p>D.故障率</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: closed <br><br>答案：B A<br>解析：<br>本题考查软件质量属性中性能属性的具体定义：<br><br>1. 第一空考查质量属性识别：<br>- 选项B正确：性能(Performance)是专门描述系统响应能力和吞吐量的质量属性<br>- 安全性(A)关注数据保护<br>- 可用性(C)关注系统正常运行时间<br>- 可靠性(D)关注故障频率<br><br>2. 第二空考查性能指标：<br>- 选项A正确：性能包含两个核心指标：<br>  ✓ 响应时间：对事件做出响应的时间<br>  ✓ 吞吐量：单位时间内处理的事件个数<br>- 速度(B)是响应时间的另一种表述<br>- 消耗(C)属于资源利用率指标<br>- 故障率(D)属于可靠性指标<br><br>关键区分点：<br>1. 性能三要素：<br>   - 响应时间(时效性)<br>   - 吞吐量(处理量)<br>   - 资源利用率(效率性)<br>2. 与其他属性的关系：<br>   - 高性能可能影响安全性(如跳过安全检查)<br>   - 高可用性需要性能冗余<br></code></pre></td></tr></table></figure>
+
+<h3 id="30"><a href="#30" class="headerlink" title="30"></a>30</h3><p>2021年H月第55题</p>
+<p>在一个分布式软件系统中，一个构件失去了与另一个远程构件的连接。在系统修复后，连接于30秒之内恢复，系统可以重新正常工作。这一描述体现了软件系统的（ ）。</p>
+<ul>
+<li>A. 安全性 </li>
+<li>B. 可用性</li>
+<li>C. 兼容性 </li>
+<li>D. 可移植性</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: closed <br><br>答案：B<br>解析：<br>本题考查软件质量属性中的可用性概念：<br><br>- 选项B正确：可用性(Availability)指系统在故障后能够恢复并继续提供服务的能力，其核心指标包括：<br>  ✓ 故障间隔时间(MTBF)<br>  ✓ 修复时间(MTTR)<br>  题目描述的&quot;30秒内恢复&quot;正是可用性的典型表现<br><br>- 其他选项辨析：<br>  • 安全性(A)关注系统抵御攻击的能力<br>  • 兼容性(C)关注系统与其他系统的协同能力<br>  • 可移植性(D)关注系统跨平台运行能力<br><br>关键计算公式：<br>可用性 = MTBF / (MTBF + MTTR) × 100%<br>题目场景中：<br>- 故障表现为&quot;连接丢失&quot;<br>- 修复时间为&quot;30秒内&quot;<br>- 最终&quot;重新正常工作&quot;体现了高可用性特征<br></code></pre></td></tr></table></figure>
+
+
+<h3 id="31"><a href="#31" class="headerlink" title="31"></a>31</h3><p>2021年n月第58-59题</p>
+<p>在架构评估中，场景是从（ ）的角度对与系统交互的描述，一般采用（ ）三方面来对场景进行描述。</p>
+<ul>
+<li><p>A. 系统设计者 </p>
+</li>
+<li><p>B. 系统开发者</p>
+</li>
+<li><p>C. 风险承担者 </p>
+</li>
+<li><p>D. 系统测试者</p>
+</li>
+<li><p>A. 刺激源、制品、响应 </p>
+</li>
+<li><p>B. 刺激、制品、响应 </p>
+</li>
+<li><p>C. 刺激、环境、响应 </p>
+</li>
+<li><p>D. 刺激、制品、环境</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: closed <br><br>答案：C  C<br><br>解析：<br><br>本题考查架构评估中场景的定义和描述方法：<br><br>1. 第一空考查场景的视角来源：<br>- 选项C正确：场景必须从风险承担者(Stakeholder)的角度描述<br>  ✓ 风险承担者包括用户、维护人员、业务方等所有利益相关方<br>  ✓ 这是ATAM等评估方法的核心要求<br>- 系统设计者(A)/开发者(B)/测试者(D)都只是部分利益相关方<br><br>2. 第二空考查场景的三要素：<br>- 选项C正确：标准场景描述包含：<br>  ✓ 刺激(Stimulus)：触发系统的事件<br>  ✓ 环境(Environment)：事件发生时的条件<br>  ✓ 响应(Response)：系统应有的行为<br>- 这是SEI定义的通用场景模板<br><br>关键区分点：<br>1. 完整场景六要素（扩展知识）：<br>   - 刺激源、刺激、环境、制品、响应、响应度量<br>2. 三要素是核心最小集：<br>   - 刺激(What)<br>   - 环境(When)<br>   - 响应(How) <br>3. 制品是场景的作用对象，非必需描述维度<br></code></pre></td></tr></table></figure>
+
+<h3 id="32"><a href="#32" class="headerlink" title="32"></a>32</h3><p>2021年n月第60-61题</p>
+<p>在架构评估中，（ ）是一个或多个构件（和&#x2F;或构件之间的关系）的特性。改变加密级别的设计决策属于（ ），因为它可能会对安全性和性能产生非常重要的影响。</p>
+<ul>
+<li><ol start="60">
+<li>A. 敏感点 B. 非风险点 C. 权衡点 D. 风险点</li>
+</ol>
+</li>
+<li><ol start="61">
+<li>A. 敏感点 B. 非风险点 C. 权衡点 D. 风险点</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: closed <br><br>答案：60-A 61-C<br>解析：<br>60题考查架构评估中的敏感点概念：<br>- 选项A正确：敏感点(Sensitivity Point)是指一个或多个构件/关系的特性，这些特性的微小变化会对质量属性产生显著影响<br>- 非风险点(B)和风险点(D)不是标准架构评估术语<br>- 权衡点(C)是多个质量属性之间的取舍点<br><br>61题考查权衡点的识别：<br>- 选项C正确：改变加密级别是典型的权衡点(Trade-off Point)，因为：<br>  ✓ 提高加密级别增强安全性(正面影响)<br>  ✓ 但会降低系统性能(负面影响)<br>- 敏感点(A)仅描述单一质量属性的敏感处<br>- 非风险点(B)是干扰项<br>- 风险点(D)指可能引发问题的决策点<br><br>关键概念区分：<br>1. 敏感点：影响单个质量属性的关键决策<br>2. 权衡点：涉及多个质量属性取舍的决策<br>3. 风险点：可能导致架构失败的决策<br>4. 非风险点：对质量属性无显著影响的决策<br></code></pre></td></tr></table></figure>
+
+<h3 id="33"><a href="#33" class="headerlink" title="33"></a>33</h3><p>2021年U月第62-63题</p>
+<p>在三层C&#x2F;S架构中，（ ）是应用的用户接口部分，负责与应用逻辑间的对话功能；（ ）是应用的本体，负责具体的业务处理逻辑。</p>
+<ul>
+<li><ol start="62">
+<li>A. 表示层 B. 感知层 C. 设备层 D. 业务逻辑层</li>
+</ol>
+</li>
+<li><ol start="63">
+<li>A. 数据层 B. 分发层 C. 功能层 D. 算法层</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: closed <br><br>答案：62-A 63-C<br>解析：<br>62题考查三层C/S架构中的表示层：<br>- 选项A正确：表示层(Presentation Layer)是三层架构的最上层<br>  ✓ 负责用户交互和界面展示<br>  ✓ 处理与应用逻辑的对话控制<br>  ✓ 典型实现：Windows Forms/WPF/Web页面<br>- 感知层(B)是物联网架构概念<br>- 设备层(C)是硬件相关层次<br>- 业务逻辑层(D)是中间层<br><br>63题考查功能层（业务逻辑层）：<br>- 选项C正确：功能层(Function Layer)即业务逻辑层<br>  ✓ 包含核心业务处理规则<br>  ✓ 负责具体业务算法的实现<br>  ✓ 典型实现：.NET业务组件/EJB<br>- 数据层(A)是底层数据存储<br>- 分发层(B)是分布式系统中的中间层<br>- 算法层(D)不是标准架构层次<br><br>三层架构标准组成：<br>1. 表示层(用户界面)<br>2. 功能层(业务逻辑)<br>3. 数据层(数据存储)<br>各层通信必须通过明确定义的接口<br></code></pre></td></tr></table></figure>
+
+
+<h3 id="34"><a href="#34" class="headerlink" title="34"></a>34</h3><p>2020年n月第12题</p>
+<p>软件脆弱性是软件中存在的弱点或缺陷，利用它可以危害系统安全策略，导致信息丢失、系统价值和可用性降低。嵌入式系统软件架构通常采用分层架构，它可以将问题分解为一系列相对独立的子问题，局部化在每一层中，从而有效地降低单个问题的规模和复杂性，实现复杂系统的分解。但是，分层架构仍然存在脆弱性。<br>常见的分层架构的脆弱性包括（ ）等两个方面。</p>
+<ul>
+<li>A. 底层发生错误会导致整个系统无法正常运行、层与层之间功能引用可能导致功能失效</li>
+<li>B. 底层发生错误会导致整个系统无法正常运行、层与层之间引入通信机制势必造成性能下降</li>
+<li>C. 上层发生错误会导致整个系统无法正常运行、层与层之间引入通信机制势必造成性能下降</li>
+<li>D. 上层发生错误会导致整个系统无法正常运行、层与层之间功能引用可能导致功能失效</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: closed <br><br>答案：B<br>解析：<br>本题考查分层架构的典型脆弱性：<br><br>1. 分层架构的两大核心脆弱性：<br>- 选项B正确指出了：<br>  ✓ 底层错误传播：底层故障会向上扩散导致系统崩溃（架构级联故障）<br>  ✓ 层间通信开销：跨层调用必然引入性能损耗（通信代价）<br><br>2. 错误选项分析：<br>- A/D项&quot;功能引用导致失效&quot;描述不准确，应为&quot;错误传播&quot;<br>- C项&quot;上层错误导致系统崩溃&quot;不符合分层架构特点（实际是底层更关键）<br><br>技术细节补充：<br>1. 分层架构脆弱性本质：<br>   - 垂直耦合性：下层是上层的基础<br>   - 调用堆栈深度：跨层调用路径长<br>2. 典型解决方案：<br>   - 增加容错层（如隔离层）<br>   - 采用异步通信机制<br>   - 实施健康检查<br>3. 与微服务架构对比：<br>   分层架构的脆弱性主要来自&quot;垂直依赖&quot;，而微服务主要面临&quot;水平依赖&quot;问题<br></code></pre></td></tr></table></figure>
+
+<h3 id="35"><a href="#35" class="headerlink" title="35"></a>35</h3><p>2020年n月第35题</p>
+<p>按照外部形态，构成一个软件系统的构件可以分为五类，其中，（ ）是指可以进行版本替换并增加构件新功能。</p>
+<ul>
+<li>A. 装配的构件 B. 可修改的构件 C. 有限制的构件 D. 适应性构件</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open 或 closed<br><br>答案：B<br><br>解析：<br><br>如果把软件系统看成是构件的集合，那么从构件的外部形态来看，构成一个系统的构件可分为五类：<br>- 独立而成熟的构件得到了实际运行环境的多次检验：<br>- 有限制的构件提供了接口，指出了使用的条件和前提；<br>- 适应性构件进行了包装或使用了接口技术，把不兼容性、资源冲突等进行了处理，可以直接使用；<br>- 装配的构件在安装时，已经装配在操作系统、数据库管理系统或信息系统不同层次上，可以连续使用：<br>- 可修改的构件可以进行版本替换，如果对原构件修改错误、增加新功能，可以利用重新“包装”或写接口来实现构件的替换。<br></code></pre></td></tr></table></figure>
+<h3 id="36"><a href="#36" class="headerlink" title="36"></a>36</h3><p>2020年n月第36-38题</p>
+<p>中间件是提供平台和应用之间的通用服务，这些服务具有标准的程序接口和协议。中间件的基本功能包括：为客户端和服务器之间提供（ ）；提供（ ）保证交易的一致性；提供应用的（ ）。</p>
+<ul>
+<li><p>A.连接和通信</p>
+</li>
+<li><p>B.应用程序接口</p>
+</li>
+<li><p>C.通信协议支持</p>
+</li>
+<li><p>D.数据交换标准</p>
+</li>
+<li><p>A.安全控制机制</p>
+</li>
+<li><p>B.交易管理机制</p>
+</li>
+<li><p>C.标准消息格式</p>
+</li>
+<li><p>D.数据映射机制</p>
+</li>
+<li><p>A.基础硬件平台</p>
+</li>
+<li><p>B.操作系统服务</p>
+</li>
+<li><p>C.网络和数据库</p>
+</li>
+<li><p>D.负载均衡和高可用性</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: closed <br><br>答案：A B D<br>解析：<br>本题考查中间件的三大核心功能：<br><br>1. 第一空：连接通信功能<br>- 选项A正确：中间件最基础的功能是建立客户端与服务器的连接通道<br>  ✓ 实现通信协议转换（如HTTP→TCP）<br>  ✓ 管理连接生命周期<br>  ✓ 典型代表：消息队列(MQ)、RPC框架<br><br>2. 第二空：事务管理功能<br>- 选项B正确：确保分布式事务的ACID特性<br>  ✓ 采用两阶段提交(2PC)等机制<br>  ✓ 典型代表：事务管理器（如Tuxedo）<br>  ✓ 与选项A的安全控制机制区分（安全≠事务）<br><br>3. 第三空：高级服务功能<br>- 选项D正确：现代中间件提供的增值服务<br>  ✓ 负载均衡（如Nginx）<br>  ✓ 故障转移（如Keepalived）<br>  ✓ 服务降级熔断（如Hystrix）<br><br>关键区分点：<br>1. 中间件功能层次：<br>   - 基础层：连接通信（必选）<br>   - 业务层：事务管理（关键）<br>   - 增强层：高可用服务（增值）<br>2. 错误选项分析：<br>   - C选项&quot;通信协议支持&quot;是第一空A的子集<br>   - B选项&quot;应用程序接口&quot;是中间件的实现方式而非功能<br>   - D选项&quot;数据映射机制&quot;属于ORM范畴<br></code></pre></td></tr></table></figure>
+
+
+<h3 id="37"><a href="#37" class="headerlink" title="37"></a>37</h3><p>2020年11月第44-47题</p>
+<p>考虑软件架构时，重要的是从不同的视角来检查，这促使软件设计师考虑架构的不同属性。<br>例如，展示功能组织的（ ）能判断质量特性；展示并发行为的（ ）能判断系统行为特性。<br>选择的特定视角或视图也就是逻辑视图、进程视图、实现视图和（ ）。<br>使用（ ）来记录设计元素的功能和概念接口，它本身在系统中的角色，这些角色包括功能、性能等。</p>
+<ul>
+<li><p>A.静态视角</p>
+</li>
+<li><p>B.动态视角</p>
+</li>
+<li><p>C.多维视角</p>
+</li>
+<li><p>A.开发视角</p>
+</li>
+<li><p>B.动态视角</p>
+</li>
+<li><p>C.部署视角</p>
+</li>
+<li><p>A.开发视图</p>
+</li>
+<li><p>B.配置视图</p>
+</li>
+<li><p>C.部署视图</p>
+</li>
+<li><p>D.物理视图</p>
+</li>
+<li><p>A.逻辑视图</p>
+</li>
+<li><p>B.物理视图</p>
+</li>
+<li><p>C.部署视图</p>
+</li>
+<li><p>D.用例视图</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open 或 closed<br><br>答案：A  B  B  A<br><br>解析:<br><br>在软件架构中，从不同的视角描述特定系统的体系结构，从而得到多个视图，并将这些视图组织起来以描述整体的软件架构模型。<br>因此，在考虑体系结构时，可以从不同的视角来检查，这促使软件设计师考虑体系结构的不同属性。<br>例如，展示功能组织的静态视角能判断质量特性，展示并发行为的动态视角能判断系统行为特性。<br><br>选择的特定视角或视图也就是逻辑视图、进程视图、实现视图和配置视图。<br><br>使用逻辑视图来记录设计元素的功能和概念接口，设计元素的功能定义了它本身在系统中的角色，这些角色包括功能、性能等。<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="38"><a href="#38" class="headerlink" title="38"></a>38</h3><p>2020年11月第48-50题</p>
+<p>在软件架构评估中，（ ）是影响多个质量属性的特性，是多个质量属性的（ ）。<br>例如，提高加密级别可以提高安全性，但可能要耗费更多的处理时间，影响系统性能。如果某个机密消息的处理有严格的时间延迟要求，则加密级别可能就会成为一个（ ）。</p>
+<ul>
+<li><ol start="48">
+<li>A. 敏感点 B. 权衡点 C. 风险决策 D. 无风险决策</li>
+</ol>
+</li>
+<li><ol start="49">
+<li>A. 敏感点 B. 权衡点 C. 风险决策 D. 无风险决策</li>
+</ol>
+</li>
+<li><ol start="50">
+<li>A. 敏感点 B. 权衡点 C. 风险决策 D. 无风险决策</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open 或 closed<br><br><br>答案：B  A    B<br><br>解析：<br><br>敏感点(sensitivitypoint)和权衡点(tradeoffpoint).是关键的体系结构决策。<br><br>敏感点是一个或多个构件（和/或构件之间的关系）的特性。研究敏感点可使设计人员或分析员明<br>确在搞清楚如何实现质量目标时应注意什么。<br><br>权衡点是影响多个质量属性的特性，是多个质量属性的敏感点。<br><br>因此，改变加密级别可能会对安全性和性能产生非常重要的影响。提高加密级别可以提高安全性，但可能要耗费更多的处理时间，影响系统性能。如果某个机密消息的处理有严格的时间延迟要求，则加密级别可能就会成为一个权衡点。<br></code></pre></td></tr></table></figure>
+
+
+<h3 id="39"><a href="#39" class="headerlink" title="39"></a>39</h3><p>2020年11月第51-53题</p>
+<p>针对二层软件架构的缺点，三层架构应运而生。<br>在三层架构中，增加了一个（ ）。三层架构是将应用功能分成表示层、功能层和（ ）三部分。其中（ ）是应用的用户接口部分，担负与应用逻辑间的对话功能。</p>
+<ul>
+<li><ol start="51">
+<li>A. 应用服务器 B. 分布式数据库 C. 内容分发 D. 镜像</li>
+</ol>
+</li>
+<li><ol start="52">
+<li>A. 硬件层 B. 数据层 C. 设备层 D. 通信层</li>
+</ol>
+</li>
+<li><ol start="53">
+<li>A. 表示层 B. 数据层 C. 应用层 D. 功能层</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: closed <br><br>答案：A|B|A<br>解析：<br>本题考察经典三层架构的核心组成和分层职责：<br><br>51题答案：A（应用服务器）<br>- 三层架构相比二层架构的核心改进是引入应用服务器层<br>- 应用服务器承担业务逻辑处理，解耦了客户端与数据库的直接耦合<br>- 其他选项：B属于数据层技术，C/D是网络优化技术<br><br>52题答案：B（数据层）<br>- 标准三层架构组成：表示层（UI）、功能层（业务逻辑）、数据层（持久化）<br>- 硬件层/设备层属于基础设施，通信层是层间交互机制<br><br>53题答案：A（表示层）<br>- 表示层特征：<br>  (1) 用户接口部分（如GUI/Web界面）<br>  (2) 负责与业务逻辑层的对话控制<br>  (3) 不包含实际业务处理<br>- 功能层才是真正的应用逻辑处理层<br><br>关键对比：<br>二层架构：客户端（表示+业务） + 数据库<br>三层架构：表示层 + 应用服务器（业务） + 数据库<br>优势：业务逻辑集中管理、客户端零维护、更好的安全性和可扩展性<br></code></pre></td></tr></table></figure>
+
+<h3 id="40"><a href="#40" class="headerlink" title="40"></a>40</h3><p>2020年11月第59-63题</p>
+<p>某公司欲开发一个在线教育平台。在架构设计阶段，公司的架构师识别出3个核心质量属性场景。<br>其中“网站在并发用户数量10万的负载情况下，用户请求的平均响应时间应小于3秒”这一场景主要与（ ）质量属性相关，通常可采用（ ）架构策略实现该属性；<br>“主站宕机后，系统能够在10 秒内自动切换至备用站点并恢复正常运行”主要与（ ）质量属性相关，通常可采用（ ）架构策略实现该属性；<br>“系统完成上线后，少量的外围业务功能和界面的调整与修改不超过1人•月”主要与（ ）质量属性相关。</p>
+<ul>
+<li><ol start="59">
+<li>A. 性能 B. 可用性 C. 易用性 D. 可修改性</li>
+</ol>
+</li>
+<li><ol start="60">
+<li>A. 抽象接口 B. 信息隐藏 C. 主动冗余 D. 资源调度</li>
+</ol>
+</li>
+<li><ol start="61">
+<li>A. 性能 B. 可用性 C. 易用性 D. 可修改性</li>
+</ol>
+</li>
+<li>(62)A.记录&#x2F;回放B.操作串行化 C.心跳   D.增加计算资源</li>
+<li><ol start="63">
+<li>A. 性能 B. 可用性 C. 易用性 D. 可修改性</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: closed <br><br>答案：59-A 60-D 61-B 62-C 63-D<br>解析：<br>1. 第一空（59题）：<br>- &quot;10万并发下响应时间&lt;3秒&quot;属于典型的性能需求<br>- 相关架构策略（60题）应选择&quot;资源调度&quot;（D），通过负载均衡、连接池等技术优化资源分配<br>- 其他策略：A/B属于可修改性策略，C属于可用性策略<br><br>2. 第二空（61题）：<br>- &quot;10秒内自动切换备用站点&quot;属于可用性需求（B）<br>- 实现策略（62题）应选择&quot;心跳&quot;（C），通过心跳检测实现故障自动转移<br>- 其他策略：A用于测试，B会降低性能，D属于性能优化<br><br>3. 第三空（63题）：<br>- &quot;功能调整不超过1人月&quot;明确指向可修改性（D）<br>- 易用性（C）关注用户界面友好度，与题干描述无关<br><br>关键知识点：<br>- 性能属性：关注响应时间、吞吐量等指标<br>- 可用性属性：强调系统持续提供服务的能力<br>- 可修改性：涉及系统变更的难易程度<br>- 架构策略与质量属性的对应关系是高频考点<br></code></pre></td></tr></table></figure>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>13_系统架构设计-练习题-21-40</div>
+      <div>https://varcel.luoqi.icu/2025/05/16/sync/13_系统架构设计-练习题-21-40-3ee388/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Luo QI</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年5月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

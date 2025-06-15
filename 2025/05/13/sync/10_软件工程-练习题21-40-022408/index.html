@@ -1,0 +1,1002 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/Xbox%20L.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Luo QI">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="摘要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="10_软件工程-练习题(21-40)">
+<meta property="og:url" content="https://varcel.luoqi.icu/2025/05/13/sync/10_%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E7%BB%83%E4%B9%A0%E9%A2%9821-40-022408/index.html">
+<meta property="og:site_name" content="轻松的洛亓">
+<meta property="og:description" content="摘要">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250506225835.png">
+<meta property="article:published_time" content="2025-05-13T01:07:18.000Z">
+<meta property="article:modified_time" content="2025-06-15T00:37:49.000Z">
+<meta property="article:author" content="Luo QI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250506225835.png">
+  
+  
+  
+  <title>10_软件工程-练习题(21-40) - 轻松的洛亓</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"varcel.luoqi.icu","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  <meta name="baidu-site-verification" content="codeva-Oq0KOjHuD3" />
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>轻松的洛亓</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="10_软件工程-练习题(21-40)"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-05-13 01:07" pubdate>
+          2025年5月13日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          40 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">10_软件工程-练习题(21-40)</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="21-🚩"><a href="#21-🚩" class="headerlink" title="21  🚩"></a>21  🚩</h3><p>软件设计过程中，可以用<strong>耦合和内聚两个定性标准</strong>来衡量模块的独立程度，耦合衡量不同模块彼此间互相依赖的紧密程度，应采用以下设计原则(31)，内聚衡量一个模块内部各个元素彼此结合的紧密程度，以下属于高内聚的是(32)</p>
+<ul>
+<li><p>A.尽量使用内容耦合、少用控制耦合和特征耦合、限制公共环境耦合的范围、完全不用数据耦合</p>
+</li>
+<li><p>B.尽量使用数据耦合、少用控制耦合和特征耦合、限制公共环境耦合的范围、完全不用内容耦合</p>
+</li>
+<li><p>C.尽量使用控制耦合、少用数据耦合和特征耦合、限制公共环境耦合的范围、完全不用内容耦合</p>
+</li>
+<li><p>D.尽量使用特征耦合、少用数据耦合和控制耦合、限制公共环境耦合的范围、完全不用内容耦合</p>
+</li>
+<li><p>.A偶然内聚</p>
+</li>
+<li><p>B.时间内聚</p>
+</li>
+<li><p>C.功能内聚</p>
+</li>
+<li><p>D.逻辑内聚</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open 或 closed<br><br>答案：B  C<br><br>解析：<br>一般来说，我们使用的原则是 高内聚、低耦合；数据耦合程度最低，功能内聚程度最高。<br><br>1. **耦合原则口诀**：<br>    &gt; **“数据优先，控制次之，特征慎用，公共限制，内容禁用”**  <br>    &gt; （对应选项B的优先级）<br>    <br>2. **内聚高低判断**：<br>    &gt; **“功能内聚最高，偶然内聚最低”**  <br>    &gt; （功能内聚是唯一高内聚选项）<br><br>在软件设计中，**模块独立性**通过两个标准衡量：<br><br>1. **耦合（Coupling）**：模块间依赖的紧密程度，**越低越好**。<br>2. **内聚（Cohesion）**：模块内部元素的关联程度，**越高越好**<br><br>#### **耦合的类型（从低到高排序）**<br><br>3. **数据耦合（Data Coupling）**<br>    <br>    - 模块间通过**参数传递基本数据类型**，依赖最少，**最理想**。<br>    - 示例：`calculate(a, b)` 传递数值a和b。<br>        <br>4. **特征耦合（Stamp Coupling）**<br>    <br>    - 模块间传递**数据结构的一部分**（如对象的部分属性），依赖稍高。<br>    - 示例：`processUser(user.name)` 仅需user的name属性。<br>        <br>5. **控制耦合（Control Coupling）**<br>    <br>    - 模块通过**控制信号（如标志位）**影响另一模块的逻辑，依赖较强。<br>    - 示例：`setFlag(true)` 控制其他模块的分支逻辑。<br>        <br>6. **公共环境耦合（Common Coupling）**<br>    <br>    - 模块共享**全局数据或公共环境**，依赖高且难以维护。<br>    - 示例：多个模块读写同一个全局变量。<br>        <br>7. **内容耦合（Content Coupling）**<br>    <br>    - 一个模块直接修改或依赖另一模块的内部数据，**最差**。<br>    - 示例：模块A直接修改模块B的局部变量。<br><br><br>#### **内聚的类型（从低到高排序）**<br><br>8. **偶然内聚（Coincidental Cohesion）**<br>    <br>    - 模块内元素**无逻辑关系**，仅因代码位置被放在一起。<br>    - 示例：工具类中随意堆砌不相关函数。<br>        <br>9. **逻辑内聚（Logical Cohesion）**<br>    <br>    - 模块内元素**逻辑相似但功能无关**（如同一控制参数下的不同操作）。<br>    - 示例：`process(type)` 根据type参数执行不同无关操作。<br>        <br>10. **时间内聚（Temporal Cohesion）**<br>    <br>    - 模块内元素**在同一时间段执行**，但功能无关。<br>    - 示例：初始化模块（`init()` 中加载配置、连接数据库等）。<br>        <br>11. **功能内聚（Functional Cohesion）**<br>    <br>    - 模块内元素**共同完成单一功能**，**最理想**。<br>    - 示例：`calculateTax()` 仅计算税款<br><br><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="22"><a href="#22" class="headerlink" title="22"></a>22</h3><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250506225835.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open 或 closed<br><br>答案： B<br><br>解析：判定节点个数+1=3+1=4. （注意一下是判断节点，这里是有 3 个）<br><br>McCabe环形复杂度（Cyclomatic Complexity）是一种用于衡量程序**控制流复杂度**的指标，通过分析程序流程图中的**决策节点**和**路径数量**来评估代码的复杂性和测试难度。其核心公式为：<br><br>V(G)=E−N+2P<br><br>其中：<br><br>- E：流程图中边的数量（控制流箭头）。<br>- N：流程图中节点的数量（语句或决策点）。<br>- P：连通分量的数量（通常为1，表示单一程序）。<br>    <br><br>**简化公式**（适用于单入口单出口的程序流程图）：<br><br>V(G)=决策节点数+1V(G)=决策节点数+1<br></code></pre></td></tr></table></figure>
+
+
+
+
+<h3 id="23"><a href="#23" class="headerlink" title="23"></a>23</h3><p>42.43.</p>
+<p>软件测试是保障软件质量的重要手段。（42）是指被测试程序不在机器上运行，而采用人工监测和计算机辅助分析的手段对程序进行监测。（43）也称为功能测试，不考虑程序的内部结构和处理算法，只检查软件功能是否能按照要求正常使用。</p>
+<ul>
+<li><p>A.静态测试</p>
+</li>
+<li><p>B.动态测试</p>
+</li>
+<li><p>C.黑盒测试</p>
+</li>
+<li><p>D.白盒测试</p>
+</li>
+<li><p>A.系统测试</p>
+</li>
+<li><p>B.集成测试</p>
+</li>
+<li><p>C.黑盒测试</p>
+</li>
+<li><p>D.自众测试</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open 或 closed<br><br>答案： <br>A    <br>C <br><br>解析： 纯定义<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="24"><a href="#24" class="headerlink" title="24"></a>24</h3><p>软件文档是影响软件可维护性的决定因素。软件的文档可以分为用户文档和(22)两类。</p>
+<p>其中，用户文档主要描述(23)和使用方法，并不关心这些功能是怎样实现的。</p>
+<ul>
+<li><p>A.系统文档</p>
+</li>
+<li><p>B.需求文档</p>
+</li>
+<li><p>C.标准文档</p>
+</li>
+<li><p>D.实现文档</p>
+</li>
+<li><p>A.系统实现</p>
+</li>
+<li><p>B.系统设计</p>
+</li>
+<li><p>C.系统功能</p>
+</li>
+<li><p>D.系统测试</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open 或 closed<br><br>答案：A。   C<br><br>软件文档是影响软件可维护性的决定因素。<br>根据文档内容，软件文档又可分为用户文档和系统文档两类。<br><br>其中，用户文档主要描述系统功能和使用方法，并不关心这些功能是怎样实现的。<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="25"><a href="#25" class="headerlink" title="25"></a>25</h3><p>软件需求开发的最终文档经过评审批准后，就定义了开发工作的(24)，</p>
+<p>它在客户和开发者之间构筑了产品功能需求和非功能需求的一个(25)，是需求开发和需求管理之间的桥梁。</p>
+<ul>
+<li><p>A.需求基线</p>
+</li>
+<li><p>B.需求标准</p>
+</li>
+<li><p>C.需求用例</p>
+</li>
+<li><p>D.需求分析</p>
+</li>
+<li><p>A.需求用例</p>
+</li>
+<li><p>B.需求管理标准</p>
+</li>
+<li><p>C.需求约定</p>
+</li>
+<li><p>D.需求变更</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open 或 closed<br><br>答案： A。   C<br><br>解析：<br><br><br>**需求基线**指已经通过正式评审和批准的规格说明或产品，可作为进一步开发的基础，<br><br>而且只有通过正式的变更控制过程才能修改它。建立需求基线的目的是防止需求的变化给<br>程序架构造成重大影响。<br><br>因此，它是团队成员已经承诺将在某一特定产品版本中实现的功能性和非功能性需求的一组集合，它在客户和开发者之间构筑了一个**需求约定**，是需求开发和需求管理之间的桥梁。<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="26"><a href="#26" class="headerlink" title="26"></a>26</h3><p>软件过程是制作软件产品的一组活动及其结果。</p>
+<p>这些活动主要由软件人员来完成，<strong>软件活动</strong>主要包括软件描述、(26)、软件有效性验证和(27)。其中，(28)定义了软件功能以及使用的限制。</p>
+<ul>
+<li><p>A.软件模型</p>
+</li>
+<li><p>B.软件需求</p>
+</li>
+<li><p>C.软件分析</p>
+</li>
+<li><p>D.软件开发</p>
+</li>
+<li><p>A.软件分析</p>
+</li>
+<li><p>B.软件测试</p>
+</li>
+<li><p>C.软件演化</p>
+</li>
+<li><p>D.软件开发</p>
+</li>
+<li><p>A.软件分析</p>
+</li>
+<li><p>B.软件测试</p>
+</li>
+<li><p>C.软件描述</p>
+</li>
+<li><p>D.软件开发</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open<br><br>答案：D、C、C<br>解析：<br>1. 第一空考查软件活动的四个主要组成部分：软件描述、**软件开发**、软件有效性验证和软件演化。因此正确答案是D（软件开发）。<br>2. 第二空对应软件活动的第四个组成部分：软件演化（即软件维护和更新），正确答案是C（软件演化）。<br>3. 第三空考查软件描述的作用：它**定义软件功能及使用限制**，属于需求分析阶段的输出。正确答案是C（软件描述）。<br><br>补充知识框架：<br>软件过程四大核心活动：<br>1. 软件描述（需求定义）<br>2. 软件开发（设计实现）<br>3. 有效性验证（测试）<br>4. 软件演化（维护）<br></code></pre></td></tr></table></figure>
+
+
+<h3 id="27"><a href="#27" class="headerlink" title="27"></a>27</h3><p>试题(29)、(30)</p>
+<p>对应软件开发过程的各种活动，软件开发工具有需求分析工具、(29)、编码与排错工具、测试工具等。</p>
+<p>按描述需求定义的方法可将需求分析工具分为基于自然语言或图形描述的工具和基于(30)的工具。</p>
+<ul>
+<li><p>A.设计工具</p>
+</li>
+<li><p>B.分析工具</p>
+</li>
+<li><p>C.耦合工具</p>
+</li>
+<li><p>D.监控工具</p>
+</li>
+<li><p>A.用例</p>
+</li>
+<li><p>B.形式化需求定义语言</p>
+</li>
+<li><p>C.UML</p>
+</li>
+<li><p>D.需求描述</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open<br><br>答案：A、B<br>解析：<br>1. 第一空(29)考查软件开发工具分类：需求分析工具、**设计工具**、编码与排错工具、测试工具。因此正确答案是A（设计工具）。<br>2. 第二空(30)考查需求分析工具的两大方法论分类：基于自然语言/图形描述的工具和基于**形式化需求定义语言**的工具（如Z语言、VDM等）。正确答案是B（形式化需求定义语言）。<br><br>关键区分点：<br>- UML属于图形化描述方法（属于第一类）<br>- 形式化语言具有严格的数学基础（属于第二类）<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="28"><a href="#28" class="headerlink" title="28"></a>28</h3><p>试题(31)、(32)</p>
+<p>软件设计包括四个既独立又相互联系的活动：(31)、软件结构设计、人机界面设计和(32)。</p>
+<ul>
+<li><p>A.用例设计</p>
+</li>
+<li><p>B.数据设计</p>
+</li>
+<li><p>C.程序设计</p>
+</li>
+<li><p>D.模块设计</p>
+</li>
+<li><p>A.接口设计</p>
+</li>
+<li><p>B.操作设计</p>
+</li>
+<li><p>C.输入输出设计</p>
+</li>
+<li><p>D.过程设计</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open<br><br>答案：B  D<br><br>解析：<br>软件设计包括四个主要活动：<br>1. **数据设计**：定义系统中使用的数据结构及其关系。<br>2. **软件结构设计**：确定系统的模块划分及模块间的层次关系。<br>3. **人机界面设计**：设计用户与系统交互的界面。<br>4. **过程设计**：定义每个模块内部的详细处理逻辑和算法。<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="29"><a href="#29" class="headerlink" title="29"></a>29</h3><p>试题（33）、(34)</p>
+<p>信息隐蔽是开发整体程序结构时使用的法则，通过信息隐蔽可以提高软件的(33)、可测试性和(34)。</p>
+<ul>
+<li><p>A.可修改性</p>
+</li>
+<li><p>B.可扩充性</p>
+</li>
+<li><p>C.可靠性</p>
+</li>
+<li><p>D.耦合性</p>
+</li>
+<li><p>A.封装性</p>
+</li>
+<li><p>B.安全性</p>
+</li>
+<li><p>C.可移植性</p>
+</li>
+<li><p>D.可交互性</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open<br><br>答案：A  C<br><br>解析：<br>信息隐蔽（Information Hiding）是软件设计的重要原则，通过隐藏模块的实现细节来提高：<br>1. **可修改性**：修改一个模块时不影响其他模块。<br>2. **可测试性**：模块独立性强，便于单独测试。<br>3. **可移植性**：模块与具体环境隔离，易于移植到不同平台。<br><br>其他选项分析：<br>- 可扩充性（B）通常通过模块化设计实现，非信息隐蔽的直接目标。<br>- 封装性（A）是手段而非结果，题目问的是&quot;提高&quot;的软件特性。<br></code></pre></td></tr></table></figure>
+
+
+<h3 id="30"><a href="#30" class="headerlink" title="30"></a>30</h3><p>应用系统开发中可以采用不同的开发模型，其中，(39)将整个开发流程分为目标设定、风险分析、开发和有效性验证、评审四个部分；</p>
+<p>(40)则通过重用来提高软件的可靠性和易维护性，程序在进行修改时产生较少的副作用。</p>
+<ul>
+<li><p>A.瀑布模型</p>
+</li>
+<li><p>B.螺旋模型</p>
+</li>
+<li><p>C.构件模型</p>
+</li>
+<li><p>D.对象模型</p>
+</li>
+<li><p>A.瀑布模型</p>
+</li>
+<li><p>B.螺旋模型</p>
+</li>
+<li><p>C.构件模型</p>
+</li>
+<li><p>D.对象模型</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open<br><br>答案：B、C<br>解析：<br>1. 第一空(39)描述的是**螺旋模型**的特征，其核心是迭代式的风险驱动开发，包含四个典型阶段：目标设定、风险分析、开发验证、评审。正确答案是B（螺旋模型）。<br>2. 第二空(40)描述的是**构件模型**（基于组件的开发）的核心优势：通过重用预构建的可靠组件，显著提高软件可维护性并减少修改副作用。正确答案是C（构件模型）。<br><br>模型对比：<br><br>| 模型类型 | 核心特征                          | 典型阶段                          |<br>|----------|-----------------------------------|-----------------------------------|<br>| 螺旋模型 | 风险驱动迭代                      | 目标→风险→开发→评审               |<br>| 构件模型 | 组件复用                          | 需求→组件装配→测试                |<br>| 瀑布模型 | 线性顺序                          | 需求→设计→实现→测试→维护          |<br></code></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="31"><a href="#31" class="headerlink" title="31"></a>31</h3><p>关于敏捷开发方法的特点，不正确的是(41)。</p>
+<ul>
+<li>A.敏捷开发方法是适应性而非预设性</li>
+<li>B.敏捷开发方法是面向过程的而非面向人的</li>
+<li>C.采用迭代增量式的开发过程，发行版本小型化</li>
+<li>D.敏捷开发中强调开发过程中相关人员之间的信息交流</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open<br><br>答案：B<br>解析：<br>1. 错误选项B（敏捷开发方法是面向过程的而非面向人的）与敏捷宣言的核心原则直接矛盾。敏捷四大价值观第一条就是&quot;**个体和互动**高于流程和工具&quot;。<br>2. 其他选项均为敏捷开发的正确特征：<br>   - A体现响应变化高于遵循计划（适应性）<br>   - C对应持续交付可工作软件（小版本迭代）<br>   - D反映面对面沟通是最有效方式<br><br>关键区分点：<br>传统方法 vs 敏捷方法：<br><br>| 维度       | 传统方法           | 敏捷方法               |<br>|------------|--------------------|------------------------|<br>| 关注重点   | 流程规范           | 人员协作               |<br>| 变更响应   | 抗拒变更           | 拥抱变化               |<br>| 交付节奏   | 大版本交付         | 持续小版本迭代         |<br></code></pre></td></tr></table></figure>
+
+<h3 id="32"><a href="#32" class="headerlink" title="32"></a>32</h3><p>自动化测试工具主要使用脚本技术来生成测试用例，其中，(42)是录制手工测试的测试用例时得到的脚本；(43)是将测试输入存储在独立的数据文件中，而不是在脚本中。</p>
+<ul>
+<li><p>A.线性脚本</p>
+</li>
+<li><p>B.结构化脚本</p>
+</li>
+<li><p>C.数据驱动脚本</p>
+</li>
+<li><p>D.共享脚本</p>
+</li>
+<li><p>A.线性脚本</p>
+</li>
+<li><p>B.结构化脚本</p>
+</li>
+<li><p>C.数据驱动脚本</p>
+</li>
+<li><p>D.共享脚本</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open<br><br>答案：A、C<br>解析：<br>1. 第一空(42)描述的是**线性脚本**的特征，即通过录制手工操作步骤生成的自动化测试脚本。正确答案是A（线性脚本）。<br>2. 第二空(43)描述的是**数据驱动脚本**的核心特点：测试数据与脚本逻辑分离，数据存储在外部文件（如Excel/CSV）中。正确答案是C（数据驱动脚本）。<br><br>测试脚本类型对比：<br><br>| 脚本类型       | 特点                                                                 | 适用场景                     |<br>|----------------|----------------------------------------------------------------------|------------------------------|<br>| 线性脚本       | 直接录制操作步骤，无逻辑控制                                         | 简单重复操作                 |<br>| 结构化脚本     | 包含控制结构（if/for等）                                             | 复杂测试逻辑                 |<br>| 数据驱动脚本   | 测试数据外置，脚本读取数据文件                                       | 多测试数据场景               |<br>| 共享脚本       | 可被多个测试用例调用的公共脚本                                       | 模块化测试                   |<br></code></pre></td></tr></table></figure>
+
+<h3 id="33"><a href="#33" class="headerlink" title="33"></a>33</h3><p>22-23.按照传统的软件生命周期方法学，可以把软件生命周期划分为软件定义、软件开发和(22)三个阶段。其中，可行性研究属于(23)阶段的主要任务。</p>
+<ul>
+<li><p>A.软件运行与维护</p>
+</li>
+<li><p>B.软件对象管理</p>
+</li>
+<li><p>C.软件详细设计</p>
+</li>
+<li><p>D.问题描述</p>
+</li>
+<li><p>A.软件定义</p>
+</li>
+<li><p>B.软件开发</p>
+</li>
+<li><p>C.软件评估</p>
+</li>
+<li><p>D.软件运行与维护</p>
+</li>
+</ul>
+<h3 id="34"><a href="#34" class="headerlink" title="34"></a>34</h3><p>需求变更管理是需求管理的重要内容。需求变更管理的过程主要包括问题分析和变更描述、(24)、变更实现。具体来说，在关于需求变更管理的描述中，(25)是不正确的。</p>
+<ul>
+<li><p>A.变更调研</p>
+</li>
+<li><p>B.变更判定</p>
+</li>
+<li><p>C.变更定义</p>
+</li>
+<li><p>D.变更分析和成本计算</p>
+</li>
+<li><p>A.需求变更要进行控制，严格防止因失控而导致项目混乱，出现重大风险</p>
+</li>
+<li><p>B.需求变更对软件项目开发有利无弊</p>
+</li>
+<li><p>C.需求变更通常按特定的流程进行</p>
+</li>
+<li><p>D.在需求变更中，变更审批由CCB负责审批</p>
+</li>
+</ul>
+<h3 id="35"><a href="#35" class="headerlink" title="35"></a>35</h3><p>26-28.软件方法学是以软件开发方法为研究对象的学科。其中，(26)是先对最高居次中的问题进行定义、设计、编程和测试，而将其中未解决的问题作为一个子任务放到下一层次中去解决。</p>
+<p>(27)是根据系统功能要求，从具体的器件、逻辑部件或者相似系统开始，通过对其进行相互连接、修改和扩大，构成所要求的系统。(28)是建立在严格数学基础上的软件开发方法。</p>
+<ul>
+<li><p>A.面向对象开发方法</p>
+</li>
+<li><p>B.形式化开发方法</p>
+</li>
+<li><p>C. 非形式化开发方法</p>
+</li>
+<li><p>D.自顶向下开发方法</p>
+</li>
+<li><p>A.自底向上开发方法</p>
+</li>
+<li><p>B.形式化开发方法</p>
+</li>
+<li><p>C.非形式化开发方法</p>
+</li>
+<li><p>D. 原型开发方法</p>
+</li>
+<li><p>A.自底向上开发方法</p>
+</li>
+<li><p>B.形式化开发方法</p>
+</li>
+<li><p>C.非形式化开发方法</p>
+</li>
+<li><p>D,自顶向下开发方法</p>
+</li>
+</ul>
+<h3 id="36"><a href="#36" class="headerlink" title="36"></a>36</h3><p>软件开发工具-2019 年 11 月第 29-30 题  </p>
+<p>软件开发工具是指用于辅助软件开发过程活动的各种软件，其中，（ 29）是辅助建立软件系统的抽象模型的，例如Rose、Together、WinA&amp;D、(30)等。</p>
+<ul>
+<li><p>A. 编程工具  </p>
+</li>
+<li><p>B. 设计工具  </p>
+</li>
+<li><p>C. 测试工具  </p>
+</li>
+<li><p>D. 建模工具  </p>
+</li>
+<li><p>A.LoadRunner</p>
+</li>
+<li><p>B.QuickUML</p>
+</li>
+<li><p>C.Delphi</p>
+</li>
+<li><p>D.WinRunner</p>
+</li>
+</ul>
+<h3 id="37"><a href="#37" class="headerlink" title="37"></a>37</h3><p>软件概要设计——2019 年 11 月第 31-32 题  </p>
+<p>软件概要设计将软件需求转化为软件设计的（ ）和软件的（ ）。  </p>
+<ul>
+<li><p>A. 算法流程  </p>
+</li>
+<li><p>B. 数据结构  </p>
+</li>
+<li><p>C. 交互原型  </p>
+</li>
+<li><p>D. 操作接口  </p>
+</li>
+<li><p>A. 系统结构  </p>
+</li>
+<li><p>B. 算法流程</p>
+</li>
+<li><p>C. 内部接口  </p>
+</li>
+<li><p>D. 程序流程</p>
+</li>
+</ul>
+<h3 id="38"><a href="#38" class="headerlink" title="38"></a>38</h3><p>软件结构化设计    2019 年 11 月第 33 题  </p>
+<p>软件结构化设计包括（ ）等任务。  </p>
+<ul>
+<li>A. 架构设计、数据设计、过程设计、原型设计  </li>
+<li>B. 架构设计、过程设计、程序设计、原型设计  </li>
+<li>C. 数据设计、过程设计、交互设计、程序设计  </li>
+<li>D. 架构设计、接口设计、数据设计、过程设计</li>
+</ul>
+<h3 id="39"><a href="#39" class="headerlink" title="39"></a>39</h3><p>模块化设计    2019 年 11 月第 34 题  </p>
+<p>关于模块化设计，（ ）是错误的。  </p>
+<ul>
+<li>A. 模块是指执行某一特定任务的数据结构和程序代码  </li>
+<li>B. 模块的接口和功能定义属于其模块自身的内部特性  </li>
+<li>C. 每个模块完成相对独立的特定子功能，与其他模块之间的关系最简单  </li>
+<li>D. 模块设计的重要原则是高内聚、低耦合</li>
+</ul>
+<h3 id="40"><a href="#40" class="headerlink" title="40"></a>40</h3><p>2019 年 11 月第 39-40 题     软件逆向工程</p>
+<p>软件逆向工程就是分析已有的程序，寻求比源代码更高级的抽象表现形式。在逆向工程导出信息的四个抽象层次中，（ ）包括反映程序各部分之间相互依赖关系的信息；（ ）包括反映程序段功能及程序段之间关系的信息。  </p>
+<ul>
+<li><p>A. 实现级  </p>
+</li>
+<li><p>B. 结构级  </p>
+</li>
+<li><p>C. 功能级  </p>
+</li>
+<li><p>D. 领域级  </p>
+</li>
+<li><p>A. 实现级  </p>
+</li>
+<li><p>B. 结构级  </p>
+</li>
+<li><p>C. 功能级  </p>
+</li>
+<li><p>D. 领域级</p>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>10_软件工程-练习题(21-40)</div>
+      <div>https://varcel.luoqi.icu/2025/05/13/sync/10_软件工程-练习题21-40-022408/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Luo QI</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年5月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

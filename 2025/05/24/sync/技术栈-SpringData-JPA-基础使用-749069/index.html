@@ -1,0 +1,723 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/Xbox%20L.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Luo QI">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="摘要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="技术栈-SpringData JPA-基础使用">
+<meta property="og:url" content="https://varcel.luoqi.icu/2025/05/24/sync/%E6%8A%80%E6%9C%AF%E6%A0%88-SpringData-JPA-%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8-749069/index.html">
+<meta property="og:site_name" content="轻松的洛亓">
+<meta property="og:description" content="摘要">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-05-24T22:31:45.000Z">
+<meta property="article:modified_time" content="2025-06-15T00:37:49.000Z">
+<meta property="article:author" content="Luo QI">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>技术栈-SpringData JPA-基础使用 - 轻松的洛亓</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"varcel.luoqi.icu","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  <meta name="baidu-site-verification" content="codeva-Oq0KOjHuD3" />
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>轻松的洛亓</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="技术栈-SpringData JPA-基础使用"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-05-24 22:31" pubdate>
+          2025年5月24日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          987 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          9 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">技术栈-SpringData JPA-基础使用</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>看了如看，这篇文档，没有讲什么重点，而是内容格式比较不好，建议投入时间后面改善一下。</p>
+<h2 id="一、Spring-Data-JPA核心价值"><a href="#一、Spring-Data-JPA核心价值" class="headerlink" title="一、Spring Data JPA核心价值"></a>一、Spring Data JPA核心价值</h2><h3 id="1-1-JPA规范解读"><a href="#1-1-JPA规范解读" class="headerlink" title="1.1 JPA规范解读"></a>1.1 JPA规范解读</h3><p>JPA（Java Persistence API）作为Java EE的ORM标准规范，定义了以下核心特性：</p>
+<ul>
+<li>对象-关系映射元数据（通过注解或XML）</li>
+<li>实体管理API（EntityManager）</li>
+<li>JPQL查询语言</li>
+<li>事务控制机制</li>
+</ul>
+<h3 id="1-2-Spring-Data-JPA优势"><a href="#1-2-Spring-Data-JPA优势" class="headerlink" title="1.2 Spring Data JPA优势"></a>1.2 Spring Data JPA优势</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 传统JPA操作 vs Spring Data JPA</span><br><span class="hljs-comment">// 传统方式需要手动编写DAO实现</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserDaoImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">UserDao</span> &#123;<br>    <span class="hljs-meta">@PersistenceContext</span><br>    <span class="hljs-keyword">private</span> EntityManager em;<br><br>    <span class="hljs-keyword">public</span> User <span class="hljs-title function_">findById</span><span class="hljs-params">(Long id)</span> &#123;<br>        <span class="hljs-keyword">return</span> em.find(User.class, id);<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// Spring Data JPA只需定义接口</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">UserRepository</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">JpaRepository</span>&lt;User, Long&gt; &#123;<br>    <span class="hljs-comment">// 自动实现方法</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>优势对比：</p>
+<ol>
+<li>减少70%以上的样板代码</li>
+<li>内置分页&#x2F;排序支持</li>
+<li><strong>方法名自动推导查询</strong></li>
+<li>与Spring生态无缝集成</li>
+</ol>
+<h2 id="二、核心功能深度解析"><a href="#二、核心功能深度解析" class="headerlink" title="二、核心功能深度解析"></a>二、核心功能深度解析</h2><h3 id="2-1-实体映射最佳实践"><a href="#2-1-实体映射最佳实践" class="headerlink" title="2.1 实体映射最佳实践"></a>2.1 实体映射最佳实践</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Entity</span><br><span class="hljs-meta">@Table(name = &quot;t_user&quot;, indexes = &#123;</span><br><span class="hljs-meta">    @Index(columnList = &quot;email&quot;, unique = true)</span><br><span class="hljs-meta">&#125;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">User</span> &#123;<br>    <span class="hljs-meta">@Id</span><br>    <span class="hljs-meta">@GeneratedValue(strategy = GenerationType.IDENTITY)</span><br>    <span class="hljs-keyword">private</span> Long id;<br><br>    <span class="hljs-meta">@Column(length = 64, nullable = false)</span><br>    <span class="hljs-keyword">private</span> String name;<br><br>    <span class="hljs-meta">@Enumerated(EnumType.STRING)</span><br>    <span class="hljs-keyword">private</span> UserStatus status;<br><br>    <span class="hljs-meta">@OneToMany(mappedBy = &quot;user&quot;, cascade = CascadeType.ALL)</span><br>    <span class="hljs-keyword">private</span> List&lt;Order&gt; orders = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>    <br>    <span class="hljs-comment">// 审计字段</span><br>    <span class="hljs-meta">@CreatedDate</span><br>    <span class="hljs-keyword">private</span> LocalDateTime createTime;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>关键注解说明</strong>：</p>
+<ul>
+<li><code>@DynamicUpdate</code> 实现部分字段更新</li>
+<li><code>@Version</code> 实现乐观锁控制</li>
+<li><code>@Embedded</code> 组合值对象</li>
+</ul>
+<h3 id="2-2-Repository体系解析"><a href="#2-2-Repository体系解析" class="headerlink" title="2.2 Repository体系解析"></a>2.2 Repository体系解析</h3><p><strong>接口层级</strong>：</p>
+<ol>
+<li><code>CrudRepository</code> 基础CRUD</li>
+<li><code>PagingAndSortingRepository</code> 分页排序</li>
+<li><code>JpaRepository</code> JPA特化接口</li>
+</ol>
+<p><strong>自定义Repository示例</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">CustomUserRepository</span> &#123;<br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">customBatchInsert</span><span class="hljs-params">(List&lt;User&gt; users)</span>;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CustomUserRepositoryImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">CustomUserRepository</span> &#123;<br>    <span class="hljs-meta">@PersistenceContext</span><br>    <span class="hljs-keyword">private</span> EntityManager em;<br><br>    <span class="hljs-meta">@Transactional</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">customBatchInsert</span><span class="hljs-params">(List&lt;User&gt; users)</span> &#123;<br>        users.forEach(user -&gt; em.persist(user));<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="三、典型场景实战"><a href="#三、典型场景实战" class="headerlink" title="三、典型场景实战"></a>三、典型场景实战</h2><h3 id="3-1-动态查询方案"><a href="#3-1-动态查询方案" class="headerlink" title="3.1 动态查询方案"></a>3.1 动态查询方案</h3><p><strong>方案对比表</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>方式</th>
+<th>适用场景</th>
+<th>维护成本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>方法名推导</td>
+<td>简单条件查询</td>
+<td>低</td>
+</tr>
+<tr>
+<td>@Query注解</td>
+<td>固定复杂查询</td>
+<td>中</td>
+</tr>
+<tr>
+<td>JPA Criteria API</td>
+<td>动态条件查询</td>
+<td>高</td>
+</tr>
+<tr>
+<td>QueryDSL</td>
+<td>复杂动态查询</td>
+<td>中</td>
+</tr>
+</tbody></table>
+<p><strong>QueryDSL示例</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> List&lt;User&gt; <span class="hljs-title function_">findActiveUsers</span><span class="hljs-params">(String namePrefix)</span> &#123;<br>    <span class="hljs-type">QUser</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> QUser.user;<br>    <span class="hljs-keyword">return</span> queryFactory.selectFrom(user)<br>        .where(user.name.startsWith(namePrefix)<br>            .and(user.status.eq(UserStatus.ACTIVE)))<br>        .fetch();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-2-事务管理要点"><a href="#3-2-事务管理要点" class="headerlink" title="3.2 事务管理要点"></a>3.2 事务管理要点</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Service</span><br><span class="hljs-meta">@Transactional(readOnly = true)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserService</span> &#123;<br>    <br>    <span class="hljs-meta">@Transactional</span> <span class="hljs-comment">// 覆盖类级别配置</span><br>    <span class="hljs-keyword">public</span> User <span class="hljs-title function_">createUser</span><span class="hljs-params">(User user)</span> &#123;<br>        <span class="hljs-comment">// 写操作</span><br>    &#125;<br><br>    <span class="hljs-keyword">public</span> Page&lt;User&gt; <span class="hljs-title function_">listUsers</span><span class="hljs-params">(Pageable pageable)</span> &#123;<br>        <span class="hljs-comment">// 只读查询</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>事务传播机制</strong>：</p>
+<ul>
+<li>REQUIRED（默认）：加入当前事务，没有则新建</li>
+<li>REQUIRES_NEW：始终新建事务</li>
+<li>READ_ONLY：优化只读操作</li>
+</ul>
+<h2 id="四、性能优化策略"><a href="#四、性能优化策略" class="headerlink" title="四、性能优化策略"></a>四、性能优化策略</h2><h3 id="4-1-N-1查询解决方案"><a href="#4-1-N-1查询解决方案" class="headerlink" title="4.1 N+1查询解决方案"></a>4.1 N+1查询解决方案</h3><p><strong>问题场景</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Entity</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Order</span> &#123;<br>    <span class="hljs-meta">@ManyToOne(fetch = FetchType.LAZY)</span> <span class="hljs-comment">// 默认应为LAZY</span><br>    <span class="hljs-keyword">private</span> User user;<br>&#125;<br><br><span class="hljs-comment">// 错误用法导致N+1查询</span><br>List&lt;Order&gt; orders = orderRepository.findAll();<br>orders.forEach(o -&gt; o.getUser().getName()); <span class="hljs-comment">// 触发延迟加载</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>解决方案</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">OrderRepository</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">JpaRepository</span>&lt;Order, Long&gt; &#123;<br>    <span class="hljs-meta">@EntityGraph(attributePaths = &quot;user&quot;)</span><br>    <span class="hljs-meta">@Query(&quot;select o from Order o&quot;)</span><br>    List&lt;Order&gt; <span class="hljs-title function_">findAllWithUser</span><span class="hljs-params">()</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-2-批量操作优化"><a href="#4-2-批量操作优化" class="headerlink" title="4.2 批量操作优化"></a>4.2 批量操作优化</h3><p><strong>批量插入优化</strong>：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment"># application.properties</span><br><span class="hljs-attr">spring.jpa.properties.hibernate.jdbc.batch_size</span>=<span class="hljs-string">50</span><br><span class="hljs-attr">spring.jpa.properties.hibernate.order_inserts</span>=<span class="hljs-string">true</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Transactional</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">batchInsert</span><span class="hljs-params">(List&lt;User&gt; users)</span> &#123;<br>    users.forEach(user -&gt; &#123;<br>        entityManager.persist(user);<br>        <span class="hljs-keyword">if</span> (i % <span class="hljs-number">50</span> == <span class="hljs-number">0</span>) &#123; <span class="hljs-comment">// 配合batch_size</span><br>            entityManager.flush();<br>            entityManager.clear();<br>        &#125;<br>    &#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="五、常见问题排查"><a href="#五、常见问题排查" class="headerlink" title="五、常见问题排查"></a>五、常见问题排查</h2><h3 id="5-1-典型异常处理"><a href="#5-1-典型异常处理" class="headerlink" title="5.1 典型异常处理"></a>5.1 典型异常处理</h3><p><strong>LazyInitializationException</strong>：</p>
+<ul>
+<li>成因：在事务外访问延迟加载属性</li>
+<li>解决方案：<ol>
+<li>使用@Transactional保持事务</li>
+<li>@EntityGraph预加载关联</li>
+<li>DTO投影代替实体返回</li>
+</ol>
+</li>
+</ul>
+<p><strong>QueryTimeoutException</strong>：</p>
+<ul>
+<li>排查方向：<ol>
+<li>检查SQL执行计划</li>
+<li>添加必要索引</li>
+<li>优化JPQL&#x2F;HQL</li>
+<li>设置合理的超时时间：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@QueryHints(@QueryHint(name = &quot;javax.persistence.query.timeout&quot;, value = &quot;1000&quot;))</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ul>
+<h2 id="六、进阶开发技巧"><a href="#六、进阶开发技巧" class="headerlink" title="六、进阶开发技巧"></a>六、进阶开发技巧</h2><h3 id="6-1-审计功能实现"><a href="#6-1-审计功能实现" class="headerlink" title="6.1 审计功能实现"></a>6.1 审计功能实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-meta">@EnableJpaAuditing</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">JpaConfig</span> &#123;<br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> AuditorAware&lt;String&gt; <span class="hljs-title function_">auditorProvider</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> () -&gt; Optional.ofNullable(SecurityContextHolder.getContext())<br>            .map(SecurityContext::getAuthentication)<br>            .map(Authentication::getName);<br>    &#125;<br>&#125;<br><br><span class="hljs-meta">@Entity</span><br><span class="hljs-meta">@EntityListeners(AuditingEntityListener.class)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">User</span> &#123;<br>    <span class="hljs-meta">@CreatedBy</span><br>    <span class="hljs-keyword">private</span> String createdBy;<br>    <br>    <span class="hljs-meta">@LastModifiedDate</span><br>    <span class="hljs-keyword">private</span> LocalDateTime modifiedAt;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="6-2-多数据源配置"><a href="#6-2-多数据源配置" class="headerlink" title="6.2 多数据源配置"></a>6.2 多数据源配置</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-meta">@EnableJpaRepositories(</span><br><span class="hljs-meta">    basePackages = &quot;com.example.primary&quot;,</span><br><span class="hljs-meta">    entityManagerFactoryRef = &quot;primaryEmf&quot;,</span><br><span class="hljs-meta">    transactionManagerRef = &quot;primaryTm&quot;</span><br><span class="hljs-meta">)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">PrimaryConfig</span> &#123;<br>    <br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-meta">@Primary</span><br>    <span class="hljs-keyword">public</span> LocalContainerEntityManagerFactoryBean <span class="hljs-title function_">primaryEmf</span><span class="hljs-params">(</span><br><span class="hljs-params">            DataSource dataSource, </span><br><span class="hljs-params">            JpaVendorAdapter adapter)</span> &#123;<br>        <span class="hljs-type">LocalContainerEntityManagerFactoryBean</span> <span class="hljs-variable">emf</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">LocalContainerEntityManagerFactoryBean</span>();<br>        emf.setDataSource(dataSource);<br>        emf.setPackagesToScan(<span class="hljs-string">&quot;com.example.primary&quot;</span>);<br>        emf.setJpaVendorAdapter(adapter);<br>        <span class="hljs-keyword">return</span> emf;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>最佳实践建议</strong>：</p>
+<ol>
+<li><p>生产环境必须启用SQL日志：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">spring.jpa.show-sql</span>=<span class="hljs-string">true</span><br><span class="hljs-attr">logging.level.org.hibernate.SQL</span>=<span class="hljs-string">DEBUG</span><br><span class="hljs-attr">logging.level.org.hibernate.type.descriptor.sql.BasicBinder</span>=<span class="hljs-string">TRACE</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>版本控制策略：</p>
+</li>
+</ol>
+<ul>
+<li>使用Flyway&#x2F;Liquibase管理DDL变更</li>
+<li>实体变更与数据库版本严格同步</li>
+</ul>
+<ol start="3">
+<li>性能监控：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Bean</span><br><span class="hljs-keyword">public</span> MetricsJpaQueryExecutionListener <span class="hljs-title function_">metricsJpaListener</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MetricsJpaQueryExecutionListener</span>();<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<p>本指南涵盖了Spring Data JPA的核心开发场景，实际项目中应根据具体需求选择合适的实现方案。建议通过Spring Boot的Data JPA Starter快速开始，并持续关注官方文档的更新动态。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>技术栈-SpringData JPA-基础使用</div>
+      <div>https://varcel.luoqi.icu/2025/05/24/sync/技术栈-SpringData-JPA-基础使用-749069/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Luo QI</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年5月24日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

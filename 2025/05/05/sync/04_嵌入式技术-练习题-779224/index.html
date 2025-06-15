@@ -1,0 +1,755 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/Xbox%20L.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Luo QI">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="摘要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="嵌入式技术-课后练习">
+<meta property="og:url" content="https://varcel.luoqi.icu/2025/05/05/sync/04_%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%8A%80%E6%9C%AF-%E7%BB%83%E4%B9%A0%E9%A2%98-779224/index.html">
+<meta property="og:site_name" content="轻松的洛亓">
+<meta property="og:description" content="摘要">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-05-05T23:10:55.000Z">
+<meta property="article:modified_time" content="2025-06-15T00:37:49.000Z">
+<meta property="article:author" content="Luo QI">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>嵌入式技术-课后练习 - 轻松的洛亓</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"varcel.luoqi.icu","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  <meta name="baidu-site-verification" content="codeva-Oq0KOjHuD3" />
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>轻松的洛亓</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="嵌入式技术-课后练习"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-05-05 23:10" pubdate>
+          2025年5月5日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">嵌入式技术-课后练习</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="01"><a href="#01" class="headerlink" title="01"></a>01</h3><p>一般说来，SoC 称为系统级芯片，也称片上系统，它是一个有专用目标的集成电路产品，以下关于SoC不正确的说法是(9)。</p>
+<ul>
+<li>A.SoC是一种技术，是以实际的、确定的系统功能开始，到软&#x2F;硬件划分，并完成设计的整个过程</li>
+<li>B.SoC是一款具有运算能力的处理器芯片，可面向特定用途进行定制的标准产品</li>
+<li>C.SoC是信息系统核心的芯片集成，是将系统关键部件集成在一块芯片上，完成信息系统的核心功能</li>
+<li>D.SoC是将微处理器、模拟IP核、数字IP核和存储器（或片外存储控制接口）集成在单一芯片上，是面向特定用途的标准产品</li>
+</ul>
+<h3 id="02"><a href="#02" class="headerlink" title="02"></a>02</h3><p>嵌入式实时操作系统与一般操作系统相比，具备许多特点。以下不属于嵌入式实时操作系统特点的是(10)</p>
+<ul>
+<li>A.可剪裁性</li>
+<li>B.实时性</li>
+<li>C.通用性</li>
+<li>D.可固化性</li>
+</ul>
+<h3 id="03"><a href="#03" class="headerlink" title="03"></a>03</h3><p>基于网络的数据库系统(Netware Database System,NDB)是基于4G&#x2F;5G的移动通信之上，在逻辑上可以把嵌入式设备看作远程服务器的一个客户端。以下有关 NDB 的叙述中，不正确的是(11)</p>
+<ul>
+<li>A.NDB主要由客户端、通信协议和远程服务器等三部分组成</li>
+<li>B.NDB的客户端主要负责提供接口给嵌入式程序，通信协议负责规范客户端与远程服务器之间的通信，远程服务器负责维护服务器上的数据库数据</li>
+<li>C.NDB具有客户端小、无需支持可剪裁性、代码可重用等特点</li>
+<li>D.NDB是以文件方式存储数据库数据。即数据按照一定格式储存在磁盘中，使用时由应用程序通过相应的驱动程序甚至直接对数据文件进行读写</li>
+</ul>
+<h3 id="04"><a href="#04" class="headerlink" title="04"></a>04</h3><p>人工智能技术己成为当前国际科技竞争的核心技术之一，AI芯片是占据人工智能市场的法宝。</p>
+<p>AI芯片有别于通常处理器芯片，它应具备四种关键特征。(12)是AI芯片的关键特点。</p>
+<ul>
+<li>A.新型的计算范式、信号处理能力、低精度设计、专用开发工具</li>
+<li>B.新型的计算范式、训练和推断、大数据处理能力、可重构的能力</li>
+<li>C.训练和推断、大数据处理能力、可定制性，专用开发工具</li>
+<li>D.训练和推断、低精度设计、新型的计算范式、图像处理能力</li>
+</ul>
+<h3 id="05"><a href="#05" class="headerlink" title="05"></a>05</h3><p>试题(4)实时操作系统主要用于有实时要求的过程控制等领域。因此，在实时操作系统中，对于来自外部的事件必须在(4)。</p>
+<ul>
+<li>A.一个时间片内进行处理</li>
+<li>B.一个周转时间内进行处理</li>
+<li>C.一个机器周期内进行处理</li>
+<li>D.被控对象允许的时间范围内进行处理</li>
+</ul>
+<h3 id="06"><a href="#06" class="headerlink" title="06"></a>06</h3><p>安全攸关系统在软件需求分析阶段，应提出安全性需求。软件安全性需求是指通过约束软件的行为，使其不会出现(9)。软件安全需求的获取是根据己知的(10),  如软件危害条件等以及其他一些类似的系统数据和通用惯例，完成通用软件安全性需求的裁剪和特定软件安全性需求的获取工作。</p>
+<ul>
+<li><p>A.不可接受的系统安全的行为</p>
+</li>
+<li><p>B.有可能影响系统可靠性的行为</p>
+</li>
+<li><p>C.不可接受的违反系统安全的行为</p>
+</li>
+<li><p>D.系统不安全的事故</p>
+</li>
+<li><p>A.系统信息</p>
+</li>
+<li><p>B.系统属性</p>
+</li>
+<li><p>C.软件属性</p>
+</li>
+<li><p>D.代码信息</p>
+</li>
+</ul>
+<h3 id="07"><a href="#07" class="headerlink" title="07"></a>07</h3><p>11.某嵌入式实时操作系统采用了某种调度算法，当某任务执行接近自己的截止期<br>(deadline)时，调度算法将把该任务的优先级调整到系统最高优先级，让该任务获取CPU<br>资源运行。请问此类调度算法是(11)</p>
+<ul>
+<li>A.优先级调度算法</li>
+<li>B.抢占式优先级调度算法</li>
+<li>C.最晚截止期调度算法</li>
+<li>D.最早截止期调度算法</li>
+</ul>
+<h3 id="08"><a href="#08" class="headerlink" title="08"></a>08</h3><p>混成系统是嵌入式实时系统的一种重要的子类。以下关于混成系统的说法中，正确的是<br>(12)。</p>
+<ul>
+<li>A.混成系统一般由离散分离组件并行组成，组件之间的行为由计算模型进行控制</li>
+<li>B.混成系统一般由离散分离组件和连续组件并行或串行组成，组件之间的行为由计算模型进行控制</li>
+<li>C.混成系统一般由连续组件串行组成，组件之间的行为由计算模型进行控制</li>
+<li>D.混成系统一般由离散分离组件和连续组件并行或串行组成，组件之间的行为由同步&#x2F;异步事件进行管理</li>
+</ul>
+<h3 id="09"><a href="#09" class="headerlink" title="09"></a>09</h3><p>目前处理器市场中存在CPU和DSP两种类型处理器，分别用于不同场景，这两种处理器具有不同的体系结构，DSP采用(9)</p>
+<ul>
+<li>A.冯.诺伊曼结构</li>
+<li>B.哈佛结构</li>
+<li>C.FPGA结构</li>
+<li>D.与GPU相同结构</li>
+</ul>
+<h3 id="10"><a href="#10" class="headerlink" title="10"></a>10</h3><p>嵌入式处理器是嵌入式系统的核心部件，一般可分为嵌入式微处理器(MPU)、微控制器(MCU)、数字<br>信号处理器(DSP)和片上系统(SOC)。以下叙述中，错误的是()。</p>
+<ul>
+<li>A.MPU在安全性和可靠性等方面进行增强，适用于运算量较大的智能系统</li>
+<li>B.MCU典型代表是单片机，体积小从而使功耗和成本下降</li>
+<li>C.DSP处理器对系统结构和指令进行了特殊设计，适合数字信号处理</li>
+<li>D.S0C是一个有专用目标的集成电路，其中包括完整系统并有嵌入式软件的全部内容</li>
+</ul>
+<h3 id="11"><a href="#11" class="headerlink" title="11"></a>11</h3><p>在嵌入式操作系统中，板级支持包 BSP作为对硬件的抽象，实现了(  )。</p>
+<ul>
+<li>A.硬件无关性，操作系统无关性</li>
+<li>B.硬件有关性，操作系统有关性</li>
+<li>C.硬件无关性，操作系统有关性</li>
+<li>D.硬件有关性，操作系统无关性</li>
+</ul>
+<h3 id="12"><a href="#12" class="headerlink" title="12"></a>12</h3><p>以下关于 RT0S(实时操作系统)的叙述中，不正确的是 (  )。</p>
+<ul>
+<li>A.RTOS不能针对硬件变化进行结构与功能上的配置及裁剪</li>
+<li>B.RTOS可以根据应用环境的要求对内核进行裁剪和重配</li>
+<li>C.RTOS的首要任务是调度一切可利用的资源来完成实时控制任务</li>
+<li>D.RTOS实质上就是一个计算机资源管理程序，需要及时响应实时事件和中断</li>
+</ul>
+<h3 id="13"><a href="#13" class="headerlink" title="13"></a>13</h3><p>实时操作系统(RTOS)内核与应用程序之间的接口称为( )。</p>
+<ul>
+<li>A.I&#x2F;0接口</li>
+<li>B.PCI</li>
+<li>C.API</li>
+<li>D.GUI</li>
+</ul>
+<h3 id="14"><a href="#14" class="headerlink" title="14"></a>14</h3><p>以下描述中，( )不是嵌入式操作系统的特点。</p>
+<ul>
+<li>A.面向应用，可以进行裁剪和移植</li>
+<li>B.用于特定领域，不需要支持多任务</li>
+<li>C.可靠性高，无需人工干预独立运行，并处理各类事件和故障</li>
+<li>D.要求编码体积小，能够在嵌入式系统的有效存储空间内运行</li>
+</ul>
+<h3 id="15"><a href="#15" class="headerlink" title="15"></a>15</h3><p>嵌入式软件设计需要考虑(  )以保障软件良好的可移植性。</p>
+<ul>
+<li>A.先进性</li>
+<li>B.易用性</li>
+<li>C.硬件无关性</li>
+<li>D.可靠性</li>
+</ul>
+<h3 id="16"><a href="#16" class="headerlink" title="16"></a>16</h3><p>以下嵌入式处理器类型中不具备内存管理单元(MMU)的是(  )，嵌入式操作系统(  )可以运行在它上面。</p>
+<ul>
+<li><p>A.PowerPC750</p>
+</li>
+<li><p>B.ARM920T</p>
+</li>
+<li><p>C.Cortex-M3</p>
+</li>
+<li><p>D.MIPS32 24K</p>
+</li>
+<li><p>A.Linux</p>
+</li>
+<li><p>B.VxWorks653</p>
+</li>
+<li><p>C. UC&#x2F; OS-II</p>
+</li>
+<li><p>D.Windows CE</p>
+</li>
+</ul>
+<h3 id="17"><a href="#17" class="headerlink" title="17"></a>17</h3><p>在实时操作系统中，两个任务并发执行，一个任务要等待另一个任务发来消息，或建立某个条件后<br>再向前执行，这种制约性合作关系被称为任务的( )。</p>
+<ul>
+<li>A.同步</li>
+<li>B.互斥</li>
+<li>C.调度</li>
+<li>D.执行</li>
+</ul>
+<h3 id="18"><a href="#18" class="headerlink" title="18"></a>18</h3><p>在嵌入式系统设计中，用来进行CPU调试的常用接口是()</p>
+<ul>
+<li>A.PCI接口</li>
+<li>B.USB接口</li>
+<li>C.网络接口</li>
+<li>D.JTAG接口</li>
+</ul>
+<h3 id="19"><a href="#19" class="headerlink" title="19"></a>19</h3><p>以下关于实时操作系统(RTOS)任务调度器的叙述中，正确的是(  )。</p>
+<ul>
+<li>A.任务之间的公平性是最重要的调度目标</li>
+<li>B.大多数RTOS调度算法都是抢占方式（可剥夺方式）</li>
+<li>C.RTOS调度器都采用了基于时间片轮转的调度算法</li>
+<li>D.大多数RTOS调度算法只采用一种静态优先级调度算法</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>嵌入式技术-课后练习</div>
+      <div>https://varcel.luoqi.icu/2025/05/05/sync/04_嵌入式技术-练习题-779224/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Luo QI</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年5月5日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

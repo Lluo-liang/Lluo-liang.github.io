@@ -1,0 +1,821 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/Xbox%20L.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Luo QI">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="摘要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="10_软件工程-练习题(1-20)">
+<meta property="og:url" content="https://varcel.luoqi.icu/2025/05/13/sync/10_%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E7%BB%83%E4%B9%A0%E9%A2%981-20-ff36ae/index.html">
+<meta property="og:site_name" content="轻松的洛亓">
+<meta property="og:description" content="摘要">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-05-13T01:06:45.000Z">
+<meta property="article:modified_time" content="2025-06-15T00:37:49.000Z">
+<meta property="article:author" content="Luo QI">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>10_软件工程-练习题(1-20) - 轻松的洛亓</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"varcel.luoqi.icu","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  <meta name="baidu-site-verification" content="codeva-Oq0KOjHuD3" />
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>轻松的洛亓</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="10_软件工程-练习题(1-20)"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-05-13 01:06" pubdate>
+          2025年5月13日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          71 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">10_软件工程-练习题(1-20)</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="01"><a href="#01" class="headerlink" title="01"></a>01</h3><p>22.与瀑布模型相比，（  ）降低了实现需求变更的成本，更容易得到客户<strong>对于已完成开发工作</strong>的反馈意见，并且客户可以更早地使用软件并从中获得价值。</p>
+<ul>
+<li>A.快速原型模型</li>
+<li>B.敏捷开发</li>
+<li>C.增量式开发</li>
+<li>D.智能模型</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open 或 closed<br><br>答案： C<br><br>解析：<br><br>这个题目，文老师感觉部分学员可能会选A,但是这里条件较多，尤其降低需求成本，**客户对己开发完成的意见，应该是增量**，因为增量就是先开发核心部分，再开发次核心，每次都能得到客户反馈，有变更放到下次开发即可。<br><br>相关内容解释<br><br>- **瀑布模型**：是线性的开发模型，阶段间有严格的顺序和依赖关系。需求变更成本高，因为一旦进入下一阶段，再修改前一阶段的内容会非常困难。客户通常只能在最终阶段看到完整的产品，难以提供早期反馈。<br>- 快速原型模型<br>	- 强调快速构建原型以澄清需求，但原型通常用于验证需求而非交付可用功能。<br>	- 主要目的是**减少需求不明确的问题**，而非分阶段交付或降低变更成本。<br>- 敏捷开发<br>	- 强调迭代、灵活应对需求变更，客户可以持续参与并提供反馈。<br>	- 通过迭代交付增量功能，客户可以更早使用部分功能。<br>- 增量式开发<br>	- 将软件分多个增量构建，每个增量交付部分功能，客户可以逐步使用。<br>	- 支持早期反馈和降低变更成本，因为每个增量可以调整需求。<br>- 智能模型<br>	- 不是标准的软件开发模型，属于干扰项。<br><br><br>这里的题目应该还是围绕了隐形条件是说：和瀑布模型类似的，但是用户可以更早使用软件，选择哪个。<br><br></code></pre></td></tr></table></figure>
+
+
+<h3 id="02"><a href="#02" class="headerlink" title="02"></a>02</h3><p>CMMI 是软件企业进行多方面能力评价的、集成的成熟度模型，软件企业在实施过程中，为了达到本地化，应组织体系编写组，建立基于CMMI的软件质量管理体系文件，<br>体系文件的层次结构一般分为四层，包括：①顶层方针②模板类文件③过程文件④规程文件<br>按照自顶向下的塔型排列，以下顺序正确的是（）。</p>
+<ul>
+<li>A.①④③②</li>
+<li>B.①④②③</li>
+<li>C.①②③④</li>
+<li>D.①③④②</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open 或 closed<br><br>答案： D<br><br>解析：<br><br>CMMI的文档体系通常采用**四层结构**，从高层的战略方针到具体的操作指南，层次关系如下：<br><br>1. **顶层方针（①）**<br>    - 最高层的文件，定义组织的质量方针、目标和总体策略。<br>    - 例如：《质量管理手册》《组织级方针》等。<br>2. **过程文件（③）**<br>    - 描述组织的主要流程和活动，规定“做什么”（What）。<br>    - 例如：《需求管理过程》《项目策划过程》等。<br>3. **规程文件（④）**<br>    - 比过程文件更具体，规定“如何做”（How），即详细的执行步骤和方法。<br>    - 例如：《代码评审规程》《测试用例编写规程》等。<br>4. **模板类文件（②）**<br>    - 最底层的文件，提供具体的模板、表格、检查单等，用于实际操作。<br>    - 例如：《需求文档模板》《测试报告模板》等。<br><br>**正确顺序**<br><br>按照**自顶向下（从宏观到微观）**的顺序排列：  <br><br>**①（顶层方针）→ ③（过程文件）→ ④（规程文件）→ ②（模板类文件）**<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="03"><a href="#03" class="headerlink" title="03"></a>03</h3><p>24.信息建模方法是从数据的角度对现实世界建立模型，模型是现实系统的一个抽象，信息建模方法的基本工具是（）。</p>
+<ul>
+<li>A.流程图</li>
+<li>B.实体联系图</li>
+<li>C.数据流图</li>
+<li>D.数据字典</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open 或 closed<br><br>答案： B<br><br>解析：其实信息就是数据，这里就是问数据建模，即 ER 图<br><br>#### **题目关键点**<br><br>1. **信息建模**：从**数据的角度**描述现实世界，关注**数据实体、属性及其关系**。<br>2. **基本工具**：信息建模最核心的建模方法或图形表示法。<br><br>#### **选项分析**<br><br>- **A. 流程图**<br>    - 用于描述**业务流程或控制流程**，关注的是**步骤和逻辑顺序**，而不是数据实体和关系。<br>    - **不属于信息建模工具**，更偏向于过程建模。<br>        <br>- **B. 实体联系图（E-R图）**<br>    - **E-R图（Entity-Relationship Diagram）**是信息建模的核心工具，用于描述**实体（Entity）、属性（Attribute）和关系（Relationship）**。<br>    - 完全符合“从数据的角度对现实世界建模”的要求。<br>        <br>- **C. 数据流图（DFD）**<br><br>    - 用于描述**数据在系统中的流动和处理过程**，关注的是**功能模块和数据交互**，而不是数据本身的结构。<br>    - 属于**功能建模工具**，而非信息建模工具。<br>        <br>- **D. 数据字典**<br>    <br>    - 是对**数据定义、结构和属性的详细描述**，是数据管理的辅助工具，但**不是建模工具**。<br>    - 它通常配合E-R图使用，但本身不直接用于建模。<br>        <br><br>#### **关键对比**<br><br>- **信息建模（数据视角）** → **E-R图（实体、属性、关系）**<br>- **功能建模（流程视角）** → **数据流图（DFD）**<br>- **过程建模（步骤视角）** → **流程图**<br>#### **结论**<br><br>题目明确问的是**信息建模的基本工具**，因此**实体联系图（E-R图）**是最合适的答案。<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="04"><a href="#04" class="headerlink" title="04"></a>04</h3><p>25．（  ）通常为一个迭代过程，其中的活动包括需求发现、需求分类和组织、需求协商、需求文档化。</p>
+<ul>
+<li>A.需求确认</li>
+<li>B.需求管理</li>
+<li>C.需求抽取</li>
+<li>D.需求规格说明</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open 或 closed<br><br>答案：C<br>解析：<br><br>这里很明显属于需求开发过程，排除B, 其次AD只是一个步骤片面了，文老师学员应该知道这些步骤干啥的，用排除法可以选到C。<br><br><br><br>- **需求开发**包括：获取、分析、规格说明、验证<br>- 题目可能希望考察需求开发 过程，但由于选项限制，**“需求抽取”**（C）是相对最接近的，因为它是需求开发的第一步，且题目描述的“发现、分类、协商”属于需求获取和分析的范畴。<br>- 选项分析<br>	- 需求确认<br>		- 题目描述的是**需求收集和定义过程**，而“需求确认”是后续的验证活动<br>	- 需求管理<br>		- 题目描述的是**需求的前期开发和定义**，而“需求管理”更偏向后期维护<br>	- 需求规格说明<br>		- 题目描述的不仅是“文档化”，还包括**发现、分类、协商**，**范围更大**<br></code></pre></td></tr></table></figure>
+
+
+<h3 id="05"><a href="#05" class="headerlink" title="05"></a>05</h3><p>26.使用模型驱动的软件开发方法，软件系统被表示为一组可以被自动转换为可执行代码的模型。<br>其中，（   ）在不涉及实现的情况下对软件系统进行建模。</p>
+<ul>
+<li>A.平台无关模型</li>
+<li>B.计算无关模型</li>
+<li>C.平台相关模型</li>
+<li>D.实现相关模型</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open 或 closed<br><br>答案： A<br><br>解析：<br><br>不涉及实现，顾名思义的话，应该是实现无关，而不是实现相关，所以要排除D,这是混淆项，这里不涉及就是无关，在AB里，应该是A更合适。<br><br><br></code></pre></td></tr></table></figure>
+
+
+<h3 id="06"><a href="#06" class="headerlink" title="06"></a>06</h3><p>28.工作流表示的是业务过程模型，通常使用图形形式来描述，以下不可用来描述工作流的是( ).</p>
+<ul>
+<li>A.活动图</li>
+<li>B. BPMN</li>
+<li>C.用例图</li>
+<li>D. Petri-Net</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open 或 closed<br><br>答案： C <br><br>解析：<br><br>考的是业务流程设计的工具，重点内容，用例图是用于面向对象分析的。<br><br>工作流通常用于表示**业务流程的自动化或执行顺序**，常见的建模工具包括活动图、BPMN、Petri网等。<br><br>### **选项分析**<br><br>#### **A. 活动图（Activity Diagram）**<br><br>- **用途**：UML的一种图，用于描述**业务流程或系统流程**，可表示**并行、分支、循环**等控制流。<br>- **是否适合工作流**：✅ **适合**<br>    - 活动图常用于工作流建模，例如审批流程、订单处理流程等。<br><br>#### **B. BPMN（Business Process Model and Notation）**<br><br>- **用途**：**业务流程建模标准**，专门用于描述工作流，支持任务、网关、事件、泳道等元素。<br>- **是否适合工作流**：✅ **最适合**<br>    - BPMN是工业界最常用的工作流建模语言。<br><br>#### **C. 用例图（Use Case Diagram）**<br><br>- **用途**：UML的一种图，用于描述**系统功能与用户（参与者）的交互**，关注**系统边界和功能需求**。<br>- **是否适合工作流**：❌ **不适合**<br>    - 用例图描述的是**系统功能的范围**（谁用什么功能），而不是**业务流程的顺序或执行逻辑**。<br>    - 例如：“用户登录”“提交订单”是用例，但**不描述“登录后如何触发订单提交”这样的流程**。<br>        <br><br>#### **D. Petri-Net（佩特里网）**<br><br>- **用途**：数学建模工具，用于描述**分布式系统、并发流程**，通过**库所（Place）、变迁（Transition）、令牌（Token）**表示状态变化。<br>- **是否适合工作流**：✅ **适合**<br>    - Petri网可以精确建模工作流的**并发、同步、资源竞争**等问题，常用于复杂业务流程分析。<br><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="07"><a href="#07" class="headerlink" title="07"></a>07</h3><p>39.软件复杂性度量中，（）可以反映源代码结构的复杂度。</p>
+<ul>
+<li>A.模块数</li>
+<li>B.环路数</li>
+<li>C.用户数</li>
+<li>D.对象数</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open 或 closed<br><br>答案： B<br><br>解析：计算环路复杂度，根据流程图来计算，就是反应代码复杂度的。<br></code></pre></td></tr></table></figure>
+
+
+<h3 id="08"><a href="#08" class="headerlink" title="08"></a>08</h3><p>40.在白盒测试中，测试强度最高的是（   ）。</p>
+<ul>
+<li>A.语句覆盖</li>
+<li>B.分支覆盖</li>
+<li>C.判定覆盖</li>
+<li>D.路径覆盖</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open 或 closed<br><br>答案： D<br><br>解析：<br><br>1. **白盒测试**：基于代码内部结构的测试，覆盖标准从低到高依次为：<br>    <br>    - 语句覆盖（Statement Coverage）<br>    - 判定覆盖（Decision Coverage，也称分支覆盖 Branch Coverage）<br>    - 条件覆盖（Condition Coverage）<br>    - 判定-条件覆盖（Decision-Condition Coverage）<br>    - **路径覆盖（Path Coverage）**<br><br>2. **覆盖强度**：覆盖的代码逻辑越全面，强度越高。<br><br><br>### **选项分析**<br><br>#### **A. 语句覆盖（Statement Coverage）**<br><br>- **定义**：确保代码中的**每一条语句至少执行一次**。<br>- **强度**：⭐（最低）<br>- **局限性**：<br>    - 不关注逻辑分支，即使所有语句都执行过，仍可能遗漏错误。<br>    - 例如：`if (x &gt; 0)` 和 `else` 分支可能只测其中一个。<br>#### **B. 分支覆盖（Branch Coverage）**<br><br>- **定义**：确保代码中的**每一个分支（如 if-else、switch-case）至少执行一次**。<br>- **强度**：⭐⭐⭐<br>- **局限性**：<br>    - 不覆盖组合条件（如 `if (A &amp;&amp; B)` 中 A 和 B 的组合情况）。<br>    - 与**判定覆盖（C）**本质相同，只是名称不同。<br><br>#### **C. 判定覆盖（Decision Coverage）**<br><br>- **定义**：与分支覆盖（B）相同，确保**每个判定（条件表达式）的真假至少各执行一次**。<br>- **强度**：⭐⭐⭐<br>- **注意**：题目中同时出现“分支覆盖”和“判定覆盖”可能是干扰项，两者通常等价。<br><br>#### **D. 路径覆盖（Path Coverage）**<br><br>- **定义**：确保代码中的**所有可能的执行路径（如循环、嵌套分支的组合）均被覆盖**。<br>- **强度**：⭐⭐⭐⭐⭐（最高）<br>- **特点**：<br>    - 覆盖所有逻辑组合，测试最彻底。<br>    - 但路径数可能爆炸（如循环 10 次则路径数指数增长），实际中常采用**基本路径覆盖**（限制循环次数）。<br><br>---<br><br>### **覆盖强度排序**<br><br>从低到高：  <br><br>**语句覆盖（A）&lt; 分支/判定覆盖（B/C）&lt; 路径覆盖（D）**<br><br>---<br><br>### **为什么路径覆盖强度最高？**<br><br>- 语句覆盖只关心“执行过代码”，不关心逻辑是否正确。<br>- 分支覆盖确保每个分支都测试，但可能遗漏组合条件（如 `if (A &amp;&amp; B)` 中 A=true、B=false 的情况）。<br>- **路径覆盖**要求测试所有可能的执行路径，能发现更深层的逻辑错误<br></code></pre></td></tr></table></figure>
+
+
+
+
+<h3 id="09"><a href="#09" class="headerlink" title="09"></a>09</h3><p>41.在黑盒测试方法中，( )方法最适合描述在多个逻辑条件取值组合所构成的负载情况下，分别要执行哪些不同的动作。</p>
+<ul>
+<li>A.等价类</li>
+<li>B.边界值</li>
+<li>C.判定表</li>
+<li>D.因果图</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open 或 closed<br><br>答案： C <br><br>解析：<br><br>**黑盒测试**：不关心内部代码结构，只关注输入和输出<br><br>### **选项分析**<br><br>#### **A. 等价类划分（Equivalence Partitioning）**<br><br>- **定义**：将输入数据划分为若干等价类，每个类选取代表性数据进行测试。<br>- **适用场景**：适用于输入数据可以明显分类的情况（如有效/无效输入）。<br>- **是否匹配题目**：❌<br>    - 等价类划分不擅长处理**多条件组合**，更适合单一输入的分类测试。 <br><br>#### **B. 边界值分析（Boundary Value Analysis）**<br><br>- **定义**：针对输入范围的边界值进行测试（如最小值、最大值、临界值）。<br>- **适用场景**：适用于输入有明确边界的情况（如数值范围、字符串长度）。<br>- **是否匹配题目**：❌<br>    - 边界值分析关注的是单一输入的边界，不涉及多条件组合。<br><br>#### **C. 判定表（Decision Table）**<br><br>- **定义**：一种表格形式，列出所有可能的条件组合及其对应的动作或结果。<br>- **适用场景**：非常适合**多逻辑条件组合**的情况，可以系统化覆盖所有组合。<br>- **是否匹配题目**：✅ **完全匹配**<br>    - 题目描述的“多个逻辑条件取值组合”和“执行不同动作”正是判定表的典型应用场景。<br>        <br><br>#### **D. 因果图（Cause-Effect Graph）**<br><br>- **定义**：通过图形化表示输入（因）和输出（果）之间的关系，最终转化为判定表。<br>- **适用场景**：适用于分析复杂逻辑关系，但通常需要转换为判定表来生成测试用例。<br>- **是否匹配题目**：❌<br>    <br>    - 因果图**更偏向于分析逻辑关系**，而题目明确要求的是“描述不同动作”，判定表更直接。<br>        <br><br>---<br><br>### **关键对比**<br><br>- **判定表（C）**：直接列出所有条件组合和对应动作，最符合题目需求。<br>- **因果图（D）**：虽然是判定表的前置步骤，但题目问的是“描述”，判定表更直观。<br>- **等价类（A）和边界值（B）**：不涉及多条件组合，排除。<br><br>---<br><br>### **为什么判定表最适合？**<br><br>判定表的优势：<br><br>1. **系统性**：覆盖所有可能的条件组合，避免遗漏。<br>2. **清晰性**：表格形式直观展示条件与动作的对应关系。<br>3. **可操作性**：可直接用于生成测试用例。<br><br>例如：<br><br>- 条件：`A=True/False`，`B=True/False`<br>- 动作：根据 `A` 和 `B` 的组合执行不同操作。<br>    <br><br>|A|B|动作|<br>|---|---|---|<br>|True|True|动作1|<br>|True|False|动作2|<br>|False|True|动作3|<br>|False|False|动作4|<br><br>---<br><br>### **常见误区**<br><br>- 有人可能选择**因果图（D）**，但因果图更偏向于逻辑分析，而题目问的是“描述”，判定表更直接。<br>- 注意题目强调的是“**描述**”而不仅仅是“分析”，因此判定表更贴切。<br><br>---<br><br>### **结论**<br><br>题目描述的场景（多条件组合对应不同动作）最适合用**判定表（C）**来描述。<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="10"><a href="#10" class="headerlink" title="10"></a>10</h3><p>(   )的目的是测试软件变更之后，变更部分的正确性和对变更需求的符合性，以及软件原有的、正确的功能、性能和其它规定的要求的不损害性。</p>
+<ul>
+<li>A.验收测试</li>
+<li>B.Alpha测试</li>
+<li>C.Beta测试</li>
+<li>D.回归测试</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open 或 closed<br><br>答案： D <br><br>解析： 纯定义<br></code></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="11"><a href="#11" class="headerlink" title="11"></a>11</h3><p>43.在对遗留系统进行评估时，对于<strong>技术含量较高、业务价值较低</strong>且仅能完成某个部门的业务管理的遗留系统，一般采用的遗留系统演化策略是 (   )策略。</p>
+<ul>
+<li>A.淘汰</li>
+<li>B.继承</li>
+<li>C.集成</li>
+<li>D.改造</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open 或 closed<br><br>答案：C<br>解析：技术高，业务价值低，是集成。<br><br>![image.png](https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250511230309.png)<br><br><br><br></code></pre></td></tr></table></figure>
+
+
+
+
+<h3 id="12"><a href="#12" class="headerlink" title="12"></a>12</h3><p>22、某软件企业在项目开发过程中目标明确，实施过程遵守既定的计划与流程，资源准备充分，权责到人，<strong>对整个流程进行严格的监测，控制与审查</strong>，符合企业管理体系与流程制度。因此，该企业达到了CMMI评估的(22)</p>
+<ul>
+<li>A.可重复级</li>
+<li>B.己定义级</li>
+<li>C.量化级</li>
+<li>D.优化级</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open 或 closed<br><br><br>答案：B<br><br>解析：流程清晰职责分明，己经定义了标准规范制度，但是还没达到量化。<br><br>### **CMMI成熟度等级概述**<br><br>CMMI分为5个成熟度等级，从低到高依次为：<br><br>1. **初始级（Level 1 - Initial）**<br>    - 过程不可预测，依赖个人能力，无标准化流程。<br>2. **可重复级（Level 2 - Managed）**<br>    - 基本项目管理（如计划、跟踪、配置管理），能重复成功经验。<br>3. **已定义级（Level 3 - Defined）**<br>    - 组织级标准化流程，过程可裁剪复用，注重培训与一致性。<br>4. **量化管理级（Level 4 - Quantitatively Managed）**<br>    - 基于数据和统计技术管理过程性能，实现量化目标。<br>5. **优化级（Level 5 - Optimizing）**<br>    - 持续改进过程，引入创新，预防缺陷。<br><br>---<br><br>### **题目关键点分析**<br><br>题目描述的企业开发过程具有以下特征：<br><br>1. **目标明确，遵守既定计划与流程**<br>    - 说明已建立标准化流程（超越可重复级）。<br>        <br>2. **资源准备充分，权责到人**<br>    - 体现组织级资源管理和角色定义（已定义级特征）。<br>        <br>3. **对整个流程严格监测、控制与审查**<br>    - 强调过程的可控性和一致性（已定义级或更高）。<br>        <br>4. **符合企业管理体系与流程制度**<br>    - 说明流程已制度化（已定义级核心要求）。<br>        <br><br>**特别注意**：题目未提及以下内容：<br><br>- **量化数据管理**（如统计过程控制、性能基线）→ 排除量化管理级（C）。<br>- **持续优化与创新**（如根因分析、过程改进）→ 排除优化级（D）。<br><br>---<br><br>### **选项匹配**<br><br>- **A. 可重复级（Level 2）**<br>    - 仅保证项目管理（如计划、跟踪），但题目强调“**组织级标准化流程**”，已超越此等级。<br>        <br>- **B. 已定义级（Level 3）**<br>    - 完全匹配题目描述的“标准化流程、严格监测、符合制度”等特征。<br>        <br>- **C. 量化管理级（Level 4）**<br>    - 需要量化目标和统计分析，题目未体现。<br>        <br>- **D. 优化级（Level 5）**<br>    - 需持续改进和预防缺陷，题目未提及。<br>        <br><br>---<br><br>### **排除法验证**<br><br>1. **可重复级（A）**：仅能重复成功项目，但题目强调“组织级流程”，故排除。<br>2. **量化级（C）和优化级（D）**：需更高阶的量化或优化能力，题目无相关描述。<br>3. **已定义级（B）**：是唯一符合“标准化流程+制度化监控”的选项。<br>    <br><br>---<br><br>### **结论**<br><br>题目描述的企业实践（标准化流程、严格监控、符合制度）完全符合**CMMI已定义级（Level 3）**的核心特征。<br><br></code></pre></td></tr></table></figure>
+
+
+
+
+<h3 id="13"><a href="#13" class="headerlink" title="13"></a>13</h3><p>23、<strong>产品配置</strong>是指一个产品在其生命周期各个阶段所产生的各种形式（机器可读成人工可读）和各种版本的(23)的集合</p>
+<ul>
+<li>A.需求规格说明、设计说明、测试报告</li>
+<li>B.需求规格说明、设计说明、计算机程序</li>
+<li>C.设计说明、用户手册、计算机程序</li>
+<li>D.文档、计算机程序、部件及数据</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open 或 closed<br><br>答案：D<br><br>解析：配置项的定义，软件全生命周期文档、程序、产品等，D最全面。<br><br>这道题目考察的是**产品配置（Product Configuration** 的概念，即一个产品在其生命周期中产生的各种形式和版本的 配置项（Configuration Items, CIs）的集合。我们需要明确哪些内容属于产品配置的组成部分。<br><br>---<br><br>### **产品配置的核心概念**<br><br>1. **产品配置**：<br>    - 指产品在整个生命周期（需求、设计、开发、测试、交付、维护）中产生的**所有相关产出物**。<br>    - 包括**文档、代码、数据、部件**等，涵盖**机器可读（如程序、数据库）和人工可读（如文档、手册）**的形式。<br>    - 还包含不同**版本**（如V1.0、V2.0）的配置项。<br>        <br>2. **配置项（Configuration Items）**：<br>    - 是产品配置的基本单元，通常包括：<br>        - **文档**：需求规格说明、设计文档、测试报告、用户手册等。<br>        - **计算机程序**：源代码、可执行文件、脚本等。<br>        - **数据**：配置文件、数据库、资源文件等。<br>        - **部件**：硬件组件、第三方库等（若为软硬件结合产品）。<br>            <br><br>---<br><br>### **排除法验证**<br><br>- **A、B、C**均缺失关键内容（如数据、部件或某些文档），而**D**完整覆盖。<br>- **“部件及数据”**是其他选项未提及的，但对软硬件产品至关重要。<br><br>---<br><br>### **常见误区**<br><br>- 可能误选**B**（因含需求、设计、程序），但忽略了测试报告、用户手册等文档。<br>- 需注意题目强调**各种形式**（文档+程序+数据），而非仅开发阶段内容。<br><br>---<br><br>### **结论**<br><br>**D选项**是唯一全面涵盖产品配置所有组成部分的答案。<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="14"><a href="#14" class="headerlink" title="14"></a>14</h3><p>24、需求管理的主要活动包括(24)</p>
+<ul>
+<li>A.变更控制、版本控制、需求跟踪、需求状态跟踪</li>
+<li>B.需求获取、变更控制、版本控制、需求跟踪</li>
+<li>C.需求获取、需求建模、变更控制、版本控制</li>
+<li>D.需求获取、需求建模、需求评审、需求跟踪</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open 或 closed<br><br>答案：A<br><br>解析：注意这里问的是需求管理，不是需求开发。<br><br>这道题目考察的是**需求管理（Requirements Management）**的核心活动。需求管理是确保需求在整个项目生命周期中被有效记录、跟踪和控制的过程。我们需要明确哪些活动属于需求管理的范畴，哪些属于需求开发或其他阶段。<br><br>---<br><br>### **需求管理 vs. 需求开发**<br><br>1. **需求开发（Requirements Development）**：<br>    - 包括需求获取（Elicitation）、需求分析（Analysis）、需求规格说明（Specification）、需求验证（Validation）。<br>    - **关键活动**：需求获取、需求建模、需求评审（属于需求开发阶段）。<br>        <br>2. **需求管理（Requirements Management）**：<br>    - 关注需求的**跟踪、控制、维护**，确保需求变更可控且与项目目标一致。<br>    - **关键活动**：<br>        - **变更控制（Change Control）**：管理需求变更的流程（如评估影响、批准变更）。<br>        - **版本控制（Version Control）**：管理需求文档的版本（如基线化、历史记录）。<br>        - **需求跟踪（Requirements Tracing）**：建立需求与设计、测试等工件的双向追溯关系。<br>        - **需求状态跟踪（Status Tracking）**：监控需求的实现状态（如已批准、待开发、已验证）。<br><br>---<br><br>### **题目关键点**<br><br>题目问的是**需求管理的主要活动**，因此需排除属于**需求开发**的活动（如需求获取、建模、评审）。<br><br>---<br><br>### **选项分析**<br><br>#### **A. 变更控制、版本控制、需求跟踪、需求状态跟踪**<br><br>- **分析**：<br>    - 全部是需求管理的核心活动，无开发阶段内容。<br>        <br>- **结论**：✅ **完全正确**。<br>    <br><br>#### **B. 需求获取、变更控制、版本控制、需求跟踪**<br><br>- **问题**：<br>    - **需求获取**属于需求开发，不属于需求管理。<br>        <br>- **结论**：❌ 包含非管理活动。<br>    <br><br>#### **C. 需求获取、需求建模、变更控制、版本控制**<br><br>- **问题**：<br>    - **需求获取、需求建模**属于需求开发。<br>        <br>- **结论**：❌ 混合了开发与管理活动。<br>    <br><br>#### **D. 需求获取、需求建模、需求评审、需求跟踪**<br><br>- **问题**：<br>    - **需求获取、建模、评审**均为需求开发活动，仅**需求跟踪**属于管理。<br>        <br>- **结论**：❌ 主体是开发活动。<br>    <br><br>---<br><br>### **排除法验证**<br><br>- **B、C、D**均包含需求开发活动（如需求获取、建模），只有**A**纯粹是需求管理活动。<br>- **需求状态跟踪**是需求管理的重要组成部分（如跟踪需求是否已实现），常与需求跟踪结合使用。<br>    <br><br>---<br><br>### **常见误区**<br><br>- 混淆**需求管理**与**需求开发**：<br>    - 需求管理是“控制”，需求开发是“生成”。<br>- 可能误选**B**（因含变更控制、跟踪），但“需求获取”是开发活动。<br><br>---<br><br>### **结论**<br><br>**A选项**是唯一完全属于需求管理活动的组合。<br></code></pre></td></tr></table></figure>
+
+
+
+
+<h3 id="15-🐘"><a href="#15-🐘" class="headerlink" title="15 🐘"></a>15 🐘</h3><p>25、（  )包括编制每个<strong>需求与系统元素之间的联系文档</strong>，这些元素包括其它需求、体系结构、设计部件、源代码模块、测试、帮助文件和文档等。</p>
+<ul>
+<li>A.需求描述</li>
+<li>B.需求分析</li>
+<li>C.需求获取</li>
+<li>D.需求跟踪</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open 或 closed<br><br>答案：D<br><br>解析：需求和系统元素之间的联系，是需求跟踪。<br><br>### **题目关键点**<br><br>- **核心动作**：编制需求**与系统元素之间**的联系文档<br>- **系统元素**包括：其他需求、体系结构、设计部件、源代码模块、测试、帮助文件和文档等。<br><br>---<br><br>### **选项分析**<br><br>#### **A. 需求描述（Requirements Description）**<br><br>- **定义**：以清晰、准确的语言记录需求的内容（如用户故事、需求规格说明）。<br>- **是否匹配题目**：❌<br>    - 需求描述是记录需求本身，而非建立需求与其他元素的联系。<br><br>#### **B. 需求分析（Requirements Analysis）**<br><br>- **定义**：分析需求的可行性、一致性，分解和细化需求。<br>- **是否匹配题目**：❌<br>    - **需求分析关注需求本身的质量**，而非需求与其他系统元素的关联。<br>        <br><br>#### **C. 需求获取（Requirements Elicitation）**<br><br>- **定义**：从用户、市场等来源收集原始需求。<br>- **是否匹配题目**：❌<br>    - 需求获取是收集需求，与题目描述的“联系文档”无关。<br><br>#### **D. 需求跟踪（Requirements Tracing）**<br><br>- **定义**：建立需求与其他系统元素（如设计、代码、测试）之间的双向追溯关系，形成**需求跟踪矩阵（RTM）**。<br>- **是否匹配题目**：✅ **完全匹配**<br>    - 题目描述的“编制需求与系统元素之间的联系文档”正是需求跟踪的核心任务。<br>        <br><br>---<br><br>### **需求跟踪的具体作用**<br><br>1. **正向跟踪**：从需求到设计、代码、测试，确保需求被实现。<br>2. **反向跟踪**：从测试、代码回溯到需求，确保无多余功能。<br>3. **文档形式**：通常通过**需求跟踪矩阵（RTM）**实现，例如：<br><br>|需求ID|需求描述|设计文档章节|代码模块|测试用例|<br>|---|---|---|---|---|<br>|REQ-1|用户登录功能|3.2|Login.js|TC-001|<br><br>---<br><br>### **排除法验证**<br><br>- **A、B、C**均未涉及“联系文档”，只有**D（需求跟踪）**明确包含这一概念。<br>    <br>- 题目中的“联系文档”是需求跟踪的直接产出物。<br>    <br><br>---<br><br>### **常见误区**<br><br>- 可能误选**B（需求分析）**，认为分析需求时会涉及其他元素，但需求分析更关注需求本身的逻辑和冲突解决。<br>- 需注意题目强调的是**“编制联系文档”**，而非分析或描述需求。<br>    <br><br>---<br><br>### **结论**<br><br>题目描述的活动是**需求跟踪（Requirements Tracing）**，即建立需求与其他系统元素的可追溯性。<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="16"><a href="#16" class="headerlink" title="16"></a>16</h3><p>26、根据传统的软件生命周期方法学，可以把软件生命周期划分为（26）</p>
+<ul>
+<li>A.软件定义、软件开发、软件测试、软件维护</li>
+<li>B.软件定义、软件开发、软件运行、软件维护</li>
+<li>C.软件分析、软件设计、软件开发、软件维护</li>
+<li>D.需求获取、软件设计、软件开发、软件测试</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open 或 closed<br><br>答案：B<br><br>解析：纯定义，记住即可。<br><br>这道题目考察的是**传统软件生命周期（Software Development Life Cycle, SDLC）**的阶段划分。传统的生命周期模型（如瀑布模型）将软件开发过程划分为几个主要阶段，我们需要明确最符合经典理论的划分方式。<br><br>---<br><br>### **传统软件生命周期的核心阶段**<br><br>根据经典的瀑布模型和ISO/IEC 12207标准，软件生命周期通常分为以下阶段：<br><br>1. **软件定义（Software Definition）**<br>    - 包括问题定义、可行性研究、需求分析。<br>    - **目标**：明确“做什么”（What）。<br>        <br>2. **软件开发（Software Development）**<br>    - 包括系统设计（概要设计、详细设计）、编码实现。<br>    - **目标**：解决“怎么做”（How）。<br>        <br>3. **软件运行与维护（Software Operation &amp; Maintenance）**<br>    - 包括部署、运行、维护（纠错性、适应性、完善性维护）。<br>    - **目标**：确保软件长期可用。<br></code></pre></td></tr></table></figure>
+
+
+
+
+<h3 id="17"><a href="#17" class="headerlink" title="17"></a>17</h3><p>27、以下关于敏捷方法的描述中，不属于敏捷方法核心思想的是（ ）。</p>
+<ul>
+<li>A.敏捷方法是适应型，而非可预测型</li>
+<li>B.敏捷方法以过程为本</li>
+<li>C.敏捷方法是以人为本，而非以过程为本</li>
+<li>D.敏捷方法是选代代增量式的开发过程</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open 或 closed<br><br>答案：B<br><br>解析：敏捷开发以人为本。<br><br>### **敏捷方法的核心思想**<br><br>根据《敏捷宣言》（Agile Manifesto），敏捷方法的核心价值观包括：<br><br>1. **个体和互动**高于流程和工具（**以人为本**）。<br>2. **可工作的软件**高于详尽的文档。<br>3. **客户合作**高于合同谈判。<br>4. **响应变化**高于遵循计划（**适应型**）。<br>    <br><br>其他关键原则：<br><br>- **迭代增量开发**：通过短周期（如Scrum的Sprint）逐步交付功能。<br>- **以人为核心**：注重团队协作和客户反馈，而非僵化的流程。<br>- **适应变化**：需求可变，不追求早期完全预测（**非可预测型**）。<br></code></pre></td></tr></table></figure>
+
+
+
+
+<h3 id="18"><a href="#18" class="headerlink" title="18"></a>18</h3><p>28、RUP(Rationa1 Unified Process)软件开发生命周期是一个二维的软件开发模型，<br>其中，RUP的9个核心工作流中不包括(28)</p>
+<ul>
+<li>A.业务建模</li>
+<li>B.配置与变更管理</li>
+<li>C.成本</li>
+<li>D.环境</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open 或 closed<br><br>答案： C <br><br>解析：这个考的比较偏了，九个核心工作流分别是业务建模、需求、分析与设计、实现、测试、<br>部署、配置与变更管理、项目管理、环境。可以按照生命周期开发阶段来理解记忆。<br><br><br>### **RUP（Rational Unified Process）的核心工作流**<br><br>#### **1. RUP的基本概念**<br><br>RUP（Rational Unified Process）是一种迭代的软件开发框架，其生命周期是**二维模型**：<br><br>- **横轴（时间维度）**：分为初始（Inception）、细化（Elaboration）、构造（Construction）、移交（Transition）四个阶段。<br>- **纵轴（内容维度）**：包括**9个核心工作流（Core Workflows）**，覆盖开发过程中的关键活动。<br>    <br><br>#### **2. RUP的9个核心工作流**<br><br>RUP的9个工作流分为**6个工程工作流**和**3个支持工作流**：<br><br>- **工程工作流**（直接与开发相关）：<br>    1. **业务建模（Business Modeling）**<br>        - 理解业务需求和流程。<br>    2. **需求（Requirements）**<br>        - 收集和分析系统需求。<br>    3. **分析与设计（Analysis &amp; Design）**<br>        - 将需求转化为系统设计。<br>    4. **实现（Implementation）**<br>        - 编写代码和单元测试。<br>    5. **测试（Test）**<br>        - 验证系统是否符合需求。<br>    6. **部署（Deployment）**<br>        - 发布软件并交付用户。<br>- **支持工作流**（保障开发过程）：  <br>    7. **项目管理（Project Management）**<br>	    - 规划、监控和控制项目。<br>    8. **配置与变更管理（Configuration &amp; Change Management）**<br>        - 管理版本、变更和基线。    <br>    9. **环境（Environment）**<br>        - 提供开发工具和流程支持。<br><br>#### **3. 题目选项分析**<br><br>题目问的是**“不包括”**的工作流，需对比9个核心工作流：<br><br>- **A. 业务建模** → 是核心工作流（工程类）。<br>- **B. 配置与变更管理** → 是核心工作流（支持类）。<br>- **C. 成本** → **不属于**RUP的9个工作流（属于项目管理的一部分，但非独立工作流）。<br>- **D. 环境** → 是核心工作流（支持类）。<br><br>#### **4. 辅助记忆技巧**<br><br>- **工程工作流（6个）**：  <br>    记住开发的主线流程：  <br>    **“业务→需求→设计→实现→测试→部署”**（从业务到交付的完整链条）。<br>    <br>- **支持工作流（3个）**：  <br>    联想项目管理的三大保障：  <br>    **“管理项目（PM）+ 管理变更（配置）+ 管理工具（环境）”**。<br>    <br>- **排除法**：  <br>    RUP的工作流均围绕**开发过程**和**管理支持**，而“成本”是财务概念，属于更上层的项目约束（如预算），不属于具体工作流<br></code></pre></td></tr></table></figure>
+
+
+
+
+<h3 id="19"><a href="#19" class="headerlink" title="19"></a>19</h3><p>29、在软件开发和维护过程中，一个软件会有多个版本，（29）工具用来存储、恢复和管理一个软件的多个版本</p>
+<ul>
+<li>A.软件测试</li>
+<li>B.版本控制</li>
+<li>C.UML建模</li>
+<li>D.逆向方向</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open 或 closed<br><br>答案： B<br><br>解析： 常识<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="20"><a href="#20" class="headerlink" title="20"></a>20</h3><p>结构化设计是一种面向数据流的设计方法，以下不属于<strong>结构化设计工具</strong>的是（30）</p>
+<ul>
+<li>A.盒图</li>
+<li>B.HIPO 图</li>
+<li>C. 顺序图</li>
+<li>D. 程序流程图</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs ad-tldr">title: 题目解析<br>collapse: open 或 closed<br><br>答案： C <br><br>解析：<br><br><br>#### **结构化设计的基本概念**<br><br>结构化设计（Structured Design）是一种**面向数据流**的软件设计方法，强调模块化、自顶向下分解和功能独立性。其核心工具用于描述**程序结构**或**数据流**，而非面向对象或交互逻辑。<br><br>#### **2. 结构化设计的常用工具**<br><br>以下是典型的**结构化设计工具**：<br><br>1. **盒图（N-S图，Chapin Chart）**<br>    - 用矩形框表示程序逻辑结构（顺序、分支、循环），**无箭头**，避免流程图的无序性。<br>    - **用途**：描述模块的详细逻辑。<br>        <br>2. **HIPO图（Hierarchy + Input-Process-Output）**<br>    - 包含**层次图（Hierarchy Chart）**和**IPO图**，用于描述模块的层次结构和输入-处理-输出关系。<br>    - **用途**：自顶向下分解系统功能。<br>        <br>3. **程序流程图（Flowchart）**<br>    - 用图形符号（矩形、菱形、箭头）表示程序控制流。<br>    - **用途**：传统结构化设计的核心工具。<br>        <br>4. **其他结构化工具**<br>    - **数据流图（DFD）**：描述系统数据流动（非本题选项）。<br>    - **结构图（Structure Chart）**：描述模块调用关系（非本题选项）。<br><br>#### **3. 非结构化设计的工具**<br><br>- **顺序图（Sequence Diagram）**<br>    - 属于**UML（面向对象设计）**，描述对象间的动态交互时序，**非结构化设计工具**。<br>    - **用途**：面向对象系统中的协作行为。<br></code></pre></td></tr></table></figure>
+
+
+<hr>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>10_软件工程-练习题(1-20)</div>
+      <div>https://varcel.luoqi.icu/2025/05/13/sync/10_软件工程-练习题1-20-ff36ae/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Luo QI</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年5月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
