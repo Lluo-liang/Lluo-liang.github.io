@@ -4,6 +4,50 @@
   
   
   <entry>
+    <title>IDEA 的常用插件</title>
+    <link href="/2025/06/16/sync/IDEA-%E7%9A%84%E5%B8%B8%E7%94%A8%E6%8F%92%E4%BB%B6-feaf8a/"/>
+    <url>/2025/06/16/sync/IDEA-%E7%9A%84%E5%B8%B8%E7%94%A8%E6%8F%92%E4%BB%B6-feaf8a/</url>
+    
+    <content type="html"><![CDATA[<h3 id="AutoDev-Sketch"><a href="#AutoDev-Sketch" class="headerlink" title="AutoDev Sketch"></a>AutoDev Sketch</h3><p>IDEA插件——AutoDev Sketch使用</p><h3 id="Grep-Console"><a href="#Grep-Console" class="headerlink" title="Grep Console"></a>Grep Console</h3><h3 id="Arthas-Idea-Plugin"><a href="#Arthas-Idea-Plugin" class="headerlink" title="Arthas Idea Plugin"></a>Arthas Idea Plugin</h3><h3 id="MybatisX"><a href="#MybatisX" class="headerlink" title="MybatisX"></a>MybatisX</h3><p>使用 mybatis 的话，从 mapper 跳转到 xml ，这个插件基本是必须的</p><h3 id="Github-copilot-intellij"><a href="#Github-copilot-intellij" class="headerlink" title="Github-copilot-intellij"></a>Github-copilot-intellij</h3><p>github-copilot 的插件版本，程序员的不二选择</p><h3 id="Apifox-Helper"><a href="#Apifox-Helper" class="headerlink" title="Apifox Helper"></a>Apifox Helper</h3><p>视频教程： <a href="https://www.bilibili.com/video/BV1T84y1G76W/">https://www.bilibili.com/video/BV1T84y1G76W/</a></p><p>将 API FOX 里面的账号设置的 API 访问令牌添加一下到配置中，然后选择对应的项目，点击OK即可</p><p>在项目使用中，选择 controller 的 upload to apifox 即可上传接口</p><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20241201222901.png" alt="image.png"></p><h3 id="POJO-to-JSON"><a href="#POJO-to-JSON" class="headerlink" title="POJO to JSON"></a>POJO to JSON</h3><p>这个插件可以直接将实体类转换为 JSON 类型，可以减轻一些工作量</p><h3 id="SonarLint"><a href="#SonarLint" class="headerlink" title="SonarLint"></a>SonarLint</h3><p>代码检测工具，非常推荐使用</p><h3 id="Cool-Request"><a href="#Cool-Request" class="headerlink" title="Cool Request"></a>Cool Request</h3><p>直接使用 IDEA 接口请求，可以绕过拦截器进行请求</p><p><a href="https://mp.weixin.qq.com/s/sh11ls-iQjQBX74zocrSvA">https://mp.weixin.qq.com/s/sh11ls-iQjQBX74zocrSvA</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>随记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>开发工具/IDEA</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>拦截注解并打印方法信息</title>
+    <link href="/2025/06/16/sync/%E6%8B%A6%E6%88%AA%E6%B3%A8%E8%A7%A3%E5%B9%B6%E6%89%93%E5%8D%B0%E6%96%B9%E6%B3%95%E4%BF%A1%E6%81%AF-8c1c01/"/>
+    <url>/2025/06/16/sync/%E6%8B%A6%E6%88%AA%E6%B3%A8%E8%A7%A3%E5%B9%B6%E6%89%93%E5%8D%B0%E6%96%B9%E6%B3%95%E4%BF%A1%E6%81%AF-8c1c01/</url>
+    
+    <content type="html"><![CDATA[<p>实现方法：拦截所有被@Cache注解的方法 ，并打印出方法名以及如果返回类型是集合，输出返回的集合数量。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> org.aspectj.lang.JoinPoint;  <br><span class="hljs-keyword">import</span> org.aspectj.lang.annotation.AfterReturning;  <br><span class="hljs-keyword">import</span> org.aspectj.lang.annotation.Aspect;  <br><span class="hljs-keyword">import</span> org.aspectj.lang.annotation.Pointcut;  <br><span class="hljs-keyword">import</span> org.springframework.stereotype.Component;  <br>  <br><span class="hljs-keyword">import</span> java.util.Collection;  <br>  <br><span class="hljs-meta">@Aspect</span>  <br><span class="hljs-meta">@Component</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CacheMetricsAspect</span> &#123;  <br>  <br>    <span class="hljs-comment">// 定义切点：拦截所有被@Cache注解的方法  </span><br>    <span class="hljs-meta">@Pointcut(&quot;@annotation(cn.dotfashion.soa.cache.spring.annotation.Cache)&quot;)</span> <span class="hljs-comment">// 替换为你的@Cache注解完整路径  </span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">cacheAnnotationPointcut</span><span class="hljs-params">()</span> &#123;&#125;  <br>  <br>    <span class="hljs-comment">// 拦截方法返回后获取结果和方法信息  </span><br>    <span class="hljs-meta">@AfterReturning(  </span><br><span class="hljs-meta">        pointcut = &quot;cacheAnnotationPointcut()&quot;,  </span><br><span class="hljs-meta">        returning = &quot;result&quot;  </span><br><span class="hljs-meta">    )</span>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">logCacheResultSize</span><span class="hljs-params">(JoinPoint joinPoint, Object result)</span> &#123;  <br>        <span class="hljs-comment">// 获取方法名  </span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">methodName</span> <span class="hljs-operator">=</span> joinPoint.getSignature().toShortString();  <br>        <span class="hljs-comment">// 获取类名  </span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">className</span> <span class="hljs-operator">=</span> joinPoint.getTarget().getClass().getSimpleName();  <br>  <br>        <span class="hljs-comment">// 处理返回值  </span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">sizeInfo</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;&quot;</span>;  <br>        <span class="hljs-keyword">if</span> (result <span class="hljs-keyword">instanceof</span> Collection) &#123;  <br>            <span class="hljs-type">int</span> <span class="hljs-variable">size</span> <span class="hljs-operator">=</span> ((Collection&lt;?&gt;) result).size();  <br>            sizeInfo = <span class="hljs-string">&quot;集合大小: &quot;</span> + size;  <br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (result != <span class="hljs-literal">null</span> &amp;&amp; result.getClass().isArray()) &#123;  <br>            <span class="hljs-type">int</span> <span class="hljs-variable">size</span> <span class="hljs-operator">=</span> ((Object[]) result).length;  <br>            sizeInfo = <span class="hljs-string">&quot;数组长度: &quot;</span> + size;  <br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (result != <span class="hljs-literal">null</span>) &#123;  <br>            sizeInfo = <span class="hljs-string">&quot;返回类型: &quot;</span> + result.getClass().getSimpleName();  <br>        &#125; <span class="hljs-keyword">else</span> &#123;  <br>            sizeInfo = <span class="hljs-string">&quot;返回值为 null&quot;</span>;  <br>        &#125;  <br>  <br>        <span class="hljs-comment">// 打印完整信息  </span><br>        System.out.printf(<span class="hljs-string">&quot;[方法监控] %s.%s -&gt; %s%n&quot;</span>,  <br>            className, methodName, sizeInfo);  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>aop</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>电脑重装系统windows</title>
     <link href="/2025/06/16/computer/%E7%94%B5%E8%84%91%E9%87%8D%E8%A3%85%E7%B3%BB%E7%BB%9Fwindows/"/>
     <url>/2025/06/16/computer/%E7%94%B5%E8%84%91%E9%87%8D%E8%A3%85%E7%B3%BB%E7%BB%9Fwindows/</url>
