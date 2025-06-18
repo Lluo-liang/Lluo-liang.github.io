@@ -1,0 +1,728 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/Xbox%20L.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Luo QI">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="摘要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ElasticSerarch 的常见使用操作">
+<meta property="og:url" content="https://varcel.luoqi.icu/2024/12/24/sync/ElasticSerarch-%E7%9A%84%E5%B8%B8%E8%A7%81%E4%BD%BF%E7%94%A8%E6%93%8D%E4%BD%9C-5e637a/index.html">
+<meta property="og:site_name" content="轻松的洛亓">
+<meta property="og:description" content="摘要">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-12-24T00:48:34.000Z">
+<meta property="article:modified_time" content="2025-06-18T15:13:54.000Z">
+<meta property="article:author" content="Luo QI">
+<meta property="article:tag" content="elasticsearch">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>ElasticSerarch 的常见使用操作 - 轻松的洛亓</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"varcel.luoqi.icu","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  <meta name="baidu-site-verification" content="codeva-Oq0KOjHuD3" />
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>轻松的洛亓</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="ElasticSerarch 的常见使用操作"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-12-24 00:48" pubdate>
+          2024年12月24日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          12 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">ElasticSerarch 的常见使用操作</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h4 id="Kibana-使用"><a href="#Kibana-使用" class="headerlink" title="Kibana 使用"></a>Kibana 使用</h4><ul>
+<li><p>通过Kibana的<code>Dev Tools</code>功能，我们可以操作Elasticsearch；</p>
+</li>
+<li><p>使用如下命令查看集群健康状态；</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">GET</span> /_cat/health?v<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>查看节点状态；</p>
+</li>
+</ul>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">GET</span> /_cat/nodes?v<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">ip</span>        heap.percent ram.percent cpu load_1m load_5m load_15m node.role   master name<br><span class="hljs-attribute">127</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span>.<span class="hljs-number">1</span>           <span class="hljs-number">16</span>          <span class="hljs-number">64</span>  <span class="hljs-number">34</span>                          cdfhilmrstw *      DESKTOP-K1F7O7Q<br></code></pre></td></tr></table></figure>
+
+
+<ul>
+<li>查看所有索引信息；<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">GET</span> /_cat/indices?v<br></code></pre></td></tr></table></figure></li>
+</ul>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">health</span> status index                           uuid                   pri rep docs.count docs.deleted store.size pri.store.size<br><span class="hljs-attribute">green</span>  open   pms                             <span class="hljs-number">6</span>cEV5X3FSYWlGEbLCsMpmg   <span class="hljs-number">1</span>   <span class="hljs-number">0</span>         <span class="hljs-number">57</span>            <span class="hljs-number">0</span>     <span class="hljs-number">24</span>.<span class="hljs-number">3</span>kb         <span class="hljs-number">24</span>.<span class="hljs-number">3</span>kb<br><span class="hljs-attribute">green</span>  open   .kibana_7.<span class="hljs-number">17</span>.<span class="hljs-number">3</span>_001              hrS91kWhQkajmrhF92zboQ   <span class="hljs-number">1</span>   <span class="hljs-number">0</span>        <span class="hljs-number">327</span>          <span class="hljs-number">327</span>      <span class="hljs-number">4</span>.<span class="hljs-number">8</span>mb          <span class="hljs-number">4</span>.<span class="hljs-number">8</span>mb<br><span class="hljs-attribute">green</span>  open   .tasks                          _4RSAkwvRwK-j8zDLAM6MA   <span class="hljs-number">1</span>   <span class="hljs-number">0</span>         <span class="hljs-number">12</span>            <span class="hljs-number">0</span>     <span class="hljs-number">22</span>.<span class="hljs-number">5</span>kb         <span class="hljs-number">22</span>.<span class="hljs-number">5</span>kb<br></code></pre></td></tr></table></figure>
+
+<h4 id="索引操作"><a href="#索引操作" class="headerlink" title="索引操作"></a>索引操作</h4><ul>
+<li>创建索引并查看；</li>
+</ul>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros">PUT <span class="hljs-built_in">/customer</span><br><span class="hljs-built_in"></span><span class="hljs-built_in">GET</span> /_cat/indices?v<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">health</span> status index                           uuid                   pri rep docs.count docs.deleted store.size pri.store.size<br><span class="hljs-attribute">green</span>  open   pms                             <span class="hljs-number">6</span>cEV5X3FSYWlGEbLCsMpmg   <span class="hljs-number">1</span>   <span class="hljs-number">0</span>         <span class="hljs-number">57</span>            <span class="hljs-number">0</span>     <span class="hljs-number">24</span>.<span class="hljs-number">3</span>kb         <span class="hljs-number">24</span>.<span class="hljs-number">3</span>kb<br><span class="hljs-attribute">yellow</span> open   customer                        mU0uITAkSaeEie8fypLnFw   <span class="hljs-number">1</span>   <span class="hljs-number">1</span>          <span class="hljs-number">0</span>            <span class="hljs-number">0</span>       <span class="hljs-number">226</span>b           <span class="hljs-number">226</span>b<br><span class="hljs-attribute">green</span>  open   .kibana_7.<span class="hljs-number">17</span>.<span class="hljs-number">3</span>_001              hrS91kWhQkajmrhF92zboQ   <span class="hljs-number">1</span>   <span class="hljs-number">0</span>        <span class="hljs-number">329</span>          <span class="hljs-number">336</span>      <span class="hljs-number">4</span>.<span class="hljs-number">8</span>mb          <span class="hljs-number">4</span>.<span class="hljs-number">8</span>mb<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>删除索引并查看；</li>
+</ul>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros">DELETE <span class="hljs-built_in">/customer</span><br><span class="hljs-built_in"></span><span class="hljs-built_in">GET</span> /_cat/indices?v<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">health</span> status index                           uuid                   pri rep docs.count docs.deleted store.size pri.store.size<br><span class="hljs-attribute">green</span>  open   pms                             <span class="hljs-number">6</span>cEV5X3FSYWlGEbLCsMpmg   <span class="hljs-number">1</span>   <span class="hljs-number">0</span>         <span class="hljs-number">57</span>            <span class="hljs-number">0</span>     <span class="hljs-number">24</span>.<span class="hljs-number">3</span>kb         <span class="hljs-number">24</span>.<span class="hljs-number">3</span>kb<br><span class="hljs-attribute">green</span>  open   .kibana_7.<span class="hljs-number">17</span>.<span class="hljs-number">3</span>_001              hrS91kWhQkajmrhF92zboQ   <span class="hljs-number">1</span>   <span class="hljs-number">0</span>        <span class="hljs-number">329</span>          <span class="hljs-number">336</span>      <span class="hljs-number">4</span>.<span class="hljs-number">8</span>mb          <span class="hljs-number">4</span>.<span class="hljs-number">8</span>mb<br></code></pre></td></tr></table></figure>
+
+<h4 id="类型操作"><a href="#类型操作" class="headerlink" title="类型操作"></a>类型操作</h4><p>查看文档的类型，需要完成<code>数据搜索</code>部分的导入才可以查看。</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">GET</span> /bank/_mapping<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><code class="hljs ada">&#123;<br>  <span class="hljs-string">&quot;bank&quot;</span> : &#123;<br>    <span class="hljs-string">&quot;mappings&quot;</span> : &#123;<br>      <span class="hljs-string">&quot;properties&quot;</span> : &#123;<br>        <span class="hljs-string">&quot;account_number&quot;</span> : &#123;<br>          <span class="hljs-string">&quot;type&quot;</span> : &quot;<span class="hljs-type">long</span><span class="hljs-string">&quot;</span><br><span class="hljs-string">        &#125;,</span><br><span class="hljs-string">        &quot;</span>address<span class="hljs-string">&quot; : &#123;</span><br><span class="hljs-string">          &quot;</span><span class="hljs-keyword">type</span><span class="hljs-string">&quot; : &quot;</span>text<span class="hljs-string">&quot;,</span><br><span class="hljs-string">          &quot;</span>fields<span class="hljs-string">&quot; : &#123;</span><br><span class="hljs-string">            &quot;</span>keyword<span class="hljs-string">&quot; : &#123;</span><br><span class="hljs-string">              &quot;</span><span class="hljs-keyword">type</span><span class="hljs-string">&quot; : &quot;</span>keyword<span class="hljs-string">&quot;,</span><br><span class="hljs-string">              &quot;</span>ignore_above<span class="hljs-string">&quot; : 256</span><br><span class="hljs-string">            &#125;</span><br><span class="hljs-string">          &#125;</span><br><span class="hljs-string">        &#125;,</span><br><span class="hljs-string">        &quot;</span>age<span class="hljs-string">&quot; : &#123;</span><br><span class="hljs-string">          &quot;</span><span class="hljs-keyword">type</span><span class="hljs-string">&quot; : &quot;</span>long<span class="hljs-string">&quot;</span><br><span class="hljs-string">        &#125;,</span><br><span class="hljs-string">        &quot;</span>balance<span class="hljs-string">&quot; : &#123;</span><br><span class="hljs-string">          &quot;</span><span class="hljs-keyword">type</span><span class="hljs-string">&quot; : &quot;</span>long<span class="hljs-string">&quot;</span><br><span class="hljs-string">        &#125;,</span><br><span class="hljs-string">        &quot;</span>city<span class="hljs-string">&quot; : &#123;</span><br><span class="hljs-string">          &quot;</span><span class="hljs-keyword">type</span><span class="hljs-string">&quot; : &quot;</span>text<span class="hljs-string">&quot;,</span><br><span class="hljs-string">          &quot;</span>fields<span class="hljs-string">&quot; : &#123;</span><br><span class="hljs-string">            &quot;</span>keyword<span class="hljs-string">&quot; : &#123;</span><br><span class="hljs-string">              &quot;</span><span class="hljs-keyword">type</span><span class="hljs-string">&quot; : &quot;</span>keyword<span class="hljs-string">&quot;,</span><br><span class="hljs-string">              &quot;</span>ignore_above<span class="hljs-string">&quot; : 256</span><br><span class="hljs-string">            &#125;</span><br><span class="hljs-string">          &#125;</span><br><span class="hljs-string">        &#125;,</span><br><span class="hljs-string">        &quot;</span>email<span class="hljs-string">&quot; : &#123;</span><br><span class="hljs-string">          &quot;</span><span class="hljs-keyword">type</span><span class="hljs-string">&quot; : &quot;</span>text<span class="hljs-string">&quot;,</span><br><span class="hljs-string">          &quot;</span>fields<span class="hljs-string">&quot; : &#123;</span><br><span class="hljs-string">            &quot;</span>keyword<span class="hljs-string">&quot; : &#123;</span><br><span class="hljs-string">              &quot;</span><span class="hljs-keyword">type</span><span class="hljs-string">&quot; : &quot;</span>keyword<span class="hljs-string">&quot;,</span><br><span class="hljs-string">              &quot;</span>ignore_above<span class="hljs-string">&quot; : 256</span><br><span class="hljs-string">            &#125;</span><br><span class="hljs-string">          &#125;</span><br><span class="hljs-string">        &#125;,</span><br><span class="hljs-string">        &quot;</span>employer<span class="hljs-string">&quot; : &#123;</span><br><span class="hljs-string">          &quot;</span><span class="hljs-keyword">type</span><span class="hljs-string">&quot; : &quot;</span>text<span class="hljs-string">&quot;,</span><br><span class="hljs-string">          &quot;</span>fields<span class="hljs-string">&quot; : &#123;</span><br><span class="hljs-string">            &quot;</span>keyword<span class="hljs-string">&quot; : &#123;</span><br><span class="hljs-string">              &quot;</span><span class="hljs-keyword">type</span><span class="hljs-string">&quot; : &quot;</span>keyword<span class="hljs-string">&quot;,</span><br><span class="hljs-string">              &quot;</span>ignore_above<span class="hljs-string">&quot; : 256</span><br><span class="hljs-string">            &#125;</span><br><span class="hljs-string">          &#125;</span><br><span class="hljs-string">        &#125;,</span><br><span class="hljs-string">        &quot;</span>firstname<span class="hljs-string">&quot; : &#123;</span><br><span class="hljs-string">          &quot;</span><span class="hljs-keyword">type</span><span class="hljs-string">&quot; : &quot;</span>text<span class="hljs-string">&quot;,</span><br><span class="hljs-string">          &quot;</span>fields<span class="hljs-string">&quot; : &#123;</span><br><span class="hljs-string">            &quot;</span>keyword<span class="hljs-string">&quot; : &#123;</span><br><span class="hljs-string">              &quot;</span><span class="hljs-keyword">type</span><span class="hljs-string">&quot; : &quot;</span>keyword<span class="hljs-string">&quot;,</span><br><span class="hljs-string">              &quot;</span>ignore_above<span class="hljs-string">&quot; : 256</span><br><span class="hljs-string">            &#125;</span><br><span class="hljs-string">          &#125;</span><br><span class="hljs-string">        &#125;,</span><br><span class="hljs-string">        &quot;</span>gender<span class="hljs-string">&quot; : &#123;</span><br><span class="hljs-string">          &quot;</span><span class="hljs-keyword">type</span><span class="hljs-string">&quot; : &quot;</span>text<span class="hljs-string">&quot;,</span><br><span class="hljs-string">          &quot;</span>fields<span class="hljs-string">&quot; : &#123;</span><br><span class="hljs-string">            &quot;</span>keyword<span class="hljs-string">&quot; : &#123;</span><br><span class="hljs-string">              &quot;</span><span class="hljs-keyword">type</span><span class="hljs-string">&quot; : &quot;</span>keyword<span class="hljs-string">&quot;,</span><br><span class="hljs-string">              &quot;</span>ignore_above<span class="hljs-string">&quot; : 256</span><br><span class="hljs-string">            &#125;</span><br><span class="hljs-string">          &#125;</span><br><span class="hljs-string">        &#125;,</span><br><span class="hljs-string">        &quot;</span>lastname<span class="hljs-string">&quot; : &#123;</span><br><span class="hljs-string">          &quot;</span><span class="hljs-keyword">type</span><span class="hljs-string">&quot; : &quot;</span>text<span class="hljs-string">&quot;,</span><br><span class="hljs-string">          &quot;</span>fields<span class="hljs-string">&quot; : &#123;</span><br><span class="hljs-string">            &quot;</span>keyword<span class="hljs-string">&quot; : &#123;</span><br><span class="hljs-string">              &quot;</span><span class="hljs-keyword">type</span><span class="hljs-string">&quot; : &quot;</span>keyword<span class="hljs-string">&quot;,</span><br><span class="hljs-string">              &quot;</span>ignore_above<span class="hljs-string">&quot; : 256</span><br><span class="hljs-string">            &#125;</span><br><span class="hljs-string">          &#125;</span><br><span class="hljs-string">        &#125;,</span><br><span class="hljs-string">        &quot;</span>state<span class="hljs-string">&quot; : &#123;</span><br><span class="hljs-string">          &quot;</span><span class="hljs-keyword">type</span><span class="hljs-string">&quot; : &quot;</span>text<span class="hljs-string">&quot;,</span><br><span class="hljs-string">          &quot;</span>fields<span class="hljs-string">&quot; : &#123;</span><br><span class="hljs-string">            &quot;</span>keyword<span class="hljs-string">&quot; : &#123;</span><br><span class="hljs-string">              &quot;</span><span class="hljs-keyword">type</span><span class="hljs-string">&quot; : &quot;</span>keyword<span class="hljs-string">&quot;,</span><br><span class="hljs-string">              &quot;</span>ignore_above<span class="hljs-string">&quot; : 256</span><br><span class="hljs-string">            &#125;</span><br><span class="hljs-string">          &#125;</span><br><span class="hljs-string">        &#125;</span><br><span class="hljs-string">      &#125;</span><br><span class="hljs-string">    &#125;</span><br><span class="hljs-string">  &#125;</span><br><span class="hljs-string">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="文档操作（数据操作）"><a href="#文档操作（数据操作）" class="headerlink" title="文档操作（数据操作）"></a>文档操作（数据操作）</h4><ul>
+<li>在索引中添加文档；</li>
+</ul>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs awk">PUT <span class="hljs-regexp">/customer/</span>doc/<span class="hljs-number">1</span><br>&#123;<br>  <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;John Doe&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;_index&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;customer&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;_type&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;doc&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;_id&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;1&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;_version&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;result&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;created&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;_shards&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;total&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-number">2</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;successful&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;failed&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;_seq_no&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;_primary_term&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+
+<ul>
+<li>查看索引中的文档；</li>
+</ul>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">GET</span> /customer/doc/1<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;_index&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;customer&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;_type&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;doc&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;_id&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;1&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;_version&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;_seq_no&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;_primary_term&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;found&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;_source&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;name&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;John Doe&quot;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+
+<ul>
+<li>修改索引中的文档：</li>
+</ul>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs awk">POST <span class="hljs-regexp">/customer/</span>doc<span class="hljs-regexp">/1/</span>_update<br>&#123;<br>  <span class="hljs-string">&quot;doc&quot;</span>: &#123; <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;Jane Doe&quot;</span> &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;_index&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;customer&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;_type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;doc&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;_id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;1&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;_version&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">2</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;result&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;updated&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;_shards&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;total&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">2</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;successful&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;failed&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;_seq_no&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">4</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;_primary_term&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+
+<ul>
+<li>删除索引中的文档；</li>
+</ul>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gradle"><span class="hljs-keyword">DELETE</span> <span class="hljs-regexp">/customer/</span>doc/<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;_index&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;customer&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;_type&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;doc&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;_id&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;1&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;_version&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-number">2</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;result&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;deleted&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;_shards&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;total&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-number">2</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;successful&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;failed&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;_seq_no&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;_primary_term&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>对索引中的文档执行批量操作；</li>
+</ul>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs dts">POST <span class="hljs-keyword">/customer/</span>doc/<span class="hljs-title class_">_bulk</span><br><span class="hljs-punctuation">&#123;</span><span class="hljs-string">&quot;index&quot;</span>:<span class="hljs-punctuation">&#123;</span><span class="hljs-string">&quot;_id&quot;</span>:<span class="hljs-string">&quot;1&quot;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#123;</span><span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;John Doe&quot;</span> <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#123;</span><span class="hljs-string">&quot;index&quot;</span>:<span class="hljs-punctuation">&#123;</span><span class="hljs-string">&quot;_id&quot;</span>:<span class="hljs-string">&quot;2&quot;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#123;</span><span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;Jane Doe&quot;</span> <span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs ada">&#123;<br>  <span class="hljs-string">&quot;took&quot;</span> : 9,<br>  <span class="hljs-string">&quot;errors&quot;</span> : <span class="hljs-type">false</span>,<br>  <span class="hljs-string">&quot;items&quot;</span> : [<br>    &#123;<br>      <span class="hljs-string">&quot;index&quot;</span> : &#123;<br>        <span class="hljs-string">&quot;_index&quot;</span> : &quot;<span class="hljs-type">customer</span><span class="hljs-string">&quot;,</span><br><span class="hljs-string">        &quot;</span>_type<span class="hljs-string">&quot; : &quot;</span>doc<span class="hljs-string">&quot;,</span><br><span class="hljs-string">        &quot;</span>_id<span class="hljs-string">&quot; : &quot;</span><span class="hljs-number">1</span><span class="hljs-string">&quot;,</span><br><span class="hljs-string">        &quot;</span>_version<span class="hljs-string">&quot; : 3,</span><br><span class="hljs-string">        &quot;</span>result<span class="hljs-string">&quot; : &quot;</span>created<span class="hljs-string">&quot;,</span><br><span class="hljs-string">        &quot;</span>_shards<span class="hljs-string">&quot; : &#123;</span><br><span class="hljs-string">          &quot;</span>total<span class="hljs-string">&quot; : 2,</span><br><span class="hljs-string">          &quot;</span>successful<span class="hljs-string">&quot; : 1,</span><br><span class="hljs-string">          &quot;</span>failed<span class="hljs-string">&quot; : 0</span><br><span class="hljs-string">        &#125;,</span><br><span class="hljs-string">        &quot;</span>_seq_no<span class="hljs-string">&quot; : 2,</span><br><span class="hljs-string">        &quot;</span>_primary_term<span class="hljs-string">&quot; : 1,</span><br><span class="hljs-string">        &quot;</span>status<span class="hljs-string">&quot; : 201</span><br><span class="hljs-string">      &#125;</span><br><span class="hljs-string">    &#125;,</span><br><span class="hljs-string">    &#123;</span><br><span class="hljs-string">      &quot;</span>index<span class="hljs-string">&quot; : &#123;</span><br><span class="hljs-string">        &quot;</span>_index<span class="hljs-string">&quot; : &quot;</span>customer<span class="hljs-string">&quot;,</span><br><span class="hljs-string">        &quot;</span>_type<span class="hljs-string">&quot; : &quot;</span>doc<span class="hljs-string">&quot;,</span><br><span class="hljs-string">        &quot;</span>_id<span class="hljs-string">&quot; : &quot;</span><span class="hljs-number">2</span><span class="hljs-string">&quot;,</span><br><span class="hljs-string">        &quot;</span>_version<span class="hljs-string">&quot; : 1,</span><br><span class="hljs-string">        &quot;</span>result<span class="hljs-string">&quot; : &quot;</span>created<span class="hljs-string">&quot;,</span><br><span class="hljs-string">        &quot;</span>_shards<span class="hljs-string">&quot; : &#123;</span><br><span class="hljs-string">          &quot;</span>total<span class="hljs-string">&quot; : 2,</span><br><span class="hljs-string">          &quot;</span>successful<span class="hljs-string">&quot; : 1,</span><br><span class="hljs-string">          &quot;</span>failed<span class="hljs-string">&quot; : 0</span><br><span class="hljs-string">        &#125;,</span><br><span class="hljs-string">        &quot;</span>_seq_no<span class="hljs-string">&quot; : 3,</span><br><span class="hljs-string">        &quot;</span>_primary_term<span class="hljs-string">&quot; : 1,</span><br><span class="hljs-string">        &quot;</span>status<span class="hljs-string">&quot; : 201</span><br><span class="hljs-string">      &#125;</span><br><span class="hljs-string">    &#125;</span><br><span class="hljs-string">  ]</span><br><span class="hljs-string">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="数据搜索（查询）"><a href="#数据搜索（查询）" class="headerlink" title="数据搜索（查询）"></a>数据搜索（查询）</h4><blockquote>
+<p>查询表达式(Query DSL)是一种非常灵活又富有表现力的查询语言，Elasticsearch使用它可以以简单的JSON接口来实现丰富的搜索功能，下面的搜索操作都将使用它。</p>
+</blockquote>
+<h5 id="数据导入"><a href="#数据导入" class="headerlink" title="数据导入"></a>数据导入</h5><ul>
+<li><p>首先我们需要导入一定量的数据用于搜索，使用的是银行账户表的例子，数据结构如下：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs perl">&#123;<br>    <span class="hljs-string">&quot;account_number&quot;</span>: <span class="hljs-number">0</span>,<br>    <span class="hljs-string">&quot;balance&quot;</span>: <span class="hljs-number">16623</span>,<br>    <span class="hljs-string">&quot;firstname&quot;</span>: <span class="hljs-string">&quot;Bradshaw&quot;</span>,<br>    <span class="hljs-string">&quot;lastname&quot;</span>: <span class="hljs-string">&quot;Mckenzie&quot;</span>,<br>    <span class="hljs-string">&quot;age&quot;</span>: <span class="hljs-number">29</span>,<br>    <span class="hljs-string">&quot;gender&quot;</span>: <span class="hljs-string">&quot;F&quot;</span>,<br>    <span class="hljs-string">&quot;address&quot;</span>: <span class="hljs-string">&quot;244 Columbus Place&quot;</span>,<br>    <span class="hljs-string">&quot;employer&quot;</span>: <span class="hljs-string">&quot;Euron&quot;</span>,<br>    <span class="hljs-string">&quot;email&quot;</span>: <span class="hljs-string">&quot;bradshawmckenzie@euron.com&quot;</span>,<br>    <span class="hljs-string">&quot;city&quot;</span>: <span class="hljs-string">&quot;Hobucken&quot;</span>,<br>    <span class="hljs-string">&quot;state&quot;</span>: <span class="hljs-string">&quot;CO&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>我们先复制下需要导入的数据，数据地址： <a target="_blank" rel="noopener" href="https://github.com/macrozheng/mall-learning/blob/teach/document/json/accounts.json">https://github.com/macrozheng/mall-learning/blob/teach/document/json/accounts.json</a></p>
+</li>
+<li><p>然后直接使用批量操作来导入数据，注意本文所有操作都在Kibana的<code>Dev Tools</code>中进行；</p>
+</li>
+</ul>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">POST <span class="hljs-string">/bank/account/_bulk</span><br>&#123;<br>  <span class="hljs-string">&quot;index&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;_id&quot;</span>: <span class="hljs-string">&quot;1&quot;</span><br>  &#125;<br>&#125;<br>&#123;<br>  <span class="hljs-string">&quot;account_number&quot;</span>: 1,<br>  <span class="hljs-string">&quot;balance&quot;</span>: 39225,<br>  <span class="hljs-string">&quot;firstname&quot;</span>: <span class="hljs-string">&quot;Amber&quot;</span>,<br>  <span class="hljs-string">&quot;lastname&quot;</span>: <span class="hljs-string">&quot;Duke&quot;</span>,<br>  <span class="hljs-string">&quot;age&quot;</span>: 32,<br>  <span class="hljs-string">&quot;gender&quot;</span>: <span class="hljs-string">&quot;M&quot;</span>,<br>  <span class="hljs-string">&quot;address&quot;</span>: <span class="hljs-string">&quot;880 Holmes Lane&quot;</span>,<br>  <span class="hljs-string">&quot;employer&quot;</span>: <span class="hljs-string">&quot;Pyrami&quot;</span>,<br>  <span class="hljs-string">&quot;email&quot;</span>: <span class="hljs-string">&quot;amberduke@pyrami.com&quot;</span>,<br>  <span class="hljs-string">&quot;city&quot;</span>: <span class="hljs-string">&quot;Brogan&quot;</span>,<br>  <span class="hljs-string">&quot;state&quot;</span>: <span class="hljs-string">&quot;IL&quot;</span><br>&#125;<br><span class="hljs-string">......</span>省略若干条数据<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>导入完成后查看索引信息，可以发现<code>bank</code>索引中已经创建了1000条文档。</li>
+</ul>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">GET</span> /_cat/indices?v<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">health</span> status index                           uuid                   pri rep docs.count docs.deleted store.size pri.store.size<br><span class="hljs-attribute">yellow</span> open   bank                            ycOSgiWjQomwzdygGwqOrQ   <span class="hljs-number">1</span>   <span class="hljs-number">1</span>       <span class="hljs-number">1000</span>            <span class="hljs-number">0</span>    <span class="hljs-number">374</span>.<span class="hljs-number">5</span>kb        <span class="hljs-number">374</span>.<span class="hljs-number">5</span>kb<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="常见的搜索操作"><a href="#常见的搜索操作" class="headerlink" title="常见的搜索操作"></a>常见的搜索操作</h3><p>ES中常见的搜索语句</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/elasticsearch/" class="print-no-link">#elasticsearch</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>ElasticSerarch 的常见使用操作</div>
+      <div>https://varcel.luoqi.icu/2024/12/24/sync/ElasticSerarch-的常见使用操作-5e637a/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Luo QI</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年12月24日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/04/06/sync/%E6%B3%B0%E6%8B%89%E7%91%9E%E4%BA%9A_%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE-e031e7/" title="泰拉瑞亚_服务器配置">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">泰拉瑞亚_服务器配置</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/11/28/sync/IDEA%E9%85%8D%E7%BD%AE%E6%B3%A8%E9%87%8A-d1d7e2/" title="IDEA配置注释">
+                        <span class="hidden-mobile">IDEA配置注释</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
