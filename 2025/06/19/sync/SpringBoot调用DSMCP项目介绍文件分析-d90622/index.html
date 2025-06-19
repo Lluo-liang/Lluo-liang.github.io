@@ -1,0 +1,758 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/Xbox%20L.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Luo QI">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="摘要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot调用DS——MCP项目介绍文件分析">
+<meta property="og:url" content="https://varcel.luoqi.icu/2025/06/19/sync/SpringBoot%E8%B0%83%E7%94%A8DSMCP%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90-d90622/index.html">
+<meta property="og:site_name" content="轻松的洛亓">
+<meta property="og:description" content="摘要">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-06-19T19:22:32.000Z">
+<meta property="article:modified_time" content="2025-06-19T15:32:56.000Z">
+<meta property="article:author" content="Luo QI">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>SpringBoot调用DS——MCP项目介绍文件分析 - 轻松的洛亓</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"varcel.luoqi.icu","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  <meta name="baidu-site-verification" content="codeva-Oq0KOjHuD3" />
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>轻松的洛亓</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="SpringBoot调用DS——MCP项目介绍文件分析"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-06-19 19:22" pubdate>
+          2025年6月19日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          13 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">SpringBoot调用DS——MCP项目介绍文件分析</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>​<strong>​核心主题：​</strong>​ 这是一个实现 ​<strong>​MCP (Model Context Protocol)​</strong>​ 协议的开源项目，主要用于构建一个标准化的中间件（AI应用程序的“USB-C”端口），将AI大模型（如DeepSeek）与你现有的数据源和工具连接起来。项目基于 ​<strong>​Spring Boot 3.x​</strong>​，使用 ​<strong>​Docker​</strong>​ 部署。</p>
+<h3 id="核心模块与架构"><a href="#核心模块与架构" class="headerlink" title="核心模块与架构"></a>核心模块与架构</h3><ol>
+<li>​<strong>​MCP Server:​</strong>​<ul>
+<li>基于 Spring Boot 3.x。</li>
+<li>核心模块，​<strong>​直接连接数据库​</strong>​。</li>
+<li>核心业务逻辑在 <code>tool</code> 层实现，强调​<strong>​扩展性和解耦​</strong>​。</li>
+<li>提供 ​<strong>​HTTP API​</strong>​（用于控制、状态查询和聊天请求）。</li>
+<li>支持 ​<strong>​SSE (Server-Sent Events)​</strong>​: 允许客户端（如Cherry Studio）建立长连接，接收服务端的​<strong>​实时推送​</strong>​（状态更新、消息）。</li>
+<li>支持 ​<strong>​WebSocket​</strong>​: 提供​<strong>​全双工、低延迟、持久的连接​</strong>​。这是推荐的通信方式，客户端不仅可以实时接收消息，还能​<strong>​主动发送指令并立即获得响应​</strong>​。</li>
+<li>主要运行端口：9800 (可能包括SSE端点)，9801 (HTTP API), 9802 (WebSocket endpoint)。</li>
+</ul>
+</li>
+<li>​<strong>​MCP Client:​</strong>​<ul>
+<li>也基于 Spring Boot 3.x。</li>
+<li>扮演 ​<strong>​MCP Client​</strong>​ 角色。</li>
+<li>核心职责：与​<strong>​大模型API（如DeepSeek）进行交互​</strong>​。</li>
+<li>文档提到两个客户端项目(根据Docker配置推断)：<ul>
+<li><code>mcp-client</code> (可能只支持传统HTTP调用)</li>
+<li><code>mcp-client-ws</code> (明确支持WebSocket连接服务端)</li>
+</ul>
+</li>
+<li>​<strong>​配置是关键​</strong>​：需要在 <code>application-prod.yml</code> 中配置目标大模型API的 <code>api-key</code>, <code>base-url</code>, 和 <code>model</code>。</li>
+<li>主要运行端口：9802 (WebSocket监听<code>/mcp/ws</code>)。</li>
+</ul>
+</li>
+</ol>
+<h2 id="通信协议详解（重点）"><a href="#通信协议详解（重点）" class="headerlink" title="通信协议详解（重点）"></a>通信协议详解（重点）</h2><ol>
+<li>​<strong>​HTTP：​</strong>​ 基础通信方式。用于：<ul>
+<li>执行具体任务 (<code>/mcp/mcpClient/chat?prompt=...</code>)。例如：“查询章若楠用户信息”。</li>
+<li>获取工具列表 (<code>/mcp/mcpClient/listTools</code>)。</li>
+</ul>
+</li>
+<li>​<strong>​SSE (Server-Sent Events)：​</strong>​ 服务端单向推送协议。适用于服务端主动向客户端推送通知、状态的场景（如通过Cherry Studio监听）。连接方式：<code>http://host:port/sse</code>。</li>
+<li>​<strong>​WebSocket (推荐)：​</strong>​ 全双工协议。优势在于：<ul>
+<li>​<strong>​实时双向交互​</strong>​：客户端和服务端可以随时互相发送消息。</li>
+<li>​<strong>​低延迟​</strong>​：建立连接后消息传递非常快。</li>
+<li>​<strong>​连接持久化​</strong>​：一次连接可进行多次通信。 ​<strong>​这是项目推荐的连接方式。​</strong>​ 连接方式：<code>ws://host:port/mcp/ws</code>。</li>
+</ul>
+</li>
+</ol>
+<h2 id="关键功能-AI-大模型集成"><a href="#关键功能-AI-大模型集成" class="headerlink" title="关键功能 - AI 大模型集成"></a>关键功能 - AI 大模型集成</h2><ul>
+<li>项目默认集成 ​<strong>​DeepSeek​</strong>​ 大模型API。</li>
+<li>需要用户自行申请和配置 ​<strong>​API Key​</strong>​。</li>
+<li>提供两种DeepSeek API来源：<ul>
+<li>官方DeepSeek API：<code>https://api.deepseek.com</code></li>
+<li>腾讯云版DeepSeek API：<code>https://api.lkeap.cloud.tencent.com/v1</code> (提供免费额度：1,000,000 tokens)</li>
+</ul>
+</li>
+<li>在 <code>mcp-client-ws</code>的配置文件中(<code>application-prod.yml</code>):<ul>
+<li>指定 <code>api-key</code> (你的密钥)。</li>
+<li>指定 <code>base-url</code> (官方或腾讯云地址)。</li>
+<li>指定 <code>model</code> (如 <code>deepseek-chat</code>, <code>deepseek-v3</code>, <code>deepseek-r1</code>)。</li>
+</ul>
+</li>
+</ul>
+<h2 id="部署说明-Docker"><a href="#部署说明-Docker" class="headerlink" title="部署说明 (Docker)"></a>部署说明 (Docker)</h2><ol>
+<li>​<strong>​环境要求：​</strong>​ ​<strong>​必须使用 JDK 17 或更高版本编译和运行项目​</strong>​。</li>
+<li>​<strong>​Docker Compose 部署：​</strong>​<ul>
+<li>将项目编译打包好的<code>jar</code>文件放入 <code>docker/app/</code> 下的对应目录（<code>mcp-server/</code>, <code>mcp-client/</code>, <code>mcp-client-ws/</code>）。</li>
+<li><code>start.sh</code> 脚本定义了启动顺序：先启动 <code>mcp-server</code>，再启动 <code>mcp-client-ws</code>。</li>
+<li>使用命令 <code>docker-compose up -d mcp-server</code> (或其他服务名)启动特定服务。</li>
+<li>使用 <code>docker logs -f mcp-server</code> 查看服务日志。</li>
+<li><code>docker-compose.yml</code> 文件定义了服务、网络、卷等配置。</li>
+</ul>
+</li>
+</ol>
+<h2 id="前端与工具集成"><a href="#前端与工具集成" class="headerlink" title="前端与工具集成"></a>前端与工具集成</h2><ol>
+<li>​<strong>​Vue2 Chat Window：​</strong>​<ul>
+<li>一个基于 Vue2 的聊天窗口前端实现。</li>
+<li>直接通过 ​<strong>​WebSocket​</strong>​ (<code>ws://...</code>) 连接到 <code>mcp-client-ws</code> 服务。</li>
+<li>使用方法：<code>cd vue2-chat-window</code> -&gt; <code>npm install</code> -&gt; <code>npm run serve</code>.</li>
+</ul>
+</li>
+<li>​<strong>​Cherry Studio：​</strong>​<ul>
+<li>一个第三方AI助手工具&#x2F;客户端（需要下载安装）。</li>
+<li>可以与本项目部署的MCP服务端连接。</li>
+<li>配置步骤：<ul>
+<li>在 Cherry Studio 中配置模型信息。</li>
+<li>​<strong>​配置MCP连接信息​</strong>​：指定 MCP 服务端的HTTP或SSE端点（如 <code>http://localhost:9800</code>），以实现数据连接和指令控制。</li>
+<li>之后可以在Cherry Studio中调用连接到该MCP的工具。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>​<strong>​JS测试脚本：​</strong>​ (<code>node-ws-client/client.js</code>)<ul>
+<li>提供了一个Node.js脚本示例（需要使用 <code>npm install</code> 安装依赖）。</li>
+<li>该脚本通过​<strong>​WebSocket​</strong>​连接<code>mcp-client-ws</code>服务端点，用于测试和演示WebSocket交互。</li>
+</ul>
+</li>
+</ol>
+<h2 id="Nginx配置建议"><a href="#Nginx配置建议" class="headerlink" title="Nginx配置建议"></a>Nginx配置建议</h2><ul>
+<li>提供了针对​<strong>​WebSocket反向代理​</strong>​的Nginx配置片段。</li>
+<li>核心配置：<code>proxy_pass</code> 指向后端WebSocket服务地址；<code>proxy_http_version 1.1</code>; <code>proxy_set_header Upgrade $http_upgrade</code>; <code>proxy_set_header Connection &quot;upgrade&quot;</code>.</li>
+<li>这对于在生产环境通过标准端口提供WebSocket服务 (<code>ws://yourdomain.com/mcp/ws</code> 或更安全的 <code>wss://yourdomain.com/mcp/ws</code>) 至关重要。</li>
+</ul>
+<h2 id="总结要点"><a href="#总结要点" class="headerlink" title="总结要点"></a>总结要点</h2><ol>
+<li>​<strong>​核心价值：​</strong>​ 实现​<strong>​MCP协议​</strong>​，作为标准化桥梁​<strong>​连接AI大模型与你现有的数据&#x2F;工具系统​</strong>​。</li>
+<li>​<strong>​技术栈：​</strong>​ Java + Spring Boot 3.x + Docker (JDK 17+ 强依赖)。</li>
+<li>​<strong>​核心模块：​</strong>​<ul>
+<li><code>mcp-server</code>: 提供API&#x2F;SSE&#x2F;WS端点，连接数据，实现业务逻辑。</li>
+<li><code>mcp-client-ws</code>: 与DeepSeek等大模型交互，并通过WebSocket与Server通信。</li>
+</ul>
+</li>
+<li>​<strong>​推荐通信：​</strong>​ ​<strong>​WebSocket​</strong>​ (<code>ws://server:port/mcp/ws</code>) 用于低延迟、全双工、实时交互。</li>
+<li>​<strong>​AI集成：​</strong>​ 深度集成 ​<strong>​DeepSeek API​</strong>​，需要用户配置自己的Key。</li>
+<li>​<strong>​部署方式：​</strong>​ 采用 ​<strong>​Docker Compose​</strong>​，需先打包Jar文件放入指定目录。</li>
+<li>​<strong>​配套前端&#x2F;工具：​</strong>​<ul>
+<li>Vue2实现的聊天窗口前端。</li>
+<li>可用第三方工具 ​<strong>​Cherry Studio​</strong>​ 连接并使用MCP服务。</li>
+<li>提供WebSocket测试脚本。</li>
+</ul>
+</li>
+</ol>
+<h2 id="学习建议步骤"><a href="#学习建议步骤" class="headerlink" title="学习建议步骤"></a>学习建议步骤</h2><ol>
+<li>​<strong>​环境准备：​</strong>​ 确保安装 ​<strong>​JDK 17+​</strong>​, ​<strong>​Docker​</strong>​, ​<strong>​Docker Compose​</strong>​。</li>
+<li>​<strong>​代码获取与阅读：​</strong>​ 获取项目源代码，重点阅读：<ul>
+<li><code>mcp-server</code> 和 <code>mcp-client-ws</code> 模块的结构。</li>
+<li><code>tool</code> 层的核心业务逻辑实现。</li>
+<li>WebSocket协议处理的代码位置。</li>
+</ul>
+</li>
+<li>​<strong>​编译与打包：​</strong>​ 学习如何编译项目并生成部署所需的 <code>jar</code> 文件。</li>
+<li>​<strong>​Docker部署实战：​</strong>​<ul>
+<li>按照文档指示放置 <code>jar</code> 文件。</li>
+<li>运行 <code>start.sh</code> 或 <code>docker-compose up -d</code> 启动服务。</li>
+<li>使用 <code>docker logs</code> 查看启动状态和日志。</li>
+</ul>
+</li>
+<li>​<strong>​API Key配置：​</strong>​ 申请DeepSeek API Key并正确配置到 <code>mcp-client-ws</code>的 <code>application-prod.yml</code>。</li>
+<li>​<strong>​接口测试：​</strong>​<ul>
+<li>使用 <code>curl</code> 或 Postman 测试 HTTP 接口。</li>
+<li>使用提供的 <code>node-ws-client/client.js</code> 测试 WebSocket 连接。</li>
+<li>运行 <code>vue2-chat-window</code> 测试前端效果。</li>
+</ul>
+</li>
+<li>​<strong>​理解协议交互：​</strong>​ 通过文档中的截图和测试，深入理解SSE和WebSocket的工作机制和数据流。</li>
+<li>​<strong>​尝试Cherry Studio集成：​</strong>​ 安装Cherry Studio，配置它连接到你的MCP服务端进行实际操作体验。</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>SpringBoot调用DS——MCP项目介绍文件分析</div>
+      <div>https://varcel.luoqi.icu/2025/06/19/sync/SpringBoot调用DSMCP项目介绍文件分析-d90622/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Luo QI</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年6月19日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/06/19/sync/SpringBoot%E8%B0%83%E7%94%A8DSMCP%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90-ead80c/" title="SpringBoot调用DS——MCP代码分析">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">SpringBoot调用DS——MCP代码分析</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/06/19/sync/%E4%B8%B4%E6%97%B6%E8%80%97%E6%97%B6%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95-090b66/" title="临时耗时日志记录">
+                        <span class="hidden-mobile">临时耗时日志记录</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

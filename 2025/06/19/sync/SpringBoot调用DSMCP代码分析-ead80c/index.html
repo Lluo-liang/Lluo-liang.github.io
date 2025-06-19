@@ -1,0 +1,896 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/Xbox%20L.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Luo QI">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="摘要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot调用DS——MCP代码分析">
+<meta property="og:url" content="https://varcel.luoqi.icu/2025/06/19/sync/SpringBoot%E8%B0%83%E7%94%A8DSMCP%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90-ead80c/index.html">
+<meta property="og:site_name" content="轻松的洛亓">
+<meta property="og:description" content="摘要">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-06-19T19:48:55.000Z">
+<meta property="article:modified_time" content="2025-06-19T15:32:56.000Z">
+<meta property="article:author" content="Luo QI">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>SpringBoot调用DS——MCP代码分析 - 轻松的洛亓</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"varcel.luoqi.icu","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  <meta name="baidu-site-verification" content="codeva-Oq0KOjHuD3" />
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>轻松的洛亓</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="SpringBoot调用DS——MCP代码分析"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-06-19 19:48" pubdate>
+          2025年6月19日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">SpringBoot调用DS——MCP代码分析</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="mcp-client"><a href="#mcp-client" class="headerlink" title="mcp-client"></a>mcp-client</h2><p><code>mcp-client</code> 代码实现。</p>
+<p>展示了 MCP 客户端的核心逻辑，重点在于与大模型（如 DeepSeek）的交互和工具调用的处理。</p>
+<h3 id="代码结构解析"><a href="#代码结构解析" class="headerlink" title="代码结构解析"></a>代码结构解析</h3><h4 id="1-控制器层-McpClientController"><a href="#1-控制器层-McpClientController" class="headerlink" title="1. 控制器层 McpClientController"></a>1. 控制器层 <code>McpClientController</code></h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-variable">@Slf4j</span><br><span class="hljs-variable">@RestController</span><br><span class="hljs-variable">@AllArgsConstructor</span><br><span class="hljs-variable">@RequestMapping</span>(<span class="hljs-string">&quot;mcpClient&quot;</span>)<br>public class McpClientController &#123;<br><br>    <span class="hljs-selector-tag">private</span> <span class="hljs-selector-tag">final</span> <span class="hljs-selector-tag">ChatService</span> <span class="hljs-selector-tag">chatService</span>;<br><br>    @<span class="hljs-selector-tag">GetMapping</span>(<span class="hljs-string">&quot;listTools&quot;</span>)<br>    <span class="hljs-selector-tag">public</span> <span class="hljs-selector-tag">Object</span> <span class="hljs-selector-tag">listTools</span>() &#123;<br>        <span class="hljs-selector-tag">return</span> <span class="hljs-selector-tag">JSON</span><span class="hljs-selector-class">.toJSON</span>(chatService.<span class="hljs-built_in">getToolCallbacks</span>());<br>    &#125;<br><br>    @<span class="hljs-selector-tag">GetMapping</span>(<span class="hljs-string">&quot;chat&quot;</span>)<br>    <span class="hljs-selector-tag">public</span> <span class="hljs-selector-tag">String</span> <span class="hljs-selector-tag">chat</span>(String prompt) &#123;<br>        <span class="hljs-selector-tag">log</span><span class="hljs-selector-class">.info</span>(<span class="hljs-string">&quot;prompt=&#123;&#125;&quot;</span>, prompt);<br>        <span class="hljs-selector-tag">return</span> <span class="hljs-selector-tag">chatService</span><span class="hljs-selector-class">.askQuestion</span>(prompt);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>​<strong>​功能​</strong>​：<ol>
+<li><code>listTools</code>：暴露 <code>/mcpClient/listTools</code> 接口，返回当前注册的所有可用工具</li>
+<li><code>chat</code>：暴露 <code>/mcpClient/chat?prompt=...</code> 接口，处理用户查询并返回模型响应</li>
+</ol>
+</li>
+<li>​<strong>​特点​</strong>​：<ul>
+<li>使用 Spring 的 <code>@RestController</code> 自动处理 HTTP 请求&#x2F;响应</li>
+<li>通过 <code>@AllArgsConstructor</code> 实现依赖注入</li>
+<li>日志记录用户请求的 prompt</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-服务层-ChatService"><a href="#2-服务层-ChatService" class="headerlink" title="2. 服务层 ChatService"></a>2. 服务层 <code>ChatService</code></h4><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-meta">@Slf4j</span><br><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-title class_"><span class="hljs-keyword">class</span> <span class="hljs-title">ChatService</span> </span>&#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> ChatClient chatClient;<br>    <span class="hljs-meta">@Getter</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> ToolCallback[] toolCallbacks;<br><br>    <span class="hljs-keyword">public</span> ChatService(OpenAiChatModel openAiChatModel, List&lt;McpSyncClient&gt; mcpSyncClientList) &#123;<br>        <span class="hljs-comment">// 1. 初始化日志</span><br>        log.info(<span class="hljs-string">&quot;mcpSyncClientList=&#123;&#125;&quot;</span>, JSON.toJSONString(mcpSyncClientList));<br>        <span class="hljs-keyword">for</span> (McpSyncClient mcpSyncClient : <span class="hljs-type">mcpSyncClientList</span>) &#123;<br>            log.info(<span class="hljs-string">&quot;clientInfo=&#123;&#125;&quot;</span>, mcpSyncClient.getClientInfo());<br>            log.info(<span class="hljs-string">&quot;serverInfo=&#123;&#125;&quot;</span>, mcpSyncClient.getServerInfo());<br>        &#125;<br>        <br>        <span class="hljs-comment">// 2. 初始化工具回调</span><br>        <span class="hljs-keyword">var</span> mcpToolCallbackProvider = <span class="hljs-keyword">new</span> <span class="hljs-type">SyncMcpToolCallbackProvider</span>(mcpSyncClientList);<br>        toolCallbacks = mcpToolCallbackProvider.getToolCallbacks();<br>        log.info(<span class="hljs-string">&quot;toolCallbacks=&#123;&#125;&quot;</span>, JSON.toJSONString(toolCallbacks));<br>        <br>        <span class="hljs-comment">// 3. 注册工具并构建ChatClient</span><br>        <span class="hljs-built_in">this</span>.chatClient = ChatClient.builder(openAiChatModel)<br>                .defaultTools(mcpToolCallbackProvider) <span class="hljs-comment">// 关键：注册工具</span><br>                .build();<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">String</span> askQuestion(<span class="hljs-keyword">String</span> prompt) &#123;<br>        <span class="hljs-keyword">return</span> chatClient.prompt(prompt).call().content();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="核心实现解析"><a href="#核心实现解析" class="headerlink" title="核心实现解析"></a>核心实现解析</h3><h4 id="1-工具回调系统-Tool-Callbacks"><a href="#1-工具回调系统-Tool-Callbacks" class="headerlink" title="1. 工具回调系统 (Tool Callbacks)"></a>1. 工具回调系统 (Tool Callbacks)</h4><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs abnf">var mcpToolCallbackProvider <span class="hljs-operator">=</span> new SyncMcpToolCallbackProvider(mcpSyncClientList)<span class="hljs-comment">;</span><br><span class="hljs-attribute">toolCallbacks</span> <span class="hljs-operator">=</span> mcpToolCallbackProvider.getToolCallbacks()<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>​<strong>​目的​</strong>​：将 MCP 服务端能力转化为大模型可调用的工具</li>
+<li>​<strong>​实现​</strong>​：<ul>
+<li>遍历所有 <code>McpSyncClient</code>（每个客户端代表一个连接的 MCP 服务端）</li>
+<li>将每个服务端暴露的功能转换为标准化的工具定义</li>
+<li>生成工具描述供大模型理解和使用</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-ChatClient-构建"><a href="#2-ChatClient-构建" class="headerlink" title="2. ChatClient 构建"></a>2. ChatClient 构建</h4><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs scss">ChatClient<span class="hljs-selector-class">.builder</span>(openAiChatModel)<br>        <span class="hljs-selector-class">.defaultTools</span>(mcpToolCallbackProvider)<br>        <span class="hljs-selector-class">.build</span>();<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>​<strong>​关键组件​</strong>​：<ul>
+<li><code>openAiChatModel</code>：与大模型交互的核心组件（已配置 DeepSeek API）</li>
+<li><code>defaultTools()</code>：注册所有可用的工具回调</li>
+</ul>
+</li>
+<li>​<strong>​作用​</strong>​：创建能够理解并使用注册工具的对话客户端</li>
+</ul>
+<h4 id="3-问题处理流程"><a href="#3-问题处理流程" class="headerlink" title="3. 问题处理流程"></a>3. 问题处理流程</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">public</span> <span class="hljs-title class_">String</span> <span class="hljs-title function_">askQuestion</span>(<span class="hljs-params"><span class="hljs-built_in">String</span> prompt</span>) &#123;<br>    <span class="hljs-keyword">return</span> chatClient.<span class="hljs-title function_">prompt</span>(prompt).<span class="hljs-title function_">call</span>().<span class="hljs-title function_">content</span>();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>​<strong>​工作流程​</strong>​：<ol>
+<li>用户输入 prompt 传递给 ChatClient</li>
+<li>大模型分析 prompt，判断是否需要调用工具</li>
+<li>如需调用工具：<ul>
+<li>模型返回工具调用请求</li>
+<li>执行对应的 ToolCallback</li>
+<li>将工具执行结果返回给模型</li>
+</ul>
+</li>
+<li>模型生成最终响应</li>
+</ol>
+</li>
+</ul>
+<h3 id="与-MCP-协议的关键集成点"><a href="#与-MCP-协议的关键集成点" class="headerlink" title="与 MCP 协议的关键集成点"></a>与 MCP 协议的关键集成点</h3><ol>
+<li><p>​<strong>​McpSyncClient 的作用​</strong>​：</p>
+<ul>
+<li>表示与单个 MCP 服务端的同步连接</li>
+<li>提供：<code>getClientInfo()</code> (客户端信息)、<code>getServerInfo()</code> (服务端信息)</li>
+<li>封装了与服务端通信的具体逻辑</li>
+</ul>
+</li>
+<li><p>​<strong>​工具映射机制​</strong>​：</p>
+<ul>
+<li><code>SyncMcpToolCallbackProvider</code> 将 MCP 服务端的功能映射为标准化工具</li>
+<li>每个工具包含：<ul>
+<li>唯一名称</li>
+<li>功能描述（供大模型理解）</li>
+<li>参数定义</li>
+<li>执行逻辑（实际调用 MCP 服务端）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>​<strong>​大模型集成​</strong>​：</p>
+<ul>
+<li><code>OpenAiChatModel</code> 是 Spring AI 的组件</li>
+<li>通过配置连接到 DeepSeek API</li>
+<li>支持工具调用扩展能力</li>
+</ul>
+</li>
+</ol>
+<h3 id="实际工作场景示例"><a href="#实际工作场景示例" class="headerlink" title="实际工作场景示例"></a>实际工作场景示例</h3><p>​<strong>​用户查询​</strong>​：”查询章若楠用户信息”</p>
+<ol>
+<li><p>请求到达 <code>/mcpClient/chat?prompt=查询章若楠用户信息</code></p>
+</li>
+<li><p><code>ChatService</code> 收到提示词</p>
+</li>
+<li><p>大模型分析后识别需要调用”用户查询”工具</p>
+</li>
+<li><p>执行对应 <code>ToolCallback</code>：</p>
+ <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// 伪代码</span><br><span class="hljs-keyword">public</span> <span class="hljs-title class_">ToolResult</span> <span class="hljs-title function_">execute</span>(<span class="hljs-params">ToolRequest request</span>) &#123;<br>    <span class="hljs-comment">// 1. 解析参数（从请求中提取用户名）</span><br>    <span class="hljs-title class_">String</span> username = <span class="hljs-title function_">extractUsername</span>(request);<br>    <br>    <span class="hljs-comment">// 2. 通过McpSyncClient调用实际服务</span><br>    <span class="hljs-title class_">UserInfo</span> userInfo = mcpSyncClient.<span class="hljs-title function_">queryUser</span>(username);<br>    <br>    <span class="hljs-comment">// 3. 返回结构化结果</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ToolResult</span>(<span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">toJSONString</span>(userInfo));<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>大模型将工具返回结果转换为自然语言响应</p>
+</li>
+<li><p>最终响应返回给用户：”章若楠，女，25岁，市场部经理…”</p>
+</li>
+</ol>
+<h3 id="设计亮点"><a href="#设计亮点" class="headerlink" title="设计亮点"></a>设计亮点</h3><ol>
+<li>​<strong>​抽象与解耦​</strong>​：<ul>
+<li>通过 ToolCallback 抽象具体服务实现</li>
+<li>服务端变更不影响客户端核心逻辑</li>
+</ul>
+</li>
+<li>​<strong>​动态工具发现​</strong>​：<ul>
+<li>运行时自动发现并注册可用工具</li>
+<li>支持热更新服务能力</li>
+</ul>
+</li>
+<li>​<strong>​日志监控​</strong>​：<ul>
+<li>详细记录客户端&#x2F;服务端信息</li>
+<li>工具注册过程透明可见</li>
+</ul>
+</li>
+<li>​<strong>​标准化扩展​</strong>​：<ul>
+<li>遵循 Spring AI 的工具扩展接口</li>
+<li>兼容不同大模型提供者</li>
+</ul>
+</li>
+</ol>
+<p>这个实现展示了 MCP 客户端的核心价值：作为大模型与实际系统间的智能适配层，将业务能力转化为模型可理解、可执行的操作单元。</p>
+<h2 id="mcp-server"><a href="#mcp-server" class="headerlink" title="mcp-server"></a>mcp-server</h2><p>以下是关键部分的解析：</p>
+<h3 id="核心架构设计"><a href="#核心架构设计" class="headerlink" title="核心架构设计"></a>核心架构设计</h3><ol>
+<li><p>​<strong>​层次结构清晰​</strong>​：</p>
+<ul>
+<li><code>entity</code> (数据实体)</li>
+<li><code>mapper</code> (数据访问层)</li>
+<li><code>service</code> &amp; <code>service.impl</code> (业务逻辑层)</li>
+<li><code>controller</code> (API层) - 虽然没提供，但前面文档表明有HTTP&#x2F;SSE&#x2F;WS端点</li>
+<li><code>core</code> (核心协议实现)</li>
+</ul>
+</li>
+<li><p>​<strong>​MCP服务核心接口​</strong>​：</p>
+ <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-symbol">McpTool</span> &#123;&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>所有MCP工具实现的标记接口</li>
+<li>定义服务能力的统一抽象</li>
+</ul>
+</li>
+</ol>
+<h3 id="关键组件解析"><a href="#关键组件解析" class="headerlink" title="关键组件解析"></a>关键组件解析</h3><h4 id="1-工具注册机制"><a href="#1-工具注册机制" class="headerlink" title="1. 工具注册机制"></a>1. 工具注册机制</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-meta">@Configuration</span><br><span class="hljs-meta">@AllArgsConstructor</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ToolCallbackProviderConfig</span> &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> ApplicationContext applicationContext;<br><br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> ToolCallbackProvider methodToolCallbackProvider() &#123;<br>        Map&lt;String, McpTool&gt; mcpBeanMap = applicationContext.getBeansOfType(McpTool.<span class="hljs-keyword">class</span>);<br>        <span class="hljs-keyword">return</span> MethodToolCallbackProvider.builder()<br>                .toolObjects(mcpBeanMap.values().toArray())<br>                .build();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>​<strong>​动态发现​</strong>​：扫描所有实现了 <code>McpTool</code> 的Bean</li>
+<li>​<strong>​自动注册​</strong>​：将发现的工具构建为 <code>ToolCallbackProvider</code></li>
+<li>​<strong>​服务曝光​</strong>​：核心机制是将服务注册为AI可调用的工具</li>
+</ul>
+<h4 id="2-工具实现示例"><a href="#2-工具实现示例" class="headerlink" title="2. 工具实现示例"></a>2. 工具实现示例</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-meta">@Slf4j</span><br><span class="hljs-meta">@Service</span><br><span class="hljs-meta">@AllArgsConstructor</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">McpUserService</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">McpTool</span> &#123;<br><br>    <span class="hljs-keyword">private</span> final <span class="hljs-title class_">IUserService</span> userService;<br><br>    <span class="hljs-meta">@Tool</span>(description = <span class="hljs-string">&quot;根据姓名查询用户信息&quot;</span>)<br>    <span class="hljs-meta">@Transactional</span>(rollbackFor = &#123;<span class="hljs-title class_">RuntimeException</span>.<span class="hljs-property">class</span>, <span class="hljs-title class_">Exception</span>.<span class="hljs-property">class</span>&#125;)<br>    <span class="hljs-keyword">public</span> <span class="hljs-title class_">String</span> <span class="hljs-title function_">queryUserInfoByName</span>(<span class="hljs-params"><span class="hljs-meta">@ToolParam</span>(description = <span class="hljs-string">&quot;姓名&quot;</span>) <span class="hljs-built_in">String</span> name</span>) &#123;<br>        <span class="hljs-title class_">User</span> user = userService.<span class="hljs-title function_">getOne</span>(<span class="hljs-title class_">Wrappers</span>.&lt;<span class="hljs-title class_">User</span>&gt;<span class="hljs-title function_">lambdaQuery</span>().<span class="hljs-title function_">eq</span>(<span class="hljs-title class_">User</span>::getName, name));<br>        <span class="hljs-keyword">return</span> <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">toJSONString</span>(user);<br>    &#125;<br>    <br>    <span class="hljs-comment">// 其他工具方法...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>​<strong>​工具注解​</strong>​：<ul>
+<li><code>@Tool</code>：声明工具方法及其描述（供AI理解）</li>
+<li><code>@ToolParam</code>：声明参数及其描述</li>
+</ul>
+</li>
+<li>​<strong>​事务管理​</strong>​：<code>@Transactional</code> 确保数据一致性</li>
+<li>​<strong>​标准化返回​</strong>​：统一返回JSON字符串便于后续处理</li>
+<li>​<strong>​业务解耦​</strong>​：通过接口 <code>IUserService</code> 访问业务逻辑</li>
+</ul>
+<h4 id="3-实体类设计"><a href="#3-实体类设计" class="headerlink" title="3. 实体类设计"></a>3. 实体类设计</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-variable">@TableName</span>(<span class="hljs-string">&quot;user&quot;</span>)<br><span class="hljs-variable">@Data</span><br><span class="hljs-variable">@EqualsAndHashCode</span>(callSuper = true)<br>public class User extends BaseEntity &#123;<br>    <span class="hljs-variable">@TableId</span>(value = <span class="hljs-string">&quot;id&quot;</span>, type = IdType.AUTO)<br>    <span class="hljs-variable">@JsonSerialize</span>(using = ToStringSerializer.class)<br>    private Long id;<br>    <br>    <span class="hljs-selector-tag">private</span> <span class="hljs-selector-tag">String</span> <span class="hljs-selector-tag">name</span>;<br>    <span class="hljs-selector-tag">private</span> <span class="hljs-selector-tag">Integer</span> <span class="hljs-selector-tag">age</span>;<br>    <span class="hljs-comment">// 其他字段...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>​<strong>​审计字段​</strong>​：继承自 <code>BaseEntity</code></li>
+<li>​<strong>​ID处理​</strong>​：<ul>
+<li><code>@TableId</code> 标识主键</li>
+<li><code>@JsonSerialize</code> 解决Long类型精度丢失问题</li>
+</ul>
+</li>
+<li>​<strong>​表映射​</strong>​：<code>@TableName</code> 指定对应数据库表</li>
+</ul>
+<h4 id="4-数据访问层"><a href="#4-数据访问层" class="headerlink" title="4. 数据访问层"></a>4. 数据访问层</h4><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-symbol">UserMapper</span> <span class="hljs-symbol">extends</span> <span class="hljs-symbol">BaseMapper</span>&lt;<span class="hljs-symbol">User</span>&gt; &#123;&#125;<br><br>@Service<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-symbol">UserServiceImpl</span> <span class="hljs-symbol">extends</span> <span class="hljs-symbol">ServiceImpl</span>&lt;<span class="hljs-symbol">UserMapper, <span class="hljs-symbol">User</span></span>&gt; <span class="hljs-symbol">implements</span> <span class="hljs-symbol">IUserService</span> &#123;&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>​<strong>​MyBatis Plus 集成​</strong>​：</p>
+<ul>
+<li>继承 <code>BaseMapper</code> 获得基础CRUD能力</li>
+<li>继承 <code>ServiceImpl</code> 简化服务实现</li>
+</ul>
+</li>
+<li><p>​<strong>​Lambda 查询​</strong>​：</p>
+  <figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs perl">Wrappers.&lt;User&gt;lambdaQuery().e<span class="hljs-string">q(User::getName, name)</span><br></code></pre></td></tr></table></figure>
+<p>  提供类型安全查询</p>
+</li>
+</ul>
+<h3 id="核心配置解析"><a href="#核心配置解析" class="headerlink" title="核心配置解析"></a>核心配置解析</h3><h4 id="1-MyBatis-Plus-配置"><a href="#1-MyBatis-Plus-配置" class="headerlink" title="1. MyBatis Plus 配置"></a>1. MyBatis Plus 配置</h4><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">@Configuration<br>@EnableTransactionManagement(proxyTargetClass = <span class="hljs-literal">true</span>)<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-symbol">MybatisPlusConfig</span> &#123;<br>    @Bean<br>    <span class="hljs-keyword">public</span> MybatisPlusInterceptor mybatisPlusInterceptor() &#123;<br>        MybatisPlusInterceptor <span class="hljs-built_in">int</span>erceptor = new MybatisPlusInterceptor();<br>        <span class="hljs-built_in">int</span>erceptor.addInnerInterceptor(paginationInnerInterceptor()); <span class="hljs-comment">// 分页</span><br>        <span class="hljs-built_in">int</span>erceptor.addInnerInterceptor(optimisticLockerInnerInterceptor()); <span class="hljs-comment">// 乐观锁</span><br>        <span class="hljs-built_in">int</span>erceptor.addInnerInterceptor(blockAttackInnerInterceptor()); <span class="hljs-comment">// SQL安全</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">int</span>erceptor;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>​<strong>​插件链​</strong>​：<ol>
+<li>分页插件</li>
+<li>乐观锁插件（支持版本控制）</li>
+<li>安全插件（防止全表操作）</li>
+</ol>
+</li>
+<li>​<strong>​事务管理​</strong>​：<code>@EnableTransactionManagement</code> 开启声明式事务</li>
+</ul>
+<h4 id="2-SSE处理过滤器"><a href="#2-SSE处理过滤器" class="headerlink" title="2. SSE处理过滤器"></a>2. SSE处理过滤器</h4><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-meta">@Slf4j</span><br><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-title class_"><span class="hljs-keyword">class</span> <span class="hljs-title">SseWebFilter</span> <span class="hljs-keyword"><span class="hljs-keyword">implements</span> <span class="hljs-type">WebFilter</span></span> </span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> Mono&lt;<span class="hljs-keyword">Void</span>&gt; filter(<span class="hljs-meta">@NotNull ServerWebExchange exchange, WebFilterChain chain) &#123;</span><br>        <span class="hljs-keyword">String</span> acceptHeader = exchange.getRequest().getHeaders().getFirst(<span class="hljs-string">&quot;Accept&quot;</span>);<br>        boolean isSse = acceptHeader.contains(<span class="hljs-string">&quot;text/event-stream&quot;</span>);<br>        <span class="hljs-keyword">if</span> (isSse) &#123;<br>            log.info(<span class="hljs-string">&quot;检测到SSE请求: &#123;&#125;&quot;</span>, exchange.getRequest().getURI());<br>            <span class="hljs-comment">// 日志记录详细信息...</span><br>        &#125;<br>        <span class="hljs-keyword">return</span> chain.filter(exchange);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>​<strong>​SSE识别​</strong>​：通过Accept头识别SSE请求</li>
+<li>​<strong>​请求日志​</strong>​：记录重要请求信息用于调试</li>
+<li>​<strong>​响应式处理​</strong>​：基于WebFlux的响应式编程模型</li>
+</ul>
+<h3 id="服务配置"><a href="#服务配置" class="headerlink" title="服务配置"></a>服务配置</h3><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-symbol">spring:</span><br><span class="hljs-symbol">  ai:</span><br><span class="hljs-symbol">    mcp:</span><br><span class="hljs-symbol">      server:</span><br><span class="hljs-symbol">        name:</span> spring-mcp-server<br><span class="hljs-symbol">        version:</span> <span class="hljs-number">0.0</span><span class="hljs-number">.1</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>​<strong>​服务标识​</strong>​：配置唯一服务名称</li>
+<li>​<strong>​版本管理​</strong>​：明确服务版本号</li>
+</ul>
+<h3 id="启动类"><a href="#启动类" class="headerlink" title="启动类"></a>启动类</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-variable">@SpringBootApplication</span><br><span class="hljs-variable">@MapperScan</span>(<span class="hljs-string">&quot;com.server.module.**.mapper&quot;</span>)<br>public class McpServerApplication &#123;<br>    <span class="hljs-selector-tag">public</span> <span class="hljs-selector-tag">static</span> <span class="hljs-selector-tag">void</span> <span class="hljs-selector-tag">main</span>(String[] args) &#123;<br>        <span class="hljs-selector-tag">SpringApplication</span><span class="hljs-selector-class">.run</span>(McpServerApplication.class, args);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>​<strong>​组件扫描​</strong>​：<code>@SpringBootApplication</code> 启用自动配置</li>
+<li>​<strong>​Mapper扫描​</strong>​：<code>@MapperScan</code> 定位MyBatis接口</li>
+</ul>
+<h3 id="核心设计亮点"><a href="#核心设计亮点" class="headerlink" title="核心设计亮点"></a>核心设计亮点</h3><ol>
+<li><p>​<strong>​插件化工具系统​</strong>​：</p>
+<ul>
+<li>通过 <code>McpTool</code> 接口实现功能扩展</li>
+<li>自动发现机制简化集成</li>
+</ul>
+</li>
+<li><p>​<strong>​AI友好设计​</strong>​：</p>
+<ul>
+<li><code>@Tool</code> 和 <code>@ToolParam</code> 提供元数据</li>
+<li>自然语言描述帮助AI理解功能</li>
+</ul>
+</li>
+<li><p>​<strong>​安全与事务​</strong>​：</p>
+<ul>
+<li>SQL注入防护</li>
+<li>乐观锁并发控制</li>
+<li>声明式事务管理</li>
+</ul>
+</li>
+<li><p>​<strong>​响应式支持​</strong>​：</p>
+<ul>
+<li>SSE支持实时通知</li>
+<li>WebFilter进行连接管理</li>
+</ul>
+</li>
+<li><p>​<strong>​标准化接口​</strong>​：</p>
+<ul>
+<li>统一返回JSON格式</li>
+<li>一致的错误处理机制</li>
+</ul>
+</li>
+</ol>
+<h3 id="工作流程总结"><a href="#工作流程总结" class="headerlink" title="工作流程总结"></a>工作流程总结</h3><ol>
+<li><p>​<strong>​注册阶段​</strong>​：</p>
+<ul>
+<li>应用启动时收集所有 <code>McpTool</code> 实现</li>
+<li>构建工具元数据</li>
+</ul>
+</li>
+<li><p>​<strong>​AI调用阶段​</strong>​：</p>
+<ul>
+<li>AI选择工具和方法</li>
+<li>参数转换后调用服务</li>
+</ul>
+</li>
+<li><p>​<strong>​业务处理​</strong>​：</p>
+<ul>
+<li>服务层执行业务逻辑</li>
+<li>数据访问层处理DB操作</li>
+</ul>
+</li>
+<li><p>​<strong>​结果返回​</strong>​：</p>
+<ul>
+<li>业务对象转为JSON</li>
+<li>通过协议(MCP)返回AI</li>
+</ul>
+</li>
+</ol>
+<p>这个设计实现了MCP协议的核心价值：作为AI模型与业务系统之间的智能适配层，通过标准的工具描述使AI能够理解和调用业务能力。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>SpringBoot调用DS——MCP代码分析</div>
+      <div>https://varcel.luoqi.icu/2025/06/19/sync/SpringBoot调用DSMCP代码分析-ead80c/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Luo QI</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年6月19日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/06/19/sync/Docker%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8-3184ce/" title="Docker: 基本命令/安装常见问题汇总">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Docker: 基本命令/安装常见问题汇总</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/06/19/sync/SpringBoot%E8%B0%83%E7%94%A8DSMCP%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90-d90622/" title="SpringBoot调用DS——MCP项目介绍文件分析">
+                        <span class="hidden-mobile">SpringBoot调用DS——MCP项目介绍文件分析</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
