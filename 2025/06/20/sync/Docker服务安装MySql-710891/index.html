@@ -24,13 +24,15 @@
     <meta name="description" content="摘要">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker服务安装——MySql">
-<meta property="og:url" content="https://varcel.luoqi.icu/2025/03/30/sync/Docker%E6%9C%8D%E5%8A%A1%E5%AE%89%E8%A3%85MySql-710891/index.html">
+<meta property="og:url" content="https://varcel.luoqi.icu/2025/06/20/sync/Docker%E6%9C%8D%E5%8A%A1%E5%AE%89%E8%A3%85MySql-710891/index.html">
 <meta property="og:site_name" content="轻松的洛亓">
 <meta property="og:description" content="摘要">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-03-30T16:59:11.000Z">
-<meta property="article:modified_time" content="2025-06-19T15:32:56.000Z">
+<meta property="article:published_time" content="2025-06-20T07:13:11.000Z">
+<meta property="article:modified_time" content="2025-06-19T23:51:08.000Z">
 <meta property="article:author" content="Luo QI">
+<meta property="article:tag" content="docker">
+<meta property="article:tag" content="数据库&#x2F;MySQL">
 <meta name="twitter:card" content="summary_large_image">
   
   
@@ -212,8 +214,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-03-30 16:59" pubdate>
-          2025年3月30日 下午
+        <time datetime="2025-06-20 07:13" pubdate>
+          2025年6月20日 早上
         </time>
       </span>
     
@@ -224,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          459 字
+          325 字
         
       </span>
     
@@ -235,7 +237,7 @@
         
         
         
-          4 分钟
+          3 分钟
         
       </span>
     
@@ -277,71 +279,43 @@
             
               <div class="markdown-body">
                 
-                <h3 id="安装MySQL"><a href="#安装MySQL" class="headerlink" title="安装MySQL"></a>安装MySQL</h3><p>以下是使用Docker安装和 运行MySQL 5.7 和 8.0 版本的步骤：</p>
-<blockquote>
-<ol>
-<li><strong>运行MySQL 5.7</strong></li>
-</ol>
-</blockquote>
-<ol start="12">
-<li><p><em>拉取MySQL 5.7镜像</em>*:</p>
-<p><code>docker pull mysql:5.7</code></p>
-</li>
-<li><p><em>启动MySQL 5.7容器</em>*:</p>
-</li>
-</ol>
-<p>以下命令启动一个名为 <code>mysql57</code> 的MySQL 5.7容器，设置root密码（在此示例中为<code>yourpassword</code>），并映射端口3306（或选择其他未使用的端口）到宿主机。<br>同时，你可以指定一个数据卷来持久化MySQL数据。</p>
-<p><code>docker run --name mysql57 -e MYSQL_ROOT_PASSWORD=yourpassword -p 3306:3306 -d mysql:5.7</code></p>
-<ul>
-<li>如果需要持久化数据到特定路径，可以添加 <code>-v</code> 参数，如:</li>
-</ul>
+                <h3 id="MySQL-5-7"><a href="#MySQL-5-7" class="headerlink" title="MySQL 5.7"></a>MySQL 5.7</h3><p>服务安装命令</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-comment">#拉取镜像</span><br><span class="hljs-attribute">docker</span> pull mysql:<span class="hljs-number">5</span>.<span class="hljs-number">7</span><br><br><span class="hljs-comment">#启动容器</span><br><span class="hljs-attribute">docker</span> run --name mysql57 -e MYSQL_ROOT_PASSWORD=yourpassword -p <span class="hljs-number">3306</span>:<span class="hljs-number">3306</span> -d mysql:<span class="hljs-number">5</span>.<span class="hljs-number">7</span><br></code></pre></td></tr></table></figure>
+
+<p>如果需要持久化数据到特定路径，可以添加 <code>-v</code> 参数，如:</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">docker</span> run --name mysql57 -e MYSQL_ROOT_PASSWORD=yourpassword -p <span class="hljs-number">3306</span>:<span class="hljs-number">3306</span> -v /my/own/datadir:/var/lib/mysql -d mysql:<span class="hljs-number">5</span>.<span class="hljs-number">7</span><br></code></pre></td></tr></table></figure>
 
 
-<blockquote>
-<ol start="2">
-<li><strong>运行MySQL 8.0</strong></li>
-</ol>
-</blockquote>
-<ol start="13">
-<li><p><em>拉取MySQL 8.0镜像</em>*:</p>
-<p><code>docker pull mysql:8.0</code></p>
-</li>
-<li><p><em>启动MySQL 8.0容器</em>*:</p>
-</li>
-</ol>
-<ul>
-<li>由于MySQL 5.7已经使用了3306端口，所以对于MySQL 8.0，你需要映射到宿主机的另一个端口，例如3307。</li>
-</ul>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">docker</span> run --name mysql8 -e MYSQL_ROOT_PASSWORD=yourpassword -p <span class="hljs-number">3307</span>:<span class="hljs-number">3306</span> -d mysql:<span class="hljs-number">8</span>.<span class="hljs-number">0</span><br><br><br><span class="hljs-attribute">docker</span> run --name mysql8 -e MYSQL_ROOT_PASSWORD=lq123456 -p <span class="hljs-number">3307</span>:<span class="hljs-number">3306</span> -d mysql:<span class="hljs-number">8</span>.<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+<hr>
+<h3 id="MySQL-8-0"><a href="#MySQL-8-0" class="headerlink" title="MySQL 8.0"></a>MySQL 8.0</h3><p>服务安装命令</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-comment">#拉取镜像</span><br><span class="hljs-attribute">docker</span> pull mysql:<span class="hljs-number">8</span>.<span class="hljs-number">0</span><br><br><span class="hljs-comment">#部署容器</span><br><span class="hljs-attribute">docker</span> run --name mysql8 -e MYSQL_ROOT_PASSWORD=yourpassword -p <span class="hljs-number">3307</span>:<span class="hljs-number">3306</span> -d mysql:<span class="hljs-number">8</span>.<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
 
+<p>可以指定数据卷来持久化MySQL 8.0的数据</p>
+<p>略</p>
+<p>查看容器是否部署：<code>docker ps</code></p>
+<p>使用Docker内置的命令行或者使用任何MySQL客户端连接到数据库。</p>
+<p>例如，要连接到MySQL 5.7实例，可以使用：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs applescript">docker exec -<span class="hljs-keyword">it</span> mysql57 mysql -uroot -pyourpassword<br></code></pre></td></tr></table></figure>
+
+<p>新建数据库的时候建议的字符集 (Character Set)选择： utf8mb4  （- 完全支持Unicode，包括emoji表情符号；- MySQL 8.0+ 默认字符集）</p>
+<p>排序规则(Collation)建议：</p>
 <ul>
-<li>同样，你也可以指定数据卷来持久化MySQL 8.0的数据。</li>
-<li><code>mysql:8.0</code> 指的是Docker镜像的名称和标签。在这里，<code>mysql</code> 是镜像的名称，<code>8.0</code> 是镜像的标签，它指定了MySQL的具体版本。</li>
-</ul>
-<ol start="3">
-<li><p><strong>验证和连接</strong></p>
-</li>
-<li><p><strong>验证容器运行状态</strong>:</p>
-<p> <code>docker ps</code></p>
-</li>
-<li><p><strong>连接到MySQL容器</strong>:</p>
-</li>
-</ol>
-<p>使用Docker内置的命令行或者使用任何MySQL客户端连接到数据库。例如，要连接到MySQL 5.7实例，可以使用：<br><code>docker exec -it mysql57 mysql -uroot -pyourpassword</code></p>
-<ul>
-<li>对于MySQL 8.0，连接命令类似，只是容器名称不同。</li>
+<li>​<strong>​中文推荐​</strong>​: <code>utf8mb4_general_ci</code> (通用规则，不区分大小写)</li>
+<li>​<strong>​精确排序推荐​</strong>​: <code>utf8mb4_unicode_ci</code> (基于Unicode标准，更准确但稍慢)</li>
+<li>​<strong>​区分大小写场景​</strong>​: <code>utf8mb4_bin</code> (二进制比较，区分大小写)</li>
 </ul>
 <blockquote>
 <p>注意事项</p>
 </blockquote>
 <ul>
-<li>替换上述命令中的 <code>yourpassword</code> 为你自己的强密码。</li>
-<li>如果你使用了自定义数据卷路径（如 <code>/my/own/datadir</code>），确保该路径在宿主机上存在，并且Docker有权限访问。</li>
 <li>MySQL 8.0 默认使用了更强的密码加密策略（caching_sha2_password），某些客户端可能需要更新或配置以支持新的加密方式。</li>
 </ul>
-<hr>
-
+<blockquote>
+<p>连接注意的地方：</p>
+</blockquote>
+<p>报错：Public Key Retrieval is not allowed</p>
+<p>在连接字符串中添加参数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">jdbc:mysql://localhost:3306/dbname?allowPublicKeyRetrieval=<span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -349,6 +323,15 @@
             <div>
               <div class="post-metas my-3">
   
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/docker/" class="print-no-link">#docker</a>
+      
+        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93-MySQL/" class="print-no-link">#数据库/MySQL</a>
+      
+    </div>
   
 </div>
 
@@ -359,7 +342,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Docker服务安装——MySql</div>
-      <div>https://varcel.luoqi.icu/2025/03/30/sync/Docker服务安装MySql-710891/</div>
+      <div>https://varcel.luoqi.icu/2025/06/20/sync/Docker服务安装MySql-710891/</div>
     </div>
     <div class="license-meta">
       
@@ -371,7 +354,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年3月30日</div>
+          <div>2025年6月20日</div>
         </div>
       
       
@@ -398,6 +381,29 @@
 
 
 
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/06/20/sync/Java%E6%8A%80%E6%9C%AF%E6%A0%88_MySQL-53c92d/" title="Java技术栈_MySQL">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Java技术栈_MySQL</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/06/20/sync/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0_MyBatis-Plus%E4%BD%BF%E7%94%A8-e96a52/" title="框架学习_MyBatis-Plus使用">
+                        <span class="hidden-mobile">框架学习_MyBatis-Plus使用</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
               
             </div>
 
