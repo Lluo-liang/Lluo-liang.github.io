@@ -1,0 +1,620 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/Xbox%20L.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Luo QI">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="实现：如何实现封装一个MCP服务，同时让 AI 模型进行调用。  依赖和配置添加一下依赖 123456789&lt;dependency&gt;    &lt;groupId&gt;org.springframework.ai&lt;&#x2F;groupId&gt;    &lt;artifactId&gt;spring-ai-mcp-server-spring-boot-starter&lt;&#x2F;arti">
+<meta property="og:type" content="article">
+<meta property="og:title" content="02 DeepSeek RAG&amp;MCP 对接 Spring AI MCP">
+<meta property="og:url" content="https://varcel.luoqi.icu/2025/06/24/sync/02-DeepSeek-RAGMCP-%E5%AF%B9%E6%8E%A5-Spring-A-fdfe96/index.html">
+<meta property="og:site_name" content="轻松的洛亓">
+<meta property="og:description" content="实现：如何实现封装一个MCP服务，同时让 AI 模型进行调用。  依赖和配置添加一下依赖 123456789&lt;dependency&gt;    &lt;groupId&gt;org.springframework.ai&lt;&#x2F;groupId&gt;    &lt;artifactId&gt;spring-ai-mcp-server-spring-boot-starter&lt;&#x2F;arti">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250530073947.png">
+<meta property="article:published_time" content="2025-06-24T01:06:43.176Z">
+<meta property="article:modified_time" content="2025-06-24T01:06:43.000Z">
+<meta property="article:author" content="Luo QI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250530073947.png">
+  
+  
+  
+  <title>02 DeepSeek RAG&amp;MCP 对接 Spring AI MCP - 轻松的洛亓</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"varcel.luoqi.icu","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  <meta name="baidu-site-verification" content="codeva-Oq0KOjHuD3" />
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>轻松的洛亓</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="02 DeepSeek RAG&amp;MCP 对接 Spring AI MCP"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-06-24 01:06" pubdate>
+          2025年6月24日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          980 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          9 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">02 DeepSeek RAG&amp;MCP 对接 Spring AI MCP</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>实现：如何实现封装一个MCP服务，同时让 AI 模型进行调用。</p>
+<hr>
+<h3 id="依赖和配置"><a href="#依赖和配置" class="headerlink" title="依赖和配置"></a>依赖和配置</h3><p>添加一下依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.ai<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-ai-mcp-server-spring-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.ai<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-ai-mcp-client-webflux-spring-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>调用 mcp 服务，他有一套固定的格式，按照这个格式写就好了</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250530073947.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs perl">&#123;  <br>  <span class="hljs-string">&quot;mcpServers&quot;</span>: &#123;  <br>    <span class="hljs-string">&quot;mcp-server-csdn&quot;</span>: &#123;  <br>      <span class="hljs-string">&quot;command&quot;</span>: <span class="hljs-string">&quot;java&quot;</span>,  <br>      <span class="hljs-string">&quot;args&quot;</span>: [  <br>        <span class="hljs-string">&quot;-Dspring.ai.mcp.server.stdio=true&quot;</span>,  <br>        <span class="hljs-string">&quot;-jar&quot;</span>,  <br>        <span class="hljs-string">&quot;D:\\Soft\\CodeSoft\\maven\\apache-maven-3.8.8\\repository\\cn\\bugstack\\mcp\\mcp-server-csdn\\1.0.0\\mcp-server-csdn-1.0.0.jar&quot;</span>,  <br>        <span class="hljs-string">&quot;--csdn.api.categories=Java场景面试宝典&quot;</span>,  <br>        <span class="hljs-string">&quot;--csdn.api.cookie=uuid_tt_dd=10_36831589420-1743695860604-436883; fid=20_83522265325-1743695859937-158003; loginbox_strategy=%7B%22taskId%22%3A349%2C%22abCheckTime%22%3A1743695860373%2C%22version%22%3A%22exp11%22%2C%22blog-threeH-dialog-exp11tipShowTimes%22%3A1%2C%22blog-threeH-dialog-exp11%22%3A1743695860374%7D; UserName=jf2018; UserInfo=59e704a88ac141d4b56d0b45ad0cbf6c; UserToken=59e704a88ac141d4b56d0b45ad0cbf6c; UserNick=%E6%B4%9B%E4%BA%93; AU=F22; UN=jf2018; BT=1744039113641; p_uid=U010000; Hm_lvt_ec8a58cd84a81850bcbd95ef89524721=1743695860,1744069518; csdn_newcert_jf2018=1; c_segment=3; Hm_lvt_6bcd52f51e9b3dce32bec4a3997715ac=1743695860,1744039103,1744452619; https_waf_cookie=3df10eae-b19a-4f56bbd272815153fc35e7054119d1c79c18; dc_sid=378cb29486aad08bc14aa8e1c04505cf; HMACCOUNT=D99398E8BE8516BE; c_first_ref=default; c_pref=default; _clck=8xqkr7%7C2%7Cfv1%7C0%7C1919; __gads=ID=1f2bfd6084abde25:T=1743695862:RT=1744513769:S=ALNI_MZ0jdJV5AA9MHvPGDg83fU3J2_zmA; __gpi=UID=0000108878abb288:T=1743695862:RT=1744513769:S=ALNI_MYGAU1Kua2MRk5PNtVvLeiT_tenAw; __eoi=ID=acee2e471bfb16fc:T=1743695862:RT=1744513769:S=AA-Afjb2zlPIhODkytykSz2DfoWn; _clsk=zmxbfs%7C1744513888803%7C4%7C0%7Cx.clarity.ms%2Fcollect; c_first_page=https%3A//blog.csdn.net/jf2018%3Ftype%3Dlately; c_ref=https%3A//blog.csdn.net/jf2018%3Ftype%3Dlately; Hm_lpvt_6bcd52f51e9b3dce32bec4a3997715ac=1744514072; dc_tos=sunv3w; dc_session_id=10_1744554813870.998111; log_Id_click=2&quot;</span>  <br>      ]  <br>    &#125;  <br>  &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>需要在配置文件中引用一下</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-symbol">spring:</span><br><span class="hljs-symbol">	ai:</span>  <br><span class="hljs-symbol">	  mcp:</span>  <br><span class="hljs-symbol">	    client:</span>  <br><span class="hljs-symbol">	      stdio:</span>  <br>	        servers-configuration: classpath:<span class="hljs-keyword">/config/</span>mcp-servers-config<span class="hljs-number">-3.</span>json<br></code></pre></td></tr></table></figure>
+
+<h3 id="代码操作"><a href="#代码操作" class="headerlink" title="代码操作"></a>代码操作</h3><p>在 OpenAIConfig 中有指定默认的注入模型，以及需要使用的 tool</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Bean</span>  <br><span class="hljs-keyword">public</span> ChatClient <span class="hljs-title function_">chatClient</span><span class="hljs-params">(OpenAiChatModel openAiChatModel, ToolCallbackProvider tools)</span> &#123;  <br>    <span class="hljs-type">DefaultChatClientBuilder</span> <span class="hljs-variable">defaultChatClientBuilder</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DefaultChatClientBuilder</span>(openAiChatModel, ObservationRegistry.NOOP, (ChatClientObservationConvention) <span class="hljs-literal">null</span>);  <br>    <span class="hljs-keyword">return</span> defaultChatClientBuilder  <br>            .defaultTools(tools)  <br>            .defaultOptions(OpenAiChatOptions.builder()  <br>                    .model(<span class="hljs-string">&quot;gpt-4o&quot;</span>)  <br>                    .build())  <br>            .build();  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>因此这里可以理解为 openai 会有自己的一套 tools 的处理方式，能够让我通过 mcp 的方式去封装一套服务，然后让大模型去调用。</p>
+<p>看一下这个 MCP Test</p>
+<p>本质上还是调用了大模型的call 方法，只是指定了  tools  参数，能够让他获取到mcp 服务调用返回的数据，进行一起封装，并进行调用。</p>
+<figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs d"><span class="hljs-keyword">@Slf4j</span><br><span class="hljs-keyword">@RunWith</span>(SpringRunner.<span class="hljs-keyword">class</span>)<br><span class="hljs-keyword">@SpringBootTest</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> MCPTest &#123;<br><br>    <span class="hljs-keyword">@Resource</span><br>    <span class="hljs-keyword">private</span> ChatClient chatClient;  <span class="hljs-comment">// 聊天客户端</span><br><br>    <span class="hljs-keyword">@Resource</span><br>    <span class="hljs-keyword">private</span> OllamaChatModel ollamaChatModel;  <span class="hljs-comment">// Ollama聊天模型</span><br><br>    <span class="hljs-keyword">@Autowired</span><br>    <span class="hljs-keyword">private</span> ToolCallbackProvider tools;  <span class="hljs-comment">// 工具回调提供者</span><br><br>    <span class="hljs-keyword">@Test</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> test_tool() &#123;<br>        String userInput = <span class="hljs-string">&quot;有哪些工具可以使用&quot;</span>;<br>        System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;\n&gt;&gt;&gt; QUESTION: &quot;</span> + userInput);<br>        System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;\n&gt;&gt;&gt; ASSISTANT: &quot;</span> + chatClient.prompt(userInput).call().content());<br>    &#125;<br><br>    <span class="hljs-keyword">@Test</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> test_saveArticle() &#123;<br>        <span class="hljs-comment">// 获取模型默认选项</span><br>        ChatOptions defaultOptions = ollamaChatModel.getDefaultOptions();<br>        <br>        <span class="hljs-comment">// 构建详细的文章生成提示</span><br>        String userInput = <span class="hljs-string">&quot;&quot;</span><span class="hljs-string">&quot;</span><br><span class="hljs-string">                我需要你帮我生成一篇文章，要求如下；</span><br><span class="hljs-string">                                </span><br><span class="hljs-string">                1. 场景为互联网大厂java求职者面试</span><br><span class="hljs-string">                2. 面试管提问 Java 核心知识、JUC、JVM、多线程、线程池、HashMap、ArrayList、Spring、SpringBoot、MyBatis、Dubbo、RabbitMQ、xxl-job、Redis、MySQL、Linux、Docker、设计模式、DDD等不限于此的各项技术问题。</span><br><span class="hljs-string">                3. 按照故事场景，以严肃的面试官和搞笑的水货程序员谢飞机进行提问，谢飞机对简单问题可以回答，回答好了面试官还会夸赞。复杂问题胡乱回答，回答的不清晰。</span><br><span class="hljs-string">                4. 每次进行3轮提问，每轮可以有3-5个问题。这些问题要有技术业务场景上的衔接性，循序渐进引导提问。最后是面试官让程序员回家等通知类似的话术。</span><br><span class="hljs-string">                5. 提问后把问题的答案，写到文章最后，最后的答案要详细讲述出技术点，让小白可以学习下来。</span><br><span class="hljs-string">                                </span><br><span class="hljs-string">                根据以上内容，不要阐述其他信息，请直接提供；文章标题、文章内容、文章标签（多个用英文逗号隔开）、文章简述（100字）</span><br><span class="hljs-string">                                </span><br><span class="hljs-string">                将以上内容发布文章到CSDN</span><br><span class="hljs-string">                &quot;</span><span class="hljs-string">&quot;&quot;</span>;<br>                <br>        System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;\n&gt;&gt;&gt; QUESTION: &quot;</span> + userInput);<br>        System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;\n&gt;&gt;&gt; ASSISTANT: &quot;</span> + chatClient.prompt(userInput).call().content());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="DeepSeek-MCP"><a href="#DeepSeek-MCP" class="headerlink" title="DeepSeek +MCP"></a>DeepSeek +MCP</h3><p>问题：如果使用Deepseek，而不是openai 的话，需要怎么搞。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>02 DeepSeek RAG&amp;MCP 对接 Spring AI MCP</div>
+      <div>https://varcel.luoqi.icu/2025/06/24/sync/02-DeepSeek-RAGMCP-对接-Spring-A-fdfe96/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Luo QI</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年6月24日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
