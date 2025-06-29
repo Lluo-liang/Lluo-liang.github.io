@@ -28,14 +28,15 @@
 <meta property="og:site_name" content="轻松的洛亓">
 <meta property="og:description" content="摘要">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250629171209.png">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250412172806.png">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250412172955.png">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250412180031.png">
 <meta property="article:published_time" content="2025-06-07T22:24:35.000Z">
-<meta property="article:modified_time" content="2025-06-27T01:22:22.000Z">
+<meta property="article:modified_time" content="2025-06-29T17:02:08.000Z">
 <meta property="article:author" content="Luo QI">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250412172806.png">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250629171209.png">
   
   
   
@@ -228,7 +229,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          681 字
+          279 字
         
       </span>
     
@@ -239,7 +240,7 @@
         
         
         
-          6 分钟
+          3 分钟
         
       </span>
     
@@ -281,13 +282,13 @@
             
               <div class="markdown-body">
                 
-                <p>拉取后修改一下配置文件 application-dev.yml</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">server:</span>  <br>  <span class="hljs-attr">port:</span> <span class="hljs-number">8090</span>  <br>  <br><span class="hljs-attr">spring:</span>  <br>  <span class="hljs-attr">datasource:</span>  <br>    <span class="hljs-attr">driver-class-name:</span> <span class="hljs-string">org.postgresql.Driver</span>  <br>    <span class="hljs-attr">username:</span> <span class="hljs-string">postgres</span>  <br>    <span class="hljs-attr">password:</span> <span class="hljs-string">postgres</span>  <br>    <span class="hljs-attr">url:</span> <span class="hljs-string">jdbc:postgresql://192.168.31.98:5432/ai-rag-knowledge</span>  <br>    <span class="hljs-attr">type:</span> <span class="hljs-string">com.zaxxer.hikari.HikariDataSource</span>  <br>    <span class="hljs-comment"># hikari连接池配置  </span><br>    <span class="hljs-attr">hikari:</span>  <br>      <span class="hljs-comment">#连接池名  </span><br>      <span class="hljs-attr">pool-name:</span> <span class="hljs-string">HikariCP</span>  <br>      <span class="hljs-comment">#最小空闲连接数  </span><br>      <span class="hljs-attr">minimum-idle:</span> <span class="hljs-number">5</span>  <br>      <span class="hljs-comment"># 空闲连接存活最大时间，默认10分钟  </span><br>      <span class="hljs-attr">idle-timeout:</span> <span class="hljs-number">600000</span>  <br>      <span class="hljs-comment"># 连接池最大连接数，默认是10  </span><br>      <span class="hljs-attr">maximum-pool-size:</span> <span class="hljs-number">10</span>  <br>      <span class="hljs-comment"># 此属性控制从池返回的连接的默认自动提交行为,默认值：true  </span><br>      <span class="hljs-attr">auto-commit:</span> <span class="hljs-literal">true</span>  <br>      <span class="hljs-comment"># 此属性控制池中连接的最长生命周期，值0表示无限生命周期，默认30分钟  </span><br>      <span class="hljs-attr">max-lifetime:</span> <span class="hljs-number">1800000</span>  <br>      <span class="hljs-comment"># 数据库连接超时时间,默认30秒  </span><br>      <span class="hljs-attr">connection-timeout:</span> <span class="hljs-number">30000</span>  <br>      <span class="hljs-comment"># 连接测试query  </span><br>      <span class="hljs-attr">connection-test-query:</span> <span class="hljs-string">SELECT</span> <span class="hljs-number">1</span>  <br>  <span class="hljs-attr">ai:</span>  <br>    <span class="hljs-attr">ollama:</span>  <br>      <span class="hljs-attr">base-url:</span> <span class="hljs-string">http://192.168.31.98:11434</span>  <br>      <span class="hljs-attr">embedding:</span>  <br>        <span class="hljs-attr">options:</span>  <br>          <span class="hljs-attr">num-batch:</span> <span class="hljs-number">512</span>  <br>        <span class="hljs-attr">model:</span> <span class="hljs-string">nomic-embed-text</span>  <br>    <span class="hljs-attr">openai:</span>  <br>      <span class="hljs-attr">base-url:</span> <span class="hljs-string">https://pro-share-aws-api.zcyai.com/</span>  <br>      <span class="hljs-attr">api-key:</span> <span class="hljs-string">sk-eEyfxptPgbfXd3Z164260740E0494161Bd8**找小傅哥申请</span>  <br>      <span class="hljs-attr">embedding-model:</span> <span class="hljs-string">text-embedding-ada-002</span>  <br>    <span class="hljs-attr">rag:</span>  <br>      <span class="hljs-attr">embed:</span> <span class="hljs-string">nomic-embed-text</span> <span class="hljs-comment">#nomic-embed-text、text-embedding-ada-002  </span><br>  <br>  <br><span class="hljs-comment"># Redis  </span><br><span class="hljs-attr">redis:</span>  <br>  <span class="hljs-attr">sdk:</span>  <br>    <span class="hljs-attr">config:</span>  <br>      <span class="hljs-attr">host:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.31</span><span class="hljs-number">.98</span>  <br>      <span class="hljs-attr">port:</span> <span class="hljs-number">16379</span>  <br>      <span class="hljs-attr">pool-size:</span> <span class="hljs-number">10</span>  <br>      <span class="hljs-attr">min-idle-size:</span> <span class="hljs-number">5</span>  <br>      <span class="hljs-attr">idle-timeout:</span> <span class="hljs-number">30000</span>  <br>      <span class="hljs-attr">connect-timeout:</span> <span class="hljs-number">5000</span>  <br>      <span class="hljs-attr">retry-attempts:</span> <span class="hljs-number">3</span>  <br>      <span class="hljs-attr">retry-interval:</span> <span class="hljs-number">1000</span>  <br>      <span class="hljs-attr">ping-interval:</span> <span class="hljs-number">60000</span>  <br>      <span class="hljs-attr">keep-alive:</span> <span class="hljs-literal">true</span>  <br>  <br><span class="hljs-attr">logging:</span>  <br>  <span class="hljs-attr">level:</span>  <br>    <span class="hljs-attr">root:</span> <span class="hljs-string">info</span>  <br>  <span class="hljs-attr">config:</span> <span class="hljs-string">classpath:logback-spring.xml</span><br></code></pre></td></tr></table></figure>
-
-<h3 id="PGAdmin-工具安装"><a href="#PGAdmin-工具安装" class="headerlink" title="PGAdmin 工具安装"></a>PGAdmin 工具安装</h3><p>官网： <a target="_blank" rel="noopener" href="https://www.postgresql.org/ftp/pgadmin/pgadmin4/v9.1/">https://www.postgresql.org/ftp/pgadmin/pgadmin4/v9.1/</a></p>
+                <h3 id="PGAdmin-工具安装"><a href="#PGAdmin-工具安装" class="headerlink" title="PGAdmin 工具安装"></a>PGAdmin 工具安装</h3><p>官网： <a target="_blank" rel="noopener" href="https://www.postgresql.org/ftp/pgadmin/pgadmin4/v9.1/">https://www.postgresql.org/ftp/pgadmin/pgadmin4/v9.1/</a></p>
 <p>xfg 还提供了一下云盘地址： <a target="_blank" rel="noopener" href="https://drive.weixin.qq.com/s?k=ACMA4AfQABU0svnJ27#/?folderId=s.1970325202984995.728825392Npa_d.728828626dUXq">https://drive.weixin.qq.com/s?k=ACMA4AfQABU0svnJ27#/?folderId=s.1970325202984995.728825392Npa_d.728828626dUXq</a> （建议后者）</p>
 <p>这个工具主要是查看一下向量数据库的管理工具</p>
-<p>看了一下其实 dbeaver 也能用，具体的工具使用看一下官网</p>
+<p>看了一下其实 dbeaver 也能用，具体的工具使用看一下官网（但是有点问题，还是使用 PgAdmin）</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-comment">-- 查询向量存储的主表（最可能）</span><br><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> vector_store <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> id <span class="hljs-keyword">DESC</span> <span class="hljs-keyword">LIMIT</span> <span class="hljs-number">5</span>;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250629171209.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h3 id="模型部署-GPU-服务器"><a href="#模型部署-GPU-服务器" class="headerlink" title="模型部署 - GPU 服务器"></a>模型部署 - GPU 服务器</h3><p>京东云</p>
 <p>链接： <a target="_blank" rel="noopener" href="https://www.jdcloud.com/cn/pages/yunhuigous?utm_source=cpscf&type=1&channelReferrer=3356131999777923&channelCode=JD_YTKCPS">https://www.jdcloud.com/cn/pages/yunhuigous?utm_source=cpscf&amp;type=1&amp;channelReferrer=3356131999777923&amp;channelCode=JD_YTKCPS</a></p>
 <p>购买一下这种型号的（可手动关闭）</p>
@@ -302,24 +303,6 @@
 <p>服务器的配置都可以谷歌搜索看一下相关文档</p>
 <p>腾讯云服务器上面的AI接口服务开通</p>
 <p>京东云服务器上面的AI接口服务开通</p>
-<h3 id="启动注意事项"><a href="#启动注意事项" class="headerlink" title="启动注意事项"></a>启动注意事项</h3><p>项目拉取代码并运行（DeepSeek RAG&amp;MCP第二阶段）</p>
-<ul>
-<li>跳过，后面再更新一下</li>
-</ul>
-<p>视频笔记</p>
-<p>前一个阶段是 Spring 0.8 的框架，现在是 1.0 的框架</p>
-<p>SpringBoot 是3.4 的版本</p>
-<p>配置文件中注意</p>
-<ul>
-<li>1、open ai 和 xxla 是不一样的（这里进行了分别配置）</li>
-<li></li>
-</ul>
-<h3 id="框架升级操作"><a href="#框架升级操作" class="headerlink" title="框架升级操作"></a>框架升级操作</h3><hr>
-<p>依赖使用</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.ai<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-ai-bom<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0.0-M6<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">type</span>&gt;</span>pom<span class="hljs-tag">&lt;/<span class="hljs-name">type</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>import<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
-<p>对比以前的</p>
-<p>换依赖之后，我们需要对接新的接口，包括对接 opeaai 与 ollama</p>
 
                 
               </div>

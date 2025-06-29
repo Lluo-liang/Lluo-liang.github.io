@@ -1,0 +1,733 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/Xbox%20L.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Luo QI">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="摘要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DeepSeek RAG&amp;MCP 项目-第一阶段学习">
+<meta property="og:url" content="https://varcel.luoqi.icu/2025/06/24/sync/DeepSeek-RAGMCP-%E9%A1%B9%E7%9B%AE-%E6%9C%AC%E5%9C%B0%E8%B0%83%E7%94%A8-677cfc/index.html">
+<meta property="og:site_name" content="轻松的洛亓">
+<meta property="og:description" content="摘要">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250629195719.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250629182344.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250629202057.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250629201356.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250629205336.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250629205611.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250629205740.png">
+<meta property="article:published_time" content="2025-06-24T19:15:18.000Z">
+<meta property="article:modified_time" content="2025-06-29T17:02:08.000Z">
+<meta property="article:author" content="Luo QI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250629195719.png">
+  
+  
+  
+  <title>DeepSeek RAG&amp;MCP 项目-第一阶段学习 - 轻松的洛亓</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"varcel.luoqi.icu","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  <meta name="baidu-site-verification" content="codeva-Oq0KOjHuD3" />
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>轻松的洛亓</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="DeepSeek RAG&amp;MCP 项目-第一阶段学习"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-06-24 19:15" pubdate>
+          2025年6月24日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">DeepSeek RAG&amp;MCP 项目-第一阶段学习</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h3><p>项目地址：  <a target="_blank" rel="noopener" href="https://gitcode.net/KnowledgePlanet/ai-rag-knowledge">https://gitcode.net/KnowledgePlanet/ai-rag-knowledge</a></p>
+<p>没有 Fork 权限</p>
+<p>执行命令（需要权限） 关联新仓库操作-GIT</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#克隆项目到本地</span><br>git <span class="hljs-built_in">clone</span> https://gitcode.net/KnowledgePlanet/ai-rag-knowledge.git<br><br><span class="hljs-comment">#解除与原仓库的关联​</span><br><span class="hljs-built_in">cd</span> 项目目录<br>git remote remove origin<br><br>新建项目（在 Gitee)<br>1. 登录 Gitee，点击右上角 ​新建项目。 项目名：ai-rag-knowledge<br>2. 填写项目名称、描述，​*不要初始化 README 或 .gitignore​（避免冲突）。<br>3. 创建完成后，记下你的仓库地址。<br><br><span class="hljs-comment"># 将本地仓库关联到你的新仓库​</span><br>git remote add origin <span class="hljs-string">&quot;https://gitee.com/lluo-liang/ai-rag-knowledge.git&quot;</span><br><br><span class="hljs-comment">#推送代码</span><br>git push -u origin <span class="hljs-string">&quot;master&quot;</span><br><br>如果需要再同步拉取最新代码，可以看一下相关教程，这里的操作在分支 feature/luo-study 上进行<br></code></pre></td></tr></table></figure>
+
+<h3 id="服务安装"><a href="#服务安装" class="headerlink" title="服务安装"></a>服务安装</h3><p>项目拉取后，项目地址： <a target="_blank" rel="noopener" href="https://gitee.com/lluo-liang/ai-rag-knowledge">https://gitee.com/lluo-liang/ai-rag-knowledge</a></p>
+<p>分支： feature&#x2F;luo-study</p>
+<p>教程文档： <a target="_blank" rel="noopener" href="https://articles.zsxq.com/id_6wnnnp8klnv6.html">https://articles.zsxq.com/id_6wnnnp8klnv6.html</a></p>
+<p>文档地址： <a target="_blank" rel="noopener" href="https://wx.zsxq.com/columns/48411118851818?column_id=5485258154">https://wx.zsxq.com/columns/48411118851818?column_id=5485258154</a></p>
+<p>使用一下 pgAdmin 进行查询数据库</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-comment">-- 查询向量存储的主表（最可能）</span><br><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> vector_store <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> id <span class="hljs-keyword">DESC</span> <span class="hljs-keyword">LIMIT</span> <span class="hljs-number">5</span>;<br></code></pre></td></tr></table></figure>
+
+<h3 id="对话页面实现"><a href="#对话页面实现" class="headerlink" title="对话页面实现"></a>对话页面实现</h3><p>教程的一个提示词，后续可以学习模仿一下</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><code class="hljs typescript">根据如描述说明，帮我编写一款简单的<span class="hljs-variable constant_">AI</span>对话页面。<br>        <span class="hljs-number">1.</span> 请编写html、js、tailwindcss <span class="hljs-variable constant_">UI</span> 效果。不要写react、vue。<br>        <span class="hljs-number">2.</span> 点击新建聊天，会创建一个新的加入左侧的聊天列表<br>        <span class="hljs-number">3.</span> 聊天列表可以点击展开选择。<br>        <span class="hljs-number">4.</span> 选择的聊天，在对话列表中，可以点击删除或者重命名。<br>        <span class="hljs-number">5.</span> 输入内容，点击发送按钮和使用快捷键，调用服务端流式请求接口，前端渲染展示。<br>        <span class="hljs-number">6.</span> 以html、js代码方式实现，css样式使用 tailwind 编写。<br>        <span class="hljs-number">7.</span> 通过 <span class="hljs-keyword">const</span> eventSource = <span class="hljs-keyword">new</span> <span class="hljs-title class_">EventSource</span>(apiUrl); 调用api接口。<br>        <span class="hljs-number">8.</span> 从 result.<span class="hljs-property">output</span>.<span class="hljs-property">content</span> 获取，应答的文本展示。注意 content 可能为空。<br>        <span class="hljs-number">9.</span> 从 result.<span class="hljs-property">metadata</span>.<span class="hljs-property">finishReason</span> = <span class="hljs-variable constant_">STOP</span> 获取，结束标识。<br>        <span class="hljs-number">10.</span> 注意整体样式的简洁美观。<br><br>        接口信息如下<br><br>        流式<span class="hljs-variable constant_">GET</span>请求接口，由 <span class="hljs-title class_">SpringBoot</span> <span class="hljs-title class_">Spring</span> <span class="hljs-variable constant_">AI</span> 框架实现，如下；<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * curl http://localhost:8090/api/v1/ollama/generate_stream?model=deepseek-r1:1.5b&amp;message=1+1</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@RequestMapping</span>(value = <span class="hljs-string">&quot;generate_stream&quot;</span>, method = <span class="hljs-title class_">RequestMethod</span>.<span class="hljs-property">GET</span>)<br><span class="hljs-meta">@Override</span><br><span class="hljs-keyword">public</span> <span class="hljs-title class_">Flux</span>&lt;<span class="hljs-title class_">ChatResponse</span>&gt; <span class="hljs-title function_">generateStream</span>(<span class="hljs-params"><span class="hljs-meta">@RequestParam</span> <span class="hljs-built_in">String</span> model, <span class="hljs-meta">@RequestParam</span> <span class="hljs-built_in">String</span> message</span>) &#123;<br>        <span class="hljs-keyword">return</span> chatClient.<span class="hljs-title function_">stream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Prompt</span>(<br>        message,<br>        <span class="hljs-title class_">OllamaOptions</span>.<span class="hljs-title function_">create</span>()<br>        .<span class="hljs-title function_">withModel</span>(model)<br>        ));<br>        &#125;<br><br>        流式<span class="hljs-variable constant_">GET</span>应答数据，数组中的一条对象；<br><br>        [<br>        &#123;<br>        <span class="hljs-string">&quot;result&quot;</span>: &#123;<br>        <span class="hljs-string">&quot;output&quot;</span>: &#123;<br>        <span class="hljs-string">&quot;messageType&quot;</span>: <span class="hljs-string">&quot;ASSISTANT&quot;</span>,<br>        <span class="hljs-string">&quot;properties&quot;</span>: &#123;<br>        <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-string">&quot;chatcmpl-B3HPw95SsqmhoWeJ8azGLxK1Vf4At&quot;</span>,<br>        <span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;ASSISTANT&quot;</span>,<br>        <span class="hljs-string">&quot;finishReason&quot;</span>: <span class="hljs-string">&quot;&quot;</span><br>        &#125;,<br>        <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;1&quot;</span>,<br>        <span class="hljs-string">&quot;media&quot;</span>: []<br>        &#125;,<br>        <span class="hljs-string">&quot;metadata&quot;</span>: &#123;<br>        <span class="hljs-string">&quot;finishReason&quot;</span>: <span class="hljs-literal">null</span>,<br>        <span class="hljs-string">&quot;contentFilterMetadata&quot;</span>: <span class="hljs-literal">null</span><br>        &#125;<br>        &#125;<br>        &#125;<br>        ]<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>对于这种页面的编写，<a target="_blank" rel="noopener" href="https://v0.dev/">https://v0.dev/</a> 的效果是不错的。可以反复提问调整。</li>
+<li>相关的生成的代码，已经放到工程 docs&#x2F;dev-ops，nginx、html 下。<code>第7节：ai-case-01.html</code></li>
+<li>注意可能版本不同，不一定都有 STOP 标识，也可以找其他标识。如 NULL、””</li>
+</ul>
+<p>找一个合适的喜欢的AI对话页面，截取上传到 AI 工具，并告知基于这样的 UI 效果完成页面的实现。之后在告诉 AI 处理接口的对接。当然也可以把接口一起交给 AI 工具进行处理。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.deepseek.com/">https://www.deepseek.com/</a></li>
+<li><a target="_blank" rel="noopener" href="https://v0.dev/">https://v0.dev/</a></li>
+<li><a target="_blank" rel="noopener" href="https://chatglm.cn/">https://chatglm.cn/</a></li>
+<li><a target="_blank" rel="noopener" href="https://openai.itedus.cn/">https://openai.itedus.cn/</a></li>
+</ul>
+<blockquote>
+<p>其他更多也可以网络检索下。总有一款你是可以使用的。</p>
+</blockquote>
+<blockquote>
+<p>上传知识</p>
+</blockquote>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-meta">@RestController</span>()<br><span class="hljs-meta">@CrossOrigin</span>(<span class="hljs-string">&quot;*&quot;</span>)<br><span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">&quot;/api/v1/ollama/&quot;</span>)<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">OllamaController</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">IAiService</span> &#123;<br><br>    <span class="hljs-meta">@RequestMapping</span>(value = <span class="hljs-string">&quot;file/upload&quot;</span>, method = <span class="hljs-title class_">RequestMethod</span>.<span class="hljs-property">POST</span>, headers = <span class="hljs-string">&quot;content-type=multipart/form-data&quot;</span>)<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-title class_">Response</span>&lt;<span class="hljs-title class_">String</span>&gt; <span class="hljs-title function_">uploadFile</span>(<span class="hljs-params"><span class="hljs-meta">@RequestParam</span> <span class="hljs-built_in">String</span> ragTag, <span class="hljs-meta">@RequestParam</span>(<span class="hljs-string">&quot;file&quot;</span>) List&lt;MultipartFile&gt; files</span>) &#123;<br>        log.<span class="hljs-title function_">info</span>(<span class="hljs-string">&quot;上传知识库开始 &#123;&#125;&quot;</span>, ragTag);<br>        <span class="hljs-keyword">for</span> (<span class="hljs-title class_">MultipartFile</span> file : files) &#123;<br>            <span class="hljs-title class_">TikaDocumentReader</span> documentReader = <span class="hljs-keyword">new</span> <span class="hljs-title class_">TikaDocumentReader</span>(file.<span class="hljs-title function_">getResource</span>());<br>            <span class="hljs-title class_">List</span>&lt;<span class="hljs-title class_">Document</span>&gt; documents = documentReader.<span class="hljs-title function_">get</span>();<br>            <span class="hljs-title class_">List</span>&lt;<span class="hljs-title class_">Document</span>&gt; documentSplitterList = tokenTextSplitter.<span class="hljs-title function_">apply</span>(documents);<br>            <span class="hljs-comment">// 添加知识库标签</span><br>            documents.<span class="hljs-title function_">forEach</span>(doc -&gt; doc.<span class="hljs-title function_">getMetadata</span>().<span class="hljs-title function_">put</span>(<span class="hljs-string">&quot;knowledge&quot;</span>, ragTag));<br>            documentSplitterList.<span class="hljs-title function_">forEach</span>(doc -&gt; doc.<span class="hljs-title function_">getMetadata</span>().<span class="hljs-title function_">put</span>(<span class="hljs-string">&quot;knowledge&quot;</span>, ragTag));<br>            pgVectorStore.<span class="hljs-title function_">accept</span>(documentSplitterList);<br>            <span class="hljs-comment">// 添加知识库记录</span><br>            <span class="hljs-title class_">RList</span>&lt;<span class="hljs-title class_">String</span>&gt; elements = redissonClient.<span class="hljs-title function_">getList</span>(<span class="hljs-string">&quot;ragTag&quot;</span>);<br>            <span class="hljs-keyword">if</span> (!elements.<span class="hljs-title function_">contains</span>(ragTag)) &#123;<br>                elements.<span class="hljs-title function_">add</span>(ragTag);<br>            &#125;<br>        &#125;<br>        log.<span class="hljs-title function_">info</span>(<span class="hljs-string">&quot;上传知识库完成 &#123;&#125;&quot;</span>, ragTag);<br>        <span class="hljs-keyword">return</span> <span class="hljs-title class_">Response</span>.&lt;<span class="hljs-title class_">String</span>&gt;<span class="hljs-title function_">builder</span>().<span class="hljs-title function_">code</span>(<span class="hljs-string">&quot;0000&quot;</span>).<span class="hljs-title function_">info</span>(<span class="hljs-string">&quot;调用成功&quot;</span>).<span class="hljs-title function_">build</span>();<br>    &#125;<br><br>&#125;<br><br>- 请根据服务端接口，编写一款好看的前端上传页面。页面使用 html、js、tailwindcss 编写，不要提供 vue、react 代码。<br>- ragTag 为知识库名称<br>- files 为知识库文件，支持，md、txt、sql 文件类型上传。<br></code></pre></td></tr></table></figure>
+
+<h3 id="前端运行"><a href="#前端运行" class="headerlink" title="前端运行"></a>前端运行</h3><p>将 nginx 目录下的文件放入到本地的 nginx 的 html 文件夹中，直接访问就好： <a target="_blank" rel="noopener" href="http://localhost/">http://localhost/</a></p>
+<p>启动操作 Nginx_基础概念#1、启动Nginx</p>
+<h3 id="项目部署"><a href="#项目部署" class="headerlink" title="项目部署"></a>项目部署</h3><h4 id="部署文件"><a href="#部署文件" class="headerlink" title="部署文件"></a>部署文件</h4><p>部署一下到虚拟机上面</p>
+<p>视频教程挺好的，可以看一下： <a target="_blank" rel="noopener" href="https://wx.zsxq.com/group/48411118851818/topic/1525885821242242">https://wx.zsxq.com/group/48411118851818/topic/1525885821242242</a></p>
+<p>这个部署需要看一下原有的代码的分支： 10-tag-v1.0</p>
+<p><a target="_blank" rel="noopener" href="https://gitcode.net/KnowledgePlanet/ai-rag-knowledge/-/tree/10-tag-v1.0">https://gitcode.net/KnowledgePlanet/ai-rag-knowledge/-/tree/10-tag-v1.0</a></p>
+<p>&#96;&#96;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://gitcode.net/KnowledgePlanet/ai-rag-knowledge.git<br></code></pre></td></tr></table></figure>
+
+<p>这个文件复制一下，并修改一下对应的配置内容</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250629195719.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>注意事项</p>
+<ul>
+<li>tag 是专门的部署脚本，但这里的IP要替换为你的云服务器IP。<ul>
+<li>包括；Nginx 下面的 index.html、upload.html、git.html。另外 docker-compose-app-v1.0.yml 文件里的 IP 要替换为你的云服务器IP</li>
+</ul>
+</li>
+<li>这一这些填写IP所需的端口，也要配置防火墙开放。</li>
+</ul>
+<hr>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250629182344.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>注意，M1系列电脑，需要使用注释的地方，构建amd镜像。这样linux系统才适配。否则也可以选择linux服务器为 arm架构的。</li>
+</ul>
+<hr>
+<h4 id="镜像构建"><a href="#镜像构建" class="headerlink" title="镜像构建"></a>镜像构建</h4><p>注意：📢 <strong>如果本地没有docker，可以把app&#x2F;target下的jar，和整个文件夹分层结构build.shDockerfile一起通过sfpt上传到云服务器，通过云服务器执行.build.sh构建镜像。</strong></p>
+<p>上传镜像到：</p>
+<ul>
+<li>fuzhengwei&#x2F;ai-rag-knowledge-app 要替换为你的名称，尤其 <code>fuzhengwei</code></li>
+</ul>
+<p>操作步骤</p>
+<ul>
+<li>1、替换一下 build.sh、Dockerfile 文件的名称</li>
+<li>2、复制一下这三个文件（包括了 target&#x2F;ai-rag-knowledge-app.jar）</li>
+<li>3、执行命令：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">chmod</span> +x build.sh<br>./build.sh<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250629202057.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>通过上面这种方式会构建一个镜像</p>
+<p>这里好像只能服务器支持跨墙，才可以上传(暂时先放弃，或者也可以本地安装一下docker，博主就是这样搞的)</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//</span>hub.docker.com<span class="hljs-regexp">/repository/</span>docker<span class="hljs-regexp">/luoqi666/</span>ai-rag-knowledge-app/general<br><br>docker push luoqi666/ai-rag-knowledge-app:tagname<br></code></pre></td></tr></table></figure>
+
+<p>略</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250629201356.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>在 <a target="_blank" rel="noopener" href="https://hub.docker.com/repository/create">https://hub.docker.com/repository/create</a> 创建你的镜像名称。（需要开代理才能打开）</li>
+</ul>
+<hr>
+<p>本次直接在服务器上面构建了这个镜像（直接使用就好）</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250629205336.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>小改一下配置</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250629205611.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>复制一下这个文件夹</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250629205740.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>执行命令</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">docker</span> compose -f docker-compose-app-v1.<span class="hljs-number">0</span>.yml up -d<br></code></pre></td></tr></table></figure>
+
+<p>复制 nginx.conf 过去是一个目录，这里手动创建一下</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-comment"># 删除空目录（确认无重要文件后操作）</span><br>rm -rf <span class="hljs-regexp">/my-project/</span>dev-ops<span class="hljs-regexp">/nginx/</span>conf/nginx.conf<br><br><span class="hljs-comment"># 创建真实的 nginx.conf 文件 </span><br>touch <span class="hljs-regexp">/my-project/</span>dev-ops<span class="hljs-regexp">/nginx/</span>conf/nginx.conf<br></code></pre></td></tr></table></figure>
+
+<p>重启一下</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">docker</span>-compose -f docker-compose-app-v1.<span class="hljs-number">0</span>.yml down &amp;&amp; \<br><span class="hljs-attribute">docker</span>-compose -f docker-compose-app-v1.<span class="hljs-number">0</span>.yml up -d<br></code></pre></td></tr></table></figure>
+
+<p>验证后端是否正常启动</p>
+<figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs dsconfig"><span class="hljs-string">curl</span> <span class="hljs-built_in">--location</span> <span class="hljs-built_in">--request</span> <span class="hljs-string">GET</span> <span class="hljs-string">&#x27;http://192.168.31.196:8090/api/v1/ollama/generate?model=deepseek-r1:1.5b&amp;message=%E4%BD%A0%E5%A5%BD&#x27;</span> \<br><span class="hljs-built_in">--header</span> <span class="hljs-string">&#x27;User-Agent: Apifox/1.0.0 (https://apifox.com)&#x27;</span> \<br><span class="hljs-built_in">--header</span> <span class="hljs-string">&#x27;Accept: */*&#x27;</span> \<br><span class="hljs-built_in">--header</span> <span class="hljs-string">&#x27;Host: 192.168.31.196:8090&#x27;</span> \<br><span class="hljs-built_in">--header</span> <span class="hljs-string">&#x27;Connection: keep-alive&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p>前端可能会是有缓存的，注意一下</p>
+<p>访问地址： 192.168.31.196:80</p>
+<p>nginx.conf 配置内容</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">user</span>  nginx;  <br><span class="hljs-attribute">worker_processes</span>  auto;  <br>  <br><span class="hljs-attribute">error_log</span>  /var/log/nginx/<span class="hljs-literal">error</span>.log <span class="hljs-literal">notice</span>;  <br><span class="hljs-attribute">pid</span>        /var/run/nginx.pid;  <br>  <br>  <br><span class="hljs-section">events</span> &#123;  <br>    <span class="hljs-attribute">worker_connections</span>  <span class="hljs-number">1024</span>;  <br>&#125;  <br>  <br>  <br><span class="hljs-section">http</span> &#123;  <br>    <span class="hljs-attribute">include</span>       /etc/nginx/mime.types;  <br>    <span class="hljs-attribute">default_type</span>  application/octet-stream;  <br>  <br>    <span class="hljs-attribute">log_format</span>  main  <span class="hljs-string">&#x27;<span class="hljs-variable">$remote_addr</span> - <span class="hljs-variable">$remote_user</span> [<span class="hljs-variable">$time_local</span>] &quot;<span class="hljs-variable">$request</span>&quot; &#x27;</span>  <br>                      <span class="hljs-string">&#x27;<span class="hljs-variable">$status</span> <span class="hljs-variable">$body_bytes_sent</span> &quot;<span class="hljs-variable">$http_referer</span>&quot; &#x27;</span>  <br>                      <span class="hljs-string">&#x27;&quot;<span class="hljs-variable">$http_user_agent</span>&quot; &quot;<span class="hljs-variable">$http_x_forwarded_for</span>&quot;&#x27;</span>;  <br>  <br>    <span class="hljs-attribute">access_log</span>  /var/log/nginx/access.log  main;  <br>  <br>    <span class="hljs-attribute">sendfile</span>        <span class="hljs-literal">on</span>;  <br>    <span class="hljs-comment">#tcp_nopush     on;  </span><br>  <br>    <span class="hljs-attribute">keepalive_timeout</span>  <span class="hljs-number">65</span>;  <br>  <br>    <span class="hljs-comment">#gzip  on;  </span><br>  <br>    <span class="hljs-attribute">include</span> /etc/nginx/conf.d/<span class="hljs-regexp">*.conf</span>;  <br>  <br>    <span class="hljs-section">server</span> &#123;  <br>        <span class="hljs-attribute">listen</span>       <span class="hljs-number">80</span>;  <br>        <span class="hljs-attribute">server_name</span>  localhost;  <br>  <br>        <span class="hljs-section">location</span> / &#123;  <br>            <span class="hljs-attribute">root</span>   /usr/share/nginx/html;  <br>            <span class="hljs-attribute">index</span>  index.html index.htm;  <br>        &#125;  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>DeepSeek RAG&amp;MCP 项目-第一阶段学习</div>
+      <div>https://varcel.luoqi.icu/2025/06/24/sync/DeepSeek-RAGMCP-项目-本地调用-677cfc/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Luo QI</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年6月24日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/06/24/sync/DeepSeek-RAGMCP-%E9%A1%B9%E7%9B%AE-%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%E5%AD%A6%E4%B9%A0-e24ee1/" title="DeepSeek RAG&amp;MCP 项目-第二阶段学习">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">DeepSeek RAG&amp;MCP 项目-第二阶段学习</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/06/24/sync/DeepSeek-RAGMCP-%E9%A1%B9%E7%9B%AE-2d7d29/" title="DeepSeek RAG&amp;MCP 项目">
+                        <span class="hidden-mobile">DeepSeek RAG&amp;MCP 项目</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
