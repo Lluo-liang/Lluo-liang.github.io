@@ -29,8 +29,10 @@
 <meta property="og:description" content="摘要">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250413064946.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250630081723.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250630083646.png">
 <meta property="article:published_time" content="2025-06-29T11:02:12.000Z">
-<meta property="article:modified_time" content="2025-06-29T18:52:06.000Z">
+<meta property="article:modified_time" content="2025-06-30T00:42:47.000Z">
 <meta property="article:author" content="Luo QI">
 <meta property="article:tag" content="云服务器">
 <meta name="twitter:card" content="summary_large_image">
@@ -227,7 +229,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          167 字
+          478 字
         
       </span>
     
@@ -238,7 +240,7 @@
         
         
         
-          2 分钟
+          4 分钟
         
       </span>
     
@@ -280,9 +282,13 @@
             
               <div class="markdown-body">
                 
-                <p>应用信息和相应文档： <a target="_blank" rel="noopener" href="https://console.cloud.tencent.com/app/cloudapp-r931g8fb/info">https://console.cloud.tencent.com/app/cloudapp-r931g8fb/info</a></p>
+                <h3 id="实例地址"><a href="#实例地址" class="headerlink" title="实例地址"></a>实例地址</h3><p>应用信息和相应文档： <a target="_blank" rel="noopener" href="https://console.cloud.tencent.com/app/cloudapp-r931g8fb/info">https://console.cloud.tencent.com/app/cloudapp-r931g8fb/info</a></p>
+<p>商店地址： </p>
 <p>上面开通之后是通过 docker 的方式运行的</p>
+<p>收费文档： </p>
 <p>服务器实例地址： <a target="_blank" rel="noopener" href="https://console.cloud.tencent.com/hai/instance/detail?rid=1&id=hai-1wa3ojgh&tab=monitor">https://console.cloud.tencent.com/hai/instance/detail?rid=1&amp;id=hai-1wa3ojgh&amp;tab=monitor</a></p>
+<p>只是简单关机的话，每天也会大概消耗 0.72 元（稍微注意一下），一个月大概 30 元了。（使用的话会按照小时收费，稍微高一些 <strong>1.23</strong>元&#x2F;小时）</p>
+<p>端口配置： <a target="_blank" rel="noopener" href="https://console.cloud.tencent.com/vpc/security-group/detail/sg-gsmxorcd?rid=1">https://console.cloud.tencent.com/vpc/security-group/detail/sg-gsmxorcd?rid=1</a></p>
 <p>创建完后，可以使用 谷歌 Page Assist 插件进行尝试访问</p>
 <p>chrome-extension:&#x2F;&#x2F;jfgfiigpkhlkbnfnbobbkinehhfdhndo&#x2F;options.html</p>
 <p>端口访问可以到端口扫描（在线）看一下是否开通： <a target="_blank" rel="noopener" href="https://port.xhlylx.com/">https://port.xhlylx.com/</a></p>
@@ -292,6 +298,49 @@
 
 <p>看了一下访问是有问题的，后面再看了 DEBUG</p>
 <figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs actionscript">curl http:<span class="hljs-comment">//localhost:11434/api/generate -d &#x27;&#123;</span><br>  <span class="hljs-string">&quot;model&quot;</span>: <span class="hljs-string">&quot;deepseek-r1:1.5b&quot;</span>,<br>  <span class="hljs-string">&quot;prompt&quot;</span>:<span class="hljs-string">&quot;为什么天空是蓝色的？&quot;</span>,<br>  <span class="hljs-string">&quot;stream&quot;</span>: <span class="hljs-literal">false</span><br>&#125;<span class="hljs-string">&#x27;:cite[6]</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="连接地址"><a href="#连接地址" class="headerlink" title="连接地址"></a>连接地址</h3><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250630081723.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>右边有五个功能，分别是：</p>
+<ul>
+<li><strong>ChatbotUI</strong><ul>
+<li>通过网页聊天界面与部署的AI模型交互</li>
+</ul>
+</li>
+<li><strong>CloudStudio</strong><ul>
+<li>云端集成开发环境(IDE)</li>
+<li><ul>
+<li>直接编辑模型代码&#x2F;配置文件；- 调试模型运行环境</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>JupyterLab</strong><ul>
+<li>交互式编程笔记本</li>
+<li><ul>
+<li>运行调试Python代码或者机器学习实验</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>OpenWebUI</strong><ul>
+<li>开源Web用户界面（类似ChatbotUI但可定制）</li>
+</ul>
+</li>
+<li><strong>终端连接(SSH)​</strong><ul>
+<li>通过命令行直接访问服务器</li>
+<li>适合- 高级环境配置或者后台任务</li>
+</ul>
+</li>
+</ul>
+<p>开通一下账号 Open WebUI</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">LuoQi<br><span class="hljs-symbol">lluo202@</span><span class="hljs-number">163.</span>com<br><br>密码：L123456<br></code></pre></td></tr></table></figure>
+
+<p>我这里访问看对话这里是有一个对话 URL 是可以在本地访问的，尝试使用一下这个API 路径。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250630083646.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>如果不对，感觉你这个服务器申请错了</p>
+<p>这里暂时还是用京东云了，不纠结</p>
+<h3 id="接口文档"><a href="#接口文档" class="headerlink" title="接口文档"></a>接口文档</h3><p>ollama 的接口文档： <a target="_blank" rel="noopener" href="https://github.com/ollama/ollama/blob/main/docs/api.md">https://github.com/ollama/ollama/blob/main/docs/api.md</a></p>
+
                 
               </div>
             
