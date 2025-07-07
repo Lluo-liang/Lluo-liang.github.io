@@ -31,8 +31,9 @@
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250413064946.png">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250630081723.png">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250630083646.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250705111841.png">
 <meta property="article:published_time" content="2025-06-29T11:02:12.000Z">
-<meta property="article:modified_time" content="2025-07-04T14:01:40.000Z">
+<meta property="article:modified_time" content="2025-07-07T01:21:30.000Z">
 <meta property="article:author" content="Luo QI">
 <meta property="article:tag" content="云服务器">
 <meta name="twitter:card" content="summary_large_image">
@@ -229,7 +230,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          478 字
+          654 字
         
       </span>
     
@@ -240,7 +241,7 @@
         
         
         
-          4 分钟
+          6 分钟
         
       </span>
     
@@ -291,14 +292,12 @@
 <p>端口配置： <a target="_blank" rel="noopener" href="https://console.cloud.tencent.com/vpc/security-group/detail/sg-gsmxorcd?rid=1">https://console.cloud.tencent.com/vpc/security-group/detail/sg-gsmxorcd?rid=1</a></p>
 <p>创建完后，可以使用 谷歌 Page Assist 插件进行尝试访问</p>
 <p>chrome-extension:&#x2F;&#x2F;jfgfiigpkhlkbnfnbobbkinehhfdhndo&#x2F;options.html</p>
+<hr>
+<blockquote>
+<p>端口访问连接工具</p>
+</blockquote>
 <p>端口访问可以到端口扫描（在线）看一下是否开通： <a target="_blank" rel="noopener" href="https://port.xhlylx.com/">https://port.xhlylx.com/</a></p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250413064946.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>相关配置：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs"><br><br></code></pre></td></tr></table></figure>
-
-<p>看了一下访问是有问题的，后面再看了 DEBUG</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs actionscript">curl http:<span class="hljs-comment">//localhost:11434/api/generate -d &#x27;&#123;</span><br>  <span class="hljs-string">&quot;model&quot;</span>: <span class="hljs-string">&quot;deepseek-r1:1.5b&quot;</span>,<br>  <span class="hljs-string">&quot;prompt&quot;</span>:<span class="hljs-string">&quot;为什么天空是蓝色的？&quot;</span>,<br>  <span class="hljs-string">&quot;stream&quot;</span>: <span class="hljs-literal">false</span><br>&#125;<span class="hljs-string">&#x27;:cite[6]</span><br></code></pre></td></tr></table></figure>
-
 <h3 id="连接地址"><a href="#连接地址" class="headerlink" title="连接地址"></a>连接地址</h3><p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250630081723.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>右边有五个功能，分别是：</p>
 <ul>
@@ -339,7 +338,25 @@
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250630083646.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>如果不对，感觉你这个服务器申请错了</p>
 <p>这里暂时还是用京东云了，不纠结</p>
-<h3 id="接口文档"><a href="#接口文档" class="headerlink" title="接口文档"></a>接口文档</h3><p>ollama 的接口文档： <a target="_blank" rel="noopener" href="https://github.com/ollama/ollama/blob/main/docs/api.md">https://github.com/ollama/ollama/blob/main/docs/api.md</a></p>
+<h3 id="接口文档"><a href="#接口文档" class="headerlink" title="接口文档"></a>接口文档</h3><h3 id="在内网使用-Ollama-API-使用-DeepSeek-模型"><a href="#在内网使用-Ollama-API-使用-DeepSeek-模型" class="headerlink" title="在内网使用 Ollama API 使用 DeepSeek 模型"></a>在内网使用 Ollama API 使用 DeepSeek 模型</h3><p>应用内置了 Ollama，可以直接通过 Ollama API 访问 DeepSeek 模型。在安装信息中可以查看 API 地址：</p>
+<p>暂时没看到安装信息</p>
+<p>教程文档信息： <a target="_blank" rel="noopener" href="https://console.cloud.tencent.com/app/cloudapp-r931g8fb/info">https://console.cloud.tencent.com/app/cloudapp-r931g8fb/info</a></p>
+<p>ollama 的接口文档： <a target="_blank" rel="noopener" href="https://github.com/ollama/ollama/blob/main/docs/api.md">https://github.com/ollama/ollama/blob/main/docs/api.md</a></p>
+<p>服务器密码</p>
+<figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs erlang">root<br>L123456.<br></code></pre></td></tr></table></figure>
+
+<p>腾讯云电脑是可以直接访问 SSH 连接的，连接后，可以看一下自己部署了哪些大模型应用</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">ollama list</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250705111841.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>Ollama API 默认提供内网访问地址，如果需要在公网调试，则需要到安全组放通 11434 端口</p>
+<p>端口配置： <a target="_blank" rel="noopener" href="https://console.cloud.tencent.com/vpc/security-group/detail/sg-gsmxorcd?rid=1">https://console.cloud.tencent.com/vpc/security-group/detail/sg-gsmxorcd?rid=1</a></p>
+<p>Ollama 默认运行在 <code>11434</code> 或 <code>6399</code> 端口（不同版本可能不同）。确保腾讯云服务器的安全组规则允许该端口的入站流量</p>
+<p>看了一下，自己部署的这个duank是 6399</p>
+<p>可以访问：  <a target="_blank" rel="noopener" href="http://175.178.220.88:6399/">http://175.178.220.88:6399/</a></p>
+<p>下载一下模型（嵌入式）</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs applescript">ollama pull nomic-embed-<span class="hljs-built_in">text</span>:latest<br></code></pre></td></tr></table></figure>
+
 
                 
               </div>
