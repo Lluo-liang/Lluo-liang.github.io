@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250124083335.png">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250124084344.png">
 <meta property="article:published_time" content="2025-06-24T10:10:04.000Z">
-<meta property="article:modified_time" content="2025-07-16T17:55:52.000Z">
+<meta property="article:modified_time" content="2025-07-16T18:10:31.000Z">
 <meta property="article:author" content="Luo QI">
 <meta property="article:tag" content="git">
 <meta property="article:tag" content="运维">
@@ -229,7 +229,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          291 字
+          366 字
         
       </span>
     
@@ -240,7 +240,7 @@
         
         
         
-          3 分钟
+          4 分钟
         
       </span>
     
@@ -286,11 +286,14 @@
 <p>保存以下脚本为 <code>git-switch-account.sh</code>：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span><br><span class="hljs-keyword">if</span> [ <span class="hljs-string">&quot;<span class="hljs-variable">$1</span>&quot;</span> = <span class="hljs-string">&quot;work&quot;</span> ]; <span class="hljs-keyword">then</span><br>  git config user.name <span class="hljs-string">&quot;felixwu&quot;</span><br>  git config user.email <span class="hljs-string">&quot;felixwu@sheinbpo.com&quot;</span><br>  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Switched to WORK account&quot;</span><br><span class="hljs-keyword">else</span><br>  git config user.name <span class="hljs-string">&quot;Lluo&quot;</span><br>  git config user.email <span class="hljs-string">&quot;lluo2020@163.com&quot;</span><br>  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Switched to PERSONAL account&quot;</span><br><span class="hljs-keyword">fi</span><br></code></pre></td></tr></table></figure>
 
+<p>更新一下内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash  </span><br><span class="hljs-keyword">if</span> [ <span class="hljs-string">&quot;<span class="hljs-variable">$1</span>&quot;</span> = <span class="hljs-string">&quot;work&quot;</span> ]; <span class="hljs-keyword">then</span>  <br>  git config user.name <span class="hljs-string">&quot;felixwu&quot;</span>  <br>  git config user.email <span class="hljs-string">&quot;felixwu@sheinbpo.com&quot;</span>  <br>  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Switched to WORK account&quot;</span>  <br><span class="hljs-keyword">elif</span> [ <span class="hljs-string">&quot;<span class="hljs-variable">$1</span>&quot;</span> = <span class="hljs-string">&quot;gitee&quot;</span> ]; <span class="hljs-keyword">then</span>  <br>  git config user.name <span class="hljs-string">&quot;Lluo&quot;</span>  <br>  git config user.email <span class="hljs-string">&quot;lluo2020@163.com&quot;</span>  <br>  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Switched to GITEE account&quot;</span>  <br><span class="hljs-keyword">else</span>  <br>  git config user.name <span class="hljs-string">&quot;Lluo&quot;</span>  <br>  git config user.email <span class="hljs-string">&quot;lluo2020@163.com&quot;</span>  <br>  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Switched to PERSONAL account&quot;</span>  <br><span class="hljs-keyword">fi</span><br></code></pre></td></tr></table></figure>
+
 <p>使用方式</p>
 <figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs autoit"><span class="hljs-meta"># 切换到工作账号</span><br>./git-<span class="hljs-keyword">switch</span>-account.sh work<br><br><span class="hljs-meta"># 切换到个人账号</span><br>./git-<span class="hljs-keyword">switch</span>-account.sh<br></code></pre></td></tr></table></figure>
 
 <p>如果权限问题，加一下执行权限</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs"><br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">chmod</span> +x ./git-switch-account.sh<br></code></pre></td></tr></table></figure>
 
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">查看用户名 ：git config <span class="hljs-keyword">user</span>.name<br><br>查看密码： git config <span class="hljs-keyword">user</span>.<span class="hljs-keyword">password</span><br><br>查看邮箱：git config <span class="hljs-keyword">user</span>.email<br><br>查看配置信息： $ git config <span class="hljs-comment">--list</span><br></code></pre></td></tr></table></figure>
 
