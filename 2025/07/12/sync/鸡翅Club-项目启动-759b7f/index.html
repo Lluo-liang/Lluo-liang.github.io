@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250712150926.png">
 <meta property="article:published_time" content="2025-07-12T15:08:53.000Z">
-<meta property="article:modified_time" content="2025-07-19T15:11:54.000Z">
+<meta property="article:modified_time" content="2025-07-21T00:45:37.000Z">
 <meta property="article:author" content="Luo QI">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250712150926.png">
@@ -226,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          150 字
+          981 字
         
       </span>
     
@@ -237,7 +237,7 @@
         
         
         
-          2 分钟
+          9 分钟
         
       </span>
     
@@ -282,7 +282,7 @@
                 <p>拉取项目后，先直接看一下项目的代码内容，稍微过一下</p>
 <p>如果没有出现 maven 按钮，需要右键点击 <code>pom.xml</code> 选择 ​<strong>​Add as Maven Project​</strong>​</p>
 <p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250712150926.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>技术栈</p>
+<h3 id="项目启动"><a href="#项目启动" class="headerlink" title="项目启动"></a>项目启动</h3><p>技术栈</p>
 <ul>
 <li>MySQL</li>
 <li>Redis</li>
@@ -324,6 +324,82 @@
 <p>代码提交</p>
 <p>命令行： </p>
 <figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs perl">git commit --<span class="hljs-keyword">no</span>-verify<br>git <span class="hljs-keyword">push</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="项目分析"><a href="#项目分析" class="headerlink" title="项目分析"></a>项目分析</h3><p>遇到前端项目访问端口没找到的问题</p>
+<p>先分析一下前端项目的目录作用（AI 分析）</p>
+<p><strong><code>src</code> 目录（核心代码）​</strong>​</p>
+<ul>
+<li>​<strong>​<code>assets</code>​</strong>​<br>  静态资源文件：<ul>
+<li><code>base.less</code> &#x2F; <code>normalize.less</code>：全局 CSS 样式重置或基础样式。</li>
+<li><code>favicon.png</code> &#x2F; <code>favicon.svg</code> &#x2F; <code>logo.svg</code>：网站图标和 Logo。</li>
+</ul>
+</li>
+<li>​<strong>​<code>components</code>​</strong>​<br>  可复用的 Vue&#x2F;React 组件。</li>
+<li>​<strong>​<code>constants</code>​</strong>​<br>  常量定义（如 API 地址、固定配置）。</li>
+<li>​<strong>​<code>ims</code>​</strong>​<br>  （推测）可能与即时通讯（IM）相关的模块，需结合项目实际功能确认。</li>
+<li>​<strong>​<code>router/index.tsx</code>​</strong>​<br>  路由配置文件，定义页面跳转逻辑。</li>
+<li>​<strong>​<code>store</code>​</strong>​<br>  状态管理（如 Redux&#x2F;Vuex&#x2F;Pinia）：<ul>
+<li><code>features/user.infoSlice.ts</code>：用户信息的状态切片（Redux Toolkit 风格）。</li>
+<li><code>index.ts</code>：状态管理的主入口。</li>
+</ul>
+</li>
+<li>​<strong>​<code>utils</code>​</strong>​<br>  工具函数：<ul>
+<li><code>request.ts</code>：封装 HTTP 请求（如 Axios 实例）。</li>
+<li><code>index.ts</code>：其他工具方法（时间格式化、校验等）。</li>
+</ul>
+</li>
+<li>​<strong>​<code>views</code>​</strong>​<br>  页面级组件（与路由直接关联的页面）。</li>
+<li>​<strong>​入口文件​</strong>​<ul>
+<li><code>App.tsx</code>：项目根组件。</li>
+<li><code>main.tsx</code>：应用启动入口文件。</li>
+<li><code>vite-env.d.ts</code>：Vite 环境变量类型声明（TypeScript）。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>​3. 其他文件​</strong>​</p>
+<ul>
+<li>​<strong>​<code>vite-env.d.ts</code>​</strong>​<br>  Vite 项目的环境变量类型定义，增强 TypeScript 支持。</li>
+<li>​<strong>​<code>main.less</code>​</strong>​<br>  全局 Less 样式文件（可能包含变量或混合宏）。</li>
+</ul>
+<p>—​</p>
+<ul>
+<li>​<strong>​前端框架​</strong>​：React（<code>.tsx</code> 文件 + Redux 状态管理）。</li>
+<li>​<strong>​构建工具​</strong>​：Vite（<code>vite-env.d.ts</code> 文件）。</li>
+<li>​<strong>​样式​</strong>​：Less 预处理器（<code>.less</code> 文件）。</li>
+<li>​<strong>​代码规范​</strong>​：ESLint + Husky + Commitizen。</li>
+</ul>
+<hr>
+<p> <strong><code>/utils/request.ts</code></strong>  有对前端请求响应的拦截处理</p>
+<p>环境变量文件：Vite 默认从项目根目录的 <code>.env</code> 文件中读取环境变量。根据不同环境</p>
+<p>Vite 会根据你运行的命令自动加载对应的环境文件：</p>
+<ul>
+<li>​<strong>​开发环境​</strong>​（<code>npm run dev</code>）→ 优先加载 <code>.env.development</code></li>
+<li>​<strong>​生产环境​</strong>​（<code>npm run build</code>）→ 优先加载 <code>.env.production</code></li>
+<li>​<strong>​通用配置​</strong>​：无论哪种环境，<code>.env</code> 中的变量都会被加载（但会被环境专用文件覆盖）。</li>
+</ul>
+<p>​<strong>​优先级​</strong>​：<br><code>.env.local</code> &gt; <code>.env.[mode]</code> &gt; <code>.env</code><br>（例如：<code>.env.development</code> 会覆盖 <code>.env</code> 中的同名变量）</p>
+<h4 id="登陆操作"><a href="#登陆操作" class="headerlink" title="登陆操作"></a>登陆操作</h4><p>开发环境配置文件这里改为本地的网关接口(<code>.env.development</code> 文件)</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">VITE_API_HOST</span>=http://localhost:<span class="hljs-number">5000</span><br></code></pre></td></tr></table></figure>
+
+
+<hr>
+<p>本地调试的时候注意一下  .env.development 文件</p>
+<p>​<strong>​5173 是 Vite 开发服务器的默认端口​</strong>​，在以下位置可修改：</p>
+<ul>
+<li>​<strong>​命令行参数​</strong>​：<code>npm run dev -- --port 3000</code></li>
+<li>​<strong>​配置文件​</strong>​：在 <code>vite.config.ts</code> 中设置：</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title">defineConfig</span><span class="hljs-params">(&#123;</span></span><br><span class="hljs-params"><span class="hljs-function">  server: &#123;</span></span><br><span class="hljs-params"><span class="hljs-function">    port: <span class="hljs-number">3000</span>, <span class="hljs-comment">// 修改为其他端口</span></span></span><br><span class="hljs-params"><span class="hljs-function">  &#125;</span></span><br><span class="hljs-params"><span class="hljs-function">&#125;)</span></span>;<br></code></pre></td></tr></table></figure>
+
+<p>这里登陆实际做的一个操作也就是回去Redis的用户信息，然后再登陆。</p>
+<hr>
+<p>临时改了一下登陆授权方法，后面再优化吧，看他这里写的也挺烂的。</p>
+<h3 id="报错处理"><a href="#报错处理" class="headerlink" title="报错处理"></a>报错处理</h3><p>后端服务报错：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-number">2025</span>-<span class="hljs-number">07</span>-<span class="hljs-number">20</span> <span class="hljs-number">08</span>:<span class="hljs-number">54</span>:<span class="hljs-number">26</span>,<span class="hljs-number">528</span> com<span class="hljs-selector-class">.alibaba</span><span class="hljs-selector-class">.nacos</span><span class="hljs-selector-class">.client</span><span class="hljs-selector-class">.naming</span><span class="hljs-selector-class">.updater</span> ERROR Unable to delete file D:\Soft\Code\club\jc-club\..\log\error<span class="hljs-selector-class">.log</span>: java<span class="hljs-selector-class">.nio</span><span class="hljs-selector-class">.file</span><span class="hljs-selector-class">.FileSystemException</span> D:\Soft\Code\club\jc-club\..\log\error<span class="hljs-selector-class">.log</span>: 另一个程序正在使用此文件，进程无法访问。<br><span class="hljs-number">08</span>:<span class="hljs-number">54</span>:<span class="hljs-number">26.531</span>  <span class="hljs-selector-attr">[com.alibaba.nacos.client.naming.updater]</span> ERROR com<span class="hljs-selector-class">.alibaba</span><span class="hljs-selector-class">.nacos</span><span class="hljs-selector-class">.client</span><span class="hljs-selector-class">.naming</span> - <span class="hljs-selector-attr">[NA]</span> failed to request<br>java<span class="hljs-selector-class">.net</span><span class="hljs-selector-class">.NoRouteToHostException</span>: No route to host: no further information<br>	at sun<span class="hljs-selector-class">.nio</span><span class="hljs-selector-class">.ch</span><span class="hljs-selector-class">.Net</span><span class="hljs-selector-class">.pollConnect</span>(Native Method) ~<span class="hljs-selector-attr">[?:?]</span><br>	at sun<span class="hljs-selector-class">.nio</span><span class="hljs-selector-class">.ch</span><span class="hljs-selector-class">.Net</span><span class="hljs-selector-class">.pollConnectNow</span>(Net<span class="hljs-selector-class">.java</span>:<span class="hljs-number">672</span>) ~<span class="hljs-selector-attr">[?:?]</span><br>	at sun<span class="hljs-selector-class">.nio</span><span class="hljs-selector-class">.ch</span><span class="hljs-selector-class">.NioSocketImpl</span><span class="hljs-selector-class">.timedFinishConnect</span>(NioSocketImpl<span class="hljs-selector-class">.java</span>:<span class="hljs-number">547</span>) ~<span class="hljs-selector-attr">[?:?]</span><br>	at sun<span class="hljs-selector-class">.nio</span><span class="hljs-selector-class">.ch</span><span class="hljs-selector-class">.NioSocketImpl</span><span class="hljs-selector-class">.connect</span>(NioSocketImpl<span class="hljs-selector-class">.java</span>:<span class="hljs-number">602</span>) ~<span class="hljs-selector-attr">[?:?]</span><br>	at java<span class="hljs-selector-class">.net</span><span class="hljs-selector-class">.Socket</span><span class="hljs-selector-class">.connect</span>(Socket<span class="hljs-selector-class">.java</span>:<span class="hljs-number">633</span>) ~<span class="hljs-selector-attr">[?:?]</span><br>	at sun<span class="hljs-selector-class">.net</span><span class="hljs-selector-class">.NetworkClient</span><span class="hljs-selector-class">.doConnect</span>(NetworkClient<span class="hljs-selector-class">.java</span>:<span class="hljs-number">178</span>) ~<span class="hljs-selector-attr">[?:?]</span><br>	at sun<span class="hljs-selector-class">.net</span><span class="hljs-selector-class">.www</span><span class="hljs-selector-class">.http</span><span class="hljs-selector-class">.HttpClient</span><span class="hljs-selector-class">.openServer</span>(HttpClient<span class="hljs-selector-class">.java</span>:<span class="hljs-number">534</span>) ~<span class="hljs-selector-attr">[?:?]</span><br>	at sun<span class="hljs-selector-class">.net</span><span class="hljs-selector-class">.www</span><span class="hljs-selector-class">.http</span><span class="hljs-selector-class">.HttpClient</span><span class="hljs-selector-class">.openServer</span>(HttpClient<span class="hljs-selector-class">.java</span>:<span class="hljs-number">639</span>) ~<span class="hljs-selector-attr">[?:?]</span><br>	at sun<span class="hljs-selector-class">.net</span><span class="hljs-selector-class">.www</span><span class="hljs-selector-class">.http</span><span class="hljs-selector-class">.HttpClient</span>.&lt;init&gt;(HttpClient<span class="hljs-selector-class">.java</span>:<span class="hljs-number">282</span>) ~<span class="hljs-selector-attr">[?:?]</span><br>	at sun<span class="hljs-selector-class">.net</span><span class="hljs-selector-class">.www</span><span class="hljs-selector-class">.http</span><span class="hljs-selector-class">.HttpClient</span><span class="hljs-selector-class">.New</span>(HttpClient<span class="hljs-selector-class">.java</span>:<span class="hljs-number">387</span>) ~<span class="hljs-selector-attr">[?:?]</span><br>	at sun<span class="hljs-selector-class">.net</span><span class="hljs-selector-class">.www</span><span class="hljs-selector-class">.http</span><span class="hljs-selector-class">.HttpClient</span><span class="hljs-selector-class">.New</span>(HttpClient<span class="hljs-selector-class">.java</span>:<span class="hljs-number">409</span>) ~<span class="hljs-selector-attr">[?:?]</span><br>	at<br></code></pre></td></tr></table></figure>
+
+
                 
               </div>
             
