@@ -59,10 +59,9 @@ https://varcel.luoqi.icu/2025/05/25/sync/Lombok-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8
 https://varcel.luoqi.icu/2025/06/28/sync/MCP%E6%9C%8D%E5%8A%A1-CSDN%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0-34c945/
 https://varcel.luoqi.icu/2025/06/28/sync/MCP%E6%9C%8D%E5%8A%A1-%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0-73c42a/
 https://varcel.luoqi.icu/2025/06/28/sync/MCP%E6%9C%8D%E5%8A%A1-%E6%9F%A5%E7%9C%8B%E7%94%B5%E8%84%91%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF-caf872/
-https://varcel.luoqi.icu/2025/06/24/sync/Mall%E7%94%B5%E5%95%86%E5%AE%9E%E6%88%98%E9%A1%B9%E7%9B%AE-460c5e/
-https://varcel.luoqi.icu/2025/06/24/sync/Mall%E7%94%B5%E5%95%86%E5%AE%9E%E6%88%98%E9%A1%B9%E7%9B%AE_%E5%8D%95%E4%BD%93%E9%A1%B9%E7%9B%AE-c7405b/
-https://varcel.luoqi.icu/2025/06/24/sync/Mall%E7%94%B5%E5%95%86%E5%AE%9E%E6%88%98%E9%A1%B9%E7%9B%AE_%E5%8D%95%E4%BD%93%E9%A1%B9%E7%9B%AE_%E6%8A%80%E6%9C%AF%E6%A0%88-db5972/
-https://varcel.luoqi.icu/2025/06/24/sync/Mall%E7%94%B5%E5%95%86%E5%AE%9E%E6%88%98%E9%A1%B9%E7%9B%AE_%E5%BE%AE%E6%9C%8D%E5%8A%A1-0e84ad/
+https://varcel.luoqi.icu/2025/06/24/sync/Mall%E7%94%B5%E5%95%86%E5%AE%9E%E6%88%98%E9%A1%B9%E7%9B%AE_%E5%8D%95%E4%BD%93%E9%A1%B9%E7%9B%AE-98eef7/
+https://varcel.luoqi.icu/2025/06/24/sync/Mall%E7%94%B5%E5%95%86%E5%AE%9E%E6%88%98%E9%A1%B9%E7%9B%AE_%E5%8D%95%E4%BD%93%E9%A1%B9%E7%9B%AE_%E6%8A%80%E6%9C%AF%E6%A0%88-53eeb7/
+https://varcel.luoqi.icu/2025/06/24/sync/Mall%E7%94%B5%E5%95%86%E5%AE%9E%E6%88%98%E9%A1%B9%E7%9B%AE_%E5%BE%AE%E6%9C%8D%E5%8A%A1-985d02/
 https://varcel.luoqi.icu/2023/11/30/sync/MongoDB_%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C-067cd1/
 https://varcel.luoqi.icu/2025/06/20/sync/MyBatis-Generator-%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B-4bdcf3/
 https://varcel.luoqi.icu/2025/06/20/sync/MySQL_%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98-e32ebd/
@@ -152,8 +151,10 @@ https://varcel.luoqi.icu/tags/jpa/
 https://varcel.luoqi.icu/tags/hibernate/
 https://varcel.luoqi.icu/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7-IDEA/
 https://varcel.luoqi.icu/tags/aiCode/
+https://varcel.luoqi.icu/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/
 https://varcel.luoqi.icu/tags/springcloud/
 https://varcel.luoqi.icu/tags/java%E5%9F%BA%E7%A1%80/
+https://varcel.luoqi.icu/tags/%E9%9D%A2%E8%AF%95/
 https://varcel.luoqi.icu/tags/linux/
 https://varcel.luoqi.icu/tags/mcp/
 https://varcel.luoqi.icu/tags/mall/
@@ -184,6 +185,7 @@ https://varcel.luoqi.icu/tags/habit/
 https://varcel.luoqi.icu/tags/%E4%BA%AC%E4%B8%9C%E4%BA%91/
 https://varcel.luoqi.icu/tags/code/
 https://varcel.luoqi.icu/tags/excalidraw/
+https://varcel.luoqi.icu/tags/%E5%AD%97%E8%8A%82%E7%A0%81/
 https://varcel.luoqi.icu/tags/prompt/
 https://varcel.luoqi.icu/tags/yudao/
 https://varcel.luoqi.icu/tags/flomo/
