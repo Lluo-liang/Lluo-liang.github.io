@@ -1,0 +1,751 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/Xbox%20L.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Luo QI">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="摘要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线性数据结构-链表">
+<meta property="og:url" content="https://varcel.luoqi.icu/2025/07/25/sync/%E7%BA%BF%E6%80%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%93%BE%E8%A1%A8-3b3753/index.html">
+<meta property="og:site_name" content="轻松的洛亓">
+<meta property="og:description" content="摘要">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250726093827.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250726093846.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250726093942.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250726094703.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250726094846.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250726094933.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250726095017.png">
+<meta property="article:published_time" content="2025-07-25T12:36:56.000Z">
+<meta property="article:modified_time" content="2025-07-27T15:41:58.000Z">
+<meta property="article:author" content="Luo QI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250726093827.png">
+  
+  
+  
+  <title>线性数据结构-链表 - 轻松的洛亓</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"varcel.luoqi.icu","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  <meta name="baidu-site-verification" content="codeva-Oq0KOjHuD3" />
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>轻松的洛亓</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="线性数据结构-链表"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-07-25 12:36" pubdate>
+          2025年7月25日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          21 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">线性数据结构-链表</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>文章主题： 线性数据结构-链表</p>
+<p>主要会结合一下Java实现一下相关的代码，同时这里主要是演示。</p>
+<h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><p>目前常见的三种链表结构</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs haskell">┌────────────┐<br>│  链表家族  │<br>└────┬───────┘<br>     │<br>┌────┴────┬──────────────┬──────────────┐<br>│单向链表  │   双向链表    │   循环链表   │<br>└─┬───────┴─┬────────────┴─┬────────────┘<br>  │         │              │<br>  │         │              │<br>  ▼         ▼              ▼<br>┌────┐    ┌────┬────┐    ┌────┐<br>│<span class="hljs-class"><span class="hljs-keyword">data</span>│    │prev│<span class="hljs-keyword">data</span>│    │<span class="hljs-keyword">data</span>│</span><br>│next┼───►│next│    │    │next┼──┐<br>└────┘    └────┴────┘    └────┘  │<br>                                   │<br>                                   └────────┐<br>                                             │<br>                              ┌──────────────┘<br>                              ▼<br>┌────┐<br>│<span class="hljs-class"><span class="hljs-keyword">data</span>│</span><br>│next┼──┐<br>└────┘  │<br>        │<br>        └─► 头尾相接形成环<br></code></pre></td></tr></table></figure>
+
+<h3 id="单向链表"><a href="#单向链表" class="headerlink" title="单向链表"></a>单向链表</h3><p>单链表包含具有数据字段的节点以及指向节点行中的下一个节点的“下一个”字段。可以对单链表执行的操作包括插入、删除和遍历。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250726093827.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">class</span> <span class="hljs-title class_">SinglyNode</span>&lt;<span class="hljs-type">E</span>&gt; &#123;<br>    E <span class="hljs-keyword">data</span>;<br>    SinglyNode&lt;E&gt; next;<br>    SinglyNode(E <span class="hljs-keyword">data</span>) &#123; <span class="hljs-keyword">this</span>.<span class="hljs-keyword">data</span> = <span class="hljs-keyword">data</span>; &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="双向链表"><a href="#双向链表" class="headerlink" title="双向链表"></a>双向链表</h3><p>在“双向链表”中，除了下一个节点链接之外，每个节点还包含指向序列中“前一个”节点的第二个链接字段。这两个链接可以称为’forward（’s’）和’backwards’，或’next’和’prev’（’previous’）。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250726093846.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">class</span> <span class="hljs-title class_">DoublyNode</span>&lt;<span class="hljs-type">E</span>&gt; &#123;<br>    E <span class="hljs-keyword">data</span>;<br>    DoublyNode&lt;E&gt; prev, next;<br>    DoublyNode(E <span class="hljs-keyword">data</span>) &#123; <span class="hljs-keyword">this</span>.<span class="hljs-keyword">data</span> = <span class="hljs-keyword">data</span>; &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="循环链表"><a href="#循环链表" class="headerlink" title="循环链表"></a>循环链表</h3><p>在列表的最后一个节点中，链接字段通常包含一个空引用，一个特殊的值用于指示缺少进一步的节点。一个不太常见的约定是让它指向列表的第一个节点。在这种情况下，列表被称为“循环”或“循环链接”；否则，它被称为“开放”或“线性”。它是一个列表，其中最后一个指针指向第一个节点。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250726093942.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>把最后一个节点的 next 指回头节点即可</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">class</span> <span class="hljs-title class_">CircularNode</span>&lt;<span class="hljs-type">E</span>&gt; &#123;<br>    E <span class="hljs-keyword">data</span>;<br>    CircularNode&lt;E&gt; next;<br>    CircularNode(E <span class="hljs-keyword">data</span>) &#123; <span class="hljs-keyword">this</span>.<span class="hljs-keyword">data</span> = <span class="hljs-keyword">data</span>; &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="实现一个链表"><a href="#实现一个链表" class="headerlink" title="实现一个链表"></a>实现一个链表</h2><p>讲述一下 LinkedList 的大致实现</p>
+<h3 id="链表节点"><a href="#链表节点" class="headerlink" title="链表节点"></a>链表节点</h3><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">private static class <span class="hljs-keyword">Node</span><span class="hljs-title">&lt;E</span>&gt; &#123;<br>    E item;<br>    <span class="hljs-keyword">Node</span><span class="hljs-title">&lt;E</span>&gt; next;<br>    <span class="hljs-keyword">Node</span><span class="hljs-title">&lt;E</span>&gt; prev;<br>    <br>    public <span class="hljs-keyword">Node</span><span class="hljs-title">(Node</span><span class="hljs-tag">&lt;E&gt;</span> prev, E element, <span class="hljs-keyword">Node</span><span class="hljs-title">&lt;E</span>&gt; next) &#123;<br>        this.item = element;<br>        this.next = next;<br>        this.prev = prev;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>链表的数据结构核心根基就在于节点对象的使用，并在节点对象中关联当前节点的上一个和下一个节点。通过这样的方式构建出链表结构。</li>
+<li>但也因为在链表上添加每个元素的时候，都需要创建新的 Node 节点，所以这也是一部分耗时的操作</li>
+</ul>
+<h3 id="头插节点"><a href="#头插节点" class="headerlink" title="头插节点"></a>头插节点</h3><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs haxe">void linkFirst(E e) &#123;<br>    <span class="hljs-keyword">final</span> Node&lt;E&gt; f = first;<br>    <span class="hljs-keyword">final</span> Node&lt;E&gt; <span class="hljs-keyword">new</span><span class="hljs-type">Node</span> = <span class="hljs-keyword">new</span> <span class="hljs-type">Node</span>&lt;&gt;(<span class="hljs-literal">null</span>, e, f);<br>    first = <span class="hljs-keyword">new</span><span class="hljs-type">Node</span>;<br>    <span class="hljs-keyword">if</span> (f == <span class="hljs-literal">null</span>)<br>        last = <span class="hljs-keyword">new</span><span class="hljs-type">Node</span>;<br>    <span class="hljs-keyword">else</span><br>        f.prev = <span class="hljs-keyword">new</span><span class="hljs-type">Node</span>;<br>    size++;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250726094703.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>头插的操作流程，先把头节点记录下来。之后创建一个新的节点，新的节点构造函数的头节点入参为null，通过这样的方式构建出一个新的头节点。</li>
+<li>原来的头结点，设置 f.prev 连接到新的头节点，这样的就可以完成头插的操作了。另外如果原来就没有头节点，头节点设置为新的节点即可。最后记录当前链表中节点的数量，也就是你使用 LinkedList 获取 size 时候就是从这个值获取的。</li>
+</ul>
+<h3 id="尾插节点"><a href="#尾插节点" class="headerlink" title="尾插节点"></a>尾插节点</h3><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs haxe">void linkLast(E e) &#123;<br>    <span class="hljs-keyword">final</span> Node&lt;E&gt; l = last;<br>    <span class="hljs-keyword">final</span> Node&lt;E&gt; <span class="hljs-keyword">new</span><span class="hljs-type">Node</span> = <span class="hljs-keyword">new</span> <span class="hljs-type">Node</span>&lt;&gt;(l, e, <span class="hljs-literal">null</span>);<br>    last = <span class="hljs-keyword">new</span><span class="hljs-type">Node</span>;<br>    <span class="hljs-keyword">if</span> (l == <span class="hljs-literal">null</span>) &#123;<br>        first = <span class="hljs-keyword">new</span><span class="hljs-type">Node</span>;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        l.next = <span class="hljs-keyword">new</span><span class="hljs-type">Node</span>;<br>    &#125;<br>    size++;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250726094846.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>尾差节点与头插节点正好相反，通过记录当前的结尾节点，创建新的节点，并把当前的结尾节点，通过 l.next 关联到新创建的节点上。同时记录 size 节点数量值。</li>
+</ul>
+<h3 id="拆链操作"><a href="#拆链操作" class="headerlink" title="拆链操作"></a>拆链操作</h3><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs abnf">E unlink(Node&lt;E&gt; x) &#123;<br>    final E element <span class="hljs-operator">=</span> x.item<span class="hljs-comment">;</span><br>    final Node&lt;E&gt; next <span class="hljs-operator">=</span> x.next<span class="hljs-comment">;</span><br>    final Node&lt;E&gt; prev <span class="hljs-operator">=</span> x.prev<span class="hljs-comment">;</span><br>    if (prev <span class="hljs-operator">=</span><span class="hljs-operator">=</span> null) &#123;<br>        first <span class="hljs-operator">=</span> next<span class="hljs-comment">;</span><br>    &#125; else &#123;<br>        prev.next <span class="hljs-operator">=</span> next<span class="hljs-comment">;</span><br>        x.prev <span class="hljs-operator">=</span> null<span class="hljs-comment">;</span><br>    &#125;<br>    if (next <span class="hljs-operator">=</span><span class="hljs-operator">=</span> null) &#123;<br>        last <span class="hljs-operator">=</span> prev<span class="hljs-comment">;</span><br>    &#125; else &#123;<br>        next.prev <span class="hljs-operator">=</span> prev<span class="hljs-comment">;</span><br>        x.next <span class="hljs-operator">=</span> null<span class="hljs-comment">;</span><br>    &#125;<br>    x.item <span class="hljs-operator">=</span> null<span class="hljs-comment">;</span><br>    size--<span class="hljs-comment">;</span><br>    return element<span class="hljs-comment">;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250726094933.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>unlink 是一种拆链操作，只要你给定一个元素，它就可以把当前这个元素的上一个节点和一个节点进行相连，之后把自己拆除。</li>
+<li>这个方法常用于 remove 移除元素操作，因为整个操作过程不需要遍历，拆除元素后也不需要复制新的空间，所以时间复杂读为 O(1)</li>
+</ul>
+<h3 id="删除操作"><a href="#删除操作" class="headerlink" title="删除操作"></a>删除操作</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">public</span> <span class="hljs-built_in">boolean</span> <span class="hljs-title function_">remove</span>(<span class="hljs-params"><span class="hljs-built_in">Object</span> o</span>) &#123;<br>    <span class="hljs-keyword">if</span> (o == <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-title class_">Node</span>&lt;E&gt; x = first; x != <span class="hljs-literal">null</span>; x = x.<span class="hljs-property">next</span>) &#123;<br>            <span class="hljs-keyword">if</span> (x.<span class="hljs-property">item</span> == <span class="hljs-literal">null</span>) &#123;<br>                <span class="hljs-title function_">unlink</span>(x);<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>            &#125;<br>        &#125;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-title class_">Node</span>&lt;E&gt; x = first; x != <span class="hljs-literal">null</span>; x = x.<span class="hljs-property">next</span>) &#123;<br>            <span class="hljs-keyword">if</span> (o.<span class="hljs-title function_">equals</span>(x.<span class="hljs-property">item</span>)) &#123;<br>                <span class="hljs-title function_">unlink</span>(x);<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250726095017.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>删除元素的过程需要 for 循环判断比删除元素的值，找到对应的元素，进行删除。</li>
+<li>循环比对的过程是一个 O(n) 的操作，删除的过程是一个 O(1) 的操作。所以如果这个链表较大，删除的元素又都是贴近结尾，那么这个循环比对的过程也是比较耗时的。</li>
+</ul>
+<h3 id="LinkedList-的使用示例"><a href="#LinkedList-的使用示例" class="headerlink" title="LinkedList 的使用示例"></a>LinkedList 的使用示例</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-built_in">void</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"><span class="hljs-built_in">String</span>[] args</span>) &#123;<br>    <span class="hljs-title class_">List</span>&lt;<span class="hljs-title class_">String</span>&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>&lt;&gt;();<br>    <span class="hljs-comment">// 添加元素</span><br>    list.<span class="hljs-title function_">add</span>(<span class="hljs-string">&quot;a&quot;</span>);<br>    list.<span class="hljs-title function_">addFirst</span>(<span class="hljs-string">&quot;b&quot;</span>);<br>    list.<span class="hljs-title function_">addLast</span>(<span class="hljs-string">&quot;c&quot;</span>);<br>    <span class="hljs-comment">// 打印列表</span><br>    list.<span class="hljs-title function_">printLinkList</span>();<br>    <span class="hljs-comment">// 头插元素</span><br>    list.<span class="hljs-title function_">addFirst</span>(<span class="hljs-string">&quot;d&quot;</span>);<br>    <span class="hljs-comment">// 删除元素</span><br>    list.<span class="hljs-title function_">remove</span>(<span class="hljs-string">&quot;b&quot;</span>);<br>    <span class="hljs-comment">// 打印列表</span><br>    list.<span class="hljs-title function_">printLinkList</span>();<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="相关的一些问题"><a href="#相关的一些问题" class="headerlink" title="相关的一些问题"></a>相关的一些问题</h2><h3 id="描述一下“链表”这一数据结构"><a href="#描述一下“链表”这一数据结构" class="headerlink" title="描述一下“链表”这一数据结构"></a>描述一下“链表”这一数据结构</h3><p>链表是由若干“节点”顺序串联而成的线性表。每个节点包含两部分：</p>
+<ul>
+<li>数据域（data）</li>
+<li>指针域（next&#x2F;prev）  <ul>
+<li>节点在内存中非连续，靠指针把逻辑顺序串起来。</li>
+</ul>
+</li>
+</ul>
+<p>根据指针数量与结构不同，衍生出单向、双向、循环三种常见形态。</p>
+<h3 id="Java-标准库中的-LinkedList-用的是什么链表结构？"><a href="#Java-标准库中的-LinkedList-用的是什么链表结构？" class="headerlink" title="Java 标准库中的 LinkedList 用的是什么链表结构？"></a>Java 标准库中的 LinkedList 用的是什么链表结构？</h3><p>JDK 的 LinkedList 是 <strong>双向链表</strong>（Doubly Linked List）</p>
+<h3 id="什么时候更适合用链表"><a href="#什么时候更适合用链表" class="headerlink" title="什么时候更适合用链表"></a>什么时候更适合用链表</h3><ul>
+<li>频繁在 <strong>头部&#x2F;中间</strong> 插入&#x2F;删除，且基本不随机按索引访问</li>
+<li>数据量未知，需要动态扩容，又不想像 ArrayList 那样产生大量数组拷贝</li>
+<li>实现队列、双端队列、LRU 缓存（LinkedHashMap 内部就是双向链表+HashMap）<br>  反例：需要大量随机访问、CPU Cache 友好性要求高 → 用数组或 ArrayList 更合适。</li>
+</ul>
+<blockquote>
+<p>实际的一个使用场景</p>
+</blockquote>
+<p>高性能<strong>任务重试队列</strong>（常见于分布式消息队列、RPC 框架、爬虫调度器）</p>
+<p>业务诉求  </p>
+<ol>
+<li>任务在头部频繁出队（消费成功）。  </li>
+<li>消费失败时需要在<strong>任意位置</strong>（根据重试策略：指数退避、优先级、延迟时间）把任务重新插入队列。  </li>
+<li>任务数量无法预估，高峰期可能瞬间暴涨，需要 O(1) 的动态扩容&#x2F;缩容。  </li>
+<li>不要求按索引随机查看第 n 个任务。  </li>
+<li>需要额外支持：  <ul>
+<li>在 1 ms 内把某个任务从队列中删除（取消&#x2F;超时）。  </li>
+<li>支持重复任务去重（用 HashMap 记录任务 ID → 链表节点指针）。</li>
+</ul>
+</li>
+</ol>
+<p>技术选型  </p>
+<ul>
+<li><strong>双向链表</strong>（Java LinkedList 或自实现）  <ul>
+<li>头插&#x2F;头删 O(1) 满足“消费出队”。</li>
+<li>已知节点指针即可 O(1) 删除或插入到任意位置，满足“重试插队”。  </li>
+<li>无需像 ArrayList 那样触发数组拷贝，内存增长平滑。</li>
+</ul>
+</li>
+<li>**HashMap&lt;TaskId, Node&lt; Task &gt;&gt; 提供 O(1) 的节点定位，从而支持“删除指定任务”与“去重”。</li>
+</ul>
+<p>简单代码骨架</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">RetryQueue</span>&lt;T&gt; &#123;<br>    <span class="hljs-comment">// 双向链表节点</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Node</span>&lt;T&gt; &#123;<br>        T task;<br>        <span class="hljs-type">long</span> nextExec;      <span class="hljs-comment">// 下次执行时间</span><br>        Node&lt;T&gt; prev, next;<br>        Node(T task, <span class="hljs-type">long</span> nextExec) &#123;<br>            <span class="hljs-built_in">this</span>.task = task;<br>            <span class="hljs-built_in">this</span>.nextExec = nextExec;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Node&lt;T&gt; head = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>&lt;&gt;(<span class="hljs-literal">null</span>, <span class="hljs-number">0</span>);  <span class="hljs-comment">// 哨兵</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Map&lt;String, Node&lt;T&gt;&gt; index = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">RetryQueue</span><span class="hljs-params">()</span> &#123;<br>        head.next = head.prev = head; <span class="hljs-comment">// 初始化成双向循环哨兵</span><br>    &#125;<br><br>    <span class="hljs-comment">// 消费成功：O(1) 头删</span><br>    <span class="hljs-keyword">public</span> T <span class="hljs-title function_">poll</span><span class="hljs-params">()</span> &#123;<br>        Node&lt;T&gt; first = head.next;<br>        <span class="hljs-keyword">if</span> (first == head) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>; <span class="hljs-comment">// 空队列</span><br>        unlink(first);<br>        index.remove(getId(first.task));<br>        <span class="hljs-keyword">return</span> first.task;<br>    &#125;<br><br>    <span class="hljs-comment">// 消费失败：按延迟时间插入到合适位置</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">reschedule</span><span class="hljs-params">(T task, <span class="hljs-type">long</span> delayMillis)</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">id</span> <span class="hljs-operator">=</span> getId(task);<br>        Node&lt;T&gt; old = index.get(id);<br>        <span class="hljs-keyword">if</span> (old != <span class="hljs-literal">null</span>) unlink(old);   <span class="hljs-comment">// 已存在则先删除</span><br><br>        <span class="hljs-type">long</span> <span class="hljs-variable">nextExec</span> <span class="hljs-operator">=</span> System.currentTimeMillis() + delayMillis;<br>        Node&lt;T&gt; node = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>&lt;&gt;(task, nextExec);<br><br>        <span class="hljs-comment">// 找到插入位置：nextExec 升序</span><br>        Node&lt;T&gt; cur = head.next;<br>        <span class="hljs-keyword">while</span> (cur != head &amp;&amp; cur.nextExec &lt;= nextExec) cur = cur.next;<br><br>        <span class="hljs-comment">// 插入到 cur 前面</span><br>        node.prev = cur.prev;<br>        node.next = cur;<br>        cur.prev.next = node;<br>        cur.prev = node;<br><br>        index.put(id, node);<br>    &#125;<br><br>    <span class="hljs-comment">// 取消任务：O(1) 删除</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">cancel</span><span class="hljs-params">(String taskId)</span> &#123;<br>        Node&lt;T&gt; node = index.remove(taskId);<br>        <span class="hljs-keyword">if</span> (node == <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        unlink(node);<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">unlink</span><span class="hljs-params">(Node&lt;T&gt; n)</span> &#123;<br>        n.prev.next = n.next;<br>        n.next.prev = n.prev;<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> String <span class="hljs-title function_">getId</span><span class="hljs-params">(T task)</span> &#123;<br>        <span class="hljs-comment">// 假设任务实现了唯一 ID</span><br>        <span class="hljs-keyword">return</span> ((RetryTask) task).id();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>为什么不用 ArrayList？  </p>
+<ul>
+<li>按“延迟时间”插入时需要遍历 + 数组搬移，最坏 O(n)。  </li>
+<li>删除指定任务时同样需要 O(n) 查找索引，再 O(n) 搬移。</li>
+</ul>
+<p>为什么不用优先队列（堆）？  </p>
+<ul>
+<li>堆只能把元素放到末尾再 sift-up，无法 O(1) 删除指定节点（除非再维护一张 map → 斐波那契堆，实现复杂）。  </li>
+<li>双向链表 + HashMap 的组合既简单又满足全部时间复杂度要求。</li>
+</ul>
+<blockquote>
+<p>其他不错的使用场景</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>场景 &amp; 典型业务</th>
+<th>为什么“链表”最合适（一句话技术要点）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><strong>音乐播放器播放列表</strong>（网易云&#x2F;QQ 音乐）</td>
+<td>双向链表天然支持“上一首 &#x2F; 下一首”O(1) 跳转，同时可拖拽任意歌曲到任意位置插队。</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>浏览器前进 &#x2F; 后退栈</strong>（Chrome、Edge）</td>
+<td>双向链表 + 当前指针即可 O(1) 完成后退&#x2F;前进；若用两个栈实现，需要额外搬运。</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Redis &#x2F; Netty 的“对象池”</strong></td>
+<td>循环链表做空闲对象池，O(1) 借还对象，无锁弹出头节点即可复用。</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>滑动窗口日志 &#x2F; 时间轮定时器</strong>（Kafka、Netty HashedWheelTimer）</td>
+<td>把每个时间槽做成链表，定时任务按延迟挂到对应槽，O(1) 插入&#x2F;取消。</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Undo&#x2F;Redo 操作历史</strong>（VS Code、Photoshop）</td>
+<td>双向链表保存操作快照，支持无限级撤销&#x2F;重做；若数组实现，删除中间历史时会触发大量搬移。</td>
+</tr>
+</tbody></table>
+<h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><p>待补充</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>线性数据结构-链表</div>
+      <div>https://varcel.luoqi.icu/2025/07/25/sync/线性数据结构-链表-3b3753/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Luo QI</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年7月25日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
