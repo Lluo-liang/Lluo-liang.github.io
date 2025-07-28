@@ -1,0 +1,704 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/Xbox%20L.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Luo QI">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="摘要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线性数据结构-数据结构：哈希表(散列) Hash">
+<meta property="og:url" content="https://varcel.luoqi.icu/2025/07/28/sync/%E7%BA%BF%E6%80%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%93%88%E5%B8%8C%E8%A1%A8%E6%95%A3%E5%88%97-Hash-5f3319/index.html">
+<meta property="og:site_name" content="轻松的洛亓">
+<meta property="og:description" content="摘要">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250728194941.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250728195219.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250728195233.png">
+<meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250728195341.png">
+<meta property="article:published_time" content="2025-07-28T19:19:18.000Z">
+<meta property="article:modified_time" content="2025-07-28T13:53:48.000Z">
+<meta property="article:author" content="Luo QI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250728194941.png">
+  
+  
+  
+  <title>线性数据结构-数据结构：哈希表(散列) Hash - 轻松的洛亓</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"varcel.luoqi.icu","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  <meta name="baidu-site-verification" content="codeva-Oq0KOjHuD3" />
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>轻松的洛亓</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="线性数据结构-数据结构：哈希表(散列) Hash"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-07-28 19:19" pubdate>
+          2025年7月28日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          40 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">线性数据结构-数据结构：哈希表(散列) Hash</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>主题：数据结构：哈希表(散列) Hash</p>
+<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><blockquote>
+<p>哈希表的历史</p>
+</blockquote>
+<p>哈希散列的想法在不同的地方独立出现。1953 年 1 月，汉斯·彼得·卢恩 ( Hans Peter Luhn ) 编写了一份IBM内部备忘录，其中使用了散列和链接。</p>
+<p>开放寻址后来由 AD Linh 在 Luhn 的论文上提出。大约在同一时间，IBM Research的Gene Amdahl、Elaine M. McGraw、Nathaniel Rochester和Arthur Samuel为IBM 701汇编器实现了散列。 <br>线性探测的开放寻址归功于 Amdahl，尽管Ershov独立地有相同的想法。<br>“开放寻址”一词是由W. Wesley Peterson在他的文章中创造的，该文章讨论了大文件中的搜索问题。</p>
+<h2 id="二、哈希数据结构"><a href="#二、哈希数据结构" class="headerlink" title="二、哈希数据结构"></a>二、哈希数据结构</h2><p>哈希表的存在是为了解决能通过O(1)时间复杂度直接索引到指定元素。</p>
+<p>这是什么意思呢？通过我们使用数组存放元素，都是按照顺序存放的，当需要获取某个元素的时候，则需要对数组进行遍历，获取到指定的值。如图所示；</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250728194941.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>而这样通过循环遍历比对获取指定元素的操作，时间复杂度是O(n)，也就是说如果你的业务逻辑实现中存在这样的代码是非常拉胯的。那怎么办呢？这就引入了哈希散列表的设计。</p>
+<hr>
+<p>在计算机科学中，一个哈希表（hash table、hash map）是一种实现关联数组的抽象数据结构，该结构将键通过哈希计算映射到值。</p>
+<p>也就是说我们通过对一个 Key 值计算它的哈希并与长度为2的n次幂的数组减一做与运算，计算出槽位对应的索引，将数据存放到索引下。那么这样就解决了当获取指定数据时，只需要根据存放时计算索引ID的方式再计算一次，就可以把槽位上对应的数据获取处理，以此达到时间复杂度为O(1)的情况。如图所示；</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250728195219.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>哈希散列虽然解决了获取元素的时间复杂度问题，但大多数时候这只是理想情况。因为随着元素的增多，很可能发生哈希冲突，或者哈希值波动不大导致索引计算相同，也就是一个索引位置出现多个元素情况。如图所示；</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250728195233.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>当李二狗、拎瓢冲都有槽位的下标索引03的 叮裆猫 发生冲突时，情况就变得糟糕了，因为这样就不能满足O(1)时间复杂度获取元素的诉求了。</p>
+<p>那么此时就出现了一系列解决方案，包括；<strong>HashMap 中的拉链寻址 + 红黑树、扰动函数、负载因子、ThreadLocal 的开放寻址、合并散列、杜鹃散列、跳房子哈希、罗宾汉哈希等各类数据结构设计</strong>。</p>
+<p>让元素在发生哈希冲突时，也可以存放到新的槽位，并尽可能保证索引的时间复杂度小于O(n)</p>
+<h2 id="三、实现哈希散列"><a href="#三、实现哈希散列" class="headerlink" title="三、实现哈希散列"></a>三、实现哈希散列</h2><p>哈希散列是一个非常常见的数据结构，无论是我们使用的 HashMap、ThreaLocal 还是你在刷题中位了提升索引效率，都会用到哈希散列。</p>
+<p>只要哈希桶的长度由负载因子控制的合理，每次查找元素的平均时间复杂度与桶中存储的元素数量无关。另外许多哈希表设计还允许对键值对的任意插入和删除，每次操作的摊销固定平均成本。</p>
+<p>好，那么介绍了这么多，小傅哥带着大家做几个关于哈希散列的数据结构，通过实践来了解会更加容易搞懂。</p>
+<h3 id="1-哈希碰撞"><a href="#1-哈希碰撞" class="headerlink" title="1. 哈希碰撞"></a>1. 哈希碰撞</h3><p>说明：通过模拟简单 HashMap 实现，去掉拉链寻址等设计，验证元素哈希索引位置碰撞。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HashMap01</span>&lt;K, V&gt; <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Map</span>&lt;K, V&gt; &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Object[] tab = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>[<span class="hljs-number">8</span>];<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">put</span><span class="hljs-params">(K key, V value)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">idx</span> <span class="hljs-operator">=</span> key.hashCode() &amp; (tab.length - <span class="hljs-number">1</span>);<br>        tab[idx] = value;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> V <span class="hljs-title function_">get</span><span class="hljs-params">(K key)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">idx</span> <span class="hljs-operator">=</span> key.hashCode() &amp; (tab.length - <span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">return</span> (V) tab[idx];<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250728195341.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>HashMap01 的实现只是通过哈希计算出的下标，散列存放到固定的数组内。那么这样当发生元素下标碰撞时，原有的元素就会被新的元素替换掉。</li>
+</ul>
+<p>测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test_hashMap01</span><span class="hljs-params">()</span> &#123;<br>    Map&lt;String, String&gt; map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap01</span>&lt;&gt;();<br>    map.put(<span class="hljs-string">&quot;01&quot;</span>, <span class="hljs-string">&quot;花花&quot;</span>);<br>    map.put(<span class="hljs-string">&quot;02&quot;</span>, <span class="hljs-string">&quot;豆豆&quot;</span>);<br>    logger.info(<span class="hljs-string">&quot;碰撞前 key：&#123;&#125; value：&#123;&#125;&quot;</span>, <span class="hljs-string">&quot;01&quot;</span>, map.get(<span class="hljs-string">&quot;01&quot;</span>));<br>    <br>    <span class="hljs-comment">// 下标碰撞</span><br>    map.put(<span class="hljs-string">&quot;09&quot;</span>, <span class="hljs-string">&quot;蛋蛋&quot;</span>);<br>    map.put(<span class="hljs-string">&quot;12&quot;</span>, <span class="hljs-string">&quot;苗苗&quot;</span>);<br>    logger.info(<span class="hljs-string">&quot;碰撞前 key：&#123;&#125; value：&#123;&#125;&quot;</span>, <span class="hljs-string">&quot;01&quot;</span>, map.get(<span class="hljs-string">&quot;01&quot;</span>));<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-number">06</span>:<span class="hljs-number">58</span>:<span class="hljs-number">41.691</span> <span class="hljs-selector-attr">[main]</span> INFO cn<span class="hljs-selector-class">.bugstack</span><span class="hljs-selector-class">.algorithms</span><span class="hljs-selector-class">.test</span><span class="hljs-selector-class">.AlgorithmsTest</span> - 碰撞前 key：<span class="hljs-number">01</span> value：花花<br><span class="hljs-number">06</span>:<span class="hljs-number">58</span>:<span class="hljs-number">41.696</span> <span class="hljs-selector-attr">[main]</span> INFO cn<span class="hljs-selector-class">.bugstack</span><span class="hljs-selector-class">.algorithms</span><span class="hljs-selector-class">.test</span><span class="hljs-selector-class">.AlgorithmsTest</span> - 碰撞前 key：<span class="hljs-number">01</span> value：苗苗<br></code></pre></td></tr></table></figure>
+
+<p>通过测试结果可以看到，碰撞前 map.get(“01”) 的值是花花，两次下标索引碰撞后存放的值则是苗苗。这也就是使用哈希散列必须解决的一个问题，无论是在已知元素数量的情况下，通过扩容数组长度解决，还是把碰撞的元素通过链表存放，都是可以的。</p>
+<h3 id="2-拉链寻址"><a href="#2-拉链寻址" class="headerlink" title="2. 拉链寻址"></a>2. 拉链寻址</h3><p>说明：既然我们没法控制元素不碰撞，但我们可以对碰撞后的元素进行管理。比如像 HashMap 中拉链法一样，把碰撞的元素存放到链表上。这里我们就来简化实现一下。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HashMap02BySeparateChaining</span>&lt;K, V&gt; <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Map</span>&lt;K, V&gt; &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> LinkedList&lt;Node&lt;K, V&gt;&gt;[] tab = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>[<span class="hljs-number">8</span>];<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">put</span><span class="hljs-params">(K key, V value)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">idx</span> <span class="hljs-operator">=</span> key.hashCode() &amp; (tab.length - <span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">if</span> (tab[idx] == <span class="hljs-literal">null</span>) &#123;<br>            tab[idx] = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>&lt;&gt;();<br>            tab[idx].add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>&lt;&gt;(key, value));<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            tab[idx].add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>&lt;&gt;(key, value));<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> V <span class="hljs-title function_">get</span><span class="hljs-params">(K key)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">idx</span> <span class="hljs-operator">=</span> key.hashCode() &amp; (tab.length - <span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">for</span> (Node&lt;K, V&gt; kvNode : tab[idx]) &#123;<br>            <span class="hljs-keyword">if</span> (key.equals(kvNode.getKey())) &#123;<br>                <span class="hljs-keyword">return</span> kvNode.value;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Node</span>&lt;K, V&gt; &#123;<br>        <span class="hljs-keyword">final</span> K key;<br>        V value;<br><br>        <span class="hljs-keyword">public</span> <span class="hljs-title function_">Node</span><span class="hljs-params">(K key, V value)</span> &#123;<br>            <span class="hljs-built_in">this</span>.key = key;<br>            <span class="hljs-built_in">this</span>.value = value;<br>        &#125;<br><br>        <span class="hljs-keyword">public</span> K <span class="hljs-title function_">getKey</span><span class="hljs-params">()</span> &#123;<br>            <span class="hljs-keyword">return</span> key;<br>        &#125;<br><br>        <span class="hljs-keyword">public</span> V <span class="hljs-title function_">getValue</span><span class="hljs-params">()</span> &#123;<br>            <span class="hljs-keyword">return</span> value;<br>        &#125;<br><br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>因为元素在存放到哈希桶上时，可能发生下标索引膨胀，所以这里我们把每一个元素都设定成一个 Node 节点，这些节点通过 LinkedList 链表关联，当然你也可以通过 Node 节点构建出链表 next 元素即可。</p>
+<p>那么这时候在发生元素碰撞，相同位置的元素就都被存放到链表上了，获取的时候需要对存放多个元素的链表进行遍历获取。</p>
+<p>测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test_hashMap02</span><span class="hljs-params">()</span> &#123;<br>    Map&lt;String, String&gt; map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap02BySeparateChaining</span>&lt;&gt;();<br>    map.put(<span class="hljs-string">&quot;01&quot;</span>, <span class="hljs-string">&quot;花花&quot;</span>);<br>    map.put(<span class="hljs-string">&quot;05&quot;</span>, <span class="hljs-string">&quot;豆豆&quot;</span>);<br>    logger.info(<span class="hljs-string">&quot;碰撞前 key：&#123;&#125; value：&#123;&#125;&quot;</span>, <span class="hljs-string">&quot;01&quot;</span>, map.get(<span class="hljs-string">&quot;01&quot;</span>));<br>    <br>    <span class="hljs-comment">// 下标碰撞</span><br>    map.put(<span class="hljs-string">&quot;09&quot;</span>, <span class="hljs-string">&quot;蛋蛋&quot;</span>);<br>    map.put(<span class="hljs-string">&quot;12&quot;</span>, <span class="hljs-string">&quot;苗苗&quot;</span>);<br>    logger.info(<span class="hljs-string">&quot;碰撞前 key：&#123;&#125; value：&#123;&#125;&quot;</span>, <span class="hljs-string">&quot;01&quot;</span>, map.get(<span class="hljs-string">&quot;01&quot;</span>));<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-number">07</span>:<span class="hljs-number">21</span>:<span class="hljs-number">16.654</span> <span class="hljs-selector-attr">[main]</span> INFO cn<span class="hljs-selector-class">.bugstack</span><span class="hljs-selector-class">.algorithms</span><span class="hljs-selector-class">.test</span><span class="hljs-selector-class">.AlgorithmsTest</span> - 碰撞前 key：<span class="hljs-number">01</span> value：花花<br><span class="hljs-number">07</span>:<span class="hljs-number">22</span>:<span class="hljs-number">44.651</span> <span class="hljs-selector-attr">[main]</span> INFO cn<span class="hljs-selector-class">.bugstack</span><span class="hljs-selector-class">.algorithms</span><span class="hljs-selector-class">.test</span><span class="hljs-selector-class">.AlgorithmsTest</span> - 碰撞前 key：<span class="hljs-number">01</span> value：花花<br></code></pre></td></tr></table></figure>
+
+<p>此时第一次和第二次获取01位置的元素就都是花花了，元素没有被替代。因为此时的元素是被存放到链表上了。</p>
+<h3 id="3-开放寻址"><a href="#3-开放寻址" class="headerlink" title="3. 开放寻址"></a>3. 开放寻址</h3><p>说明：除了对哈希桶上碰撞的索引元素进行拉链存放，还有不引入新的额外的数据结构，只是在哈希桶上存放碰撞元素的方式。它叫开放寻址，也就是 ThreaLocal 中运用斐波那契散列+开放寻址的处理方式。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HashMap03ByOpenAddressing</span>&lt;K, V&gt; <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Map</span>&lt;K, V&gt; &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Node&lt;K, V&gt;[] tab = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>[<span class="hljs-number">8</span>];<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">put</span><span class="hljs-params">(K key, V value)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">idx</span> <span class="hljs-operator">=</span> key.hashCode() &amp; (tab.length - <span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">if</span> (tab[idx] == <span class="hljs-literal">null</span>) &#123;<br>            tab[idx] = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>&lt;&gt;(key, value);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> idx; i &lt; tab.length; i++) &#123;<br>                <span class="hljs-keyword">if</span> (tab[i] == <span class="hljs-literal">null</span>) &#123;<br>                    tab[i] = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>&lt;&gt;(key, value);<br>                    <span class="hljs-keyword">break</span>;<br>                &#125;<br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> V <span class="hljs-title function_">get</span><span class="hljs-params">(K key)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">idx</span> <span class="hljs-operator">=</span> key.hashCode() &amp; (tab.length - <span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> idx; i &lt; tab.length; i ++)&#123;<br>            <span class="hljs-keyword">if</span> (tab[idx] != <span class="hljs-literal">null</span> &amp;&amp; tab[idx].key == key) &#123;<br>                <span class="hljs-keyword">return</span> tab[idx].value;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Node</span>&lt;K, V&gt; &#123;<br>        <span class="hljs-keyword">final</span> K key;<br>        V value;<br><br>        <span class="hljs-keyword">public</span> <span class="hljs-title function_">Node</span><span class="hljs-params">(K key, V value)</span> &#123;<br>            <span class="hljs-built_in">this</span>.key = key;<br>            <span class="hljs-built_in">this</span>.value = value;<br>        &#125;<br><br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>开放寻址的设计会对碰撞的元素，寻找哈希桶上新的位置，这个位置从当前碰撞位置开始向后寻找，直到找到空的位置存放。</p>
+<p>在 ThreadLocal 的实现中会使用斐波那契散列、索引计算累加、启发式清理、探测式清理等操作，以保证尽可能少的碰撞。</p>
+<p>测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test_hashMap03</span><span class="hljs-params">()</span> &#123;<br>    Map&lt;String, String&gt; map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap03ByOpenAddressing</span>&lt;&gt;();<br>    map.put(<span class="hljs-string">&quot;01&quot;</span>, <span class="hljs-string">&quot;花花&quot;</span>);<br>    map.put(<span class="hljs-string">&quot;05&quot;</span>, <span class="hljs-string">&quot;豆豆&quot;</span>);<br>    logger.info(<span class="hljs-string">&quot;碰撞前 key：&#123;&#125; value：&#123;&#125;&quot;</span>, <span class="hljs-string">&quot;01&quot;</span>, map.get(<span class="hljs-string">&quot;01&quot;</span>));<br>    <span class="hljs-comment">// 下标碰撞</span><br>    map.put(<span class="hljs-string">&quot;09&quot;</span>, <span class="hljs-string">&quot;蛋蛋&quot;</span>);<br>    map.put(<span class="hljs-string">&quot;12&quot;</span>, <span class="hljs-string">&quot;苗苗&quot;</span>);<br>    logger.info(<span class="hljs-string">&quot;碰撞前 key：&#123;&#125; value：&#123;&#125;&quot;</span>, <span class="hljs-string">&quot;01&quot;</span>, map.get(<span class="hljs-string">&quot;01&quot;</span>));<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-number">07</span>:<span class="hljs-number">20</span>:<span class="hljs-number">22.382</span> <span class="hljs-selector-attr">[main]</span> INFO cn<span class="hljs-selector-class">.bugstack</span><span class="hljs-selector-class">.algorithms</span><span class="hljs-selector-class">.test</span><span class="hljs-selector-class">.AlgorithmsTest</span> - 碰撞前 key：<span class="hljs-number">01</span> value：花花<br><span class="hljs-number">07</span>:<span class="hljs-number">20</span>:<span class="hljs-number">22.387</span> <span class="hljs-selector-attr">[main]</span> INFO cn<span class="hljs-selector-class">.bugstack</span><span class="hljs-selector-class">.algorithms</span><span class="hljs-selector-class">.test</span><span class="hljs-selector-class">.AlgorithmsTest</span> - 碰撞前 key：<span class="hljs-number">01</span> value：花花<br><span class="hljs-number">07</span>:<span class="hljs-number">20</span>:<span class="hljs-number">22.387</span> <span class="hljs-selector-attr">[main]</span> INFO cn<span class="hljs-selector-class">.bugstack</span><span class="hljs-selector-class">.algorithms</span><span class="hljs-selector-class">.test</span><span class="hljs-selector-class">.AlgorithmsTest</span> - 数据结构：HashMap&#123;tab=<span class="hljs-selector-attr">[null,&#123;<span class="hljs-string">&quot;key&quot;</span>:<span class="hljs-string">&quot;01&quot;</span>,<span class="hljs-string">&quot;value&quot;</span>:<span class="hljs-string">&quot;花花&quot;</span>&#125;,&#123;<span class="hljs-string">&quot;key&quot;</span>:<span class="hljs-string">&quot;09&quot;</span>,<span class="hljs-string">&quot;value&quot;</span>:<span class="hljs-string">&quot;蛋蛋&quot;</span>&#125;,&#123;<span class="hljs-string">&quot;key&quot;</span>:<span class="hljs-string">&quot;12&quot;</span>,<span class="hljs-string">&quot;value&quot;</span>:<span class="hljs-string">&quot;苗苗&quot;</span>&#125;,null,&#123;<span class="hljs-string">&quot;key&quot;</span>:<span class="hljs-string">&quot;05&quot;</span>,<span class="hljs-string">&quot;value&quot;</span>:<span class="hljs-string">&quot;豆豆&quot;</span>&#125;,null,null]</span>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>通过测试结果可以看到，开放寻址对碰撞元素的寻址存放，也是可用解决哈希索引冲突问题的。</p>
+<h3 id="4-合并散列"><a href="#4-合并散列" class="headerlink" title="4. 合并散列"></a>4. 合并散列</h3><p>说明：合并散列是开放寻址和单独链接的混合，碰撞的节点在哈希表中链接。此算法适合固定分配内存的哈希桶，通过存放元素时识别哈希桶上的最大空槽位来解决合并哈希中的冲突。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HashMap04ByCoalescedHashing</span>&lt;K, V&gt; <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Map</span>&lt;K, V&gt; &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Node&lt;K, V&gt;[] tab = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>[<span class="hljs-number">8</span>];<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">put</span><span class="hljs-params">(K key, V value)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">idx</span> <span class="hljs-operator">=</span> key.hashCode() &amp; (tab.length - <span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">if</span> (tab[idx] == <span class="hljs-literal">null</span>) &#123;<br>            tab[idx] = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>&lt;&gt;(key, value);<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br><br>        <span class="hljs-type">int</span> <span class="hljs-variable">cursor</span> <span class="hljs-operator">=</span> tab.length - <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">while</span> (tab[cursor] != <span class="hljs-literal">null</span> &amp;&amp; tab[cursor].key != key) &#123;<br>            --cursor;<br>        &#125;<br>        tab[cursor] = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>&lt;&gt;(key, value);<br><br>        <span class="hljs-comment">// 将碰撞节点指向这个新节点</span><br>        <span class="hljs-keyword">while</span> (tab[idx].idxOfNext != <span class="hljs-number">0</span>)&#123;<br>            idx = tab[idx].idxOfNext;<br>        &#125;<br><br>        tab[idx].idxOfNext = cursor;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> V <span class="hljs-title function_">get</span><span class="hljs-params">(K key)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">idx</span> <span class="hljs-operator">=</span> key.hashCode() &amp; (tab.length - <span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">while</span> (tab[idx].key != key) &#123;<br>            idx = tab[idx].idxOfNext;<br>        &#125;<br>        <span class="hljs-keyword">return</span> tab[idx].value;<br>    &#125;<br><br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Node</span>&lt;K, V&gt; &#123;<br>        <span class="hljs-keyword">final</span> K key;<br>        V value;<br>        <span class="hljs-type">int</span> idxOfNext;<br><br>        <span class="hljs-keyword">public</span> <span class="hljs-title function_">Node</span><span class="hljs-params">(K key, V value)</span> &#123;<br>            <span class="hljs-built_in">this</span>.key = key;<br>            <span class="hljs-built_in">this</span>.value = value;<br>        &#125;<br><br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>合并散列的最大目的在于将碰撞元素链接起来，避免因为需要寻找碰撞元素所发生的循环遍历。也就是A、B元素存放时发生碰撞，那么在找到A元素的时候可以很快的索引到B元素所在的位置。</p>
+<p>测试</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-number">07</span>:<span class="hljs-number">18</span>:<span class="hljs-number">43.613</span> <span class="hljs-selector-attr">[main]</span> INFO cn<span class="hljs-selector-class">.bugstack</span><span class="hljs-selector-class">.algorithms</span><span class="hljs-selector-class">.test</span><span class="hljs-selector-class">.AlgorithmsTest</span> - 碰撞前 key：<span class="hljs-number">01</span> value：花花<br><span class="hljs-number">07</span>:<span class="hljs-number">18</span>:<span class="hljs-number">43.618</span> <span class="hljs-selector-attr">[main]</span> INFO cn<span class="hljs-selector-class">.bugstack</span><span class="hljs-selector-class">.algorithms</span><span class="hljs-selector-class">.test</span><span class="hljs-selector-class">.AlgorithmsTest</span> - 碰撞前 key：<span class="hljs-number">01</span> value：苗苗<br><span class="hljs-number">07</span>:<span class="hljs-number">18</span>:<span class="hljs-number">43.619</span> <span class="hljs-selector-attr">[main]</span> INFO cn<span class="hljs-selector-class">.bugstack</span><span class="hljs-selector-class">.algorithms</span><span class="hljs-selector-class">.test</span><span class="hljs-selector-class">.AlgorithmsTest</span> - 数据结构：HashMap&#123;tab=<span class="hljs-selector-attr">[null,&#123;<span class="hljs-string">&quot;idxOfNext&quot;</span>:7,<span class="hljs-string">&quot;key&quot;</span>:<span class="hljs-string">&quot;01&quot;</span>,<span class="hljs-string">&quot;value&quot;</span>:<span class="hljs-string">&quot;花花&quot;</span>&#125;,null,null,null,&#123;<span class="hljs-string">&quot;idxOfNext&quot;</span>:0,<span class="hljs-string">&quot;key&quot;</span>:<span class="hljs-string">&quot;05&quot;</span>,<span class="hljs-string">&quot;value&quot;</span>:<span class="hljs-string">&quot;豆豆&quot;</span>&#125;,&#123;<span class="hljs-string">&quot;idxOfNext&quot;</span>:0,<span class="hljs-string">&quot;key&quot;</span>:<span class="hljs-string">&quot;12&quot;</span>,<span class="hljs-string">&quot;value&quot;</span>:<span class="hljs-string">&quot;苗苗&quot;</span>&#125;,&#123;<span class="hljs-string">&quot;idxOfNext&quot;</span>:6,<span class="hljs-string">&quot;key&quot;</span>:<span class="hljs-string">&quot;09&quot;</span>,<span class="hljs-string">&quot;value&quot;</span>:<span class="hljs-string">&quot;蛋蛋&quot;</span>&#125;]</span>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>相对于直接使用开放寻址，这样的挂在链路指向的方式，可以提升索引的性能。因为在实际的数据存储上，元素的下一个位置不一定空元素，可能已经被其他元素占据，这样就增加了索引的次数。所以使用直接指向地址的方式，会更好的提高索引性能。</p>
+<h3 id="5-杜鹃散列"><a href="#5-杜鹃散列" class="headerlink" title="5. 杜鹃散列"></a>5. 杜鹃散列</h3><p>说明：这个名字起的比较有意思，也代表着它的数据结构。杜鹃鸟在孵化🐣的时候，雏鸟会将其他蛋或幼崽推出巢穴；类似的这个数据结构会使用2组key哈希表，将冲突元素推到另外一个key哈希表中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> V <span class="hljs-title function_">put</span><span class="hljs-params">(K key, V value, <span class="hljs-type">boolean</span> isRehash)</span> &#123;<br>    <span class="hljs-type">Object</span> <span class="hljs-variable">k</span> <span class="hljs-operator">=</span> maskNull(key);<br>    <span class="hljs-keyword">if</span> (containsKey(k)) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br>    <span class="hljs-keyword">if</span> (insertEntry(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Entry</span>&lt;K, V&gt;((K) k, value))) &#123;<br>        <span class="hljs-keyword">if</span> (!isRehash) &#123;<br>            size++;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br>    rehash(<span class="hljs-number">2</span> * table.length);<br>    <span class="hljs-keyword">return</span> put((K) k, value);<br>&#125;<br><br><span class="hljs-keyword">private</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">insertEntry</span><span class="hljs-params">(Entry&lt;K, V&gt; e)</span> &#123;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">count</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>    Entry&lt;K, V&gt; current = e;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">index</span> <span class="hljs-operator">=</span> hash(hash1, current.key);<br>    <span class="hljs-keyword">while</span> (current != e || count &lt; table.length) &#123;<br>        Entry&lt;K, V&gt; temp = table[index];<br>        <span class="hljs-keyword">if</span> (temp == <span class="hljs-literal">null</span>) &#123;<br>            table[index] = current;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        &#125;<br>        table[index] = current;<br>        current = temp;<br>        <span class="hljs-keyword">if</span> (index == hash(hash1, current.key)) &#123;<br>            index = hash(hash2, current.key);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            index = hash(hash1, current.key);<br>        &#125;<br>        ++count;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>当多个键映射到同一个单元格时会发生这种情况。杜鹃散列的基本思想是通过使用两个散列函数而不是仅一个散列函数来解决冲突。</p>
+<p>这为每个键在哈希表中提供了两个可能的位置。在该算法的一种常用变体中，哈希表被分成两个大小相等的较小的表，每个哈希函数都为这两个表之一提供索引。两个散列函数也可以为单个表提供索引。</p>
+<p>在实践中，杜鹃哈希比线性探测慢约 20-30%，线性探测是常用方法中最快的。然而，由于它对搜索时间的最坏情况保证，当需要实时响应率时，杜鹃散列仍然很有价值。杜鹃散列的一个优点是它的无链接列表属性，非常适合 GPU 处理。</p>
+<p>测试</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-number">07</span>:<span class="hljs-number">52</span>:<span class="hljs-number">04.010</span> <span class="hljs-selector-attr">[main]</span> INFO cn<span class="hljs-selector-class">.bugstack</span><span class="hljs-selector-class">.algorithms</span><span class="hljs-selector-class">.test</span><span class="hljs-selector-class">.AlgorithmsTest</span> - 碰撞前 key：<span class="hljs-number">01</span> value：花花<br><span class="hljs-number">07</span>:<span class="hljs-number">52</span>:<span class="hljs-number">04.016</span> <span class="hljs-selector-attr">[main]</span> INFO cn<span class="hljs-selector-class">.bugstack</span><span class="hljs-selector-class">.algorithms</span><span class="hljs-selector-class">.test</span><span class="hljs-selector-class">.AlgorithmsTest</span> - 碰撞前 key：<span class="hljs-number">01</span> value：苗苗<br><span class="hljs-number">07</span>:<span class="hljs-number">52</span>:<span class="hljs-number">04.016</span> <span class="hljs-selector-attr">[main]</span> INFO cn<span class="hljs-selector-class">.bugstack</span><span class="hljs-selector-class">.algorithms</span><span class="hljs-selector-class">.test</span><span class="hljs-selector-class">.AlgorithmsTest</span> - 数据结构：&#123;<span class="hljs-number">01</span>=花花, <span class="hljs-number">12</span>=苗苗, <span class="hljs-number">05</span>=豆豆, <span class="hljs-number">09</span>=蛋蛋&#125;<br></code></pre></td></tr></table></figure>
+
+<p>从测试结果可以看到，杜鹃散列可以通过两个散列函数解决索引冲突问题。不过这个探测的过程比较耗时。</p>
+<h3 id="6-跳房子散列"><a href="#6-跳房子散列" class="headerlink" title="6. 跳房子散列"></a>6. 跳房子散列</h3><p>说明：跳房子散列是一种基于开放寻址的算法，它结合了杜鹃散列、线性探测和链接的元素，通过桶邻域的概念——任何给定占用桶周围的后续桶，也称为“虚拟”桶。 该算法旨在在哈希表的负载因子增长超过 90% 时提供更好的性能；它还在并发设置中提供了高吞吐量，因此非常适合实现可调整大小的并发哈希表。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">insert</span><span class="hljs-params">(AnyType x)</span> &#123;<br>    <span class="hljs-keyword">if</span> (!isEmpty()) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">currentPos</span> <span class="hljs-operator">=</span> findPos(x);<br>    <span class="hljs-keyword">if</span> (currentPos == -<span class="hljs-number">1</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>    <span class="hljs-keyword">if</span> (array[currentPos] != <span class="hljs-literal">null</span>) &#123;<br>        x = array[currentPos].element;<br>        array[currentPos].isActive = <span class="hljs-literal">true</span>;<br>    &#125;<br>    String hope;<br>    <span class="hljs-keyword">if</span> (array[currentPos] != <span class="hljs-literal">null</span>) &#123;<br>        hope = array[currentPos].hope;<br>        x = array[currentPos].element;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        hope = <span class="hljs-string">&quot;10000000&quot;</span>;<br>    &#125;<br>    array[currentPos] = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashEntry</span>&lt;&gt;(x, hope, <span class="hljs-literal">true</span>);<br>    theSize++;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>该算法使用一个包含n 个桶的数组。对于每个桶，它的邻域是H个连续桶的小集合（即索引接近原始散列桶的那些）。邻域的期望属性是在邻域的桶中找到一个项目的成本接近于在桶本身中找到它的成本（例如，通过使邻域中的桶落在同一缓存行中）。在最坏的情况下，邻域的大小必须足以容纳对数个项目（即它必须容纳 log( n ) 个项目），但平均只能是一个常数。如果某个桶的邻域被填满，则调整表的大小。</p>
+<p>测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test_hashMap06</span><span class="hljs-params">()</span> &#123;<br>    HashMap06ByHopscotchHashing&lt;Integer&gt; map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap06ByHopscotchHashing</span>&lt;&gt;();<br>    map.insert(<span class="hljs-number">1</span>);<br>    map.insert(<span class="hljs-number">5</span>);<br>    map.insert(<span class="hljs-number">9</span>);<br>    map.insert(<span class="hljs-number">12</span>);<br>    logger.info(<span class="hljs-string">&quot;数据结构：&#123;&#125;&quot;</span>, map);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-number">17</span>:<span class="hljs-number">10</span>:<span class="hljs-number">10.363</span> [main] INFO cn.bugstack.algorithms.test.AlgorithmsTest - 数据结构：HashMap&#123;<span class="hljs-literal">tab</span>=[<span class="hljs-literal">null</span>,&#123;<span class="hljs-string">&quot;element&quot;</span>:<span class="hljs-number">1</span>,<span class="hljs-string">&quot;hope&quot;</span>:<span class="hljs-string">&quot;11000000&quot;</span>,<span class="hljs-string">&quot;isActive&quot;</span>:<span class="hljs-literal">true</span>&#125;,&#123;<span class="hljs-string">&quot;element&quot;</span>:<span class="hljs-number">9</span>,<span class="hljs-string">&quot;hope&quot;</span>:<span class="hljs-string">&quot;00000000&quot;</span>,<span class="hljs-string">&quot;isActive&quot;</span>:<span class="hljs-literal">true</span>&#125;,<span class="hljs-literal">null</span>,&#123;<span class="hljs-string">&quot;element&quot;</span>:<span class="hljs-number">12</span>,<span class="hljs-string">&quot;hope&quot;</span>:<span class="hljs-string">&quot;10000000&quot;</span>,<span class="hljs-string">&quot;isActive&quot;</span>:<span class="hljs-literal">true</span>&#125;,&#123;<span class="hljs-string">&quot;element&quot;</span>:<span class="hljs-number">5</span>,<span class="hljs-string">&quot;hope&quot;</span>:<span class="hljs-string">&quot;10000000&quot;</span>,<span class="hljs-string">&quot;isActive&quot;</span>:<span class="hljs-literal">true</span>&#125;,<span class="hljs-literal">null</span>,<span class="hljs-literal">null</span>]&#125;<br></code></pre></td></tr></table></figure>
+
+<p>通过测试可以看到，跳房子散列会在其原始散列数组条目中找到，或者在接下来的H-1个相邻条目之一找到对应的冲突元素。</p>
+<h3 id="7-罗宾汉哈希"><a href="#7-罗宾汉哈希" class="headerlink" title="7. 罗宾汉哈希"></a>7. 罗宾汉哈希</h3><p>说明：罗宾汉哈希是一种基于开放寻址的冲突解决算法；冲突是通过偏向从其“原始位置”（即项目被散列到的存储桶）最远或最长探测序列长度（PSL）的元素的位移来解决的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">put</span><span class="hljs-params">(K key, V value)</span> &#123;<br>    <span class="hljs-type">Entry</span> <span class="hljs-variable">entry</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Entry</span>(key, value);<br>    <span class="hljs-type">int</span> <span class="hljs-variable">idx</span> <span class="hljs-operator">=</span> hash(key);<br>    <span class="hljs-comment">// 元素碰撞检测</span><br>    <span class="hljs-keyword">while</span> (table[idx] != <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">if</span> (entry.offset &gt; table[idx].offset) &#123;<br>            <span class="hljs-comment">// 当前偏移量不止一个，则查看条目交换位置，entry 是正在查看的条目，增加现在搜索的事物的偏移量和 idx</span><br>            <span class="hljs-type">Entry</span> <span class="hljs-variable">garbage</span> <span class="hljs-operator">=</span> table[idx];<br>            table[idx] = entry;<br>            entry = garbage;<br>            idx = increment(idx);<br>            entry.offset++;<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (entry.offset == table[idx].offset) &#123;<br>            <span class="hljs-comment">// 当前偏移量与正在查看的检查键是否相同，如果是则它们交换值，如果不是，则增加 idx 和偏移量并继续</span><br>            <span class="hljs-keyword">if</span> (table[idx].key.equals(key)) &#123;<br>                <span class="hljs-comment">// 发现相同值</span><br>                <span class="hljs-type">V</span> <span class="hljs-variable">oldVal</span> <span class="hljs-operator">=</span> table[idx].value;<br>                table[idx].value = value;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                idx = increment(idx);<br>                entry.offset++;<br>            &#125;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-comment">// 当前偏移量小于我们正在查看的我们增加 idx 和偏移量并继续</span><br>            idx = increment(idx);<br>            entry.offset++;<br>        &#125;<br>    &#125;<br>    <span class="hljs-comment">// 已经到达了 null 所在的 idx，将新/移动的放在这里</span><br>    table[idx] = entry;<br>    size++;<br>    <span class="hljs-comment">// 超过负载因子扩容</span><br>    <span class="hljs-keyword">if</span> (size &gt;= loadFactor * table.length) &#123;<br>        rehash(table.length * <span class="hljs-number">2</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>09、12 和 01 发生哈希索引碰撞，进行偏移量计算调整。通过最长位置探测碰撞元素位移来处理。</p>
+<p>测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test_hashMap07</span><span class="hljs-params">()</span> &#123;<br>    Map&lt;String, String&gt; map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap07ByRobinHoodHashing</span>&lt;&gt;();<br>    map.put(<span class="hljs-string">&quot;01&quot;</span>, <span class="hljs-string">&quot;花花&quot;</span>);<br>    map.put(<span class="hljs-string">&quot;05&quot;</span>, <span class="hljs-string">&quot;豆豆&quot;</span>);<br>    logger.info(<span class="hljs-string">&quot;碰撞前 key：&#123;&#125; value：&#123;&#125;&quot;</span>, <span class="hljs-string">&quot;01&quot;</span>, map.get(<span class="hljs-string">&quot;01&quot;</span>));<br>    <span class="hljs-comment">// 下标碰撞</span><br>    map.put(<span class="hljs-string">&quot;09&quot;</span>, <span class="hljs-string">&quot;蛋蛋&quot;</span>);<br>    map.put(<span class="hljs-string">&quot;12&quot;</span>, <span class="hljs-string">&quot;苗苗&quot;</span>);<br>    logger.info(<span class="hljs-string">&quot;碰撞前 key：&#123;&#125; value：&#123;&#125;&quot;</span>, <span class="hljs-string">&quot;01&quot;</span>, map.get(<span class="hljs-string">&quot;12&quot;</span>));<br>    logger.info(<span class="hljs-string">&quot;数据结构：&#123;&#125;&quot;</span>, map);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-number">07</span>:<span class="hljs-number">34</span>:<span class="hljs-number">32.593</span> [main] INFO cn.bugstack.algorithms.test.AlgorithmsTest - 碰撞前 <span class="hljs-keyword">key</span>：<span class="hljs-number">01</span> value：花花<br><span class="hljs-symbol">09 </span><span class="hljs-number">1</span><br><span class="hljs-symbol">12 </span><span class="hljs-number">1</span><br><span class="hljs-symbol">01 </span><span class="hljs-number">1</span><br><span class="hljs-symbol">09 </span><span class="hljs-number">9</span><br><span class="hljs-symbol">12 </span><span class="hljs-number">1</span><br><span class="hljs-symbol">05 </span><span class="hljs-number">5</span><br><span class="hljs-number">07</span>:<span class="hljs-number">35</span>:<span class="hljs-number">07.419</span> [main] INFO cn.bugstack.algorithms.test.AlgorithmsTest - 碰撞前 <span class="hljs-keyword">key</span>：<span class="hljs-number">01</span> value：苗苗<br><span class="hljs-number">07</span>:<span class="hljs-number">35</span>:<span class="hljs-number">07.420</span> [main] INFO cn.bugstack.algorithms.test.AlgorithmsTest - 数据结构：HashMap&#123;<span class="hljs-keyword">tab</span>=[null,&#123;<span class="hljs-string">&quot;key&quot;</span>:<span class="hljs-string">&quot;01&quot;</span>,<span class="hljs-string">&quot;offset&quot;</span>:<span class="hljs-number">0</span>,<span class="hljs-string">&quot;value&quot;</span>:<span class="hljs-string">&quot;花花&quot;</span>&#125;,&#123;<span class="hljs-string">&quot;key&quot;</span>:<span class="hljs-string">&quot;12&quot;</span>,<span class="hljs-string">&quot;offset&quot;</span>:<span class="hljs-number">1</span>,<span class="hljs-string">&quot;value&quot;</span>:<span class="hljs-string">&quot;苗苗&quot;</span>&#125;,null,null,&#123;<span class="hljs-string">&quot;key&quot;</span>:<span class="hljs-string">&quot;05&quot;</span>,<span class="hljs-string">&quot;offset&quot;</span>:<span class="hljs-number">0</span>,<span class="hljs-string">&quot;value&quot;</span>:<span class="hljs-string">&quot;豆豆&quot;</span>&#125;,null,null,null,&#123;<span class="hljs-string">&quot;key&quot;</span>:<span class="hljs-string">&quot;09&quot;</span>,<span class="hljs-string">&quot;offset&quot;</span>:<span class="hljs-number">0</span>,<span class="hljs-string">&quot;value&quot;</span>:<span class="hljs-string">&quot;蛋蛋&quot;</span>&#125;,null,null,null,null,null,null]&#125;<br></code></pre></td></tr></table></figure>
+
+<p>通过测试结果和调试的时候可以看到，哈希索引冲突是通过偏向从其“原始位置”（即项目被散列到的存储桶）最远或最长探测序列长度（PSL）的元素的位移来解决。这块可以添加断点调试验证。</p>
+<h2 id="四、常见面试问题"><a href="#四、常见面试问题" class="headerlink" title="四、常见面试问题"></a>四、常见面试问题</h2><ul>
+<li>介绍一下散列表</li>
+<li>为什么使用散列表</li>
+<li>拉链寻址和开放寻址的区别</li>
+<li>还有其他什么方式可以解决散列哈希索引冲突</li>
+<li>对应的Java源码中，对于哈希索引冲突提供了什么样的解决方案</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>线性数据结构-数据结构：哈希表(散列) Hash</div>
+      <div>https://varcel.luoqi.icu/2025/07/28/sync/线性数据结构-数据结构哈希表散列-Hash-5f3319/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Luo QI</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年7月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
