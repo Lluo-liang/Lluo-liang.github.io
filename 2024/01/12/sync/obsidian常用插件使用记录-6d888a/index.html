@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/wallpaper1705067508618.jpg">
 <meta property="article:published_time" content="2024-01-12T14:47:38.000Z">
-<meta property="article:modified_time" content="2025-08-10T10:17:15.000Z">
+<meta property="article:modified_time" content="2025-08-16T16:36:39.000Z">
 <meta property="article:author" content="Luo QI">
 <meta property="article:tag" content="obsidian">
 <meta name="twitter:card" content="summary_large_image">
@@ -227,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1k 字
+          1.5k 字
         
       </span>
     
@@ -238,7 +238,7 @@
         
         
         
-          9 分钟
+          13 分钟
         
       </span>
     
@@ -287,6 +287,22 @@
 <p>打开 Obsidian 应用</p>
 <p>按下 Ctrl+Shift+I (Windows&#x2F;Linux) 或 Cmd+Option+I (Mac) 组合键</p>
 <p>这将打开 Chromium 开发者工具,让你能够查看控制台输出、检查元素等。</p>
+<h3 id="标签管理"><a href="#标签管理" class="headerlink" title="标签管理"></a>标签管理</h3><p>看下面的标签插件</p>
+<h3 id="属性使用"><a href="#属性使用" class="headerlink" title="属性使用"></a>属性使用</h3><p>除了目前定义的模板中属性，还可以再加入一下属性，用于文档区别</p>
+<p>比如，其中值，你可以使用数字替代</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-built_in">type</span>: 永久笔记  <br><span class="hljs-built_in">status</span>: 已校审  <br>topic: [知识管理, Obsidian]  <br>related: <span class="hljs-string">项目管理 MOC</span>  <br></code></pre></td></tr></table></figure>
+
+<p><strong>属性检索</strong>：在搜索栏输入 <code>[status=&quot;进行中&quot;]</code> 可立即过滤所有待办笔记，无需记忆路径</p>
+<figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs clojure">[<span class="hljs-string">&quot;title&quot;</span><span class="hljs-symbol">:obsidian</span>常用插]<br></code></pre></td></tr></table></figure>
+
+<h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><p>仅保留 3~5 个顶层目录（如 <code>Inbox/、Areas/、Archive/</code>），具体参考案例</p>
+<figure class="highlight nsis"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs nsis">📂 Inbox     <span class="hljs-comment"># 临时收集区，每日清空</span><br>📂 Areas     <span class="hljs-comment"># 核心领域（如人工智能、产品设计）</span><br>📂 Resources <span class="hljs-comment"># 外部素材（论文、书籍摘录）</span><br>📂 <span class="hljs-params">Archive</span>   <span class="hljs-comment"># 归档低频笔记  </span><br></code></pre></td></tr></table></figure>
+
+<p>这里的一个思路是</p>
+<p>1、做好大的分类，然后使用标签和属性去管理文章；<br>2、使用 Templater插件按属性自动分配路径(动态路径)<br>3、使用 dataview 生成动态目录<br>4、工作流：</p>
+<p>（后续优化一下流程）</p>
+<p><strong>插件组合 + 自定义规则</strong> 实现基于标签&#x2F;属性自动生成目录并移动文件的功能</p>
+<p>Obsidian标签目录工作流</p>
 <h3 id="AI-插件"><a href="#AI-插件" class="headerlink" title="AI 插件"></a>AI 插件</h3><p>Obsidian AI大模型相关插件</p>
 <h3 id="文章内容"><a href="#文章内容" class="headerlink" title="文章内容"></a>文章内容</h3><h4 id="动态目录和编号：Number-Headings"><a href="#动态目录和编号：Number-Headings" class="headerlink" title="动态目录和编号：Number Headings"></a>动态目录和编号：Number Headings</h4><p><a target="_blank" rel="noopener" href="https://pkmer.cn/Pkmer-Docs/10-obsidian/obsidian%E7%A4%BE%E5%8C%BA%E6%8F%92%E4%BB%B6/number-headings-obsidian/">https://pkmer.cn/Pkmer-Docs/10-obsidian/obsidian%E7%A4%BE%E5%8C%BA%E6%8F%92%E4%BB%B6/number-headings-obsidian/</a></p>
 <p>关注一下设置选项：</p>
@@ -302,6 +318,8 @@
 <p>进入禅定模式</p>
 <h4 id="标签云图"><a href="#标签云图" class="headerlink" title="标签云图"></a>标签云图</h4><p>obsidian 插件使用_标签云图+快速新建文件操作</p>
 <h4 id="按钮使用-Buttons"><a href="#按钮使用-Buttons" class="headerlink" title="按钮使用 Buttons"></a>按钮使用 Buttons</h4><h4 id="代码折叠"><a href="#代码折叠" class="headerlink" title="代码折叠"></a>代码折叠</h4><p>插件： Collapsible Code Blocks</p>
+<h3 id="标签维护"><a href="#标签维护" class="headerlink" title="标签维护"></a>标签维护</h3><h4 id="Tag-Index"><a href="#Tag-Index" class="headerlink" title="Tag Index"></a>Tag Index</h4><p>创建“核心标签看板”，将高频标签（如 <code>核心概念</code>、<code>常青笔记</code>）置顶，避免淹没在标签海中</p>
+<h4 id="Tag-wrangler"><a href="#Tag-wrangler" class="headerlink" title="Tag wrangler"></a>Tag wrangler</h4><p>当你安装了这个插件后，当你在你的标签栏上对一个标签右键式会出现新的操作命令，例如删除、重命名、将标签设置或不设置在搜索条件等；其中你采用重命名以后，全库内的所有同名标签都会被自动更改，十分方便。</p>
 <h3 id="社区"><a href="#社区" class="headerlink" title="社区"></a>社区</h3><h4 id="PKMER社区"><a href="#PKMER社区" class="headerlink" title="PKMER社区"></a>PKMER社区</h4><p>使用obsidian工具搭建知识体系</p>
 <h3 id="PDF-使用"><a href="#PDF-使用" class="headerlink" title="PDF 使用"></a>PDF 使用</h3><h4 id="better-export-pdf"><a href="#better-export-pdf" class="headerlink" title="better-export-pdf"></a>better-export-pdf</h4><p>1 导出 pdf 带上目录 better-export-pdf </p>
 <p>使用 better-export-pdf 导出 pdf 带上目录</p>

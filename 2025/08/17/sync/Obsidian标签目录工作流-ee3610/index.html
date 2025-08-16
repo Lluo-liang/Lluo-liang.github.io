@@ -1,0 +1,711 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/Xbox%20L.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Luo QI">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="摘要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Obsidian标签目录工作流">
+<meta property="og:url" content="https://varcel.luoqi.icu/2025/08/17/sync/Obsidian%E6%A0%87%E7%AD%BE%E7%9B%AE%E5%BD%95%E5%B7%A5%E4%BD%9C%E6%B5%81-ee3610/index.html">
+<meta property="og:site_name" content="轻松的洛亓">
+<meta property="og:description" content="摘要">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-08-17T00:21:41.000Z">
+<meta property="article:modified_time" content="2025-08-16T16:36:39.000Z">
+<meta property="article:author" content="Luo QI">
+<meta property="article:tag" content="obsidian">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Obsidian标签目录工作流 - 轻松的洛亓</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"varcel.luoqi.icu","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  <meta name="baidu-site-verification" content="codeva-Oq0KOjHuD3" />
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>轻松的洛亓</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Obsidian标签目录工作流"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-08-17 00:21" pubdate>
+          2025年8月17日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          9 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Obsidian标签目录工作流</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>在 Obsidian 中，可以通过 <strong>插件组合 + 自定义规则</strong> 实现基于标签&#x2F;属性自动生成目录并移动文件的功能。以下是具体方案，结合自动化与手动控制：</p>
+<hr>
+<h3 id="🛠-核心工具组合"><a href="#🛠-核心工具组合" class="headerlink" title="🛠 核心工具组合"></a>🛠 核心工具组合</h3><table>
+<thead>
+<tr>
+<th><strong>插件</strong></th>
+<th>作用</th>
+<th>安装方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Templater</strong></td>
+<td>定义文件创建规则和自动路径</td>
+<td>社区插件市场搜索安装</td>
+</tr>
+<tr>
+<td><strong>QuickAdd</strong></td>
+<td>执行复杂移动&#x2F;重命名操作</td>
+<td>社区插件市场搜索安装</td>
+</tr>
+<tr>
+<td><strong>Dataview</strong></td>
+<td>动态生成目录索引（无需移动）</td>
+<td>社区插件市场搜索安装</td>
+</tr>
+<tr>
+<td><strong>File Organizer</strong></td>
+<td>按规则批量移动现有文件</td>
+<td>社区插件市场搜索安装</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="⚙️-方案一：文件创建时自动分配目录（适合新笔记）"><a href="#⚙️-方案一：文件创建时自动分配目录（适合新笔记）" class="headerlink" title="⚙️ 方案一：文件创建时自动分配目录（适合新笔记）"></a>⚙️ 方案一：<strong>文件创建时自动分配目录（适合新笔记）</strong></h3><h4 id="使用-Templater-定义规则"><a href="#使用-Templater-定义规则" class="headerlink" title="使用 Templater 定义规则"></a>使用 <strong>Templater</strong> 定义规则</h4><ol>
+<li><strong>创建模板文件</strong> <code>TP-自动分类.md</code>：<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-meta">---</span><br><span class="hljs-attr">tags:</span> [&lt;%<span class="language-ruby"> tp.file.cursor() </span>%&gt;]<br><span class="hljs-attr">topic:</span> <span class="hljs-string">&quot;&quot;</span><br><span class="hljs-meta">---</span><br>&lt;%<span class="language-ruby">*</span><br><span class="language-ruby"><span class="hljs-regexp">//</span> 根据标签选择目录</span><br><span class="language-ruby">let tag = tp.file.cursor();</span><br><span class="language-ruby">let targetDir = <span class="hljs-string">&quot;&quot;</span>;</span><br><span class="language-ruby"><span class="hljs-keyword">if</span> (tag.includes(<span class="hljs-string">&quot;#项目&quot;</span>)) targetDir = <span class="hljs-string">&quot;Areas/项目管理&quot;</span>;</span><br><span class="language-ruby"><span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (tag.includes(<span class="hljs-string">&quot;#AI&quot;</span>)) targetDir = <span class="hljs-string">&quot;Areas/人工智能&quot;</span>;</span><br><span class="language-ruby"><span class="hljs-keyword">else</span> targetDir = <span class="hljs-string">&quot;Inbox&quot;</span>; <span class="hljs-regexp">//</span> 默认目录</span><br><span class="language-ruby"></span><br><span class="language-ruby">/<span class="hljs-regexp">/ 移动文件到目标目录</span></span><br><span class="hljs-regexp"><span class="language-ruby">await tp.file.move(targetDir + &quot;/</span><span class="hljs-string">&quot; + tp.file.title);</span></span><br><span class="hljs-string"><span class="language-ruby"></span></span>%&gt;<br></code></pre></td></tr></table></figure></li>
+<li><strong>使用流程</strong>：<ul>
+<li>按 <code>Ctrl+P</code> 执行命令 <strong>Templater: Open Insert Template Modal</strong></li>
+<li>选择模板 <code>TP-自动分类.md</code></li>
+<li>输入标签（如 <code>#项目</code>）→ 文件自动移动到 <code>Areas/项目管理/</code></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="⚙️-方案二：批量移动现有文件（适合旧笔记整理）"><a href="#⚙️-方案二：批量移动现有文件（适合旧笔记整理）" class="headerlink" title="⚙️ 方案二：批量移动现有文件（适合旧笔记整理）"></a>⚙️ 方案二：<strong>批量移动现有文件（适合旧笔记整理）</strong></h3><h4 id="使用-File-Organizer-插件"><a href="#使用-File-Organizer-插件" class="headerlink" title="使用 File Organizer 插件"></a>使用 <strong>File Organizer</strong> 插件</h4><ol>
+<li><strong>配置规则</strong>（在插件设置中添加）：<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">rules:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">&quot;移动AI笔记&quot;</span><br>    <span class="hljs-attr">condition:</span> <span class="hljs-string">&quot;tag:#人工智能&quot;</span>  <span class="hljs-comment"># 根据标签匹配</span><br>    <span class="hljs-attr">moveTo:</span> <span class="hljs-string">&quot;Areas/人工智能&quot;</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">&quot;移动进行中项目&quot;</span><br>    <span class="hljs-attr">condition:</span> <span class="hljs-string">&quot;property-status:进行中&quot;</span>  <span class="hljs-comment"># 根据属性匹配</span><br>    <span class="hljs-attr">moveTo:</span> <span class="hljs-string">&quot;Active Projects&quot;</span><br></code></pre></td></tr></table></figure></li>
+<li><strong>执行操作</strong>：<ul>
+<li>命令面板运行 <strong>File Organizer: Organize files</strong> → 自动按规则移动文件</li>
+<li><strong>手动干预</strong>：插件会生成预览，确认后再执行移动</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="⚙️-方案三：动态目录索引（不移动文件，但虚拟聚合）"><a href="#⚙️-方案三：动态目录索引（不移动文件，但虚拟聚合）" class="headerlink" title="⚙️ 方案三：动态目录索引（不移动文件，但虚拟聚合）"></a>⚙️ 方案三：<strong>动态目录索引（不移动文件，但虚拟聚合）</strong></h3><h4 id="使用-Dataview-生成虚拟目录"><a href="#使用-Dataview-生成虚拟目录" class="headerlink" title="使用 Dataview 生成虚拟目录"></a>使用 <strong>Dataview</strong> 生成虚拟目录</h4><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section">### 人工智能领域笔记</span><br><span class="hljs-code">```dataview</span><br><span class="hljs-code">LIST FROM #人工智能 AND !#Archive</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="进行中的项目"><a href="#进行中的项目" class="headerlink" title="进行中的项目"></a>进行中的项目</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs dataview">TABLE status, due_date<br>FROM &quot;Projects&quot;<br>WHERE status = &quot;进行中&quot;<br>SORT due_date ASC<br></code></pre></td></tr></table></figure>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs stata"><span class="hljs-comment">**优势**：无需移动文件，通过查询实时聚合内容，保存在 `Home.md` 或 `Index.md` 中随时查看。</span><br><br>---<br><br>### ⚙️ 方案四：**半自动化+手动维护（推荐平衡方案）**<br>#### 结合 **QuickAdd** + **自定义脚本**<br>1. **创建 <span class="hljs-keyword">Macro</span> 脚本** `moveFile.js`：<br>   ```javascript<br>   module.exports = async (params) =&gt; &#123;<br>     <span class="hljs-keyword">const</span> <span class="hljs-keyword">file</span> = <span class="hljs-keyword">app</span>.workspace.getActiveFile();<br>     <span class="hljs-keyword">const</span> tags = await <span class="hljs-keyword">app</span>.metadataCache.getFileCache(<span class="hljs-keyword">file</span>)?.tags?.map(t =&gt; t.tag);<br>     <span class="hljs-keyword">const</span> status = <span class="hljs-keyword">app</span>.metadataCache.getFileCache(<span class="hljs-keyword">file</span>)?.frontmatter?.status;<br>     <br>     <span class="hljs-comment">// 自定义规则（可手动修改）</span><br>     let targetDir = <span class="hljs-string">&quot;Inbox&quot;</span>;<br>     <span class="hljs-keyword">if</span> (tags?.includes(<span class="hljs-string">&quot;#项目&quot;</span>)) targetDir = <span class="hljs-string">&quot;Areas/项目管理&quot;</span>;<br>     <span class="hljs-keyword">if</span> (status === <span class="hljs-string">&quot;归档&quot;</span>)) targetDir = <span class="hljs-string">&quot;Archive&quot;</span>;<br>     <br>     <span class="hljs-comment">// 移动文件</span><br>     await <span class="hljs-keyword">app</span>.fileManager.renameFile(<span class="hljs-keyword">file</span>, targetDir + <span class="hljs-string">&quot;/&quot;</span> + <span class="hljs-keyword">file</span>.name);<br>   &#125;;<br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li><strong>配置 QuickAdd</strong>：<ul>
+<li>添加 <strong>Macro</strong> → 选择 <code>moveFile.js</code></li>
+<li>绑定快捷键（如 <code>Ctrl+Shift+M</code>）</li>
+</ul>
+</li>
+<li><strong>使用</strong>：<ul>
+<li>打开要移动的文件 → 按快捷键 → 自动按规则移动</li>
+<li><strong>手动调整</strong>：直接修改脚本中的 <code>if</code> 规则</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="📌-关键注意事项"><a href="#📌-关键注意事项" class="headerlink" title="📌 关键注意事项"></a>📌 关键注意事项</h3><ol>
+<li><strong>冲突解决</strong>：<ul>
+<li>在 Templater&#x2F;QuickAdd 脚本中添加重复文件检测（如 <code>if (await this.app.vault.adapter.exists(targetPath))</code>）</li>
+</ul>
+</li>
+<li><strong>手动维护入口</strong>：<ul>
+<li>创建 <code>Config-目录规则.md</code> 文件，用表格管理规则：<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs markdown">| 触发条件         | 目标目录         |<br>|------------------|------------------|<br>| <span class="hljs-code">`#项目`</span>          | Areas/项目管理   |<br>| <span class="hljs-code">`status: 归档`</span>   | Archive          |<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><strong>备份机制</strong>：<ul>
+<li>使用 <strong>Obsidian Git</strong> 插件自动备份，避免误操作丢失文件</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="🌰-实用案例：学术笔记库自动归类"><a href="#🌰-实用案例：学术笔记库自动归类" class="headerlink" title="🌰 实用案例：学术笔记库自动归类"></a>🌰 实用案例：学术笔记库自动归类</h3><h4 id="规则配置"><a href="#规则配置" class="headerlink" title="规则配置"></a>规则配置</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">触发条件：</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">标签包含</span> <span class="hljs-string">`#论文`</span> <span class="hljs-string">→</span> <span class="hljs-string">移动到</span> <span class="hljs-string">`Literature/待读`</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">属性</span> <span class="hljs-string">`status:</span> <span class="hljs-string">已总结`</span> <span class="hljs-string">→</span> <span class="hljs-string">移动到</span> <span class="hljs-string">`Literature/已整理`</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">标签</span> <span class="hljs-string">`#重要`</span> <span class="hljs-string">+</span> <span class="hljs-string">属性</span> <span class="hljs-string">`topic:</span> <span class="hljs-string">NLP`</span> <span class="hljs-string">→</span> <span class="hljs-string">移动到</span> <span class="hljs-string">`Areas/NLP/核心文献`</span><br></code></pre></td></tr></table></figure>
+<h4 id="执行方式："><a href="#执行方式：" class="headerlink" title="执行方式："></a>执行方式：</h4><ol>
+<li>阅读论文时打标签 <code>#论文</code> → 文件自动进入 <code>Literature/待读</code></li>
+<li>总结后修改属性 <code>status: 已总结</code> → 运行 <strong>QuickAdd Macro</strong> 移动到 <code>Literature/已整理</code></li>
+</ol>
+<hr>
+<h3 id="💡-推荐工作流"><a href="#💡-推荐工作流" class="headerlink" title="💡 推荐工作流"></a>💡 推荐工作流</h3><pre><code class=" mermaid">graph TD
+    A[新笔记] --&gt;|Templater| B(按标签自动移动)
+    C[旧笔记] --&gt;|File Organizer| D(按规则批量移动)
+    E[特殊笔记] --&gt;|QuickAdd Macro| F(手动触发移动)
+    B --&gt; G[目标目录]
+    D --&gt; G
+    F --&gt; G
+    G --&gt; H[Dataview 聚合索引]
+</code></pre>
+
+<blockquote>
+<p>⚠️ <strong>重要提示</strong>：  </p>
+<ul>
+<li>首次使用前用 <strong>测试库</strong> 验证规则  </li>
+<li>复杂规则建议从 <strong>Dataview 动态索引</strong> 开始，逐步过渡到物理移动<br>通过混合自动化（标签&#x2F;属性触发）和手动控制（QuickAdd 快捷键），可在降低维护成本的同时保留灵活性。</li>
+</ul>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/obsidian/" class="print-no-link">#obsidian</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Obsidian标签目录工作流</div>
+      <div>https://varcel.luoqi.icu/2025/08/17/sync/Obsidian标签目录工作流-ee3610/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Luo QI</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年8月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
