@@ -2,8 +2,8 @@ https://varcel.luoqi.icu/2024/03/09/sync/01-%E9%9D%A2%E8%AF%95%E7%85%8E%E7%86%AC
 https://varcel.luoqi.icu/2024/10/01/sync/01_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6-da327a/
 https://varcel.luoqi.icu/2024/03/10/sync/02-%E9%9D%A2%E8%AF%95%E7%85%8E%E7%86%AC%E6%88%90%E8%9B%8B_Java%E9%9B%86%E5%90%88-e5007b/
 https://varcel.luoqi.icu/2024/09/12/sync/02_%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86-ec5b61/
-https://varcel.luoqi.icu/2024/03/09/sync/03-%E9%9D%A2%E8%AF%95%E7%85%8E%E7%86%AC%E6%88%90%E8%9B%8B_Java%E5%B9%B6%E5%8F%91-19151e/
 https://varcel.luoqi.icu/2024/09/12/sync/03_%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-e9b8ac/
+https://varcel.luoqi.icu/2024/03/09/sync/03-%E9%9D%A2%E8%AF%95%E7%85%8E%E7%86%AC%E6%88%90%E8%9B%8B_Java%E5%B9%B6%E5%8F%91-19151e/
 https://varcel.luoqi.icu/2024/09/13/sync/04_%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%8A%80%E6%9C%AF-dd5f2c/
 https://varcel.luoqi.icu/2024/09/13/sync/05-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-060e1f/
 https://varcel.luoqi.icu/2024/03/10/sync/05-%E9%9D%A2%E8%AF%95%E7%85%8E%E7%86%AC%E6%88%90%E8%9B%8B_MySQL-1ea085/
@@ -129,7 +129,6 @@ https://varcel.luoqi.icu/2025/06/15/hexo/Hexo%E7%AC%A6%E5%8F%B7%E9%93%BE%E6%8E%A
 https://varcel.luoqi.icu/2025/06/05/hexo/Fluid%E4%B8%BB%E9%A2%98/
 https://varcel.luoqi.icu/
 https://varcel.luoqi.icu/tags/computer/
-https://varcel.luoqi.icu/tags/git/
 https://varcel.luoqi.icu/tags/hexo/
 https://varcel.luoqi.icu/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/
 https://varcel.luoqi.icu/tags/java/
@@ -147,6 +146,7 @@ https://varcel.luoqi.icu/tags/docker/
 https://varcel.luoqi.icu/tags/elasticsearch/
 https://varcel.luoqi.icu/tags/%E6%95%B0%E6%8D%AE%E5%BA%93-MySQL/
 https://varcel.luoqi.icu/tags/MQ-RabbitMQ/
+https://varcel.luoqi.icu/tags/git/
 https://varcel.luoqi.icu/tags/%E8%BF%90%E7%BB%B4/
 https://varcel.luoqi.icu/tags/jpa/
 https://varcel.luoqi.icu/tags/hibernate/
