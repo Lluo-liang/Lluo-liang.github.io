@@ -1,0 +1,625 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/Xbox%20L.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Luo QI">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="围绕实际的这个场景，有序有跟进再考虑一下这里该如何优化，这个场景下，应该考虑哪些事情，并且该如何处理解决。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何处理主数据变更">
+<meta property="og:url" content="https://varcel.luoqi.icu/2025/08/01/sync/%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E4%B8%BB%E6%95%B0%E6%8D%AE%E5%8F%98%E6%9B%B4-07d601/index.html">
+<meta property="og:site_name" content="轻松的洛亓">
+<meta property="og:description" content="围绕实际的这个场景，有序有跟进再考虑一下这里该如何优化，这个场景下，应该考虑哪些事情，并且该如何处理解决。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-08-01T14:17:56.000Z">
+<meta property="article:modified_time" content="2025-08-18T00:49:41.000Z">
+<meta property="article:author" content="Luo QI">
+<meta property="article:tag" content="projectCode">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>如何处理主数据变更 - 轻松的洛亓</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"varcel.luoqi.icu","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  <meta name="baidu-site-verification" content="codeva-Oq0KOjHuD3" />
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>轻松的洛亓</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/202311131716524.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="如何处理主数据变更"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-08-01 14:17" pubdate>
+          2025年8月1日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          11 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">如何处理主数据变更</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="如何处理主数据变更"><a href="#如何处理主数据变更" class="headerlink" title="如何处理主数据变更"></a>如何处理主数据变更</h3><p>场景:</p>
+<blockquote>
+<p>在电商场景，系统涉及到 商品信息、营销、积分、库存等。<br><br>s实际场景：承接10个左右的MQ 变更，同时每天的数据信息量大概是 三百万左右的信息。</p>
+</blockquote>
+<p>目前的处理方式，是当一个MQ 变更过来，会对应的更新主数据表 master_data 中的某几个字段，</p>
+<p>同时也会更新 es 中的 master_data_es_mapper 的字段；</p>
+<p>其中还可能会存在只更新 ES 而不更新 主数据表的操作；</p>
+<p>这里主要是通过了策略的方式去实现的。</p>
+<p>具体实现如下：</p>
+<p>示例其中一个变更操作</p>
+<h3 id="ISS-SKC供应关系变更消费者"><a href="#ISS-SKC供应关系变更消费者" class="headerlink" title="ISS SKC供应关系变更消费者"></a>ISS SKC供应关系变更消费者</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">/**  </span><br><span class="hljs-comment"> * ClassName: IssSkcSupplyChangeConsumer * ISS SKC供应关系变更消费者  </span><br><span class="hljs-comment"> *  </span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> Felix Wu  </span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span> 2025/07/29  </span><br><span class="hljs-comment"> */</span><span class="hljs-meta">@Slf4j</span>  <br><span class="hljs-meta">@Component</span>  <br><span class="hljs-meta">@AllArgsConstructor</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">IssSkcSupplyChangeConsumer</span> &#123;  <br>  <br>    <span class="hljs-keyword">private</span> <span class="hljs-title class_">GoodsQueryMasterDataRepository</span> goodsQueryMasterDataRepository;  <br>  <br>    <span class="hljs-keyword">private</span> <span class="hljs-title class_">ApplicationEventPublisher</span> applicationEventPublisher;  <br>  <br>    <span class="hljs-comment">/**  </span><br><span class="hljs-comment">     * 流程：  </span><br><span class="hljs-comment">     * 1.接收ISS SKC供应关系变更消息  </span><br><span class="hljs-comment">     * 2.验证SKC是否存在  </span><br><span class="hljs-comment">     * 3.发布SKC供应关系变更事件  </span><br><span class="hljs-comment">     * 4.同步到相关系统  </span><br><span class="hljs-comment">     */</span>  <br>    <span class="hljs-meta">@KafkaListener</span>(  <br>            topics = <span class="hljs-string">&quot;iss-skc-supply-change-topic&quot;</span>,  <br>            groupId = <span class="hljs-string">&quot;iss-skc-supply-change-group&quot;</span>,  <br>            concurrency = <span class="hljs-string">&quot;1&quot;</span>,  <br>            containerFactory = <span class="hljs-string">&quot;ltbus-public-consumer-container-factory&quot;</span>,  <br>            batch = <span class="hljs-string">&quot;false&quot;</span>,  <br>            properties = &#123;<span class="hljs-string">&quot;max.poll.records:1&quot;</span>, <span class="hljs-string">&quot;max.poll.interval.ms:600000&quot;</span>&#125;  <br>    )  <br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">void</span> <span class="hljs-title function_">handle</span>(<span class="hljs-params"><span class="hljs-built_in">String</span> message, Acknowledgment ack</span>) &#123;  <br>        <span class="hljs-keyword">try</span> &#123;  <br>            log.<span class="hljs-title function_">info</span>(<span class="hljs-string">&quot;[kafka消费]iss-skc-supply-change-topic start, message:&quot;</span> + message);  <br>  <br>            <span class="hljs-title class_">IssSkcSupplyChangeMessageDTO</span> issSkcSupplyChangeDTO = <span class="hljs-title class_">JsonTools</span>.<span class="hljs-title function_">defaultMapper</span>().<span class="hljs-title function_">fromJson</span>(message, <span class="hljs-keyword">new</span> <span class="hljs-title class_">TypeReference</span>&lt;<span class="hljs-title class_">IssSkcSupplyChangeMessageDTO</span>&gt;() &#123;  <br>            &#125;);  <br>            <span class="hljs-keyword">if</span> (<span class="hljs-title class_">Objects</span>.<span class="hljs-title function_">isNull</span>(issSkcSupplyChangeDTO)) &#123;  <br>                log.<span class="hljs-title function_">warn</span>(<span class="hljs-string">&quot;[kafka消费]iss-skc-supply-change-topic message is empty or invalid, message: &#123;&#125;&quot;</span>, message);  <br>                <span class="hljs-keyword">return</span>;  <br>            &#125;  <br>  <br>            <span class="hljs-comment">// 提取所有SKC编码  </span><br>            <span class="hljs-title class_">String</span> skc = issSkcSupplyChangeDTO.<span class="hljs-title function_">getSkc</span>();  <br>  <br>            <span class="hljs-comment">// 查询已有skc  </span><br>            <span class="hljs-title class_">List</span>&lt;<span class="hljs-title class_">String</span>&gt; existedSkcList = goodsQueryMasterDataRepository.<span class="hljs-title function_">querySkcByCondition</span>(<span class="hljs-title class_">GoodsQueryMasterDataQueryPO</span>.<span class="hljs-title function_">valueOf</span>(<span class="hljs-title class_">List</span>.<span class="hljs-title function_">of</span>(skc)));  <br>            <span class="hljs-keyword">if</span> (<span class="hljs-title class_">CollectionUtils</span>.<span class="hljs-title function_">isEmpty</span>(existedSkcList)) &#123;  <br>                log.<span class="hljs-title function_">warn</span>(<span class="hljs-string">&quot;[kafka消费]iss-skc-supply-change-topic no valid skc exists, skcCodes: &#123;&#125;&quot;</span>, skc);  <br>                <span class="hljs-keyword">return</span>;  <br>            &#125;  <br>            <span class="hljs-title class_">IssSkcSupplyChangeDTO</span> supplyChangeDTO = <span class="hljs-keyword">new</span> <span class="hljs-title class_">IssSkcSupplyChangeDTO</span>();  <br>            supplyChangeDTO.<span class="hljs-title function_">setSkc</span>(skc);  <br>            supplyChangeDTO.<span class="hljs-title function_">setUpdateTime</span>(issSkcSupplyChangeDTO.<span class="hljs-title function_">getUpdateTime</span>());  <br>            <span class="hljs-title class_">List</span>&lt;<span class="hljs-title class_">IssSkcSupplyChangeMessageDTO</span>.<span class="hljs-property">SupplyRelation</span>&gt; preferredSupplierList = issSkcSupplyChangeDTO.<span class="hljs-title function_">getSupplyRelationList</span>()  <br>                    .<span class="hljs-title function_">stream</span>().<span class="hljs-property">filter</span> (a -&gt; a.<span class="hljs-title function_">getPriorityLevel</span>() == <span class="hljs-number">1</span>).<span class="hljs-title function_">toList</span>();  <br>            <span class="hljs-keyword">if</span>(<span class="hljs-title class_">CollectionUtils</span>.<span class="hljs-title function_">isEmpty</span>(preferredSupplierList))&#123;  <br>                <span class="hljs-keyword">return</span>;  <br>            &#125;  <br>            <span class="hljs-title class_">IssSkcSupplyChangeMessageDTO</span>.<span class="hljs-property">SupplyRelation</span> supplyRelation = preferredSupplierList.<span class="hljs-title function_">get</span>(<span class="hljs-number">0</span>);  <br>            supplyChangeDTO.<span class="hljs-title function_">setSupplierId</span>(supplyRelation.<span class="hljs-title function_">getSupplierId</span>());  <br>            supplyChangeDTO.<span class="hljs-title function_">setSupplierSource</span>(supplyRelation.<span class="hljs-title function_">getSupplierSource</span>());  <br>  <br>            <span class="hljs-comment">//只进行变更操作  </span><br>            <span class="hljs-title class_">MasterDataEventContentDTO</span> masterDataEventContentDTO = <span class="hljs-keyword">new</span> <span class="hljs-title class_">MasterDataEventContentDTO</span>();  <br>            masterDataEventContentDTO.<span class="hljs-title function_">setSupplyChangeDTO</span>(supplyChangeDTO);  <br>            <span class="hljs-title class_">Map</span>&lt;<span class="hljs-title class_">String</span>, <span class="hljs-title class_">MasterDataEventContentDTO</span>&gt; content = <span class="hljs-title class_">Map</span>.<span class="hljs-title function_">of</span>(skc, masterDataEventContentDTO);  <br>  <br>            applicationEventPublisher.<span class="hljs-title function_">publishEvent</span>(<span class="hljs-title class_">IssSkcSupplyChangeEvent</span>.<span class="hljs-title function_">valueOf</span>(existedSkcList, content));  <br>            log.<span class="hljs-title function_">info</span>(<span class="hljs-string">&quot;[kafka消费]iss-skc-supply-change-topic end, processed &#123;&#125; skc records&quot;</span>, skc);  <br>        &#125; <span class="hljs-keyword">catch</span> (<span class="hljs-title class_">Exception</span> e) &#123;  <br>            log.<span class="hljs-title function_">error</span>(<span class="hljs-string">&quot;[kafka消费]iss-skc-supply-change-topic failed:&quot;</span>, e);  <br>        &#125; <span class="hljs-keyword">finally</span> &#123;  <br>            ack.<span class="hljs-title function_">acknowledge</span>();  <br>        &#125;  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<h3 id="变更监听"><a href="#变更监听" class="headerlink" title="变更监听"></a>变更监听</h3><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-comment">/**  </span><br><span class="hljs-comment"> * Description * * @author Geoff Long  </span><br><span class="hljs-comment"> * @since 2025/7/3  </span><br><span class="hljs-comment"> */</span>@Component  <br>@Slf4j  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-symbol">GoodsQueryMasterDataRefreshEventListener</span> &#123;  <br>  <br>    <span class="hljs-keyword">public</span> static <span class="hljs-keyword">final</span> <span class="hljs-built_in">int</span> MAX_BATCH_SIZE = <span class="hljs-number">200</span>;  <br>  <br>    @Resource  <br>    <span class="hljs-keyword">private</span> ApplicationEventPublisher applicationEventPublisher;  <br>  <br>    @Resource  <br>    <span class="hljs-keyword">private</span> GoodsQueryMasterDataRepository goodsQueryMasterDataRepository;  <br>  <br>    @Resource  <br>    <span class="hljs-keyword">private</span> GoodsQueryMasterDataProcessorManager goodsQueryMasterDataProcessorManager;  <br>  <br>    @Async(<span class="hljs-string">&quot;refreshGoodsMainDataExecutor&quot;</span>)  <br>    @EventListener  <br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">void</span> process(GoodsQueryMasterDataRefreshEvent <span class="hljs-built_in">ref</span>reshEvent) &#123;  <br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">ref</span>reshEvent == <span class="hljs-literal">null</span>  <br>                || CollectionUtils.isEmpty(<span class="hljs-built_in">ref</span>reshEvent.getSkcList())  <br>                || CollectionUtils.isEmpty(<span class="hljs-built_in">ref</span>reshEvent.getSceneList())) &#123;  <br>            <span class="hljs-keyword">return</span>;  <br>        &#125;  <br>  <br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">ref</span>reshEvent.getRetryTime() &gt;= GoodsQueryMasterDataSyncEsEvent.MAX_RETRY_TIME) &#123;  <br>            log.warn(<span class="hljs-string">&quot;GoodsQueryMasterDataRefreshEventListener listener process fail, skcList: &#123;&#125;, sceneList: &#123;&#125;, retryTime: &#123;&#125;, exceed max retry time&quot;</span>,  <br>                    JSON.toJSONString(<span class="hljs-built_in">ref</span>reshEvent.getSkcList()),  <br>                    JSON.toJSONString(<span class="hljs-built_in">ref</span>reshEvent.getSceneList()),  <br>                    <span class="hljs-built_in">ref</span>reshEvent.getRetryTime());  <br>            <span class="hljs-keyword">return</span>;  <br>        &#125;  <br>  <br>        log.info(<span class="hljs-string">&quot;GoodsQueryMasterDataRefreshEventListener listener process start, skcList: &#123;&#125;, sceneList: &#123;&#125;, retryTime: &#123;&#125;&quot;</span>,  <br>                JSON.toJSONString(<span class="hljs-built_in">ref</span>reshEvent.getSkcList()),  <br>                JSON.toJSONString(<span class="hljs-built_in">ref</span>reshEvent.getSceneList()),  <br>                <span class="hljs-built_in">ref</span>reshEvent.getRetryTime());  <br>  <br>        ListUtils.partition(  <br>                <span class="hljs-built_in">ref</span>reshEvent.getSkcList().stream().distinct().toList(), MAX_BATCH_SIZE)  <br>                .forEach(  <br>                        skcList -&gt; &#123;  <br>                            <span class="hljs-comment">// 分批处理  </span><br>                            GoodsQueryMasterDataRefreshEvent <span class="hljs-built_in">ref</span>reshEventCopy = GoodsQueryMasterDataRefreshEvent.valueOf(skcList, <span class="hljs-built_in">ref</span>reshEvent.getSceneList(),<span class="hljs-built_in">ref</span>reshEvent.getContent());  <br>                            <span class="hljs-built_in">ref</span>reshEventCopy.setRetryTime(<span class="hljs-built_in">ref</span>reshEvent.getRetryTime());  <br>                            <span class="hljs-keyword">try</span> &#123;  <br>                                <span class="hljs-comment">// 记录当前处理的SKC列表  </span><br>                                processBatch(<span class="hljs-built_in">ref</span>reshEventCopy);  <br>                            &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;  <br>                                log.error(<span class="hljs-string">&quot;GoodsQueryMasterDataRefreshEventListener listener process error, skcList: &#123;&#125;, sceneList: &#123;&#125;, retryTime: &#123;&#125;&quot;</span>,  <br>                                        JSON.toJSONString(<span class="hljs-built_in">ref</span>reshEventCopy.getSkcList()),  <br>                                        JSON.toJSONString(<span class="hljs-built_in">ref</span>reshEventCopy.getSceneList()),  <br>                                        <span class="hljs-built_in">ref</span>reshEventCopy.getRetryTime(),  <br>                                        e);  <br>                            &#125;  <br>                        &#125;  <br>                );  <br>    &#125;  <br>  <br>    <span class="hljs-comment">/**  </span><br><span class="hljs-comment">     * 处理批量数据  </span><br><span class="hljs-comment">     * 根据场景列表sceneList，填充商品查询主数据DTO  </span><br><span class="hljs-comment">     *     * @param refreshEvent  </span><br><span class="hljs-comment">     */</span>  <br>    <span class="hljs-keyword">private</span> <span class="hljs-built_in">void</span> processBatch(GoodsQueryMasterDataRefreshEvent <span class="hljs-built_in">ref</span>reshEvent) &#123;  <br>        List&lt;GoodsQueryMasterDataDTO&gt; goodsQueryMasterDataDTOList = <span class="hljs-built_in">ref</span>reshEvent.getSkcList().stream().distinct()  <br>                .map(  <br>                        skc -&gt; &#123;  <br>                            GoodsQueryMasterDataDTO goodsQueryMasterDataEsDTO = new GoodsQueryMasterDataDTO();  <br>                            goodsQueryMasterDataEsDTO.setSkc(skc);  <br>                            <span class="hljs-keyword">return</span> goodsQueryMasterDataEsDTO;  <br>                        &#125;  <br>                ).collect(Collectors.toList());  <br>  <br>        <span class="hljs-comment">//数据填充流程  </span><br>        var processors = goodsQueryMasterDataProcessorManager.getOrderedProcessors(<span class="hljs-built_in">ref</span>reshEvent.getSceneList());  <br>        processors.forEach(  <br>                processor -&gt; &#123;  <br>                    processor.fillGoodsQueryMasterDataDTOBatch(goodsQueryMasterDataDTOList, <span class="hljs-built_in">ref</span>reshEvent.getContent());  <br>                &#125;  <br>        );  <br>  <br>        <span class="hljs-comment">// 优先更新数据库数据  </span><br>        <span class="hljs-comment">// 部分字段更新ES数据  </span><br>        goodsQueryMasterDataRepository.saveOrUpdateBatch(  <br>                GoodsQueryMasterDataStructMapper.INSTANCE.toModels(goodsQueryMasterDataDTOList)  <br>        );  <br>  <br>        <span class="hljs-comment">// 更新数据库一定需要同步ES  </span><br>        applicationEventPublisher.publishEvent(  <br>                GoodsQueryMasterDataSyncEsEvent.valueOf(<span class="hljs-built_in">ref</span>reshEvent.getSkcList(), <span class="hljs-built_in">ref</span>reshEvent.getSceneList(), <span class="hljs-built_in">ref</span>reshEvent.getContent()));  <br>    &#125;  <br>  <br>  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="变更策略处理"><a href="#变更策略处理" class="headerlink" title="变更策略处理"></a>变更策略处理</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">/**  </span><br><span class="hljs-comment"> * ISS 供应商信息变更  </span><br><span class="hljs-comment"> *  </span><br><span class="hljs-comment"> * * <span class="hljs-doctag">@author</span> Felix Wu  </span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span> 2025/07/31  </span><br><span class="hljs-comment"> */</span><span class="hljs-meta">@Component</span>  <br><span class="hljs-meta">@Slf4j</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">IssSupplyInfoProcessor</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">GoodsQueryMasterDataProcessor</span> &#123;  <br>  <br>    <span class="hljs-meta">@Resource</span>  <br>    <span class="hljs-keyword">private</span> <span class="hljs-title class_">GoodsQueryMasterDataRepository</span> goodsQueryMasterDataRepository;  <br>  <br>    <span class="hljs-meta">@Resource</span>  <br>    <span class="hljs-keyword">private</span> <span class="hljs-title class_">NewProductClient</span> newProductClient;  <br>  <br>    <span class="hljs-meta">@Override</span>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-title class_">SyncSceneEnum</span> <span class="hljs-title function_">getSyncScene</span>(<span class="hljs-params"></span>) &#123;  <br>        <span class="hljs-keyword">return</span> <span class="hljs-title class_">SyncSceneEnum</span>.<span class="hljs-property">ISS_SUPPLY_INFO</span>;  <br>    &#125;  <br>  <br>    <span class="hljs-meta">@Override</span>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">void</span> <span class="hljs-title function_">fillGoodsQueryMasterDataDTOBatch</span>(<span class="hljs-params">List&lt;GoodsQueryMasterDataDTO&gt; goodsQueryMasterDataDTOList,<span class="hljs-built_in">Map</span>&lt;<span class="hljs-built_in">String</span>, MasterDataEventContentDTO&gt; content</span>) &#123;  <br>        <span class="hljs-keyword">if</span> (<span class="hljs-title class_">CollectionUtils</span>.<span class="hljs-title function_">isEmpty</span>(goodsQueryMasterDataDTOList)) &#123;  <br>            <span class="hljs-keyword">return</span>;  <br>        &#125;  <br>        <span class="hljs-comment">//根据goodsQueryMasterDataDTOList 的SKC数据过滤content  </span><br>        <span class="hljs-title class_">List</span>&lt;<span class="hljs-title class_">String</span>&gt; skcList = goodsQueryMasterDataDTOList.<span class="hljs-title function_">stream</span>()  <br>                .<span class="hljs-title function_">map</span>(<span class="hljs-title class_">GoodsQueryMasterDataDTO</span>::getSkc)  <br>                .<span class="hljs-title function_">distinct</span>()  <br>                .<span class="hljs-title function_">toList</span>();  <br>        <span class="hljs-title class_">Map</span>&lt;<span class="hljs-title class_">String</span>, <span class="hljs-title class_">MasterDataEventContentDTO</span>&gt; filteredContent = content.<span class="hljs-title function_">entrySet</span>().<span class="hljs-title function_">stream</span>()  <br>                .<span class="hljs-title function_">filter</span>(entry -&gt; skcList.<span class="hljs-title function_">contains</span>(entry.<span class="hljs-title function_">getKey</span>()))  <br>                .<span class="hljs-title function_">collect</span>(<span class="hljs-title class_">Collectors</span>.<span class="hljs-title function_">toMap</span>(<span class="hljs-title class_">Map</span>.<span class="hljs-property">Entry</span>::getKey, <span class="hljs-title class_">Map</span>.<span class="hljs-property">Entry</span>::getValue));  <br>        <span class="hljs-comment">//填充供应商ID和供应商类型  </span><br>        <span class="hljs-title function_">fillSupplierProductCode</span>(goodsQueryMasterDataDTOList,filteredContent);  <br>    &#125;  <br>  <br>    <span class="hljs-comment">/**  </span><br><span class="hljs-comment">     * 填充供应商产品编码  </span><br><span class="hljs-comment">     */</span>  <br>    <span class="hljs-keyword">private</span> <span class="hljs-built_in">void</span> <span class="hljs-title function_">fillSupplierProductCode</span>(<span class="hljs-params">List&lt;GoodsQueryMasterDataDTO&gt; dtoList,<span class="hljs-built_in">Map</span>&lt;<span class="hljs-built_in">String</span>, MasterDataEventContentDTO&gt; content</span>) &#123;  <br>        dtoList.<span class="hljs-title function_">forEach</span>(dto -&gt; &#123;  <br>            <span class="hljs-title class_">MasterDataEventContentDTO</span> eventContent = content.<span class="hljs-title function_">get</span>(dto.<span class="hljs-title function_">getSkc</span>());  <br>            <span class="hljs-keyword">if</span> (eventContent != <span class="hljs-literal">null</span> &amp;&amp; eventContent.<span class="hljs-title function_">getSupplyChangeDTO</span>() != <span class="hljs-literal">null</span>) &#123;  <br>                    dto.<span class="hljs-title function_">setSupplierId</span>(eventContent.<span class="hljs-title function_">getSupplyChangeDTO</span>().<span class="hljs-title function_">getSupplierId</span>());  <br>                    dto.<span class="hljs-title function_">setSupplierType</span>(eventContent.<span class="hljs-title function_">getSupplyChangeDTO</span>().<span class="hljs-title function_">getSupplierSource</span>());  <br>                &#125;  <br>        &#125;);  <br>    &#125;  <br>  <br>    <span class="hljs-meta">@Override</span>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">void</span> <span class="hljs-title function_">fillGoodsQueryMasterDataEsDTOBatch</span>(<span class="hljs-params">List&lt;GoodsQueryMasterDataEsDTO&gt; goodsQueryMasterDataEsDTOList,<span class="hljs-built_in">Map</span>&lt;<span class="hljs-built_in">String</span>, MasterDataEventContentDTO&gt; content</span>) &#123;  <br>        log.<span class="hljs-title function_">debug</span>(<span class="hljs-string">&quot;&#123;&#125; 开始批量填充ES ISS供应商信息，共&#123;&#125;个商品&quot;</span>, <span class="hljs-title function_">getSyncScene</span>(), goodsQueryMasterDataEsDTOList.<span class="hljs-title function_">size</span>());  <br>  <br>        <span class="hljs-comment">// 查询数据库  </span><br>        <span class="hljs-title class_">List</span>&lt;<span class="hljs-title class_">String</span>&gt; skcList = goodsQueryMasterDataEsDTOList.<span class="hljs-title function_">stream</span>()  <br>                .<span class="hljs-title function_">map</span>(<span class="hljs-title class_">GoodsQueryMasterDataEsDTO</span>::getSkc)  <br>                .<span class="hljs-title function_">distinct</span>()  <br>                .<span class="hljs-title function_">toList</span>();  <br>        <span class="hljs-title class_">GoodsQueryMasterDataQueryPO</span> condition = <span class="hljs-keyword">new</span> <span class="hljs-title class_">GoodsQueryMasterDataQueryPO</span>();  <br>        condition.<span class="hljs-title function_">setSkcList</span>(skcList);  <br>        condition.<span class="hljs-title function_">setPageSize</span>(<span class="hljs-title class_">CollectionUtils</span>.<span class="hljs-title function_">size</span>(skcList));  <br>        <span class="hljs-title class_">List</span>&lt;<span class="hljs-title class_">GoodsQueryMasterDataModel</span>&gt; goodsQueryMasterDataModelList = goodsQueryMasterDataRepository.<span class="hljs-title function_">queryByCondition</span>(condition);  <br>        <span class="hljs-keyword">if</span> (<span class="hljs-title class_">CollectionUtils</span>.<span class="hljs-title function_">isEmpty</span>(goodsQueryMasterDataModelList)) &#123;  <br>            <span class="hljs-keyword">return</span>;  <br>        &#125;  <br>  <br>        <span class="hljs-keyword">var</span> skc2DTOMap = goodsQueryMasterDataEsDTOList.<span class="hljs-title function_">stream</span>().<span class="hljs-title function_">collect</span>(<span class="hljs-title class_">Collectors</span>.<span class="hljs-title function_">toMap</span>(  <br>                <span class="hljs-title class_">GoodsQueryMasterDataEsDTO</span>::getSkc,  <br>                dto -&gt; dto,  <br>                (existing, replacement) -&gt; existing  <br>        ));  <br>  <br>        <span class="hljs-comment">// 属性拷贝 (仅复制 skc, supplierId, supplierType)        for (GoodsQueryMasterDataModel dataModel : goodsQueryMasterDataModelList) &#123;  </span><br>            <span class="hljs-keyword">if</span> (skc2DTOMap.<span class="hljs-title function_">containsKey</span>(dataModel.<span class="hljs-title function_">getSkc</span>())) &#123;  <br>                <span class="hljs-title class_">GoodsQueryMasterDataEsDTO</span> dto = skc2DTOMap.<span class="hljs-title function_">get</span>(dataModel.<span class="hljs-title function_">getSkc</span>());  <br>                dto.<span class="hljs-title function_">setSkc</span>(dataModel.<span class="hljs-title function_">getSkc</span>());  <br>                dto.<span class="hljs-title function_">setSupplierId</span>(dataModel.<span class="hljs-title function_">getSupplierId</span>());  <br>                dto.<span class="hljs-title function_">setSupplierType</span>(dataModel.<span class="hljs-title function_">getSupplierType</span>());  <br>            &#125;  <br>        &#125;  <br>  <br>        log.<span class="hljs-title function_">debug</span>(<span class="hljs-string">&quot;&#123;&#125; ES ISS供应商信息填充完成，共&#123;&#125;个商品&quot;</span>, <span class="hljs-title function_">getSyncScene</span>(), goodsQueryMasterDataEsDTOList.<span class="hljs-title function_">size</span>());  <br>    &#125;  <br>  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="后续进展"><a href="#后续进展" class="headerlink" title="后续进展"></a>后续进展</h3><p>使用这种策略的方式，在大数据变更的时候还是会有些问题，尽可能还是有限加锁处理；</p>
+<p>同时加锁的同时，注意一下加锁时间和等待阻塞时间，另外还注意一下是否是异步调用。</p>
+<p>细节方面多注意。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/projectCode/" class="print-no-link">#projectCode</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>如何处理主数据变更</div>
+      <div>https://varcel.luoqi.icu/2025/08/01/sync/如何处理主数据变更-07d601/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Luo QI</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年8月1日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
