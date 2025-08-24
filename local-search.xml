@@ -1382,33 +1382,6 @@
   
   
   <entry>
-    <title>操作系统知识</title>
-    <link href="/2024/09/12/sync/02_%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86-ec5b61/"/>
-    <url>/2024/09/12/sync/02_%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86-ec5b61/</url>
-    
-    <content type="html"><![CDATA[<p>上级</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs base">views:<br>  - type: table<br>    name: 关联文件表<br>    filters:<br>      and:<br>        - layer_id == this.parent_id  <br>        - parent_id != null   <br>        - layer_id != null  <br><br></code></pre></td></tr></table></figure><p>工作内容</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs base">views:<br>  - type: cards<br>    name: 视图<br>    cardSize: 200<br>    image: note.title<br>    filters:<br>      and:<br>        - parent_id == this.layer_id<br>        - parent_id != null<br>    order:<br>      - title<br>    sort:<br>      - property: priority<br>        direction: ASC<br>      - property: layer_id<br>        direction: ASC<br></code></pre></td></tr></table></figure><p>02_操作系统知识-综合知识</p><p>02_操作系统知识-练习题</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>考证</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>备考/软考</tag>
-      
-      <tag>计算机/操作系统</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>Hibernate Search学习</title>
     <link href="/2024/08/29/sync/Hibernate-Search%E5%AD%A6%E4%B9%A0-b33750/"/>
     <url>/2024/08/29/sync/Hibernate-Search%E5%AD%A6%E4%B9%A0-b33750/</url>
