@@ -374,19 +374,6 @@
   
   
   <entry>
-    <title>大模型和API 交互</title>
-    <link href="/2025/06/22/sync/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%92%8CAPI-%E4%BA%A4%E4%BA%92-7052d8/"/>
-    <url>/2025/06/22/sync/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%92%8CAPI-%E4%BA%A4%E4%BA%92-7052d8/</url>
-    
-    <content type="html"><![CDATA[<h3 id="Deepseek"><a href="#Deepseek" class="headerlink" title="Deepseek"></a>Deepseek</h3><p>deepseek <a href="https://chat.deepseek.com/">https://chat.deepseek.com/</a></p><p>API 开发平台： <a href="https://platform.deepseek.com/usage">https://platform.deepseek.com/usage</a></p><p>记录一下随着 大模型 deepseek 的发布，有一些新的功能和交互，记录一下基本的使用</p><blockquote><p>function call 介绍和实现</p></blockquote><p>参考； <a href="https://deepseek.csdn.net/6822fc88c7c7e505d357c2a9.html">https://deepseek.csdn.net/6822fc88c7c7e505d357c2a9.html</a></p><h3 id="腾讯DeepSeek"><a href="#腾讯DeepSeek" class="headerlink" title="腾讯DeepSeek"></a>腾讯DeepSeek</h3><p>腾讯云版 DeepSeek API（免费额度1000000token）</p><ul><li><a href="https://cloud.tencent.com/document/product/1772/115969">https://cloud.tencent.com/document/product/1772/115969</a></li><li><a href="https://console.cloud.tencent.com/lkeap/api">https://console.cloud.tencent.com/lkeap/api</a></li></ul><h3 id="Kim"><a href="#Kim" class="headerlink" title="Kim"></a>Kim</h3><ul><li>kimi  <a href="https://kimi.moonshot.cn/">https://kimi.moonshot.cn/</a></li></ul>]]></content>
-    
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>解决IDEA加载插件市场很慢问题</title>
     <link href="/2025/06/22/sync/%E8%A7%A3%E5%86%B3IDEA%E5%8A%A0%E8%BD%BD%E6%8F%92%E4%BB%B6%E5%B8%82%E5%9C%BA%E5%BE%88%E6%85%A2%E9%97%AE%E9%A2%98-d195ac/"/>
     <url>/2025/06/22/sync/%E8%A7%A3%E5%86%B3IDEA%E5%8A%A0%E8%BD%BD%E6%8F%92%E4%BB%B6%E5%B8%82%E5%9C%BA%E5%BE%88%E6%85%A2%E9%97%AE%E9%A2%98-d195ac/</url>
