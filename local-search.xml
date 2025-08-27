@@ -117,28 +117,7 @@
     
     <tags>
       
-      <tag>git</tag>
-      
       <tag>mcp</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>关联新仓库操作-GIT</title>
-    <link href="/2025/06/28/sync/%E5%85%B3%E8%81%94%E6%96%B0%E4%BB%93%E5%BA%93%E6%93%8D%E4%BD%9C-GIT-111cd3/"/>
-    <url>/2025/06/28/sync/%E5%85%B3%E8%81%94%E6%96%B0%E4%BB%93%E5%BA%93%E6%93%8D%E4%BD%9C-GIT-111cd3/</url>
-    
-    <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#克隆项目到本地</span><br>git <span class="hljs-built_in">clone</span> https://gitcode.net/KnowledgePlanet/ai-rag-knowledge.git<br><br><span class="hljs-comment">#解除与原仓库的关联​</span><br><span class="hljs-built_in">cd</span> 项目目录<br>git remote remove origin<br><br>新建项目（在 Gitee)<br>1. 登录 Gitee，点击右上角 ​新建项目。 项目名：ai-rag-knowledge<br>2. 填写项目名称、描述，​*不要初始化 README 或 .gitignore​（避免冲突）。<br>3. 创建完成后，记下你的仓库地址。<br><br><span class="hljs-comment"># 将本地仓库关联到你的新仓库​</span><br>git remote add origin <span class="hljs-string">&quot;https://gitee.com/lluo-liang/ai-rag-knowledge.git&quot;</span><br><br><span class="hljs-comment">#推送代码</span><br>git push -u origin <span class="hljs-string">&quot;master&quot;</span><br><br>如果需要再同步拉取最新代码，可以看一下相关教程，这里的操作在分支 feature/luo-study 上进行<br></code></pre></td></tr></table></figure>]]></content>
-    
-    
-    
-    <tags>
-      
-      <tag>git</tag>
       
     </tags>
     
