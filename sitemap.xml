@@ -371,15 +371,6 @@
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/2025/06/19/sync/IDEA%E6%8F%92%E4%BB%B6AutoDev-Sketch%E4%BD%BF%E7%94%A8-541fb0/</loc>
-    
-    <lastmod>2025-08-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://varcel.luoqi.icu/2024/11/28/sync/IDEA%E9%85%8D%E7%BD%AE%E6%B3%A8%E9%87%8A-d1d7e2/</loc>
     
     <lastmod>2025-08-27</lastmod>
@@ -506,7 +497,7 @@
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/2025/06/20/sync/MyBatis-Generator-%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B-4bdcf3/</loc>
+    <loc>https://varcel.luoqi.icu/2025/06/20/sync/MySQL_%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98-e32ebd/</loc>
     
     <lastmod>2025-08-27</lastmod>
     
@@ -515,7 +506,7 @@
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/2025/06/20/sync/MySQL_%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98-e32ebd/</loc>
+    <loc>https://varcel.luoqi.icu/2025/06/20/sync/MyBatis-Generator-%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B-4bdcf3/</loc>
     
     <lastmod>2025-08-27</lastmod>
     
@@ -614,7 +605,7 @@
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/2025/06/24/sync/SpringBoot%E9%9B%86%E6%88%90DS%E8%B0%83%E7%94%A8MCP%E5%AE%9E%E7%8E%B0-3b76c8/</loc>
+    <loc>https://varcel.luoqi.icu/2025/06/27/sync/SpringBoot%E9%9B%86%E6%88%90DS%E8%B0%83%E7%94%A8MCP%E5%AE%9E%E7%8E%B0-%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2-287d10/</loc>
     
     <lastmod>2025-08-27</lastmod>
     
@@ -623,7 +614,7 @@
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/2025/06/27/sync/SpringBoot%E9%9B%86%E6%88%90DS%E8%B0%83%E7%94%A8MCP%E5%AE%9E%E7%8E%B0-%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2-287d10/</loc>
+    <loc>https://varcel.luoqi.icu/2025/06/24/sync/SpringBoot%E9%9B%86%E6%88%90DS%E8%B0%83%E7%94%A8MCP%E5%AE%9E%E7%8E%B0-3b76c8/</loc>
     
     <lastmod>2025-08-27</lastmod>
     
@@ -839,7 +830,7 @@
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/2025/06/15/sync/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0-Mybatis-%E4%BD%BF%E7%94%A8-2a1391/</loc>
+    <loc>https://varcel.luoqi.icu/2025/06/20/sync/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0_MyBatis-Plus%E4%BD%BF%E7%94%A8-e96a52/</loc>
     
     <lastmod>2025-08-27</lastmod>
     
@@ -848,7 +839,7 @@
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/2025/06/20/sync/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0_MyBatis-Plus%E4%BD%BF%E7%94%A8-e96a52/</loc>
+    <loc>https://varcel.luoqi.icu/2025/06/15/sync/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0-Mybatis-%E4%BD%BF%E7%94%A8-2a1391/</loc>
     
     <lastmod>2025-08-27</lastmod>
     
@@ -930,15 +921,6 @@
   
   <url>
     <loc>https://varcel.luoqi.icu/2025/06/22/sync/%E8%A7%A3%E5%86%B3IDEA%E5%8A%A0%E8%BD%BD%E6%8F%92%E4%BB%B6%E5%B8%82%E5%9C%BA%E5%BE%88%E6%85%A2%E9%97%AE%E9%A2%98-d195ac/</loc>
-    
-    <lastmod>2025-08-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://varcel.luoqi.icu/2025/05/26/sync/%E9%80%9A%E8%BF%87%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%8E%BB%E8%BE%85%E5%8A%A9%E7%BC%96%E7%A8%8B-df497e/</loc>
     
     <lastmod>2025-08-27</lastmod>
     
@@ -1029,14 +1011,14 @@
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/tags/jvm/</loc>
+    <loc>https://varcel.luoqi.icu/tags/%E5%A4%87%E8%80%83-%E8%BD%AF%E8%80%83/</loc>
     <lastmod>2025-08-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/tags/%E5%A4%87%E8%80%83-%E8%BD%AF%E8%80%83/</loc>
+    <loc>https://varcel.luoqi.icu/tags/jvm/</loc>
     <lastmod>2025-08-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1155,13 +1137,6 @@
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/tags/aiCode/</loc>
-    <lastmod>2025-08-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://varcel.luoqi.icu/tags/springcloud/</loc>
     <lastmod>2025-08-27</lastmod>
     <changefreq>weekly</changefreq>
@@ -1211,6 +1186,13 @@
   </url>
   
   <url>
+    <loc>https://varcel.luoqi.icu/tags/Java%E9%9D%A2%E8%AF%95/</loc>
+    <lastmod>2025-08-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://varcel.luoqi.icu/tags/mybatis/</loc>
     <lastmod>2025-08-27</lastmod>
     <changefreq>weekly</changefreq>
@@ -1219,13 +1201,6 @@
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/mybatisPlus/</loc>
-    <lastmod>2025-08-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://varcel.luoqi.icu/tags/Java%E9%9D%A2%E8%AF%95/</loc>
     <lastmod>2025-08-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1352,6 +1327,13 @@
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/excalidraw/</loc>
+    <lastmod>2025-08-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://varcel.luoqi.icu/tags/aiCode/</loc>
     <lastmod>2025-08-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
