@@ -69,8 +69,8 @@ https://varcel.luoqi.icu/2025/06/24/sync/SpringBoot%E9%9B%86%E6%88%90DS%E8%B0%83
 https://varcel.luoqi.icu/2025/06/27/sync/SpringBoot%E9%9B%86%E6%88%90DS%E8%B0%83%E7%94%A8MCP%E5%AE%9E%E7%8E%B0-%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2-287d10/
 https://varcel.luoqi.icu/2024/01/11/sync/SpringBoot%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88-d3789a/
 https://varcel.luoqi.icu/2023/11/24/sync/SpringCloud_%E7%BB%84%E4%BB%B6%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8_Nacos-b89636/
-https://varcel.luoqi.icu/2024/03/31/sync/SpringSecurity%E5%AD%A6%E4%B9%A0%E4%BD%BF%E7%94%A8-63acdb/
 https://varcel.luoqi.icu/2024/10/02/sync/VirtualBox%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85-19d812/
+https://varcel.luoqi.icu/2024/03/31/sync/SpringSecurity%E5%AD%A6%E4%B9%A0%E4%BD%BF%E7%94%A8-63acdb/
 https://varcel.luoqi.icu/2023/11/26/sync/Vue%E5%AD%A6%E4%B9%A0_%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9-ea6830/
 https://varcel.luoqi.icu/2025/06/23/sync/Windows-%E7%B3%BB%E7%BB%9F%E4%B8%8B%E5%AE%89%E8%A3%85-Node-%E7%8E%AF%E5%A2%83-7ea001/
 https://varcel.luoqi.icu/2024/01/13/sync/node%E5%AE%89%E8%A3%85%E5%92%8C%E4%B8%8B%E8%BD%BD-227f53/
