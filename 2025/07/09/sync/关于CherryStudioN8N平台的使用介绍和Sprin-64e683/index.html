@@ -21,12 +21,12 @@
   <meta name="author" content="Luo QI">
   <meta name="keywords" content="">
   
-    <meta name="description" content="分享内容——Felix Wu 20250711">
+    <meta name="description" content="介绍 CherryStudio 客户端的知识库与 MCP 服务配置，以及 N8N 工作流平台的基本使用，附带 Spring AI 框架简要概览。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于CherryStudio、N8N平台的使用介绍和Spring AI 框架">
+<meta property="og:title" content="CherryStudio 与 N8N 实用指南：AI 客户端和工作流平台入门">
 <meta property="og:url" content="https://varcel.luoqi.icu/2025/07/09/sync/%E5%85%B3%E4%BA%8ECherryStudioN8N%E5%B9%B3%E5%8F%B0%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%BB%8D%E5%92%8CSprin-64e683/index.html">
 <meta property="og:site_name" content="轻松的洛亓">
-<meta property="og:description" content="分享内容——Felix Wu 20250711">
+<meta property="og:description" content="介绍 CherryStudio 客户端的知识库与 MCP 服务配置，以及 N8N 工作流平台的基本使用，附带 Spring AI 框架简要概览。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250711030336.png">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250711030506.png">
@@ -41,14 +41,17 @@
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250711035543.png">
 <meta property="og:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250711040032.png">
 <meta property="article:published_time" content="2025-07-09T22:30:45.000Z">
-<meta property="article:modified_time" content="2026-04-30T23:29:14.000Z">
+<meta property="article:modified_time" content="2026-05-02T01:57:06.000Z">
 <meta property="article:author" content="Luo QI">
+<meta property="article:tag" content="AI工具">
+<meta property="article:tag" content="MCP">
+<meta property="article:tag" content="LLM">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250711030336.png">
   
   
   
-  <title>关于CherryStudio、N8N平台的使用介绍和Spring AI 框架 - 轻松的洛亓</title>
+  <title>CherryStudio 与 N8N 实用指南：AI 客户端和工作流平台入门 - 轻松的洛亓</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -214,7 +217,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="关于CherryStudio、N8N平台的使用介绍和Spring AI 框架"></span>
+            <span id="subtitle" data-typed-text="CherryStudio 与 N8N 实用指南：AI 客户端和工作流平台入门"></span>
           
         </div>
 
@@ -237,7 +240,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.3k 字
+          1.5k 字
         
       </span>
     
@@ -248,7 +251,7 @@
         
         
         
-          11 分钟
+          13 分钟
         
       </span>
     
@@ -285,183 +288,142 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">关于CherryStudio、N8N平台的使用介绍和Spring AI 框架</h1>
+            <h1 id="seo-header">CherryStudio 与 N8N 实用指南：AI 客户端和工作流平台入门</h1>
             
             
               <div class="markdown-body">
                 
-                <p>推荐文章</p>
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>随着大语言模型的快速发展，围绕 LLM 的工具生态也日趋丰富。本文聚焦两款实用工具：<strong>CherryStudio</strong>（AI 对话客户端）和 <strong>N8N</strong>（开源工作流自动化平台），介绍它们的核心功能与上手方式，最后简要提及 Spring AI 框架在 MCP 服务搭建方面的应用。</p>
+<h2 id="CherryStudio：功能丰富的-AI-客户端"><a href="#CherryStudio：功能丰富的-AI-客户端" class="headerlink" title="CherryStudio：功能丰富的 AI 客户端"></a>CherryStudio：功能丰富的 AI 客户端</h2><blockquote>
+<p>官方文档：<a target="_blank" rel="noopener" href="https://docs.cherry-ai.com/">https://docs.cherry-ai.com/</a></p>
+</blockquote>
+<p>CherryStudio 是一款开源的桌面端 AI 对话客户端，支持多模型接入、本地知识库和 MCP 服务集成。对于想要在本地环境中统一管理多个大模型的用户来说，是一个不错的选择。</p>
+<h3 id="模型配置"><a href="#模型配置" class="headerlink" title="模型配置"></a>模型配置</h3><p>CherryStudio 支持接入多种模型服务商，常用的配置方式：</p>
 <ul>
-<li>大模型的参数设置： <a target="_blank" rel="noopener" href="https://www.promptingguide.ai/zh/introduction/settings">https://www.promptingguide.ai/zh/introduction/settings</a></li>
-<li>大语言模型智能体工具： <a target="_blank" rel="noopener" href="https://www.promptingguide.ai/zh/research/llm-agents">https://www.promptingguide.ai/zh/research/llm-agents</a></li>
-<li>Spring AI: <ul>
-<li><a target="_blank" rel="noopener" href="https://spring.io/ai">https://spring.io/ai</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/alibaba/spring-ai-alibaba/blob/main/README-zh.md">https://github.com/alibaba/spring-ai-alibaba/blob/main/README-zh.md</a></li>
-<li><a target="_blank" rel="noopener" href="https://java2ai.com/docs/1.0.0-M6.1/get-started/?spm=5176.29160081.0.0.2856aa5cJ7DL7b">https://java2ai.com/docs/1.0.0-M6.1/get-started/?spm=5176.29160081.0.0.2856aa5cJ7DL7b</a></li>
+<li><strong>DeepSeek</strong>：手动添加 API Key 即可接入</li>
+<li><strong>硅基流动（SiliconFlow）</strong>：注册后可获取免费额度，适合体验各类开源模型</li>
 </ul>
-</li>
-<li>MCP 社区<ul>
-<li><a target="_blank" rel="noopener" href="https://mcpservers.cn/servers">https://mcpservers.cn/servers</a></li>
-<li><a target="_blank" rel="noopener" href="https://sai.baidu.com/zh/">https://sai.baidu.com/zh/</a></li>
-<li><a target="_blank" rel="noopener" href="https://gitmcp.io/">https://gitmcp.io/</a></li>
-<li><a target="_blank" rel="noopener" href="https://mcp.so/">https://mcp.so/</a></li>
-</ul>
-</li>
-<li>提示词<ul>
-<li><a target="_blank" rel="noopener" href="https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api">https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api</a></li>
-<li><a target="_blank" rel="noopener" href="https://langgptai.feishu.cn/wiki/WOMhwOkPsiNacKkgz2ecu9Mmngc">https://langgptai.feishu.cn/wiki/WOMhwOkPsiNacKkgz2ecu9Mmngc</a></li>
-</ul>
-</li>
-</ul>
-<p>LLM 应用平台： Dify、Coze、n8n 等</p>
-<p>n8n 入门工具（工作流使用）： <a target="_blank" rel="noopener" href="https://juejin.cn/post/7500070714626015242">https://juejin.cn/post/7500070714626015242</a></p>
-<p>客户端使用：  <a target="_blank" rel="noopener" href="https://docs.cherry-ai.com/">https://docs.cherry-ai.com/</a></p>
-<p>本次分享主题：主要是围绕一下目前有趣的几款工具和框架使用分享（菜鸡🐔抛砖引玉，一起交流进步⛽️～～）</p>
-<h3 id="客户端-CherryStudio-的使用"><a href="#客户端-CherryStudio-的使用" class="headerlink" title="客户端-CherryStudio 的使用"></a>客户端-CherryStudio 的使用</h3><ul>
-<li>1、MCP 服务的访问</li>
-<li>2、本地知识库的使用</li>
-</ul>
-<p>客户端使用：  <a target="_blank" rel="noopener" href="https://docs.cherry-ai.com/">https://docs.cherry-ai.com/</a></p>
-<h4 id="模型配置"><a href="#模型配置" class="headerlink" title="模型配置"></a>模型配置</h4><ul>
-<li>可以手动配置一下 deepseek</li>
-<li>手动注册一下硅基流动</li>
-</ul>
-<h4 id="知识库使用"><a href="#知识库使用" class="headerlink" title="知识库使用"></a>知识库使用</h4><p>在 Cherry Studio 知识库中添加的数据全部存储在本地，在添加过程中会复制一份文档放在 Cherry Studio 数据存储目录</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250711030336.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>新建知识库</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250711030506.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>其中，关于嵌入模型和重排序模型的选择</p>
+<p>配置路径在客户端的「设置 → 模型服务」中完成，填入对应的 API 地址和密钥即可。</p>
+<h3 id="本地知识库"><a href="#本地知识库" class="headerlink" title="本地知识库"></a>本地知识库</h3><p>CherryStudio 内置了本地知识库功能，支持将文档导入后进行向量化检索。所有数据均<strong>存储在本地</strong>，导入时会复制一份文档到 Cherry Studio 的数据目录。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250711030336.png" srcset="/img/loading.gif" lazyload alt="知识库概览"></p>
+<h4 id="创建知识库"><a href="#创建知识库" class="headerlink" title="创建知识库"></a>创建知识库</h4><p>在知识库页面点击「新建」，选择要导入的文档即可完成创建。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250711030506.png" srcset="/img/loading.gif" lazyload alt="新建知识库"></p>
+<h4 id="嵌入模型与重排序模型"><a href="#嵌入模型与重排序模型" class="headerlink" title="嵌入模型与重排序模型"></a>嵌入模型与重排序模型</h4><p>知识库检索的效果取决于两个关键模型的选择：</p>
+<p><strong>嵌入模型（Embedding Model）</strong></p>
+<p>将文本转换为向量表示，用于相似内容的高效检索。需要关注两个核心概念：</p>
 <ul>
-<li>嵌入模型<ul>
-<li><strong>核心功能​</strong>​：将文本或其他模态数据（如图像、音频）转换为向量表示（嵌入向量），用于高效检索相似内容。</li>
-<li>常见的向量化方式<ul>
-<li><strong>余弦相似度</strong><ul>
-<li>文本相似度计算（如文档检索、语义匹配）</li>
-<li>有时候一个很短和词和一个很长的句子，它们的语义实际是匹配的，在这种方式下它们的余弦相似度是非常重合的。</li>
+<li><strong>余弦相似度</strong>：衡量两个向量方向的一致性，适合语义匹配场景。即使一个短词和一个长句子语义相同，余弦相似度也能准确捕捉这种匹配关系</li>
+<li><strong>嵌入维度</strong>：更高维度能捕捉更复杂的语义关系（如专业术语的细微差别），但维度越高，存储和检索成本也越大，需要在精度与资源之间做权衡</li>
 </ul>
-</li>
-<li>向量距离<ul>
-<li>一般来说，向量纬度越高</li>
+<p><strong>重排序模型（Reranker Model）</strong></p>
+<p>对嵌入模型初步检索的候选文档进行<strong>精细化排序</strong>，筛选出最相关的上下文。使用重排序模型能显著提升最终结果的质量，避免 LLM 基于低相关性文档生成错误答案。</p>
+<blockquote>
+<p>可以在硅基流动的模型广场查看是否有免费的嵌入和重排序模型可用。</p>
+</blockquote>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250711032418.png" srcset="/img/loading.gif" lazyload alt="模型选择"></p>
+<p>下面两张图展示了使用重排序模型前后的检索评分对比，差距非常明显：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250711032825.png" srcset="/img/loading.gif" lazyload alt="有重排序"></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250711032742.png" srcset="/img/loading.gif" lazyload alt="无重排序"></p>
+<p>CherryStudio 的知识库界面可以直观地看到嵌入模型的检索结果和评分，是一个不错的调试和验证工具。</p>
+<h4 id="在对话中使用知识库"><a href="#在对话中使用知识库" class="headerlink" title="在对话中使用知识库"></a>在对话中使用知识库</h4><p>点击对话界面左下角的知识库按钮，选择已配置的知识库，即可在对话中基于知识库内容进行问答。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250711033916.png" srcset="/img/loading.gif" lazyload alt="对话中使用知识库"></p>
+<h3 id="MCP-服务集成"><a href="#MCP-服务集成" class="headerlink" title="MCP 服务集成"></a>MCP 服务集成</h3><p>CherryStudio 支持接入 MCP（Model Context Protocol）服务，推荐使用「同步服务器」方式快速配置。</p>
+<h4 id="配置步骤"><a href="#配置步骤" class="headerlink" title="配置步骤"></a>配置步骤</h4><p><strong>1. 登录 MCP 平台</strong></p>
+<p>通过 GitHub 账号登录 ModelScope（或其他支持的平台）：</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250711033317.png" srcset="/img/loading.gif" lazyload alt="登录 ModelScope"></p>
+<p><strong>2. 选择并连接 MCP 服务</strong></p>
+<p>在 ModelScope 的 MCP 广场中，带有 <strong>Hosted</strong> 标签的 MCP 服务支持在线托管，点击进入后选择「连接」。如果服务需要额外配置属性，按提示填写即可。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250711034330.png" srcset="/img/loading.gif" lazyload alt="MCP 广场"></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250711034354.png" srcset="/img/loading.gif" lazyload alt="连接 MCP"></p>
+<p><strong>3. 同步到 CherryStudio</strong></p>
+<p>连接成功后，在 CherryStudio 中选择「同步服务器」操作，配置信息会自动同步过来。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250711035214.png" srcset="/img/loading.gif" lazyload alt="同步操作"></p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250711035543.png" srcset="/img/loading.gif" lazyload alt="同步结果"></p>
+<h4 id="在对话中使用-MCP-服务"><a href="#在对话中使用-MCP-服务" class="headerlink" title="在对话中使用 MCP 服务"></a>在对话中使用 MCP 服务</h4><p>在对话界面底部可以单选或多选已配置的 MCP 服务，模型会在需要时自动调用对应的工具。</p>
+<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250711040032.png" srcset="/img/loading.gif" lazyload alt="使用 MCP 服务"></p>
+<h2 id="N8N：开源工作流自动化平台"><a href="#N8N：开源工作流自动化平台" class="headerlink" title="N8N：开源工作流自动化平台"></a>N8N：开源工作流自动化平台</h2><p>N8N 是一款开源的工作流自动化工具，类似于 Zapier &#x2F; Make，但支持自托管且可高度定制。在 AI 场景下，N8N 可以将大模型调用与各类外部服务（数据库、API、消息推送等）串联成自动化流程。</p>
+<h3 id="核心优势"><a href="#核心优势" class="headerlink" title="核心优势"></a>核心优势</h3><ul>
+<li><strong>可视化编排</strong>：通过拖拽节点构建工作流，降低使用门槛</li>
+<li><strong>自托管</strong>：数据完全掌握在自己手中，适合对隐私有要求的场景</li>
+<li><strong>丰富的集成</strong>：内置数百个第三方服务节点，也支持自定义 HTTP 请求</li>
+<li><strong>AI 友好</strong>：原生支持 LLM 节点，可以方便地在工作流中嵌入大模型调用</li>
 </ul>
-</li>
+<h3 id="同类平台对比"><a href="#同类平台对比" class="headerlink" title="同类平台对比"></a>同类平台对比</h3><table>
+<thead>
+<tr>
+<th>平台</th>
+<th>特点</th>
+<th>适合场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>N8N</strong></td>
+<td>开源自托管，灵活性高</td>
+<td>开发者、需要私有化部署</td>
+</tr>
+<tr>
+<td><strong>Dify</strong></td>
+<td>专注 LLM 应用开发，内置 RAG</td>
+<td>快速搭建 AI 应用</td>
+</tr>
+<tr>
+<td><strong>Coze</strong></td>
+<td>字节跳动出品，集成豆包模型</td>
+<td>国内用户快速体验</td>
+</tr>
+</tbody></table>
+<h3 id="入门资源"><a href="#入门资源" class="headerlink" title="入门资源"></a>入门资源</h3><ul>
+<li>N8N 入门教程：<a target="_blank" rel="noopener" href="https://juejin.cn/post/7500070714626015242">https://juejin.cn/post/7500070714626015242</a></li>
+<li>N8N 视频教程：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1r17azXEAj">https://www.bilibili.com/video/BV1r17azXEAj</a></li>
+<li>Dify 基础介绍：<a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_59163425/article/details/142368632">https://blog.csdn.net/m0_59163425/article/details/142368632</a></li>
 </ul>
-</li>
-<li>嵌入纬度<ul>
-<li>更高维度能捕捉更复杂的语义关系（如专业术语的细微差别），但需权衡计算资源</li>
-<li>维度越高，向量数据库的存储和检索成本越大</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>重排序模型<ul>
-<li><strong>核心功能​</strong>​：对嵌入模型初步检索的候选文档进行精细化排序，筛选最相关的上下文</li>
-<li>提高关联性，显著提升生成模块的输入质量，避免LLM基于低相关性文档生成错误答案</li>
-</ul>
-</li>
-</ul>
-<p>使用的时候也可以去硅基流动的模型广场，看一下是否有免费的嵌入和重排序模型选择（其他模型亦可）</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250711032418.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>有无使用重排序模型的，两个搜索比分比较大的差距。</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250711032825.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250711032742.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>这个客户端，是能够比较快的看到自己使用的一个嵌入模型，在这种方式下搜索出的结果大概是什么样子的；是一个比较好的联调工具。</p>
-<p>当然还有一些其他的搜索权重的方式，暂时不太了解，有懂哥可以分享一下～</p>
-<p><strong>对话中使用知识库</strong></p>
-<p>点击左下角的知识库按钮，可以选择自己配置好的知识库，然后问相关问题即可。</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250711033916.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="MCP-服务"><a href="#MCP-服务" class="headerlink" title="MCP 服务"></a>MCP 服务</h4><p>推荐使用一下这里的【同步服务器】操作</p>
-<p>可以通过 Github 账号登陆 ModelScope (其他雷同)</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250711033317.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>进入到 ModelScope 的MCP 广场，如果带有 Hosted 标签的MCP，可以进入该 MCP，然后选择连接（如果需要配置属性，需要填写配置信息）</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250711034330.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250711034354.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>点击连接后，可以在 CherryStudio 选择同步操作，会自动同步到配置信息中，也可以选择根据配置信息</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250711035214.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250711035543.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p><strong>对话使用 MCP 服务</strong></p>
-<p>使用下边的按钮，可以单选&#x2F;多选MCP服务，然后就会调用 MCP服务了。</p>
-<p>这里的目标语言在使用MCP服务的时候，是没有失效的（可能是版本问题）</p>
-<p><img src="https://obsidian-picture.oss-cn-shenzhen.aliyuncs.com/luoblog/20250711040032.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h3 id="Spring-AI-框架使用-搭建自己的第一个MCP服务"><a href="#Spring-AI-框架使用-搭建自己的第一个MCP服务" class="headerlink" title="Spring AI 框架使用-搭建自己的第一个MCP服务"></a>Spring AI 框架使用-搭建自己的第一个MCP服务</h3><p>如何使用 Spring AI 部署MCP 服务</p>
-<p>Spring AI 的一些使用</p>
-<ul>
-<li>1、RAG 的使用</li>
-<li>2、MCP 的使用<ul>
-<li>搭建自己的第一个MCP服务</li>
-<li>MCP 服务分享</li>
-</ul>
-</li>
-<li>3、Agent 的搭建</li>
-</ul>
-<p>大模型的调用</p>
-<ul>
-<li>1、本地部署（使用 ollama 方式访问）</li>
-<li>2、大模型接口</li>
-</ul>
-<p>通信模式</p>
+<h2 id="Spring-AI-简要提及"><a href="#Spring-AI-简要提及" class="headerlink" title="Spring AI 简要提及"></a>Spring AI 简要提及</h2><p>Spring AI 是 Spring 生态中用于集成 AI 能力的框架，支持 RAG、MCP 服务搭建和 Agent 构建等功能。如果你是 Java&#x2F;Spring 技术栈的开发者，Spring AI 提供了一种熟悉的方式来接入大模型能力。</p>
+<h3 id="MCP-通信模式"><a href="#MCP-通信模式" class="headerlink" title="MCP 通信模式"></a>MCP 通信模式</h3><p>MCP 服务支持三种通信模式，选择时需根据实际场景权衡：</p>
 <table>
 <thead>
 <tr>
 <th>特性</th>
-<th>ADUTIO（STDIO）</th>
+<th>STDIO</th>
 <th>SSE（Server-Sent Events）</th>
-<th>WE（Streamable HTTP）</th>
+<th>Streamable HTTP</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>​<strong>​通信方向​</strong>​</td>
+<td><strong>通信方向</strong></td>
 <td>双向（本地进程间）</td>
 <td>单向（服务器→客户端）</td>
 <td>双向（客户端↔服务器）</td>
 </tr>
 <tr>
-<td>​<strong>​协议基础​</strong>​</td>
+<td><strong>协议基础</strong></td>
 <td>标准输入输出</td>
 <td>HTTP&#x2F;1.1</td>
 <td>HTTP&#x2F;2</td>
 </tr>
 <tr>
-<td>​<strong>​实时性​</strong>​</td>
-<td>请求-响应模式</td>
-<td>服务器主动推送</td>
-<td>双向实时流式交互</td>
-</tr>
-<tr>
-<td>​<strong>​适用场景​</strong>​</td>
-<td>本地调试、CLI工具</td>
+<td><strong>适用场景</strong></td>
+<td>本地调试、CLI 工具</td>
 <td>实时数据推送（如通知）</td>
-<td>高并发双向交互（如AI对话）</td>
+<td>高并发双向交互（如 AI 对话）</td>
 </tr>
 <tr>
-<td>​<strong>​复杂度​</strong>​</td>
+<td><strong>复杂度</strong></td>
 <td>简单</td>
 <td>中等</td>
-<td>较高（需HTTP&#x2F;2支持）</td>
-</tr>
-<tr>
-<td>​<strong>​浏览器兼容性​</strong>​</td>
-<td>不支持</td>
-<td>广泛支持</td>
-<td>需现代浏览器（兼容HTTP&#x2F;2）</td>
+<td>较高</td>
 </tr>
 </tbody></table>
-<hr>
-<p>搭建自己的第一个MCP服务：具体见代码演示。</p>
-<p>MCP 服务</p>
-<ul>
-<li>查看本机的电脑配置信息</li>
-<li>发布一篇文章到CSDN</li>
+<h3 id="相关资源"><a href="#相关资源" class="headerlink" title="相关资源"></a>相关资源</h3><ul>
+<li>Spring AI 官网：<a target="_blank" rel="noopener" href="https://spring.io/ai">https://spring.io/ai</a></li>
+<li>Spring AI Alibaba：<a target="_blank" rel="noopener" href="https://github.com/alibaba/spring-ai-alibaba/blob/main/README-zh.md">https://github.com/alibaba/spring-ai-alibaba/blob/main/README-zh.md</a></li>
+<li>Java2AI 快速入门：<a target="_blank" rel="noopener" href="https://java2ai.com/docs/1.0.0-M6.1/get-started/?spm=5176.29160081.0.0.2856aa5cJ7DL7b">https://java2ai.com/docs/1.0.0-M6.1/get-started/?spm=5176.29160081.0.0.2856aa5cJ7DL7b</a></li>
 </ul>
-<p>打包注意事项：</p>
-<ul>
-<li>注意 pom.xml 要排除掉一些 lombok 组件，不用打包到整个工程里。</li>
-<li></li>
-</ul>
-<h3 id="工作流平台的使用-n8n的使用"><a href="#工作流平台的使用-n8n的使用" class="headerlink" title="工作流平台的使用-n8n的使用"></a>工作流平台的使用-n8n的使用</h3><p>略</p>
-<hr>
-<ul>
-<li>DIfy 的一些基础介绍： <a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_59163425/article/details/142368632">https://blog.csdn.net/m0_59163425/article/details/142368632</a></li>
-<li>n8n:  <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1r17azXEAj">https://www.bilibili.com/video/BV1r17azXEAj</a></li>
+<h2 id="延伸阅读"><a href="#延伸阅读" class="headerlink" title="延伸阅读"></a>延伸阅读</h2><ul>
+<li>大模型参数设置指南：<a target="_blank" rel="noopener" href="https://www.promptingguide.ai/zh/introduction/settings">https://www.promptingguide.ai/zh/introduction/settings</a></li>
+<li>LLM 智能体工具：<a target="_blank" rel="noopener" href="https://www.promptingguide.ai/zh/research/llm-agents">https://www.promptingguide.ai/zh/research/llm-agents</a></li>
+<li>提示词工程最佳实践：<a target="_blank" rel="noopener" href="https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api">https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api</a></li>
+<li>LangGPT 结构化提示词：<a target="_blank" rel="noopener" href="https://langgptai.feishu.cn/wiki/WOMhwOkPsiNacKkgz2ecu9Mmngc">https://langgptai.feishu.cn/wiki/WOMhwOkPsiNacKkgz2ecu9Mmngc</a></li>
+<li>MCP 服务社区：<a target="_blank" rel="noopener" href="https://mcpservers.cn/servers">https://mcpservers.cn/servers</a> | <a target="_blank" rel="noopener" href="https://mcp.so/">https://mcp.so/</a> | <a target="_blank" rel="noopener" href="https://gitmcp.io/">https://gitmcp.io/</a></li>
 </ul>
 
                 
@@ -493,6 +455,17 @@
     </div>
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/AI%E5%B7%A5%E5%85%B7/" class="print-no-link">#AI工具</a>
+      
+        <a href="/tags/MCP/" class="print-no-link">#MCP</a>
+      
+        <a href="/tags/LLM/" class="print-no-link">#LLM</a>
+      
+    </div>
+  
 </div>
 
 
@@ -501,7 +474,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>关于CherryStudio、N8N平台的使用介绍和Spring AI 框架</div>
+      <div>CherryStudio 与 N8N 实用指南：AI 客户端和工作流平台入门</div>
       <div>https://varcel.luoqi.icu/2025/07/09/sync/关于CherryStudioN8N平台的使用介绍和Sprin-64e683/</div>
     </div>
     <div class="license-meta">
@@ -546,9 +519,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/04/29/sync/ai-coding-workflow-e79dd7/" title="AI 编程项目工作流：知识库与需求文件夹全流程规范">
+                      <a href="/2025/12/25/sync/%E7%B4%A2%E5%B0%BC-A6700-%E6%96%B0%E6%89%8B%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B-d727c3/" title="索尼 A6700 新手使用教程：从曝光三角到实战操作">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">AI 编程项目工作流：知识库与需求文件夹全流程规范</span>
+                        <span class="hidden-mobile">索尼 A6700 新手使用教程：从曝光三角到实战操作</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
