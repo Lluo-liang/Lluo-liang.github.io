@@ -21,21 +21,24 @@
   <meta name="author" content="Luo QI">
   <meta name="keywords" content="">
   
-    <meta name="description" content="亚瑟·阿伦设计的36个问题">
+    <meta name="description" content="在 Obsidian 中实现一个间隔重复背诵组件，将笔记直接变成可交互的背诵练习，支持选词挖空、Markdown 渲染、乱序练习。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="拉近女生关系的36个问题">
-<meta property="og:url" content="https://varcel.luoqi.icu/2024/12/19/sync/%E4%BA%9A%E7%91%9F%E9%98%BF%E4%BC%A6%E8%AE%BE%E8%AE%A1%E7%9A%8436%E4%B8%AA%E9%97%AE%E9%A2%98-590bdb/index.html">
+<meta property="og:title" content="开发与使用 Spaced Repetition：让记忆更高效">
+<meta property="og:url" content="https://varcel.luoqi.icu/2026/05/03/sync/%E5%BC%80%E5%8F%91%E4%B8%8E%E4%BD%BF%E7%94%A8-Spaced-Repetition%E8%AE%A9%E8%AE%B0%E5%BF%86%E6%9B%B4%E9%AB%98%E6%95%88-338579/index.html">
 <meta property="og:site_name" content="轻松的洛亓">
-<meta property="og:description" content="亚瑟·阿伦设计的36个问题">
+<meta property="og:description" content="在 Obsidian 中实现一个间隔重复背诵组件，将笔记直接变成可交互的背诵练习，支持选词挖空、Markdown 渲染、乱序练习。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-12-19T22:35:10.000Z">
+<meta property="article:published_time" content="2026-05-03T23:46:17.000Z">
 <meta property="article:modified_time" content="2026-05-03T16:22:11.000Z">
 <meta property="article:author" content="Luo QI">
+<meta property="article:tag" content="Obsidian">
+<meta property="article:tag" content="组件开发">
+<meta property="article:tag" content="间隔重复">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>拉近女生关系的36个问题 - 轻松的洛亓</title>
+  <title>开发与使用 Spaced Repetition：让记忆更高效 - 轻松的洛亓</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -201,7 +204,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="拉近女生关系的36个问题"></span>
+            <span id="subtitle" data-typed-text="开发与使用 Spaced Repetition：让记忆更高效"></span>
           
         </div>
 
@@ -212,8 +215,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-12-19 22:35" pubdate>
-          2024年12月19日 晚上
+        <time datetime="2026-05-03 23:46" pubdate>
+          2026年5月3日 晚上
         </time>
       </span>
     
@@ -224,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          965 字
+          1.2k 字
         
       </span>
     
@@ -235,7 +238,7 @@
         
         
         
-          9 分钟
+          10 分钟
         
       </span>
     
@@ -272,55 +275,51 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">拉近女生关系的36个问题</h1>
+            <h1 id="seo-header">开发与使用 Spaced Repetition：让记忆更高效</h1>
             
             
               <div class="markdown-body">
                 
-                <p>以下是亚瑟·阿伦设计的36个问题，这些问题经过心理学实验验证，能让两个陌生人通过回答这些问题，快速增进彼此的亲密感：</p>
-<h3 id="第一组问题"><a href="#第一组问题" class="headerlink" title="第一组问题"></a>第一组问题</h3><ol>
-<li>如果你能在全世界任选一个人和你共进晚餐，你会选谁？</li>
-<li>你想出名吗？在哪一方面？</li>
-<li>打电话前，你会预演你即将要说的话吗？为什么？</li>
-<li>对你来说，“完美”的一天是什么样的？</li>
-<li>你上次自己唱起歌来是在什么时候，给别人唱呢？</li>
-<li>如果你能活到 90 岁，同时可以一直保持 30 岁时的心智或身体，你会选择保持哪一种呢，心智还是身体？</li>
-<li>你是否曾经秘密地预感到自己会以怎样的方式死去？</li>
-<li>说出 3 个你和对方在外表上的共同特征。</li>
-<li>生命中什么事情让你感激不尽？</li>
-<li>如果你可以改变自己的成长轨迹，你希望改成什么样子？</li>
-<li>用 4 分钟尽可能详细地告诉对方你的生活故事。</li>
-<li>如果明天醒来你可以获得一个品质或一种能力，你希望是什么？</li>
+                <h2 id="为什么需要这个工具"><a href="#为什么需要这个工具" class="headerlink" title="为什么需要这个工具"></a>为什么需要这个工具</h2><p>备考期间面对大量需要记忆的内容——口诀、对照表、概念辨析——传统做法是反复阅读笔记，但「看过」和「记住」之间有巨大的鸿沟。</p>
+<p>核心矛盾很简单：<strong>被动阅读无法暴露记忆盲区</strong>。你以为自己记住了，合上笔记才发现脑子一片空白。</p>
+<p>Spaced Repetition 组件的设计目标就是把 Obsidian 笔记直接变成<strong>主动回忆练习</strong>：在原文中挖空关键词，逼自己填写，用即时反馈替代自我欺骗。</p>
+<h2 id="它能做什么"><a href="#它能做什么" class="headerlink" title="它能做什么"></a>它能做什么</h2><h3 id="制作背诵版"><a href="#制作背诵版" class="headerlink" title="制作背诵版"></a>制作背诵版</h3><p>从 Obsidian 库中选择一篇笔记（或通过 frontmatter 属性筛选），在原文上<strong>选中文字</strong>即可标记为挖空项。支持：</p>
+<ul>
+<li><strong>单次选择</strong>：鼠标选中一段文字，自动标记</li>
+<li><strong>批量标记</strong>：选中后点击「标记全文相同内容」，一键标记所有相同文本</li>
+<li><strong>段落折叠</strong>：长文档按段落折叠，聚焦当前区域</li>
+<li><strong>多版本</strong>：同一篇笔记可制作多个背诵版本，每个版本挖空不同的内容</li>
+</ul>
+<h3 id="背诵练习"><a href="#背诵练习" class="headerlink" title="背诵练习"></a>背诵练习</h3><p>进入练习模式后，原文保留 Markdown 排版（标题、表格、粗体等），被标记的内容替换为编号空白。右侧面板逐一填写答案：</p>
+<ul>
+<li>输入完全匹配时自动判定正确，原文对应位置变绿</li>
+<li>输入错误时输入框抖动提示</li>
+<li>可请求提示（显示首字）</li>
+<li>支持乱序模式，打乱填写顺序</li>
+<li>Tab 键自动跳转到下一个未完成项</li>
+<li>全部完成后自动记录练习次数</li>
+</ul>
+<h3 id="列表管理"><a href="#列表管理" class="headerlink" title="列表管理"></a>列表管理</h3><p>所有背诵条目以卡片列表展示：</p>
+<ul>
+<li>标题只显示文件短名 + 版本标记（如 <code>v1</code>、<code>v2</code>），路径折叠到下方小字</li>
+<li>更新时间、练习次数、挖空数量分行展示</li>
+<li>支持按时间 &#x2F; 名称 &#x2F; 练习次数排序</li>
+<li>可在设置中配置列表显示数量上限</li>
+</ul>
+<h2 id="设计思路"><a href="#设计思路" class="headerlink" title="设计思路"></a>设计思路</h2><h3 id="核心理念：笔记即题库"><a href="#核心理念：笔记即题库" class="headerlink" title="核心理念：笔记即题库"></a>核心理念：笔记即题库</h3><p>与 Anki 等独立工具不同，这个组件不需要「制卡→导入→复习」的额外流程。笔记本身就是背诵素材，选中文字就完成了出题，零迁移成本。</p>
+<h3 id="快照式存储"><a href="#快照式存储" class="headerlink" title="快照式存储"></a>快照式存储</h3><p>制作背诵版时会保存一份原文快照。这意味着即使后续修改了源笔记，已有的背诵版不会受到影响。每个背诵版是独立的——同一篇笔记可以从不同角度挖空（比如第一版挖关键词，第二版挖展开含义），互不干扰。</p>
+<h3 id="基于偏移量的挖空定位"><a href="#基于偏移量的挖空定位" class="headerlink" title="基于偏移量的挖空定位"></a>基于偏移量的挖空定位</h3><p>挖空内容通过「起始位置 + 结束位置」在原文中精确定位，而不是依赖关键词搜索。好处是即使原文中有重复文本，每个挖空项也能独立标记，不会误伤。</p>
+<h3 id="渲染策略：保留原文格式"><a href="#渲染策略：保留原文格式" class="headerlink" title="渲染策略：保留原文格式"></a>渲染策略：保留原文格式</h3><p>制作阶段以纯文本形式展示原文，方便逐字选择标记。练习阶段则以 Markdown 格式渲染，保留标题层级、表格结构、粗体等排版——这样练习时看到的就是笔记的真实样子，而不是一堆扁平的文字。</p>
+<h3 id="严格匹配的答案校验"><a href="#严格匹配的答案校验" class="headerlink" title="严格匹配的答案校验"></a>严格匹配的答案校验</h3><p>答案必须与原文<strong>完全一致</strong>才算正确，这是刻意的设计。背诵的目的是精确记忆，「差不多」的模糊匹配会降低练习质量。记错一个字就是记错了，抖动反馈会立刻告诉你。</p>
+<h3 id="文件筛选机制"><a href="#文件筛选机制" class="headerlink" title="文件筛选机制"></a>文件筛选机制</h3><p>通过设置中的 frontmatter 属性筛选规则，可以快速定位需要背诵的笔记。比如给需要背诵的笔记加上 <code>tags: 背诵</code>，然后设置筛选条件 <code>tags contains 背诵</code>，制作页面就只显示这些文件。所有规则取交集，支持精确匹配、包含、存在性判断等运算。</p>
+<h2 id="实际使用效果"><a href="#实际使用效果" class="headerlink" title="实际使用效果"></a>实际使用效果</h2><p>以软考架构师备考为例，将口诀速记表制作成背诵版后：</p>
+<ol>
+<li><strong>暴露盲区</strong>：第一遍练习就发现大量「以为记住了」的内容，比如六个质量属性能说出五个但总漏一个</li>
+<li><strong>精确纠错</strong>：抖动反馈能立刻定位记错的字词，不会在模糊的「大概对了」中自我安慰</li>
+<li><strong>多角度练习</strong>：多版本机制允许从不同维度挖空同一篇笔记——第一版挖口诀对应的关键词，第二版挖展开内容</li>
+<li><strong>进度可视</strong>：练习次数记录帮助识别哪些内容已经熟练、哪些还需要加强，把有限的时间花在薄弱环节</li>
+<li><strong>零成本启动</strong>：笔记就在 Obsidian 里，标记几下就能开始练习，不需要额外制卡、导入导出</li>
 </ol>
-<h3 id="第二组问题"><a href="#第二组问题" class="headerlink" title="第二组问题"></a>第二组问题</h3><ol start="13">
-<li>如果有颗水晶球能向你揭示关于你自己、你的生活、你的未来，或是其他任何事情的真相，你想知道些什么？</li>
-<li>你有没有一直梦想要做的事情？为什么没有做呢？</li>
-<li>你人生中最大的成就是什么？</li>
-<li>一段友谊中，你最重视的是什么？</li>
-<li>记忆中最珍贵的事情是什么？</li>
-<li>记忆中最可怕的事情是什么？</li>
-<li>如果你知道一年后你会突然离世，你会改变现在的生活方式吗？为什么？</li>
-<li>朋友对你来说意味着什么？</li>
-<li>恋爱和感情在你的生活中扮演着什么样的角色？</li>
-<li>逐个列出对方好的一面，共列举 5 个。</li>
-<li>你的家庭成员彼此亲密吗？氛围温馨吗？你觉得你的童年比大部分人都开心吗？</li>
-<li>你和母亲的关系如何？</li>
-</ol>
-<h3 id="第三组问题"><a href="#第三组问题" class="headerlink" title="第三组问题"></a>第三组问题</h3><ol start="25">
-<li>用“我们”组 3 个基于现有场景的句子，比如，我们在这个房间都感觉……</li>
-<li>把这个句子补充完整：“我希望有个人能跟我分享……”</li>
-<li>如果你想和对方成为亲密的朋友，请列举出对他&#x2F;她来说最重要的事情。</li>
-<li>告诉对方你喜欢他&#x2F;她的地方，这一次你要非常诚恳，说一些你平常不会跟刚认识的人说的话。</li>
-<li>和对方分享人生中最尴尬的时刻。</li>
-<li>上一次你在他人面前哭是什么时候？是莫名地哭吗？</li>
-<li>告诉对方你已经喜欢他&#x2F;她很久了。</li>
-<li>有没有什么事情是你认为非常严肃，不能开玩笑的？</li>
-<li>假如你今晚会离世，并且没有机会跟任何人交流，你最后悔没有对谁吐露心声？为什么到现在还没有对这个人说出想说的话？</li>
-<li>假设你拥有的全部东西都在你的房子里，现在房子着了火，救出家人和宠物之后，你还有机会安全地冲进去最后一次，取出最后一件东西，你会拿什么，为什么？</li>
-<li>你的家人中，谁去世了会令你最难过，为什么？</li>
-<li>说出一件你的个人问题，问对方如果遇到此事要如何解决。另外，也要让对方如实告诉你，在他或她眼中，你对于这个问题的感受是怎样的。</li>
-</ol>
-<p>这些问题之所以有效，是因为它们引导双方进行深入的自我暴露和情感交流，从而快速建立起亲密感和信任感。</p>
 
                 
               </div>
@@ -339,7 +338,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E7%94%9F%E6%B4%BB-%E4%BA%BA%E9%99%85%E5%85%B3%E7%B3%BB/" class="category-chain-item">生活/人际关系</a>
+  <a href="/categories/%E5%AD%A6%E4%B9%A0-%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" class="category-chain-item">学习/工具使用</a>
   
   
 
@@ -351,6 +350,17 @@
     </div>
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Obsidian/" class="print-no-link">#Obsidian</a>
+      
+        <a href="/tags/%E7%BB%84%E4%BB%B6%E5%BC%80%E5%8F%91/" class="print-no-link">#组件开发</a>
+      
+        <a href="/tags/%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D/" class="print-no-link">#间隔重复</a>
+      
+    </div>
+  
 </div>
 
 
@@ -359,8 +369,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>拉近女生关系的36个问题</div>
-      <div>https://varcel.luoqi.icu/2024/12/19/sync/亚瑟阿伦设计的36个问题-590bdb/</div>
+      <div>开发与使用 Spaced Repetition：让记忆更高效</div>
+      <div>https://varcel.luoqi.icu/2026/05/03/sync/开发与使用-Spaced-Repetition让记忆更高效-338579/</div>
     </div>
     <div class="license-meta">
       
@@ -372,7 +382,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年12月19日</div>
+          <div>2026年5月3日</div>
         </div>
       
       
@@ -404,18 +414,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/07/09/sync/%E5%85%B3%E4%BA%8ECherryStudioN8N%E5%B9%B3%E5%8F%B0%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%BB%8D%E5%92%8CSprin-64e683/" title="CherryStudio 与 N8N 实用指南：AI 客户端和工作流平台入门">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">CherryStudio 与 N8N 实用指南：AI 客户端和工作流平台入门</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/12/11/sync/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97_%E5%9F%BA%E7%A1%80%E7%AF%87-8ef366/" title="消息队列入门指南">
-                        <span class="hidden-mobile">消息队列入门指南</span>
+                      <a href="/2026/05/02/sync/ai-exam-study-workflow-75184f/" title="AI 考试备考工作流：用 Claude 系统性地备战任何考试">
+                        <span class="hidden-mobile">AI 考试备考工作流：用 Claude 系统性地备战任何考试</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

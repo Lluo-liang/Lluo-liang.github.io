@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>开发与使用 Spaced Repetition：让记忆更高效</title>
+    <link href="/2026/05/03/sync/%E5%BC%80%E5%8F%91%E4%B8%8E%E4%BD%BF%E7%94%A8-Spaced-Repetition%E8%AE%A9%E8%AE%B0%E5%BF%86%E6%9B%B4%E9%AB%98%E6%95%88-338579/"/>
+    <url>/2026/05/03/sync/%E5%BC%80%E5%8F%91%E4%B8%8E%E4%BD%BF%E7%94%A8-Spaced-Repetition%E8%AE%A9%E8%AE%B0%E5%BF%86%E6%9B%B4%E9%AB%98%E6%95%88-338579/</url>
+    
+    <content type="html"><![CDATA[<h2 id="为什么需要这个工具"><a href="#为什么需要这个工具" class="headerlink" title="为什么需要这个工具"></a>为什么需要这个工具</h2><p>备考期间面对大量需要记忆的内容——口诀、对照表、概念辨析——传统做法是反复阅读笔记，但「看过」和「记住」之间有巨大的鸿沟。</p><p>核心矛盾很简单：<strong>被动阅读无法暴露记忆盲区</strong>。你以为自己记住了，合上笔记才发现脑子一片空白。</p><p>Spaced Repetition 组件的设计目标就是把 Obsidian 笔记直接变成<strong>主动回忆练习</strong>：在原文中挖空关键词，逼自己填写，用即时反馈替代自我欺骗。</p><h2 id="它能做什么"><a href="#它能做什么" class="headerlink" title="它能做什么"></a>它能做什么</h2><h3 id="制作背诵版"><a href="#制作背诵版" class="headerlink" title="制作背诵版"></a>制作背诵版</h3><p>从 Obsidian 库中选择一篇笔记（或通过 frontmatter 属性筛选），在原文上<strong>选中文字</strong>即可标记为挖空项。支持：</p><ul><li><strong>单次选择</strong>：鼠标选中一段文字，自动标记</li><li><strong>批量标记</strong>：选中后点击「标记全文相同内容」，一键标记所有相同文本</li><li><strong>段落折叠</strong>：长文档按段落折叠，聚焦当前区域</li><li><strong>多版本</strong>：同一篇笔记可制作多个背诵版本，每个版本挖空不同的内容</li></ul><h3 id="背诵练习"><a href="#背诵练习" class="headerlink" title="背诵练习"></a>背诵练习</h3><p>进入练习模式后，原文保留 Markdown 排版（标题、表格、粗体等），被标记的内容替换为编号空白。右侧面板逐一填写答案：</p><ul><li>输入完全匹配时自动判定正确，原文对应位置变绿</li><li>输入错误时输入框抖动提示</li><li>可请求提示（显示首字）</li><li>支持乱序模式，打乱填写顺序</li><li>Tab 键自动跳转到下一个未完成项</li><li>全部完成后自动记录练习次数</li></ul><h3 id="列表管理"><a href="#列表管理" class="headerlink" title="列表管理"></a>列表管理</h3><p>所有背诵条目以卡片列表展示：</p><ul><li>标题只显示文件短名 + 版本标记（如 <code>v1</code>、<code>v2</code>），路径折叠到下方小字</li><li>更新时间、练习次数、挖空数量分行展示</li><li>支持按时间 &#x2F; 名称 &#x2F; 练习次数排序</li><li>可在设置中配置列表显示数量上限</li></ul><h2 id="设计思路"><a href="#设计思路" class="headerlink" title="设计思路"></a>设计思路</h2><h3 id="核心理念：笔记即题库"><a href="#核心理念：笔记即题库" class="headerlink" title="核心理念：笔记即题库"></a>核心理念：笔记即题库</h3><p>与 Anki 等独立工具不同，这个组件不需要「制卡→导入→复习」的额外流程。笔记本身就是背诵素材，选中文字就完成了出题，零迁移成本。</p><h3 id="快照式存储"><a href="#快照式存储" class="headerlink" title="快照式存储"></a>快照式存储</h3><p>制作背诵版时会保存一份原文快照。这意味着即使后续修改了源笔记，已有的背诵版不会受到影响。每个背诵版是独立的——同一篇笔记可以从不同角度挖空（比如第一版挖关键词，第二版挖展开含义），互不干扰。</p><h3 id="基于偏移量的挖空定位"><a href="#基于偏移量的挖空定位" class="headerlink" title="基于偏移量的挖空定位"></a>基于偏移量的挖空定位</h3><p>挖空内容通过「起始位置 + 结束位置」在原文中精确定位，而不是依赖关键词搜索。好处是即使原文中有重复文本，每个挖空项也能独立标记，不会误伤。</p><h3 id="渲染策略：保留原文格式"><a href="#渲染策略：保留原文格式" class="headerlink" title="渲染策略：保留原文格式"></a>渲染策略：保留原文格式</h3><p>制作阶段以纯文本形式展示原文，方便逐字选择标记。练习阶段则以 Markdown 格式渲染，保留标题层级、表格结构、粗体等排版——这样练习时看到的就是笔记的真实样子，而不是一堆扁平的文字。</p><h3 id="严格匹配的答案校验"><a href="#严格匹配的答案校验" class="headerlink" title="严格匹配的答案校验"></a>严格匹配的答案校验</h3><p>答案必须与原文<strong>完全一致</strong>才算正确，这是刻意的设计。背诵的目的是精确记忆，「差不多」的模糊匹配会降低练习质量。记错一个字就是记错了，抖动反馈会立刻告诉你。</p><h3 id="文件筛选机制"><a href="#文件筛选机制" class="headerlink" title="文件筛选机制"></a>文件筛选机制</h3><p>通过设置中的 frontmatter 属性筛选规则，可以快速定位需要背诵的笔记。比如给需要背诵的笔记加上 <code>tags: 背诵</code>，然后设置筛选条件 <code>tags contains 背诵</code>，制作页面就只显示这些文件。所有规则取交集，支持精确匹配、包含、存在性判断等运算。</p><h2 id="实际使用效果"><a href="#实际使用效果" class="headerlink" title="实际使用效果"></a>实际使用效果</h2><p>以软考架构师备考为例，将口诀速记表制作成背诵版后：</p><ol><li><strong>暴露盲区</strong>：第一遍练习就发现大量「以为记住了」的内容，比如六个质量属性能说出五个但总漏一个</li><li><strong>精确纠错</strong>：抖动反馈能立刻定位记错的字词，不会在模糊的「大概对了」中自我安慰</li><li><strong>多角度练习</strong>：多版本机制允许从不同维度挖空同一篇笔记——第一版挖口诀对应的关键词，第二版挖展开内容</li><li><strong>进度可视</strong>：练习次数记录帮助识别哪些内容已经熟练、哪些还需要加强，把有限的时间花在薄弱环节</li><li><strong>零成本启动</strong>：笔记就在 Obsidian 里，标记几下就能开始练习，不需要额外制卡、导入导出</li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>学习/工具使用</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Obsidian</tag>
+      
+      <tag>组件开发</tag>
+      
+      <tag>间隔重复</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>AI 考试备考工作流：用 Claude 系统性地备战任何考试</title>
     <link href="/2026/05/02/sync/ai-exam-study-workflow-75184f/"/>
     <url>/2026/05/02/sync/ai-exam-study-workflow-75184f/</url>
