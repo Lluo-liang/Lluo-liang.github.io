@@ -38,7 +38,7 @@
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/2026/05/03/sync/%E5%BC%80%E5%8F%91%E4%B8%8E%E4%BD%BF%E7%94%A8-Spaced-Repetition%E8%AE%A9%E8%AE%B0%E5%BF%86%E6%9B%B4%E9%AB%98%E6%95%88-338579/</loc>
+    <loc>https://varcel.luoqi.icu/2025/07/09/sync/%E5%85%B3%E4%BA%8ECherryStudioN8N%E5%B9%B3%E5%8F%B0%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%BB%8D%E5%92%8CSprin-64e683/</loc>
     
     <lastmod>2026-05-21</lastmod>
     
@@ -47,7 +47,7 @@
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/2025/07/09/sync/%E5%85%B3%E4%BA%8ECherryStudioN8N%E5%B9%B3%E5%8F%B0%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%BB%8D%E5%92%8CSprin-64e683/</loc>
+    <loc>https://varcel.luoqi.icu/2026/05/03/sync/%E5%BC%80%E5%8F%91%E4%B8%8E%E4%BD%BF%E7%94%A8-Spaced-Repetition%E8%AE%A9%E8%AE%B0%E5%BF%86%E6%9B%B4%E9%AB%98%E6%95%88-338579/</loc>
     
     <lastmod>2026-05-21</lastmod>
     
@@ -134,27 +134,6 @@
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/tags/Obsidian/</loc>
-    <lastmod>2026-05-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://varcel.luoqi.icu/tags/%E7%BB%84%E4%BB%B6%E5%BC%80%E5%8F%91/</loc>
-    <lastmod>2026-05-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://varcel.luoqi.icu/tags/%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D/</loc>
-    <lastmod>2026-05-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://varcel.luoqi.icu/tags/AI%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2026-05-21</lastmod>
     <changefreq>weekly</changefreq>
@@ -170,6 +149,27 @@
   
   <url>
     <loc>https://varcel.luoqi.icu/tags/LLM/</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://varcel.luoqi.icu/tags/Obsidian/</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://varcel.luoqi.icu/tags/%E7%BB%84%E4%BB%B6%E5%BC%80%E5%8F%91/</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://varcel.luoqi.icu/tags/%E9%97%B4%E9%9A%94%E9%87%8D%E5%A4%8D/</loc>
     <lastmod>2026-05-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -255,14 +255,14 @@
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/categories/%E5%AD%A6%E4%B9%A0-%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/</loc>
+    <loc>https://varcel.luoqi.icu/categories/%E5%AD%A6%E4%B9%A0-%E5%8D%9A%E5%AE%A2/</loc>
     <lastmod>2026-05-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://varcel.luoqi.icu/categories/%E5%AD%A6%E4%B9%A0-%E5%8D%9A%E5%AE%A2/</loc>
+    <loc>https://varcel.luoqi.icu/categories/%E5%AD%A6%E4%B9%A0-%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/</loc>
     <lastmod>2026-05-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
